@@ -56,7 +56,8 @@ Notes about X\+D\+MF\+:
 \item If no collection is used, but just multiple grids, the attribute can be different but does not have to be, as the different grid are distinguished by their different grid names, not by the attribute of the variables they contain.
 \item The selection of hyperslabs is used, as described here\+: \href{http://davis.lbl.gov/Manuals/HDF5-1.8.7/UG/12_Dataspaces.html}{\tt http\+://davis.\+lbl.\+gov/\+Manuals/\+H\+D\+F5-\/1.\+8.\+7/\+U\+G/12\+\_\+\+Dataspaces.\+html}
 \item Chunking is used for partial I/O, as described here\+: \href{https://www.hdfgroup.org/HDF5/doc/Advanced/Chunking/}{\tt https\+://www.\+hdfgroup.\+org/\+H\+D\+F5/doc/\+Advanced/\+Chunking/} As no chunk cache is reused, the w0 setting should be 1. Furthermore, the number of slots is chosen to be equal to the number of chunks. And Finally, the chunk size is chosen to be the size of the previous dimensions, if it does not exceed 4\+GB
-\item Individual writes or plots are done now using the standard I/O driver, as using M\+PI does not allow for more than 2\+GB. This is important for the H\+E\+L\+E\+NA version of P\+B3D where {\ttfamily X\+\_\+2} variables get larger than that. \href{https://www.hdfgroup.org/HDF5/doc/UG/OldHtmlSource/UG_frame08TheFile.html}{\tt https\+://www.\+hdfgroup.\+org/\+H\+D\+F5/doc/\+U\+G/\+Old\+Html\+Source/\+U\+G\+\_\+frame08\+The\+File.\+html} 
+\item Individual writes or plots are done now using the standard I/O driver, as using M\+PI does not allow for more than 2\+GB. This is important for the H\+E\+L\+E\+NA version of P\+B3D where {\ttfamily X\+\_\+2} variables get larger than that. \href{https://www.hdfgroup.org/HDF5/doc/UG/OldHtmlSource/UG_frame08TheFile.html}{\tt https\+://www.\+hdfgroup.\+org/\+H\+D\+F5/doc/\+U\+G/\+Old\+Html\+Source/\+U\+G\+\_\+frame08\+The\+File.\+html}
+\item Have a look in Documentation/\+X\+D\+M\+F\+\_\+\+H\+D\+F5.\+pdf for an example. 
 \end{DoxyItemize}
 \end{DoxyNote}
 
@@ -91,7 +92,7 @@ ierr
 \end{DoxyParams}
 
 
-Definition at line 339 of file H\+D\+F5\+\_\+ops.\+f90.
+Definition at line 340 of file H\+D\+F5\+\_\+ops.\+f90.
 
 Here is the caller graph for this function\+:\nopagebreak
 \begin{figure}[H]
@@ -124,7 +125,7 @@ ierr
 \end{DoxyParams}
 
 
-Definition at line 263 of file H\+D\+F5\+\_\+ops.\+f90.
+Definition at line 264 of file H\+D\+F5\+\_\+ops.\+f90.
 
 Here is the call graph for this function\+:\nopagebreak
 \begin{figure}[H]
@@ -157,7 +158,7 @@ Creates an H\+D\+F5 output file.
 \end{DoxyParams}
 
 
-Definition at line 1074 of file H\+D\+F5\+\_\+ops.\+f90.
+Definition at line 1075 of file H\+D\+F5\+\_\+ops.\+f90.
 
 Here is the call graph for this function\+:\nopagebreak
 \begin{figure}[H]
@@ -202,7 +203,7 @@ Joins dataitems in a vector.
 \end{DoxyParams}
 
 
-Definition at line 602 of file H\+D\+F5\+\_\+ops.\+f90.
+Definition at line 603 of file H\+D\+F5\+\_\+ops.\+f90.
 
 Here is the call graph for this function\+:\nopagebreak
 \begin{figure}[H]
@@ -254,7 +255,7 @@ ierr
 \end{DoxyParams}
 
 
-Definition at line 77 of file H\+D\+F5\+\_\+ops.\+f90.
+Definition at line 78 of file H\+D\+F5\+\_\+ops.\+f90.
 
 Here is the call graph for this function\+:\nopagebreak
 \begin{figure}[H]
@@ -310,7 +311,7 @@ ierr
 \end{DoxyParams}
 
 
-Definition at line 395 of file H\+D\+F5\+\_\+ops.\+f90.
+Definition at line 396 of file H\+D\+F5\+\_\+ops.\+f90.
 
 Here is the call graph for this function\+:\nopagebreak
 \begin{figure}[H]
@@ -365,7 +366,7 @@ ierr
 \end{DoxyParams}
 
 
-Definition at line 1131 of file H\+D\+F5\+\_\+ops.\+f90.
+Definition at line 1132 of file H\+D\+F5\+\_\+ops.\+f90.
 
 Here is the call graph for this function\+:\nopagebreak
 \begin{figure}[H]
@@ -410,7 +411,7 @@ Prints an H\+D\+F5 attribute.
 \end{DoxyParams}
 
 
-Definition at line 695 of file H\+D\+F5\+\_\+ops.\+f90.
+Definition at line 696 of file H\+D\+F5\+\_\+ops.\+f90.
 
 Here is the caller graph for this function\+:\nopagebreak
 \begin{figure}[H]
@@ -444,7 +445,7 @@ Prints an H\+D\+F5 geometry.
 \end{DoxyParams}
 
 
-Definition at line 804 of file H\+D\+F5\+\_\+ops.\+f90.
+Definition at line 805 of file H\+D\+F5\+\_\+ops.\+f90.
 
 Here is the caller graph for this function\+:\nopagebreak
 \begin{figure}[H]
@@ -497,7 +498,7 @@ ierr
 \end{DoxyParams}
 
 
-Definition at line 885 of file H\+D\+F5\+\_\+ops.\+f90.
+Definition at line 886 of file H\+D\+F5\+\_\+ops.\+f90.
 
 Here is the call graph for this function\+:\nopagebreak
 \begin{figure}[H]
@@ -539,7 +540,7 @@ Currently only structured grids supported.
 \end{DoxyParams}
 
 
-Definition at line 754 of file H\+D\+F5\+\_\+ops.\+f90.
+Definition at line 755 of file H\+D\+F5\+\_\+ops.\+f90.
 
 Here is the call graph for this function\+:\nopagebreak
 \begin{figure}[H]
@@ -596,7 +597,7 @@ ierr
 \end{DoxyParams}
 
 
-Definition at line 1525 of file H\+D\+F5\+\_\+ops.\+f90.
+Definition at line 1526 of file H\+D\+F5\+\_\+ops.\+f90.
 
 Here is the call graph for this function\+:\nopagebreak
 \begin{figure}[H]
@@ -630,7 +631,7 @@ Debug version only
 \end{DoxyNote}
 
 
-Definition at line 46 of file H\+D\+F5\+\_\+ops.\+f90.
+Definition at line 47 of file H\+D\+F5\+\_\+ops.\+f90.
 
 \mbox{\Hypertarget{namespacehdf5__ops_a00bbaa77652e040350c9726668cc22ac}\label{namespacehdf5__ops_a00bbaa77652e040350c9726668cc22ac}} 
 \index{hdf5\+\_\+ops@{hdf5\+\_\+ops}!debug\+\_\+print\+\_\+hdf5\+\_\+arrs@{debug\+\_\+print\+\_\+hdf5\+\_\+arrs}}
@@ -647,5 +648,5 @@ Debug version only
 \end{DoxyNote}
 
 
-Definition at line 47 of file H\+D\+F5\+\_\+ops.\+f90.
+Definition at line 48 of file H\+D\+F5\+\_\+ops.\+f90.
 
