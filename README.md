@@ -1,7 +1,11 @@
-# Doxygen documentation of PB3D code
+# Doxygen documentation of [PB3D](https://toonweyens.github.io/PB3D) code
 
-* **To set up**: set the correct PB3D directory in `makefile`
-* **To use**: run `make all`, then commit
+* **To set up**:
+    * set the correct PB3D directory in `makefile`
+    * if you don't have the correct fonts installed for the latex file, do so
+* **To use**:
+    * run `make all`
+    * commit
 
 *Note*:
 PB3D.github.io is a user profile page for the user "PB3D". It is registered under PB3Dcode@gmail.com.
