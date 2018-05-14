@@ -1,0 +1,130 @@
+\hypertarget{interfacex__ops_1_1print__output__x}{}\section{x\+\_\+ops\+:\+:print\+\_\+output\+\_\+x Interface Reference}
+\label{interfacex__ops_1_1print__output__x}\index{x\+\_\+ops\+::print\+\_\+output\+\_\+x@{x\+\_\+ops\+::print\+\_\+output\+\_\+x}}
+
+
+Print either vectorial or tensorial perturbation quantities of a certain order to an output file.  
+
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+integer function \hyperlink{interfacex__ops_1_1print__output__x_af66cca1a3bd819c6eefe69974af7166d}{print\+\_\+output\+\_\+x\+\_\+1} (grid\+\_\+X, X, data\+\_\+name, rich\+\_\+lvl, par\+\_\+div, lim\+\_\+sec\+\_\+X)
+\begin{DoxyCompactList}\small\item\em vectorial version. \end{DoxyCompactList}\item 
+integer function \hyperlink{interfacex__ops_1_1print__output__x_a0600bd1f9ed6ec2ba0c748d52a932bc6}{print\+\_\+output\+\_\+x\+\_\+2} (grid\+\_\+X, X, data\+\_\+name, rich\+\_\+lvl, par\+\_\+div, lim\+\_\+sec\+\_\+X, is\+\_\+field\+\_\+averaged)
+\begin{DoxyCompactList}\small\item\em tensorial version \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Print either vectorial or tensorial perturbation quantities of a certain order to an output file. 
+
+
+\begin{DoxyItemize}
+\item vectorial\+:
+\begin{DoxyItemize}
+\item U
+\item DU
+\end{DoxyItemize}
+\item tensorial\+:
+\begin{DoxyItemize}
+\item P\+V\+\_\+int
+\item K\+V\+\_\+int
+\end{DoxyItemize}
+\end{DoxyItemize}
+
+(The non-\/integrated variables are not saved because they are heavy and not requested.)
+
+If {\ttfamily rich\+\_\+lvl} is provided, {\ttfamily \char`\"{}\+\_\+\+R\+\_\+\mbox{[}rich\+\_\+lvl\mbox{]}\char`\"{}} is appended to the data name if it is {\ttfamily $>$0}.
+
+Optionally, it can be specified that this is a divided parallel grid, corresponding to the variable {\ttfamily eq\+\_\+jobs\+\_\+lims} with index {\ttfamily eq\+\_\+job\+\_\+nr}. In this case, the total grid size is adjusted to the one specified by {\ttfamily eq\+\_\+jobs\+\_\+lims} and the grid is written as a subset. \begin{DoxyNote}{Note}
+
+\begin{DoxyEnumerate}
+\item The equilibrium quantities are outputted in Flux coordinates.
+\item The tensorial perturbation type can also be used for field-\/aligned variables, in which case the first index is assumed to have dimension 1 only. This can be triggered using {\ttfamily is\+\_\+field\+\_\+averaged}.
+\end{DoxyEnumerate}
+\end{DoxyNote}
+\begin{DoxyReturn}{Returns}
+ierr 
+\end{DoxyReturn}
+
+
+Definition at line 85 of file X\+\_\+ops.\+f90.
+
+
+
+\subsection{Member Function/\+Subroutine Documentation}
+\mbox{\Hypertarget{interfacex__ops_1_1print__output__x_af66cca1a3bd819c6eefe69974af7166d}\label{interfacex__ops_1_1print__output__x_af66cca1a3bd819c6eefe69974af7166d}} 
+\index{x\+\_\+ops\+::print\+\_\+output\+\_\+x@{x\+\_\+ops\+::print\+\_\+output\+\_\+x}!print\+\_\+output\+\_\+x\+\_\+1@{print\+\_\+output\+\_\+x\+\_\+1}}
+\index{print\+\_\+output\+\_\+x\+\_\+1@{print\+\_\+output\+\_\+x\+\_\+1}!x\+\_\+ops\+::print\+\_\+output\+\_\+x@{x\+\_\+ops\+::print\+\_\+output\+\_\+x}}
+\subsubsection{\texorpdfstring{print\+\_\+output\+\_\+x\+\_\+1()}{print\_output\_x\_1()}}
+{\footnotesize\ttfamily integer function x\+\_\+ops\+::print\+\_\+output\+\_\+x\+::print\+\_\+output\+\_\+x\+\_\+1 (\begin{DoxyParamCaption}\item[{type(\hyperlink{structgrid__vars_1_1grid__type}{grid\+\_\+type}), intent(in)}]{grid\+\_\+X,  }\item[{type(x\+\_\+1\+\_\+type), intent(in)}]{X,  }\item[{character(len=$\ast$), intent(in)}]{data\+\_\+name,  }\item[{integer, intent(in), optional}]{rich\+\_\+lvl,  }\item[{logical, intent(in), optional}]{par\+\_\+div,  }\item[{integer, dimension(2), intent(in), optional}]{lim\+\_\+sec\+\_\+X }\end{DoxyParamCaption})}
+
+
+
+vectorial version. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em grid\+\_\+x} & perturbation grid variables\\
+\hline
+\mbox{\tt in}  & {\em x} & vectorial perturbation variables\\
+\hline
+\mbox{\tt in}  & {\em data\+\_\+name} & name under which to store\\
+\hline
+\mbox{\tt in}  & {\em rich\+\_\+lvl} & Richardson level to print\\
+\hline
+\mbox{\tt in}  & {\em par\+\_\+div} & is a parallely divided grid\\
+\hline
+\mbox{\tt in}  & {\em lim\+\_\+sec\+\_\+x} & limits of {\ttfamily m\+\_\+X} (pol. flux) or {\ttfamily n\+\_\+X} (tor. flux) \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 411 of file X\+\_\+ops.\+f90.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{interfacex__ops_1_1print__output__x_af66cca1a3bd819c6eefe69974af7166d_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{interfacex__ops_1_1print__output__x_a0600bd1f9ed6ec2ba0c748d52a932bc6}\label{interfacex__ops_1_1print__output__x_a0600bd1f9ed6ec2ba0c748d52a932bc6}} 
+\index{x\+\_\+ops\+::print\+\_\+output\+\_\+x@{x\+\_\+ops\+::print\+\_\+output\+\_\+x}!print\+\_\+output\+\_\+x\+\_\+2@{print\+\_\+output\+\_\+x\+\_\+2}}
+\index{print\+\_\+output\+\_\+x\+\_\+2@{print\+\_\+output\+\_\+x\+\_\+2}!x\+\_\+ops\+::print\+\_\+output\+\_\+x@{x\+\_\+ops\+::print\+\_\+output\+\_\+x}}
+\subsubsection{\texorpdfstring{print\+\_\+output\+\_\+x\+\_\+2()}{print\_output\_x\_2()}}
+{\footnotesize\ttfamily integer function x\+\_\+ops\+::print\+\_\+output\+\_\+x\+::print\+\_\+output\+\_\+x\+\_\+2 (\begin{DoxyParamCaption}\item[{type(\hyperlink{structgrid__vars_1_1grid__type}{grid\+\_\+type}), intent(in)}]{grid\+\_\+X,  }\item[{type(x\+\_\+2\+\_\+type), intent(in)}]{X,  }\item[{character(len=$\ast$), intent(in)}]{data\+\_\+name,  }\item[{integer, intent(in), optional}]{rich\+\_\+lvl,  }\item[{logical, intent(in), optional}]{par\+\_\+div,  }\item[{integer, dimension(2,2), intent(in), optional}]{lim\+\_\+sec\+\_\+X,  }\item[{logical, intent(in), optional}]{is\+\_\+field\+\_\+averaged }\end{DoxyParamCaption})}
+
+
+
+tensorial version 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em grid\+\_\+x} & perturbation grid variables\\
+\hline
+\mbox{\tt in}  & {\em x} & tensorial perturbation variables\\
+\hline
+\mbox{\tt in}  & {\em data\+\_\+name} & name under which to store\\
+\hline
+\mbox{\tt in}  & {\em rich\+\_\+lvl} & Richardson level to print\\
+\hline
+\mbox{\tt in}  & {\em par\+\_\+div} & is a parallely divided grid\\
+\hline
+\mbox{\tt in}  & {\em lim\+\_\+sec\+\_\+x} & limits of {\ttfamily m\+\_\+X} (pol. flux) or {\ttfamily n\+\_\+X} (tor. flux)\\
+\hline
+\mbox{\tt in}  & {\em is\+\_\+field\+\_\+averaged} & whether field-\/averaged, so only one dimension for first index \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 603 of file X\+\_\+ops.\+f90.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{interfacex__ops_1_1print__output__x_a0600bd1f9ed6ec2ba0c748d52a932bc6_cgraph}
+\end{center}
+\end{figure}
+
+

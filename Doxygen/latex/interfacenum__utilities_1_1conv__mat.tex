@@ -1,0 +1,166 @@
+\hypertarget{interfacenum__utilities_1_1conv__mat}{}\section{num\+\_\+utilities\+:\+:conv\+\_\+mat Interface Reference}
+\label{interfacenum__utilities_1_1conv__mat}\index{num\+\_\+utilities\+::conv\+\_\+mat@{num\+\_\+utilities\+::conv\+\_\+mat}}
+
+
+Converts a (symmetric) matrix A with the storage convention described in \hyperlink{structeq__vars_1_1eq__2__type}{eq\+\_\+vars.\+eq\+\_\+2\+\_\+type}.  
+
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+integer function \hyperlink{interfacenum__utilities_1_1conv__mat_afb7b2860bd5b00e2c387b5d75148420a}{conv\+\_\+mat\+\_\+3d} (A, B, n, transp)
+\begin{DoxyCompactList}\small\item\em version defined on 3-\/D grid \end{DoxyCompactList}\item 
+integer function \hyperlink{interfacenum__utilities_1_1conv__mat_a1675a562dfca75f73d1a162e386f48d5}{conv\+\_\+mat\+\_\+3d\+\_\+complex} (A, B, n, transp)
+\begin{DoxyCompactList}\small\item\em complex version defined on 3D grid \end{DoxyCompactList}\item 
+integer function \hyperlink{interfacenum__utilities_1_1conv__mat_a1f24e4892c2253309edbdc6705869d47}{conv\+\_\+mat\+\_\+0d} (A, B, n, transp)
+\begin{DoxyCompactList}\small\item\em scalar version \end{DoxyCompactList}\item 
+integer function \hyperlink{interfacenum__utilities_1_1conv__mat_acaf526133b6c324e978a2e3601b11594}{conv\+\_\+mat\+\_\+0d\+\_\+complex} (A, B, n, transp)
+\begin{DoxyCompactList}\small\item\em complex scalar version \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Converts a (symmetric) matrix A with the storage convention described in \hyperlink{structeq__vars_1_1eq__2__type}{eq\+\_\+vars.\+eq\+\_\+2\+\_\+type}. 
+
+This matric can have elements depending on a 3-\/D grid or be constant.
+
+
+\begin{DoxyItemize}
+\item If the matrix is stored with n$^\wedge$2 numbers, only the lower diagonal elements are kept in matrix B.
+\item If only the lower diagonal elements are stored, they are copied to the upper diagonal ones of the matrix B as well.
+\end{DoxyItemize}
+
+Optionally, the transpose can be calculated.
+
+\begin{DoxyNote}{Note}
+
+\begin{DoxyEnumerate}
+\item The routine does not check whether the matrix is indeed symmetric and that information may thus be lost after conversion.
+\item This routine makes a copy of A so that by providing A as input argument for both A and B overwrites A.
+\end{DoxyEnumerate}
+\end{DoxyNote}
+\begin{DoxyReturn}{Returns}
+ierr 
+\end{DoxyReturn}
+
+
+Definition at line 123 of file num\+\_\+utilities.\+f90.
+
+
+
+\subsection{Member Function/\+Subroutine Documentation}
+\mbox{\Hypertarget{interfacenum__utilities_1_1conv__mat_a1f24e4892c2253309edbdc6705869d47}\label{interfacenum__utilities_1_1conv__mat_a1f24e4892c2253309edbdc6705869d47}} 
+\index{num\+\_\+utilities\+::conv\+\_\+mat@{num\+\_\+utilities\+::conv\+\_\+mat}!conv\+\_\+mat\+\_\+0d@{conv\+\_\+mat\+\_\+0d}}
+\index{conv\+\_\+mat\+\_\+0d@{conv\+\_\+mat\+\_\+0d}!num\+\_\+utilities\+::conv\+\_\+mat@{num\+\_\+utilities\+::conv\+\_\+mat}}
+\subsubsection{\texorpdfstring{conv\+\_\+mat\+\_\+0d()}{conv\_mat\_0d()}}
+{\footnotesize\ttfamily integer function num\+\_\+utilities\+::conv\+\_\+mat\+::conv\+\_\+mat\+\_\+0d (\begin{DoxyParamCaption}\item[{real(dp), dimension(\+:), intent(in)}]{A,  }\item[{real(dp), dimension(\+:), intent(inout)}]{B,  }\item[{integer, intent(in)}]{n,  }\item[{logical, intent(in), optional}]{transp }\end{DoxyParamCaption})}
+
+
+
+scalar version 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em a} & matrix to be converted\\
+\hline
+\mbox{\tt in,out}  & {\em b} & converted matrix\\
+\hline
+\mbox{\tt in}  & {\em n} & size of matrix\\
+\hline
+\mbox{\tt in}  & {\em transp} & transpose \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 1084 of file num\+\_\+utilities.\+f90.
+
+\mbox{\Hypertarget{interfacenum__utilities_1_1conv__mat_acaf526133b6c324e978a2e3601b11594}\label{interfacenum__utilities_1_1conv__mat_acaf526133b6c324e978a2e3601b11594}} 
+\index{num\+\_\+utilities\+::conv\+\_\+mat@{num\+\_\+utilities\+::conv\+\_\+mat}!conv\+\_\+mat\+\_\+0d\+\_\+complex@{conv\+\_\+mat\+\_\+0d\+\_\+complex}}
+\index{conv\+\_\+mat\+\_\+0d\+\_\+complex@{conv\+\_\+mat\+\_\+0d\+\_\+complex}!num\+\_\+utilities\+::conv\+\_\+mat@{num\+\_\+utilities\+::conv\+\_\+mat}}
+\subsubsection{\texorpdfstring{conv\+\_\+mat\+\_\+0d\+\_\+complex()}{conv\_mat\_0d\_complex()}}
+{\footnotesize\ttfamily integer function num\+\_\+utilities\+::conv\+\_\+mat\+::conv\+\_\+mat\+\_\+0d\+\_\+complex (\begin{DoxyParamCaption}\item[{complex(dp), dimension(\+:), intent(in)}]{A,  }\item[{complex(dp), dimension(\+:), intent(inout)}]{B,  }\item[{integer, intent(in)}]{n,  }\item[{logical, intent(in), optional}]{transp }\end{DoxyParamCaption})}
+
+
+
+complex scalar version 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em a} & matrix to be converted\\
+\hline
+\mbox{\tt in,out}  & {\em b} & converted matrix\\
+\hline
+\mbox{\tt in}  & {\em n} & size of matrix\\
+\hline
+\mbox{\tt in}  & {\em transp} & transpose \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 1179 of file num\+\_\+utilities.\+f90.
+
+\mbox{\Hypertarget{interfacenum__utilities_1_1conv__mat_afb7b2860bd5b00e2c387b5d75148420a}\label{interfacenum__utilities_1_1conv__mat_afb7b2860bd5b00e2c387b5d75148420a}} 
+\index{num\+\_\+utilities\+::conv\+\_\+mat@{num\+\_\+utilities\+::conv\+\_\+mat}!conv\+\_\+mat\+\_\+3d@{conv\+\_\+mat\+\_\+3d}}
+\index{conv\+\_\+mat\+\_\+3d@{conv\+\_\+mat\+\_\+3d}!num\+\_\+utilities\+::conv\+\_\+mat@{num\+\_\+utilities\+::conv\+\_\+mat}}
+\subsubsection{\texorpdfstring{conv\+\_\+mat\+\_\+3d()}{conv\_mat\_3d()}}
+{\footnotesize\ttfamily integer function num\+\_\+utilities\+::conv\+\_\+mat\+::conv\+\_\+mat\+\_\+3d (\begin{DoxyParamCaption}\item[{real(dp), dimension(\+:,\+:,\+:,\+:), intent(in)}]{A,  }\item[{real(dp), dimension(\+:,\+:,\+:,\+:), intent(inout)}]{B,  }\item[{integer, intent(in)}]{n,  }\item[{logical, intent(in), optional}]{transp }\end{DoxyParamCaption})}
+
+
+
+version defined on 3-\/D grid 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em a} & matrix to be converted\\
+\hline
+\mbox{\tt in,out}  & {\em b} & converted matrix\\
+\hline
+\mbox{\tt in}  & {\em n} & size of matrix\\
+\hline
+\mbox{\tt in}  & {\em transp} & transpose \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 1015 of file num\+\_\+utilities.\+f90.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{interfacenum__utilities_1_1conv__mat_afb7b2860bd5b00e2c387b5d75148420a_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{interfacenum__utilities_1_1conv__mat_a1675a562dfca75f73d1a162e386f48d5}\label{interfacenum__utilities_1_1conv__mat_a1675a562dfca75f73d1a162e386f48d5}} 
+\index{num\+\_\+utilities\+::conv\+\_\+mat@{num\+\_\+utilities\+::conv\+\_\+mat}!conv\+\_\+mat\+\_\+3d\+\_\+complex@{conv\+\_\+mat\+\_\+3d\+\_\+complex}}
+\index{conv\+\_\+mat\+\_\+3d\+\_\+complex@{conv\+\_\+mat\+\_\+3d\+\_\+complex}!num\+\_\+utilities\+::conv\+\_\+mat@{num\+\_\+utilities\+::conv\+\_\+mat}}
+\subsubsection{\texorpdfstring{conv\+\_\+mat\+\_\+3d\+\_\+complex()}{conv\_mat\_3d\_complex()}}
+{\footnotesize\ttfamily integer function num\+\_\+utilities\+::conv\+\_\+mat\+::conv\+\_\+mat\+\_\+3d\+\_\+complex (\begin{DoxyParamCaption}\item[{complex(dp), dimension(\+:,\+:,\+:,\+:), intent(in)}]{A,  }\item[{complex(dp), dimension(\+:,\+:,\+:,\+:), intent(inout)}]{B,  }\item[{integer, intent(in)}]{n,  }\item[{logical, intent(in), optional}]{transp }\end{DoxyParamCaption})}
+
+
+
+complex version defined on 3D grid 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em a} & matrix to be converted\\
+\hline
+\mbox{\tt in,out}  & {\em b} & converted matrix\\
+\hline
+\mbox{\tt in}  & {\em n} & size of matrix\\
+\hline
+\mbox{\tt in}  & {\em transp} & transpose \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 1110 of file num\+\_\+utilities.\+f90.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{interfacenum__utilities_1_1conv__mat_a1675a562dfca75f73d1a162e386f48d5_cgraph}
+\end{center}
+\end{figure}
+
+

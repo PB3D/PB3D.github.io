@@ -1,0 +1,207 @@
+\hypertarget{namespacex__utilities}{}\section{x\+\_\+utilities Module Reference}
+\label{namespacex__utilities}\index{x\+\_\+utilities@{x\+\_\+utilities}}
+
+
+Numerical utilities related to perturbation operations.  
+
+
+\subsection*{Interfaces and Types}
+\begin{DoxyCompactItemize}
+\item 
+interface \hyperlink{interfacex__utilities_1_1sec__ind__loc2tot}{sec\+\_\+ind\+\_\+loc2tot}
+\begin{DoxyCompactList}\small\item\em Returns the {\ttfamily sec\+\_\+ind\+\_\+tot} used to refer to a perturbation quantity. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Functions/\+Subroutines}
+\begin{DoxyCompactItemize}
+\item 
+subroutine, public \hyperlink{namespacex__utilities_a6072ddd1fd230758795ff320c75a1f6a}{get\+\_\+sec\+\_\+x\+\_\+range} (sec\+\_\+\+X\+\_\+range\+\_\+loc, sec\+\_\+\+X\+\_\+range\+\_\+tot, m, sym, lim\+\_\+sec\+\_\+X)
+\begin{DoxyCompactList}\small\item\em Gets one of the the local ranges of contiguous tensorial perturbation variables to be printed or read during one call of the corresponding H\+D\+F5 variables. \end{DoxyCompactList}\item 
+logical function, public \hyperlink{namespacex__utilities_adef8eab82f0fd670a7795c754cf9a8f9}{do\+\_\+x} ()
+\begin{DoxyCompactList}\small\item\em Tests whether this perturbatino job should be done. \end{DoxyCompactList}\item 
+logical function, public \hyperlink{namespacex__utilities_a689aca7fedb49c43c5a65a18d557259f}{is\+\_\+necessary\+\_\+x} (sym, sec\+\_\+\+X\+\_\+id, lim\+\_\+sec\+\_\+X)
+\begin{DoxyCompactList}\small\item\em Determines whether a variable needs to be considered\+: \end{DoxyCompactList}\item 
+integer function, public \hyperlink{namespacex__utilities_a4d18921da77463d069346f1c7322b451}{calc\+\_\+memory\+\_\+x} (ord, arr\+\_\+size, n\+\_\+mod, mem\+\_\+size)
+\begin{DoxyCompactList}\small\item\em Calculate memory in MB necessary for X variables. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Numerical utilities related to perturbation operations. 
+
+\subsection{Function/\+Subroutine Documentation}
+\mbox{\Hypertarget{namespacex__utilities_a4d18921da77463d069346f1c7322b451}\label{namespacex__utilities_a4d18921da77463d069346f1c7322b451}} 
+\index{x\+\_\+utilities@{x\+\_\+utilities}!calc\+\_\+memory\+\_\+x@{calc\+\_\+memory\+\_\+x}}
+\index{calc\+\_\+memory\+\_\+x@{calc\+\_\+memory\+\_\+x}!x\+\_\+utilities@{x\+\_\+utilities}}
+\subsubsection{\texorpdfstring{calc\+\_\+memory\+\_\+x()}{calc\_memory\_x()}}
+{\footnotesize\ttfamily integer function, public x\+\_\+utilities\+::calc\+\_\+memory\+\_\+x (\begin{DoxyParamCaption}\item[{integer, intent(in)}]{ord,  }\item[{integer, intent(in)}]{arr\+\_\+size,  }\item[{integer, intent(in)}]{n\+\_\+mod,  }\item[{real(dp), intent(inout)}]{mem\+\_\+size }\end{DoxyParamCaption})}
+
+
+
+Calculate memory in MB necessary for X variables. 
+
+This depends on the order\+:
+\begin{DoxyItemize}
+\item order 1\+:
+\begin{DoxyItemize}
+\item {\ttfamily 4x n\+\_\+par\+\_\+X x n\+\_\+geo x loc\+\_\+n\+\_\+r x n\+\_\+mod}
+\end{DoxyItemize}
+\item order 2\+:
+\begin{DoxyItemize}
+\item {\ttfamily 2x n\+\_\+par\+\_\+X x n\+\_\+geo x loc\+\_\+n\+\_\+r x n\+\_\+mod$^\wedge$2}
+\item {\ttfamily 4x n\+\_\+par\+\_\+X x n\+\_\+geo x loc\+\_\+n\+\_\+r x n\+\_\+mod(n\+\_\+mod+1)/2}
+\end{DoxyItemize}
+\item higher order\+: not used
+\end{DoxyItemize}
+
+where {\ttfamily n\+\_\+par\+\_\+X x n\+\_\+geo x loc\+\_\+n\+\_\+r} should be passed as {\ttfamily arr\+\_\+size} and {\ttfamily n\+\_\+mod} as well.
+
+\begin{DoxyReturn}{Returns}
+ierr
+\end{DoxyReturn}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em ord} & order of data\\
+\hline
+\mbox{\tt in}  & {\em arr\+\_\+size} & size of part of X array\\
+\hline
+\mbox{\tt in}  & {\em n\+\_\+mod} & number of modes\\
+\hline
+\mbox{\tt in,out}  & {\em mem\+\_\+size} & total size \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 236 of file X\+\_\+utilities.\+f90.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespacex__utilities_a4d18921da77463d069346f1c7322b451_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespacex__utilities_a4d18921da77463d069346f1c7322b451_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{namespacex__utilities_adef8eab82f0fd670a7795c754cf9a8f9}\label{namespacex__utilities_adef8eab82f0fd670a7795c754cf9a8f9}} 
+\index{x\+\_\+utilities@{x\+\_\+utilities}!do\+\_\+x@{do\+\_\+x}}
+\index{do\+\_\+x@{do\+\_\+x}!x\+\_\+utilities@{x\+\_\+utilities}}
+\subsubsection{\texorpdfstring{do\+\_\+x()}{do\_x()}}
+{\footnotesize\ttfamily logical function, public x\+\_\+utilities\+::do\+\_\+x (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Tests whether this perturbatino job should be done. 
+
+Also increments {\ttfamily X\+\_\+job\+\_\+nr} 
+
+Definition at line 179 of file X\+\_\+utilities.\+f90.
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespacex__utilities_adef8eab82f0fd670a7795c754cf9a8f9_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{namespacex__utilities_a6072ddd1fd230758795ff320c75a1f6a}\label{namespacex__utilities_a6072ddd1fd230758795ff320c75a1f6a}} 
+\index{x\+\_\+utilities@{x\+\_\+utilities}!get\+\_\+sec\+\_\+x\+\_\+range@{get\+\_\+sec\+\_\+x\+\_\+range}}
+\index{get\+\_\+sec\+\_\+x\+\_\+range@{get\+\_\+sec\+\_\+x\+\_\+range}!x\+\_\+utilities@{x\+\_\+utilities}}
+\subsubsection{\texorpdfstring{get\+\_\+sec\+\_\+x\+\_\+range()}{get\_sec\_x\_range()}}
+{\footnotesize\ttfamily subroutine, public x\+\_\+utilities\+::get\+\_\+sec\+\_\+x\+\_\+range (\begin{DoxyParamCaption}\item[{integer, dimension(2), intent(inout)}]{sec\+\_\+\+X\+\_\+range\+\_\+loc,  }\item[{integer, dimension(2), intent(inout)}]{sec\+\_\+\+X\+\_\+range\+\_\+tot,  }\item[{integer, intent(in)}]{m,  }\item[{logical, intent(in)}]{sym,  }\item[{integer, dimension(2,2), intent(in), optional}]{lim\+\_\+sec\+\_\+X }\end{DoxyParamCaption})}
+
+
+
+Gets one of the the local ranges of contiguous tensorial perturbation variables to be printed or read during one call of the corresponding H\+D\+F5 variables. 
+
+More specifically, a range of indices {\ttfamily k} in the first dimension is given for every value of the indices {\ttfamily m} in the second dimension.
+
+An example is now given for the subrange {\ttfamily \mbox{[}2\+:3,2\+:5\mbox{]}} of a the total range {\ttfamily \mbox{[}1\+:5, 1\+:5\mbox{]}}. For asymmetric variables the situation is simple\+: The {\ttfamily k} range is {\ttfamily \mbox{[}2\+:3\mbox{]}} for all 5 values of {\ttfamily m}. However, for symmetric variables, the upper diagonal values are not stored, which gives {\ttfamily k} ranges {\ttfamily \mbox{[}2\+:3\mbox{]}}, {\ttfamily \mbox{[}3\+:3\mbox{]}} and no range for {\ttfamily m} = 4 and 5.
+
+This routine then translates these ranges to the corresponding 1-\/D ranges that are used in the actual variables. For above example, the total indices are \[ \left(\begin{array}{ccccc} 1 & 6 & 11 & 16 & 21 \\ 2 & 7 & 12 & 17 & 22 \\ 3 & 8 & 13 & 18 & 23 \\ 4 & 9 & 14 & 19 & 24 \\ 5 & 10 & 15 & 20 & 25 \end{array}\right) \rightarrow \left[7:8\right], \left[12:13\right], \left[17:18\right] \ \text{and} \ \left[22:23\right], \] for asymmetric variables and \[ \left(\begin{array}{ccccc} 1 & 2 & 3 & 4 & 5 \\ 2 & 6 & 7 & 8 & 9 \\ 3 & 7 & 10 & 11 & 12 \\ 4 & 8 & 11 & 13 & 14 \\ 5 & 9 & 12 & 14 & 15 \end{array}\right) \rightarrow \left[6:7\right], \left[10:10\right], \left[:\right] \ \text{and} \ \left[:\right], \] for symmetric variables.
+
+These can then related to the local indices for the variables in this perturbation job.
+
+For above example, the results are\+:
+
+{\ttfamily \mbox{[}1\+:2\mbox{]}, \mbox{[}3\+:4\mbox{]}, \mbox{[}5\+:6\mbox{]} and \mbox{[}7\+:8\mbox{]}},
+
+for asymmetric variables and
+
+{\ttfamily \mbox{[}1\+:2\mbox{]}, \mbox{[}3\+:3\mbox{]}, \mbox{[}\+:\mbox{]} and \mbox{[}\+:\mbox{]}},
+
+for symmetric variables.
+
+As can be seen, the local ranges of the variables in the submatrix of this perturbation job are (designed to be) contiguous, but the total ranges of the variables in the submatrix are clearly not in general.
+
+The procedure outputs both the local and total ranges.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in,out}  & {\em sec\+\_\+x\+\_\+range\+\_\+loc} & start and end of local range in dimension 1 (vertical)\\
+\hline
+\mbox{\tt in,out}  & {\em sec\+\_\+x\+\_\+range\+\_\+tot} & start and end of total range in dimension 1 (vertical)\\
+\hline
+\mbox{\tt in}  & {\em m} & dimension 2 (horizontal)\\
+\hline
+\mbox{\tt in}  & {\em sym} & whether the variable is symmetric\\
+\hline
+\mbox{\tt in}  & {\em lim\+\_\+sec\+\_\+x} & limits of {\ttfamily m\+\_\+X} (pol. flux) or {\ttfamily n\+\_\+X} (tor. flux) \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 128 of file X\+\_\+utilities.\+f90.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespacex__utilities_a6072ddd1fd230758795ff320c75a1f6a_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespacex__utilities_a6072ddd1fd230758795ff320c75a1f6a_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{namespacex__utilities_a689aca7fedb49c43c5a65a18d557259f}\label{namespacex__utilities_a689aca7fedb49c43c5a65a18d557259f}} 
+\index{x\+\_\+utilities@{x\+\_\+utilities}!is\+\_\+necessary\+\_\+x@{is\+\_\+necessary\+\_\+x}}
+\index{is\+\_\+necessary\+\_\+x@{is\+\_\+necessary\+\_\+x}!x\+\_\+utilities@{x\+\_\+utilities}}
+\subsubsection{\texorpdfstring{is\+\_\+necessary\+\_\+x()}{is\_necessary\_x()}}
+{\footnotesize\ttfamily logical function, public x\+\_\+utilities\+::is\+\_\+necessary\+\_\+x (\begin{DoxyParamCaption}\item[{logical, intent(in)}]{sym,  }\item[{integer, dimension(2), intent(in)}]{sec\+\_\+\+X\+\_\+id,  }\item[{integer, dimension(2,2), intent(in), optional}]{lim\+\_\+sec\+\_\+X }\end{DoxyParamCaption})}
+
+
+
+Determines whether a variable needs to be considered\+: 
+
+This depends on whether the quantity is symmetric or not\+:
+\begin{DoxyItemize}
+\item Only if it is on or below the diagonal for symmetric quantities.
+\item Always for asymmetric quantities
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em sym} & whether the variable is symmetric\\
+\hline
+\mbox{\tt in}  & {\em sec\+\_\+x\+\_\+id} & mode indices\\
+\hline
+\mbox{\tt in}  & {\em lim\+\_\+sec\+\_\+x} & limits of {\ttfamily m\+\_\+X} (pol flux) or {\ttfamily n\+\_\+X} (tor flux) for both dimensions \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 197 of file X\+\_\+utilities.\+f90.
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespacex__utilities_a689aca7fedb49c43c5a65a18d557259f_icgraph}
+\end{center}
+\end{figure}

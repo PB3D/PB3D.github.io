@@ -1,0 +1,106 @@
+\hypertarget{num__utilities_8f90}{}\section{Modules/num\+\_\+utilities.f90 File Reference}
+\label{num__utilities_8f90}\index{Modules/num\+\_\+utilities.\+f90@{Modules/num\+\_\+utilities.\+f90}}
+\subsection*{Interfaces and Types}
+\begin{DoxyCompactItemize}
+\item 
+interface \hyperlink{interfacenum__utilities_1_1add__arr__mult}{num\+\_\+utilities\+::add\+\_\+arr\+\_\+mult}
+\begin{DoxyCompactList}\small\item\em Add to an array (3) the product of arrays (1) and (2). \end{DoxyCompactList}\item 
+interface \hyperlink{interfacenum__utilities_1_1calc__det}{num\+\_\+utilities\+::calc\+\_\+det}
+\begin{DoxyCompactList}\small\item\em Calculate determinant of a matrix. \end{DoxyCompactList}\item 
+interface \hyperlink{interfacenum__utilities_1_1calc__inv}{num\+\_\+utilities\+::calc\+\_\+inv}
+\begin{DoxyCompactList}\small\item\em Calculate inverse of square matrix {\ttfamily A}. \end{DoxyCompactList}\item 
+interface \hyperlink{interfacenum__utilities_1_1calc__mult}{num\+\_\+utilities\+::calc\+\_\+mult}
+\begin{DoxyCompactList}\small\item\em Calculate matrix multiplication of two square matrices $\overline{\text{AB}} = \overline{\text{A}} \ \overline{\text{B}}$. \end{DoxyCompactList}\item 
+interface \hyperlink{interfacenum__utilities_1_1conv__mat}{num\+\_\+utilities\+::conv\+\_\+mat}
+\begin{DoxyCompactList}\small\item\em Converts a (symmetric) matrix A with the storage convention described in \hyperlink{structeq__vars_1_1eq__2__type}{eq\+\_\+vars.\+eq\+\_\+2\+\_\+type}. \end{DoxyCompactList}\item 
+interface \hyperlink{interfacenum__utilities_1_1calc__int}{num\+\_\+utilities\+::calc\+\_\+int}
+\begin{DoxyCompactList}\small\item\em Integrates a function using the trapezoidal rule. \end{DoxyCompactList}\item 
+interface \hyperlink{interfacenum__utilities_1_1round__with__tol}{num\+\_\+utilities\+::round\+\_\+with\+\_\+tol}
+\begin{DoxyCompactList}\small\item\em Rounds an arry of values to limits, with a tolerance $10^{-5}$ that can optionally be modified. \end{DoxyCompactList}\item 
+interface \hyperlink{interfacenum__utilities_1_1con2dis}{num\+\_\+utilities\+::con2dis}
+\begin{DoxyCompactList}\small\item\em Convert between points from a continuous grid to a discrete grid. \end{DoxyCompactList}\item 
+interface \hyperlink{interfacenum__utilities_1_1dis2con}{num\+\_\+utilities\+::dis2con}
+\begin{DoxyCompactList}\small\item\em Convert between points from a discrete grid to a continuous grid. \end{DoxyCompactList}\item 
+interface \hyperlink{interfacenum__utilities_1_1con}{num\+\_\+utilities\+::con}
+\begin{DoxyCompactList}\small\item\em Either takes the complex conjugate of a square matrix element A, defined on a 3-\/D grid, or not. \end{DoxyCompactList}\item 
+interface \hyperlink{interfacenum__utilities_1_1bubble__sort}{num\+\_\+utilities\+::bubble\+\_\+sort}
+\begin{DoxyCompactList}\small\item\em Sorting with the bubble sort routine. \end{DoxyCompactList}\item 
+interface \hyperlink{interfacenum__utilities_1_1order__per__fun}{num\+\_\+utilities\+::order\+\_\+per\+\_\+fun}
+\begin{DoxyCompactList}\small\item\em Order a periodic function to include $0\ldots 2\pi$ and an overlap. \end{DoxyCompactList}\item 
+interface \hyperlink{interfacenum__utilities_1_1spline}{num\+\_\+utilities\+::spline}
+\begin{DoxyCompactList}\small\item\em Wrapper to the pspline library, making it easier to use for 1-\/D applications where speed is not the main priority. If spline representations are to be reused, manually use the library. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Modules}
+\begin{DoxyCompactItemize}
+\item 
+module \hyperlink{namespacenum__utilities}{num\+\_\+utilities}
+\begin{DoxyCompactList}\small\item\em Numerical utilities. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Functions/\+Subroutines}
+\begin{DoxyCompactItemize}
+\item 
+integer function \hyperlink{namespacenum__utilities_ac6699d422f3a588b51234c2d62ff389f}{num\+\_\+utilities\+::calc\+\_\+inv\+\_\+0d} (inv\+\_\+0D, A)
+\begin{DoxyCompactList}\small\item\em private constant version \end{DoxyCompactList}\item 
+integer function \hyperlink{num__utilities_8f90_a41f0ec23e08348e7498587997f483a00}{setup\+\_\+lim\+\_\+vals} (xb, lim\+\_\+vals)
+\begin{DoxyCompactList}\small\item\em /private set up limit values \end{DoxyCompactList}\item 
+subroutine, public \hyperlink{namespacenum__utilities_af461ae4c95a7a45da875dcf311e323f5}{num\+\_\+utilities\+::calc\+\_\+aux\+\_\+utilities} (n\+\_\+mod)
+\begin{DoxyCompactList}\small\item\em Initialize utilities for fast future reference, depending on program style. \end{DoxyCompactList}\item 
+integer function \hyperlink{namespacenum__utilities_af2e9ffd7ce2f9391bf8b6f1c344fabca}{num\+\_\+utilities\+::calc\+\_\+derivs\+\_\+1d\+\_\+id} (deriv, dims)
+\begin{DoxyCompactList}\small\item\em Returns the 1D indices for derivatives of a certain order in certain dimensions. \end{DoxyCompactList}\item 
+integer function, dimension(\+:,\+:), allocatable, public \hyperlink{namespacenum__utilities_ac827c18dd05a9b5a06675eac942f3b51}{num\+\_\+utilities\+::derivs} (order, dims)
+\begin{DoxyCompactList}\small\item\em Returns derivatives of certain order. \end{DoxyCompactList}\item 
+integer function, public \hyperlink{namespacenum__utilities_a00f4cfe18a734eaa5d66f529e52f7c31}{num\+\_\+utilities\+::check\+\_\+deriv} (deriv, max\+\_\+deriv, sr\+\_\+name)
+\begin{DoxyCompactList}\small\item\em checks whether the derivatives requested for a certain subroutine are valid \end{DoxyCompactList}\item 
+integer function, public \hyperlink{namespacenum__utilities_a2d5d9c66db19fb6edeeb50db6182397f}{num\+\_\+utilities\+::calc\+\_\+ext\+\_\+var} (ext\+\_\+var, var, var\+\_\+points, ext\+\_\+point, deriv\+\_\+in)
+\begin{DoxyCompactList}\small\item\em Extrapolates a function. \end{DoxyCompactList}\item 
+integer function, public \hyperlink{namespacenum__utilities_a4dffe3beba7165dd17cff19a99a9e2ac}{num\+\_\+utilities\+::calc\+\_\+coeff\+\_\+fin\+\_\+diff} (deriv, nr, ind, coeff)
+\begin{DoxyCompactList}\small\item\em Calculate the coefficients for finite differences. \end{DoxyCompactList}\item 
+integer function, public \hyperlink{namespacenum__utilities_a5ee3fbd1fe67d0deefc7194631389f2a}{num\+\_\+utilities\+::c} (ij, sym, n, lim\+\_\+n)
+\begin{DoxyCompactList}\small\item\em Convert 2-\/D coordinates (i,j) to the storage convention used in matrices. \end{DoxyCompactList}\item 
+recursive integer function, public \hyperlink{namespacenum__utilities_a43ab60f9e202b55221373286a5bbb954}{num\+\_\+utilities\+::fac} (n)
+\begin{DoxyCompactList}\small\item\em Calculate factorial. \end{DoxyCompactList}\item 
+integer function, public \hyperlink{namespacenum__utilities_a4e6994b5c92b3d16c8538b54db0beadd}{num\+\_\+utilities\+::is\+\_\+sym} (n, nn, sym)
+\begin{DoxyCompactList}\small\item\em Determines whether a matrix making use of the storage convention in \hyperlink{structeq__vars_1_1eq__2__type}{eq\+\_\+vars.\+eq\+\_\+2\+\_\+type} is symmetric or not. \end{DoxyCompactList}\item 
+recursive integer function, public \hyperlink{namespacenum__utilities_a33fc1483c840d5d3f9b12acfce21cad1}{num\+\_\+utilities\+::lcm} (u, v)
+\begin{DoxyCompactList}\small\item\em Returns common multiple using the Euclid\textquotesingle{}s algorithm. \end{DoxyCompactList}\item 
+recursive integer function, public \hyperlink{namespacenum__utilities_a3d0d04a582b3a528fc7f9975d5d2a807}{num\+\_\+utilities\+::gcd} (u, v)
+\begin{DoxyCompactList}\small\item\em Returns least denominator using the G\+CD. \end{DoxyCompactList}\item 
+subroutine, public \hyperlink{namespacenum__utilities_a859f442a1b860d82662eed17c4374c38}{num\+\_\+utilities\+::shift\+\_\+f} (A, B, C)
+\begin{DoxyCompactList}\small\item\em Calculate multiplication through shifting of fourier modes A and B into C. \end{DoxyCompactList}\item 
+subroutine, public \hyperlink{namespacenum__utilities_a54c65e345182e2e7e13ac14a0ba3647a}{num\+\_\+utilities\+::solve\+\_\+vand} (n, a, b, x, transp)
+\begin{DoxyCompactList}\small\item\em Solve a Vandermonde system $\overline{\text{A}} \ \vec{X} = \vec{B}$. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+integer, dimension(\+:,\+:,\+:), allocatable, public \hyperlink{namespacenum__utilities_a763215553acfcc054b1ec1bc207a1793}{num\+\_\+utilities\+::d}
+\begin{DoxyCompactList}\small\item\em 1-\/D array indices of derivatives \end{DoxyCompactList}\item 
+integer, dimension(\+:,\+:), allocatable, public \hyperlink{namespacenum__utilities_ad7a7ae2abf02a2df9e00b2aca669617c}{num\+\_\+utilities\+::m}
+\begin{DoxyCompactList}\small\item\em 1-\/D array indices of metric indices \end{DoxyCompactList}\item 
+integer, dimension(\+:,\+:), allocatable, public \hyperlink{namespacenum__utilities_a8e3399292fcb3a5fc35ae87f7811bbb5}{num\+\_\+utilities\+::f}
+\begin{DoxyCompactList}\small\item\em 1-\/D array indices of Fourier mode combination indices \end{DoxyCompactList}\item 
+logical, public \hyperlink{namespacenum__utilities_ab7138a230a3c494c7a2b71b2a7fffc0a}{num\+\_\+utilities\+::debug\+\_\+con2dis\+\_\+reg} = .false.
+\begin{DoxyCompactList}\small\item\em plot debug information for con2dis\+\_\+reg() \end{DoxyCompactList}\item 
+logical, public \hyperlink{namespacenum__utilities_ae20985c8049d39f987fa23d728688cbc}{num\+\_\+utilities\+::debug\+\_\+calc\+\_\+coeff\+\_\+fin\+\_\+diff} = .false.
+\begin{DoxyCompactList}\small\item\em plot debug information for \hyperlink{namespacenum__utilities_a4dffe3beba7165dd17cff19a99a9e2ac}{calc\+\_\+coeff\+\_\+fin\+\_\+diff()} \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Function/\+Subroutine Documentation}
+\mbox{\Hypertarget{num__utilities_8f90_a41f0ec23e08348e7498587997f483a00}\label{num__utilities_8f90_a41f0ec23e08348e7498587997f483a00}} 
+\index{num\+\_\+utilities.\+f90@{num\+\_\+utilities.\+f90}!setup\+\_\+lim\+\_\+vals@{setup\+\_\+lim\+\_\+vals}}
+\index{setup\+\_\+lim\+\_\+vals@{setup\+\_\+lim\+\_\+vals}!num\+\_\+utilities.\+f90@{num\+\_\+utilities.\+f90}}
+\subsubsection{\texorpdfstring{setup\+\_\+lim\+\_\+vals()}{setup\_lim\_vals()}}
+{\footnotesize\ttfamily integer function spline\+\_\+real\+::setup\+\_\+lim\+\_\+vals (\begin{DoxyParamCaption}\item[{real(dp), intent(in)}]{xb,  }\item[{real(dp), dimension(0\+:3), intent(out)}]{lim\+\_\+vals }\end{DoxyParamCaption})}
+
+
+
+/private set up limit values 
+
+Makes use of f\+\_\+spl 
+
+Definition at line 1904 of file num\+\_\+utilities.\+f90.
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{num__utilities_8f90_a41f0ec23e08348e7498587997f483a00_icgraph}
+\end{center}
+\end{figure}

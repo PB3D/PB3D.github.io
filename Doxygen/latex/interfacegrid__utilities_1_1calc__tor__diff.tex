@@ -1,0 +1,109 @@
+\hypertarget{interfacegrid__utilities_1_1calc__tor__diff}{}\section{grid\+\_\+utilities\+:\+:calc\+\_\+tor\+\_\+diff Interface Reference}
+\label{interfacegrid__utilities_1_1calc__tor__diff}\index{grid\+\_\+utilities\+::calc\+\_\+tor\+\_\+diff@{grid\+\_\+utilities\+::calc\+\_\+tor\+\_\+diff}}
+
+
+Calculates the toroidal difference for a magnitude calculated on three toroidal points\+: two extremities and one in the middle.  
+
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+integer function \hyperlink{interfacegrid__utilities_1_1calc__tor__diff_ad40f28f8c9714e5a1c778ec60994970e}{calc\+\_\+tor\+\_\+diff\+\_\+0d} (v\+\_\+mag, theta, norm\+\_\+disc\+\_\+prec, absolute, r)
+\begin{DoxyCompactList}\small\item\em 0-\/D version \end{DoxyCompactList}\item 
+integer function \hyperlink{interfacegrid__utilities_1_1calc__tor__diff_ac6c05443dfbf45e43b58d7b62fae5a0b}{calc\+\_\+tor\+\_\+diff\+\_\+2d} (v\+\_\+com, theta, norm\+\_\+disc\+\_\+prec, absolute, r)
+\begin{DoxyCompactList}\small\item\em 2-\/D version \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Calculates the toroidal difference for a magnitude calculated on three toroidal points\+: two extremities and one in the middle. 
+
+This is done using the formula \[ \frac{b-a}{b+a} , \] for the relative difference between $a$ and $b$. This is useful when it is used to calculate a toroidal ripple and these are the extreme points.
+
+The procedure also needs the map between the flux poloidal angle and the geometrical poloidal angle.
+
+In a first step the quantity is interpolated on an equidistant grid in the geometrical poloidal angle.
+
+The difference is then calculated for values of constant geometric poloidal angle.
+
+Finally, this result is transformed back to the Flux coordinates.
+
+\begin{DoxyNote}{Note}
+
+\begin{DoxyEnumerate}
+\item The theta map should have first and last point equal.
+\item This routine should be used only for periodic quantities (so not for some of the Flux quantities that are defined along generally non-\/rational magnetic field lines).
+\end{DoxyEnumerate}
+\end{DoxyNote}
+\begin{DoxyReturn}{Returns}
+ierr 
+\end{DoxyReturn}
+
+
+Definition at line 109 of file grid\+\_\+utilities.\+f90.
+
+
+
+\subsection{Member Function/\+Subroutine Documentation}
+\mbox{\Hypertarget{interfacegrid__utilities_1_1calc__tor__diff_ad40f28f8c9714e5a1c778ec60994970e}\label{interfacegrid__utilities_1_1calc__tor__diff_ad40f28f8c9714e5a1c778ec60994970e}} 
+\index{grid\+\_\+utilities\+::calc\+\_\+tor\+\_\+diff@{grid\+\_\+utilities\+::calc\+\_\+tor\+\_\+diff}!calc\+\_\+tor\+\_\+diff\+\_\+0d@{calc\+\_\+tor\+\_\+diff\+\_\+0d}}
+\index{calc\+\_\+tor\+\_\+diff\+\_\+0d@{calc\+\_\+tor\+\_\+diff\+\_\+0d}!grid\+\_\+utilities\+::calc\+\_\+tor\+\_\+diff@{grid\+\_\+utilities\+::calc\+\_\+tor\+\_\+diff}}
+\subsubsection{\texorpdfstring{calc\+\_\+tor\+\_\+diff\+\_\+0d()}{calc\_tor\_diff\_0d()}}
+{\footnotesize\ttfamily integer function grid\+\_\+utilities\+::calc\+\_\+tor\+\_\+diff\+::calc\+\_\+tor\+\_\+diff\+\_\+0d (\begin{DoxyParamCaption}\item[{real(dp), dimension(\+:,\+:,\+:), intent(inout)}]{v\+\_\+mag,  }\item[{real(dp), dimension(\+:,\+:,\+:), intent(in)}]{theta,  }\item[{integer, intent(in)}]{norm\+\_\+disc\+\_\+prec,  }\item[{logical, intent(in), optional}]{absolute,  }\item[{real(dp), dimension(\+:), intent(in), optional}]{r }\end{DoxyParamCaption})}
+
+
+
+0-\/D version 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in,out}  & {\em v\+\_\+mag} & magnitude {\ttfamily (dim1,dim2,dim3)}\\
+\hline
+\mbox{\tt in}  & {\em theta} & geometric poloidal angle\\
+\hline
+\mbox{\tt in}  & {\em norm\+\_\+disc\+\_\+prec} & precision for normal derivatives\\
+\hline
+\mbox{\tt in}  & {\em absolute} & calculate absolute, not relative, difference\\
+\hline
+\mbox{\tt in}  & {\em r} & normal positions for theta \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 738 of file grid\+\_\+utilities.\+f90.
+
+\mbox{\Hypertarget{interfacegrid__utilities_1_1calc__tor__diff_ac6c05443dfbf45e43b58d7b62fae5a0b}\label{interfacegrid__utilities_1_1calc__tor__diff_ac6c05443dfbf45e43b58d7b62fae5a0b}} 
+\index{grid\+\_\+utilities\+::calc\+\_\+tor\+\_\+diff@{grid\+\_\+utilities\+::calc\+\_\+tor\+\_\+diff}!calc\+\_\+tor\+\_\+diff\+\_\+2d@{calc\+\_\+tor\+\_\+diff\+\_\+2d}}
+\index{calc\+\_\+tor\+\_\+diff\+\_\+2d@{calc\+\_\+tor\+\_\+diff\+\_\+2d}!grid\+\_\+utilities\+::calc\+\_\+tor\+\_\+diff@{grid\+\_\+utilities\+::calc\+\_\+tor\+\_\+diff}}
+\subsubsection{\texorpdfstring{calc\+\_\+tor\+\_\+diff\+\_\+2d()}{calc\_tor\_diff\_2d()}}
+{\footnotesize\ttfamily integer function grid\+\_\+utilities\+::calc\+\_\+tor\+\_\+diff\+::calc\+\_\+tor\+\_\+diff\+\_\+2d (\begin{DoxyParamCaption}\item[{real(dp), dimension(\+:,\+:,\+:,\+:,\+:), intent(inout)}]{v\+\_\+com,  }\item[{real(dp), dimension(\+:,\+:,\+:), intent(in)}]{theta,  }\item[{integer, intent(in)}]{norm\+\_\+disc\+\_\+prec,  }\item[{logical, intent(in), optional}]{absolute,  }\item[{real(dp), dimension(\+:), intent(in), optional}]{r }\end{DoxyParamCaption})}
+
+
+
+2-\/D version 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in,out}  & {\em v\+\_\+com} & covariant and contravariant components {\ttfamily (dim1,dim2,dim3,3,2)}\\
+\hline
+\mbox{\tt in}  & {\em theta} & geometric poloidal angle\\
+\hline
+\mbox{\tt in}  & {\em norm\+\_\+disc\+\_\+prec} & precision for normal derivatives\\
+\hline
+\mbox{\tt in}  & {\em absolute} & calculate absolute, not relative, difference\\
+\hline
+\mbox{\tt in}  & {\em r} & normal positions for theta \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 627 of file grid\+\_\+utilities.\+f90.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{interfacegrid__utilities_1_1calc__tor__diff_ac6c05443dfbf45e43b58d7b62fae5a0b_cgraph}
+\end{center}
+\end{figure}
+
+

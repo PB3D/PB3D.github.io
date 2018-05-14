@@ -1,0 +1,189 @@
+\hypertarget{structmpi__vars_1_1lock__type}{}\section{mpi\+\_\+vars\+:\+:lock\+\_\+type Type Reference}
+\label{structmpi__vars_1_1lock__type}\index{mpi\+\_\+vars\+::lock\+\_\+type@{mpi\+\_\+vars\+::lock\+\_\+type}}
+
+
+lock type  
+
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+procedure \hyperlink{structmpi__vars_1_1lock__type_abb38fce763fc0925e6bb7d69162e68b0}{init} =$>$ \hyperlink{namespacempi__vars_ab38aeec20e567cf6f272587890ead066}{init\+\_\+lock}
+\begin{DoxyCompactList}\small\item\em initialize \end{DoxyCompactList}\item 
+procedure \hyperlink{structmpi__vars_1_1lock__type_a3b633d333ce2963fbe05e99badd00606}{dealloc} =$>$ \hyperlink{namespacempi__vars_af03c942b5f1c980adf9e1b2ba3f4bd58}{dealloc\+\_\+lock}
+\begin{DoxyCompactList}\small\item\em deallocate \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+integer, dimension(\+:), allocatable \hyperlink{structmpi__vars_1_1lock__type_a1bc45d5db890c080c843318662050565}{wl}
+\begin{DoxyCompactList}\small\item\em waiting list \end{DoxyCompactList}\item 
+integer \hyperlink{structmpi__vars_1_1lock__type_a19ac8404814735597e92c647e31745ad}{wl\+\_\+win}
+\begin{DoxyCompactList}\small\item\em window to waiting list \end{DoxyCompactList}\item 
+integer \hyperlink{structmpi__vars_1_1lock__type_ae13a02ff3985d06c3455b2ae29210cc4}{wu\+\_\+tag}
+\begin{DoxyCompactList}\small\item\em wakeup tag \end{DoxyCompactList}\item 
+logical \hyperlink{structmpi__vars_1_1lock__type_a53ce091d52f98ca430a9e97f8bf0c0f4}{blocking}
+\begin{DoxyCompactList}\small\item\em is a normal blocking process \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+lock type 
+
+There is a blocking (BL) and a nonblocking (NB) version where the former requires an exclusive lock and the latter a shared one. This is saved in the variable {\ttfamily blocking}.
+
+NB processes that get the lock directly on request (meaning that there were no other processes in the queue) notify directly all the next NB processes after gaining access. It also sets their status to active. When a NB process gains the lock when notified after waiting, it does not have to check for other NB processes, as this has been done by the notifying process.
+
+A BL process retains exclusive access upon receipt of the lock. Similarly to NB processes, if the receipt was direct on request, the status is set to active, but only of this NB process.
+
+When returning the lock, all BL processes and NB that find themselves to be the last active NB process, scan the waiting list and pass the lock preferably to another BL process to notify. If not available, it searches for all the NB processes to notify together.
+
+The advantage of prefering BL processes after finishing a process is that this way NB processes are accumulated, and then quickly finished afterwards.
+
+\begin{DoxyNote}{Note}
+Every process in the waiting queue will eventually receive a notification.
+\end{DoxyNote}
+Scheme\+: \tabulinesep=1mm
+\begin{longtabu} spread 0pt [c]{*{4}{|X[-1]}|}
+\hline
+\rowcolor{\tableheadbgcolor}\textbf{ }&\textbf{ request access }&\textbf{ gain acces }&\textbf{ return access }\\\cline{1-4}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\rowcolor{\tableheadbgcolor}\textbf{ }&\textbf{ request access }&\textbf{ gain acces }&\textbf{ return access }\\\cline{1-4}
+\endhead
+\textbf{ BL }&
+\begin{DoxyItemize}
+\item add to queue 
+\item wait 
+\end{DoxyItemize}&if direct\+: 
+\begin{DoxyItemize}
+\item activate 
+\end{DoxyItemize}&
+\begin{DoxyItemize}
+\item remove from queue 
+\item find next B\+L/\+NB 
+\item notify 
+\item activate all 
+\end{DoxyItemize}\\\cline{1-4}
+\textbf{ NB }&
+\begin{DoxyItemize}
+\item add to queue 
+\item wait 
+\end{DoxyItemize}&if direct\+: 
+\begin{DoxyItemize}
+\item find next NB 
+\end{DoxyItemize}for all next NB\+: 
+\begin{DoxyItemize}
+\item notify 
+\item activate 
+\end{DoxyItemize}&always\+: 
+\begin{DoxyItemize}
+\item remove from queue 
+\end{DoxyItemize}if last NB\+: 
+\begin{DoxyItemize}
+\item find next B\+L/\+NB 
+\item notify 
+\item activate all 
+\end{DoxyItemize}\\\cline{1-4}
+\end{longtabu}
+with preference BL $>$ N\+B(s).
+
+\begin{DoxySeeAlso}{See also}
+This is based on an extension of the ideas in {\ttfamily Ross\+Atomic\+IO}. 
+\end{DoxySeeAlso}
+
+
+Definition at line 63 of file M\+P\+I\+\_\+vars.\+f90.
+
+
+
+\subsection{Member Function/\+Subroutine Documentation}
+\mbox{\Hypertarget{structmpi__vars_1_1lock__type_a3b633d333ce2963fbe05e99badd00606}\label{structmpi__vars_1_1lock__type_a3b633d333ce2963fbe05e99badd00606}} 
+\index{mpi\+\_\+vars\+::lock\+\_\+type@{mpi\+\_\+vars\+::lock\+\_\+type}!dealloc@{dealloc}}
+\index{dealloc@{dealloc}!mpi\+\_\+vars\+::lock\+\_\+type@{mpi\+\_\+vars\+::lock\+\_\+type}}
+\subsubsection{\texorpdfstring{dealloc()}{dealloc()}}
+{\footnotesize\ttfamily procedure mpi\+\_\+vars\+::lock\+\_\+type\+::dealloc (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+deallocate 
+
+deallocate 
+
+Definition at line 72 of file M\+P\+I\+\_\+vars.\+f90.
+
+\mbox{\Hypertarget{structmpi__vars_1_1lock__type_abb38fce763fc0925e6bb7d69162e68b0}\label{structmpi__vars_1_1lock__type_abb38fce763fc0925e6bb7d69162e68b0}} 
+\index{mpi\+\_\+vars\+::lock\+\_\+type@{mpi\+\_\+vars\+::lock\+\_\+type}!init@{init}}
+\index{init@{init}!mpi\+\_\+vars\+::lock\+\_\+type@{mpi\+\_\+vars\+::lock\+\_\+type}}
+\subsubsection{\texorpdfstring{init()}{init()}}
+{\footnotesize\ttfamily procedure mpi\+\_\+vars\+::lock\+\_\+type\+::init (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+initialize 
+
+initialize 
+
+Definition at line 70 of file M\+P\+I\+\_\+vars.\+f90.
+
+
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{structmpi__vars_1_1lock__type_a53ce091d52f98ca430a9e97f8bf0c0f4}\label{structmpi__vars_1_1lock__type_a53ce091d52f98ca430a9e97f8bf0c0f4}} 
+\index{mpi\+\_\+vars\+::lock\+\_\+type@{mpi\+\_\+vars\+::lock\+\_\+type}!blocking@{blocking}}
+\index{blocking@{blocking}!mpi\+\_\+vars\+::lock\+\_\+type@{mpi\+\_\+vars\+::lock\+\_\+type}}
+\subsubsection{\texorpdfstring{blocking}{blocking}}
+{\footnotesize\ttfamily logical mpi\+\_\+vars\+::lock\+\_\+type\+::blocking}
+
+
+
+is a normal blocking process 
+
+
+
+Definition at line 67 of file M\+P\+I\+\_\+vars.\+f90.
+
+\mbox{\Hypertarget{structmpi__vars_1_1lock__type_a1bc45d5db890c080c843318662050565}\label{structmpi__vars_1_1lock__type_a1bc45d5db890c080c843318662050565}} 
+\index{mpi\+\_\+vars\+::lock\+\_\+type@{mpi\+\_\+vars\+::lock\+\_\+type}!wl@{wl}}
+\index{wl@{wl}!mpi\+\_\+vars\+::lock\+\_\+type@{mpi\+\_\+vars\+::lock\+\_\+type}}
+\subsubsection{\texorpdfstring{wl}{wl}}
+{\footnotesize\ttfamily integer, dimension(\+:), allocatable mpi\+\_\+vars\+::lock\+\_\+type\+::wl}
+
+
+
+waiting list 
+
+
+
+Definition at line 64 of file M\+P\+I\+\_\+vars.\+f90.
+
+\mbox{\Hypertarget{structmpi__vars_1_1lock__type_a19ac8404814735597e92c647e31745ad}\label{structmpi__vars_1_1lock__type_a19ac8404814735597e92c647e31745ad}} 
+\index{mpi\+\_\+vars\+::lock\+\_\+type@{mpi\+\_\+vars\+::lock\+\_\+type}!wl\+\_\+win@{wl\+\_\+win}}
+\index{wl\+\_\+win@{wl\+\_\+win}!mpi\+\_\+vars\+::lock\+\_\+type@{mpi\+\_\+vars\+::lock\+\_\+type}}
+\subsubsection{\texorpdfstring{wl\+\_\+win}{wl\_win}}
+{\footnotesize\ttfamily integer mpi\+\_\+vars\+::lock\+\_\+type\+::wl\+\_\+win}
+
+
+
+window to waiting list 
+
+
+
+Definition at line 65 of file M\+P\+I\+\_\+vars.\+f90.
+
+\mbox{\Hypertarget{structmpi__vars_1_1lock__type_ae13a02ff3985d06c3455b2ae29210cc4}\label{structmpi__vars_1_1lock__type_ae13a02ff3985d06c3455b2ae29210cc4}} 
+\index{mpi\+\_\+vars\+::lock\+\_\+type@{mpi\+\_\+vars\+::lock\+\_\+type}!wu\+\_\+tag@{wu\+\_\+tag}}
+\index{wu\+\_\+tag@{wu\+\_\+tag}!mpi\+\_\+vars\+::lock\+\_\+type@{mpi\+\_\+vars\+::lock\+\_\+type}}
+\subsubsection{\texorpdfstring{wu\+\_\+tag}{wu\_tag}}
+{\footnotesize\ttfamily integer mpi\+\_\+vars\+::lock\+\_\+type\+::wu\+\_\+tag}
+
+
+
+wakeup tag 
+
+
+
+Definition at line 66 of file M\+P\+I\+\_\+vars.\+f90.
+
+
+

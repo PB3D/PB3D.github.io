@@ -1,0 +1,213 @@
+\hypertarget{interfacegrid__utilities_1_1apply__disc}{}\section{grid\+\_\+utilities\+:\+:apply\+\_\+disc Interface Reference}
+\label{interfacegrid__utilities_1_1apply__disc}\index{grid\+\_\+utilities\+::apply\+\_\+disc@{grid\+\_\+utilities\+::apply\+\_\+disc}}
+
+
+Applies the discretization data calculated in setup\+\_\+deriv\+\_\+data() or \hyperlink{namespacegrid__utilities_ad059876fabae2c8445e5d3971ba28742}{setup\+\_\+interp\+\_\+data()} to calculate the derivative or interpolation in a dimension {\ttfamily disc\+\_\+dim}.  
+
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+integer function \hyperlink{interfacegrid__utilities_1_1apply__disc_aa6b6f7bdc47f5605513f2a7aeae455cb}{apply\+\_\+disc\+\_\+4d\+\_\+real} (var, disc\+\_\+data, dvar, disc\+\_\+dim)
+\begin{DoxyCompactList}\small\item\em 4-\/D real version \end{DoxyCompactList}\item 
+integer function \hyperlink{interfacegrid__utilities_1_1apply__disc_a2683d653e1630550d0c2efe28a964aee}{apply\+\_\+disc\+\_\+4d\+\_\+complex} (var, disc\+\_\+data, dvar, disc\+\_\+dim)
+\begin{DoxyCompactList}\small\item\em 4-\/D complex version \end{DoxyCompactList}\item 
+integer function \hyperlink{interfacegrid__utilities_1_1apply__disc_a6090e13191c08f228e9027710ba13030}{apply\+\_\+disc\+\_\+3d\+\_\+real} (var, disc\+\_\+data, dvar, disc\+\_\+dim)
+\begin{DoxyCompactList}\small\item\em 3-\/D real version \end{DoxyCompactList}\item 
+integer function \hyperlink{interfacegrid__utilities_1_1apply__disc_adbd3fc70f7e4197ed6b62f7f1ef59d78}{apply\+\_\+disc\+\_\+3d\+\_\+complex} (var, disc\+\_\+data, dvar, disc\+\_\+dim)
+\begin{DoxyCompactList}\small\item\em 3-\/D complex version \end{DoxyCompactList}\item 
+integer function \hyperlink{interfacegrid__utilities_1_1apply__disc_a5c67bc6348c3763c23a0c2fa0649a1a5}{apply\+\_\+disc\+\_\+2d\+\_\+real} (var, disc\+\_\+data, dvar, disc\+\_\+dim)
+\begin{DoxyCompactList}\small\item\em 2-\/D real version \end{DoxyCompactList}\item 
+integer function \hyperlink{interfacegrid__utilities_1_1apply__disc_a357bfd8308ac3460c913732d1a3850d0}{apply\+\_\+disc\+\_\+2d\+\_\+complex} (var, disc\+\_\+data, dvar, disc\+\_\+dim)
+\begin{DoxyCompactList}\small\item\em 2-\/D complex version \end{DoxyCompactList}\item 
+integer function \hyperlink{interfacegrid__utilities_1_1apply__disc_a76de2220c19cb39b95621a917e4ee0b0}{apply\+\_\+disc\+\_\+1d\+\_\+real} (var, disc\+\_\+data, dvar)
+\begin{DoxyCompactList}\small\item\em 1-\/D real version \end{DoxyCompactList}\item 
+integer function \hyperlink{interfacegrid__utilities_1_1apply__disc_aef45b25e4b9529c6aa2bbb5fba22a7ba}{apply\+\_\+disc\+\_\+1d\+\_\+complex} (var, disc\+\_\+data, dvar)
+\begin{DoxyCompactList}\small\item\em 1-\/D complex version \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Applies the discretization data calculated in setup\+\_\+deriv\+\_\+data() or \hyperlink{namespacegrid__utilities_ad059876fabae2c8445e5d3971ba28742}{setup\+\_\+interp\+\_\+data()} to calculate the derivative or interpolation in a dimension {\ttfamily disc\+\_\+dim}. 
+
+\begin{DoxyNote}{Note}
+\hyperlink{namespacegrid__utilities_ad059876fabae2c8445e5d3971ba28742}{setup\+\_\+interp\+\_\+data()} has been deprecated.
+\end{DoxyNote}
+\begin{DoxyReturn}{Returns}
+ierr 
+\end{DoxyReturn}
+
+
+\subsection{Member Function/\+Subroutine Documentation}
+\mbox{\Hypertarget{interfacegrid__utilities_1_1apply__disc_aef45b25e4b9529c6aa2bbb5fba22a7ba}\label{interfacegrid__utilities_1_1apply__disc_aef45b25e4b9529c6aa2bbb5fba22a7ba}} 
+\index{grid\+\_\+utilities\+::apply\+\_\+disc@{grid\+\_\+utilities\+::apply\+\_\+disc}!apply\+\_\+disc\+\_\+1d\+\_\+complex@{apply\+\_\+disc\+\_\+1d\+\_\+complex}}
+\index{apply\+\_\+disc\+\_\+1d\+\_\+complex@{apply\+\_\+disc\+\_\+1d\+\_\+complex}!grid\+\_\+utilities\+::apply\+\_\+disc@{grid\+\_\+utilities\+::apply\+\_\+disc}}
+\subsubsection{\texorpdfstring{apply\+\_\+disc\+\_\+1d\+\_\+complex()}{apply\_disc\_1d\_complex()}}
+{\footnotesize\ttfamily integer function grid\+\_\+utilities\+::apply\+\_\+disc\+::apply\+\_\+disc\+\_\+1d\+\_\+complex (\begin{DoxyParamCaption}\item[{complex(dp), dimension(\+:), intent(in)}]{var,  }\item[{type(\hyperlink{structgrid__vars_1_1disc__type}{disc\+\_\+type}), intent(in)}]{disc\+\_\+data,  }\item[{complex(dp), dimension(\+:), intent(inout)}]{dvar }\end{DoxyParamCaption})}
+
+
+
+1-\/D complex version 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em var} & variable to be operated on\\
+\hline
+\mbox{\tt in}  & {\em disc\+\_\+data} & {\ttfamily disc\+\_\+data} calculated in \hyperlink{interfacegrid__utilities_1_1setup__deriv__data}{grid\+\_\+utilities.\+setup\+\_\+deriv\+\_\+data()} or \hyperlink{namespacegrid__utilities_ad059876fabae2c8445e5d3971ba28742}{setup\+\_\+interp\+\_\+data()}\\
+\hline
+\mbox{\tt in,out}  & {\em dvar} & operated variable \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{interfacegrid__utilities_1_1apply__disc_a76de2220c19cb39b95621a917e4ee0b0}\label{interfacegrid__utilities_1_1apply__disc_a76de2220c19cb39b95621a917e4ee0b0}} 
+\index{grid\+\_\+utilities\+::apply\+\_\+disc@{grid\+\_\+utilities\+::apply\+\_\+disc}!apply\+\_\+disc\+\_\+1d\+\_\+real@{apply\+\_\+disc\+\_\+1d\+\_\+real}}
+\index{apply\+\_\+disc\+\_\+1d\+\_\+real@{apply\+\_\+disc\+\_\+1d\+\_\+real}!grid\+\_\+utilities\+::apply\+\_\+disc@{grid\+\_\+utilities\+::apply\+\_\+disc}}
+\subsubsection{\texorpdfstring{apply\+\_\+disc\+\_\+1d\+\_\+real()}{apply\_disc\_1d\_real()}}
+{\footnotesize\ttfamily integer function grid\+\_\+utilities\+::apply\+\_\+disc\+::apply\+\_\+disc\+\_\+1d\+\_\+real (\begin{DoxyParamCaption}\item[{real(dp), dimension(\+:), intent(in)}]{var,  }\item[{type(\hyperlink{structgrid__vars_1_1disc__type}{disc\+\_\+type}), intent(in)}]{disc\+\_\+data,  }\item[{real(dp), dimension(\+:), intent(inout)}]{dvar }\end{DoxyParamCaption})}
+
+
+
+1-\/D real version 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em var} & variable to be operated on\\
+\hline
+\mbox{\tt in}  & {\em disc\+\_\+data} & {\ttfamily disc\+\_\+data} calculated in \hyperlink{interfacegrid__utilities_1_1setup__deriv__data}{grid\+\_\+utilities.\+setup\+\_\+deriv\+\_\+data()} or \hyperlink{namespacegrid__utilities_ad059876fabae2c8445e5d3971ba28742}{setup\+\_\+interp\+\_\+data()}\\
+\hline
+\mbox{\tt in,out}  & {\em dvar} & operated variable \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{interfacegrid__utilities_1_1apply__disc_a357bfd8308ac3460c913732d1a3850d0}\label{interfacegrid__utilities_1_1apply__disc_a357bfd8308ac3460c913732d1a3850d0}} 
+\index{grid\+\_\+utilities\+::apply\+\_\+disc@{grid\+\_\+utilities\+::apply\+\_\+disc}!apply\+\_\+disc\+\_\+2d\+\_\+complex@{apply\+\_\+disc\+\_\+2d\+\_\+complex}}
+\index{apply\+\_\+disc\+\_\+2d\+\_\+complex@{apply\+\_\+disc\+\_\+2d\+\_\+complex}!grid\+\_\+utilities\+::apply\+\_\+disc@{grid\+\_\+utilities\+::apply\+\_\+disc}}
+\subsubsection{\texorpdfstring{apply\+\_\+disc\+\_\+2d\+\_\+complex()}{apply\_disc\_2d\_complex()}}
+{\footnotesize\ttfamily integer function grid\+\_\+utilities\+::apply\+\_\+disc\+::apply\+\_\+disc\+\_\+2d\+\_\+complex (\begin{DoxyParamCaption}\item[{complex(dp), dimension(\+:,\+:), intent(in)}]{var,  }\item[{type(\hyperlink{structgrid__vars_1_1disc__type}{disc\+\_\+type}), intent(in)}]{disc\+\_\+data,  }\item[{complex(dp), dimension(\+:,\+:), intent(inout)}]{dvar,  }\item[{integer, intent(in)}]{disc\+\_\+dim }\end{DoxyParamCaption})}
+
+
+
+2-\/D complex version 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em var} & variable to be operated on\\
+\hline
+\mbox{\tt in}  & {\em disc\+\_\+data} & {\ttfamily disc\+\_\+data} calculated in \hyperlink{interfacegrid__utilities_1_1setup__deriv__data}{grid\+\_\+utilities.\+setup\+\_\+deriv\+\_\+data()} or \hyperlink{namespacegrid__utilities_ad059876fabae2c8445e5d3971ba28742}{setup\+\_\+interp\+\_\+data()}\\
+\hline
+\mbox{\tt in,out}  & {\em dvar} & operated variable\\
+\hline
+\mbox{\tt in}  & {\em disc\+\_\+dim} & dimension in which to discretization operation \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{interfacegrid__utilities_1_1apply__disc_a5c67bc6348c3763c23a0c2fa0649a1a5}\label{interfacegrid__utilities_1_1apply__disc_a5c67bc6348c3763c23a0c2fa0649a1a5}} 
+\index{grid\+\_\+utilities\+::apply\+\_\+disc@{grid\+\_\+utilities\+::apply\+\_\+disc}!apply\+\_\+disc\+\_\+2d\+\_\+real@{apply\+\_\+disc\+\_\+2d\+\_\+real}}
+\index{apply\+\_\+disc\+\_\+2d\+\_\+real@{apply\+\_\+disc\+\_\+2d\+\_\+real}!grid\+\_\+utilities\+::apply\+\_\+disc@{grid\+\_\+utilities\+::apply\+\_\+disc}}
+\subsubsection{\texorpdfstring{apply\+\_\+disc\+\_\+2d\+\_\+real()}{apply\_disc\_2d\_real()}}
+{\footnotesize\ttfamily integer function grid\+\_\+utilities\+::apply\+\_\+disc\+::apply\+\_\+disc\+\_\+2d\+\_\+real (\begin{DoxyParamCaption}\item[{real(dp), dimension(\+:,\+:), intent(in)}]{var,  }\item[{type(\hyperlink{structgrid__vars_1_1disc__type}{disc\+\_\+type}), intent(in)}]{disc\+\_\+data,  }\item[{real(dp), dimension(\+:,\+:), intent(inout)}]{dvar,  }\item[{integer, intent(in)}]{disc\+\_\+dim }\end{DoxyParamCaption})}
+
+
+
+2-\/D real version 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em var} & variable to be operated on\\
+\hline
+\mbox{\tt in}  & {\em disc\+\_\+data} & {\ttfamily disc\+\_\+data} calculated in \hyperlink{interfacegrid__utilities_1_1setup__deriv__data}{grid\+\_\+utilities.\+setup\+\_\+deriv\+\_\+data()} or \hyperlink{namespacegrid__utilities_ad059876fabae2c8445e5d3971ba28742}{setup\+\_\+interp\+\_\+data()}\\
+\hline
+\mbox{\tt in,out}  & {\em dvar} & operated variable\\
+\hline
+\mbox{\tt in}  & {\em disc\+\_\+dim} & dimension in which to discretization operation \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{interfacegrid__utilities_1_1apply__disc_adbd3fc70f7e4197ed6b62f7f1ef59d78}\label{interfacegrid__utilities_1_1apply__disc_adbd3fc70f7e4197ed6b62f7f1ef59d78}} 
+\index{grid\+\_\+utilities\+::apply\+\_\+disc@{grid\+\_\+utilities\+::apply\+\_\+disc}!apply\+\_\+disc\+\_\+3d\+\_\+complex@{apply\+\_\+disc\+\_\+3d\+\_\+complex}}
+\index{apply\+\_\+disc\+\_\+3d\+\_\+complex@{apply\+\_\+disc\+\_\+3d\+\_\+complex}!grid\+\_\+utilities\+::apply\+\_\+disc@{grid\+\_\+utilities\+::apply\+\_\+disc}}
+\subsubsection{\texorpdfstring{apply\+\_\+disc\+\_\+3d\+\_\+complex()}{apply\_disc\_3d\_complex()}}
+{\footnotesize\ttfamily integer function grid\+\_\+utilities\+::apply\+\_\+disc\+::apply\+\_\+disc\+\_\+3d\+\_\+complex (\begin{DoxyParamCaption}\item[{complex(dp), dimension(\+:,\+:,\+:), intent(in)}]{var,  }\item[{type(\hyperlink{structgrid__vars_1_1disc__type}{disc\+\_\+type}), intent(in)}]{disc\+\_\+data,  }\item[{complex(dp), dimension(\+:,\+:,\+:), intent(inout)}]{dvar,  }\item[{integer, intent(in)}]{disc\+\_\+dim }\end{DoxyParamCaption})}
+
+
+
+3-\/D complex version 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em var} & variable to be operated on\\
+\hline
+\mbox{\tt in}  & {\em disc\+\_\+data} & {\ttfamily disc\+\_\+data} calculated in \hyperlink{interfacegrid__utilities_1_1setup__deriv__data}{grid\+\_\+utilities.\+setup\+\_\+deriv\+\_\+data()} or \hyperlink{namespacegrid__utilities_ad059876fabae2c8445e5d3971ba28742}{setup\+\_\+interp\+\_\+data()}\\
+\hline
+\mbox{\tt in,out}  & {\em dvar} & operated variable\\
+\hline
+\mbox{\tt in}  & {\em disc\+\_\+dim} & dimension in which to discretization operation \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{interfacegrid__utilities_1_1apply__disc_a6090e13191c08f228e9027710ba13030}\label{interfacegrid__utilities_1_1apply__disc_a6090e13191c08f228e9027710ba13030}} 
+\index{grid\+\_\+utilities\+::apply\+\_\+disc@{grid\+\_\+utilities\+::apply\+\_\+disc}!apply\+\_\+disc\+\_\+3d\+\_\+real@{apply\+\_\+disc\+\_\+3d\+\_\+real}}
+\index{apply\+\_\+disc\+\_\+3d\+\_\+real@{apply\+\_\+disc\+\_\+3d\+\_\+real}!grid\+\_\+utilities\+::apply\+\_\+disc@{grid\+\_\+utilities\+::apply\+\_\+disc}}
+\subsubsection{\texorpdfstring{apply\+\_\+disc\+\_\+3d\+\_\+real()}{apply\_disc\_3d\_real()}}
+{\footnotesize\ttfamily integer function grid\+\_\+utilities\+::apply\+\_\+disc\+::apply\+\_\+disc\+\_\+3d\+\_\+real (\begin{DoxyParamCaption}\item[{real(dp), dimension(\+:,\+:,\+:), intent(in)}]{var,  }\item[{type(\hyperlink{structgrid__vars_1_1disc__type}{disc\+\_\+type}), intent(in)}]{disc\+\_\+data,  }\item[{real(dp), dimension(\+:,\+:,\+:), intent(inout)}]{dvar,  }\item[{integer, intent(in)}]{disc\+\_\+dim }\end{DoxyParamCaption})}
+
+
+
+3-\/D real version 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em var} & variable to be operated on\\
+\hline
+\mbox{\tt in}  & {\em disc\+\_\+data} & {\ttfamily disc\+\_\+data} calculated in \hyperlink{interfacegrid__utilities_1_1setup__deriv__data}{grid\+\_\+utilities.\+setup\+\_\+deriv\+\_\+data()} or \hyperlink{namespacegrid__utilities_ad059876fabae2c8445e5d3971ba28742}{setup\+\_\+interp\+\_\+data()}\\
+\hline
+\mbox{\tt in,out}  & {\em dvar} & operated variable\\
+\hline
+\mbox{\tt in}  & {\em disc\+\_\+dim} & dimension in which to discretization operation \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{interfacegrid__utilities_1_1apply__disc_a2683d653e1630550d0c2efe28a964aee}\label{interfacegrid__utilities_1_1apply__disc_a2683d653e1630550d0c2efe28a964aee}} 
+\index{grid\+\_\+utilities\+::apply\+\_\+disc@{grid\+\_\+utilities\+::apply\+\_\+disc}!apply\+\_\+disc\+\_\+4d\+\_\+complex@{apply\+\_\+disc\+\_\+4d\+\_\+complex}}
+\index{apply\+\_\+disc\+\_\+4d\+\_\+complex@{apply\+\_\+disc\+\_\+4d\+\_\+complex}!grid\+\_\+utilities\+::apply\+\_\+disc@{grid\+\_\+utilities\+::apply\+\_\+disc}}
+\subsubsection{\texorpdfstring{apply\+\_\+disc\+\_\+4d\+\_\+complex()}{apply\_disc\_4d\_complex()}}
+{\footnotesize\ttfamily integer function grid\+\_\+utilities\+::apply\+\_\+disc\+::apply\+\_\+disc\+\_\+4d\+\_\+complex (\begin{DoxyParamCaption}\item[{complex(dp), dimension(\+:,\+:,\+:,\+:), intent(in)}]{var,  }\item[{type(\hyperlink{structgrid__vars_1_1disc__type}{disc\+\_\+type}), intent(in)}]{disc\+\_\+data,  }\item[{complex(dp), dimension(\+:,\+:,\+:,\+:), intent(inout)}]{dvar,  }\item[{integer, intent(in)}]{disc\+\_\+dim }\end{DoxyParamCaption})}
+
+
+
+4-\/D complex version 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em var} & variable to be operated on\\
+\hline
+\mbox{\tt in}  & {\em disc\+\_\+data} & {\ttfamily disc\+\_\+data} calculated in \hyperlink{interfacegrid__utilities_1_1setup__deriv__data}{grid\+\_\+utilities.\+setup\+\_\+deriv\+\_\+data()} or \hyperlink{namespacegrid__utilities_ad059876fabae2c8445e5d3971ba28742}{setup\+\_\+interp\+\_\+data()}\\
+\hline
+\mbox{\tt in,out}  & {\em dvar} & operated variable\\
+\hline
+\mbox{\tt in}  & {\em disc\+\_\+dim} & dimension in which to discretization operation \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{interfacegrid__utilities_1_1apply__disc_aa6b6f7bdc47f5605513f2a7aeae455cb}\label{interfacegrid__utilities_1_1apply__disc_aa6b6f7bdc47f5605513f2a7aeae455cb}} 
+\index{grid\+\_\+utilities\+::apply\+\_\+disc@{grid\+\_\+utilities\+::apply\+\_\+disc}!apply\+\_\+disc\+\_\+4d\+\_\+real@{apply\+\_\+disc\+\_\+4d\+\_\+real}}
+\index{apply\+\_\+disc\+\_\+4d\+\_\+real@{apply\+\_\+disc\+\_\+4d\+\_\+real}!grid\+\_\+utilities\+::apply\+\_\+disc@{grid\+\_\+utilities\+::apply\+\_\+disc}}
+\subsubsection{\texorpdfstring{apply\+\_\+disc\+\_\+4d\+\_\+real()}{apply\_disc\_4d\_real()}}
+{\footnotesize\ttfamily integer function grid\+\_\+utilities\+::apply\+\_\+disc\+::apply\+\_\+disc\+\_\+4d\+\_\+real (\begin{DoxyParamCaption}\item[{real(dp), dimension(\+:,\+:,\+:,\+:), intent(in)}]{var,  }\item[{type(\hyperlink{structgrid__vars_1_1disc__type}{disc\+\_\+type}), intent(in)}]{disc\+\_\+data,  }\item[{real(dp), dimension(\+:,\+:,\+:,\+:), intent(inout)}]{dvar,  }\item[{integer, intent(in)}]{disc\+\_\+dim }\end{DoxyParamCaption})}
+
+
+
+4-\/D real version 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em var} & variable to be operated on\\
+\hline
+\mbox{\tt in}  & {\em disc\+\_\+data} & {\ttfamily disc\+\_\+data} calculated in \hyperlink{interfacegrid__utilities_1_1setup__deriv__data}{grid\+\_\+utilities.\+setup\+\_\+deriv\+\_\+data()} or \hyperlink{namespacegrid__utilities_ad059876fabae2c8445e5d3971ba28742}{setup\+\_\+interp\+\_\+data()}\\
+\hline
+\mbox{\tt in,out}  & {\em dvar} & operated variable\\
+\hline
+\mbox{\tt in}  & {\em disc\+\_\+dim} & dimension in which to discretization operation \\
+\hline
+\end{DoxyParams}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{interfacegrid__utilities_1_1apply__disc_aa6b6f7bdc47f5605513f2a7aeae455cb_cgraph}
+\end{center}
+\end{figure}
+
+

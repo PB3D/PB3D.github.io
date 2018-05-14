@@ -1,0 +1,51 @@
+\hypertarget{messages_8f90}{}\section{Modules/messages.f90 File Reference}
+\label{messages_8f90}\index{Modules/messages.\+f90@{Modules/messages.\+f90}}
+\subsection*{Modules}
+\begin{DoxyCompactItemize}
+\item 
+module \hyperlink{namespacemessages}{messages}
+\begin{DoxyCompactList}\small\item\em Numerical utilities related to giving output. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Functions/\+Subroutines}
+\begin{DoxyCompactItemize}
+\item 
+subroutine, public \hyperlink{namespacemessages_a5e45296f088e9f31115a3b8d869f3177}{messages\+::init\+\_\+output} ()
+\begin{DoxyCompactList}\small\item\em Initialize the variables for the module. \end{DoxyCompactList}\item 
+subroutine, public \hyperlink{namespacemessages_a60c95b4c352b0087f32ef87279da49ca}{messages\+::print\+\_\+hello} ()
+\begin{DoxyCompactList}\small\item\em Prints first message. \end{DoxyCompactList}\item 
+subroutine, public \hyperlink{namespacemessages_a5d3f456913230bdf985c363e8cee8489}{messages\+::print\+\_\+goodbye} ()
+\begin{DoxyCompactList}\small\item\em Prints last messag. \end{DoxyCompactList}\item 
+subroutine, public \hyperlink{namespacemessages_a8ed785522aec7ac549263cdd54a8619a}{messages\+::init\+\_\+time} ()
+\begin{DoxyCompactList}\small\item\em Intialize the time passed to 0. \end{DoxyCompactList}\item 
+subroutine, public \hyperlink{namespacemessages_a84d5988f3ea5ca8dc2834032f896ae90}{messages\+::start\+\_\+time} ()
+\begin{DoxyCompactList}\small\item\em Start a timer. \end{DoxyCompactList}\item 
+subroutine, public \hyperlink{namespacemessages_aed343894ae4a28ad6dfbd1d39aac64ff}{messages\+::stop\+\_\+time} ()
+\begin{DoxyCompactList}\small\item\em Stop a timer. \end{DoxyCompactList}\item 
+subroutine, public \hyperlink{namespacemessages_a34da9df28502ccd63e62674d51fe8de8}{messages\+::passed\+\_\+time} ()
+\begin{DoxyCompactList}\small\item\em Display the time that has passed between {\ttfamily t1} and {\ttfamily t2}. \end{DoxyCompactList}\item 
+character(len=8) function \hyperlink{namespacemessages_a61fd0b51b5e37d58fdc993c01792a3fd}{messages\+::get\+\_\+clock} ()
+\begin{DoxyCompactList}\small\item\em Returns the time. \end{DoxyCompactList}\item 
+subroutine, public \hyperlink{namespacemessages_a0da9248828de8b7480b99b47618e8310}{messages\+::print\+\_\+err\+\_\+msg} (err\+\_\+msg, routine\+\_\+name)
+\begin{DoxyCompactList}\small\item\em Prints an error message that is either user-\/provided, or the name of the calling routine. \end{DoxyCompactList}\item 
+subroutine, public \hyperlink{namespacemessages_a6e6bfb084063e4cc91ee86e542043302}{messages\+::lvl\+\_\+ud} (inc)
+\begin{DoxyCompactList}\small\item\em Increases/decreases {\ttfamily lvl} of output. \end{DoxyCompactList}\item 
+subroutine, public \hyperlink{namespacemessages_aa4a8d01563e92558e8a0875b075ec54c}{messages\+::writo} (input\+\_\+str, persistent, error, warning, alert)
+\begin{DoxyCompactList}\small\item\em Write output to file identified by {\ttfamily output\+\_\+i}. \end{DoxyCompactList}\item 
+subroutine, public \hyperlink{namespacemessages_a80797cedef6112b8dccaeda431f0c610}{messages\+::print\+\_\+ar\+\_\+2} (arr)
+\begin{DoxyCompactList}\small\item\em Print an array of dimension 2 on the screen. \end{DoxyCompactList}\item 
+subroutine, public \hyperlink{namespacemessages_a5686118397930f505259225f3688216b}{messages\+::print\+\_\+ar\+\_\+1} (arr)
+\begin{DoxyCompactList}\small\item\em Print an array of dimension 1 on the screen. \end{DoxyCompactList}\item 
+integer function, public \hyperlink{namespacemessages_a82dddaab795b78b3d39e1ff1aab2f665}{messages\+::get\+\_\+mem\+\_\+usage} ()
+\begin{DoxyCompactList}\small\item\em Returns the memory usage in kilobytes. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+integer, public \hyperlink{namespacemessages_a36521a46e57da1d3be83019abdff132e}{messages\+::lvl}
+\begin{DoxyCompactList}\small\item\em determines the indenting. higher {\ttfamily lvl} = more indenting \end{DoxyCompactList}\item 
+character(len=2), public \hyperlink{namespacemessages_ab1101c3acf2edc71877d4aa71aa3d931}{messages\+::lvl\+\_\+sep} = \textquotesingle{}\textquotesingle{}
+\begin{DoxyCompactList}\small\item\em characters that separate different levels of output \end{DoxyCompactList}\item 
+character(len=10), public \hyperlink{namespacemessages_abeb2abf0ac1d1fb4f09d881eb57b3dae}{messages\+::time\+\_\+sep} = \textquotesingle{}\textquotesingle{}
+\begin{DoxyCompactList}\small\item\em defines the length of time part of output \end{DoxyCompactList}\item 
+logical, public \hyperlink{namespacemessages_ace8877914cfa5253cc002da0f387446a}{messages\+::temp\+\_\+output\+\_\+active}
+\begin{DoxyCompactList}\small\item\em true if temporary output is to be written in {\ttfamily temp\+\_\+output} \end{DoxyCompactList}\item 
+character(len=max\+\_\+str\+\_\+ln), dimension(\+:), allocatable, public \hyperlink{namespacemessages_a07070e72f15146af24816c39eea17088}{messages\+::temp\+\_\+output}
+\begin{DoxyCompactList}\small\item\em temporary output, before output file is opened \end{DoxyCompactList}\end{DoxyCompactItemize}

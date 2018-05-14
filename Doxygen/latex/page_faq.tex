@@ -1,0 +1,34 @@
+\hypertarget{page_faq_faq_errors}{}\section{runtime errors}\label{page_faq_faq_errors}
+\hypertarget{page_faq_faq_errors_tab}{}
+\tabulinesep=1mm
+\begin{longtabu} spread 0pt [c]{*{2}{|X[-1]}|}
+\caption{Table 1. frequently encountered errors}\label{page_faq_faq_errors_tab}\\
+\hline
+\rowcolor{\tableheadbgcolor}\textbf{ error }&\textbf{ solution   }\\\cline{1-2}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\rowcolor{\tableheadbgcolor}\textbf{ error }&\textbf{ solution   }\\\cline{1-2}
+\endhead
+\char`\"{}need at least N points in grid\char`\"{}  &grid\+\_\+utilities.\+setup\+\_\+deriv\+\_\+data() needs a minimum number of points in a grid to setup data with which the derivatives can be calculated later in grid\+\_\+utilities.\+apply\+\_\+disc(). If the grid does not have enough points, and the order of the derivative is too high, the procedure gives this error message. The solution is to either increase the number of points, or to lower the order. It might be that the number of points in the grid is lower than you expect because the grid is divided. In this case, you need more memory (see {\ttfamily max\+\_\+tot\+\_\+mem} in \hyperlink{page_inputs}{Input variables}).   \\\cline{1-2}
+\char`\"{}\+Zero pivot in L\+U factorization\char`\"{}  &There exist cases in which the eigenvalue solver fails when {\ttfamily n\+\_\+mod\+\_\+X = 1}, for unkown reasons. Increase {\ttfamily n\+\_\+mod\+\_\+X} or play with other parameters, such as the {\ttfamily norm\+\_\+disc\+\_\+prec\+\_\+sol}.   \\\cline{1-2}
+{\ttfamily jump\+\_\+to\+\_\+sol} does not work &Jumping over the equilibrium and perturbation drivers straight to the solution only works if solution parameters such as the boundary conditions are changed, {\itshape not} if the number of points in the solution, {\ttfamily n\+\_\+r\+\_\+sol}, is changed, as in this case the equilibrium and solution drivers need to be recalculated properly.  \\\cline{1-2}
+The solution suffers from numerical oscillations &This is a work in progress. Change the limits of the solution grid {\ttfamily min\+\_\+r\+\_\+sol} (and possibly {\ttfamily max\+\_\+r\+\_\+sol}). Better even is to use asymmetric finite differences {\ttfamily norm\+\_\+disc\+\_\+style\+\_\+sol = 2}  \\\cline{1-2}
+\end{longtabu}
+\hypertarget{page_faq_faq_problems}{}\section{common problems}\label{page_faq_faq_problems}
+\hypertarget{page_faq_faq_problems_tab}{}
+\tabulinesep=1mm
+\begin{longtabu} spread 0pt [c]{*{2}{|X[-1]}|}
+\caption{Table 2. common problems}\label{page_faq_faq_problems_tab}\\
+\hline
+\rowcolor{\tableheadbgcolor}\textbf{ problem }&\textbf{ solution   }\\\cline{1-2}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\rowcolor{\tableheadbgcolor}\textbf{ problem }&\textbf{ solution   }\\\cline{1-2}
+\endhead
+unphysical eigenvector &For coarse equilbrium grids and/or strongly varying safety factors, and when using the fast version (i.\+e. with {\ttfamily n\+\_\+mod\+\_\+X}), it is possible that the resonating mode number range varies too quickly, leading to inaccurate interpolation of tensorial perturbation quantities in the solution grid. Try using {\ttfamily X\+\_\+grid\+\_\+style} 3, where enrichment of the equilibrium grid is used to set up the perturbation grid. If this does not help, additionally lower {\ttfamily max\+\_\+njq\+\_\+change} from its default value.   \\\cline{1-2}
+low accuracy for energy reconstruction &Energy reconstruction tries to see whether by calculating the total volume integral of the perturbed potential energy and dividing it by the total volume integral of the kinetic energy of the perturbation, the eigenvalue can be recovered. This gives a lot of insight in the processes that drive the instabilities, by looking at the individual terms of these integrals, and is a good check on the internal consistency of the P\+B3D code. Note that for axisymmetric equilibria, the volume integral reduces to a surface integral in a poloidal cross-\/section. It is actually very hard to perform a good energy reconstruction because the techniques used differ from the ones in the P\+B3D code, where the normal derivatives of the eigenvector are performed using finite differences, while in the energy reconstruction direct volume integrals are used. For axisymmetric cases, the code should retun quite accurate results, from version 2.\+26 upwards, which can be improved by choosing a finer post-\/processing grid (see {\ttfamily n\+\_\+theta\+\_\+plot} and {\ttfamily n\+\_\+zeta\+\_\+plot}), but it is possible that a small fraction, possibly of the order of a percent remains in the relative difference. This is probably due to the fact that in P\+B3D for {\ttfamily X\+\_\+style} 2 (fast), the stencil is cut when the normal index falls out of its mode range (see \hyperlink{namespaceslepc__utilities_aa34aa361f0bfff9621ecba179f9ed0c6}{insert\+\_\+block\+\_\+mat()}).   \\\cline{1-2}
+\end{longtabu}

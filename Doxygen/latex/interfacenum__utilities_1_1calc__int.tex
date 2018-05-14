@@ -1,0 +1,105 @@
+\hypertarget{interfacenum__utilities_1_1calc__int}{}\section{num\+\_\+utilities\+:\+:calc\+\_\+int Interface Reference}
+\label{interfacenum__utilities_1_1calc__int}\index{num\+\_\+utilities\+::calc\+\_\+int@{num\+\_\+utilities\+::calc\+\_\+int}}
+
+
+Integrates a function using the trapezoidal rule.  
+
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+integer function \hyperlink{interfacenum__utilities_1_1calc__int_a7092121850ec336bfb00da92981bcfc7}{calc\+\_\+int\+\_\+eqd} (var, step\+\_\+size, var\+\_\+int)
+\begin{DoxyCompactList}\small\item\em equidistant version \end{DoxyCompactList}\item 
+integer function \hyperlink{interfacenum__utilities_1_1calc__int_af8120d958ad202477f2ad33369591d45}{calc\+\_\+int\+\_\+reg} (var, x, var\+\_\+int)
+\begin{DoxyCompactList}\small\item\em regular version \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Integrates a function using the trapezoidal rule. 
+
+This function can be defined on an equidistant grid or a regular one\+:
+\begin{DoxyItemize}
+\item For an equidistant grid, \[\int_1^n f(x) dx = \sum_{k=1}^{n-1} {\left(f(k+1)+f(k)\right) \frac{\Delta_x}{2}},\] is used, with $n$ the number of points, which are assumed to be equidistant with a given step size $Delta_x$.
+\item For a regular grid, \[\int_1^n f(x) dx = \sum_{k=1}^{n-1} {\left(f(k+1)+f(k)\right) \frac{x(k+1)-x(k)}{2}}, \] is used, with $n$ the number of points.
+\begin{DoxyItemize}
+\item Therefore, $n$ points have to be specified as well as $n$ values for the function to be integrated.
+\item They have to be given in ascending order but the step size does not have to be constant.
+\item This yields the following difference formula\+: \[\int_1^n f(x) dx = \int_1^{n-1} f(x) dx + \left(f(n)+f(n-1)\right) \frac{x(n)-x(n-1)}{2},\] which is used here
+\end{DoxyItemize}
+\end{DoxyItemize}
+
+\begin{DoxyNote}{Note}
+For periodic function, the trapezoidal rule works well only if the last point of the grid is included, i.\+e. the point where the function is equal to the first point.
+\end{DoxyNote}
+\begin{DoxyReturn}{Returns}
+ierr 
+\end{DoxyReturn}
+
+
+Definition at line 160 of file num\+\_\+utilities.\+f90.
+
+
+
+\subsection{Member Function/\+Subroutine Documentation}
+\mbox{\Hypertarget{interfacenum__utilities_1_1calc__int_a7092121850ec336bfb00da92981bcfc7}\label{interfacenum__utilities_1_1calc__int_a7092121850ec336bfb00da92981bcfc7}} 
+\index{num\+\_\+utilities\+::calc\+\_\+int@{num\+\_\+utilities\+::calc\+\_\+int}!calc\+\_\+int\+\_\+eqd@{calc\+\_\+int\+\_\+eqd}}
+\index{calc\+\_\+int\+\_\+eqd@{calc\+\_\+int\+\_\+eqd}!num\+\_\+utilities\+::calc\+\_\+int@{num\+\_\+utilities\+::calc\+\_\+int}}
+\subsubsection{\texorpdfstring{calc\+\_\+int\+\_\+eqd()}{calc\_int\_eqd()}}
+{\footnotesize\ttfamily integer function num\+\_\+utilities\+::calc\+\_\+int\+::calc\+\_\+int\+\_\+eqd (\begin{DoxyParamCaption}\item[{real(dp), dimension(\+:), intent(in)}]{var,  }\item[{real(dp), intent(in)}]{step\+\_\+size,  }\item[{real(dp), dimension(\+:), intent(inout)}]{var\+\_\+int }\end{DoxyParamCaption})}
+
+
+
+equidistant version 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in,out}  & {\em var\+\_\+int} & integrated variable\\
+\hline
+\mbox{\tt in}  & {\em var} & variable to be integrated\\
+\hline
+\mbox{\tt in}  & {\em step\+\_\+size} & step size of abscissa \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 327 of file num\+\_\+utilities.\+f90.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{interfacenum__utilities_1_1calc__int_a7092121850ec336bfb00da92981bcfc7_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{interfacenum__utilities_1_1calc__int_af8120d958ad202477f2ad33369591d45}\label{interfacenum__utilities_1_1calc__int_af8120d958ad202477f2ad33369591d45}} 
+\index{num\+\_\+utilities\+::calc\+\_\+int@{num\+\_\+utilities\+::calc\+\_\+int}!calc\+\_\+int\+\_\+reg@{calc\+\_\+int\+\_\+reg}}
+\index{calc\+\_\+int\+\_\+reg@{calc\+\_\+int\+\_\+reg}!num\+\_\+utilities\+::calc\+\_\+int@{num\+\_\+utilities\+::calc\+\_\+int}}
+\subsubsection{\texorpdfstring{calc\+\_\+int\+\_\+reg()}{calc\_int\_reg()}}
+{\footnotesize\ttfamily integer function num\+\_\+utilities\+::calc\+\_\+int\+::calc\+\_\+int\+\_\+reg (\begin{DoxyParamCaption}\item[{real(dp), dimension(\+:), intent(in)}]{var,  }\item[{real(dp), dimension(\+:), intent(in)}]{x,  }\item[{real(dp), dimension(\+:), intent(inout)}]{var\+\_\+int }\end{DoxyParamCaption})}
+
+
+
+regular version 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in,out}  & {\em var\+\_\+int} & integrated variable\\
+\hline
+\mbox{\tt in}  & {\em var} & variable to be integrated\\
+\hline
+\mbox{\tt in}  & {\em x} & abscissa \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 286 of file num\+\_\+utilities.\+f90.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{interfacenum__utilities_1_1calc__int_af8120d958ad202477f2ad33369591d45_cgraph}
+\end{center}
+\end{figure}
+
+

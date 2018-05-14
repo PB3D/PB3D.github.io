@@ -1,0 +1,1039 @@
+\hypertarget{namespaceeq__ops}{}\section{eq\+\_\+ops Module Reference}
+\label{namespaceeq__ops}\index{eq\+\_\+ops@{eq\+\_\+ops}}
+
+
+Operations on the equilibrium variables.  
+
+
+\subsection*{Interfaces and Types}
+\begin{DoxyCompactItemize}
+\item 
+interface \hyperlink{interfaceeq__ops_1_1calc__eq}{calc\+\_\+eq}
+\begin{DoxyCompactList}\small\item\em Calculate the equilibrium quantities on a grid determined by straight field lines. \end{DoxyCompactList}\item 
+interface \hyperlink{interfaceeq__ops_1_1calc__g__c}{calc\+\_\+g\+\_\+c}
+\begin{DoxyCompactList}\small\item\em Calculate the lower metric elements in the C(ylindrical) coordinate system. \end{DoxyCompactList}\item 
+interface \hyperlink{interfaceeq__ops_1_1calc__g__f}{calc\+\_\+g\+\_\+f}
+\begin{DoxyCompactList}\small\item\em Calculate the metric coefficients in the F(lux) coordinate system. \end{DoxyCompactList}\item 
+interface \hyperlink{interfaceeq__ops_1_1calc__g__h}{calc\+\_\+g\+\_\+h}
+\begin{DoxyCompactList}\small\item\em Calculate the lower metric coefficients in the equilibrium H(\+E\+L\+E\+N\+A) coordinate system. \end{DoxyCompactList}\item 
+interface \hyperlink{interfaceeq__ops_1_1calc__g__v}{calc\+\_\+g\+\_\+v}
+\begin{DoxyCompactList}\small\item\em Calculate the lower metric coefficients in the equilibrium V(\+M\+E\+C) coordinate system. \end{DoxyCompactList}\item 
+interface \hyperlink{interfaceeq__ops_1_1calc__jac__f}{calc\+\_\+jac\+\_\+f}
+\begin{DoxyCompactList}\small\item\em Calculate $\mathcal{J}_\text{F}$, the jacobian in Flux coordinates. \end{DoxyCompactList}\item 
+interface \hyperlink{interfaceeq__ops_1_1calc__jac__h}{calc\+\_\+jac\+\_\+h}
+\begin{DoxyCompactList}\small\item\em Calculate $\mathcal{J}_\text{H}$, the jacobian in H\+E\+L\+E\+NA coordinates. \end{DoxyCompactList}\item 
+interface \hyperlink{interfaceeq__ops_1_1calc__jac__v}{calc\+\_\+jac\+\_\+v}
+\begin{DoxyCompactList}\small\item\em Calculate $\mathcal{J}_\text{V}$, the jacobian in V(\+M\+E\+C) coordinates. \end{DoxyCompactList}\item 
+interface \hyperlink{interfaceeq__ops_1_1calc__rzl}{calc\+\_\+rzl}
+\begin{DoxyCompactList}\small\item\em Calculate $R$, $Z$ \& $\lambda$ and derivatives in V\+M\+EC coordinates. \end{DoxyCompactList}\item 
+interface \hyperlink{interfaceeq__ops_1_1calc__t__hf}{calc\+\_\+t\+\_\+hf}
+\begin{DoxyCompactList}\small\item\em Calculate $\overline{\text{T}}_\text{H}^\text{F}$, the transformation matrix between H(\+E\+L\+E\+N\+A) and F(lux) coordinate systems. \end{DoxyCompactList}\item 
+interface \hyperlink{interfaceeq__ops_1_1calc__t__vc}{calc\+\_\+t\+\_\+vc}
+\begin{DoxyCompactList}\small\item\em Calculate $\overline{\text{T}}_\text{C}^\text{V}$, the transformation matrix between C(ylindrical) and V(mec) coordinate system. \end{DoxyCompactList}\item 
+interface \hyperlink{interfaceeq__ops_1_1calc__t__vf}{calc\+\_\+t\+\_\+vf}
+\begin{DoxyCompactList}\small\item\em Calculate $\overline{\text{T}}_\text{V}^\text{F}$, the transformation matrix between V(\+M\+E\+C) and F(lux) coordinate systems. \end{DoxyCompactList}\item 
+interface \hyperlink{interfaceeq__ops_1_1print__output__eq}{print\+\_\+output\+\_\+eq}
+\begin{DoxyCompactList}\small\item\em Print equilibrium quantities to an output file\+: \end{DoxyCompactList}\item 
+interface \hyperlink{interfaceeq__ops_1_1redistribute__output__eq}{redistribute\+\_\+output\+\_\+eq}
+\begin{DoxyCompactList}\small\item\em Redistribute the equilibrium variables, but only the Flux variables are saved. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Functions/\+Subroutines}
+\begin{DoxyCompactItemize}
+\item 
+integer function \hyperlink{namespaceeq__ops_a9addef683b3d4a8c587510e4c994ec61}{create\+\_\+vmec\+\_\+input} (grid\+\_\+eq, eq\+\_\+1)
+\begin{DoxyCompactList}\small\item\em Creates a V\+M\+EC input file. \end{DoxyCompactList}\item 
+integer function, public \hyperlink{namespaceeq__ops_af0effe20188d46a44680c2648e4572e9}{flux\+\_\+q\+\_\+plot} (grid\+\_\+eq, eq)
+\begin{DoxyCompactList}\small\item\em Plots the flux quantities in the solution grid. \end{DoxyCompactList}\item 
+integer function, public \hyperlink{namespaceeq__ops_a087e08ce6d8ad381b5bac8fc51148d50}{calc\+\_\+derived\+\_\+q} (grid\+\_\+eq, eq\+\_\+1, eq\+\_\+2)
+\begin{DoxyCompactList}\small\item\em Calculates derived equilibrium quantities system. \end{DoxyCompactList}\item 
+integer function, public \hyperlink{namespaceeq__ops_a7cd38586e386e1bc684a327ebcc4c1de}{calc\+\_\+normalization\+\_\+const} ()
+\begin{DoxyCompactList}\small\item\em Sets up normalization constants. \end{DoxyCompactList}\item 
+subroutine, public \hyperlink{namespaceeq__ops_a1b4c764da73624722d7e76498a2b80a9}{normalize\+\_\+input} ()
+\begin{DoxyCompactList}\small\item\em Normalize input quantities. \end{DoxyCompactList}\item 
+integer function, public \hyperlink{namespaceeq__ops_a73a8c3cea1e8a636b4978bc626e0fab0}{b\+\_\+plot} (grid\+\_\+eq, eq\+\_\+1, eq\+\_\+2, rich\+\_\+lvl, plot\+\_\+fluxes, X\+YZ)
+\begin{DoxyCompactList}\small\item\em Plots the magnetic fields. \end{DoxyCompactList}\item 
+integer function, public \hyperlink{namespaceeq__ops_afabdf28e5c26ceb87e6eb8cf3809919d}{j\+\_\+plot} (grid\+\_\+eq, eq\+\_\+1, eq\+\_\+2, rich\+\_\+lvl, plot\+\_\+fluxes, X\+YZ)
+\begin{DoxyCompactList}\small\item\em Plots the current. \end{DoxyCompactList}\item 
+integer function, public \hyperlink{namespaceeq__ops_ad173efd111cb85c11bc2bc78a7555096}{kappa\+\_\+plot} (grid\+\_\+eq, eq\+\_\+1, eq\+\_\+2, rich\+\_\+lvl, X\+YZ)
+\begin{DoxyCompactList}\small\item\em Plots the curvature. \end{DoxyCompactList}\item 
+integer function, public \hyperlink{namespaceeq__ops_ac0a79893900631d25b170be0abd2c131}{delta\+\_\+r\+\_\+plot} (grid\+\_\+eq, eq\+\_\+1, eq\+\_\+2, X\+YZ, rich\+\_\+lvl)
+\begin{DoxyCompactList}\small\item\em Plots {\bfseries H\+A\+LF} of the change in the position vectors for 2 different toroidal positions, which can correspond to a ripple. \end{DoxyCompactList}\item 
+integer function, public \hyperlink{namespaceeq__ops_a8fae749abe55865d8135fef536a8e8f1}{divide\+\_\+eq\+\_\+jobs} (n\+\_\+par\+\_\+X, arr\+\_\+size, n\+\_\+div, n\+\_\+div\+\_\+max, n\+\_\+par\+\_\+\+X\+\_\+base, range\+\_\+name)
+\begin{DoxyCompactList}\small\item\em Divides the equilibrium jobs. \end{DoxyCompactList}\item 
+integer function, public \hyperlink{namespaceeq__ops_a4e20b8725fce149449f83754244dc84e}{calc\+\_\+eq\+\_\+jobs\+\_\+lims} (n\+\_\+par\+\_\+X, n\+\_\+div)
+\begin{DoxyCompactList}\small\item\em Calculate {\ttfamily eq\+\_\+jobs\+\_\+lims}. \end{DoxyCompactList}\item 
+integer function \hyperlink{namespaceeq__ops_a1f5049c3e309fa23ee46fd116c9344f1}{test\+\_\+t\+\_\+ef} (grid\+\_\+eq, eq\+\_\+1, eq\+\_\+2)
+\begin{DoxyCompactList}\small\item\em See if {\ttfamily T\+\_\+\+EF} it complies with the theory of {\bfseries [Weyens3D]}. \end{DoxyCompactList}\item 
+integer function \hyperlink{namespaceeq__ops_a003df1e1ab90dc6f586c3eed3dd067e8}{test\+\_\+d12h\+\_\+h} (grid\+\_\+eq, eq)
+\begin{DoxyCompactList}\small\item\em Tests whether $ \frac{\partial^2}{\partial u_i \partial u_j} h_\text{H} $ is calculated correctly. \end{DoxyCompactList}\item 
+integer function \hyperlink{namespaceeq__ops_a05dcd4803b9c7845d3353614c9630c23}{test\+\_\+jac\+\_\+f} (grid\+\_\+eq, eq\+\_\+1, eq\+\_\+2)
+\begin{DoxyCompactList}\small\item\em Performs tests on $ \mathcal{J}_\text{F}$. \end{DoxyCompactList}\item 
+integer function \hyperlink{namespaceeq__ops_a9811c83477d9d85f7401fd7957a590fc}{test\+\_\+g\+\_\+v} (grid\+\_\+eq, eq)
+\begin{DoxyCompactList}\small\item\em Tests whether $g_\text{V}$ is calculated correctly. \end{DoxyCompactList}\item 
+integer function \hyperlink{namespaceeq__ops_aef40d04e93f6a96576f8fe893fb086f8}{test\+\_\+jac\+\_\+v} (grid\+\_\+eq, eq)
+\begin{DoxyCompactList}\small\item\em Tests whether $\mathcal{J}_\text{V}$ is calculated correctly. \end{DoxyCompactList}\item 
+integer function \hyperlink{namespaceeq__ops_a8082c12510696bd8ffdd0deef41860c2}{test\+\_\+b\+\_\+f} (grid\+\_\+eq, eq\+\_\+1, eq\+\_\+2)
+\begin{DoxyCompactList}\small\item\em Tests whether $\vec{B}_\text{F}$ is calculated correctly. \end{DoxyCompactList}\item 
+integer function \hyperlink{namespaceeq__ops_a38b723f6ed5d2e2772c9c3ad14d5ffd4}{test\+\_\+p} (grid\+\_\+eq, eq\+\_\+1, eq\+\_\+2)
+\begin{DoxyCompactList}\small\item\em Performs tests on pressure balance. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+logical, public \hyperlink{namespaceeq__ops_a1b6609a8d8b427d9133bf323e732f209}{debug\+\_\+calc\+\_\+derived\+\_\+q} = .true.
+\begin{DoxyCompactList}\small\item\em plot debug information for \hyperlink{namespaceeq__ops_a087e08ce6d8ad381b5bac8fc51148d50}{calc\+\_\+derived\+\_\+q()} \end{DoxyCompactList}\item 
+logical, public \hyperlink{namespaceeq__ops_a45ba7f46fd439bbd73edfd1fd548b58e}{debug\+\_\+j\+\_\+plot} = .false.
+\begin{DoxyCompactList}\small\item\em plot debug information for \hyperlink{namespaceeq__ops_afabdf28e5c26ceb87e6eb8cf3809919d}{j\+\_\+plot()} \end{DoxyCompactList}\item 
+logical, public \hyperlink{namespaceeq__ops_a07ca60790a262e20bc8632be1530970a}{debug\+\_\+create\+\_\+vmec\+\_\+input} = .false.
+\begin{DoxyCompactList}\small\item\em plot debug information for \hyperlink{namespaceeq__ops_a9addef683b3d4a8c587510e4c994ec61}{create\+\_\+vmec\+\_\+input()} \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Operations on the equilibrium variables. 
+
+\subsection{Function/\+Subroutine Documentation}
+\mbox{\Hypertarget{namespaceeq__ops_a73a8c3cea1e8a636b4978bc626e0fab0}\label{namespaceeq__ops_a73a8c3cea1e8a636b4978bc626e0fab0}} 
+\index{eq\+\_\+ops@{eq\+\_\+ops}!b\+\_\+plot@{b\+\_\+plot}}
+\index{b\+\_\+plot@{b\+\_\+plot}!eq\+\_\+ops@{eq\+\_\+ops}}
+\subsubsection{\texorpdfstring{b\+\_\+plot()}{b\_plot()}}
+{\footnotesize\ttfamily integer function, public eq\+\_\+ops\+::b\+\_\+plot (\begin{DoxyParamCaption}\item[{type(\hyperlink{structgrid__vars_1_1grid__type}{grid\+\_\+type}), intent(inout)}]{grid\+\_\+eq,  }\item[{type(\hyperlink{structeq__vars_1_1eq__1__type}{eq\+\_\+1\+\_\+type}), intent(in)}]{eq\+\_\+1,  }\item[{type(\hyperlink{structeq__vars_1_1eq__2__type}{eq\+\_\+2\+\_\+type}), intent(in)}]{eq\+\_\+2,  }\item[{integer, intent(in), optional}]{rich\+\_\+lvl,  }\item[{logical, intent(in), optional}]{plot\+\_\+fluxes,  }\item[{real(dp), dimension(\+:,\+:,\+:,\+:), intent(in), optional}]{X\+YZ }\end{DoxyParamCaption})}
+
+
+
+Plots the magnetic fields. 
+
+If multiple equilibrium parallel jobs, every job does its piece, and the results are joined automatically by plot\+\_\+\+H\+D\+F5.
+
+The outputs are given in contra-\/ and covariant components and magnitude in multiple coordinate systems, as indicated in \hyperlink{namespacegrid__utilities_ad3d9386b9abcb1a7e17369a1b3a3750d}{calc\+\_\+vec\+\_\+comp()}.
+
+The starting point is the fact that the magnetic field is given by \[\vec{B} = \frac{\vec{e}_{\theta}}{\mathcal{J}}, \] in F coordinates. The F covariant components are therefore given by \[B_i = \frac{g_{i3}}{\mathcal{J}} = \frac{\vec{e}_i \cdot \vec{e}_3}{\mathcal{J}}, \] and the only non-\/vanishing contravariant component is \[B^3 = \frac{1}{\mathcal{J}}. \]
+
+These are then all be transformed to the other coordinate systems.
+
+\begin{DoxyNote}{Note}
+
+\begin{DoxyEnumerate}
+\item Vector plots for different Richardson levels can be combined to show the total grid by just plotting them all individually.
+\item The metric factors and transformation matrices have to be allocated.
+\end{DoxyEnumerate}
+\end{DoxyNote}
+\begin{DoxyReturn}{Returns}
+ierr
+\end{DoxyReturn}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in,out}  & {\em grid\+\_\+eq} & equilibrium grid\\
+\hline
+\mbox{\tt in}  & {\em eq\+\_\+1} & flux equilibrium variables\\
+\hline
+\mbox{\tt in}  & {\em eq\+\_\+2} & metric equilibrium variables\\
+\hline
+\mbox{\tt in}  & {\em rich\+\_\+lvl} & Richardson level\\
+\hline
+\mbox{\tt in}  & {\em plot\+\_\+fluxes} & plot the fluxes\\
+\hline
+\mbox{\tt in}  & {\em xyz} & X, Y and Z of grid \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 4456 of file eq\+\_\+ops.\+f90.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespaceeq__ops_a73a8c3cea1e8a636b4978bc626e0fab0_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespaceeq__ops_a73a8c3cea1e8a636b4978bc626e0fab0_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{namespaceeq__ops_a087e08ce6d8ad381b5bac8fc51148d50}\label{namespaceeq__ops_a087e08ce6d8ad381b5bac8fc51148d50}} 
+\index{eq\+\_\+ops@{eq\+\_\+ops}!calc\+\_\+derived\+\_\+q@{calc\+\_\+derived\+\_\+q}}
+\index{calc\+\_\+derived\+\_\+q@{calc\+\_\+derived\+\_\+q}!eq\+\_\+ops@{eq\+\_\+ops}}
+\subsubsection{\texorpdfstring{calc\+\_\+derived\+\_\+q()}{calc\_derived\_q()}}
+{\footnotesize\ttfamily integer function, public eq\+\_\+ops\+::calc\+\_\+derived\+\_\+q (\begin{DoxyParamCaption}\item[{type(\hyperlink{structgrid__vars_1_1grid__type}{grid\+\_\+type}), intent(in)}]{grid\+\_\+eq,  }\item[{type(\hyperlink{structeq__vars_1_1eq__1__type}{eq\+\_\+1\+\_\+type}), intent(in)}]{eq\+\_\+1,  }\item[{type(\hyperlink{structeq__vars_1_1eq__2__type}{eq\+\_\+2\+\_\+type}), intent(inout), target}]{eq\+\_\+2 }\end{DoxyParamCaption})}
+
+
+
+Calculates derived equilibrium quantities system. 
+
+
+\begin{DoxyItemize}
+\item magnetic shear {\ttfamily S} 
+\item normal curvature {\ttfamily kappa\+\_\+n} 
+\item geodesic curvature {\ttfamily kappa\+\_\+g} 
+\item parallel current {\ttfamily sigma} 
+\end{DoxyItemize}
+
+This is done using the formula\textquotesingle{}s from {\bfseries [Weyens3D]}
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em grid\+\_\+eq} & equilibrium grid\\
+\hline
+\mbox{\tt in}  & {\em eq\+\_\+1} & flux equilibrium variables\\
+\hline
+\mbox{\tt in,out}  & {\em eq\+\_\+2} & metric equilibrium variables \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 3834 of file eq\+\_\+ops.\+f90.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespaceeq__ops_a087e08ce6d8ad381b5bac8fc51148d50_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespaceeq__ops_a087e08ce6d8ad381b5bac8fc51148d50_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{namespaceeq__ops_a4e20b8725fce149449f83754244dc84e}\label{namespaceeq__ops_a4e20b8725fce149449f83754244dc84e}} 
+\index{eq\+\_\+ops@{eq\+\_\+ops}!calc\+\_\+eq\+\_\+jobs\+\_\+lims@{calc\+\_\+eq\+\_\+jobs\+\_\+lims}}
+\index{calc\+\_\+eq\+\_\+jobs\+\_\+lims@{calc\+\_\+eq\+\_\+jobs\+\_\+lims}!eq\+\_\+ops@{eq\+\_\+ops}}
+\subsubsection{\texorpdfstring{calc\+\_\+eq\+\_\+jobs\+\_\+lims()}{calc\_eq\_jobs\_lims()}}
+{\footnotesize\ttfamily integer function, public eq\+\_\+ops\+::calc\+\_\+eq\+\_\+jobs\+\_\+lims (\begin{DoxyParamCaption}\item[{integer, intent(in)}]{n\+\_\+par\+\_\+X,  }\item[{integer, intent(in)}]{n\+\_\+div }\end{DoxyParamCaption})}
+
+
+
+Calculate {\ttfamily eq\+\_\+jobs\+\_\+lims}. 
+
+Take into account that every job has to start and end at the start and end of a fundamental integration interval, as discussed in \hyperlink{namespaceeq__ops_a8fae749abe55865d8135fef536a8e8f1}{divide\+\_\+eq\+\_\+jobs()}\+:
+\begin{DoxyItemize}
+\item for {\ttfamily magn\+\_\+int\+\_\+style=1} (trapezoidal), this is 1 point,
+\item for {\ttfamily magn\+\_\+int\+\_\+style=2} (Simpson 3/8), this is 3 points.
+\end{DoxyItemize}
+
+for P\+O\+ST, there are no Richardson levels, and there has to be overlap of one always, in order to have correct composite integrals of the different regions.
+
+\begin{DoxyNote}{Note}
+The {\ttfamily n\+\_\+par\+\_\+X} passed into this procedure refers to the quantity that is already possibly halved if the Richardson level is higher than 1. This information is then reflected in the eq\+\_\+jobs\+\_\+lims, which refer to the local limits, i.\+e. only the parallel points currently under consideration.
+\end{DoxyNote}
+\begin{DoxyReturn}{Returns}
+ierr
+\end{DoxyReturn}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em n\+\_\+par\+\_\+x} & number of parallel points in this Richardson level\\
+\hline
+\mbox{\tt in}  & {\em n\+\_\+div} & nr. of divisions of parallel ranges \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 5457 of file eq\+\_\+ops.\+f90.
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespaceeq__ops_a4e20b8725fce149449f83754244dc84e_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{namespaceeq__ops_a7cd38586e386e1bc684a327ebcc4c1de}\label{namespaceeq__ops_a7cd38586e386e1bc684a327ebcc4c1de}} 
+\index{eq\+\_\+ops@{eq\+\_\+ops}!calc\+\_\+normalization\+\_\+const@{calc\+\_\+normalization\+\_\+const}}
+\index{calc\+\_\+normalization\+\_\+const@{calc\+\_\+normalization\+\_\+const}!eq\+\_\+ops@{eq\+\_\+ops}}
+\subsubsection{\texorpdfstring{calc\+\_\+normalization\+\_\+const()}{calc\_normalization\_const()}}
+{\footnotesize\ttfamily integer function, public eq\+\_\+ops\+::calc\+\_\+normalization\+\_\+const (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Sets up normalization constants. 
+
+
+\begin{DoxyItemize}
+\item V\+M\+EC version ({\ttfamily eq\+\_\+style=1})\+:~\newline
+ Normalization depends on {\ttfamily norm\+\_\+style\+:} 
+\begin{DoxyEnumerate}
+\item M\+I\+S\+H\+KA
+\begin{DoxyItemize}
+\item R\+\_\+0\+: major radius (= average magnetic axis)
+\item B\+\_\+0\+: B on magnetic axis (theta = zeta = 0)
+\item pres\+\_\+0\+: reference pressure (= B\+\_\+0$^\wedge$2/mu\+\_\+0)
+\item psi\+\_\+0\+: reference flux (= R\+\_\+0$^\wedge$2 B\+\_\+0)
+\item rho\+\_\+0\+: reference mass density
+\end{DoxyItemize}
+\item C\+O\+B\+RA
+\begin{DoxyItemize}
+\item R\+\_\+0\+: major radius (= average geometric axis)
+\item pres\+\_\+0\+: pressure on magnetic axis
+\item B\+\_\+0\+: reference magnetic field (= sqrt(2pres\+\_\+0mu\+\_\+0 / beta))
+\item psi\+\_\+0\+: reference flux (= R\+\_\+0$^\wedge$2 B\+\_\+0 / aspr$^\wedge$2)
+\item rho\+\_\+0\+: reference mass density where aspr (aspect ratio) and beta are given by V\+M\+EC.
+\end{DoxyItemize}
+\end{DoxyEnumerate}
+\item H\+E\+L\+E\+NA version ({\ttfamily eq\+\_\+style=2})\+:~\newline
+ Normalization is used by default and does not depend on {\ttfamily norm\+\_\+style} 
+\end{DoxyItemize}
+
+\begin{DoxySeeAlso}{See also}
+\hyperlink{namespacehelena__ops_ae05ba1182eb002d93c27ca4ff7ab8cf2}{read\+\_\+hel()}
+\end{DoxySeeAlso}
+\begin{DoxyNote}{Note}
+{\ttfamily rho\+\_\+0} is not given through by the equilibrium codes and should be user-\/supplied
+\end{DoxyNote}
+\begin{DoxyReturn}{Returns}
+ierr 
+\end{DoxyReturn}
+
+
+Definition at line 4161 of file eq\+\_\+ops.\+f90.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespaceeq__ops_a7cd38586e386e1bc684a327ebcc4c1de_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=330pt]{namespaceeq__ops_a7cd38586e386e1bc684a327ebcc4c1de_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{namespaceeq__ops_a9addef683b3d4a8c587510e4c994ec61}\label{namespaceeq__ops_a9addef683b3d4a8c587510e4c994ec61}} 
+\index{eq\+\_\+ops@{eq\+\_\+ops}!create\+\_\+vmec\+\_\+input@{create\+\_\+vmec\+\_\+input}}
+\index{create\+\_\+vmec\+\_\+input@{create\+\_\+vmec\+\_\+input}!eq\+\_\+ops@{eq\+\_\+ops}}
+\subsubsection{\texorpdfstring{create\+\_\+vmec\+\_\+input()}{create\_vmec\_input()}}
+{\footnotesize\ttfamily integer function eq\+\_\+ops\+::create\+\_\+vmec\+\_\+input (\begin{DoxyParamCaption}\item[{type(\hyperlink{structgrid__vars_1_1grid__type}{grid\+\_\+type}), intent(in)}]{grid\+\_\+eq,  }\item[{type(\hyperlink{structeq__vars_1_1eq__1__type}{eq\+\_\+1\+\_\+type}), intent(in)}]{eq\+\_\+1 }\end{DoxyParamCaption})}
+
+
+
+Creates a V\+M\+EC input file. 
+
+Optionally, a perturbation can be added\+: Either the displacement of the plasma position can be described ({\ttfamily pert\+\_\+style} 1), or ripple in the toroidal magnetic field ({\ttfamily pert\+\_\+style} 2), with a fixed toroidal mode number.
+
+Both perturbation styles can have various prescription types\+:
+\begin{DoxyEnumerate}
+\item file with Fourier modes in the geometrical angular coordinate
+\item same but manually
+\item file with perturbation from a 2-\/D map in the geometric angular coordinate.
+\end{DoxyEnumerate}
+
+For {\ttfamily pert\+\_\+style} 2, a file has to be provided that describes the translation between position perturbation and magnetic perturbation for curves of constant geometrical angle. This file can be generated for an already existing ripple case using P\+O\+ST with {\ttfamily --compare\+\_\+tor\+\_\+pos} with {\ttfamily n\+\_\+zeta\+\_\+plot = 3} and {\ttfamily min\+\_\+theta\+\_\+plot} and {\ttfamily max\+\_\+theta\+\_\+plot} indicating half a ripple period.
+
+The output from this V\+M\+EC run can then be used to iteratively create a new file to translate toroidal magnetic field ripple to position perturbation.
+
+\begin{DoxyNote}{Note}
+Meaning of the indices of {\ttfamily B\+\_\+F}, {\ttfamily B\+\_\+\+F\+\_\+loc\+:} 
+\begin{DoxyItemize}
+\item {\ttfamily (pol modes, cos/sin)} for {\ttfamily B\+\_\+\+F\+\_\+loc} 
+\item {\ttfamily (tor\+\_\+modes, pol modes, cos/sin (m theta), R/Z)} for {\ttfamily B\+\_\+F} 
+\end{DoxyItemize}
+\end{DoxyNote}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em grid\+\_\+eq} & equilibrium grid varibles\\
+\hline
+\mbox{\tt in}  & {\em eq\+\_\+1} & flux equilibrium quantities \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 754 of file eq\+\_\+ops.\+f90.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespaceeq__ops_a9addef683b3d4a8c587510e4c994ec61_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespaceeq__ops_a9addef683b3d4a8c587510e4c994ec61_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{namespaceeq__ops_ac0a79893900631d25b170be0abd2c131}\label{namespaceeq__ops_ac0a79893900631d25b170be0abd2c131}} 
+\index{eq\+\_\+ops@{eq\+\_\+ops}!delta\+\_\+r\+\_\+plot@{delta\+\_\+r\+\_\+plot}}
+\index{delta\+\_\+r\+\_\+plot@{delta\+\_\+r\+\_\+plot}!eq\+\_\+ops@{eq\+\_\+ops}}
+\subsubsection{\texorpdfstring{delta\+\_\+r\+\_\+plot()}{delta\_r\_plot()}}
+{\footnotesize\ttfamily integer function, public eq\+\_\+ops\+::delta\+\_\+r\+\_\+plot (\begin{DoxyParamCaption}\item[{type(\hyperlink{structgrid__vars_1_1grid__type}{grid\+\_\+type}), intent(inout)}]{grid\+\_\+eq,  }\item[{type(\hyperlink{structeq__vars_1_1eq__1__type}{eq\+\_\+1\+\_\+type}), intent(in)}]{eq\+\_\+1,  }\item[{type(\hyperlink{structeq__vars_1_1eq__2__type}{eq\+\_\+2\+\_\+type}), intent(in)}]{eq\+\_\+2,  }\item[{real(dp), dimension(\+:,\+:,\+:,\+:), intent(in)}]{X\+YZ,  }\item[{integer, intent(in), optional}]{rich\+\_\+lvl }\end{DoxyParamCaption})}
+
+
+
+Plots {\bfseries H\+A\+LF} of the change in the position vectors for 2 different toroidal positions, which can correspond to a ripple. 
+
+Also calculates {\bfseries H\+A\+LF} of the relative magnetic perturbation, which also corresponds to a ripple.
+
+Finally, if the output grid contains a fundamental interval $2\pi$, the proportionality between both is written to a file.
+
+\begin{DoxyNote}{Note}
+The metric factors and transformation matrices have to be allocated.
+\end{DoxyNote}
+\begin{DoxyReturn}{Returns}
+ierr
+\end{DoxyReturn}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in,out}  & {\em grid\+\_\+eq} & equilibrium grid\\
+\hline
+\mbox{\tt in}  & {\em eq\+\_\+1} & flux equilibrium variables\\
+\hline
+\mbox{\tt in}  & {\em eq\+\_\+2} & metric equilibrium variables\\
+\hline
+\mbox{\tt in}  & {\em xyz} & X, Y and Z of grid\\
+\hline
+\mbox{\tt in}  & {\em rich\+\_\+lvl} & Richardson level \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 4929 of file eq\+\_\+ops.\+f90.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespaceeq__ops_ac0a79893900631d25b170be0abd2c131_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespaceeq__ops_ac0a79893900631d25b170be0abd2c131_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{namespaceeq__ops_a8fae749abe55865d8135fef536a8e8f1}\label{namespaceeq__ops_a8fae749abe55865d8135fef536a8e8f1}} 
+\index{eq\+\_\+ops@{eq\+\_\+ops}!divide\+\_\+eq\+\_\+jobs@{divide\+\_\+eq\+\_\+jobs}}
+\index{divide\+\_\+eq\+\_\+jobs@{divide\+\_\+eq\+\_\+jobs}!eq\+\_\+ops@{eq\+\_\+ops}}
+\subsubsection{\texorpdfstring{divide\+\_\+eq\+\_\+jobs()}{divide\_eq\_jobs()}}
+{\footnotesize\ttfamily integer function, public eq\+\_\+ops\+::divide\+\_\+eq\+\_\+jobs (\begin{DoxyParamCaption}\item[{integer, intent(in)}]{n\+\_\+par\+\_\+X,  }\item[{integer, dimension(2), intent(in)}]{arr\+\_\+size,  }\item[{integer, intent(inout)}]{n\+\_\+div,  }\item[{integer, intent(in), optional}]{n\+\_\+div\+\_\+max,  }\item[{integer, intent(in), optional}]{n\+\_\+par\+\_\+\+X\+\_\+base,  }\item[{character(len=$\ast$), intent(in), optional}]{range\+\_\+name }\end{DoxyParamCaption})}
+
+
+
+Divides the equilibrium jobs. 
+
+For P\+B3D, the entire parallel range has to be calculated, but due to memory limits this has to be split up in pieces. Every piece has to be able to contain the equilibrium variables (see note below), as well as the vectorial perturbation variables. These are later combined into tensorial variables and integrated.
+
+The equilibrium variables have to be operated on to calculate them, which translates to a scale factor {\ttfamily mem\+\_\+scale\+\_\+fac}. However, in the perturbation phase, when they are just used, this scale factor is not needed.
+
+In its most extreme form, the division in equilibrium jobs would be the individual calculation on a fundamental integration integral of the parallel points\+:
+\begin{DoxyItemize}
+\item for {\ttfamily magn\+\_\+int\+\_\+style=1} (trapezoidal), this is 1 point,
+\item for {\ttfamily magn\+\_\+int\+\_\+style=2} (Simpson 3/8), this is 3 points.
+\end{DoxyItemize}
+
+For H\+E\+L\+E\+NA, the parallel derivatives are calculated discretely, the equilibrium and vectorial perturbation variables are tabulated first in this H\+E\+L\+E\+NA grid. This happens in the first Richardson level. In all Richardson levels, afterwards, these variables are interpolated in the angular directions. In this case, therefore, there can be no division of this H\+E\+L\+E\+NA output interval for the first Richardson level.
+
+This procedure does the job of dividing the grids setting the global variables {\ttfamily eq\+\_\+jobs\+\_\+lims}.
+
+The integration of the tensorial perturbation variables is adjusted\+:
+\begin{DoxyItemize}
+\item If the first job of the parallel jobs and not the first Richardson level\+: add half of the integrated tensorial perturbation quantities of the previous level.
+\item If not the first job of the parallel jobs, add the integrated tensorial perturbation quantities to those of the previous parallel job, same Richardson level.
+\end{DoxyItemize}
+
+In fact, the equilibrium jobs have much in common with the Richardson levels, as is attested by the existence of the routines \hyperlink{namespaceeq__utilities_a5109472305101af3a15e8e8717c426fd}{do\+\_\+eq()} and \hyperlink{namespaceeq__utilities_a34c5ddab45a54a6c738e5e0b8c7d55d6}{eq\+\_\+info()}, which are equivalent to \hyperlink{namespacerich__ops_a50f4088b9ddd59597987fb4112f2a73e}{do\+\_\+rich()} and \hyperlink{namespacerich__vars_a4f54d3fc0ac510fc073220794ee4fa37}{rich\+\_\+info()}.
+
+In P\+O\+ST, finally, the situation is slightly different for H\+E\+L\+E\+NA, as all the requested variables have to fit, including the interpolated variables, as they are stored whereas in P\+B3D they are not. The parallel range to be taken is then the one of the output grid, including a base range for the variables tabulated on the H\+E\+L\+E\+NA grid. Also, for extended output grids, the size of the grid in the secondary angle has to be included in {\ttfamily n\+\_\+par\+\_\+X} (i.\+e. toroidal when poloidal flux is used and vice versa). Furthermore, multiple equilibrium jobs are allowed.
+
+To this end, optionally, a base number can be provided for {\ttfamily n\+\_\+par\+\_\+X}, that is always added to the number of points in the divided {\ttfamily n\+\_\+par\+\_\+X}.
+
+\begin{DoxyNote}{Note}
+For P\+B3D, only the variables {\ttfamily g\+\_\+\+FD}, {\ttfamily h\+\_\+\+FD} and {\ttfamily jac\+\_\+\+FD} are counted, as the equilibrium variables and the transformation matrices are deleted after use. Also, {\ttfamily S}, {\ttfamily sigma}, {\ttfamily kappa\+\_\+n} and {\ttfamily kappa\+\_\+g} can be neglected as they do not contain derivatives and are therefore much smaller. in both routines \hyperlink{namespaceeq__utilities_a5a9f230ed9a6e627e31e882e9f4a00a1}{calc\+\_\+memory\+\_\+eq()} and \hyperlink{namespacex__utilities_a4d18921da77463d069346f1c7322b451}{calc\+\_\+memory\+\_\+x()}, however, a 50\% safety factor is used to account for this somewhat.
+\end{DoxyNote}
+\begin{DoxyReturn}{Returns}
+ierr
+\end{DoxyReturn}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em n\+\_\+par\+\_\+x} & number of parallel points to be divided\\
+\hline
+\mbox{\tt in}  & {\em arr\+\_\+size} & array size (using loc\+\_\+n\+\_\+r) for eq\+\_\+2 and X\+\_\+1 variables\\
+\hline
+\mbox{\tt in,out}  & {\em n\+\_\+div} & final number of divisions\\
+\hline
+\mbox{\tt in}  & {\em n\+\_\+div\+\_\+max} & maximum n\+\_\+div\\
+\hline
+\mbox{\tt in}  & {\em n\+\_\+par\+\_\+x\+\_\+base} & base n\+\_\+par\+\_\+X, undivisible\\
+\hline
+\mbox{\tt in}  & {\em range\+\_\+name} & name of range \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 5322 of file eq\+\_\+ops.\+f90.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespaceeq__ops_a8fae749abe55865d8135fef536a8e8f1_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespaceeq__ops_a8fae749abe55865d8135fef536a8e8f1_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{namespaceeq__ops_af0effe20188d46a44680c2648e4572e9}\label{namespaceeq__ops_af0effe20188d46a44680c2648e4572e9}} 
+\index{eq\+\_\+ops@{eq\+\_\+ops}!flux\+\_\+q\+\_\+plot@{flux\+\_\+q\+\_\+plot}}
+\index{flux\+\_\+q\+\_\+plot@{flux\+\_\+q\+\_\+plot}!eq\+\_\+ops@{eq\+\_\+ops}}
+\subsubsection{\texorpdfstring{flux\+\_\+q\+\_\+plot()}{flux\_q\_plot()}}
+{\footnotesize\ttfamily integer function, public eq\+\_\+ops\+::flux\+\_\+q\+\_\+plot (\begin{DoxyParamCaption}\item[{type(\hyperlink{structgrid__vars_1_1grid__type}{grid\+\_\+type}), intent(in)}]{grid\+\_\+eq,  }\item[{type(\hyperlink{structeq__vars_1_1eq__1__type}{eq\+\_\+1\+\_\+type}), intent(in)}]{eq }\end{DoxyParamCaption})}
+
+
+
+Plots the flux quantities in the solution grid. 
+
+
+\begin{DoxyItemize}
+\item safety factor {\ttfamily q\+\_\+saf} 
+\item rotational transform {\ttfamily rot\+\_\+t} 
+\item pressure {\ttfamily pres} 
+\item poloidal flux {\ttfamily flux\+\_\+p} 
+\item toroidal flux {\ttfamily flux\+\_\+t} 
+\end{DoxyItemize}
+
+\begin{DoxyReturn}{Returns}
+ierr
+\end{DoxyReturn}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em grid\+\_\+eq} & normal grid\\
+\hline
+\mbox{\tt in}  & {\em eq} & flux equilibrium variables \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 3589 of file eq\+\_\+ops.\+f90.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespaceeq__ops_af0effe20188d46a44680c2648e4572e9_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespaceeq__ops_af0effe20188d46a44680c2648e4572e9_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{namespaceeq__ops_afabdf28e5c26ceb87e6eb8cf3809919d}\label{namespaceeq__ops_afabdf28e5c26ceb87e6eb8cf3809919d}} 
+\index{eq\+\_\+ops@{eq\+\_\+ops}!j\+\_\+plot@{j\+\_\+plot}}
+\index{j\+\_\+plot@{j\+\_\+plot}!eq\+\_\+ops@{eq\+\_\+ops}}
+\subsubsection{\texorpdfstring{j\+\_\+plot()}{j\_plot()}}
+{\footnotesize\ttfamily integer function, public eq\+\_\+ops\+::j\+\_\+plot (\begin{DoxyParamCaption}\item[{type(\hyperlink{structgrid__vars_1_1grid__type}{grid\+\_\+type}), intent(inout)}]{grid\+\_\+eq,  }\item[{type(\hyperlink{structeq__vars_1_1eq__1__type}{eq\+\_\+1\+\_\+type}), intent(in)}]{eq\+\_\+1,  }\item[{type(\hyperlink{structeq__vars_1_1eq__2__type}{eq\+\_\+2\+\_\+type}), intent(in)}]{eq\+\_\+2,  }\item[{integer, intent(in), optional}]{rich\+\_\+lvl,  }\item[{logical, intent(in), optional}]{plot\+\_\+fluxes,  }\item[{real(dp), dimension(\+:,\+:,\+:,\+:), intent(in), optional}]{X\+YZ }\end{DoxyParamCaption})}
+
+
+
+Plots the current. 
+
+If multiple equilibrium parallel jobs, every job does its piece, and the results are joined automatically by plot\+\_\+\+H\+D\+F5.
+
+The outputs are given in contra-\/ and covariant components and magnitude in multiple coordinate systems, as indicated in \hyperlink{namespacegrid__utilities_ad3d9386b9abcb1a7e17369a1b3a3750d}{calc\+\_\+vec\+\_\+comp()}.
+
+The starting point is the pressure balance \[ \nabla p = \vec{J} \times \vec{B}, \] which, using $\vec{B} = \frac{\vec{e}_{\theta}}{\mathcal{J}}$, reduces to \[J^\alpha = -p'. \] Furthermore, the current has to lie in the magnetic flux surfaces\+: \[J^\psi = 0. \] Finally, the parallel current $\sigma$ gives an expression for the last contravariant component\+: \[J^\theta = \frac{\sigma}{\mathcal{J}} + p' \frac{B_\alpha}{B_\theta}. \] From these, the contravariant components can be calculated as \[J_i = J^\alpha g_{\alpha,i} + J^\theta g_{\theta,i}. \]
+
+These are then all be transformed to the other coordinate systems. \begin{DoxyNote}{Note}
+
+\begin{DoxyEnumerate}
+\item Vector plots for different Richardson levels can be combined to show the total grid by just plotting them all individually.
+\item The metric factors and transformation matrices have to be allocated.
+\end{DoxyEnumerate}
+\end{DoxyNote}
+\begin{DoxyReturn}{Returns}
+ierr
+\end{DoxyReturn}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in,out}  & {\em grid\+\_\+eq} & equilibrium grid\\
+\hline
+\mbox{\tt in}  & {\em eq\+\_\+1} & flux equilibrium variables\\
+\hline
+\mbox{\tt in}  & {\em eq\+\_\+2} & metric equilibrium variables\\
+\hline
+\mbox{\tt in}  & {\em rich\+\_\+lvl} & Richardson level\\
+\hline
+\mbox{\tt in}  & {\em plot\+\_\+fluxes} & plot the fluxes\\
+\hline
+\mbox{\tt in}  & {\em xyz} & X, Y and Z of grid \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 4559 of file eq\+\_\+ops.\+f90.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespaceeq__ops_afabdf28e5c26ceb87e6eb8cf3809919d_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespaceeq__ops_afabdf28e5c26ceb87e6eb8cf3809919d_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{namespaceeq__ops_ad173efd111cb85c11bc2bc78a7555096}\label{namespaceeq__ops_ad173efd111cb85c11bc2bc78a7555096}} 
+\index{eq\+\_\+ops@{eq\+\_\+ops}!kappa\+\_\+plot@{kappa\+\_\+plot}}
+\index{kappa\+\_\+plot@{kappa\+\_\+plot}!eq\+\_\+ops@{eq\+\_\+ops}}
+\subsubsection{\texorpdfstring{kappa\+\_\+plot()}{kappa\_plot()}}
+{\footnotesize\ttfamily integer function, public eq\+\_\+ops\+::kappa\+\_\+plot (\begin{DoxyParamCaption}\item[{type(\hyperlink{structgrid__vars_1_1grid__type}{grid\+\_\+type}), intent(inout)}]{grid\+\_\+eq,  }\item[{type(\hyperlink{structeq__vars_1_1eq__1__type}{eq\+\_\+1\+\_\+type}), intent(in)}]{eq\+\_\+1,  }\item[{type(\hyperlink{structeq__vars_1_1eq__2__type}{eq\+\_\+2\+\_\+type}), intent(in)}]{eq\+\_\+2,  }\item[{integer, intent(in), optional}]{rich\+\_\+lvl,  }\item[{real(dp), dimension(\+:,\+:,\+:,\+:), intent(in), optional}]{X\+YZ }\end{DoxyParamCaption})}
+
+
+
+Plots the curvature. 
+
+If multiple equilibrium parallel jobs, every job does its piece, and the results are joined automatically by plot\+\_\+\+H\+D\+F5.
+
+The outputs are given in contra-\/ and covariant components and magnitude in multiple coordinate systems, as indicated in \hyperlink{namespacegrid__utilities_ad3d9386b9abcb1a7e17369a1b3a3750d}{calc\+\_\+vec\+\_\+comp()}.
+
+The starting point is the curvature, given by \[\vec{\kappa} = \kappa_n \frac{\nabla \psi}{ \left|\nabla \psi\right|^2 } + \kappa_g \frac{\nabla \psi \times \vec{B}}{B^2} , \] which can be used to find the covariant and contravariant components in Flux coordinates.
+
+These are then transformed to Cartesian coordinates and plotted.
+
+\begin{DoxyNote}{Note}
+
+\begin{DoxyEnumerate}
+\item Vector plots for different Richardson levels can be combined to show the total grid by just plotting them all individually.
+\item The metric factors and transformation matrices have to be allocated.
+\end{DoxyEnumerate}
+\end{DoxyNote}
+\begin{DoxyReturn}{Returns}
+ierr
+\end{DoxyReturn}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in,out}  & {\em grid\+\_\+eq} & equilibrium grid\\
+\hline
+\mbox{\tt in}  & {\em eq\+\_\+1} & metric equilibrium variables\\
+\hline
+\mbox{\tt in}  & {\em eq\+\_\+2} & metric equilibrium variables\\
+\hline
+\mbox{\tt in}  & {\em rich\+\_\+lvl} & Richardson level\\
+\hline
+\mbox{\tt in}  & {\em xyz} & X, Y and Z of grid \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 4727 of file eq\+\_\+ops.\+f90.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespaceeq__ops_ad173efd111cb85c11bc2bc78a7555096_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespaceeq__ops_ad173efd111cb85c11bc2bc78a7555096_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{namespaceeq__ops_a1b4c764da73624722d7e76498a2b80a9}\label{namespaceeq__ops_a1b4c764da73624722d7e76498a2b80a9}} 
+\index{eq\+\_\+ops@{eq\+\_\+ops}!normalize\+\_\+input@{normalize\+\_\+input}}
+\index{normalize\+\_\+input@{normalize\+\_\+input}!eq\+\_\+ops@{eq\+\_\+ops}}
+\subsubsection{\texorpdfstring{normalize\+\_\+input()}{normalize\_input()}}
+{\footnotesize\ttfamily subroutine, public eq\+\_\+ops\+::normalize\+\_\+input (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Normalize input quantities. 
+
+\begin{DoxySeeAlso}{See also}
+\hyperlink{namespaceeq__ops_a7cd38586e386e1bc684a327ebcc4c1de}{calc\+\_\+normalization\+\_\+const()} 
+\end{DoxySeeAlso}
+
+
+Definition at line 4399 of file eq\+\_\+ops.\+f90.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespaceeq__ops_a1b4c764da73624722d7e76498a2b80a9_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=312pt]{namespaceeq__ops_a1b4c764da73624722d7e76498a2b80a9_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{namespaceeq__ops_a8082c12510696bd8ffdd0deef41860c2}\label{namespaceeq__ops_a8082c12510696bd8ffdd0deef41860c2}} 
+\index{eq\+\_\+ops@{eq\+\_\+ops}!test\+\_\+b\+\_\+f@{test\+\_\+b\+\_\+f}}
+\index{test\+\_\+b\+\_\+f@{test\+\_\+b\+\_\+f}!eq\+\_\+ops@{eq\+\_\+ops}}
+\subsubsection{\texorpdfstring{test\+\_\+b\+\_\+f()}{test\_b\_f()}}
+{\footnotesize\ttfamily integer function eq\+\_\+ops\+::test\+\_\+b\+\_\+f (\begin{DoxyParamCaption}\item[{type(\hyperlink{structgrid__vars_1_1grid__type}{grid\+\_\+type}), intent(in)}]{grid\+\_\+eq,  }\item[{type(\hyperlink{structeq__vars_1_1eq__1__type}{eq\+\_\+1\+\_\+type}), intent(in)}]{eq\+\_\+1,  }\item[{type(\hyperlink{structeq__vars_1_1eq__2__type}{eq\+\_\+2\+\_\+type}), intent(in)}]{eq\+\_\+2 }\end{DoxyParamCaption})}
+
+
+
+Tests whether $\vec{B}_\text{F}$ is calculated correctly. 
+
+\begin{DoxyNote}{Note}
+Debug version only
+\end{DoxyNote}
+\begin{DoxyReturn}{Returns}
+ierr
+\end{DoxyReturn}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em grid\+\_\+eq} & equilibrium grid\\
+\hline
+\mbox{\tt in}  & {\em eq\+\_\+1} & flux equilibrium\\
+\hline
+\mbox{\tt in}  & {\em eq\+\_\+2} & metric equilibrium \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 6100 of file eq\+\_\+ops.\+f90.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespaceeq__ops_a8082c12510696bd8ffdd0deef41860c2_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespaceeq__ops_a8082c12510696bd8ffdd0deef41860c2_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{namespaceeq__ops_a003df1e1ab90dc6f586c3eed3dd067e8}\label{namespaceeq__ops_a003df1e1ab90dc6f586c3eed3dd067e8}} 
+\index{eq\+\_\+ops@{eq\+\_\+ops}!test\+\_\+d12h\+\_\+h@{test\+\_\+d12h\+\_\+h}}
+\index{test\+\_\+d12h\+\_\+h@{test\+\_\+d12h\+\_\+h}!eq\+\_\+ops@{eq\+\_\+ops}}
+\subsubsection{\texorpdfstring{test\+\_\+d12h\+\_\+h()}{test\_d12h\_h()}}
+{\footnotesize\ttfamily integer function eq\+\_\+ops\+::test\+\_\+d12h\+\_\+h (\begin{DoxyParamCaption}\item[{type(\hyperlink{structgrid__vars_1_1grid__type}{grid\+\_\+type}), intent(in)}]{grid\+\_\+eq,  }\item[{type(\hyperlink{structeq__vars_1_1eq__2__type}{eq\+\_\+2\+\_\+type}), intent(in)}]{eq }\end{DoxyParamCaption})}
+
+
+
+Tests whether $ \frac{\partial^2}{\partial u_i \partial u_j} h_\text{H} $ is calculated correctly. 
+
+\begin{DoxyNote}{Note}
+Debug version only
+\end{DoxyNote}
+\begin{DoxyReturn}{Returns}
+ierr
+\end{DoxyReturn}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em grid\+\_\+eq} & equilibrium grid\\
+\hline
+\mbox{\tt in}  & {\em eq} & metric equilibrium \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 5709 of file eq\+\_\+ops.\+f90.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespaceeq__ops_a003df1e1ab90dc6f586c3eed3dd067e8_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespaceeq__ops_a003df1e1ab90dc6f586c3eed3dd067e8_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{namespaceeq__ops_a9811c83477d9d85f7401fd7957a590fc}\label{namespaceeq__ops_a9811c83477d9d85f7401fd7957a590fc}} 
+\index{eq\+\_\+ops@{eq\+\_\+ops}!test\+\_\+g\+\_\+v@{test\+\_\+g\+\_\+v}}
+\index{test\+\_\+g\+\_\+v@{test\+\_\+g\+\_\+v}!eq\+\_\+ops@{eq\+\_\+ops}}
+\subsubsection{\texorpdfstring{test\+\_\+g\+\_\+v()}{test\_g\_v()}}
+{\footnotesize\ttfamily integer function eq\+\_\+ops\+::test\+\_\+g\+\_\+v (\begin{DoxyParamCaption}\item[{type(\hyperlink{structgrid__vars_1_1grid__type}{grid\+\_\+type}), intent(in)}]{grid\+\_\+eq,  }\item[{type(\hyperlink{structeq__vars_1_1eq__2__type}{eq\+\_\+2\+\_\+type}), intent(in)}]{eq }\end{DoxyParamCaption})}
+
+
+
+Tests whether $g_\text{V}$ is calculated correctly. 
+
+\begin{DoxyNote}{Note}
+Debug version only
+\end{DoxyNote}
+\begin{DoxyReturn}{Returns}
+ierr
+\end{DoxyReturn}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em grid\+\_\+eq} & equilibrium grid\\
+\hline
+\mbox{\tt in}  & {\em eq} & metric equilibrium \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 5937 of file eq\+\_\+ops.\+f90.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespaceeq__ops_a9811c83477d9d85f7401fd7957a590fc_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespaceeq__ops_a9811c83477d9d85f7401fd7957a590fc_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{namespaceeq__ops_a05dcd4803b9c7845d3353614c9630c23}\label{namespaceeq__ops_a05dcd4803b9c7845d3353614c9630c23}} 
+\index{eq\+\_\+ops@{eq\+\_\+ops}!test\+\_\+jac\+\_\+f@{test\+\_\+jac\+\_\+f}}
+\index{test\+\_\+jac\+\_\+f@{test\+\_\+jac\+\_\+f}!eq\+\_\+ops@{eq\+\_\+ops}}
+\subsubsection{\texorpdfstring{test\+\_\+jac\+\_\+f()}{test\_jac\_f()}}
+{\footnotesize\ttfamily integer function eq\+\_\+ops\+::test\+\_\+jac\+\_\+f (\begin{DoxyParamCaption}\item[{type(\hyperlink{structgrid__vars_1_1grid__type}{grid\+\_\+type}), intent(in)}]{grid\+\_\+eq,  }\item[{type(\hyperlink{structeq__vars_1_1eq__1__type}{eq\+\_\+1\+\_\+type}), intent(in), target}]{eq\+\_\+1,  }\item[{type(\hyperlink{structeq__vars_1_1eq__2__type}{eq\+\_\+2\+\_\+type}), intent(in)}]{eq\+\_\+2 }\end{DoxyParamCaption})}
+
+
+
+Performs tests on $ \mathcal{J}_\text{F}$. 
+
+
+\begin{DoxyItemize}
+\item comparing it with the determinant of $g_\text{F}$
+\item comparing it with the direct formula
+\end{DoxyItemize}
+
+\begin{DoxyNote}{Note}
+Debug version only
+\end{DoxyNote}
+\begin{DoxyReturn}{Returns}
+ierr
+\end{DoxyReturn}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em grid\+\_\+eq} & equilibrium grid\\
+\hline
+\mbox{\tt in}  & {\em eq\+\_\+1} & flux equilibrium\\
+\hline
+\mbox{\tt in}  & {\em eq\+\_\+2} & metric equilibrium \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 5820 of file eq\+\_\+ops.\+f90.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespaceeq__ops_a05dcd4803b9c7845d3353614c9630c23_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespaceeq__ops_a05dcd4803b9c7845d3353614c9630c23_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{namespaceeq__ops_aef40d04e93f6a96576f8fe893fb086f8}\label{namespaceeq__ops_aef40d04e93f6a96576f8fe893fb086f8}} 
+\index{eq\+\_\+ops@{eq\+\_\+ops}!test\+\_\+jac\+\_\+v@{test\+\_\+jac\+\_\+v}}
+\index{test\+\_\+jac\+\_\+v@{test\+\_\+jac\+\_\+v}!eq\+\_\+ops@{eq\+\_\+ops}}
+\subsubsection{\texorpdfstring{test\+\_\+jac\+\_\+v()}{test\_jac\_v()}}
+{\footnotesize\ttfamily integer function eq\+\_\+ops\+::test\+\_\+jac\+\_\+v (\begin{DoxyParamCaption}\item[{type(\hyperlink{structgrid__vars_1_1grid__type}{grid\+\_\+type}), intent(in)}]{grid\+\_\+eq,  }\item[{type(\hyperlink{structeq__vars_1_1eq__2__type}{eq\+\_\+2\+\_\+type}), intent(in)}]{eq }\end{DoxyParamCaption})}
+
+
+
+Tests whether $\mathcal{J}_\text{V}$ is calculated correctly. 
+
+\begin{DoxyNote}{Note}
+Debug version only
+\end{DoxyNote}
+\begin{DoxyReturn}{Returns}
+ierr
+\end{DoxyReturn}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em grid\+\_\+eq} & equilibrium grid\\
+\hline
+\mbox{\tt in}  & {\em eq} & metric equilibrium \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 6036 of file eq\+\_\+ops.\+f90.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespaceeq__ops_aef40d04e93f6a96576f8fe893fb086f8_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespaceeq__ops_aef40d04e93f6a96576f8fe893fb086f8_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{namespaceeq__ops_a38b723f6ed5d2e2772c9c3ad14d5ffd4}\label{namespaceeq__ops_a38b723f6ed5d2e2772c9c3ad14d5ffd4}} 
+\index{eq\+\_\+ops@{eq\+\_\+ops}!test\+\_\+p@{test\+\_\+p}}
+\index{test\+\_\+p@{test\+\_\+p}!eq\+\_\+ops@{eq\+\_\+ops}}
+\subsubsection{\texorpdfstring{test\+\_\+p()}{test\_p()}}
+{\footnotesize\ttfamily integer function eq\+\_\+ops\+::test\+\_\+p (\begin{DoxyParamCaption}\item[{type(\hyperlink{structgrid__vars_1_1grid__type}{grid\+\_\+type}), intent(in)}]{grid\+\_\+eq,  }\item[{type(\hyperlink{structeq__vars_1_1eq__1__type}{eq\+\_\+1\+\_\+type}), intent(in)}]{eq\+\_\+1,  }\item[{type(\hyperlink{structeq__vars_1_1eq__2__type}{eq\+\_\+2\+\_\+type}), intent(in)}]{eq\+\_\+2 }\end{DoxyParamCaption})}
+
+
+
+Performs tests on pressure balance. 
+
+\[\mu_0 \frac{\partial p}{\partial u^2} = \frac{1}{\mathcal{J}} \left(\frac{\partial B_2}{\partial u^3} - \frac{\partial B_3}{\partial u^2}\right)\] \[\mu_0 \mathcal{J} \frac{\partial p}{\partial u^3} = 0 \rightarrow \left(\frac{\partial B_1}{\partial u^3} = \frac{\partial B_3}{\partial u^1}\right), \] working in the (modified) Flux coordinates $\left(\alpha,\psi,\theta\right)_\text{F}$
+
+\begin{DoxyNote}{Note}
+Debug version only
+\end{DoxyNote}
+\begin{DoxyReturn}{Returns}
+ierr
+\end{DoxyReturn}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em grid\+\_\+eq} & equilibrium grid\\
+\hline
+\mbox{\tt in}  & {\em eq\+\_\+1} & flux equilibrium variables\\
+\hline
+\mbox{\tt in}  & {\em eq\+\_\+2} & metric equilibrium variables \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 6258 of file eq\+\_\+ops.\+f90.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespaceeq__ops_a38b723f6ed5d2e2772c9c3ad14d5ffd4_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespaceeq__ops_a38b723f6ed5d2e2772c9c3ad14d5ffd4_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{namespaceeq__ops_a1f5049c3e309fa23ee46fd116c9344f1}\label{namespaceeq__ops_a1f5049c3e309fa23ee46fd116c9344f1}} 
+\index{eq\+\_\+ops@{eq\+\_\+ops}!test\+\_\+t\+\_\+ef@{test\+\_\+t\+\_\+ef}}
+\index{test\+\_\+t\+\_\+ef@{test\+\_\+t\+\_\+ef}!eq\+\_\+ops@{eq\+\_\+ops}}
+\subsubsection{\texorpdfstring{test\+\_\+t\+\_\+ef()}{test\_t\_ef()}}
+{\footnotesize\ttfamily integer function eq\+\_\+ops\+::test\+\_\+t\+\_\+ef (\begin{DoxyParamCaption}\item[{type(\hyperlink{structgrid__vars_1_1grid__type}{grid\+\_\+type}), intent(in)}]{grid\+\_\+eq,  }\item[{type(\hyperlink{structeq__vars_1_1eq__1__type}{eq\+\_\+1\+\_\+type}), intent(in)}]{eq\+\_\+1,  }\item[{type(\hyperlink{structeq__vars_1_1eq__2__type}{eq\+\_\+2\+\_\+type}), intent(in)}]{eq\+\_\+2 }\end{DoxyParamCaption})}
+
+
+
+See if {\ttfamily T\+\_\+\+EF} it complies with the theory of {\bfseries [Weyens3D]}. 
+
+\begin{DoxyNote}{Note}
+Debug version only
+\end{DoxyNote}
+\begin{DoxyReturn}{Returns}
+ierr
+\end{DoxyReturn}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em grid\+\_\+eq} & equilibrium grid\\
+\hline
+\mbox{\tt in}  & {\em eq\+\_\+1} & flux equilibrium\\
+\hline
+\mbox{\tt in}  & {\em eq\+\_\+2} & metric equilibrium \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 5535 of file eq\+\_\+ops.\+f90.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespaceeq__ops_a1f5049c3e309fa23ee46fd116c9344f1_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespaceeq__ops_a1f5049c3e309fa23ee46fd116c9344f1_icgraph}
+\end{center}
+\end{figure}
+
+
+\subsection{Variable Documentation}
+\mbox{\Hypertarget{namespaceeq__ops_a1b6609a8d8b427d9133bf323e732f209}\label{namespaceeq__ops_a1b6609a8d8b427d9133bf323e732f209}} 
+\index{eq\+\_\+ops@{eq\+\_\+ops}!debug\+\_\+calc\+\_\+derived\+\_\+q@{debug\+\_\+calc\+\_\+derived\+\_\+q}}
+\index{debug\+\_\+calc\+\_\+derived\+\_\+q@{debug\+\_\+calc\+\_\+derived\+\_\+q}!eq\+\_\+ops@{eq\+\_\+ops}}
+\subsubsection{\texorpdfstring{debug\+\_\+calc\+\_\+derived\+\_\+q}{debug\_calc\_derived\_q}}
+{\footnotesize\ttfamily logical, public eq\+\_\+ops\+::debug\+\_\+calc\+\_\+derived\+\_\+q = .true.}
+
+
+
+plot debug information for \hyperlink{namespaceeq__ops_a087e08ce6d8ad381b5bac8fc51148d50}{calc\+\_\+derived\+\_\+q()} 
+
+\begin{DoxyNote}{Note}
+Debug version only 
+\end{DoxyNote}
+
+
+Definition at line 30 of file eq\+\_\+ops.\+f90.
+
+\mbox{\Hypertarget{namespaceeq__ops_a07ca60790a262e20bc8632be1530970a}\label{namespaceeq__ops_a07ca60790a262e20bc8632be1530970a}} 
+\index{eq\+\_\+ops@{eq\+\_\+ops}!debug\+\_\+create\+\_\+vmec\+\_\+input@{debug\+\_\+create\+\_\+vmec\+\_\+input}}
+\index{debug\+\_\+create\+\_\+vmec\+\_\+input@{debug\+\_\+create\+\_\+vmec\+\_\+input}!eq\+\_\+ops@{eq\+\_\+ops}}
+\subsubsection{\texorpdfstring{debug\+\_\+create\+\_\+vmec\+\_\+input}{debug\_create\_vmec\_input}}
+{\footnotesize\ttfamily logical, public eq\+\_\+ops\+::debug\+\_\+create\+\_\+vmec\+\_\+input = .false.}
+
+
+
+plot debug information for \hyperlink{namespaceeq__ops_a9addef683b3d4a8c587510e4c994ec61}{create\+\_\+vmec\+\_\+input()} 
+
+\begin{DoxyNote}{Note}
+Debug version only 
+\end{DoxyNote}
+
+
+Definition at line 34 of file eq\+\_\+ops.\+f90.
+
+\mbox{\Hypertarget{namespaceeq__ops_a45ba7f46fd439bbd73edfd1fd548b58e}\label{namespaceeq__ops_a45ba7f46fd439bbd73edfd1fd548b58e}} 
+\index{eq\+\_\+ops@{eq\+\_\+ops}!debug\+\_\+j\+\_\+plot@{debug\+\_\+j\+\_\+plot}}
+\index{debug\+\_\+j\+\_\+plot@{debug\+\_\+j\+\_\+plot}!eq\+\_\+ops@{eq\+\_\+ops}}
+\subsubsection{\texorpdfstring{debug\+\_\+j\+\_\+plot}{debug\_j\_plot}}
+{\footnotesize\ttfamily logical, public eq\+\_\+ops\+::debug\+\_\+j\+\_\+plot = .false.}
+
+
+
+plot debug information for \hyperlink{namespaceeq__ops_afabdf28e5c26ceb87e6eb8cf3809919d}{j\+\_\+plot()} 
+
+\begin{DoxyNote}{Note}
+Debug version only 
+\end{DoxyNote}
+
+
+Definition at line 32 of file eq\+\_\+ops.\+f90.
+

@@ -1,0 +1,160 @@
+\hypertarget{namespaceinput__ops}{}\section{input\+\_\+ops Module Reference}
+\label{namespaceinput__ops}\index{input\+\_\+ops@{input\+\_\+ops}}
+
+
+Operations concerning giving input.  
+
+
+\subsection*{Functions/\+Subroutines}
+\begin{DoxyCompactItemize}
+\item 
+integer function, public \hyperlink{namespaceinput__ops_a434acca4f59f9dc1d91e04f846133684}{read\+\_\+input\+\_\+opts} ()
+\begin{DoxyCompactList}\small\item\em Reads input options from user-\/provided input file. \end{DoxyCompactList}\item 
+integer function, public \hyperlink{namespaceinput__ops_a577c897cc266961eb40bb5ef747fa077}{read\+\_\+input\+\_\+eq} ()
+\begin{DoxyCompactList}\small\item\em Reads the equilibrium input file if no Richardson restart. \end{DoxyCompactList}\item 
+integer function, public \hyperlink{namespaceinput__ops_a84ec7b3833da80ebb36ae0d5ff1a9e0a}{print\+\_\+output\+\_\+in} (data\+\_\+name)
+\begin{DoxyCompactList}\small\item\em Print input quantities to an output file. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Operations concerning giving input. 
+
+\subsection{Function/\+Subroutine Documentation}
+\mbox{\Hypertarget{namespaceinput__ops_a84ec7b3833da80ebb36ae0d5ff1a9e0a}\label{namespaceinput__ops_a84ec7b3833da80ebb36ae0d5ff1a9e0a}} 
+\index{input\+\_\+ops@{input\+\_\+ops}!print\+\_\+output\+\_\+in@{print\+\_\+output\+\_\+in}}
+\index{print\+\_\+output\+\_\+in@{print\+\_\+output\+\_\+in}!input\+\_\+ops@{input\+\_\+ops}}
+\subsubsection{\texorpdfstring{print\+\_\+output\+\_\+in()}{print\_output\_in()}}
+{\footnotesize\ttfamily integer function, public input\+\_\+ops\+::print\+\_\+output\+\_\+in (\begin{DoxyParamCaption}\item[{character(len=$\ast$), intent(in)}]{data\+\_\+name }\end{DoxyParamCaption})}
+
+
+
+Print input quantities to an output file. 
+
+Variables printed\+:
+\begin{DoxyItemize}
+\item {\ttfamily misc\+\_\+in\+:} {\ttfamily prog\+\_\+version}, {\ttfamily eq\+\_\+style}, {\ttfamily rho\+\_\+style}, {\ttfamily R\+\_\+0}, {\ttfamily pres\+\_\+0}, {\ttfamily B\+\_\+0}, {\ttfamily psi\+\_\+0} {\ttfamily rho\+\_\+0}, {\ttfamily T\+\_\+0}, {\ttfamily vac\+\_\+perm}, {\ttfamily use\+\_\+pol\+\_\+flux\+\_\+F}, {\ttfamily use\+\_\+pol\+\_\+flux\+\_\+E}, {\ttfamily use\+\_\+normalization}, {\ttfamily norm\+\_\+disc\+\_\+prec\+\_\+eq}, {\ttfamily norm\+\_\+disc\+\_\+style\+\_\+sol}, {\ttfamily n\+\_\+r\+\_\+in}, {\ttfamily n\+\_\+r\+\_\+eq}, {\ttfamily n\+\_\+r\+\_\+sol}, {\ttfamily debug\+\_\+version} 
+\item {\ttfamily misc\+\_\+in\+\_\+V\+:} {\ttfamily is\+\_\+asym\+\_\+V}, {\ttfamily is\+\_\+freeb\+\_\+V}, {\ttfamily mnmax\+\_\+V}, {\ttfamily mpol\+\_\+V}, {\ttfamily ntor\+\_\+V}, {\ttfamily gam\+\_\+V} 
+\item {\ttfamily flux\+\_\+t\+\_\+V} 
+\item {\ttfamily flux\+\_\+p\+\_\+V} 
+\item {\ttfamily pres\+\_\+V} 
+\item {\ttfamily rot\+\_\+t\+\_\+V} 
+\item {\ttfamily q\+\_\+saf\+\_\+V} 
+\item {\ttfamily mn\+\_\+V} 
+\item {\ttfamily R\+\_\+\+V\+\_\+c} 
+\item {\ttfamily R\+\_\+\+V\+\_\+s} 
+\item {\ttfamily Z\+\_\+\+V\+\_\+c} 
+\item {\ttfamily Z\+\_\+\+V\+\_\+s} 
+\item {\ttfamily L\+\_\+\+V\+\_\+c} 
+\item {\ttfamily L\+\_\+\+V\+\_\+s} 
+\item {\ttfamily B\+\_\+\+V\+\_\+sub\+:} {\ttfamily B\+\_\+\+V\+\_\+sub\+\_\+c}, {\ttfamily B\+\_\+\+V\+\_\+sub\+\_\+s} 
+\item {\ttfamily B\+\_\+V\+:} {\ttfamily B\+\_\+\+V\+\_\+c}, {\ttfamily B\+\_\+\+V\+\_\+s} 
+\item {\ttfamily J\+\_\+\+V\+\_\+sup\+\_\+int} 
+\item {\ttfamily jac\+\_\+V\+:} {\ttfamily jac\+\_\+\+V\+\_\+c}, {\ttfamily jac\+\_\+\+V\+\_\+s} 
+\item {\ttfamily misc\+\_\+in\+\_\+H\+:} {\ttfamily ias}, {\ttfamily nchi} 
+\item {\ttfamily R\+Z\+\_\+H\+:} {\ttfamily R\+\_\+H}, {\ttfamily Z\+\_\+H} 
+\item {\ttfamily chi\+\_\+H} 
+\item {\ttfamily q\+\_\+saf\+\_\+H} 
+\item {\ttfamily rot\+\_\+t\+\_\+H} 
+\item {\ttfamily R\+Bphi\+\_\+H} 
+\item {\ttfamily pres\+\_\+H} 
+\item {\ttfamily flux\+\_\+p\+\_\+H} 
+\item {\ttfamily flux\+\_\+t\+\_\+H} 
+\item {\ttfamily misc\+\_\+X\+:} {\ttfamily prim\+\_\+X}, {\ttfamily n\+\_\+mod\+\_\+X}, {\ttfamily min\+\_\+sec\+\_\+X}, {\ttfamily max\+\_\+sec\+\_\+X}, {\ttfamily norm\+\_\+disc\+\_\+prec\+\_\+X}, {\ttfamily norm\+\_\+style}, {\ttfamily U\+\_\+style}, {\ttfamily X\+\_\+style}, {\ttfamily matrix\+\_\+\+S\+L\+E\+P\+C\+\_\+style}, {\ttfamily K\+\_\+style}, {\ttfamily alpha\+\_\+style} 
+\item {\ttfamily misc\+\_\+sol\+:} {\ttfamily min\+\_\+r\+\_\+sol}, {\ttfamily max\+\_\+r\+\_\+sol}, {\ttfamily norm\+\_\+disc\+\_\+prec\+\_\+sol}, {\ttfamily B\+C\+\_\+style}, {\ttfamily E\+V\+\_\+\+BC}, {\ttfamily E\+V\+\_\+\+BC} 
+\end{DoxyItemize}
+
+\begin{DoxyReturn}{Returns}
+ierr
+\end{DoxyReturn}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em data\+\_\+name} & name under which to store \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 1173 of file input\+\_\+ops.\+f90.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespaceinput__ops_a84ec7b3833da80ebb36ae0d5ff1a9e0a_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=330pt]{namespaceinput__ops_a84ec7b3833da80ebb36ae0d5ff1a9e0a_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{namespaceinput__ops_a577c897cc266961eb40bb5ef747fa077}\label{namespaceinput__ops_a577c897cc266961eb40bb5ef747fa077}} 
+\index{input\+\_\+ops@{input\+\_\+ops}!read\+\_\+input\+\_\+eq@{read\+\_\+input\+\_\+eq}}
+\index{read\+\_\+input\+\_\+eq@{read\+\_\+input\+\_\+eq}!input\+\_\+ops@{input\+\_\+ops}}
+\subsubsection{\texorpdfstring{read\+\_\+input\+\_\+eq()}{read\_input\_eq()}}
+{\footnotesize\ttfamily integer function, public input\+\_\+ops\+::read\+\_\+input\+\_\+eq (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Reads the equilibrium input file if no Richardson restart. 
+
+These variables will be passed on through the H\+D\+F5 data system.
+
+\begin{DoxySeeAlso}{See also}
+\hyperlink{namespacepb3d__ops_ad1481747b9b9832f816d4bf1dd2d6737}{reconstruct\+\_\+pb3d\+\_\+in()}.
+\end{DoxySeeAlso}
+\begin{DoxyReturn}{Returns}
+ierr 
+\end{DoxyReturn}
+
+
+Definition at line 1103 of file input\+\_\+ops.\+f90.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespaceinput__ops_a577c897cc266961eb40bb5ef747fa077_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=318pt]{namespaceinput__ops_a577c897cc266961eb40bb5ef747fa077_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{namespaceinput__ops_a434acca4f59f9dc1d91e04f846133684}\label{namespaceinput__ops_a434acca4f59f9dc1d91e04f846133684}} 
+\index{input\+\_\+ops@{input\+\_\+ops}!read\+\_\+input\+\_\+opts@{read\+\_\+input\+\_\+opts}}
+\index{read\+\_\+input\+\_\+opts@{read\+\_\+input\+\_\+opts}!input\+\_\+ops@{input\+\_\+ops}}
+\subsubsection{\texorpdfstring{read\+\_\+input\+\_\+opts()}{read\_input\_opts()}}
+{\footnotesize\ttfamily integer function, public input\+\_\+ops\+::read\+\_\+input\+\_\+opts (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Reads input options from user-\/provided input file. 
+
+This is done by the master process and these variables will then be passed on through M\+PI to other processes in \hyperlink{namespacempi__ops_a932eba1c998dd7a0f1191b55cd754be3}{broadcast\+\_\+input\+\_\+opts()}.
+
+\begin{DoxyReturn}{Returns}
+ierr 
+\end{DoxyReturn}
+
+
+Definition at line 23 of file input\+\_\+ops.\+f90.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespaceinput__ops_a434acca4f59f9dc1d91e04f846133684_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=330pt]{namespaceinput__ops_a434acca4f59f9dc1d91e04f846133684_icgraph}
+\end{center}
+\end{figure}

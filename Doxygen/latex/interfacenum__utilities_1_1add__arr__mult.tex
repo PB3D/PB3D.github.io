@@ -1,0 +1,117 @@
+\hypertarget{interfacenum__utilities_1_1add__arr__mult}{}\section{num\+\_\+utilities\+:\+:add\+\_\+arr\+\_\+mult Interface Reference}
+\label{interfacenum__utilities_1_1add__arr__mult}\index{num\+\_\+utilities\+::add\+\_\+arr\+\_\+mult@{num\+\_\+utilities\+::add\+\_\+arr\+\_\+mult}}
+
+
+Add to an array (3) the product of arrays (1) and (2).  
+
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+integer function \hyperlink{interfacenum__utilities_1_1add__arr__mult_a377e810d6da5185289008c0eb547db9a}{add\+\_\+arr\+\_\+mult\+\_\+3\+\_\+3} (arr\+\_\+1, arr\+\_\+2, arr\+\_\+3, deriv)
+\begin{DoxyCompactList}\small\item\em version with {\ttfamily arr\+\_\+1} and {\ttfamily arr\+\_\+2} in 3 coords. \end{DoxyCompactList}\item 
+integer function \hyperlink{interfacenum__utilities_1_1add__arr__mult_ab295a49037477209b1d658e3c3e99dda}{add\+\_\+arr\+\_\+mult\+\_\+3\+\_\+1} (arr\+\_\+1, arr\+\_\+2, arr\+\_\+3, deriv)
+\begin{DoxyCompactList}\small\item\em version with {\ttfamily arr\+\_\+1} in 3 coords and {\ttfamily arr\+\_\+2} only in the flux coord. \end{DoxyCompactList}\item 
+integer function \hyperlink{interfacenum__utilities_1_1add__arr__mult_a61e9ce82de87924edbbdfd8fc212998d}{add\+\_\+arr\+\_\+mult\+\_\+1\+\_\+1} (arr\+\_\+1, arr\+\_\+2, arr\+\_\+3, deriv)
+\begin{DoxyCompactList}\small\item\em Version with {\ttfamily arr\+\_\+1} and {\ttfamily arr\+\_\+2} only in the flux coord. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Add to an array (3) the product of arrays (1) and (2). 
+
+The derivatives are distributed between both acording to the binomial theorem. Both arrays are given on a 3-\/D or 1-\/D grid.
+
+\begin{DoxyReturn}{Returns}
+ierr 
+\end{DoxyReturn}
+
+
+Definition at line 39 of file num\+\_\+utilities.\+f90.
+
+
+
+\subsection{Member Function/\+Subroutine Documentation}
+\mbox{\Hypertarget{interfacenum__utilities_1_1add__arr__mult_a61e9ce82de87924edbbdfd8fc212998d}\label{interfacenum__utilities_1_1add__arr__mult_a61e9ce82de87924edbbdfd8fc212998d}} 
+\index{num\+\_\+utilities\+::add\+\_\+arr\+\_\+mult@{num\+\_\+utilities\+::add\+\_\+arr\+\_\+mult}!add\+\_\+arr\+\_\+mult\+\_\+1\+\_\+1@{add\+\_\+arr\+\_\+mult\+\_\+1\+\_\+1}}
+\index{add\+\_\+arr\+\_\+mult\+\_\+1\+\_\+1@{add\+\_\+arr\+\_\+mult\+\_\+1\+\_\+1}!num\+\_\+utilities\+::add\+\_\+arr\+\_\+mult@{num\+\_\+utilities\+::add\+\_\+arr\+\_\+mult}}
+\subsubsection{\texorpdfstring{add\+\_\+arr\+\_\+mult\+\_\+1\+\_\+1()}{add\_arr\_mult\_1\_1()}}
+{\footnotesize\ttfamily integer function num\+\_\+utilities\+::add\+\_\+arr\+\_\+mult\+::add\+\_\+arr\+\_\+mult\+\_\+1\+\_\+1 (\begin{DoxyParamCaption}\item[{real(dp), dimension(1\+:,0\+:), intent(in)}]{arr\+\_\+1,  }\item[{real(dp), dimension(1\+:,0\+:), intent(in)}]{arr\+\_\+2,  }\item[{real(dp), dimension(1\+:), intent(out)}]{arr\+\_\+3,  }\item[{integer, dimension(3), intent(in)}]{deriv }\end{DoxyParamCaption})}
+
+
+
+Version with {\ttfamily arr\+\_\+1} and {\ttfamily arr\+\_\+2} only in the flux coord. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em arr\+\_\+1} & {\ttfamily arr\+\_\+1} \\
+\hline
+\mbox{\tt in}  & {\em arr\+\_\+2} & {\ttfamily arr\+\_\+2} \\
+\hline
+\mbox{\tt out}  & {\em arr\+\_\+3} & {\ttfamily arr\+\_\+3} \\
+\hline
+\mbox{\tt in}  & {\em deriv} & derivatives \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 492 of file num\+\_\+utilities.\+f90.
+
+\mbox{\Hypertarget{interfacenum__utilities_1_1add__arr__mult_ab295a49037477209b1d658e3c3e99dda}\label{interfacenum__utilities_1_1add__arr__mult_ab295a49037477209b1d658e3c3e99dda}} 
+\index{num\+\_\+utilities\+::add\+\_\+arr\+\_\+mult@{num\+\_\+utilities\+::add\+\_\+arr\+\_\+mult}!add\+\_\+arr\+\_\+mult\+\_\+3\+\_\+1@{add\+\_\+arr\+\_\+mult\+\_\+3\+\_\+1}}
+\index{add\+\_\+arr\+\_\+mult\+\_\+3\+\_\+1@{add\+\_\+arr\+\_\+mult\+\_\+3\+\_\+1}!num\+\_\+utilities\+::add\+\_\+arr\+\_\+mult@{num\+\_\+utilities\+::add\+\_\+arr\+\_\+mult}}
+\subsubsection{\texorpdfstring{add\+\_\+arr\+\_\+mult\+\_\+3\+\_\+1()}{add\_arr\_mult\_3\_1()}}
+{\footnotesize\ttfamily integer function num\+\_\+utilities\+::add\+\_\+arr\+\_\+mult\+::add\+\_\+arr\+\_\+mult\+\_\+3\+\_\+1 (\begin{DoxyParamCaption}\item[{real(dp), dimension(1\+:,1\+:,1\+:,0\+:,0\+:,0\+:), intent(in)}]{arr\+\_\+1,  }\item[{real(dp), dimension(1\+:,0\+:), intent(in)}]{arr\+\_\+2,  }\item[{real(dp), dimension(1\+:,1\+:,1\+:), intent(out)}]{arr\+\_\+3,  }\item[{integer, dimension(3), intent(in)}]{deriv }\end{DoxyParamCaption})}
+
+
+
+version with {\ttfamily arr\+\_\+1} in 3 coords and {\ttfamily arr\+\_\+2} only in the flux coord. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em arr\+\_\+1} & {\ttfamily arr\+\_\+1} \\
+\hline
+\mbox{\tt in}  & {\em arr\+\_\+2} & {\ttfamily arr\+\_\+2} \\
+\hline
+\mbox{\tt out}  & {\em arr\+\_\+3} & {\ttfamily arr\+\_\+3} \\
+\hline
+\mbox{\tt in}  & {\em deriv} & derivatives \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 441 of file num\+\_\+utilities.\+f90.
+
+\mbox{\Hypertarget{interfacenum__utilities_1_1add__arr__mult_a377e810d6da5185289008c0eb547db9a}\label{interfacenum__utilities_1_1add__arr__mult_a377e810d6da5185289008c0eb547db9a}} 
+\index{num\+\_\+utilities\+::add\+\_\+arr\+\_\+mult@{num\+\_\+utilities\+::add\+\_\+arr\+\_\+mult}!add\+\_\+arr\+\_\+mult\+\_\+3\+\_\+3@{add\+\_\+arr\+\_\+mult\+\_\+3\+\_\+3}}
+\index{add\+\_\+arr\+\_\+mult\+\_\+3\+\_\+3@{add\+\_\+arr\+\_\+mult\+\_\+3\+\_\+3}!num\+\_\+utilities\+::add\+\_\+arr\+\_\+mult@{num\+\_\+utilities\+::add\+\_\+arr\+\_\+mult}}
+\subsubsection{\texorpdfstring{add\+\_\+arr\+\_\+mult\+\_\+3\+\_\+3()}{add\_arr\_mult\_3\_3()}}
+{\footnotesize\ttfamily integer function num\+\_\+utilities\+::add\+\_\+arr\+\_\+mult\+::add\+\_\+arr\+\_\+mult\+\_\+3\+\_\+3 (\begin{DoxyParamCaption}\item[{real(dp), dimension(1\+:,1\+:,1\+:,0\+:,0\+:,0\+:), intent(in)}]{arr\+\_\+1,  }\item[{real(dp), dimension(1\+:,1\+:,1\+:,0\+:,0\+:,0\+:), intent(in)}]{arr\+\_\+2,  }\item[{real(dp), dimension(1\+:,1\+:,1\+:), intent(out)}]{arr\+\_\+3,  }\item[{integer, dimension(3), intent(in)}]{deriv }\end{DoxyParamCaption})}
+
+
+
+version with {\ttfamily arr\+\_\+1} and {\ttfamily arr\+\_\+2} in 3 coords. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em arr\+\_\+1} & {\ttfamily arr\+\_\+1} \\
+\hline
+\mbox{\tt in}  & {\em arr\+\_\+2} & {\ttfamily arr\+\_\+2} \\
+\hline
+\mbox{\tt out}  & {\em arr\+\_\+3} & {\ttfamily arr\+\_\+3} \\
+\hline
+\mbox{\tt in}  & {\em deriv} & derivatives \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 363 of file num\+\_\+utilities.\+f90.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{interfacenum__utilities_1_1add__arr__mult_a377e810d6da5185289008c0eb547db9a_cgraph}
+\end{center}
+\end{figure}
+
+

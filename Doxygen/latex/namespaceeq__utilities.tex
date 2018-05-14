@@ -1,0 +1,224 @@
+\hypertarget{namespaceeq__utilities}{}\section{eq\+\_\+utilities Module Reference}
+\label{namespaceeq__utilities}\index{eq\+\_\+utilities@{eq\+\_\+utilities}}
+
+
+Numerical utilities related to equilibrium variables.  
+
+
+\subsection*{Interfaces and Types}
+\begin{DoxyCompactItemize}
+\item 
+interface \hyperlink{interfaceeq__utilities_1_1calc__f__derivs}{calc\+\_\+f\+\_\+derivs}
+\begin{DoxyCompactList}\small\item\em Transforms derivatives of the equilibrium quantities in E coordinates to derivatives in the F coordinates. \end{DoxyCompactList}\item 
+interface \hyperlink{interfaceeq__utilities_1_1calc__inv__met}{calc\+\_\+inv\+\_\+met}
+\begin{DoxyCompactList}\small\item\em Calculate $D_1^{m_1} D_2^{m_2} D_3^{m_3} X$ from $D_1^{i_1} D_2^{i_2} D_3^{i_3} X$ and $D_1^{j_1} D_2^{j_2} D_3^{j_3} Y$ where $XY=1$ and $i,j = 0\ldots m$, according to {\bfseries [Weyens3D]}. \end{DoxyCompactList}\item 
+interface \hyperlink{interfaceeq__utilities_1_1transf__deriv}{transf\+\_\+deriv}
+\begin{DoxyCompactList}\small\item\em Calculates derivatives in a coordinate system B from derivatives in a coordinates system A, making use of the transformation matrix $\overline{\text{T}}_\text{B}^\text{A}$. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Functions/\+Subroutines}
+\begin{DoxyCompactItemize}
+\item 
+integer function, public \hyperlink{namespaceeq__utilities_a1426f7226577f8719472265fd882fbf4}{calc\+\_\+g} (g\+\_\+A, T\+\_\+\+BA, g\+\_\+B, deriv, max\+\_\+deriv)
+\begin{DoxyCompactList}\small\item\em Calculate the metric coefficients in a coordinate system B ! using the. \end{DoxyCompactList}\item 
+integer function, public \hyperlink{namespaceeq__utilities_a5a9f230ed9a6e627e31e882e9f4a00a1}{calc\+\_\+memory\+\_\+eq} (arr\+\_\+size, n\+\_\+par, mem\+\_\+size)
+\begin{DoxyCompactList}\small\item\em Calculate memory in MB necessary for variables in equilibrium job. \end{DoxyCompactList}\item 
+logical function, public \hyperlink{namespaceeq__utilities_a5109472305101af3a15e8e8717c426fd}{do\+\_\+eq} ()
+\begin{DoxyCompactList}\small\item\em If this equilibrium job should be done, also increment {\ttfamily eq\+\_\+job\+\_\+nr}. \end{DoxyCompactList}\item 
+elemental character(len=max\+\_\+str\+\_\+ln) function, public \hyperlink{namespaceeq__utilities_a34c5ddab45a54a6c738e5e0b8c7d55d6}{eq\+\_\+info} ()
+\begin{DoxyCompactList}\small\item\em Returns string with possible extension with equilibrium job as well as parallel job, or nothing if only one level and one parallel job. \end{DoxyCompactList}\item 
+subroutine, public \hyperlink{namespaceeq__utilities_a40f397d20b45432117744ca16870ddbb}{print\+\_\+info\+\_\+eq} (n\+\_\+par\+\_\+\+X\+\_\+rich)
+\begin{DoxyCompactList}\small\item\em Prints information for equilibrium parallel job. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+logical, public \hyperlink{namespaceeq__utilities_aedf0e1858d0bd16218a290f4857d416a}{debug\+\_\+calc\+\_\+inv\+\_\+met\+\_\+ind} = .false.
+\begin{DoxyCompactList}\small\item\em plot debug information for calc\+\_\+inv\+\_\+met\+\_\+ind() \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Numerical utilities related to equilibrium variables. 
+
+\subsection{Function/\+Subroutine Documentation}
+\mbox{\Hypertarget{namespaceeq__utilities_a1426f7226577f8719472265fd882fbf4}\label{namespaceeq__utilities_a1426f7226577f8719472265fd882fbf4}} 
+\index{eq\+\_\+utilities@{eq\+\_\+utilities}!calc\+\_\+g@{calc\+\_\+g}}
+\index{calc\+\_\+g@{calc\+\_\+g}!eq\+\_\+utilities@{eq\+\_\+utilities}}
+\subsubsection{\texorpdfstring{calc\+\_\+g()}{calc\_g()}}
+{\footnotesize\ttfamily integer function, public eq\+\_\+utilities\+::calc\+\_\+g (\begin{DoxyParamCaption}\item[{real(dp), dimension(\+:,\+:,\+:,\+:,0\+:,0\+:,0\+:), intent(in)}]{g\+\_\+A,  }\item[{real(dp), dimension(\+:,\+:,\+:,\+:,0\+:,0\+:,0\+:), intent(in)}]{T\+\_\+\+BA,  }\item[{real(dp), dimension(\+:,\+:,\+:,\+:,0\+:,0\+:,0\+:), intent(inout)}]{g\+\_\+B,  }\item[{integer, dimension(3), intent(in)}]{deriv,  }\item[{integer, intent(in)}]{max\+\_\+deriv }\end{DoxyParamCaption})}
+
+
+
+Calculate the metric coefficients in a coordinate system B ! using the. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em g\+\_\+a} & $g_\text{A}$\\
+\hline
+\mbox{\tt in}  & {\em t\+\_\+ba} & $\overline{\text{T}}_\text{B}^\text{A}$\\
+\hline
+\mbox{\tt in,out}  & {\em g\+\_\+b} & $g_\text{B}$\\
+\hline
+\mbox{\tt in}  & {\em deriv} & derivatives\\
+\hline
+\mbox{\tt in}  & {\em max\+\_\+deriv} & maximum derivative \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 387 of file eq\+\_\+utilities.\+f90.
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespaceeq__utilities_a1426f7226577f8719472265fd882fbf4_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{namespaceeq__utilities_a5a9f230ed9a6e627e31e882e9f4a00a1}\label{namespaceeq__utilities_a5a9f230ed9a6e627e31e882e9f4a00a1}} 
+\index{eq\+\_\+utilities@{eq\+\_\+utilities}!calc\+\_\+memory\+\_\+eq@{calc\+\_\+memory\+\_\+eq}}
+\index{calc\+\_\+memory\+\_\+eq@{calc\+\_\+memory\+\_\+eq}!eq\+\_\+utilities@{eq\+\_\+utilities}}
+\subsubsection{\texorpdfstring{calc\+\_\+memory\+\_\+eq()}{calc\_memory\_eq()}}
+{\footnotesize\ttfamily integer function, public eq\+\_\+utilities\+::calc\+\_\+memory\+\_\+eq (\begin{DoxyParamCaption}\item[{integer, intent(in)}]{arr\+\_\+size,  }\item[{integer, intent(in)}]{n\+\_\+par,  }\item[{real(dp), intent(inout)}]{mem\+\_\+size }\end{DoxyParamCaption})}
+
+
+
+Calculate memory in MB necessary for variables in equilibrium job. 
+
+The size of these variables is equal to the product of the non-\/parallel dimensions (e.\+g. {\ttfamily n\+\_\+geo} x {\ttfamily loc\+\_\+n\+\_\+r}), times the number of variables.
+
+The latter should be\+:
+\begin{DoxyItemize}
+\item P\+B3D\+: only take into account ( $2\cdot6+1 = 13$) equilibrium variables {\ttfamily g\+\_\+\+FD}, {\ttfamily h\+\_\+\+FD} and {\ttfamily jac\+\_\+\+FD}, as the perturbation variables are divided in jobs occupying the remaning space. These equilibrium variables are tabulated on the equilibrium grid. Note that they contain derivatives in extra dimensions, so that their size should be multiplied by ({\ttfamily max\+\_\+deriv+1})$^\wedge$3.
+\item P\+O\+ST\+: take into account these 13 equilibrium variables, as well as 4 variables {\ttfamily U} and {\ttfamily DU}, with double size due to being complex, and the additional dimension equal to {\ttfamily n\+\_\+mod\+\_\+X}, but without derivatives.
+\end{DoxyItemize}
+
+\begin{DoxyReturn}{Returns}
+ierr
+\end{DoxyReturn}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em arr\+\_\+size} & size of part of X array\\
+\hline
+\mbox{\tt in}  & {\em n\+\_\+par} & number of parallel points\\
+\hline
+\mbox{\tt in,out}  & {\em mem\+\_\+size} & total size \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 907 of file eq\+\_\+utilities.\+f90.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespaceeq__utilities_a5a9f230ed9a6e627e31e882e9f4a00a1_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespaceeq__utilities_a5a9f230ed9a6e627e31e882e9f4a00a1_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{namespaceeq__utilities_a5109472305101af3a15e8e8717c426fd}\label{namespaceeq__utilities_a5109472305101af3a15e8e8717c426fd}} 
+\index{eq\+\_\+utilities@{eq\+\_\+utilities}!do\+\_\+eq@{do\+\_\+eq}}
+\index{do\+\_\+eq@{do\+\_\+eq}!eq\+\_\+utilities@{eq\+\_\+utilities}}
+\subsubsection{\texorpdfstring{do\+\_\+eq()}{do\_eq()}}
+{\footnotesize\ttfamily logical function, public eq\+\_\+utilities\+::do\+\_\+eq (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+If this equilibrium job should be done, also increment {\ttfamily eq\+\_\+job\+\_\+nr}. 
+
+
+
+Definition at line 949 of file eq\+\_\+utilities.\+f90.
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=288pt]{namespaceeq__utilities_a5109472305101af3a15e8e8717c426fd_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{namespaceeq__utilities_a34c5ddab45a54a6c738e5e0b8c7d55d6}\label{namespaceeq__utilities_a34c5ddab45a54a6c738e5e0b8c7d55d6}} 
+\index{eq\+\_\+utilities@{eq\+\_\+utilities}!eq\+\_\+info@{eq\+\_\+info}}
+\index{eq\+\_\+info@{eq\+\_\+info}!eq\+\_\+utilities@{eq\+\_\+utilities}}
+\subsubsection{\texorpdfstring{eq\+\_\+info()}{eq\_info()}}
+{\footnotesize\ttfamily elemental character(len=max\+\_\+str\+\_\+ln) function, public eq\+\_\+utilities\+::eq\+\_\+info (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Returns string with possible extension with equilibrium job as well as parallel job, or nothing if only one level and one parallel job. 
+
+
+
+Definition at line 964 of file eq\+\_\+utilities.\+f90.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespaceeq__utilities_a34c5ddab45a54a6c738e5e0b8c7d55d6_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=300pt]{namespaceeq__utilities_a34c5ddab45a54a6c738e5e0b8c7d55d6_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{namespaceeq__utilities_a40f397d20b45432117744ca16870ddbb}\label{namespaceeq__utilities_a40f397d20b45432117744ca16870ddbb}} 
+\index{eq\+\_\+utilities@{eq\+\_\+utilities}!print\+\_\+info\+\_\+eq@{print\+\_\+info\+\_\+eq}}
+\index{print\+\_\+info\+\_\+eq@{print\+\_\+info\+\_\+eq}!eq\+\_\+utilities@{eq\+\_\+utilities}}
+\subsubsection{\texorpdfstring{print\+\_\+info\+\_\+eq()}{print\_info\_eq()}}
+{\footnotesize\ttfamily subroutine, public eq\+\_\+utilities\+::print\+\_\+info\+\_\+eq (\begin{DoxyParamCaption}\item[{integer, intent(in)}]{n\+\_\+par\+\_\+\+X\+\_\+rich }\end{DoxyParamCaption})}
+
+
+
+Prints information for equilibrium parallel job. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em n\+\_\+par\+\_\+x\+\_\+rich} & number of parallel points in this Richardson level \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 976 of file eq\+\_\+utilities.\+f90.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespaceeq__utilities_a40f397d20b45432117744ca16870ddbb_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespaceeq__utilities_a40f397d20b45432117744ca16870ddbb_icgraph}
+\end{center}
+\end{figure}
+
+
+\subsection{Variable Documentation}
+\mbox{\Hypertarget{namespaceeq__utilities_aedf0e1858d0bd16218a290f4857d416a}\label{namespaceeq__utilities_aedf0e1858d0bd16218a290f4857d416a}} 
+\index{eq\+\_\+utilities@{eq\+\_\+utilities}!debug\+\_\+calc\+\_\+inv\+\_\+met\+\_\+ind@{debug\+\_\+calc\+\_\+inv\+\_\+met\+\_\+ind}}
+\index{debug\+\_\+calc\+\_\+inv\+\_\+met\+\_\+ind@{debug\+\_\+calc\+\_\+inv\+\_\+met\+\_\+ind}!eq\+\_\+utilities@{eq\+\_\+utilities}}
+\subsubsection{\texorpdfstring{debug\+\_\+calc\+\_\+inv\+\_\+met\+\_\+ind}{debug\_calc\_inv\_met\_ind}}
+{\footnotesize\ttfamily logical, public eq\+\_\+utilities\+::debug\+\_\+calc\+\_\+inv\+\_\+met\+\_\+ind = .false.}
+
+
+
+plot debug information for calc\+\_\+inv\+\_\+met\+\_\+ind() 
+
+\begin{DoxyNote}{Note}
+Debug version only 
+\end{DoxyNote}
+
+
+Definition at line 27 of file eq\+\_\+utilities.\+f90.
+

@@ -1,0 +1,33 @@
+\hypertarget{OLD__sol__ops_8f90}{}\section{Modules/\+O\+L\+D\+\_\+sol\+\_\+ops.f90 File Reference}
+\label{OLD__sol__ops_8f90}\index{Modules/\+O\+L\+D\+\_\+sol\+\_\+ops.\+f90@{Modules/\+O\+L\+D\+\_\+sol\+\_\+ops.\+f90}}
+\subsection*{Modules}
+\begin{DoxyCompactItemize}
+\item 
+module \hyperlink{namespacesol__ops}{sol\+\_\+ops}
+\begin{DoxyCompactList}\small\item\em Operations on the solution vectors such as decompososing the energy, etc... \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Functions/\+Subroutines}
+\begin{DoxyCompactItemize}
+\item 
+subroutine, public \hyperlink{namespacesol__ops_a17863486476a62558988ce45101fd3b3}{sol\+\_\+ops\+::plot\+\_\+sol\+\_\+vals} (sol, last\+\_\+unstable\+\_\+id)
+\begin{DoxyCompactList}\small\item\em Plots Eigenvalues. \end{DoxyCompactList}\item 
+integer function, public \hyperlink{namespacesol__ops_ae14af60a6f8f77e7dde1e93dbaa7e6d0}{sol\+\_\+ops\+::plot\+\_\+sol\+\_\+vec} (grid\+\_\+eq, grid\+\_\+X, grid\+\_\+sol, eq\+\_\+1, eq\+\_\+2, X, sol, X\+YZ, X\+\_\+id, plot\+\_\+var)
+\begin{DoxyCompactList}\small\item\em Plots Eigenvectors. \end{DoxyCompactList}\item 
+integer function, public \hyperlink{namespacesol__ops_ab9a1e138cb94b547f4fd7669c677ed5c}{sol\+\_\+ops\+::plot\+\_\+harmonics} (grid\+\_\+sol, sol, X\+\_\+id, res\+\_\+surf)
+\begin{DoxyCompactList}\small\item\em Plots the harmonics and their maximum in 2-\/D. \end{DoxyCompactList}\item 
+integer function, public \hyperlink{namespacesol__ops_a263d4562653c449e3822abcb4cfe69ba}{sol\+\_\+ops\+::decompose\+\_\+energy} (grid\+\_\+eq, grid\+\_\+X, grid\+\_\+sol, eq\+\_\+1, eq\+\_\+2, X, sol, vac, X\+\_\+id, B\+\_\+aligned, X\+YZ, E\+\_\+pot\+\_\+int, E\+\_\+kin\+\_\+int)
+\begin{DoxyCompactList}\small\item\em Decomposes the plasma potential and kinetic energy in its individual terms for an individual Eigenvalue. \end{DoxyCompactList}\item 
+integer function \hyperlink{namespacesol__ops_a3f89cc3db07dd11e5a3d631cb84bb4c8}{sol\+\_\+ops\+::calc\+\_\+e} (grid\+\_\+eq, grid\+\_\+X, grid\+\_\+sol, eq\+\_\+1, eq\+\_\+2, X, sol, vac, B\+\_\+aligned, X\+\_\+id, E\+\_\+pot, E\+\_\+kin, E\+\_\+pot\+\_\+int, E\+\_\+kin\+\_\+int)
+\begin{DoxyCompactList}\small\item\em Calculate the energy terms in the energy decomposition. \end{DoxyCompactList}\item 
+integer function, public \hyperlink{namespacesol__ops_ad85edd793afcfb100fe8d08b6f5aab75}{sol\+\_\+ops\+::print\+\_\+output\+\_\+sol} (grid, sol, data\+\_\+name, rich\+\_\+lvl)
+\begin{DoxyCompactList}\small\item\em Print solution quantities to an output file\+: \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+logical, public \hyperlink{namespacesol__ops_ae1de852dfaa7f74c5b4a32f85d0a5962}{sol\+\_\+ops\+::debug\+\_\+plot\+\_\+sol\+\_\+vec} = .false.
+\begin{DoxyCompactList}\small\item\em plot debug information for \hyperlink{namespacesol__ops_ae14af60a6f8f77e7dde1e93dbaa7e6d0}{plot\+\_\+sol\+\_\+vec()} \end{DoxyCompactList}\item 
+logical, public \hyperlink{namespacesol__ops_a05f842d6d83f283aaaf61de0ed4eff3b}{sol\+\_\+ops\+::debug\+\_\+calc\+\_\+e} = .false.
+\begin{DoxyCompactList}\small\item\em plot debug information for calc\+\_\+\+E() \end{DoxyCompactList}\item 
+logical, public \hyperlink{namespacesol__ops_a8575f14004ff2fb08fe4cfaa647e8828}{sol\+\_\+ops\+::debug\+\_\+x\+\_\+norm} = .false.
+\begin{DoxyCompactList}\small\item\em plot debug information {\ttfamily X\+\_\+norm} \end{DoxyCompactList}\item 
+logical, public \hyperlink{namespacesol__ops_a95fab1286b819b1c0ccf3ab320d1432a}{sol\+\_\+ops\+::debug\+\_\+du} = .false.
+\begin{DoxyCompactList}\small\item\em plot debug information for calculation of {\ttfamily DU} \end{DoxyCompactList}\end{DoxyCompactItemize}

@@ -1,0 +1,167 @@
+\hypertarget{example_8mk-example}{}\section{example.\+mk}
+An example makefile\+:
+
+
+\begin{DoxyCodeInclude}
+##############################################################################
+#
+#   Example makefile for the program PB3D (Peeling Ballooning in 3D)
+#   \(\backslash\)author Author: Toon Weyens
+#
+#   Don't forget to set the directories:
+#       - LIBSTELL\_DIR
+#       - HDF5\_DIR
+#       - NETCDFF\_DIR (note: Fortran library)
+#       - PETSC\_DIR
+#       - SLEPC\_DIR
+#       - STRUMPACK\_DIR
+##############################################################################
+
+##############################################################################
+#   Include
+##############################################################################
+## [PETSc and SLEPc trick]
+include  $(PETSC\_DIR)/lib/petsc/conf/variables
+include  $(SLEPC\_DIR)/lib/slepc/conf/slepc\_variables
+## [PETSc and SLEPc trick]
+
+## [PETSc and SLEPc trick inc]
+INCLUDE = $(PETSC\_FC\_INCLUDES) $(SLEPC\_INCLUDE)
+## [PETSc and SLEPc trick inc]
+## [Libstell special]
+INCLUDE += -I$(LIBSTELL\_DIR)/libstell\_dir
+## [Libstell special]
+INCLUDE += -I$(STRUMPACK\_DIR)/include
+## [PB3D include]
+INCLUDE += -I$(PB3D\_DIR)/include
+## [PB3D include]
+INCLUDE += -I/usr/include/hdf5/openmpi
+
+##############################################################################
+#   Link
+##############################################################################
+## [PB3D libraries]
+LIB\_INTERNAL = libdfftpack.a libfoul.a libbspline.a
+## [PB3D libraries]
+
+LINK := $(LIB\_INTERNAL)
+
+## [PETSc and SLEPc trick lib]
+LINK += $(PETSC\_LIB)
+LINK += $(SLEPC\_LIB)
+## [PETSc and SLEPc trick lib]
+LINK += $(LIBSTELL\_DIR)/libstell.a
+LINK += -L$(STRUMPACK\_DIR)/lib -lstrumpack
+LINK += -L$(HDF5\_DIR) -lhdf5\_fortran -lhdf5
+LINK += -L$(NETCDFF\_DIR)/lib -lnetcdff
+LINK += -Wl,-R$(NETCDFF\_DIR)/lib
+LINK += -lscalapack -lblacs -lblas -lm
+LINK += -lstdc++ -lmpi\_cxx
+
+
+##############################################################################
+#   Compiler
+##############################################################################
+COMPILER=mpifort
+
+
+##############################################################################
+#   Linker
+##############################################################################
+LINKER=mpifort
+
+
+##############################################################################
+#   Compiler flags
+#   options (used with -D[name]):
+#       ldebug: debug
+#       lIB: infiniband
+#       lwith\_gnu: use GNU compiler [default]
+#       lwith\_intel: use INTEL compiler, (checked for version 12.0.2)
+#   note: INTEL warning 6536 is suppressed, which informs about extra "USE".
+#   note: INTEL warning 6843 is suppressed, which informs about empty
+#       intent(out) variables
+##############################################################################
+COMP\_FLAGS = -finit-real=snan -g -Og -Wall -Wextra -pedantic \(\backslash\)
+    -fimplicit-none -fbacktrace -fno-omit-frame-pointer \(\backslash\)
+    -fcheck=all -cpp -Dldebug# debug, profiling with gprof2dot, GCC
+#COMP\_FLAGS = -O3 -fbacktrace -g -fimplicit-none -fno-omit-frame-pointer \(\backslash\)
+    #-cpp# optimized, GCC
+
+#COMP\_FLAGS = -O0 -DlIB -Dldebug -g -heap-arrays 100 -recursive \(\backslash\)
+    #-ftrapuv -check bounds -check uninit -traceback -implicitnone \(\backslash\)
+    #-fno-omit-frame-pointer -cpp -Dlwith\_intel -diag-disable 6536 \(\backslash\)
+    #-diag-disable 6843# debug, profiling with gprof2dot, INTEL
+#COMP\_FLAGS = -O3 -DlIB -traceback -g -heap-arrays 100 -recursive \(\backslash\)
+    #-implicitnone -fno-omit-frame-pointer -cpp -Dlwith\_intel \(\backslash\)
+    #-diag-disable 6536 -diag-disable 6843# optimized, INTEL
+
+COMP\_FLAGS\_EX= -O2 -w
+
+COMP\_FLAGS\_F= -O2 -funroll-loops -fexpensive-optimizations
+
+
+##############################################################################
+#   Link flags
+##############################################################################
+LINK\_FLAGS = -fPIC -finit-real=snan# debug
+#LINK\_FLAGS = -fPIC# optimized
+
+
+##############################################################################
+#   Prepare
+##############################################################################
+# Add "Modules" and "Libraries" to the search path for the prerequisites
+VPATH = Modules:Libraries
+
+# Contains list of source files (.o) and dependencies
+DEPLIST = PB3D.dep
+OBJLIST = ObjectList# defines "ObjectFiles"
+
+# Includes source files and dependency list
+include $(DEPLIST)# Dependencies of all the objects
+include $(OBJLIST)# Names of all the objects
+
+
+##############################################################################
+#   Rules
+##############################################################################
+all:    PB3D POST
+
+PB3D:   $(ObjectFiles) $(LIB\_INTERNAL) PB3D.o
+    $(LINKER) -o $@ $(ObjectFiles) PB3D.o $(LINK) $(LINK\_FLAGS)
+
+POST:   $(ObjectFiles) $(LIB\_INTERNAL) POST.o
+    $(LINKER) -o $@ $(ObjectFiles) POST.o $(LINK) $(LINK\_FLAGS)
+
+libdfftpack.a:  dfft.o
+    ar -rcs libdfftpack.a dfft.o
+
+libfoul.a:  foul.o
+    ar -rcs libfoul.a foul.o
+
+libbspline.a:   bspline\_sub\_module.o
+    ar -rcs libbspline.a bspline\_sub\_module.o
+
+%.o: %.f90
+    $(COMPILER) $(INCLUDE) $(COMP\_FLAGS) -c $<
+
+%.o: %.f
+    $(COMPILER) $(COMP\_FLAGS\_F) -c $<
+
+dfft.o: dfft.f
+    $(COMPILER) $(COMP\_FLAGS\_EX) -c $<
+
+foul.o: foul.f90
+    $(COMPILER) $(COMP\_FLAGS\_EX) -c $<
+
+bspline\_sub\_module.o: bspline\_sub\_module.f90
+    $(COMPILER) $(COMP\_FLAGS\_EX) -c $<
+
+clean:
+    @rm -f *.o *.a *.mod *~ fort.* 
+
+clean\_all:
+    @rm -f *.o *.mod *~ fort.* PB3D POST
+\end{DoxyCodeInclude}
+ 

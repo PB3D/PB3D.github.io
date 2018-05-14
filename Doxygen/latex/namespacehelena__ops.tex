@@ -1,0 +1,328 @@
+\hypertarget{namespacehelena__ops}{}\section{helena\+\_\+ops Module Reference}
+\label{namespacehelena__ops}\index{helena\+\_\+ops@{helena\+\_\+ops}}
+
+
+Operations on H\+E\+L\+E\+NA variables.  
+
+
+\subsection*{Functions/\+Subroutines}
+\begin{DoxyCompactItemize}
+\item 
+integer function, public \hyperlink{namespacehelena__ops_ae05ba1182eb002d93c27ca4ff7ab8cf2}{read\+\_\+hel} (n\+\_\+r\+\_\+in, use\+\_\+pol\+\_\+flux\+\_\+H)
+\begin{DoxyCompactList}\small\item\em Reads the H\+E\+L\+E\+NA equilibrium data. \end{DoxyCompactList}\item 
+integer function \hyperlink{namespacehelena__ops_ab1329afe5af2ff92d96f4be15a096b38}{get\+\_\+ang\+\_\+interp\+\_\+data\+\_\+hel} (grid\+\_\+in, grid\+\_\+out, theta\+\_\+i, fund\+\_\+theta\+\_\+int\+\_\+displ, tb\+\_\+sym, use\+\_\+E)
+\begin{DoxyCompactList}\small\item\em Calculate interpolation factors for angular interpolation in {\ttfamily grid\+\_\+out} of quantities defined on {\ttfamily grid\+\_\+in}. \end{DoxyCompactList}\item 
+integer function, public \hyperlink{namespacehelena__ops_a7796861de18ae7ac9c3aa07a8628be38}{interp\+\_\+hel\+\_\+on\+\_\+grid} (grid\+\_\+in, grid\+\_\+out, eq\+\_\+2, X\+\_\+1, X\+\_\+2, eq\+\_\+2\+\_\+out, X\+\_\+1\+\_\+out, X\+\_\+2\+\_\+out, eq\+\_\+1, grid\+\_\+name)
+\begin{DoxyCompactList}\small\item\em Interpolate variables resulting from H\+E\+L\+E\+NA equilibria to another grid (angularly). \end{DoxyCompactList}\item 
+integer function, public \hyperlink{namespacehelena__ops_a0f156b3653264fb016d6d311eb59114c}{test\+\_\+metrics\+\_\+h} ()
+\begin{DoxyCompactList}\small\item\em Checks whether the metric elements provided by H\+E\+L\+E\+NA are consistent with a direct calculation using the coordinate transformations {\bfseries [Weyens3D]}. \end{DoxyCompactList}\item 
+integer function, public \hyperlink{namespacehelena__ops_a83f2ad5dc967c7bae287b60fddb8eb0a}{test\+\_\+harm\+\_\+cont\+\_\+h} ()
+\begin{DoxyCompactList}\small\item\em Investaige harmonic content of the H\+E\+L\+E\+NA variables. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Operations on H\+E\+L\+E\+NA variables. 
+
+\subsection{Function/\+Subroutine Documentation}
+\mbox{\Hypertarget{namespacehelena__ops_ab1329afe5af2ff92d96f4be15a096b38}\label{namespacehelena__ops_ab1329afe5af2ff92d96f4be15a096b38}} 
+\index{helena\+\_\+ops@{helena\+\_\+ops}!get\+\_\+ang\+\_\+interp\+\_\+data\+\_\+hel@{get\+\_\+ang\+\_\+interp\+\_\+data\+\_\+hel}}
+\index{get\+\_\+ang\+\_\+interp\+\_\+data\+\_\+hel@{get\+\_\+ang\+\_\+interp\+\_\+data\+\_\+hel}!helena\+\_\+ops@{helena\+\_\+ops}}
+\subsubsection{\texorpdfstring{get\+\_\+ang\+\_\+interp\+\_\+data\+\_\+hel()}{get\_ang\_interp\_data\_hel()}}
+{\footnotesize\ttfamily integer function helena\+\_\+ops\+::get\+\_\+ang\+\_\+interp\+\_\+data\+\_\+hel (\begin{DoxyParamCaption}\item[{type(\hyperlink{structgrid__vars_1_1grid__type}{grid\+\_\+type}), intent(in)}]{grid\+\_\+in,  }\item[{type(\hyperlink{structgrid__vars_1_1grid__type}{grid\+\_\+type}), intent(in)}]{grid\+\_\+out,  }\item[{real(dp), dimension(\+:,\+:,\+:), intent(inout), allocatable}]{theta\+\_\+i,  }\item[{integer, dimension(\+:,\+:,\+:), intent(inout), allocatable}]{fund\+\_\+theta\+\_\+int\+\_\+displ,  }\item[{logical, intent(in), optional}]{tb\+\_\+sym,  }\item[{logical, intent(in), optional}]{use\+\_\+E }\end{DoxyParamCaption})}
+
+
+
+Calculate interpolation factors for angular interpolation in {\ttfamily grid\+\_\+out} of quantities defined on {\ttfamily grid\+\_\+in}. 
+
+This version is specific for an input grid corresponding to axisymmetric variables with optional top-\/down symmetry, as is the case for variables resulting from H\+E\+L\+E\+NA equilibria.
+
+The output of a 3-\/D array of real values for the poloidal angle $\theta$ where the floored integer of each value indicates the base index of the interpolated value in the output grid and the modulus is the the fraction towards the next integer.
+
+The flag {\ttfamily tb\+\_\+sym} indicates optionally that there is top-\/bottom symmetry as well as axisymmetry. When there is top-\/down symmetry, the variables in the lower half (i.\+e. $-\pi < \theta < 0$) are calculated from the variables in the upper half using the symmetry properties of the variables. To indicate this, the sign of the interpolation factor is inverted to a negative value.
+
+The displacement of the theta interval towards the fundamental theta interval is also outputted. For asymmetric variables this is for example\+:
+\begin{DoxyItemize}
+\item 1 for $-2\pi \ldots 0$
+\item 0 for $ 0 \ldots 2\pi$
+\item -\/1 for $ 2\pi \ldots 4\pi$
+\end{DoxyItemize}
+
+etc.
+
+For symmetric variables, this is for example\+:
+\begin{DoxyItemize}
+\item 1 for $-3\pi \ldots -2\pi$, with symmetry property
+\item 1 for $-2\pi \ldots -\pi$
+\item 0 for $-\pi \ldots 0$, with symmetry property
+\item 0 for $ 0 \ldots \pi$
+\item -\/1 for $ \pi \ldots 2\pi$, with symmetry property
+\item -\/1 for $ 3\pi \ldots 3\pi$ etc.
+\end{DoxyItemize}
+
+By default, the variables in the Flux coord. system are used, but this can be changed optionally with the flag {\ttfamily "use\+\_\+E}.
+
+\begin{DoxyReturn}{Returns}
+ierr
+\end{DoxyReturn}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em grid\+\_\+in} & input grid\\
+\hline
+\mbox{\tt in}  & {\em grid\+\_\+out} & output grid\\
+\hline
+\mbox{\tt in,out}  & {\em theta\+\_\+i} & interpolation index\\
+\hline
+\mbox{\tt in,out}  & {\em fund\+\_\+theta\+\_\+int\+\_\+displ} & displacement of fundamental theta interval\\
+\hline
+\mbox{\tt in}  & {\em tb\+\_\+sym} & top-\/bottom symmetry\\
+\hline
+\mbox{\tt in}  & {\em use\+\_\+e} & whether E is used instead of F \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 413 of file H\+E\+L\+E\+N\+A\+\_\+ops.\+f90.
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespacehelena__ops_ab1329afe5af2ff92d96f4be15a096b38_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{namespacehelena__ops_a7796861de18ae7ac9c3aa07a8628be38}\label{namespacehelena__ops_a7796861de18ae7ac9c3aa07a8628be38}} 
+\index{helena\+\_\+ops@{helena\+\_\+ops}!interp\+\_\+hel\+\_\+on\+\_\+grid@{interp\+\_\+hel\+\_\+on\+\_\+grid}}
+\index{interp\+\_\+hel\+\_\+on\+\_\+grid@{interp\+\_\+hel\+\_\+on\+\_\+grid}!helena\+\_\+ops@{helena\+\_\+ops}}
+\subsubsection{\texorpdfstring{interp\+\_\+hel\+\_\+on\+\_\+grid()}{interp\_hel\_on\_grid()}}
+{\footnotesize\ttfamily integer function, public helena\+\_\+ops\+::interp\+\_\+hel\+\_\+on\+\_\+grid (\begin{DoxyParamCaption}\item[{type(\hyperlink{structgrid__vars_1_1grid__type}{grid\+\_\+type}), intent(in)}]{grid\+\_\+in,  }\item[{type(\hyperlink{structgrid__vars_1_1grid__type}{grid\+\_\+type}), intent(in)}]{grid\+\_\+out,  }\item[{type(\hyperlink{structeq__vars_1_1eq__2__type}{eq\+\_\+2\+\_\+type}), intent(inout), optional}]{eq\+\_\+2,  }\item[{type(x\+\_\+1\+\_\+type), intent(inout), optional}]{X\+\_\+1,  }\item[{type(x\+\_\+2\+\_\+type), intent(inout), optional}]{X\+\_\+2,  }\item[{type(\hyperlink{structeq__vars_1_1eq__2__type}{eq\+\_\+2\+\_\+type}), intent(inout), optional}]{eq\+\_\+2\+\_\+out,  }\item[{type(x\+\_\+1\+\_\+type), intent(inout), optional}]{X\+\_\+1\+\_\+out,  }\item[{type(x\+\_\+2\+\_\+type), intent(inout), optional}]{X\+\_\+2\+\_\+out,  }\item[{type(\hyperlink{structeq__vars_1_1eq__1__type}{eq\+\_\+1\+\_\+type}), intent(in), optional}]{eq\+\_\+1,  }\item[{character(len=$\ast$), intent(in), optional}]{grid\+\_\+name }\end{DoxyParamCaption})}
+
+
+
+Interpolate variables resulting from H\+E\+L\+E\+NA equilibria to another grid (angularly). 
+
+The input and output grid to be provided depend on the quantities to be interpolated\+:
+\begin{DoxyItemize}
+\item equilibrium variables\+: flux variables (no need to convert) and derived quantities (need equilibrium grid)
+\item metric variables\+: jac\+\_\+\+FD (need equilibrium grid)
+\item vectorial perturbation variables\+: U\+\_\+i, D\+U\+\_\+i (need perturbation grid)
+\item tensorial perturbation variables\+: P\+V\+\_\+i, K\+V\+\_\+i (need perturbation grid)
+\end{DoxyItemize}
+
+Also, a message can be printed if a grid name is passed.
+
+\begin{DoxyNote}{Note}
+
+\begin{DoxyEnumerate}
+\item The metric coefficients are interpolated and then compensated for the straight-\/field-\/line coordinates as in {\bfseries [Weyens3D]} .
+\item By default the interpolated quantities overwrite the original ones, but alternative output variables can be provided.
+\item as the equilibrium and perturbation grid are not generally identical, this routine has to be called separately for the variables tabulated in either grid.
+\end{DoxyEnumerate}
+\end{DoxyNote}
+\begin{DoxyReturn}{Returns}
+ierr
+\end{DoxyReturn}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em grid\+\_\+in} & input grid\\
+\hline
+\mbox{\tt in}  & {\em grid\+\_\+out} & output grid\\
+\hline
+\mbox{\tt in,out}  & {\em eq\+\_\+2} & general metric equilibrium variables\\
+\hline
+\mbox{\tt in,out}  & {\em x\+\_\+1} & general vectorial perturbation variables\\
+\hline
+\mbox{\tt in,out}  & {\em x\+\_\+2} & general tensorial perturbation variables\\
+\hline
+\mbox{\tt in,out}  & {\em eq\+\_\+2\+\_\+out} & field-\/aligned metric equilibrium variables\\
+\hline
+\mbox{\tt in,out}  & {\em x\+\_\+1\+\_\+out} & field-\/aligned vectorial perturbation variables\\
+\hline
+\mbox{\tt in,out}  & {\em x\+\_\+2\+\_\+out} & field-\/aligned tensorial perturbation variables\\
+\hline
+\mbox{\tt in}  & {\em eq\+\_\+1} & general flux equilibrium variables for metric interpolation\\
+\hline
+\mbox{\tt in}  & {\em grid\+\_\+name} & name of grid to which to adapt quantities \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 550 of file H\+E\+L\+E\+N\+A\+\_\+ops.\+f90.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespacehelena__ops_a7796861de18ae7ac9c3aa07a8628be38_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespacehelena__ops_a7796861de18ae7ac9c3aa07a8628be38_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{namespacehelena__ops_ae05ba1182eb002d93c27ca4ff7ab8cf2}\label{namespacehelena__ops_ae05ba1182eb002d93c27ca4ff7ab8cf2}} 
+\index{helena\+\_\+ops@{helena\+\_\+ops}!read\+\_\+hel@{read\+\_\+hel}}
+\index{read\+\_\+hel@{read\+\_\+hel}!helena\+\_\+ops@{helena\+\_\+ops}}
+\subsubsection{\texorpdfstring{read\+\_\+hel()}{read\_hel()}}
+{\footnotesize\ttfamily integer function, public helena\+\_\+ops\+::read\+\_\+hel (\begin{DoxyParamCaption}\item[{integer, intent(inout)}]{n\+\_\+r\+\_\+in,  }\item[{logical, intent(inout)}]{use\+\_\+pol\+\_\+flux\+\_\+H }\end{DoxyParamCaption})}
+
+
+
+Reads the H\+E\+L\+E\+NA equilibrium data. 
+
+Adapted from H\+E\+L\+E\+NA routine {\ttfamily I\+O\+D\+SK}.
+
+The variales in the H\+E\+L\+E\+NA mapping file are globalized in two ways\+:
+\begin{DoxyItemize}
+\item X and Y are normalized w.\+r.\+t. vacuum geometric axis {\ttfamily R\+\_\+vac} and toroidal field at the geometric axis {\ttfamily B\+\_\+vac}.
+\item {\ttfamily  R\mbox{[}m\mbox{]} = R\+\_\+vac\mbox{[}m\mbox{]} (1 + eps X\mbox{[}\mbox{]}) },
+\item {\ttfamily  Z\mbox{[}m\mbox{]} = R\+\_\+vac\mbox{[}m\mbox{]} eps Y\mbox{[}\mbox{]} }.
+\end{DoxyItemize}
+
+The covariant toroidal field {\ttfamily F\+\_\+H}, {\ttfamily pres\+\_\+H} and poloidal flux are normalized w.\+r.\+t magnetic axis {\ttfamily R\+\_\+m} and total toroidal field at magnetic axis {\ttfamily B\+\_\+m\+:} 
+\begin{DoxyItemize}
+\item {\ttfamily  R\+Bphi\mbox{[}Tm\mbox{]} = F\+\_\+H\mbox{[}\mbox{]} R\+\_\+m\mbox{[}m\mbox{]} B\+\_\+m\mbox{[}T\mbox{]} },
+\item {\ttfamily  pres\mbox{[}N/m$^\wedge$2\mbox{]} = pres\+\_\+H\mbox{[}\mbox{]} (B\+\_\+m\mbox{[}T\mbox{]})$^\wedge$2/mu\+\_\+0\mbox{[}N/\+A$^\wedge$2\mbox{]} },
+\item {\ttfamily  flux\+\_\+p\mbox{[}Tm$^\wedge$2\mbox{]} = 2pi (s\mbox{[}\mbox{]})$^\wedge$2 cpsurf\mbox{[}\mbox{]} B\+\_\+m\mbox{[}T\mbox{]} (R\+\_\+m\mbox{[}m\mbox{]})$^\wedge$2 }.
+\end{DoxyItemize}
+
+The first normalization type is the H\+E\+L\+E\+NA normalization, whereas the second is the M\+I\+S\+H\+KA normalization.
+
+Everything is translated to M\+I\+S\+H\+KA normalization to make comparison with M\+I\+S\+H\+KA simple. This is done using the factors\+:
+\begin{DoxyItemize}
+\item {\ttfamily  radius\mbox{[}\mbox{]} = a\mbox{[}m\mbox{]} / R\+\_\+m\mbox{[}m\mbox{]} },
+\item {\ttfamily  eps\mbox{[}\mbox{]} = a\mbox{[}m\mbox{]} / R\+\_\+vac\mbox{[}m\mbox{]} }, so that the expressions become\+:
+\item {\ttfamily  R\mbox{[}m\mbox{]} = radius\mbox{[}\mbox{]} (1/eps\mbox{[}\mbox{]} + X\mbox{[}\mbox{]}) R\+\_\+m\mbox{[}m\mbox{]}},
+\item {\ttfamily  Z\mbox{[}m\mbox{]} = radius\mbox{[}\mbox{]} Y\mbox{[}\mbox{]} R\+\_\+m\mbox{[}m\mbox{]}},
+\item {\ttfamily  R\+Bphi\mbox{[}Tm\mbox{]} = F\+\_\+H\mbox{[}\mbox{]} B\+\_\+m\mbox{[}T\mbox{]} R\+\_\+m\mbox{[}m\mbox{]}},
+\item {\ttfamily  pres\mbox{[}N/m$^\wedge$2\mbox{]} = pres\+\_\+H\mbox{[}\mbox{]} B\+\_\+m\mbox{[}T\mbox{]}$^\wedge$2 mu\+\_\+0\mbox{[}N/\+A$^\wedge$2\mbox{]}$^\wedge$-\/1},
+\item {\ttfamily  flux\+\_\+p\mbox{[}Tm$^\wedge$2\mbox{]} = 2pi (s\mbox{[}\mbox{]})$^\wedge$2 cpsurf\mbox{[}\mbox{]} B\+\_\+m\mbox{[}T\mbox{]} R\+\_\+m\mbox{[}T\mbox{]}$^\wedge$2}.
+\end{DoxyItemize}
+
+Finally, in H\+E\+L\+E\+NA, the total current {\ttfamily I}, the poloidal beta and the density at the geometric axis can be prescribed through\+:
+\begin{DoxyItemize}
+\item {\ttfamily  X\+I\+AB = mu\+\_\+0 I / (a\+\_\+vac B\+\_\+vac) },
+\item {\ttfamily  B\+E\+T\+AP = 8 pi S $<$p$>$ / (I$^\wedge$2 mu\+\_\+0) },
+\item {\ttfamily  ZN },
+\end{DoxyItemize}
+
+where {\ttfamily  a\+\_\+vac = eps R\+\_\+vac } and {\ttfamily B\+\_\+vac} are vacuum quantities, {\ttfamily S} is the 2-\/D cross-\/sectional area and $<$p$>$ is the 2-\/D averaged pressure.
+
+\begin{DoxyNote}{Note}
+To translate this to the M\+I\+S\+H\+KA normalization factors as
+\begin{DoxyItemize}
+\item {\ttfamily  R\+\_\+m = (eps/radius) R\+\_\+vac },
+\item {\ttfamily  B\+\_\+m = B\+\_\+vac / B0 },
+\end{DoxyItemize}
+
+where
+\begin{DoxyItemize}
+\item {\ttfamily radius} is in the mapping file (12), as well as in the H\+E\+L\+E\+NA output (20).
+\item {\ttfamily eps} is in the mapping file (12), as well as in the H\+E\+L\+E\+NA input (10) and output (20).
+\item {\ttfamily B0} is in the mapping file (12), as well as in the H\+E\+L\+E\+NA output (20). 
+\end{DoxyItemize}
+
+Furthermore, the density on axis can be specified as {\ttfamily Z\+N0} from H\+E\+L\+E\+NA input (10). ~\newline
+ The other variables should probably not be touched for consistency. 
+
+Finally, the variables I\+AS and B0 are in the mapping file (12) only in patched versions. See \hyperlink{page_tutorial_tutorial_eq}{Getting the Equilibrium}.
+\end{DoxyNote}
+\begin{DoxyReturn}{Returns}
+ierr
+\end{DoxyReturn}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in,out}  & {\em n\+\_\+r\+\_\+in} & nr. of normal points in input grid\\
+\hline
+\mbox{\tt in,out}  & {\em use\+\_\+pol\+\_\+flux\+\_\+h} & .true. if H\+E\+L\+E\+NA equilibrium is based on pol. flux \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 84 of file H\+E\+L\+E\+N\+A\+\_\+ops.\+f90.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespacehelena__ops_ae05ba1182eb002d93c27ca4ff7ab8cf2_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespacehelena__ops_ae05ba1182eb002d93c27ca4ff7ab8cf2_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{namespacehelena__ops_a83f2ad5dc967c7bae287b60fddb8eb0a}\label{namespacehelena__ops_a83f2ad5dc967c7bae287b60fddb8eb0a}} 
+\index{helena\+\_\+ops@{helena\+\_\+ops}!test\+\_\+harm\+\_\+cont\+\_\+h@{test\+\_\+harm\+\_\+cont\+\_\+h}}
+\index{test\+\_\+harm\+\_\+cont\+\_\+h@{test\+\_\+harm\+\_\+cont\+\_\+h}!helena\+\_\+ops@{helena\+\_\+ops}}
+\subsubsection{\texorpdfstring{test\+\_\+harm\+\_\+cont\+\_\+h()}{test\_harm\_cont\_h()}}
+{\footnotesize\ttfamily integer function, public helena\+\_\+ops\+::test\+\_\+harm\+\_\+cont\+\_\+h (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Investaige harmonic content of the H\+E\+L\+E\+NA variables. 
+
+\begin{DoxyNote}{Note}
+Run with one process. 
+\end{DoxyNote}
+
+
+Definition at line 1485 of file H\+E\+L\+E\+N\+A\+\_\+ops.\+f90.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespacehelena__ops_a83f2ad5dc967c7bae287b60fddb8eb0a_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespacehelena__ops_a83f2ad5dc967c7bae287b60fddb8eb0a_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{namespacehelena__ops_a0f156b3653264fb016d6d311eb59114c}\label{namespacehelena__ops_a0f156b3653264fb016d6d311eb59114c}} 
+\index{helena\+\_\+ops@{helena\+\_\+ops}!test\+\_\+metrics\+\_\+h@{test\+\_\+metrics\+\_\+h}}
+\index{test\+\_\+metrics\+\_\+h@{test\+\_\+metrics\+\_\+h}!helena\+\_\+ops@{helena\+\_\+ops}}
+\subsubsection{\texorpdfstring{test\+\_\+metrics\+\_\+h()}{test\_metrics\_h()}}
+{\footnotesize\ttfamily integer function, public helena\+\_\+ops\+::test\+\_\+metrics\+\_\+h (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Checks whether the metric elements provided by H\+E\+L\+E\+NA are consistent with a direct calculation using the coordinate transformations {\bfseries [Weyens3D]}. 
+
+Direct calculations used\+: \[\begin{aligned} \left|\nabla \psi\right|^2 &= \frac{1}{\mathcal{J}^2} \left(\left(\frac{\partial Z}{\partial \chi}\right)^2 + \left(\frac{\partial R}{\partial \chi}\right)^2\right) \\ \left|\nabla \psi \cdot \nabla \chi\right| &= \frac{1}{\mathcal{J}^2} \left( \frac{\partial Z}{\partial \chi} \frac{\partial Z}{\partial \psi} - \frac{\partial R}{\partial \chi} \frac{\partial R}{\partial \psi} \right) \\ \left|\nabla \chi\right|^2 &= \frac{1}{\mathcal{J}^2} \left(\left(\frac{\partial Z}{\partial \psi}\right)^2 + \left(\frac{\partial R}{\partial \psi}\right)^2\right) \\ \left|\nabla \phi\right|^2 &= \frac{1}{R^2} \end{aligned}\] with \[\mathcal{J} = \frac{\partial Z}{\partial \psi} \frac{\partial R}{\partial \chi} - \frac{\partial R}{\partial \psi} \frac{\partial Z}{\partial \chi}\]
+
+Also, test whether the pressure balance $\nabla p = \vec{J}\times\vec{B} $ is satisfied.
+
+\begin{DoxyNote}{Note}
+Debug version only
+\end{DoxyNote}
+\begin{DoxyReturn}{Returns}
+ierr 
+\end{DoxyReturn}
+
+
+Definition at line 1289 of file H\+E\+L\+E\+N\+A\+\_\+ops.\+f90.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespacehelena__ops_a0f156b3653264fb016d6d311eb59114c_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespacehelena__ops_a0f156b3653264fb016d6d311eb59114c_icgraph}
+\end{center}
+\end{figure}

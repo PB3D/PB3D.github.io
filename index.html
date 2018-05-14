@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link href='https://fonts.googleapis.com/css?family=Architects+Daughter' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print">
+
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <!--<script type="text/javascript" src="https://platform.linkedin.com/badges/js/profile.js" async defer></script>-->
+
+    <title>PB3D &mdash; Peeling-Ballooning in 3-D</title>
+  </head>
+
+  <body>
+    <header>
+      <div class="inner">
+        <h1>PB3D</h1>
+        <h2>Peeling-Ballooning in 3-D</h2>
+        <a href="https://github.com/ToonWeyens/PB3D" class="button" style="width: 300"><small>Fork me on</small> GitHub</a>
+      </div>
+    </header>
+
+    <div id="content-wrapper">
+      <div class="inner clearfix">
+        <section id="main-content">
+        <IMG SRC="figures/ballooning_mode.png" ALT="Ballooning mode rendering" max-width: 100%>
+        <font size="1">["Artistic rendering" of a typical ballooning mode in the cylindrical test case CBM18. Shown by the color code is the absolute value of the most destabilizing perpendicular displacement, on the perturbed geometry.]</font>
+
+<p style="font-size:20px;letter-spacing:3px;font-variantsmall-caps;margin-bottom:30px;margin-top:30px;color:rgb(105,105,105);" align="center">Be sure to check out the <a href="Doxygen/html/index.html">Doxygen</a> documentation!</p> 
+
+<h2>
+<a id="welcome-to-github-pages" class="anchor" href="#welcome-to-github-pages" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Peeling-Ballooning in 3-D</h2>
+
+<p>
+PB3D is a code written in Fortran to calculate the hign-<i>n</i> edge stability of 3-D equilibria using ideal linear MHD theory. High-<i>n</i> stability refers to normal modes that have a fast spatial dependence perpendicular to the magnetic fieldlines, and a slow variation like the equilibrium along them. Therefore, they are referred to often as <i>fluted</i> modes. Fluted modes have been shown to be important for the MHD stability of toroidal configurations as they are easily excited but can couple power from the hot core to the cold vessel walls. So-called <i>peeling-ballooning</i> modes, for example, have yielded a credible model for the behavior of ELMs, which are understood as a cycling between both instability types. Here it is important to correctly consider the influence of edge effects, as the plasma boundary can be perturbed, especially for peeling modes. A numerical code, <a href="https://fusion.gat.com/THEORY/elite/">ELITE</a> [1], exists that considers that considers this for axisymmetric equilibria.
+</p>
+
+<p>
+However, the importance of 3-D effects has to be investigated, as tokamaks do not have perfect axisymmetry, and stellarators are inherently 3-D. For tokamaks, for example, the use of RMPs through perturbaiton coils, that break axisymmetry deliberately, is considered to control the behavior of ELMs. Therefore, the theory of a full 3-D treatment with edge effects is presented in [2]. One of the conclusions is that for high-<i>n</i> perturbations, only modes that lie around the same field line are coupled, reducing the order of the stability problem. The numerical code PB3D (<b>P</b>eeling-<b>B</b>allooning in <b>3</b>-<b>D</b>) implements this theory and solves it for the configurations given by multiple equilibrium codes, such as <a href="http://vmecwiki.pppl.wikispaces.net/VMEC">VMEC</a> and HELENA. When the equilibria are restricted to axisymmetry, the domain of validity of ELITE is recovered, but PB3D goes beyond that, allowing for arbitrary 3-D configurations. First verification with MISHKA and <a href="http://www.sciencedirect.com/science/article/pii/S0021999100965148">COBRA</a> results are presented in [3].
+</p>
+
+<p>
+Work is being done on the influence of a 3-D toroidal field ripple on the peeling-ballooning stability of the pedestal region in H-mode plasmas. This will be submitted for publication soon. ELM control through 3-D resonant perturbation fields will be considered in the near future.
+</p>
+
+</p>
+If the PB3D project interests you, I am available for cooperations.<br>
+<b>&mdash;Please contact me <a href="mailto:weyenst@gmail.com?subject=PB3D%20inquiry" target="_top">weyenst@gmail.com</a>&mdash;</b>
+</p>
+
+<p>
+<i>This project is under construction. More information about running PB3D will be updated in the future.</i>
+<p>
+
+<h2>External Libraries</h2>
+
+In order not to reinvent the wheel, PB3D makes use of external libraries. Some of them are mentioned here:
+<ul>
+    <li><a href="http://slepc.upv.es/" target="_blank">Slepc</a> is an advanced library for the solution of eigenvalue problems of various kinds, built on top of the sparse matrices linear algebra library <a href="https://www.mcs.anl.gov/petsc/" target="_blank">Petsc</a>. The user can change the solution algorithms very easily to take advantage of the newest advances in the field, without having to implement them. Slepc is also coupled to external packages to perform specific (sub)tasks, such as <a href="mumps.enseeiht.fr/" target="_blank">MUMPS</a>.
+    </li>
+    <li>The <a href="https://w3.pppl.gov/ntcc/PSPLINE/" target="_blank">pspline</a> library is a fast and user-friendly implementation of spline interpolation.
+    <li>The <a href="http://mpi-forum.org/ target="_blank">MPI</a> standard is used to parallelize PB3D.
+    </li>
+    <li><a href="https://www.hdfgroup.org/HDF5/" target="_blank">HDF5</a> is a flexible data model, library, and file format for storing and managing data. It is built on top of the MPI standard. In PB3D, it is used to produce output files as well as files for restart. The implementation is independent of the number of MPI processes used.
+    </li>
+</ul>
+
+<h2>Toon Weyens</h2>
+<p>
+Postdoctoral Researcher<br>
+Confinement & Modelling Section<br>
+ 
+<br>
+ITER Organization, Building 81/148, SCOD, Science Division<br>
+Route de Vinon-sur-Verdon - CS 90 046 - 13067 St Paul Lez Durance Cedex - France<br>
+Phone: <a href="tel:+33442178337">+33 4 42 17 83 37</a>
+
+<br>
+<a href="https://scholar.google.com/citations?user=pn68uq0AAAAJ" target="_blank">Google Scholar</a> - 
+<a href="https://www.linkedin.com/in/toonweyens/" target="_blank">LinkedIn</a>
+</p>
+
+
+<!--Eindhoven University of Technology<br>-->
+<!--Applied Physics Department<br>-->
+<!--<a href="https://www.tue.nl/en/university/departments/applied-physics/research/plasma-physics-and-radiation-technology/science-and-technology-of-nuclear-fusion/fusion-group/">Science and Technology of Nuclear Fusion</a><br>-->
+<!--<a href="tel:+31402474145">+31 (0)40 247 4145</a>-->
+
+<!--Universidad Carlos III de Madrid<br>-->
+<!--Deptartamento de Física<br>-->
+
+
+<h2>References</h2>
+<p>
+[1] H. R. Wilson, P. B. Snyder, G. T.~A. Huysmans, R. L. Miller,
+    Numerical studies of edge localized instabilities in tokamaks,
+    Physics of Plasmas 9 (4) (2002) 1277,
+    <a href="http://dx.doi.org/10.1063/1.1459058"><i>doi:10.1063/1.1459058</i></a>
+</p>
+
+<p>
+[2] T. Weyens, R. Sánchez, L. García, A. Loarte, G. T. A. Huysmans,
+    <a href="PB3D_paper_theory.pdf">Three-dimensional linear peeling-ballooning theory in magnetic fusion devices</a>,
+    Physics of Plasmas 21 (4) (2014) 042507,
+    <a href="http://dx.doi.org/10.1063/1.4871859"><i>doi:10.1063/1.4871859</i></a>
+</p>
+
+<p>
+[3] T. Weyens, R. Sánchez, L. García, A. Loarte, G. T. A. Huysmans,
+    <a href="PB3D_paper_code.pdf">PB3D: A new code for edge 3-D ideal linear peeling-ballooning stability</a>,
+    Journal of Computational Physics,
+    <a href="http://dx.doi.org/10.1016/j.jcp.2016.10.054"><i>doi:10.1016/j.jcp.2016.10.054</i></a>
+</p>
+
+<h2>Extra Information</h2>
+<p>
+<a href="helena.html">How to run HELENA</a>
+</p>
+
+
+        </section>
+
+        <aside id="sidebar">
+          <a href="Doxygen/html/index.html" class="button">
+            <small>view documentation through</small>
+            Doxygen
+          </a>
+          <a href="https://bitbucket.org/ToonWeyens/cv/raw/master/CV_Toon_Weyens.pdf" class="button">
+            <small>Download</small>
+            CV
+          </a>
+          <a href="dissertation_TOON_WEYENS.pdf" class="button">
+            <small>Download</small>
+            Dissertation
+          </a>
+          <a href="https://www.linkedin.com/in/toonweyens/">
+            <img width="250px" src="./images/linkedin.png">
+          </a>
+          <!--<div class="LI-profile-badge"  data-version="v1" data-size="medium" data-locale="en_US" data-type="vertical" data-theme="light" data-vanity="toonweyens"><a class="LI-simple-link" href='https://fr.linkedin.com/in/toonweyens?trk=profile-badge'>Toon Weyens</a></div>-->
+          <!--<a href="contact.html" class="button_small">-->
+          <!--<font size="6" >Contact</font> -->
+          <!--</a>-->
+
+            <br>
+            <br>
+          <!--<p class="repo-owner"><a href="https://nl.linkedin.com/in/toonweyens"></a> maintained by <a href="https://nl.linkedin.com/in/toonweyens">Toon Weyens</a>.</p>-->
+
+          <p>This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the Architect theme by <a href="https://twitter.com/jasonlong">Jason Long</a>.</p>
+        </aside>
+      </div>
+    </div>
+
+  
+  </body>
+</html>

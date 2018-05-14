@@ -1,0 +1,77 @@
+\hypertarget{X__ops_8f90}{}\section{Modules/\+X\+\_\+ops.f90 File Reference}
+\label{X__ops_8f90}\index{Modules/\+X\+\_\+ops.\+f90@{Modules/\+X\+\_\+ops.\+f90}}
+\subsection*{Interfaces and Types}
+\begin{DoxyCompactItemize}
+\item 
+interface \hyperlink{interfacex__ops_1_1calc__x}{x\+\_\+ops\+::calc\+\_\+x}
+\begin{DoxyCompactList}\small\item\em Calculates either vectorial or tensorial perturbation variables. \end{DoxyCompactList}\item 
+interface \hyperlink{interfacex__ops_1_1redistribute__output__x}{x\+\_\+ops\+::redistribute\+\_\+output\+\_\+x}
+\begin{DoxyCompactList}\small\item\em Redistribute the perturbation variables. \end{DoxyCompactList}\item 
+interface \hyperlink{interfacex__ops_1_1print__output__x}{x\+\_\+ops\+::print\+\_\+output\+\_\+x}
+\begin{DoxyCompactList}\small\item\em Print either vectorial or tensorial perturbation quantities of a certain order to an output file. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Modules}
+\begin{DoxyCompactItemize}
+\item 
+module \hyperlink{namespacex__ops}{x\+\_\+ops}
+\begin{DoxyCompactList}\small\item\em Operations considering perturbation quantities. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Functions/\+Subroutines}
+\begin{DoxyCompactItemize}
+\item 
+integer function, public \hyperlink{namespacex__ops_a73a80c582379669f8e07b09dd7456878}{x\+\_\+ops\+::init\+\_\+modes} (grid\+\_\+eq, eq)
+\begin{DoxyCompactList}\small\item\em Initializes some variables concerning the mode numbers. \end{DoxyCompactList}\item 
+integer function, public \hyperlink{namespacex__ops_a504451aabcab7d6f0fa59feae08ef8dd}{x\+\_\+ops\+::setup\+\_\+modes} (mds, grid\+\_\+eq, grid, plot\+\_\+nm)
+\begin{DoxyCompactList}\small\item\em Sets up some variables concerning the mode numbers. \end{DoxyCompactList}\item 
+integer function, public \hyperlink{namespacex__ops_a7d9275e2d927d92548416f21b983b604}{x\+\_\+ops\+::check\+\_\+x\+\_\+modes} (grid\+\_\+eq, eq)
+\begin{DoxyCompactList}\small\item\em Checks whether the high-\/n approximation is valid\+: \end{DoxyCompactList}\item 
+integer function, public \hyperlink{namespacex__ops_a1a90026bbbeddc25e82cfdd304df251f}{x\+\_\+ops\+::calc\+\_\+res\+\_\+surf} (mds, grid\+\_\+eq, eq, res\+\_\+surf, info, jq)
+\begin{DoxyCompactList}\small\item\em Calculates resonating flux surfaces for the perturbation modes. \end{DoxyCompactList}\item 
+integer function, public \hyperlink{namespacex__ops_abdaf1308e13cede3a153e8c6cf35a637}{x\+\_\+ops\+::resonance\+\_\+plot} (mds, grid\+\_\+eq, eq)
+\begin{DoxyCompactList}\small\item\em plot $q$-\/profile or $\iota$-\/profile in flux coordinates with $nq-m = 0$ or $n-\iota m = 0$ indicated if requested. \end{DoxyCompactList}\item 
+integer function \hyperlink{namespacex__ops_a4e39701da15ff952add5133db1897b52}{x\+\_\+ops\+::calc\+\_\+u} (grid\+\_\+eq, grid\+\_\+X, eq\+\_\+1, eq\+\_\+2, X)
+\begin{DoxyCompactList}\small\item\em Calculate $U_m^0$, $U_m^1$ or $U_n^0$, $U_n^1$. \end{DoxyCompactList}\item 
+integer function \hyperlink{X__ops_8f90_a60ad682c469a085ff3f744ce3191940f}{test\+\_\+du} ()
+\item 
+integer function \hyperlink{namespacex__ops_a51f3bf0b4c8d688ffbcc3a1adbca9762}{x\+\_\+ops\+::calc\+\_\+pv} (grid\+\_\+eq, grid\+\_\+X, eq\+\_\+1, eq\+\_\+2, X\+\_\+a, X\+\_\+b, X, lim\+\_\+sec\+\_\+X)
+\begin{DoxyCompactList}\small\item\em calculate $\widetilde{PV}_{k,m}^i$ (pol. flux) or $\widetilde{PV}_{l,n}^i$ (tor. flux) at all equilibrium {\ttfamily loc\+\_\+n\+\_\+r} values. \end{DoxyCompactList}\item 
+integer function \hyperlink{namespacex__ops_a045e8903230dfa0fb8b89b458d0c8ee2}{x\+\_\+ops\+::calc\+\_\+kv} (grid\+\_\+eq, grid\+\_\+X, eq\+\_\+1, eq\+\_\+2, X\+\_\+a, X\+\_\+b, X, lim\+\_\+sec\+\_\+X)
+\begin{DoxyCompactList}\small\item\em calculate $\widetilde{KV}_{k,m}^i$ (pol. flux) or $\widetilde{KV}_{l,n}^i$ (tor. flux) at all equilibrium {\ttfamily loc\+\_\+n\+\_\+r} values. \end{DoxyCompactList}\item 
+integer function, public \hyperlink{namespacex__ops_a6df79622d1b95d54ab3e542751a5881d}{x\+\_\+ops\+::calc\+\_\+magn\+\_\+ints} (grid\+\_\+eq, grid\+\_\+X, eq, X, X\+\_\+int, prev\+\_\+style, lim\+\_\+sec\+\_\+X)
+\begin{DoxyCompactList}\small\item\em Calculate the magnetic integrals from $\widetilde{PV}_{k,m}^i$ and $\widetilde{KV}_{k,m}^i$ in an equidistant grid where the step size can vary depending on the normal coordinate. \end{DoxyCompactList}\item 
+integer function, public \hyperlink{namespacex__ops_a677c88d85fe1bfbf3579a2421ce16f2f}{x\+\_\+ops\+::divide\+\_\+x\+\_\+jobs} (arr\+\_\+size)
+\begin{DoxyCompactList}\small\item\em Divides the perturbation jobs. \end{DoxyCompactList}\item 
+integer function, public \hyperlink{namespacex__ops_a8bdd87db80570a01cf35ca50184ae879}{x\+\_\+ops\+::print\+\_\+debug\+\_\+x\+\_\+1} (mds, grid\+\_\+X, X\+\_\+1)
+\begin{DoxyCompactList}\small\item\em Prints debug information for X\+\_\+1 driver. \end{DoxyCompactList}\item 
+integer function, public \hyperlink{namespacex__ops_a8879ea26ad86818e981546c3ab2d6165}{x\+\_\+ops\+::print\+\_\+debug\+\_\+x\+\_\+2} (mds, grid\+\_\+X, X\+\_\+2\+\_\+int)
+\begin{DoxyCompactList}\small\item\em Prints debug information for X\+\_\+2 driver. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+logical, public \hyperlink{namespacex__ops_a342c624ea5f9a15264c78767da34684c}{x\+\_\+ops\+::debug\+\_\+check\+\_\+x\+\_\+modes\+\_\+2} = .false.
+\begin{DoxyCompactList}\small\item\em plot debug information for check\+\_\+x\+\_\+modes\+\_\+2() \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Function/\+Subroutine Documentation}
+\mbox{\Hypertarget{X__ops_8f90_a60ad682c469a085ff3f744ce3191940f}\label{X__ops_8f90_a60ad682c469a085ff3f744ce3191940f}} 
+\index{X\+\_\+ops.\+f90@{X\+\_\+ops.\+f90}!test\+\_\+du@{test\+\_\+du}}
+\index{test\+\_\+du@{test\+\_\+du}!X\+\_\+ops.\+f90@{X\+\_\+ops.\+f90}}
+\subsubsection{\texorpdfstring{test\+\_\+du()}{test\_du()}}
+{\footnotesize\ttfamily integer function calc\+\_\+u\+::test\+\_\+du (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 2501 of file X\+\_\+ops.\+f90.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{X__ops_8f90_a60ad682c469a085ff3f744ce3191940f_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{X__ops_8f90_a60ad682c469a085ff3f744ce3191940f_icgraph}
+\end{center}
+\end{figure}

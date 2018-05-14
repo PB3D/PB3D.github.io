@@ -1,0 +1,94 @@
+\hypertarget{interfaceeq__ops_1_1calc__rzl}{}\section{eq\+\_\+ops\+:\+:calc\+\_\+rzl Interface Reference}
+\label{interfaceeq__ops_1_1calc__rzl}\index{eq\+\_\+ops\+::calc\+\_\+rzl@{eq\+\_\+ops\+::calc\+\_\+rzl}}
+
+
+Calculate $R$, $Z$ \& $\lambda$ and derivatives in V\+M\+EC coordinates.  
+
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+integer function \hyperlink{interfaceeq__ops_1_1calc__rzl_ac161b0609f9e3748553befd2d62d083c}{calc\+\_\+rzl\+\_\+ind} (grid\+\_\+eq, eq, deriv)
+\begin{DoxyCompactList}\small\item\em individual version \end{DoxyCompactList}\item 
+integer function \hyperlink{interfaceeq__ops_1_1calc__rzl_ab117adebbc8a50ce2ef9c9dfa96674bb}{calc\+\_\+rzl\+\_\+arr} (grid\+\_\+eq, eq, deriv)
+\begin{DoxyCompactList}\small\item\em array version \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Calculate $R$, $Z$ \& $\lambda$ and derivatives in V\+M\+EC coordinates. 
+
+This is done at the grid points given by the variables {\ttfamily theta\+\_\+E} and {\ttfamily zeta\+\_\+E} (contained in {\ttfamily trigon\+\_\+factors}) and at every normal point.
+
+The derivatives are indicated by the variable {\ttfamily deriv} which has 3 indices
+
+\begin{DoxyNote}{Note}
+There is no H\+E\+L\+E\+NA equivalent because for H\+E\+L\+E\+NA simulations, $R$ and $Z$ are not necessary for calculation of the metric coefficients, and $\lambda$ does not exist.
+\end{DoxyNote}
+\begin{DoxySeeAlso}{See also}
+\hyperlink{namespacevmec__utilities_ac699116fc25fdea3e28e488513d97c87}{calc\+\_\+trigon\+\_\+factors()}
+\end{DoxySeeAlso}
+\begin{DoxyReturn}{Returns}
+ierr 
+\end{DoxyReturn}
+
+
+Definition at line 126 of file eq\+\_\+ops.\+f90.
+
+
+
+\subsection{Member Function/\+Subroutine Documentation}
+\mbox{\Hypertarget{interfaceeq__ops_1_1calc__rzl_ab117adebbc8a50ce2ef9c9dfa96674bb}\label{interfaceeq__ops_1_1calc__rzl_ab117adebbc8a50ce2ef9c9dfa96674bb}} 
+\index{eq\+\_\+ops\+::calc\+\_\+rzl@{eq\+\_\+ops\+::calc\+\_\+rzl}!calc\+\_\+rzl\+\_\+arr@{calc\+\_\+rzl\+\_\+arr}}
+\index{calc\+\_\+rzl\+\_\+arr@{calc\+\_\+rzl\+\_\+arr}!eq\+\_\+ops\+::calc\+\_\+rzl@{eq\+\_\+ops\+::calc\+\_\+rzl}}
+\subsubsection{\texorpdfstring{calc\+\_\+rzl\+\_\+arr()}{calc\_rzl\_arr()}}
+{\footnotesize\ttfamily integer function eq\+\_\+ops\+::calc\+\_\+rzl\+::calc\+\_\+rzl\+\_\+arr (\begin{DoxyParamCaption}\item[{type(\hyperlink{structgrid__vars_1_1grid__type}{grid\+\_\+type}), intent(in)}]{grid\+\_\+eq,  }\item[{type(\hyperlink{structeq__vars_1_1eq__2__type}{eq\+\_\+2\+\_\+type}), intent(inout)}]{eq,  }\item[{integer, dimension(\+:,\+:), intent(in)}]{deriv }\end{DoxyParamCaption})}
+
+
+
+array version 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em grid\+\_\+eq} & equilibrium grid\\
+\hline
+\mbox{\tt in,out}  & {\em eq} & metric equilibrium\\
+\hline
+\mbox{\tt in}  & {\em deriv} & derivatives \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 2588 of file eq\+\_\+ops.\+f90.
+
+\mbox{\Hypertarget{interfaceeq__ops_1_1calc__rzl_ac161b0609f9e3748553befd2d62d083c}\label{interfaceeq__ops_1_1calc__rzl_ac161b0609f9e3748553befd2d62d083c}} 
+\index{eq\+\_\+ops\+::calc\+\_\+rzl@{eq\+\_\+ops\+::calc\+\_\+rzl}!calc\+\_\+rzl\+\_\+ind@{calc\+\_\+rzl\+\_\+ind}}
+\index{calc\+\_\+rzl\+\_\+ind@{calc\+\_\+rzl\+\_\+ind}!eq\+\_\+ops\+::calc\+\_\+rzl@{eq\+\_\+ops\+::calc\+\_\+rzl}}
+\subsubsection{\texorpdfstring{calc\+\_\+rzl\+\_\+ind()}{calc\_rzl\_ind()}}
+{\footnotesize\ttfamily integer function eq\+\_\+ops\+::calc\+\_\+rzl\+::calc\+\_\+rzl\+\_\+ind (\begin{DoxyParamCaption}\item[{type(\hyperlink{structgrid__vars_1_1grid__type}{grid\+\_\+type}), intent(in)}]{grid\+\_\+eq,  }\item[{type(\hyperlink{structeq__vars_1_1eq__2__type}{eq\+\_\+2\+\_\+type}), intent(inout)}]{eq,  }\item[{integer, dimension(3), intent(in)}]{deriv }\end{DoxyParamCaption})}
+
+
+
+individual version 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em grid\+\_\+eq} & equilibrium grid\\
+\hline
+\mbox{\tt in,out}  & {\em eq} & metric equilibrium\\
+\hline
+\mbox{\tt in}  & {\em deriv} & derivatives \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 2550 of file eq\+\_\+ops.\+f90.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{interfaceeq__ops_1_1calc__rzl_ac161b0609f9e3748553befd2d62d083c_cgraph}
+\end{center}
+\end{figure}
+
+

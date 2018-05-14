@@ -1,0 +1,490 @@
+\hypertarget{namespacepb3d__ops}{}\section{pb3d\+\_\+ops Module Reference}
+\label{namespacepb3d__ops}\index{pb3d\+\_\+ops@{pb3d\+\_\+ops}}
+
+
+Operations on P\+B3D output.  
+
+
+\subsection*{Functions/\+Subroutines}
+\begin{DoxyCompactItemize}
+\item 
+integer function, public \hyperlink{namespacepb3d__ops_ad1481747b9b9832f816d4bf1dd2d6737}{reconstruct\+\_\+pb3d\+\_\+in} (data\+\_\+name)
+\begin{DoxyCompactList}\small\item\em Reconstructs the input variables from P\+B3D H\+D\+F5 output. \end{DoxyCompactList}\item 
+integer function, public \hyperlink{namespacepb3d__ops_a4218b582c5029ff05893265fa329877b}{reconstruct\+\_\+pb3d\+\_\+grid} (grid, data\+\_\+name, rich\+\_\+lvl, tot\+\_\+rich, lim\+\_\+pos, grid\+\_\+limits)
+\begin{DoxyCompactList}\small\item\em Reconstructs grid variables from P\+B3D H\+D\+F5 output. \end{DoxyCompactList}\item 
+integer function, public \hyperlink{namespacepb3d__ops_a3142ca9965fa01b2777db762ed1a6eba}{reconstruct\+\_\+pb3d\+\_\+eq\+\_\+1} (grid\+\_\+eq, eq, data\+\_\+name, lim\+\_\+pos)
+\begin{DoxyCompactList}\small\item\em Reconstructs the equilibrium variables from P\+B3D H\+D\+F5 output. \end{DoxyCompactList}\item 
+integer function, public \hyperlink{namespacepb3d__ops_aaf99ae865680f4cf0a0a9932786689bf}{reconstruct\+\_\+pb3d\+\_\+eq\+\_\+2} (grid\+\_\+eq, eq, data\+\_\+name, rich\+\_\+lvl, tot\+\_\+rich, lim\+\_\+pos)
+\begin{DoxyCompactList}\small\item\em Reconstructs the equilibrium variables from P\+B3D H\+D\+F5 output. \end{DoxyCompactList}\item 
+integer function, public \hyperlink{namespacepb3d__ops_a8e87e553956f0dc4371d85b008e5e131}{reconstruct\+\_\+pb3d\+\_\+x\+\_\+1} (mds, grid\+\_\+X, X, data\+\_\+name, rich\+\_\+lvl, tot\+\_\+rich, lim\+\_\+sec\+\_\+X, lim\+\_\+pos)
+\begin{DoxyCompactList}\small\item\em Reconstructs the vectorial perturbation variables from P\+B3D H\+D\+F5 output. \end{DoxyCompactList}\item 
+integer function, public \hyperlink{namespacepb3d__ops_aff64b6722845a07139e2832c0be36145}{reconstruct\+\_\+pb3d\+\_\+x\+\_\+2} (mds, grid\+\_\+X, X, data\+\_\+name, rich\+\_\+lvl, tot\+\_\+rich, lim\+\_\+sec\+\_\+X, lim\+\_\+pos, is\+\_\+field\+\_\+averaged)
+\begin{DoxyCompactList}\small\item\em Reconstructs the tensorial perturbation variables from P\+B3D H\+D\+F5 output. \end{DoxyCompactList}\item 
+integer function, public \hyperlink{namespacepb3d__ops_a281c496a42c4ea46606e929e10d51582}{reconstruct\+\_\+pb3d\+\_\+vac} (vac, data\+\_\+name, rich\+\_\+lvl)
+\begin{DoxyCompactList}\small\item\em Reconstructs the vacuum variables from P\+B3D H\+D\+F5 output. \end{DoxyCompactList}\item 
+integer function, public \hyperlink{namespacepb3d__ops_ae7afc544227f34f2877eb5a14d620823}{reconstruct\+\_\+pb3d\+\_\+sol} (mds, grid\+\_\+sol, sol, data\+\_\+name, rich\+\_\+lvl, lim\+\_\+sec\+\_\+sol, lim\+\_\+pos)
+\begin{DoxyCompactList}\small\item\em Reconstructs the solution variables from P\+B3D H\+D\+F5 output. \end{DoxyCompactList}\item 
+integer function, public \hyperlink{namespacepb3d__ops_a528ae2857b7272d29d96f66ee60980a7}{get\+\_\+pb3d\+\_\+grid\+\_\+size} (n, grid\+\_\+name, rich\+\_\+lvl, tot\+\_\+rich)
+\begin{DoxyCompactList}\small\item\em get grid size \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Operations on P\+B3D output. 
+
+\begin{DoxyNote}{Note}
+If you have parallel jobs, if the reconstruction routines are called for multiple equilibrium jobs, this can only be done after the last equilibrium job is finished. There are no checks for this. 
+\end{DoxyNote}
+
+
+\subsection{Function/\+Subroutine Documentation}
+\mbox{\Hypertarget{namespacepb3d__ops_a528ae2857b7272d29d96f66ee60980a7}\label{namespacepb3d__ops_a528ae2857b7272d29d96f66ee60980a7}} 
+\index{pb3d\+\_\+ops@{pb3d\+\_\+ops}!get\+\_\+pb3d\+\_\+grid\+\_\+size@{get\+\_\+pb3d\+\_\+grid\+\_\+size}}
+\index{get\+\_\+pb3d\+\_\+grid\+\_\+size@{get\+\_\+pb3d\+\_\+grid\+\_\+size}!pb3d\+\_\+ops@{pb3d\+\_\+ops}}
+\subsubsection{\texorpdfstring{get\+\_\+pb3d\+\_\+grid\+\_\+size()}{get\_pb3d\_grid\_size()}}
+{\footnotesize\ttfamily integer function, public pb3d\+\_\+ops\+::get\+\_\+pb3d\+\_\+grid\+\_\+size (\begin{DoxyParamCaption}\item[{integer, dimension(3), intent(inout)}]{n,  }\item[{character(len=$\ast$), intent(in)}]{grid\+\_\+name,  }\item[{integer, intent(in), optional}]{rich\+\_\+lvl,  }\item[{logical, intent(in), optional}]{tot\+\_\+rich }\end{DoxyParamCaption})}
+
+
+
+get grid size 
+
+\begin{DoxyNote}{Note}
+{\ttfamily grid\+\_\+} is added in front the grid\+\_\+name.
+\end{DoxyNote}
+\begin{DoxyReturn}{Returns}
+ierr
+\end{DoxyReturn}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in,out}  & {\em n} & n of grid\\
+\hline
+\mbox{\tt in}  & {\em grid\+\_\+name} & name of grid\\
+\hline
+\mbox{\tt in}  & {\em rich\+\_\+lvl} & Richardson level to reconstruct\\
+\hline
+\mbox{\tt in}  & {\em tot\+\_\+rich} & whether to combine with previous Richardson levels \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 1449 of file P\+B3\+D\+\_\+ops.\+f90.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespacepb3d__ops_a528ae2857b7272d29d96f66ee60980a7_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespacepb3d__ops_a528ae2857b7272d29d96f66ee60980a7_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{namespacepb3d__ops_a3142ca9965fa01b2777db762ed1a6eba}\label{namespacepb3d__ops_a3142ca9965fa01b2777db762ed1a6eba}} 
+\index{pb3d\+\_\+ops@{pb3d\+\_\+ops}!reconstruct\+\_\+pb3d\+\_\+eq\+\_\+1@{reconstruct\+\_\+pb3d\+\_\+eq\+\_\+1}}
+\index{reconstruct\+\_\+pb3d\+\_\+eq\+\_\+1@{reconstruct\+\_\+pb3d\+\_\+eq\+\_\+1}!pb3d\+\_\+ops@{pb3d\+\_\+ops}}
+\subsubsection{\texorpdfstring{reconstruct\+\_\+pb3d\+\_\+eq\+\_\+1()}{reconstruct\_pb3d\_eq\_1()}}
+{\footnotesize\ttfamily integer function, public pb3d\+\_\+ops\+::reconstruct\+\_\+pb3d\+\_\+eq\+\_\+1 (\begin{DoxyParamCaption}\item[{type(\hyperlink{structgrid__vars_1_1grid__type}{grid\+\_\+type}), intent(in)}]{grid\+\_\+eq,  }\item[{type(\hyperlink{structeq__vars_1_1eq__1__type}{eq\+\_\+1\+\_\+type}), intent(inout), optional}]{eq,  }\item[{character(len=$\ast$), intent(in)}]{data\+\_\+name,  }\item[{integer, dimension(1,2), intent(in), optional}]{lim\+\_\+pos }\end{DoxyParamCaption})}
+
+
+
+Reconstructs the equilibrium variables from P\+B3D H\+D\+F5 output. 
+
+Furthermore, using {\ttfamily lim\+\_\+pos}, you can obtain a subset of the data by directly passing its limits to the underlying H\+D\+F5 routine. This refers to the position dimensions only. If provided, the normal limits of a divided grid refer to the subset, as in \hyperlink{namespacegrid__utilities_a04f971c38083f873a04eb6568bed466b}{copy\+\_\+grid()}.
+
+\begin{DoxyReturn}{Returns}
+ierr
+\end{DoxyReturn}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em grid\+\_\+eq} & equilibrium grid\\
+\hline
+\mbox{\tt in,out}  & {\em eq} & flux equilibrium\\
+\hline
+\mbox{\tt in}  & {\em data\+\_\+name} & name to reconstruct\\
+\hline
+\mbox{\tt in}  & {\em lim\+\_\+pos} & position limits of subset of data \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 596 of file P\+B3\+D\+\_\+ops.\+f90.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespacepb3d__ops_a3142ca9965fa01b2777db762ed1a6eba_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespacepb3d__ops_a3142ca9965fa01b2777db762ed1a6eba_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{namespacepb3d__ops_aaf99ae865680f4cf0a0a9932786689bf}\label{namespacepb3d__ops_aaf99ae865680f4cf0a0a9932786689bf}} 
+\index{pb3d\+\_\+ops@{pb3d\+\_\+ops}!reconstruct\+\_\+pb3d\+\_\+eq\+\_\+2@{reconstruct\+\_\+pb3d\+\_\+eq\+\_\+2}}
+\index{reconstruct\+\_\+pb3d\+\_\+eq\+\_\+2@{reconstruct\+\_\+pb3d\+\_\+eq\+\_\+2}!pb3d\+\_\+ops@{pb3d\+\_\+ops}}
+\subsubsection{\texorpdfstring{reconstruct\+\_\+pb3d\+\_\+eq\+\_\+2()}{reconstruct\_pb3d\_eq\_2()}}
+{\footnotesize\ttfamily integer function, public pb3d\+\_\+ops\+::reconstruct\+\_\+pb3d\+\_\+eq\+\_\+2 (\begin{DoxyParamCaption}\item[{type(\hyperlink{structgrid__vars_1_1grid__type}{grid\+\_\+type}), intent(in)}]{grid\+\_\+eq,  }\item[{type(\hyperlink{structeq__vars_1_1eq__2__type}{eq\+\_\+2\+\_\+type}), intent(inout)}]{eq,  }\item[{character(len=$\ast$), intent(in)}]{data\+\_\+name,  }\item[{integer, intent(in), optional}]{rich\+\_\+lvl,  }\item[{logical, intent(in), optional}]{tot\+\_\+rich,  }\item[{integer, dimension(3,2), intent(in), optional}]{lim\+\_\+pos }\end{DoxyParamCaption})}
+
+
+
+Reconstructs the equilibrium variables from P\+B3D H\+D\+F5 output. 
+
+Also, if {\ttfamily rich\+\_\+lvl} is provided, {\ttfamily \+\_\+\+R\+\_\+\mbox{[}rich\+\_\+lvl\mbox{]}} is appended to the data name if it is $>$ 0.
+
+With {\ttfamily tot\+\_\+rich} the information from previous Richardson levels can be combined.
+
+Furthermore, using {\ttfamily lim\+\_\+pos}, you can obtain a subset of the data by directly passing its limits to the underlying H\+D\+F5 routine. This refers to the position dimensions only. If provided, the normal limits of a divided grid refer to the subset, as in \hyperlink{namespacegrid__utilities_a04f971c38083f873a04eb6568bed466b}{copy\+\_\+grid()}.
+
+\begin{DoxyReturn}{Returns}
+ierr
+\end{DoxyReturn}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em grid\+\_\+eq} & equilibrium grid\\
+\hline
+\mbox{\tt in,out}  & {\em eq} & metric equilibrium\\
+\hline
+\mbox{\tt in}  & {\em data\+\_\+name} & name to reconstruct\\
+\hline
+\mbox{\tt in}  & {\em rich\+\_\+lvl} & Richardson level to reconstruct\\
+\hline
+\mbox{\tt in}  & {\em tot\+\_\+rich} & whether to combine with previous Richardson levels\\
+\hline
+\mbox{\tt in}  & {\em lim\+\_\+pos} & position limits of subset of data \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 694 of file P\+B3\+D\+\_\+ops.\+f90.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespacepb3d__ops_aaf99ae865680f4cf0a0a9932786689bf_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespacepb3d__ops_aaf99ae865680f4cf0a0a9932786689bf_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{namespacepb3d__ops_a4218b582c5029ff05893265fa329877b}\label{namespacepb3d__ops_a4218b582c5029ff05893265fa329877b}} 
+\index{pb3d\+\_\+ops@{pb3d\+\_\+ops}!reconstruct\+\_\+pb3d\+\_\+grid@{reconstruct\+\_\+pb3d\+\_\+grid}}
+\index{reconstruct\+\_\+pb3d\+\_\+grid@{reconstruct\+\_\+pb3d\+\_\+grid}!pb3d\+\_\+ops@{pb3d\+\_\+ops}}
+\subsubsection{\texorpdfstring{reconstruct\+\_\+pb3d\+\_\+grid()}{reconstruct\_pb3d\_grid()}}
+{\footnotesize\ttfamily integer function, public pb3d\+\_\+ops\+::reconstruct\+\_\+pb3d\+\_\+grid (\begin{DoxyParamCaption}\item[{type(\hyperlink{structgrid__vars_1_1grid__type}{grid\+\_\+type}), intent(inout)}]{grid,  }\item[{character(len=$\ast$), intent(in)}]{data\+\_\+name,  }\item[{integer, intent(in), optional}]{rich\+\_\+lvl,  }\item[{logical, intent(in), optional}]{tot\+\_\+rich,  }\item[{integer, dimension(3,2), intent(in), optional}]{lim\+\_\+pos,  }\item[{integer, dimension(2), intent(in), optional}]{grid\+\_\+limits }\end{DoxyParamCaption})}
+
+
+
+Reconstructs grid variables from P\+B3D H\+D\+F5 output. 
+
+Also, if {\ttfamily rich\+\_\+lvl} is provided, {\ttfamily \+\_\+\+R\+\_\+\mbox{[}rich\+\_\+lvl\mbox{]}} is appended to the data name if it is $>$ 0.
+
+With {\ttfamily tot\+\_\+rich} the information from previous Richardson levels can be combined.
+
+Furthermore, using {\ttfamily lim\+\_\+pos}, you can obtain a subset of the data by directly passing its limits to the underlying H\+D\+F5 routine. This refers to the position dimensions only. If provided, the normal limits of a divided grid refer to the subset, as in \hyperlink{namespacegrid__utilities_a04f971c38083f873a04eb6568bed466b}{copy\+\_\+grid()}.
+
+\begin{DoxyNote}{Note}
+
+\begin{DoxyEnumerate}
+\item {\ttfamily grid\+\_\+} is added in front the data\+\_\+name.
+\item By providing {\ttfamily lim\+\_\+pos} equal to 0 in the angular dimensions, the angular part can be discarded when reconstructing the grid.
+\end{DoxyEnumerate}
+\end{DoxyNote}
+\begin{DoxyReturn}{Returns}
+ierr
+\end{DoxyReturn}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em data\+\_\+name} & name of grid\\
+\hline
+\mbox{\tt in}  & {\em rich\+\_\+lvl} & Richardson level to reconstruct\\
+\hline
+\mbox{\tt in}  & {\em tot\+\_\+rich} & whether to combine with previous Richardson levels\\
+\hline
+\mbox{\tt in}  & {\em lim\+\_\+pos} & position limits of subset of data\\
+\hline
+\mbox{\tt in}  & {\em grid\+\_\+limits} & i\+\_\+limit of grid \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 441 of file P\+B3\+D\+\_\+ops.\+f90.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespacepb3d__ops_a4218b582c5029ff05893265fa329877b_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespacepb3d__ops_a4218b582c5029ff05893265fa329877b_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{namespacepb3d__ops_ad1481747b9b9832f816d4bf1dd2d6737}\label{namespacepb3d__ops_ad1481747b9b9832f816d4bf1dd2d6737}} 
+\index{pb3d\+\_\+ops@{pb3d\+\_\+ops}!reconstruct\+\_\+pb3d\+\_\+in@{reconstruct\+\_\+pb3d\+\_\+in}}
+\index{reconstruct\+\_\+pb3d\+\_\+in@{reconstruct\+\_\+pb3d\+\_\+in}!pb3d\+\_\+ops@{pb3d\+\_\+ops}}
+\subsubsection{\texorpdfstring{reconstruct\+\_\+pb3d\+\_\+in()}{reconstruct\_pb3d\_in()}}
+{\footnotesize\ttfamily integer function, public pb3d\+\_\+ops\+::reconstruct\+\_\+pb3d\+\_\+in (\begin{DoxyParamCaption}\item[{character(len=$\ast$), intent(in)}]{data\+\_\+name }\end{DoxyParamCaption})}
+
+
+
+Reconstructs the input variables from P\+B3D H\+D\+F5 output. 
+
+\begin{DoxyReturn}{Returns}
+ierr
+\end{DoxyReturn}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em data\+\_\+name} & name of input variables \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 41 of file P\+B3\+D\+\_\+ops.\+f90.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespacepb3d__ops_ad1481747b9b9832f816d4bf1dd2d6737_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespacepb3d__ops_ad1481747b9b9832f816d4bf1dd2d6737_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{namespacepb3d__ops_ae7afc544227f34f2877eb5a14d620823}\label{namespacepb3d__ops_ae7afc544227f34f2877eb5a14d620823}} 
+\index{pb3d\+\_\+ops@{pb3d\+\_\+ops}!reconstruct\+\_\+pb3d\+\_\+sol@{reconstruct\+\_\+pb3d\+\_\+sol}}
+\index{reconstruct\+\_\+pb3d\+\_\+sol@{reconstruct\+\_\+pb3d\+\_\+sol}!pb3d\+\_\+ops@{pb3d\+\_\+ops}}
+\subsubsection{\texorpdfstring{reconstruct\+\_\+pb3d\+\_\+sol()}{reconstruct\_pb3d\_sol()}}
+{\footnotesize\ttfamily integer function, public pb3d\+\_\+ops\+::reconstruct\+\_\+pb3d\+\_\+sol (\begin{DoxyParamCaption}\item[{type(modes\+\_\+type), intent(in)}]{mds,  }\item[{type(\hyperlink{structgrid__vars_1_1grid__type}{grid\+\_\+type}), intent(in)}]{grid\+\_\+sol,  }\item[{type(\hyperlink{structsol__vars_1_1sol__type}{sol\+\_\+type}), intent(inout)}]{sol,  }\item[{character(len=$\ast$), intent(in)}]{data\+\_\+name,  }\item[{integer, intent(in), optional}]{rich\+\_\+lvl,  }\item[{integer, dimension(2), intent(in), optional}]{lim\+\_\+sec\+\_\+sol,  }\item[{integer, dimension(1,2), intent(in), optional}]{lim\+\_\+pos }\end{DoxyParamCaption})}
+
+
+
+Reconstructs the solution variables from P\+B3D H\+D\+F5 output. 
+
+Also, if {\ttfamily rich\+\_\+lvl} is provided, {\ttfamily \+\_\+\+R\+\_\+\mbox{[}rich\+\_\+lvl\mbox{]}} is appended to the data name if it is $>$ 0.
+
+Furthermore, using {\ttfamily lim\+\_\+pos}, you can obtain a subset of the data by directly passing its limits to the underlying H\+D\+F5 routine. This refers to the position dimensions only. If provided, the normal limits of a divided grid refer to the subset, as in \hyperlink{namespacegrid__utilities_a04f971c38083f873a04eb6568bed466b}{copy\+\_\+grid()}.
+
+{\ttfamily lim\+\_\+sec\+\_\+sol}, on the other hand, selects a range of mode numbers.
+
+\begin{DoxyReturn}{Returns}
+ierr
+\end{DoxyReturn}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em mds} & general modes variables\\
+\hline
+\mbox{\tt in}  & {\em grid\+\_\+sol} & solution grid\\
+\hline
+\mbox{\tt in,out}  & {\em sol} & solution variables\\
+\hline
+\mbox{\tt in}  & {\em data\+\_\+name} & name to reconstruct\\
+\hline
+\mbox{\tt in}  & {\em rich\+\_\+lvl} & Richardson level to reconstruct\\
+\hline
+\mbox{\tt in}  & {\em lim\+\_\+sec\+\_\+sol} & limits of m\+\_\+X (pol. flux) or n\+\_\+X (tor. flux)\\
+\hline
+\mbox{\tt in}  & {\em lim\+\_\+pos} & position limits of subset of data \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 1354 of file P\+B3\+D\+\_\+ops.\+f90.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespacepb3d__ops_ae7afc544227f34f2877eb5a14d620823_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespacepb3d__ops_ae7afc544227f34f2877eb5a14d620823_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{namespacepb3d__ops_a281c496a42c4ea46606e929e10d51582}\label{namespacepb3d__ops_a281c496a42c4ea46606e929e10d51582}} 
+\index{pb3d\+\_\+ops@{pb3d\+\_\+ops}!reconstruct\+\_\+pb3d\+\_\+vac@{reconstruct\+\_\+pb3d\+\_\+vac}}
+\index{reconstruct\+\_\+pb3d\+\_\+vac@{reconstruct\+\_\+pb3d\+\_\+vac}!pb3d\+\_\+ops@{pb3d\+\_\+ops}}
+\subsubsection{\texorpdfstring{reconstruct\+\_\+pb3d\+\_\+vac()}{reconstruct\_pb3d\_vac()}}
+{\footnotesize\ttfamily integer function, public pb3d\+\_\+ops\+::reconstruct\+\_\+pb3d\+\_\+vac (\begin{DoxyParamCaption}\item[{type(\hyperlink{structvac__vars_1_1vac__type}{vac\+\_\+type}), intent(inout)}]{vac,  }\item[{character(len=$\ast$), intent(in)}]{data\+\_\+name,  }\item[{integer, intent(in), optional}]{rich\+\_\+lvl }\end{DoxyParamCaption})}
+
+
+
+Reconstructs the vacuum variables from P\+B3D H\+D\+F5 output. 
+
+Also, if {\ttfamily rich\+\_\+lvl} is provided, {\ttfamily \+\_\+\+R\+\_\+\mbox{[}rich\+\_\+lvl\mbox{]}} is appended to the data name if it is $>$ 0.
+
+\begin{DoxyReturn}{Returns}
+ierr
+\end{DoxyReturn}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in,out}  & {\em vac} & vacuum variables\\
+\hline
+\mbox{\tt in}  & {\em data\+\_\+name} & name to reconstruct\\
+\hline
+\mbox{\tt in}  & {\em rich\+\_\+lvl} & Richardson level to reconstruct \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 1227 of file P\+B3\+D\+\_\+ops.\+f90.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespacepb3d__ops_a281c496a42c4ea46606e929e10d51582_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespacepb3d__ops_a281c496a42c4ea46606e929e10d51582_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{namespacepb3d__ops_a8e87e553956f0dc4371d85b008e5e131}\label{namespacepb3d__ops_a8e87e553956f0dc4371d85b008e5e131}} 
+\index{pb3d\+\_\+ops@{pb3d\+\_\+ops}!reconstruct\+\_\+pb3d\+\_\+x\+\_\+1@{reconstruct\+\_\+pb3d\+\_\+x\+\_\+1}}
+\index{reconstruct\+\_\+pb3d\+\_\+x\+\_\+1@{reconstruct\+\_\+pb3d\+\_\+x\+\_\+1}!pb3d\+\_\+ops@{pb3d\+\_\+ops}}
+\subsubsection{\texorpdfstring{reconstruct\+\_\+pb3d\+\_\+x\+\_\+1()}{reconstruct\_pb3d\_x\_1()}}
+{\footnotesize\ttfamily integer function, public pb3d\+\_\+ops\+::reconstruct\+\_\+pb3d\+\_\+x\+\_\+1 (\begin{DoxyParamCaption}\item[{type(modes\+\_\+type), intent(in)}]{mds,  }\item[{type(\hyperlink{structgrid__vars_1_1grid__type}{grid\+\_\+type}), intent(in)}]{grid\+\_\+X,  }\item[{type(x\+\_\+1\+\_\+type), intent(inout)}]{X,  }\item[{character(len=$\ast$), intent(in)}]{data\+\_\+name,  }\item[{integer, intent(in), optional}]{rich\+\_\+lvl,  }\item[{logical, intent(in), optional}]{tot\+\_\+rich,  }\item[{integer, dimension(2), intent(in), optional}]{lim\+\_\+sec\+\_\+X,  }\item[{integer, dimension(3,2), intent(in), optional}]{lim\+\_\+pos }\end{DoxyParamCaption})}
+
+
+
+Reconstructs the vectorial perturbation variables from P\+B3D H\+D\+F5 output. 
+
+Also, if {\ttfamily rich\+\_\+lvl} is provided, {\ttfamily \+\_\+\+R\+\_\+\mbox{[}rich\+\_\+lvl\mbox{]}} is appended to the data name if it is $>$ 0.
+
+With {\ttfamily tot\+\_\+rich} the information from previous Richardson levels can be combined.
+
+Furthermore, using {\ttfamily lim\+\_\+pos}, you can obtain a subset of the data by directly passing its limits to the underlying H\+D\+F5 routine. This refers to the position dimensions only. If provided, the normal limits of a divided grid refer to the subset, as in \hyperlink{namespacegrid__utilities_a04f971c38083f873a04eb6568bed466b}{copy\+\_\+grid()}.
+
+{\ttfamily lim\+\_\+sec\+\_\+X}, on the other hand, selects a range of mode numbers.
+
+\begin{DoxyReturn}{Returns}
+ierr
+\end{DoxyReturn}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em mds} & general modes variables\\
+\hline
+\mbox{\tt in}  & {\em grid\+\_\+x} & perturbation grid\\
+\hline
+\mbox{\tt in,out}  & {\em x} & vectorial perturbation variables\\
+\hline
+\mbox{\tt in}  & {\em data\+\_\+name} & name to reconstruct\\
+\hline
+\mbox{\tt in}  & {\em rich\+\_\+lvl} & Richardson level to reconstruct\\
+\hline
+\mbox{\tt in}  & {\em tot\+\_\+rich} & whether to combine with previous Richardson levels\\
+\hline
+\mbox{\tt in}  & {\em lim\+\_\+sec\+\_\+x} & limits of m\+\_\+X (pol. flux) or n\+\_\+X (tor. flux)\\
+\hline
+\mbox{\tt in}  & {\em lim\+\_\+pos} & position limits of subset of data \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 832 of file P\+B3\+D\+\_\+ops.\+f90.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespacepb3d__ops_a8e87e553956f0dc4371d85b008e5e131_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespacepb3d__ops_a8e87e553956f0dc4371d85b008e5e131_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{namespacepb3d__ops_aff64b6722845a07139e2832c0be36145}\label{namespacepb3d__ops_aff64b6722845a07139e2832c0be36145}} 
+\index{pb3d\+\_\+ops@{pb3d\+\_\+ops}!reconstruct\+\_\+pb3d\+\_\+x\+\_\+2@{reconstruct\+\_\+pb3d\+\_\+x\+\_\+2}}
+\index{reconstruct\+\_\+pb3d\+\_\+x\+\_\+2@{reconstruct\+\_\+pb3d\+\_\+x\+\_\+2}!pb3d\+\_\+ops@{pb3d\+\_\+ops}}
+\subsubsection{\texorpdfstring{reconstruct\+\_\+pb3d\+\_\+x\+\_\+2()}{reconstruct\_pb3d\_x\_2()}}
+{\footnotesize\ttfamily integer function, public pb3d\+\_\+ops\+::reconstruct\+\_\+pb3d\+\_\+x\+\_\+2 (\begin{DoxyParamCaption}\item[{type(modes\+\_\+type), intent(in)}]{mds,  }\item[{type(\hyperlink{structgrid__vars_1_1grid__type}{grid\+\_\+type}), intent(in)}]{grid\+\_\+X,  }\item[{type(x\+\_\+2\+\_\+type), intent(inout)}]{X,  }\item[{character(len=$\ast$), intent(in)}]{data\+\_\+name,  }\item[{integer, intent(in), optional}]{rich\+\_\+lvl,  }\item[{logical, intent(in), optional}]{tot\+\_\+rich,  }\item[{integer, dimension(2,2), intent(in), optional}]{lim\+\_\+sec\+\_\+X,  }\item[{integer, dimension(3,2), intent(in), optional}]{lim\+\_\+pos,  }\item[{logical, intent(in), optional}]{is\+\_\+field\+\_\+averaged }\end{DoxyParamCaption})}
+
+
+
+Reconstructs the tensorial perturbation variables from P\+B3D H\+D\+F5 output. 
+
+Also, if {\ttfamily rich\+\_\+lvl} is provided, {\ttfamily \+\_\+\+R\+\_\+\mbox{[}rich\+\_\+lvl\mbox{]}} is appended to the data name if it is $>$ 0.
+
+With {\ttfamily tot\+\_\+rich} the information from previous Richardson levels can be combined.
+
+Furthermore, using {\ttfamily lim\+\_\+pos}, you can obtain a subset of the data by directly passing its limits to the underlying H\+D\+F5 routine. This refers to the position dimensions only. If provided, the normal limits of a divided grid refer to the subset, as in \hyperlink{namespacegrid__utilities_a04f971c38083f873a04eb6568bed466b}{copy\+\_\+grid()}.
+
+{\ttfamily lim\+\_\+sec\+\_\+X}, on the other hand, selects a range of mode numbers.
+
+\begin{DoxyNote}{Note}
+The tensorial perturbation type can also be used for field-\/ aligned variables, in which case the first index is assumed to have dimension 1 only. This can be triggered using {\ttfamily is\+\_\+field\+\_\+averaged}.
+\end{DoxyNote}
+\begin{DoxyReturn}{Returns}
+ierr
+\end{DoxyReturn}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em mds} & general modes variables\\
+\hline
+\mbox{\tt in}  & {\em grid\+\_\+x} & perturbation grid\\
+\hline
+\mbox{\tt in,out}  & {\em x} & tensorial perturbation vars\\
+\hline
+\mbox{\tt in}  & {\em data\+\_\+name} & name to reconstruct\\
+\hline
+\mbox{\tt in}  & {\em rich\+\_\+lvl} & Richardson level to reconstruct\\
+\hline
+\mbox{\tt in}  & {\em tot\+\_\+rich} & whether to combine with previous Richardson levels\\
+\hline
+\mbox{\tt in}  & {\em lim\+\_\+sec\+\_\+x} & limits of m\+\_\+X (pol flux) or n\+\_\+X (tor flux) for both dimensions\\
+\hline
+\mbox{\tt in}  & {\em lim\+\_\+pos} & position limits of subset of data\\
+\hline
+\mbox{\tt in}  & {\em is\+\_\+field\+\_\+averaged} & if field-\/averaged, only one dimension for first index \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 991 of file P\+B3\+D\+\_\+ops.\+f90.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespacepb3d__ops_aff64b6722845a07139e2832c0be36145_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespacepb3d__ops_aff64b6722845a07139e2832c0be36145_icgraph}
+\end{center}
+\end{figure}

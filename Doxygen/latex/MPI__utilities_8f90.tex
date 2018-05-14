@@ -1,0 +1,44 @@
+\hypertarget{MPI__utilities_8f90}{}\section{Modules/\+M\+P\+I\+\_\+utilities.f90 File Reference}
+\label{MPI__utilities_8f90}\index{Modules/\+M\+P\+I\+\_\+utilities.\+f90@{Modules/\+M\+P\+I\+\_\+utilities.\+f90}}
+\subsection*{Interfaces and Types}
+\begin{DoxyCompactItemize}
+\item 
+interface \hyperlink{interfacempi__utilities_1_1get__ser__var}{mpi\+\_\+utilities\+::get\+\_\+ser\+\_\+var}
+\begin{DoxyCompactList}\small\item\em Gather parallel variable in serial version on group master. \end{DoxyCompactList}\item 
+interface \hyperlink{interfacempi__utilities_1_1get__ghost__arr}{mpi\+\_\+utilities\+::get\+\_\+ghost\+\_\+arr}
+\begin{DoxyCompactList}\small\item\em Fill the ghost regions in an array. \end{DoxyCompactList}\item 
+interface \hyperlink{interfacempi__utilities_1_1broadcast__var}{mpi\+\_\+utilities\+::broadcast\+\_\+var}
+\begin{DoxyCompactList}\small\item\em Wrapper function to broadcast a single variable using M\+PI. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Modules}
+\begin{DoxyCompactItemize}
+\item 
+module \hyperlink{namespacempi__utilities}{mpi\+\_\+utilities}
+\begin{DoxyCompactList}\small\item\em Numerical utilities related to M\+PI. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Functions/\+Subroutines}
+\begin{DoxyCompactItemize}
+\item 
+integer function, public \hyperlink{namespacempi__utilities_a128702990bd5fddc582e8fabcffc82b2}{mpi\+\_\+utilities\+::redistribute\+\_\+var} (var, dis\+\_\+var, lims, lims\+\_\+dis)
+\begin{DoxyCompactList}\small\item\em Redistribute variables according to new limits. \end{DoxyCompactList}\item 
+integer function, public \hyperlink{namespacempi__utilities_a790ea24d32dd0e249541c1e57cd85536}{mpi\+\_\+utilities\+::wait\+\_\+mpi} ()
+\begin{DoxyCompactList}\small\item\em Wait for all processes, wrapper to M\+PI barrier. \end{DoxyCompactList}\item 
+integer function, public \hyperlink{namespacempi__utilities_a5a789d05be41d6109c01f46cc98620c8}{mpi\+\_\+utilities\+::lock\+\_\+req\+\_\+acc} (lock, blocking)
+\begin{DoxyCompactList}\small\item\em Request access to lock of a BL (blocking) or optionally a NB (non-\/blocking) type. \end{DoxyCompactList}\item 
+integer function, public \hyperlink{namespacempi__utilities_a86f9982a0f92b51a916f832d9a3d8ba9}{mpi\+\_\+utilities\+::lock\+\_\+return\+\_\+acc} (lock)
+\begin{DoxyCompactList}\small\item\em Returns access to a lock. \end{DoxyCompactList}\item 
+logical function \hyperlink{namespacempi__utilities_a74e2e82b561f403ca8087c3925f76e29}{mpi\+\_\+utilities\+::wl\+\_\+empty} (wl, proc\+\_\+type, next\+\_\+procs)
+\begin{DoxyCompactList}\small\item\em Decides whether a waiting list is empty. \end{DoxyCompactList}\item 
+integer function \hyperlink{namespacempi__utilities_a263a30c79639d97f5faffdb566b5a811}{mpi\+\_\+utilities\+::lock\+\_\+notify} (lock\+\_\+loc, rec\+\_\+rank)
+\begin{DoxyCompactList}\small\item\em Notifies a rank that they can get the lock. \end{DoxyCompactList}\item 
+integer function \hyperlink{namespacempi__utilities_a17c39b0498528e2532c8347b0b7dec86}{mpi\+\_\+utilities\+::lock\+\_\+get\+\_\+notified} (lock\+\_\+loc)
+\begin{DoxyCompactList}\small\item\em Get notified that the rank can get the lock. \end{DoxyCompactList}\item 
+integer function, public \hyperlink{namespacempi__utilities_a3b0349e5ec825e14083e3126c3e7ba65}{mpi\+\_\+utilities\+::lock\+\_\+wl\+\_\+change} (wl\+\_\+action, blocking, lock\+\_\+loc, wl, ranks)
+\begin{DoxyCompactList}\small\item\em Adds, removes or sets to active a rank from the waiting list for a lock and returns the lock waiting list\+: \end{DoxyCompactList}\item 
+character(len=max\+\_\+str\+\_\+ln) function, public \hyperlink{namespacempi__utilities_abe5bf3ae3b6a06eda18c2f4d62ac09c5}{mpi\+\_\+utilities\+::lock\+\_\+header} (lock\+\_\+loc)
+\begin{DoxyCompactList}\small\item\em Returns the header for lock debug messages. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+logical, public \hyperlink{namespacempi__utilities_a98291c400747762ea4e3f0d751c5d5f5}{mpi\+\_\+utilities\+::debug\+\_\+lock} = .false.
+\begin{DoxyCompactList}\small\item\em print debug information about lock operations \end{DoxyCompactList}\item 
+integer, public \hyperlink{namespacempi__utilities_a38a87fa6a7efbd985592bbef4750f02b}{mpi\+\_\+utilities\+::n\+\_\+waits} = 0
+\begin{DoxyCompactList}\small\item\em number of waits \end{DoxyCompactList}\end{DoxyCompactItemize}

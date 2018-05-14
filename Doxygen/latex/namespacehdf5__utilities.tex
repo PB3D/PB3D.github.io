@@ -1,0 +1,207 @@
+\hypertarget{namespacehdf5__utilities}{}\section{hdf5\+\_\+utilities Module Reference}
+\label{namespacehdf5__utilities}\index{hdf5\+\_\+utilities@{hdf5\+\_\+utilities}}
+
+
+Utilities pertaining to H\+D\+F5 and X\+D\+MF.  
+
+
+\subsection*{Functions/\+Subroutines}
+\begin{DoxyCompactItemize}
+\item 
+integer function, public \hyperlink{namespacehdf5__utilities_a7574320980affc30a584f7776d33a51c}{set\+\_\+1d\+\_\+vars} (lim\+\_\+tot, lim\+\_\+loc, space\+\_\+id, c\+\_\+plist\+\_\+id)
+\begin{DoxyCompactList}\small\item\em Sets up the chunk property list and/or the 1D hyperslabs that correspond to a local subset of {\ttfamily lim\+\_\+tot} given by the limits {\ttfamily lim\+\_\+loc}. \end{DoxyCompactList}\item 
+integer function, public \hyperlink{namespacehdf5__utilities_ae4e6c96512460a0ede8dc5b1a43681e8}{probe\+\_\+hdf5\+\_\+group} (H\+D\+F5\+\_\+name, group\+\_\+name, group\+\_\+exists)
+\begin{DoxyCompactList}\small\item\em Probe H\+D\+F5 file for group existence. \end{DoxyCompactList}\item 
+integer function, public \hyperlink{namespacehdf5__utilities_aa9d76166f970a7052cd0d96c8f3ee0be}{list\+\_\+all\+\_\+vars\+\_\+in\+\_\+group} (group\+\_\+id)
+\begin{DoxyCompactList}\small\item\em Lists all variables in a H\+D\+F5 group. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+logical, public \hyperlink{namespacehdf5__utilities_addf084b90450dc2a0cc614f2f5ac13fc}{debug\+\_\+set\+\_\+1d\+\_\+vars} = .false.
+\begin{DoxyCompactList}\small\item\em set to true to debug set\+\_\+1\+D\+\_\+vars \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Utilities pertaining to H\+D\+F5 and X\+D\+MF. 
+
+\begin{DoxySeeAlso}{See also}
+See \hyperlink{namespacehdf5__ops}{hdf5\+\_\+ops} for notes on H\+D\+F5 and X\+D\+MF. 
+\end{DoxySeeAlso}
+
+
+\subsection{Function/\+Subroutine Documentation}
+\mbox{\Hypertarget{namespacehdf5__utilities_aa9d76166f970a7052cd0d96c8f3ee0be}\label{namespacehdf5__utilities_aa9d76166f970a7052cd0d96c8f3ee0be}} 
+\index{hdf5\+\_\+utilities@{hdf5\+\_\+utilities}!list\+\_\+all\+\_\+vars\+\_\+in\+\_\+group@{list\+\_\+all\+\_\+vars\+\_\+in\+\_\+group}}
+\index{list\+\_\+all\+\_\+vars\+\_\+in\+\_\+group@{list\+\_\+all\+\_\+vars\+\_\+in\+\_\+group}!hdf5\+\_\+utilities@{hdf5\+\_\+utilities}}
+\subsubsection{\texorpdfstring{list\+\_\+all\+\_\+vars\+\_\+in\+\_\+group()}{list\_all\_vars\_in\_group()}}
+{\footnotesize\ttfamily integer function, public hdf5\+\_\+utilities\+::list\+\_\+all\+\_\+vars\+\_\+in\+\_\+group (\begin{DoxyParamCaption}\item[{integer(hid\+\_\+t), intent(in)}]{group\+\_\+id }\end{DoxyParamCaption})}
+
+
+
+Lists all variables in a H\+D\+F5 group. 
+
+\begin{DoxyNote}{Note}
+Debug version only
+\end{DoxyNote}
+\begin{DoxyReturn}{Returns}
+ierr
+\end{DoxyReturn}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em group\+\_\+id} & group identifier \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 319 of file H\+D\+F5\+\_\+utilities.\+f90.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespacehdf5__utilities_aa9d76166f970a7052cd0d96c8f3ee0be_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespacehdf5__utilities_aa9d76166f970a7052cd0d96c8f3ee0be_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{namespacehdf5__utilities_ae4e6c96512460a0ede8dc5b1a43681e8}\label{namespacehdf5__utilities_ae4e6c96512460a0ede8dc5b1a43681e8}} 
+\index{hdf5\+\_\+utilities@{hdf5\+\_\+utilities}!probe\+\_\+hdf5\+\_\+group@{probe\+\_\+hdf5\+\_\+group}}
+\index{probe\+\_\+hdf5\+\_\+group@{probe\+\_\+hdf5\+\_\+group}!hdf5\+\_\+utilities@{hdf5\+\_\+utilities}}
+\subsubsection{\texorpdfstring{probe\+\_\+hdf5\+\_\+group()}{probe\_hdf5\_group()}}
+{\footnotesize\ttfamily integer function, public hdf5\+\_\+utilities\+::probe\+\_\+hdf5\+\_\+group (\begin{DoxyParamCaption}\item[{character(len=$\ast$), intent(in)}]{H\+D\+F5\+\_\+name,  }\item[{character(len=$\ast$), intent(in)}]{group\+\_\+name,  }\item[{logical, intent(inout)}]{group\+\_\+exists }\end{DoxyParamCaption})}
+
+
+
+Probe H\+D\+F5 file for group existence. 
+
+\begin{DoxyReturn}{Returns}
+ierr
+\end{DoxyReturn}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em hdf5\+\_\+name} & name of H\+D\+F5 file\\
+\hline
+\mbox{\tt in}  & {\em group\+\_\+name} & name of group to probe for\\
+\hline
+\mbox{\tt in,out}  & {\em group\+\_\+exists} & whether group exists \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 251 of file H\+D\+F5\+\_\+utilities.\+f90.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespacehdf5__utilities_ae4e6c96512460a0ede8dc5b1a43681e8_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespacehdf5__utilities_ae4e6c96512460a0ede8dc5b1a43681e8_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{namespacehdf5__utilities_a7574320980affc30a584f7776d33a51c}\label{namespacehdf5__utilities_a7574320980affc30a584f7776d33a51c}} 
+\index{hdf5\+\_\+utilities@{hdf5\+\_\+utilities}!set\+\_\+1d\+\_\+vars@{set\+\_\+1d\+\_\+vars}}
+\index{set\+\_\+1d\+\_\+vars@{set\+\_\+1d\+\_\+vars}!hdf5\+\_\+utilities@{hdf5\+\_\+utilities}}
+\subsubsection{\texorpdfstring{set\+\_\+1d\+\_\+vars()}{set\_1d\_vars()}}
+{\footnotesize\ttfamily integer function, public hdf5\+\_\+utilities\+::set\+\_\+1d\+\_\+vars (\begin{DoxyParamCaption}\item[{integer, dimension(\+:,\+:), intent(in)}]{lim\+\_\+tot,  }\item[{integer, dimension(\+:,\+:), intent(in)}]{lim\+\_\+loc,  }\item[{integer(hid\+\_\+t), intent(in), optional}]{space\+\_\+id,  }\item[{integer(hid\+\_\+t), intent(inout), optional}]{c\+\_\+plist\+\_\+id }\end{DoxyParamCaption})}
+
+
+
+Sets up the chunk property list and/or the 1D hyperslabs that correspond to a local subset of {\ttfamily lim\+\_\+tot} given by the limits {\ttfamily lim\+\_\+loc}. 
+
+An example for the hyperslab is given in 3 dimensions with size n = 5,3,3\+:
+\begin{DoxyItemize}
+\item for dim = 1, limits\+: 2..4
+\item for dim = 2, limits\+: 3..3
+\item for dim = 3, limits\+: 2..3.
+\end{DoxyItemize}
+
+The 1D equivalent can be represented as 
+\begin{DoxyCode}
+[.....][.....][.....] | [.....][.....][.....] | [.....][.....][.....]
+\end{DoxyCode}
+ Now, dimension 1 will only allow for the following elements (given by {\ttfamily -\/})\+: 
+\begin{DoxyCode}
+[.---.][.---.][.---.] | [.---.][.---.][.---.] | [.---.][.---.][.---.]
+\end{DoxyCode}
+ dimension 2 will only allow for the following elements\+: 
+\begin{DoxyCode}
+[.....][.....][-----] | [.....][.....][-----] | [.....][.....][-----]
+\end{DoxyCode}
+ dimension 3 will only allow for the following elements\+: 
+\begin{DoxyCode}
+[.....][.....][.....] | [-----][-----][-----] | [-----][-----][-----]
+\end{DoxyCode}
+ so that the total is given by\+: 
+\begin{DoxyCode}
+[.....][.....][.....] | [.....][.....][.....] | [.....][.....][.---.]
+\end{DoxyCode}
+
+
+In practice, it is easiest to work with a full selection, where for every dimension the ranges that do not correspond to the range of that dimension are taken away. Clearly, if a dimension has the full range, nothing will be taken out\+:
+\begin{DoxyItemize}
+\item {\ttfamily block\+\_\+i} = $n_1 n_2 \cdots n_{i-1} (b_i-a_{i+1}) $ ,
+\item {\ttfamily stride\+\_\+i} = $n_1 n_2 \cdots n_{i-1} (B_i-A_{i+1}) $ ,
+\item {\ttfamily offset\+\_\+i} = $n_1 n_2 \cdots n_{i-1} (a_i-A_i) $ ,
+\item {\ttfamily count\+\_\+i} = $n_{i+1} n_{i+2} \cdots n_N $ ,
+\end{DoxyItemize}
+
+where $a_i$ and $b_i$ represent the local limits of dimension $i$, $A_i$ and $B_i$ the total ones and the number of dimensions is $N$, as can be verified.
+
+The chunk property list for creation can be set up so that its size is equal to the largest dimensions of full range, or an integer part of that if it exceeds 4\+GB. Since the variables don\textquotesingle{}t need to be used more than once, either {\ttfamily nbytes} or {\ttfamily nslots} could be set to 0 in an access property list, but this is currently not done.
+
+\begin{DoxyReturn}{Returns}
+ierr
+\end{DoxyReturn}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em lim\+\_\+tot} & total limits\\
+\hline
+\mbox{\tt in}  & {\em lim\+\_\+loc} & local limits\\
+\hline
+\mbox{\tt in}  & {\em space\+\_\+id} & dataspace identifier\\
+\hline
+\mbox{\tt in,out}  & {\em c\+\_\+plist\+\_\+id} & chunk creation property list identifier \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 81 of file H\+D\+F5\+\_\+utilities.\+f90.
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespacehdf5__utilities_a7574320980affc30a584f7776d33a51c_icgraph}
+\end{center}
+\end{figure}
+
+
+\subsection{Variable Documentation}
+\mbox{\Hypertarget{namespacehdf5__utilities_addf084b90450dc2a0cc614f2f5ac13fc}\label{namespacehdf5__utilities_addf084b90450dc2a0cc614f2f5ac13fc}} 
+\index{hdf5\+\_\+utilities@{hdf5\+\_\+utilities}!debug\+\_\+set\+\_\+1d\+\_\+vars@{debug\+\_\+set\+\_\+1d\+\_\+vars}}
+\index{debug\+\_\+set\+\_\+1d\+\_\+vars@{debug\+\_\+set\+\_\+1d\+\_\+vars}!hdf5\+\_\+utilities@{hdf5\+\_\+utilities}}
+\subsubsection{\texorpdfstring{debug\+\_\+set\+\_\+1d\+\_\+vars}{debug\_set\_1d\_vars}}
+{\footnotesize\ttfamily logical, public hdf5\+\_\+utilities\+::debug\+\_\+set\+\_\+1d\+\_\+vars = .false.}
+
+
+
+set to true to debug set\+\_\+1\+D\+\_\+vars 
+
+\begin{DoxyNote}{Note}
+Debug version only 
+\end{DoxyNote}
+
+
+Definition at line 24 of file H\+D\+F5\+\_\+utilities.\+f90.
+

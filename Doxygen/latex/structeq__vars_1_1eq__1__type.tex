@@ -1,0 +1,277 @@
+\hypertarget{structeq__vars_1_1eq__1__type}{}\section{eq\+\_\+vars\+:\+:eq\+\_\+1\+\_\+type Type Reference}
+\label{structeq__vars_1_1eq__1__type}\index{eq\+\_\+vars\+::eq\+\_\+1\+\_\+type@{eq\+\_\+vars\+::eq\+\_\+1\+\_\+type}}
+
+
+flux equilibrium type  
+
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+procedure \hyperlink{structeq__vars_1_1eq__1__type_a962ea1977a34077f4c335025ae84fc5e}{init} =$>$ \hyperlink{namespaceeq__vars_a0270785c6b513c53e6d7c837f38f377b}{init\+\_\+eq\+\_\+1}
+\begin{DoxyCompactList}\small\item\em initialize \end{DoxyCompactList}\item 
+procedure \hyperlink{structeq__vars_1_1eq__1__type_ab454680992dc2c7c620a11d5c25eaba7}{copy} =$>$ \hyperlink{namespaceeq__vars_aa781ffa18b6b17905e126871c43d3267}{copy\+\_\+eq\+\_\+1}
+\begin{DoxyCompactList}\small\item\em copy \end{DoxyCompactList}\item 
+procedure \hyperlink{structeq__vars_1_1eq__1__type_ae019916ee0792161d559c38bfd50ed50}{dealloc} =$>$ \hyperlink{namespaceeq__vars_ab106dc007ddc896092d0464233b3ce12}{dealloc\+\_\+eq\+\_\+1}
+\begin{DoxyCompactList}\small\item\em deallocate \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+real(dp), dimension(\+:,\+:), allocatable \hyperlink{structeq__vars_1_1eq__1__type_a203223883a300a3617bca2683bc5292d}{pres\+\_\+e}
+\begin{DoxyCompactList}\small\item\em pressure, and norm. deriv. \end{DoxyCompactList}\item 
+real(dp), dimension(\+:,\+:), allocatable \hyperlink{structeq__vars_1_1eq__1__type_a8735980af7b3fae23eb10ded6ef5b462}{q\+\_\+saf\+\_\+e}
+\begin{DoxyCompactList}\small\item\em safety factor \end{DoxyCompactList}\item 
+real(dp), dimension(\+:,\+:), allocatable \hyperlink{structeq__vars_1_1eq__1__type_a61b6de6cab3634a8eb5037b68349f668}{rot\+\_\+t\+\_\+e}
+\begin{DoxyCompactList}\small\item\em rot. transform \end{DoxyCompactList}\item 
+real(dp), dimension(\+:,\+:), allocatable \hyperlink{structeq__vars_1_1eq__1__type_a9b0854f41928f9e007ab188387d78cb1}{flux\+\_\+p\+\_\+e}
+\begin{DoxyCompactList}\small\item\em poloidal flux and norm. deriv. \end{DoxyCompactList}\item 
+real(dp), dimension(\+:,\+:), allocatable \hyperlink{structeq__vars_1_1eq__1__type_a008d9ec3d19f2b469f07e9dedb6f9acd}{flux\+\_\+t\+\_\+e}
+\begin{DoxyCompactList}\small\item\em toroidal flux and norm. deriv. \end{DoxyCompactList}\item 
+real(dp), dimension(\+:,\+:), allocatable \hyperlink{structeq__vars_1_1eq__1__type_a8f13d5b0d7375b769334d2863291d0a2}{pres\+\_\+fd}
+\begin{DoxyCompactList}\small\item\em pressure, and norm. deriv. \end{DoxyCompactList}\item 
+real(dp), dimension(\+:,\+:), allocatable \hyperlink{structeq__vars_1_1eq__1__type_a7a513de633cd065f90ed716bd1290cb6}{q\+\_\+saf\+\_\+fd}
+\begin{DoxyCompactList}\small\item\em safety factor \end{DoxyCompactList}\item 
+real(dp), dimension(\+:,\+:), allocatable \hyperlink{structeq__vars_1_1eq__1__type_ac21c7335fe66b850573b5725d592f955}{rot\+\_\+t\+\_\+fd}
+\begin{DoxyCompactList}\small\item\em rot. transform \end{DoxyCompactList}\item 
+real(dp), dimension(\+:,\+:), allocatable \hyperlink{structeq__vars_1_1eq__1__type_a4511914b57052c66f7e778ca7b5f85bf}{flux\+\_\+p\+\_\+fd}
+\begin{DoxyCompactList}\small\item\em poloidal flux and norm. deriv. \end{DoxyCompactList}\item 
+real(dp), dimension(\+:,\+:), allocatable \hyperlink{structeq__vars_1_1eq__1__type_a1919e919cc6ae9e6bd6ceb692bb599cd}{flux\+\_\+t\+\_\+fd}
+\begin{DoxyCompactList}\small\item\em toroidal flux and norm. deriv. \end{DoxyCompactList}\item 
+real(dp), dimension(\+:), allocatable \hyperlink{structeq__vars_1_1eq__1__type_aeec97865921d38a3134e57b8ca545f99}{rho}
+\begin{DoxyCompactList}\small\item\em density \end{DoxyCompactList}\item 
+real(dp), dimension(2) \hyperlink{structeq__vars_1_1eq__1__type_ad35da6e4c99f85c7f74b1e57b855b92c}{estim\+\_\+mem\+\_\+usage}
+\begin{DoxyCompactList}\small\item\em expected memory usage \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+flux equilibrium type 
+
+The arrays here are of the form
+\begin{DoxyItemize}
+\item {\ttfamily (r)} for variables without derivs.
+\item {\ttfamily (r,Dr)} for variables with derivs. 
+\end{DoxyItemize}
+
+Definition at line 63 of file eq\+\_\+vars.\+f90.
+
+
+
+\subsection{Member Function/\+Subroutine Documentation}
+\mbox{\Hypertarget{structeq__vars_1_1eq__1__type_ab454680992dc2c7c620a11d5c25eaba7}\label{structeq__vars_1_1eq__1__type_ab454680992dc2c7c620a11d5c25eaba7}} 
+\index{eq\+\_\+vars\+::eq\+\_\+1\+\_\+type@{eq\+\_\+vars\+::eq\+\_\+1\+\_\+type}!copy@{copy}}
+\index{copy@{copy}!eq\+\_\+vars\+::eq\+\_\+1\+\_\+type@{eq\+\_\+vars\+::eq\+\_\+1\+\_\+type}}
+\subsubsection{\texorpdfstring{copy()}{copy()}}
+{\footnotesize\ttfamily procedure eq\+\_\+vars\+::eq\+\_\+1\+\_\+type\+::copy (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+copy 
+
+
+
+Definition at line 82 of file eq\+\_\+vars.\+f90.
+
+\mbox{\Hypertarget{structeq__vars_1_1eq__1__type_ae019916ee0792161d559c38bfd50ed50}\label{structeq__vars_1_1eq__1__type_ae019916ee0792161d559c38bfd50ed50}} 
+\index{eq\+\_\+vars\+::eq\+\_\+1\+\_\+type@{eq\+\_\+vars\+::eq\+\_\+1\+\_\+type}!dealloc@{dealloc}}
+\index{dealloc@{dealloc}!eq\+\_\+vars\+::eq\+\_\+1\+\_\+type@{eq\+\_\+vars\+::eq\+\_\+1\+\_\+type}}
+\subsubsection{\texorpdfstring{dealloc()}{dealloc()}}
+{\footnotesize\ttfamily procedure eq\+\_\+vars\+::eq\+\_\+1\+\_\+type\+::dealloc (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+deallocate 
+
+
+
+Definition at line 84 of file eq\+\_\+vars.\+f90.
+
+\mbox{\Hypertarget{structeq__vars_1_1eq__1__type_a962ea1977a34077f4c335025ae84fc5e}\label{structeq__vars_1_1eq__1__type_a962ea1977a34077f4c335025ae84fc5e}} 
+\index{eq\+\_\+vars\+::eq\+\_\+1\+\_\+type@{eq\+\_\+vars\+::eq\+\_\+1\+\_\+type}!init@{init}}
+\index{init@{init}!eq\+\_\+vars\+::eq\+\_\+1\+\_\+type@{eq\+\_\+vars\+::eq\+\_\+1\+\_\+type}}
+\subsubsection{\texorpdfstring{init()}{init()}}
+{\footnotesize\ttfamily procedure eq\+\_\+vars\+::eq\+\_\+1\+\_\+type\+::init (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+initialize 
+
+
+
+Definition at line 80 of file eq\+\_\+vars.\+f90.
+
+
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{structeq__vars_1_1eq__1__type_ad35da6e4c99f85c7f74b1e57b855b92c}\label{structeq__vars_1_1eq__1__type_ad35da6e4c99f85c7f74b1e57b855b92c}} 
+\index{eq\+\_\+vars\+::eq\+\_\+1\+\_\+type@{eq\+\_\+vars\+::eq\+\_\+1\+\_\+type}!estim\+\_\+mem\+\_\+usage@{estim\+\_\+mem\+\_\+usage}}
+\index{estim\+\_\+mem\+\_\+usage@{estim\+\_\+mem\+\_\+usage}!eq\+\_\+vars\+::eq\+\_\+1\+\_\+type@{eq\+\_\+vars\+::eq\+\_\+1\+\_\+type}}
+\subsubsection{\texorpdfstring{estim\+\_\+mem\+\_\+usage}{estim\_mem\_usage}}
+{\footnotesize\ttfamily real(dp), dimension(2) eq\+\_\+vars\+::eq\+\_\+1\+\_\+type\+::estim\+\_\+mem\+\_\+usage}
+
+
+
+expected memory usage 
+
+\begin{DoxyNote}{Note}
+Debug version only 
+\end{DoxyNote}
+
+
+Definition at line 76 of file eq\+\_\+vars.\+f90.
+
+\mbox{\Hypertarget{structeq__vars_1_1eq__1__type_a9b0854f41928f9e007ab188387d78cb1}\label{structeq__vars_1_1eq__1__type_a9b0854f41928f9e007ab188387d78cb1}} 
+\index{eq\+\_\+vars\+::eq\+\_\+1\+\_\+type@{eq\+\_\+vars\+::eq\+\_\+1\+\_\+type}!flux\+\_\+p\+\_\+e@{flux\+\_\+p\+\_\+e}}
+\index{flux\+\_\+p\+\_\+e@{flux\+\_\+p\+\_\+e}!eq\+\_\+vars\+::eq\+\_\+1\+\_\+type@{eq\+\_\+vars\+::eq\+\_\+1\+\_\+type}}
+\subsubsection{\texorpdfstring{flux\+\_\+p\+\_\+e}{flux\_p\_e}}
+{\footnotesize\ttfamily real(dp), dimension(\+:,\+:), allocatable eq\+\_\+vars\+::eq\+\_\+1\+\_\+type\+::flux\+\_\+p\+\_\+e}
+
+
+
+poloidal flux and norm. deriv. 
+
+
+
+Definition at line 67 of file eq\+\_\+vars.\+f90.
+
+\mbox{\Hypertarget{structeq__vars_1_1eq__1__type_a4511914b57052c66f7e778ca7b5f85bf}\label{structeq__vars_1_1eq__1__type_a4511914b57052c66f7e778ca7b5f85bf}} 
+\index{eq\+\_\+vars\+::eq\+\_\+1\+\_\+type@{eq\+\_\+vars\+::eq\+\_\+1\+\_\+type}!flux\+\_\+p\+\_\+fd@{flux\+\_\+p\+\_\+fd}}
+\index{flux\+\_\+p\+\_\+fd@{flux\+\_\+p\+\_\+fd}!eq\+\_\+vars\+::eq\+\_\+1\+\_\+type@{eq\+\_\+vars\+::eq\+\_\+1\+\_\+type}}
+\subsubsection{\texorpdfstring{flux\+\_\+p\+\_\+fd}{flux\_p\_fd}}
+{\footnotesize\ttfamily real(dp), dimension(\+:,\+:), allocatable eq\+\_\+vars\+::eq\+\_\+1\+\_\+type\+::flux\+\_\+p\+\_\+fd}
+
+
+
+poloidal flux and norm. deriv. 
+
+
+
+Definition at line 72 of file eq\+\_\+vars.\+f90.
+
+\mbox{\Hypertarget{structeq__vars_1_1eq__1__type_a008d9ec3d19f2b469f07e9dedb6f9acd}\label{structeq__vars_1_1eq__1__type_a008d9ec3d19f2b469f07e9dedb6f9acd}} 
+\index{eq\+\_\+vars\+::eq\+\_\+1\+\_\+type@{eq\+\_\+vars\+::eq\+\_\+1\+\_\+type}!flux\+\_\+t\+\_\+e@{flux\+\_\+t\+\_\+e}}
+\index{flux\+\_\+t\+\_\+e@{flux\+\_\+t\+\_\+e}!eq\+\_\+vars\+::eq\+\_\+1\+\_\+type@{eq\+\_\+vars\+::eq\+\_\+1\+\_\+type}}
+\subsubsection{\texorpdfstring{flux\+\_\+t\+\_\+e}{flux\_t\_e}}
+{\footnotesize\ttfamily real(dp), dimension(\+:,\+:), allocatable eq\+\_\+vars\+::eq\+\_\+1\+\_\+type\+::flux\+\_\+t\+\_\+e}
+
+
+
+toroidal flux and norm. deriv. 
+
+
+
+Definition at line 68 of file eq\+\_\+vars.\+f90.
+
+\mbox{\Hypertarget{structeq__vars_1_1eq__1__type_a1919e919cc6ae9e6bd6ceb692bb599cd}\label{structeq__vars_1_1eq__1__type_a1919e919cc6ae9e6bd6ceb692bb599cd}} 
+\index{eq\+\_\+vars\+::eq\+\_\+1\+\_\+type@{eq\+\_\+vars\+::eq\+\_\+1\+\_\+type}!flux\+\_\+t\+\_\+fd@{flux\+\_\+t\+\_\+fd}}
+\index{flux\+\_\+t\+\_\+fd@{flux\+\_\+t\+\_\+fd}!eq\+\_\+vars\+::eq\+\_\+1\+\_\+type@{eq\+\_\+vars\+::eq\+\_\+1\+\_\+type}}
+\subsubsection{\texorpdfstring{flux\+\_\+t\+\_\+fd}{flux\_t\_fd}}
+{\footnotesize\ttfamily real(dp), dimension(\+:,\+:), allocatable eq\+\_\+vars\+::eq\+\_\+1\+\_\+type\+::flux\+\_\+t\+\_\+fd}
+
+
+
+toroidal flux and norm. deriv. 
+
+
+
+Definition at line 73 of file eq\+\_\+vars.\+f90.
+
+\mbox{\Hypertarget{structeq__vars_1_1eq__1__type_a203223883a300a3617bca2683bc5292d}\label{structeq__vars_1_1eq__1__type_a203223883a300a3617bca2683bc5292d}} 
+\index{eq\+\_\+vars\+::eq\+\_\+1\+\_\+type@{eq\+\_\+vars\+::eq\+\_\+1\+\_\+type}!pres\+\_\+e@{pres\+\_\+e}}
+\index{pres\+\_\+e@{pres\+\_\+e}!eq\+\_\+vars\+::eq\+\_\+1\+\_\+type@{eq\+\_\+vars\+::eq\+\_\+1\+\_\+type}}
+\subsubsection{\texorpdfstring{pres\+\_\+e}{pres\_e}}
+{\footnotesize\ttfamily real(dp), dimension(\+:,\+:), allocatable eq\+\_\+vars\+::eq\+\_\+1\+\_\+type\+::pres\+\_\+e}
+
+
+
+pressure, and norm. deriv. 
+
+
+
+Definition at line 64 of file eq\+\_\+vars.\+f90.
+
+\mbox{\Hypertarget{structeq__vars_1_1eq__1__type_a8f13d5b0d7375b769334d2863291d0a2}\label{structeq__vars_1_1eq__1__type_a8f13d5b0d7375b769334d2863291d0a2}} 
+\index{eq\+\_\+vars\+::eq\+\_\+1\+\_\+type@{eq\+\_\+vars\+::eq\+\_\+1\+\_\+type}!pres\+\_\+fd@{pres\+\_\+fd}}
+\index{pres\+\_\+fd@{pres\+\_\+fd}!eq\+\_\+vars\+::eq\+\_\+1\+\_\+type@{eq\+\_\+vars\+::eq\+\_\+1\+\_\+type}}
+\subsubsection{\texorpdfstring{pres\+\_\+fd}{pres\_fd}}
+{\footnotesize\ttfamily real(dp), dimension(\+:,\+:), allocatable eq\+\_\+vars\+::eq\+\_\+1\+\_\+type\+::pres\+\_\+fd}
+
+
+
+pressure, and norm. deriv. 
+
+
+
+Definition at line 69 of file eq\+\_\+vars.\+f90.
+
+\mbox{\Hypertarget{structeq__vars_1_1eq__1__type_a8735980af7b3fae23eb10ded6ef5b462}\label{structeq__vars_1_1eq__1__type_a8735980af7b3fae23eb10ded6ef5b462}} 
+\index{eq\+\_\+vars\+::eq\+\_\+1\+\_\+type@{eq\+\_\+vars\+::eq\+\_\+1\+\_\+type}!q\+\_\+saf\+\_\+e@{q\+\_\+saf\+\_\+e}}
+\index{q\+\_\+saf\+\_\+e@{q\+\_\+saf\+\_\+e}!eq\+\_\+vars\+::eq\+\_\+1\+\_\+type@{eq\+\_\+vars\+::eq\+\_\+1\+\_\+type}}
+\subsubsection{\texorpdfstring{q\+\_\+saf\+\_\+e}{q\_saf\_e}}
+{\footnotesize\ttfamily real(dp), dimension(\+:,\+:), allocatable eq\+\_\+vars\+::eq\+\_\+1\+\_\+type\+::q\+\_\+saf\+\_\+e}
+
+
+
+safety factor 
+
+
+
+Definition at line 65 of file eq\+\_\+vars.\+f90.
+
+\mbox{\Hypertarget{structeq__vars_1_1eq__1__type_a7a513de633cd065f90ed716bd1290cb6}\label{structeq__vars_1_1eq__1__type_a7a513de633cd065f90ed716bd1290cb6}} 
+\index{eq\+\_\+vars\+::eq\+\_\+1\+\_\+type@{eq\+\_\+vars\+::eq\+\_\+1\+\_\+type}!q\+\_\+saf\+\_\+fd@{q\+\_\+saf\+\_\+fd}}
+\index{q\+\_\+saf\+\_\+fd@{q\+\_\+saf\+\_\+fd}!eq\+\_\+vars\+::eq\+\_\+1\+\_\+type@{eq\+\_\+vars\+::eq\+\_\+1\+\_\+type}}
+\subsubsection{\texorpdfstring{q\+\_\+saf\+\_\+fd}{q\_saf\_fd}}
+{\footnotesize\ttfamily real(dp), dimension(\+:,\+:), allocatable eq\+\_\+vars\+::eq\+\_\+1\+\_\+type\+::q\+\_\+saf\+\_\+fd}
+
+
+
+safety factor 
+
+
+
+Definition at line 70 of file eq\+\_\+vars.\+f90.
+
+\mbox{\Hypertarget{structeq__vars_1_1eq__1__type_aeec97865921d38a3134e57b8ca545f99}\label{structeq__vars_1_1eq__1__type_aeec97865921d38a3134e57b8ca545f99}} 
+\index{eq\+\_\+vars\+::eq\+\_\+1\+\_\+type@{eq\+\_\+vars\+::eq\+\_\+1\+\_\+type}!rho@{rho}}
+\index{rho@{rho}!eq\+\_\+vars\+::eq\+\_\+1\+\_\+type@{eq\+\_\+vars\+::eq\+\_\+1\+\_\+type}}
+\subsubsection{\texorpdfstring{rho}{rho}}
+{\footnotesize\ttfamily real(dp), dimension(\+:), allocatable eq\+\_\+vars\+::eq\+\_\+1\+\_\+type\+::rho}
+
+
+
+density 
+
+
+
+Definition at line 74 of file eq\+\_\+vars.\+f90.
+
+\mbox{\Hypertarget{structeq__vars_1_1eq__1__type_a61b6de6cab3634a8eb5037b68349f668}\label{structeq__vars_1_1eq__1__type_a61b6de6cab3634a8eb5037b68349f668}} 
+\index{eq\+\_\+vars\+::eq\+\_\+1\+\_\+type@{eq\+\_\+vars\+::eq\+\_\+1\+\_\+type}!rot\+\_\+t\+\_\+e@{rot\+\_\+t\+\_\+e}}
+\index{rot\+\_\+t\+\_\+e@{rot\+\_\+t\+\_\+e}!eq\+\_\+vars\+::eq\+\_\+1\+\_\+type@{eq\+\_\+vars\+::eq\+\_\+1\+\_\+type}}
+\subsubsection{\texorpdfstring{rot\+\_\+t\+\_\+e}{rot\_t\_e}}
+{\footnotesize\ttfamily real(dp), dimension(\+:,\+:), allocatable eq\+\_\+vars\+::eq\+\_\+1\+\_\+type\+::rot\+\_\+t\+\_\+e}
+
+
+
+rot. transform 
+
+
+
+Definition at line 66 of file eq\+\_\+vars.\+f90.
+
+\mbox{\Hypertarget{structeq__vars_1_1eq__1__type_ac21c7335fe66b850573b5725d592f955}\label{structeq__vars_1_1eq__1__type_ac21c7335fe66b850573b5725d592f955}} 
+\index{eq\+\_\+vars\+::eq\+\_\+1\+\_\+type@{eq\+\_\+vars\+::eq\+\_\+1\+\_\+type}!rot\+\_\+t\+\_\+fd@{rot\+\_\+t\+\_\+fd}}
+\index{rot\+\_\+t\+\_\+fd@{rot\+\_\+t\+\_\+fd}!eq\+\_\+vars\+::eq\+\_\+1\+\_\+type@{eq\+\_\+vars\+::eq\+\_\+1\+\_\+type}}
+\subsubsection{\texorpdfstring{rot\+\_\+t\+\_\+fd}{rot\_t\_fd}}
+{\footnotesize\ttfamily real(dp), dimension(\+:,\+:), allocatable eq\+\_\+vars\+::eq\+\_\+1\+\_\+type\+::rot\+\_\+t\+\_\+fd}
+
+
+
+rot. transform 
+
+
+
+Definition at line 71 of file eq\+\_\+vars.\+f90.
+
+
+

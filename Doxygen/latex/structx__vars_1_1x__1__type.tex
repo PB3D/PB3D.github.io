@@ -1,0 +1,233 @@
+\hypertarget{structx__vars_1_1x__1__type}{}\section{x\+\_\+vars\+:\+:x\+\_\+1\+\_\+type Type Reference}
+\label{structx__vars_1_1x__1__type}\index{x\+\_\+vars\+::x\+\_\+1\+\_\+type@{x\+\_\+vars\+::x\+\_\+1\+\_\+type}}
+
+
+vectorial perturbation type  
+
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+procedure \hyperlink{structx__vars_1_1x__1__type_a519c9ca8ceb73fb7010a587fab3248f8}{init} =$>$ init\+\_\+\+X\+\_\+1
+\begin{DoxyCompactList}\small\item\em initialize \end{DoxyCompactList}\item 
+procedure \hyperlink{structx__vars_1_1x__1__type_a8150516389a9cfe7716b0fe70ff6aeab}{copy} =$>$ copy\+\_\+\+X\+\_\+1
+\begin{DoxyCompactList}\small\item\em copy \end{DoxyCompactList}\item 
+procedure \hyperlink{structx__vars_1_1x__1__type_aee743fbc89e8e5486495ae3f6c49bd09}{dealloc} =$>$ dealloc\+\_\+\+X\+\_\+1
+\begin{DoxyCompactList}\small\item\em deallocate \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+integer \hyperlink{structx__vars_1_1x__1__type_a2c6f8950aab84d1c8496d676765e495d}{n\+\_\+mod}
+\begin{DoxyCompactList}\small\item\em size of $n$ and $m$ (nr. of modes) \end{DoxyCompactList}\item 
+integer, dimension(2) \hyperlink{structx__vars_1_1x__1__type_a13c0f5a062916cf55e6bbaa906d0245b}{lim\+\_\+sec\+\_\+x}
+\begin{DoxyCompactList}\small\item\em limits of {\ttfamily m\+\_\+X} (pol. flux) or {\ttfamily n\+\_\+X} (tor. flux) \end{DoxyCompactList}\item 
+integer, dimension(\+:,\+:), allocatable \hyperlink{structx__vars_1_1x__1__type_aa8357fc77cfb833b7ead7310fe8cdd2a}{n}
+\begin{DoxyCompactList}\small\item\em vector of poloidal mode numbers \end{DoxyCompactList}\item 
+integer, dimension(\+:,\+:), allocatable \hyperlink{structx__vars_1_1x__1__type_a02aaa9d5638a17b6ed2ab1c46093606c}{m}
+\begin{DoxyCompactList}\small\item\em vector of poloidal mode numbers \end{DoxyCompactList}\item 
+complex(dp), dimension(\+:,\+:,\+:,\+:), allocatable \hyperlink{structx__vars_1_1x__1__type_a49ba10abb2c45fc9f6faf0412f7af198}{u\+\_\+0}
+\begin{DoxyCompactList}\small\item\em $U_m^0$ \end{DoxyCompactList}\item 
+complex(dp), dimension(\+:,\+:,\+:,\+:), allocatable \hyperlink{structx__vars_1_1x__1__type_ab5cb4ea2b358b6787b84ffccdbc65dab}{u\+\_\+1}
+\begin{DoxyCompactList}\small\item\em $U_m^1$ \end{DoxyCompactList}\item 
+complex(dp), dimension(\+:,\+:,\+:,\+:), allocatable \hyperlink{structx__vars_1_1x__1__type_a1132efa4306e57aa86899b2eb346cec6}{du\+\_\+0}
+\begin{DoxyCompactList}\small\item\em $\mathcal{J}\vec{B}\cdot\nabla U_m^0$ \end{DoxyCompactList}\item 
+complex(dp), dimension(\+:,\+:,\+:,\+:), allocatable \hyperlink{structx__vars_1_1x__1__type_a011bea6d3bba4a1ceb5aa6cfd0f3f998}{du\+\_\+1}
+\begin{DoxyCompactList}\small\item\em $\mathcal{J}\vec{B}\cdot\nabla U_m^1$ \end{DoxyCompactList}\item 
+real(dp) \hyperlink{structx__vars_1_1x__1__type_a98aaf1014e25f61014222339596db565}{estim\+\_\+mem\+\_\+usage}
+\begin{DoxyCompactList}\small\item\em estimated memory usage \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+vectorial perturbation type 
+
+The arrays here are of the form\+:
+\begin{DoxyItemize}
+\item {\ttfamily U\+\_\+x\+\_\+i} and D\+U\+\_\+\+X\+\_\+i\+: {\ttfamily (1\+:angle\+\_\+1,1\+:angle\+\_\+2,1;n\+\_\+mod)}
+\end{DoxyItemize}
+
+\begin{DoxySeeAlso}{See also}
+See \hyperlink{structgrid__vars_1_1grid__type}{grid\+\_\+vars.\+grid\+\_\+type} for a discussion on {\ttfamily ang\+\_\+1} and {\ttfamily ang\+\_\+2}. 
+\end{DoxySeeAlso}
+
+
+Definition at line 48 of file X\+\_\+vars.\+f90.
+
+
+
+\subsection{Member Function/\+Subroutine Documentation}
+\mbox{\Hypertarget{structx__vars_1_1x__1__type_a8150516389a9cfe7716b0fe70ff6aeab}\label{structx__vars_1_1x__1__type_a8150516389a9cfe7716b0fe70ff6aeab}} 
+\index{x\+\_\+vars\+::x\+\_\+1\+\_\+type@{x\+\_\+vars\+::x\+\_\+1\+\_\+type}!copy@{copy}}
+\index{copy@{copy}!x\+\_\+vars\+::x\+\_\+1\+\_\+type@{x\+\_\+vars\+::x\+\_\+1\+\_\+type}}
+\subsubsection{\texorpdfstring{copy()}{copy()}}
+{\footnotesize\ttfamily procedure x\+\_\+vars\+::x\+\_\+1\+\_\+type\+::copy (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+copy 
+
+
+
+Definition at line 64 of file X\+\_\+vars.\+f90.
+
+\mbox{\Hypertarget{structx__vars_1_1x__1__type_aee743fbc89e8e5486495ae3f6c49bd09}\label{structx__vars_1_1x__1__type_aee743fbc89e8e5486495ae3f6c49bd09}} 
+\index{x\+\_\+vars\+::x\+\_\+1\+\_\+type@{x\+\_\+vars\+::x\+\_\+1\+\_\+type}!dealloc@{dealloc}}
+\index{dealloc@{dealloc}!x\+\_\+vars\+::x\+\_\+1\+\_\+type@{x\+\_\+vars\+::x\+\_\+1\+\_\+type}}
+\subsubsection{\texorpdfstring{dealloc()}{dealloc()}}
+{\footnotesize\ttfamily procedure x\+\_\+vars\+::x\+\_\+1\+\_\+type\+::dealloc (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+deallocate 
+
+
+
+Definition at line 66 of file X\+\_\+vars.\+f90.
+
+\mbox{\Hypertarget{structx__vars_1_1x__1__type_a519c9ca8ceb73fb7010a587fab3248f8}\label{structx__vars_1_1x__1__type_a519c9ca8ceb73fb7010a587fab3248f8}} 
+\index{x\+\_\+vars\+::x\+\_\+1\+\_\+type@{x\+\_\+vars\+::x\+\_\+1\+\_\+type}!init@{init}}
+\index{init@{init}!x\+\_\+vars\+::x\+\_\+1\+\_\+type@{x\+\_\+vars\+::x\+\_\+1\+\_\+type}}
+\subsubsection{\texorpdfstring{init()}{init()}}
+{\footnotesize\ttfamily procedure x\+\_\+vars\+::x\+\_\+1\+\_\+type\+::init (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+initialize 
+
+
+
+Definition at line 62 of file X\+\_\+vars.\+f90.
+
+
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{structx__vars_1_1x__1__type_a1132efa4306e57aa86899b2eb346cec6}\label{structx__vars_1_1x__1__type_a1132efa4306e57aa86899b2eb346cec6}} 
+\index{x\+\_\+vars\+::x\+\_\+1\+\_\+type@{x\+\_\+vars\+::x\+\_\+1\+\_\+type}!du\+\_\+0@{du\+\_\+0}}
+\index{du\+\_\+0@{du\+\_\+0}!x\+\_\+vars\+::x\+\_\+1\+\_\+type@{x\+\_\+vars\+::x\+\_\+1\+\_\+type}}
+\subsubsection{\texorpdfstring{du\+\_\+0}{du\_0}}
+{\footnotesize\ttfamily complex(dp), dimension(\+:,\+:,\+:,\+:), allocatable x\+\_\+vars\+::x\+\_\+1\+\_\+type\+::du\+\_\+0}
+
+
+
+$\mathcal{J}\vec{B}\cdot\nabla U_m^0$ 
+
+
+
+Definition at line 55 of file X\+\_\+vars.\+f90.
+
+\mbox{\Hypertarget{structx__vars_1_1x__1__type_a011bea6d3bba4a1ceb5aa6cfd0f3f998}\label{structx__vars_1_1x__1__type_a011bea6d3bba4a1ceb5aa6cfd0f3f998}} 
+\index{x\+\_\+vars\+::x\+\_\+1\+\_\+type@{x\+\_\+vars\+::x\+\_\+1\+\_\+type}!du\+\_\+1@{du\+\_\+1}}
+\index{du\+\_\+1@{du\+\_\+1}!x\+\_\+vars\+::x\+\_\+1\+\_\+type@{x\+\_\+vars\+::x\+\_\+1\+\_\+type}}
+\subsubsection{\texorpdfstring{du\+\_\+1}{du\_1}}
+{\footnotesize\ttfamily complex(dp), dimension(\+:,\+:,\+:,\+:), allocatable x\+\_\+vars\+::x\+\_\+1\+\_\+type\+::du\+\_\+1}
+
+
+
+$\mathcal{J}\vec{B}\cdot\nabla U_m^1$ 
+
+
+
+Definition at line 56 of file X\+\_\+vars.\+f90.
+
+\mbox{\Hypertarget{structx__vars_1_1x__1__type_a98aaf1014e25f61014222339596db565}\label{structx__vars_1_1x__1__type_a98aaf1014e25f61014222339596db565}} 
+\index{x\+\_\+vars\+::x\+\_\+1\+\_\+type@{x\+\_\+vars\+::x\+\_\+1\+\_\+type}!estim\+\_\+mem\+\_\+usage@{estim\+\_\+mem\+\_\+usage}}
+\index{estim\+\_\+mem\+\_\+usage@{estim\+\_\+mem\+\_\+usage}!x\+\_\+vars\+::x\+\_\+1\+\_\+type@{x\+\_\+vars\+::x\+\_\+1\+\_\+type}}
+\subsubsection{\texorpdfstring{estim\+\_\+mem\+\_\+usage}{estim\_mem\_usage}}
+{\footnotesize\ttfamily real(dp) x\+\_\+vars\+::x\+\_\+1\+\_\+type\+::estim\+\_\+mem\+\_\+usage}
+
+
+
+estimated memory usage 
+
+\begin{DoxyNote}{Note}
+Debug version only 
+\end{DoxyNote}
+
+
+Definition at line 58 of file X\+\_\+vars.\+f90.
+
+\mbox{\Hypertarget{structx__vars_1_1x__1__type_a13c0f5a062916cf55e6bbaa906d0245b}\label{structx__vars_1_1x__1__type_a13c0f5a062916cf55e6bbaa906d0245b}} 
+\index{x\+\_\+vars\+::x\+\_\+1\+\_\+type@{x\+\_\+vars\+::x\+\_\+1\+\_\+type}!lim\+\_\+sec\+\_\+x@{lim\+\_\+sec\+\_\+x}}
+\index{lim\+\_\+sec\+\_\+x@{lim\+\_\+sec\+\_\+x}!x\+\_\+vars\+::x\+\_\+1\+\_\+type@{x\+\_\+vars\+::x\+\_\+1\+\_\+type}}
+\subsubsection{\texorpdfstring{lim\+\_\+sec\+\_\+x}{lim\_sec\_x}}
+{\footnotesize\ttfamily integer, dimension(2) x\+\_\+vars\+::x\+\_\+1\+\_\+type\+::lim\+\_\+sec\+\_\+x}
+
+
+
+limits of {\ttfamily m\+\_\+X} (pol. flux) or {\ttfamily n\+\_\+X} (tor. flux) 
+
+
+
+Definition at line 50 of file X\+\_\+vars.\+f90.
+
+\mbox{\Hypertarget{structx__vars_1_1x__1__type_a02aaa9d5638a17b6ed2ab1c46093606c}\label{structx__vars_1_1x__1__type_a02aaa9d5638a17b6ed2ab1c46093606c}} 
+\index{x\+\_\+vars\+::x\+\_\+1\+\_\+type@{x\+\_\+vars\+::x\+\_\+1\+\_\+type}!m@{m}}
+\index{m@{m}!x\+\_\+vars\+::x\+\_\+1\+\_\+type@{x\+\_\+vars\+::x\+\_\+1\+\_\+type}}
+\subsubsection{\texorpdfstring{m}{m}}
+{\footnotesize\ttfamily integer, dimension(\+:,\+:), allocatable x\+\_\+vars\+::x\+\_\+1\+\_\+type\+::m}
+
+
+
+vector of poloidal mode numbers 
+
+
+
+Definition at line 52 of file X\+\_\+vars.\+f90.
+
+\mbox{\Hypertarget{structx__vars_1_1x__1__type_aa8357fc77cfb833b7ead7310fe8cdd2a}\label{structx__vars_1_1x__1__type_aa8357fc77cfb833b7ead7310fe8cdd2a}} 
+\index{x\+\_\+vars\+::x\+\_\+1\+\_\+type@{x\+\_\+vars\+::x\+\_\+1\+\_\+type}!n@{n}}
+\index{n@{n}!x\+\_\+vars\+::x\+\_\+1\+\_\+type@{x\+\_\+vars\+::x\+\_\+1\+\_\+type}}
+\subsubsection{\texorpdfstring{n}{n}}
+{\footnotesize\ttfamily integer, dimension(\+:,\+:), allocatable x\+\_\+vars\+::x\+\_\+1\+\_\+type\+::n}
+
+
+
+vector of poloidal mode numbers 
+
+
+
+Definition at line 51 of file X\+\_\+vars.\+f90.
+
+\mbox{\Hypertarget{structx__vars_1_1x__1__type_a2c6f8950aab84d1c8496d676765e495d}\label{structx__vars_1_1x__1__type_a2c6f8950aab84d1c8496d676765e495d}} 
+\index{x\+\_\+vars\+::x\+\_\+1\+\_\+type@{x\+\_\+vars\+::x\+\_\+1\+\_\+type}!n\+\_\+mod@{n\+\_\+mod}}
+\index{n\+\_\+mod@{n\+\_\+mod}!x\+\_\+vars\+::x\+\_\+1\+\_\+type@{x\+\_\+vars\+::x\+\_\+1\+\_\+type}}
+\subsubsection{\texorpdfstring{n\+\_\+mod}{n\_mod}}
+{\footnotesize\ttfamily integer x\+\_\+vars\+::x\+\_\+1\+\_\+type\+::n\+\_\+mod}
+
+
+
+size of $n$ and $m$ (nr. of modes) 
+
+
+
+Definition at line 49 of file X\+\_\+vars.\+f90.
+
+\mbox{\Hypertarget{structx__vars_1_1x__1__type_a49ba10abb2c45fc9f6faf0412f7af198}\label{structx__vars_1_1x__1__type_a49ba10abb2c45fc9f6faf0412f7af198}} 
+\index{x\+\_\+vars\+::x\+\_\+1\+\_\+type@{x\+\_\+vars\+::x\+\_\+1\+\_\+type}!u\+\_\+0@{u\+\_\+0}}
+\index{u\+\_\+0@{u\+\_\+0}!x\+\_\+vars\+::x\+\_\+1\+\_\+type@{x\+\_\+vars\+::x\+\_\+1\+\_\+type}}
+\subsubsection{\texorpdfstring{u\+\_\+0}{u\_0}}
+{\footnotesize\ttfamily complex(dp), dimension(\+:,\+:,\+:,\+:), allocatable x\+\_\+vars\+::x\+\_\+1\+\_\+type\+::u\+\_\+0}
+
+
+
+$U_m^0$ 
+
+
+
+Definition at line 53 of file X\+\_\+vars.\+f90.
+
+\mbox{\Hypertarget{structx__vars_1_1x__1__type_ab5cb4ea2b358b6787b84ffccdbc65dab}\label{structx__vars_1_1x__1__type_ab5cb4ea2b358b6787b84ffccdbc65dab}} 
+\index{x\+\_\+vars\+::x\+\_\+1\+\_\+type@{x\+\_\+vars\+::x\+\_\+1\+\_\+type}!u\+\_\+1@{u\+\_\+1}}
+\index{u\+\_\+1@{u\+\_\+1}!x\+\_\+vars\+::x\+\_\+1\+\_\+type@{x\+\_\+vars\+::x\+\_\+1\+\_\+type}}
+\subsubsection{\texorpdfstring{u\+\_\+1}{u\_1}}
+{\footnotesize\ttfamily complex(dp), dimension(\+:,\+:,\+:,\+:), allocatable x\+\_\+vars\+::x\+\_\+1\+\_\+type\+::u\+\_\+1}
+
+
+
+$U_m^1$ 
+
+
+
+Definition at line 54 of file X\+\_\+vars.\+f90.
+
+
+

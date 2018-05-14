@@ -1,0 +1,113 @@
+\hypertarget{interfacex__ops_1_1calc__x}{}\section{x\+\_\+ops\+:\+:calc\+\_\+x Interface Reference}
+\label{interfacex__ops_1_1calc__x}\index{x\+\_\+ops\+::calc\+\_\+x@{x\+\_\+ops\+::calc\+\_\+x}}
+
+
+Calculates either vectorial or tensorial perturbation variables.  
+
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+integer function \hyperlink{interfacex__ops_1_1calc__x_a837126ca92e7f4d6821261c835b987d4}{calc\+\_\+x\+\_\+1} (mds, grid\+\_\+eq, grid\+\_\+X, eq\+\_\+1, eq\+\_\+2, X, lim\+\_\+sec\+\_\+X)
+\begin{DoxyCompactList}\small\item\em vectorial version \end{DoxyCompactList}\item 
+integer function \hyperlink{interfacex__ops_1_1calc__x_a59ee84bcbeb93d7d7fbace7f412138f0}{calc\+\_\+x\+\_\+2} (mds, grid\+\_\+eq, grid\+\_\+X, eq\+\_\+1, eq\+\_\+2, X\+\_\+a, X\+\_\+b, X, lim\+\_\+sec\+\_\+X)
+\begin{DoxyCompactList}\small\item\em tensorial version \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Calculates either vectorial or tensorial perturbation variables. 
+
+Optionally, the secondary mode number can be specified ({\ttfamily m} if poloidal flux is used as normal coordinate and c n if toroidal flux). By default, they are taken from the global {\ttfamily X\+\_\+vars} variables.
+
+\begin{DoxyReturn}{Returns}
+ierr 
+\end{DoxyReturn}
+
+
+Definition at line 39 of file X\+\_\+ops.\+f90.
+
+
+
+\subsection{Member Function/\+Subroutine Documentation}
+\mbox{\Hypertarget{interfacex__ops_1_1calc__x_a837126ca92e7f4d6821261c835b987d4}\label{interfacex__ops_1_1calc__x_a837126ca92e7f4d6821261c835b987d4}} 
+\index{x\+\_\+ops\+::calc\+\_\+x@{x\+\_\+ops\+::calc\+\_\+x}!calc\+\_\+x\+\_\+1@{calc\+\_\+x\+\_\+1}}
+\index{calc\+\_\+x\+\_\+1@{calc\+\_\+x\+\_\+1}!x\+\_\+ops\+::calc\+\_\+x@{x\+\_\+ops\+::calc\+\_\+x}}
+\subsubsection{\texorpdfstring{calc\+\_\+x\+\_\+1()}{calc\_x\_1()}}
+{\footnotesize\ttfamily integer function x\+\_\+ops\+::calc\+\_\+x\+::calc\+\_\+x\+\_\+1 (\begin{DoxyParamCaption}\item[{type(modes\+\_\+type), intent(in)}]{mds,  }\item[{type(\hyperlink{structgrid__vars_1_1grid__type}{grid\+\_\+type}), intent(in)}]{grid\+\_\+eq,  }\item[{type(\hyperlink{structgrid__vars_1_1grid__type}{grid\+\_\+type}), intent(in)}]{grid\+\_\+X,  }\item[{type(\hyperlink{structeq__vars_1_1eq__1__type}{eq\+\_\+1\+\_\+type}), intent(in)}]{eq\+\_\+1,  }\item[{type(\hyperlink{structeq__vars_1_1eq__2__type}{eq\+\_\+2\+\_\+type}), intent(in)}]{eq\+\_\+2,  }\item[{type(x\+\_\+1\+\_\+type), intent(inout)}]{X,  }\item[{integer, dimension(2), intent(in), optional}]{lim\+\_\+sec\+\_\+X }\end{DoxyParamCaption})}
+
+
+
+vectorial version 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em mds} & general modes variables\\
+\hline
+\mbox{\tt in}  & {\em grid\+\_\+eq} & equilibrium grid variables\\
+\hline
+\mbox{\tt in}  & {\em grid\+\_\+x} & perturbation grid variables\\
+\hline
+\mbox{\tt in}  & {\em eq\+\_\+1} & flux equilibrium\\
+\hline
+\mbox{\tt in}  & {\em eq\+\_\+2} & metric equilibrium\\
+\hline
+\mbox{\tt in,out}  & {\em x} & vectorial perturbation variables\\
+\hline
+\mbox{\tt in}  & {\em lim\+\_\+sec\+\_\+x} & limits of {\ttfamily m\+\_\+X} (pol. flux) or \textbackslash{} n\+\_\+X (tor. flux) \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 96 of file X\+\_\+ops.\+f90.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{interfacex__ops_1_1calc__x_a837126ca92e7f4d6821261c835b987d4_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{interfacex__ops_1_1calc__x_a59ee84bcbeb93d7d7fbace7f412138f0}\label{interfacex__ops_1_1calc__x_a59ee84bcbeb93d7d7fbace7f412138f0}} 
+\index{x\+\_\+ops\+::calc\+\_\+x@{x\+\_\+ops\+::calc\+\_\+x}!calc\+\_\+x\+\_\+2@{calc\+\_\+x\+\_\+2}}
+\index{calc\+\_\+x\+\_\+2@{calc\+\_\+x\+\_\+2}!x\+\_\+ops\+::calc\+\_\+x@{x\+\_\+ops\+::calc\+\_\+x}}
+\subsubsection{\texorpdfstring{calc\+\_\+x\+\_\+2()}{calc\_x\_2()}}
+{\footnotesize\ttfamily integer function x\+\_\+ops\+::calc\+\_\+x\+::calc\+\_\+x\+\_\+2 (\begin{DoxyParamCaption}\item[{type(modes\+\_\+type), intent(in)}]{mds,  }\item[{type(\hyperlink{structgrid__vars_1_1grid__type}{grid\+\_\+type}), intent(in)}]{grid\+\_\+eq,  }\item[{type(\hyperlink{structgrid__vars_1_1grid__type}{grid\+\_\+type}), intent(in)}]{grid\+\_\+X,  }\item[{type(\hyperlink{structeq__vars_1_1eq__1__type}{eq\+\_\+1\+\_\+type}), intent(in)}]{eq\+\_\+1,  }\item[{type(\hyperlink{structeq__vars_1_1eq__2__type}{eq\+\_\+2\+\_\+type}), intent(in)}]{eq\+\_\+2,  }\item[{type(x\+\_\+1\+\_\+type), intent(inout)}]{X\+\_\+a,  }\item[{type(x\+\_\+1\+\_\+type), intent(inout)}]{X\+\_\+b,  }\item[{type(x\+\_\+2\+\_\+type), intent(inout)}]{X,  }\item[{integer, dimension(2,2), intent(in), optional}]{lim\+\_\+sec\+\_\+X }\end{DoxyParamCaption})}
+
+
+
+tensorial version 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em mds} & general modes variables\\
+\hline
+\mbox{\tt in}  & {\em grid\+\_\+eq} & equilibrium grid variables\\
+\hline
+\mbox{\tt in}  & {\em grid\+\_\+x} & perturbation grid variables\\
+\hline
+\mbox{\tt in}  & {\em eq\+\_\+1} & flux equilibrium\\
+\hline
+\mbox{\tt in}  & {\em eq\+\_\+2} & metric equilibrium\\
+\hline
+\mbox{\tt in,out}  & {\em x\+\_\+a} & vectorial perturbation variables (dimension 1)\\
+\hline
+\mbox{\tt in,out}  & {\em x\+\_\+b} & vectorial perturbation variables (dimension 2)\\
+\hline
+\mbox{\tt in,out}  & {\em x} & tensorial perturbation variables\\
+\hline
+\mbox{\tt in}  & {\em lim\+\_\+sec\+\_\+x} & limits of {\ttfamily m\+\_\+X} (pol flux) or {\ttfamily n\+\_\+X} (tor flux) for both dimensions \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 131 of file X\+\_\+ops.\+f90.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{interfacex__ops_1_1calc__x_a59ee84bcbeb93d7d7fbace7f412138f0_cgraph}
+\end{center}
+\end{figure}
+
+

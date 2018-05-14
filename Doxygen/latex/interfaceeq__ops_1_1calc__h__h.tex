@@ -1,0 +1,78 @@
+\hypertarget{interfaceeq__ops_1_1calc__h__h}{}\section{eq\+\_\+ops\+:\+:calc\+\_\+h\+\_\+h Interface Reference}
+\label{interfaceeq__ops_1_1calc__h__h}\index{eq\+\_\+ops\+::calc\+\_\+h\+\_\+h@{eq\+\_\+ops\+::calc\+\_\+h\+\_\+h}}
+
+
+Calculate the upper metric coefficients in the equilibrium H(\+E\+L\+E\+N\+A) coordinate system.  
+
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+integer function \hyperlink{interfaceeq__ops_1_1calc__h__h_ab072d5b8098cccac9afecf36d04a4229}{calc\+\_\+h\+\_\+h\+\_\+ind} (grid\+\_\+eq, eq, deriv)
+\begin{DoxyCompactList}\small\item\em individual version \end{DoxyCompactList}\item 
+integer function \hyperlink{interfaceeq__ops_1_1calc__h__h_a89d924d685ffdee10ac7ede93d749b23}{calc\+\_\+h\+\_\+h\+\_\+arr} (grid\+\_\+eq, eq, deriv)
+\begin{DoxyCompactList}\small\item\em array version \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Calculate the upper metric coefficients in the equilibrium H(\+E\+L\+E\+N\+A) coordinate system. 
+
+This is done using the H\+E\+L\+E\+NA output
+
+\begin{DoxyRefDesc}{Todo}
+\item[\hyperlink{todo__todo000001}{Todo}]The derivatives are done using finite differences, which means that the first and last points of the normal grid have a higher error. This could be remedied by choosing the interval larger. Currently, this is not done automatically.\end{DoxyRefDesc}
+
+
+\begin{DoxyReturn}{Returns}
+ierr 
+\end{DoxyReturn}
+
+
+\subsection{Member Function/\+Subroutine Documentation}
+\mbox{\Hypertarget{interfaceeq__ops_1_1calc__h__h_a89d924d685ffdee10ac7ede93d749b23}\label{interfaceeq__ops_1_1calc__h__h_a89d924d685ffdee10ac7ede93d749b23}} 
+\index{eq\+\_\+ops\+::calc\+\_\+h\+\_\+h@{eq\+\_\+ops\+::calc\+\_\+h\+\_\+h}!calc\+\_\+h\+\_\+h\+\_\+arr@{calc\+\_\+h\+\_\+h\+\_\+arr}}
+\index{calc\+\_\+h\+\_\+h\+\_\+arr@{calc\+\_\+h\+\_\+h\+\_\+arr}!eq\+\_\+ops\+::calc\+\_\+h\+\_\+h@{eq\+\_\+ops\+::calc\+\_\+h\+\_\+h}}
+\subsubsection{\texorpdfstring{calc\+\_\+h\+\_\+h\+\_\+arr()}{calc\_h\_h\_arr()}}
+{\footnotesize\ttfamily integer function eq\+\_\+ops\+::calc\+\_\+h\+\_\+h\+::calc\+\_\+h\+\_\+h\+\_\+arr (\begin{DoxyParamCaption}\item[{type(\hyperlink{structgrid__vars_1_1grid__type}{grid\+\_\+type}), intent(in)}]{grid\+\_\+eq,  }\item[{type(\hyperlink{structeq__vars_1_1eq__2__type}{eq\+\_\+2\+\_\+type}), intent(inout)}]{eq,  }\item[{integer, dimension(\+:,\+:), intent(in)}]{deriv }\end{DoxyParamCaption})}
+
+
+
+array version 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em grid\+\_\+eq} & equilibirum grid\\
+\hline
+\mbox{\tt in,out}  & {\em eq} & metric equilibrium\\
+\hline
+\mbox{\tt in}  & {\em deriv} & derivatives \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{interfaceeq__ops_1_1calc__h__h_ab072d5b8098cccac9afecf36d04a4229}\label{interfaceeq__ops_1_1calc__h__h_ab072d5b8098cccac9afecf36d04a4229}} 
+\index{eq\+\_\+ops\+::calc\+\_\+h\+\_\+h@{eq\+\_\+ops\+::calc\+\_\+h\+\_\+h}!calc\+\_\+h\+\_\+h\+\_\+ind@{calc\+\_\+h\+\_\+h\+\_\+ind}}
+\index{calc\+\_\+h\+\_\+h\+\_\+ind@{calc\+\_\+h\+\_\+h\+\_\+ind}!eq\+\_\+ops\+::calc\+\_\+h\+\_\+h@{eq\+\_\+ops\+::calc\+\_\+h\+\_\+h}}
+\subsubsection{\texorpdfstring{calc\+\_\+h\+\_\+h\+\_\+ind()}{calc\_h\_h\_ind()}}
+{\footnotesize\ttfamily integer function eq\+\_\+ops\+::calc\+\_\+h\+\_\+h\+::calc\+\_\+h\+\_\+h\+\_\+ind (\begin{DoxyParamCaption}\item[{type(\hyperlink{structgrid__vars_1_1grid__type}{grid\+\_\+type}), intent(in)}]{grid\+\_\+eq,  }\item[{type(\hyperlink{structeq__vars_1_1eq__2__type}{eq\+\_\+2\+\_\+type}), intent(inout)}]{eq,  }\item[{integer, dimension(\+:), intent(in)}]{deriv }\end{DoxyParamCaption})}
+
+
+
+individual version 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em grid\+\_\+eq} & equilibrium grid\\
+\hline
+\mbox{\tt in,out}  & {\em eq} & metric equilibrium\\
+\hline
+\mbox{\tt in}  & {\em deriv} & derivatives \\
+\hline
+\end{DoxyParams}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{interfaceeq__ops_1_1calc__h__h_ab072d5b8098cccac9afecf36d04a4229_cgraph}
+\end{center}
+\end{figure}
+
+

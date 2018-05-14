@@ -1,0 +1,137 @@
+This page describes the general code structure of P\+B3D, as well as its accompanying post-\/process program P\+O\+ST. It is more complete than the documentation that can be found in \cite{Weyens2017PB3D}.\hypertarget{page_overview_overview_PB3D_flowchart}{}\section{P\+B3\+D flowchart}\label{page_overview_overview_PB3D_flowchart}
+In \hyperlink{page_overview_flowchart_fig}{figure 1}, the top-\/level flowchart of P\+B3D is shown (adapted from \cite{Weyens2017PB3D})\+:
+
+\label{page_overview_flowchart_fig}%
+\Hypertarget{page_overview_flowchart_fig}%
+ 
+\begin{DoxyImage}
+\includegraphics[width=0.7\textwidth]{flowchart}
+\doxyfigcaption{{\bfseries Figure} {\bfseries 1} {\bfseries }\+: basic P\+B3D flowchart}
+\end{DoxyImage}
+
+
+Roughly speaking, the main body of the code is taken up by four driver routines\+:
+\begin{DoxyItemize}
+\item input driver
+\item equilibrium driver
+\item perturbation driver
+\item solution driver
+\end{DoxyItemize}
+
+The {\bfseries input driver} sets the other drivers up by reading input options as well as quantities from equilibrium codes, and converting them to the internal P\+B3D format.
+
+The {\bfseries equilibrium driver} uses these input variables to set up equilibrium quantities.
+\begin{DoxyItemize}
+\item On the one hand these consist of flux equilibrium quantities (stored in a \hyperlink{structeq__vars_1_1eq__1__type}{eq\+\_\+vars.\+eq\+\_\+1\+\_\+type}) that only depend on the flux coordinates, such as the pressure $p$, the safety factor $q$, etc.
+\item On the other hand, they consist of metric equilibrium quantities (stored in a \hyperlink{structeq__vars_1_1eq__2__type}{eq\+\_\+vars.\+eq\+\_\+2\+\_\+type}) that depend on the angular position as well, such as the metric quantities of the grid $g_{ij} = \vec{e}_i \cdot \vec{e}_j$ and $h_{ij} = \nabla u^i \cdot \nabla u^j$, as well as derived quantities such as the parallel current $\sigma = \frac{\vec{B}\cdot\vec{J}}{B^2}$, etc. \cite{weyens2014theory}
+\end{DoxyItemize}
+
+The {\bfseries perturbation driver} uses both types of equation variables to calculate perturbation quantites. Again, there are two types.
+\begin{DoxyItemize}
+\item The first type of variables are the vectorial perturbation quantities (stored in a \hyperlink{structx__vars_1_1x__1__type}{x\+\_\+vars.\+x\+\_\+1\+\_\+type}), which contains the geodesic component of the perturbation $U = \frac{\nabla \times \vec{B}}{\left|\nabla \psi\right|^2} \cdot \vec{\xi}$ where $\vec{\xi}$ is the perturbation. Also the parallel derivatives of these quantities are calculated.
+\item The other type re the tensorial perturbation quantities (stored in a \hyperlink{structx__vars_1_1x__2__type}{x\+\_\+vars.\+x\+\_\+2\+\_\+type}), and it combines the vectorial perturbation quantities with the equilibrium quantities to form the tensorial quantities $\widetilde{PV}_{k,m}^i$ and $\widetilde{KV}_{k,m}^i$ that represent the perturbed potential energy as well as the kinetic energy of the perturbation \cite{weyens2014theory}.
+\end{DoxyItemize}
+
+These are also complemented by $\delta_{k,m}^\text{vac}$, the vacuum contribution to the perturbed potential energy (\hyperlink{page_overview_fng1}{1}).
+
+After integrating them along the magnetic field lines, these magnetic integrals form the building blocks of the discretized matrices $\overline{\text{A}}$ and $\overline{\text{B}}$ in the generalized system of eigenvalue equations $\overline{\text{A}} \vec{X} = \lambda \overline{\text{B}}\vec{X}$.
+
+These matrices are set up in the {\bfseries solution driver}, which currently works with the S\+L\+E\+Pc library that is build on the P\+E\+T\+Sc library for sparse linear algebra. After solution, the eigenvalues and -\/vectors are stored appropriately.
+
+Finally, it is checked whether another Richardson level should be attempted or not in {\bfseries Richardson converged?}, and if so, the number of parallel grid points is doubled.\hypertarget{page_overview_overview_jobs}{}\section{Equilibrium \& Perturbation Jobs}\label{page_overview_overview_jobs}
+The general code structure explained in \hyperlink{page_overview_overview_PB3D_flowchart}{P\+B3D flowchart} basically comes down to setting up the matrices to be solved for the eigenvalues and eigenvectors. In general, the dimensions of these variables are too large (see the grids in \hyperlink{page_overview_detail_PB3D}{Detailed P\+B3D Flowchart}) for them to fit in memory. A structure of two nested loops is therefore employed in P\+B3D, called {\bfseries jobs}, to keep the memory requirements under a user-\/defined maximum (see {\ttfamily max\+\_\+tot\+\_\+mem} in \hyperlink{page_inputs}{Input variables}).\hypertarget{page_overview_overview_jobs_X}{}\subsection{Perturbation jobs}\label{page_overview_overview_jobs_X}
+{\bfseries perturbation jobs} are used to divided the calculation of the tensorial perturbation quantities, which come in pairs of mode numbers. These combinations are blocked, where each block fits in memory. These blocks are the perturbation jobs.
+
+They form the inner loop.
+
+\begin{DoxySeeAlso}{See also}
+See \hyperlink{namespacex__ops_a677c88d85fe1bfbf3579a2421ce16f2f}{divide\+\_\+x\+\_\+jobs()}.
+\end{DoxySeeAlso}
+\hypertarget{page_overview_overview_jobs_eq}{}\subsection{Equilibrium jobs}\label{page_overview_overview_jobs_eq}
+As a result the memory still needs to hold all the relevant equilibrium and vectorial perturbation quantities necessary for the individual perturbation jobs during the whole time these jobs are being calculated. {\bfseries equilibrium jobs} are therefore employed in an outer loop to divide these equilibrium and vectorial perturbation quantities in manageable chunks.
+
+To be more precise, the parallel range over which variables are to be integrated in the magnetic integrals (see \hyperlink{page_overview_detail_PB3D}{Detailed P\+B3D Flowchart}), is cut in pieces. The advantage here is that only the results from the sub-\/integrals have to be saved and updated, not the function values themselves.
+
+\begin{DoxySeeAlso}{See also}
+See \hyperlink{namespaceeq__ops_a8fae749abe55865d8135fef536a8e8f1}{divide\+\_\+eq\+\_\+jobs()}.
+\end{DoxySeeAlso}
+\hypertarget{page_overview_detail_PB3D}{}\section{Detailed P\+B3\+D Flowchart}\label{page_overview_detail_PB3D}
+The different blocks if figure \hyperlink{page_overview_flowchart_fig}{1} are expanded in table \doxytablelink{page_overview_flowchart_PB3D_tab}{1}. The cells that are typeset in light blue are only performed for the first equilibrium job of either the restart Richardson level, or the first Richardson level if this is not provided. \hypertarget{page_overview_flowchart_PB3D_tab}{}
+\tabulinesep=1mm
+\begin{longtabu} spread 0pt [c]{*{3}{|X[-1]}|}
+\caption{Table 1. detailed P\+B3D flowchart}\label{page_overview_flowchart_PB3D_tab}\\
+\hline
+\rowcolor{\tableheadbgcolor}\textbf{ variable type }&\textbf{ V\+M\+EC ({\ttfamily eq\+\_\+style = 1}) }&\textbf{ H\+E\+L\+E\+NA ({\ttfamily eq\+\_\+style = 2})   }\\\cline{1-3}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\rowcolor{\tableheadbgcolor}\textbf{ variable type }&\textbf{ V\+M\+EC ({\ttfamily eq\+\_\+style = 1}) }&\textbf{ H\+E\+L\+E\+NA ({\ttfamily eq\+\_\+style = 2})   }\\\cline{1-3}
+\endhead
+\multirow{1}{\linewidth}{{\bfseries  P\+B3D initialize }}&\multicolumn{2}{p{(\linewidth-\tabcolsep*3-\arrayrulewidth*2)*2/3}|}{the P\+B3D structure is set up, such as the M\+PI communicator, etc.   }\\\cline{1-3}
+\multirow{8}{\linewidth}{{\bfseries  input driver }}&\multicolumn{2}{p{(\linewidth-\tabcolsep*3-\arrayrulewidth*2)*2/3}|}{The arguments are parsed (see \hyperlink{namespacefiles__ops_a051584112f6e4f6e60b0ef824dffbf5e}{parse\+\_\+args()})   }\\\cline{2-3}
+&\multicolumn{2}{p{(\linewidth-\tabcolsep*3-\arrayrulewidth*2)*2/3}|}{The input files are opened (see \hyperlink{namespacefiles__ops_a63a81a5a451f787025429878b2cec81b}{open\+\_\+input()} and \hyperlink{page_inputs}{Input variables})   }\\\cline{2-3}
+&\multicolumn{2}{p{(\linewidth-\tabcolsep*3-\arrayrulewidth*2)*2/3}|}{The user inputs are processed (see \hyperlink{namespaceinput__ops_a434acca4f59f9dc1d91e04f846133684}{read\+\_\+input\+\_\+opts()})   }\\\cline{2-3}
+&\multicolumn{2}{p{(\linewidth-\tabcolsep*3-\arrayrulewidth*2)*2/3}|}{The equilibrium code output is read and converted to the internal P\+B3D format (see \hyperlink{namespaceinput__ops_a577c897cc266961eb40bb5ef747fa077}{read\+\_\+input\+\_\+eq()})   }\\\cline{2-3}
+&\multicolumn{2}{p{(\linewidth-\tabcolsep*3-\arrayrulewidth*2)*2/3}|}{Normalization constants are calculated (see \hyperlink{namespaceeq__ops_a7cd38586e386e1bc684a327ebcc4c1de}{calc\+\_\+normalization\+\_\+const()}) and the input is normalized (see \hyperlink{namespaceeq__ops_a1b4c764da73624722d7e76498a2b80a9}{normalize\+\_\+input()})   }\\\cline{2-3}
+&\multicolumn{2}{p{(\linewidth-\tabcolsep*3-\arrayrulewidth*2)*2/3}|}{Output files are opened (see \hyperlink{namespacefiles__ops_ad681a9e8083a6f664cf0f9d17ebe279c}{open\+\_\+output()} and \hyperlink{page_outputs}{Code outputs})   }\\\cline{2-3}
+&\multicolumn{2}{p{(\linewidth-\tabcolsep*3-\arrayrulewidth*2)*2/3}|}{Input variables are written to H\+D\+F5 output (see \hyperlink{namespaceinput__ops_a84ec7b3833da80ebb36ae0d5ff1a9e0a}{print\+\_\+output\+\_\+in()})  }\\\cline{2-3}
+&\multicolumn{2}{p{(\linewidth-\tabcolsep*3-\arrayrulewidth*2)*2/3}|}{Some other variables are broadcasted directly to all the processes using M\+PI (see \hyperlink{namespacempi__ops_a932eba1c998dd7a0f1191b55cd754be3}{broadcast\+\_\+input\+\_\+opts()})   }\\\cline{1-3}
+\multirow{14}{\linewidth}{{\bfseries  equilibrium driver } }&normal part of equilibrium grid is set up, as for the angular part, the field-\/lines are necessary which are not yet calculated  &the equilibrium grid is set up equal to the H\+E\+L\+E\+NA output grid   \\\cline{2-3}
+&\multicolumn{2}{p{(\linewidth-\tabcolsep*3-\arrayrulewidth*2)*2/3}|}{flux equilibrium quantities (see \hyperlink{structeq__vars_1_1eq__1__type}{eq\+\_\+vars.\+eq\+\_\+1\+\_\+type}) are calculated (see \hyperlink{interfaceeq__ops_1_1calc__eq}{eq\+\_\+ops.\+calc\+\_\+eq()})   }\\\cline{2-3}
+&\multicolumn{2}{p{(\linewidth-\tabcolsep*3-\arrayrulewidth*2)*2/3}|}{flux equilibrium quantities are written to H\+D\+F5 output (see \hyperlink{interfaceeq__ops_1_1print__output__eq}{eq\+\_\+ops.\+print\+\_\+output\+\_\+eq()})   }\\\cline{2-3}
+&equilibrium grid is completed by tracing the field lines (see \hyperlink{namespacegrid__ops_a06107dbdfd1dd62e372cc29ab0255bad}{calc\+\_\+ang\+\_\+grid\+\_\+eq\+\_\+b()})  &an additional, field-\/aligned equilibrium grid is set up by tracing the field lines (see \hyperlink{namespacegrid__ops_ad16495ddd320562451c2325bafecf2d8}{setup\+\_\+grid\+\_\+eq\+\_\+b()}), and it is written to H\+D\+F5 output (see \hyperlink{namespacegrid__ops_a4827e794d37334c0cad9bb2016e64d46}{print\+\_\+output\+\_\+grid()})   \\\cline{2-3}
+&the equilibrium grid is written to output  &the equilibrium grid is written to the output  \\\cline{2-3}
+&the metric equilibrium variables (see \hyperlink{structeq__vars_1_1eq__2__type}{eq\+\_\+vars.\+eq\+\_\+2\+\_\+type}) are calculated (see \hyperlink{interfaceeq__ops_1_1calc__eq}{eq\+\_\+ops.\+calc\+\_\+eq()})  &the metric equilibrium variables (see \hyperlink{structeq__vars_1_1eq__2__type}{eq\+\_\+vars.\+eq\+\_\+2\+\_\+type}) are calculated (see \hyperlink{interfaceeq__ops_1_1calc__eq}{eq\+\_\+ops.\+calc\+\_\+eq()})  \\\cline{2-3}
+&&the metric equilibrium variables are written to the output (see \hyperlink{interfaceeq__ops_1_1print__output__eq}{eq\+\_\+ops.\+print\+\_\+output\+\_\+eq()})  \\\cline{2-3}
+&store equilibrium quantities necessary for vacuum calculation (see \hyperlink{namespacevac__ops_a37220702fbf378626a0f2c12f446e0aa}{store\+\_\+vac()})  &store equilibrium quantities necessary for vacuum calculation (see \hyperlink{namespacevac__ops_a37220702fbf378626a0f2c12f446e0aa}{store\+\_\+vac()})   \\\cline{2-3}
+&possible plot of magnetic field, current density and/or curvature in (field-\/aligned) equilibrium grid (see \hyperlink{namespaceeq__ops_a73a8c3cea1e8a636b4978bc626e0fab0}{b\+\_\+plot()}, \hyperlink{namespaceeq__ops_afabdf28e5c26ceb87e6eb8cf3809919d}{j\+\_\+plot()}, \hyperlink{namespaceeq__ops_ad173efd111cb85c11bc2bc78a7555096}{kappa\+\_\+plot()})  &possible plot of magnetic field, current density and/or curvature in (H\+E\+L\+E\+NA) equilibrium grid (see \hyperlink{namespaceeq__ops_a73a8c3cea1e8a636b4978bc626e0fab0}{b\+\_\+plot()}, \hyperlink{namespaceeq__ops_afabdf28e5c26ceb87e6eb8cf3809919d}{j\+\_\+plot()}, \hyperlink{namespaceeq__ops_ad173efd111cb85c11bc2bc78a7555096}{kappa\+\_\+plot()})  \\\cline{2-3}
+&redistribute the equilibrium grid (see \hyperlink{namespacegrid__ops_ab10ef5b486ee3861df2da4e53bc22630}{redistribute\+\_\+output\+\_\+grid()})  &redistribute the equilibrium grid (see \hyperlink{namespacegrid__ops_ab10ef5b486ee3861df2da4e53bc22630}{redistribute\+\_\+output\+\_\+grid()})  \\\cline{2-3}
+&\multicolumn{2}{p{(\linewidth-\tabcolsep*3-\arrayrulewidth*2)*2/3}|}{redistribute the flux equilibrium quantities (see \hyperlink{interfaceeq__ops_1_1redistribute__output__eq}{eq\+\_\+ops.\+redistribute\+\_\+output\+\_\+eq()})   }\\\cline{2-3}
+&redistribute the metric equilibrium quantities (see \hyperlink{interfaceeq__ops_1_1redistribute__output__eq}{eq\+\_\+ops.\+redistribute\+\_\+output\+\_\+eq()})  &redistribute the metric equilibrium quantities (see \hyperlink{interfaceeq__ops_1_1redistribute__output__eq}{eq\+\_\+ops.\+redistribute\+\_\+output\+\_\+eq()})   \\\cline{2-3}
+&&The field-\/aligned equilibrium grid is redistributed (see \hyperlink{namespacegrid__ops_ab10ef5b486ee3861df2da4e53bc22630}{redistribute\+\_\+output\+\_\+grid()})   \\\cline{2-3}
+&\multicolumn{2}{p{(\linewidth-\tabcolsep*3-\arrayrulewidth*2)*2/3}|}{possible plot of magnetic field lines in flux surfaces (see \hyperlink{namespacegrid__ops_addd76b7b3be0b51e0863ae0cdfef41e6}{magn\+\_\+grid\+\_\+plot()}) if last equilibrium job   }\\\cline{1-3}
+\multirow{11}{\linewidth}{{\bfseries  perturbation driver }}&&the metric equilibrium quantities are inerpolated in the field-\/aligned equilibrium grid (see \hyperlink{namespacehelena__ops_a7796861de18ae7ac9c3aa07a8628be38}{interp\+\_\+hel\+\_\+on\+\_\+grid()})   \\\cline{2-3}
+&determine perturbation grid (see \hyperlink{namespacegrid__ops_a1047889ec84da6e56aae619570a16988}{setup\+\_\+grid\+\_\+x()}) and write it to H\+D\+F5 ouput (see \hyperlink{namespacegrid__ops_a4827e794d37334c0cad9bb2016e64d46}{print\+\_\+output\+\_\+grid()})  &determine perturbation grid (see \hyperlink{namespacegrid__ops_a1047889ec84da6e56aae619570a16988}{setup\+\_\+grid\+\_\+x()}) and write it to H\+D\+F5 ouput (see \hyperlink{namespacegrid__ops_a4827e794d37334c0cad9bb2016e64d46}{print\+\_\+output\+\_\+grid()})   \\\cline{2-3}
+&&set up field-\/aligned perturbation grid and write to output  \\\cline{2-3}
+&\multicolumn{2}{p{(\linewidth-\tabcolsep*3-\arrayrulewidth*2)*2/3}|}{set up mode number information (see setup\+\_\+nm\+\_\+x()) and check them (see \hyperlink{namespacex__ops_a7d9275e2d927d92548416f21b983b604}{check\+\_\+x\+\_\+modes()}) if first perturbation job  }\\\cline{2-3}
+&\multicolumn{2}{p{(\linewidth-\tabcolsep*3-\arrayrulewidth*2)*2/3}|}{possibly plot resonance (see \hyperlink{namespacex__ops_abdaf1308e13cede3a153e8c6cf35a637}{resonance\+\_\+plot()}) if first perturbation job  }\\\cline{2-3}
+&the vectorial perturbation variables (see \hyperlink{structx__vars_1_1x__1__type}{x\+\_\+vars.\+x\+\_\+1\+\_\+type}) are calculated (see \hyperlink{interfacex__ops_1_1calc__x}{x\+\_\+ops.\+calc\+\_\+x()})  &the vectorial perturbation variables (see \hyperlink{structx__vars_1_1x__1__type}{x\+\_\+vars.\+x\+\_\+1\+\_\+type}) are calculated (see \hyperlink{interfacex__ops_1_1calc__x}{x\+\_\+ops.\+calc\+\_\+x()})   \\\cline{2-3}
+&&write vectorial perturbation variables to output (see \hyperlink{interfacex__ops_1_1print__output__x}{x\+\_\+ops.\+print\+\_\+output\+\_\+x()})   \\\cline{2-3}
+&&interpolate vectorial perturbation variables on field-\/aligned grid (see \hyperlink{namespacehelena__ops_a7796861de18ae7ac9c3aa07a8628be38}{interp\+\_\+hel\+\_\+on\+\_\+grid()})   \\\cline{2-3}
+&\multicolumn{2}{p{(\linewidth-\tabcolsep*3-\arrayrulewidth*2)*2/3}|}{calculate tensorial perturbation variables (see \hyperlink{interfacex__ops_1_1calc__x}{x\+\_\+ops.\+calc\+\_\+x()})   }\\\cline{2-3}
+&\multicolumn{2}{p{(\linewidth-\tabcolsep*3-\arrayrulewidth*2)*2/3}|}{calculate magnetic integrals (see \hyperlink{namespacex__ops_a6df79622d1b95d54ab3e542751a5881d}{calc\+\_\+magn\+\_\+ints()})   }\\\cline{2-3}
+&\multicolumn{2}{p{(\linewidth-\tabcolsep*3-\arrayrulewidth*2)*2/3}|}{write magnetic integrals to output (see \hyperlink{interfacex__ops_1_1print__output__x}{x\+\_\+ops.\+print\+\_\+output\+\_\+x()})   }\\\cline{1-3}
+\multirow{3}{\linewidth}{{\bfseries  solution driver }}&calculate vacuum (see calc\+\_\+vac())  &calculate vacuum (see calc\+\_\+vac())   \\\cline{2-3}
+&\multicolumn{2}{p{(\linewidth-\tabcolsep*3-\arrayrulewidth*2)*2/3}|}{set up the solution grid (see \hyperlink{namespacegrid__ops_aeff1569cb9a043b03ed49250524fbd95}{setup\+\_\+grid\+\_\+sol()}) and write to H\+D\+F5 output (see \hyperlink{namespacegrid__ops_a4827e794d37334c0cad9bb2016e64d46}{print\+\_\+output\+\_\+grid()})   }\\\cline{2-3}
+&\multicolumn{2}{p{(\linewidth-\tabcolsep*3-\arrayrulewidth*2)*2/3}|}{solve system of equations (see \hyperlink{namespaceslepc__ops_a79c420987056c225931b51c8d30ece1f}{solve\+\_\+ev\+\_\+system\+\_\+slepc()})   }\\\cline{1-3}
+\multirow{1}{\linewidth}{{\bfseries  Richardson converged? }}&\multicolumn{2}{p{(\linewidth-\tabcolsep*3-\arrayrulewidth*2)*2/3}|}{check for convergence of Richardson levels by comparing solution eigenvalues (see \hyperlink{namespacerich__ops_ac00cce686d45540b238b3b6e39c9bdeb}{check\+\_\+conv()})   }\\\cline{1-3}
+\multirow{1}{\linewidth}{{\bfseries  P\+B3D finalize }}&\multicolumn{2}{p{(\linewidth-\tabcolsep*3-\arrayrulewidth*2)*2/3}|}{clean up   }\\\cline{1-3}
+\end{longtabu}
+\hypertarget{page_overview_overview_POST}{}\section{P\+O\+S\+T Overview}\label{page_overview_overview_POST}
+The P\+O\+ST program for post-\/processing of P\+B3D results consists of just one driver.
+\begin{DoxyItemize}
+\item In the first part, everything is set up (see \hyperlink{namespacedriver__post_af527706d4e696d4e507443d2f74194ef}{init\+\_\+post()})\+:
+\begin{DoxyItemize}
+\item This includes initializing the variables written to H\+D\+F5 in P\+B3D.
+\item Furthermore, the output grids are created
+\item Also, 1-\/D flux plots are produced, which are part of the plots that P\+B3D is able to produce (see {\ttfamily plot\+\_\+flux\+\_\+q}, {\ttfamily plot\+\_\+resonance} and {\ttfamily plot\+\_\+magn\+\_\+grid} in table \doxytablelink{page_outputs_output_plots_tab}{3} in \hyperlink{page_outputs}{Code outputs}) can be created here.
+\end{DoxyItemize}
+\item After that, new outputs are calculated and plot (see \hyperlink{namespacedriver__post_a33b3c6f9018a0ddc92dce77394b8ab37}{run\+\_\+driver\+\_\+post()})\+:
+\begin{DoxyItemize}
+\item Quantities are calculated on the output grids.
+\item Using these, plots are first produced that do not depend on the solution vector from P\+B3D, and are also part of the plots that P\+B3D is able to produce (see {\ttfamily plot\+\_\+B}, {\ttfamily plot\+\_\+J}, {\ttfamily plot\+\_\+kappa} in table \doxytablelink{page_outputs_output_plots_tab}{3} in \hyperlink{page_outputs}{Code outputs}).
+\item Finally, other plots are produced that do depend on these (see {\ttfamily plot\+\_\+sol\+\_\+xi}, {\ttfamily plot\+\_\+sol\+\_\+Q}, {\ttfamily plot\+\_\+\+E\+\_\+rec} in table \doxytablelink{page_outputs_output_plots_tab}{3} in \hyperlink{page_outputs}{Code outputs}).
+\end{DoxyItemize}
+\end{DoxyItemize}
+
+P\+O\+ST also knows the concept of equilibrium jobs, but not that of perturbation jobs (see \hyperlink{page_overview_overview_jobs}{Equilibrium \& Perturbation Jobs}). This is necessary for larger outputs that quickly overflow memory. The H\+D\+F5 output files are updated at every equilibrium job, but, with reasonable safety, they can already be looked at in a visualizer.
+
+\begin{DoxyNote}{Note}
+
+\begin{DoxyEnumerate}
+\item \label{page_overview_fng1}%
+\Hypertarget{page_overview_fng1}%
+This is not yet implemented. 
+\end{DoxyEnumerate}
+\end{DoxyNote}

@@ -1,0 +1,109 @@
+\hypertarget{interfacegrid__utilities_1_1coord__f2e}{}\section{grid\+\_\+utilities\+:\+:coord\+\_\+f2e Interface Reference}
+\label{interfacegrid__utilities_1_1coord__f2e}\index{grid\+\_\+utilities\+::coord\+\_\+f2e@{grid\+\_\+utilities\+::coord\+\_\+f2e}}
+
+
+Converts Flux coordinates $\left(r,\theta,\zeta\right)_\text{F}$ to Equilibrium coordinates $\left(r,\theta,\zeta\right)_\text{E}$.  
+
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+integer function \hyperlink{interfacegrid__utilities_1_1coord__f2e_a40c73347672152f144ccaa9cd024267d}{coord\+\_\+f2e\+\_\+r} (grid\+\_\+eq, r\+\_\+F, r\+\_\+E, r\+\_\+\+F\+\_\+array, r\+\_\+\+E\+\_\+array)
+\begin{DoxyCompactList}\small\item\em version with only r \end{DoxyCompactList}\item 
+integer function \hyperlink{interfacegrid__utilities_1_1coord__f2e_a3ab9822d623e86babe9eb47f99c9434e}{coord\+\_\+f2e\+\_\+rtz} (grid\+\_\+eq, r\+\_\+F, theta\+\_\+F, zeta\+\_\+F, r\+\_\+E, theta\+\_\+E, zeta\+\_\+E, r\+\_\+\+F\+\_\+array, r\+\_\+\+E\+\_\+array, ord)
+\begin{DoxyCompactList}\small\item\em version withi r, theta and zeta \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Converts Flux coordinates $\left(r,\theta,\zeta\right)_\text{F}$ to Equilibrium coordinates $\left(r,\theta,\zeta\right)_\text{E}$. 
+
+Optionally, two arrays {\ttfamily r\+\_\+\+F\+\_\+array} and {\ttfamily r\+\_\+\+E\+\_\+array} can be provided, that define the mapping between the both coordinate system.
+
+Standard, for E, the poloidal or toroidal normalized flux is used and for F, the poloidal or toroidal flux in F coordinates, divided by $2\pi$.
+
+\begin{DoxyNote}{Note}
+For V\+M\+EC, it can be slow, as the zero of a non-\/linear expression must be sought. This is done currently using \hyperlink{interfacenum__ops_1_1calc__zero__hh}{num\+\_\+ops.\+calc\+\_\+zero\+\_\+hh()}.
+\end{DoxyNote}
+\begin{DoxyReturn}{Returns}
+ierr 
+\end{DoxyReturn}
+
+
+Definition at line 47 of file grid\+\_\+utilities.\+f90.
+
+
+
+\subsection{Member Function/\+Subroutine Documentation}
+\mbox{\Hypertarget{interfacegrid__utilities_1_1coord__f2e_a40c73347672152f144ccaa9cd024267d}\label{interfacegrid__utilities_1_1coord__f2e_a40c73347672152f144ccaa9cd024267d}} 
+\index{grid\+\_\+utilities\+::coord\+\_\+f2e@{grid\+\_\+utilities\+::coord\+\_\+f2e}!coord\+\_\+f2e\+\_\+r@{coord\+\_\+f2e\+\_\+r}}
+\index{coord\+\_\+f2e\+\_\+r@{coord\+\_\+f2e\+\_\+r}!grid\+\_\+utilities\+::coord\+\_\+f2e@{grid\+\_\+utilities\+::coord\+\_\+f2e}}
+\subsubsection{\texorpdfstring{coord\+\_\+f2e\+\_\+r()}{coord\_f2e\_r()}}
+{\footnotesize\ttfamily integer function grid\+\_\+utilities\+::coord\+\_\+f2e\+::coord\+\_\+f2e\+\_\+r (\begin{DoxyParamCaption}\item[{type(\hyperlink{structgrid__vars_1_1grid__type}{grid\+\_\+type}), intent(in)}]{grid\+\_\+eq,  }\item[{real(dp), dimension(\+:), intent(in)}]{r\+\_\+F,  }\item[{real(dp), dimension(\+:), intent(inout)}]{r\+\_\+E,  }\item[{real(dp), dimension(\+:), intent(in), optional, target}]{r\+\_\+\+F\+\_\+array,  }\item[{real(dp), dimension(\+:), intent(in), optional, target}]{r\+\_\+\+E\+\_\+array }\end{DoxyParamCaption})}
+
+
+
+version with only r 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em grid\+\_\+eq} & equilibrium grid (for possibly loc\+\_\+r)\\
+\hline
+\mbox{\tt in}  & {\em r\+\_\+f} & $r_\text{F}$\\
+\hline
+\mbox{\tt in,out}  & {\em r\+\_\+e} & $r_\text{E}$\\
+\hline
+\mbox{\tt in}  & {\em r\+\_\+f\+\_\+array} & optional array that defines mapping between two coord. systems\\
+\hline
+\mbox{\tt in}  & {\em r\+\_\+e\+\_\+array} & optional array that defines mapping between two coord. systems \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 297 of file grid\+\_\+utilities.\+f90.
+
+\mbox{\Hypertarget{interfacegrid__utilities_1_1coord__f2e_a3ab9822d623e86babe9eb47f99c9434e}\label{interfacegrid__utilities_1_1coord__f2e_a3ab9822d623e86babe9eb47f99c9434e}} 
+\index{grid\+\_\+utilities\+::coord\+\_\+f2e@{grid\+\_\+utilities\+::coord\+\_\+f2e}!coord\+\_\+f2e\+\_\+rtz@{coord\+\_\+f2e\+\_\+rtz}}
+\index{coord\+\_\+f2e\+\_\+rtz@{coord\+\_\+f2e\+\_\+rtz}!grid\+\_\+utilities\+::coord\+\_\+f2e@{grid\+\_\+utilities\+::coord\+\_\+f2e}}
+\subsubsection{\texorpdfstring{coord\+\_\+f2e\+\_\+rtz()}{coord\_f2e\_rtz()}}
+{\footnotesize\ttfamily integer function grid\+\_\+utilities\+::coord\+\_\+f2e\+::coord\+\_\+f2e\+\_\+rtz (\begin{DoxyParamCaption}\item[{type(\hyperlink{structgrid__vars_1_1grid__type}{grid\+\_\+type}), intent(in)}]{grid\+\_\+eq,  }\item[{real(dp), dimension(\+:), intent(in)}]{r\+\_\+F,  }\item[{real(dp), dimension(\+:,\+:,\+:), intent(in)}]{theta\+\_\+F,  }\item[{real(dp), dimension(\+:,\+:,\+:), intent(in)}]{zeta\+\_\+F,  }\item[{real(dp), dimension(\+:), intent(inout)}]{r\+\_\+E,  }\item[{real(dp), dimension(\+:,\+:,\+:), intent(inout)}]{theta\+\_\+E,  }\item[{real(dp), dimension(\+:,\+:,\+:), intent(inout)}]{zeta\+\_\+E,  }\item[{real(dp), dimension(\+:), intent(in), optional, target}]{r\+\_\+\+F\+\_\+array,  }\item[{real(dp), dimension(\+:), intent(in), optional, target}]{r\+\_\+\+E\+\_\+array,  }\item[{integer, intent(in), optional}]{ord }\end{DoxyParamCaption})}
+
+
+
+version withi r, theta and zeta 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em grid\+\_\+eq} & equilibrium grid (for normal local limits and possibly loc\+\_\+r)\\
+\hline
+\mbox{\tt in}  & {\em r\+\_\+f} & $r_\text{F}$\\
+\hline
+\mbox{\tt in}  & {\em theta\+\_\+f} & $\theta_\text{F}$\\
+\hline
+\mbox{\tt in}  & {\em zeta\+\_\+f} & $\zeta_\text{F}$\\
+\hline
+\mbox{\tt in,out}  & {\em r\+\_\+e} & $r_\text{E}$\\
+\hline
+\mbox{\tt in,out}  & {\em theta\+\_\+e} & $\theta_\text{E}$\\
+\hline
+\mbox{\tt in,out}  & {\em zeta\+\_\+e} & $\zeta_\text{E}$\\
+\hline
+\mbox{\tt in}  & {\em r\+\_\+f\+\_\+array} & optional array that defines mapping between two coord. systems\\
+\hline
+\mbox{\tt in}  & {\em r\+\_\+e\+\_\+array} & optional array that defines mapping between two coord. systems\\
+\hline
+\mbox{\tt in}  & {\em ord} & order (only used for eq\+\_\+style 1) \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 120 of file grid\+\_\+utilities.\+f90.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{interfacegrid__utilities_1_1coord__f2e_a3ab9822d623e86babe9eb47f99c9434e_cgraph}
+\end{center}
+\end{figure}
+
+

@@ -1,0 +1,142 @@
+\hypertarget{interfacesol__utilities_1_1calc__xuq}{}\section{sol\+\_\+utilities\+:\+:calc\+\_\+xuq Interface Reference}
+\label{interfacesol__utilities_1_1calc__xuq}\index{sol\+\_\+utilities\+::calc\+\_\+xuq@{sol\+\_\+utilities\+::calc\+\_\+xuq}}
+
+
+Calculates the normal ( $\cdot_n$) or geodesic ( $\cdot_g$) components of the plasma perturbation $\vec{\xi}$ or the magnetic perturbation $\vec{Q} = \nabla \times \left(\vec{x} \times \vec{B}\right)$.  
+
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+integer function \hyperlink{interfacesol__utilities_1_1calc__xuq_a5a102e1e32fac72b138a38df4c543134}{calc\+\_\+xuq\+\_\+ind} (mds\+\_\+X, mds\+\_\+sol, grid\+\_\+eq, grid\+\_\+X, grid\+\_\+sol, eq\+\_\+1, eq\+\_\+2, X, sol, X\+\_\+id, X\+U\+Q\+\_\+style, time, X\+UQ, deriv)
+\begin{DoxyCompactList}\small\item\em (time) individual version \end{DoxyCompactList}\item 
+integer function \hyperlink{interfacesol__utilities_1_1calc__xuq_a17d7f9af7119c48b7203cf683f80d304}{calc\+\_\+xuq\+\_\+arr} (mds\+\_\+X, mds\+\_\+sol, grid\+\_\+eq, grid\+\_\+X, grid\+\_\+sol, eq\+\_\+1, eq\+\_\+2, X, sol, X\+\_\+id, X\+U\+Q\+\_\+style, time, X\+UQ, deriv)
+\begin{DoxyCompactList}\small\item\em (time) array version \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Calculates the normal ( $\cdot_n$) or geodesic ( $\cdot_g$) components of the plasma perturbation $\vec{\xi}$ or the magnetic perturbation $\vec{Q} = \nabla \times \left(\vec{x} \times \vec{B}\right)$. 
+
+Which variables are plot depends on {\ttfamily X\+U\+Q\+\_\+style} {\bfseries [Weyens3D]} \+:
+\begin{DoxyItemize}
+\item {\ttfamily X\+U\+Q\+\_\+style} = 1\+: $X$ (supports parallel derivative)
+\item {\ttfamily X\+U\+Q\+\_\+style} = 2\+: $U$ (supports parallel derivative)
+\item {\ttfamily X\+U\+Q\+\_\+style} = 3\+: $Q_n$
+\item {\ttfamily X\+U\+Q\+\_\+style} = 4\+: $Q_g$
+\end{DoxyItemize}
+
+$X$ and $U$ support the calculation of the parallel derivative.
+
+For $Q_n$ and $Q_g$, the metric variables have to be provided as well.
+
+The perturbation grid is assumed to have the same angular coordinates as the equilibrium grid, and the normal coordinates correspond to either the equilibrium grid ({\ttfamily X\+\_\+grid\+\_\+style} 1), the solution grid ({\ttfamily X\+\_\+grid\+\_\+style} 2) or the enriched equilibrium grid ({\ttfamily X\+\_\+grid\+\_\+style} 3).
+
+The output grid, furthermore, has the angular part corresponding to the equilibrium grid, and the normal part to the solution grid.
+
+\begin{DoxyReturn}{Returns}
+ierr 
+\end{DoxyReturn}
+
+
+Definition at line 56 of file sol\+\_\+utilities.\+f90.
+
+
+
+\subsection{Member Function/\+Subroutine Documentation}
+\mbox{\Hypertarget{interfacesol__utilities_1_1calc__xuq_a17d7f9af7119c48b7203cf683f80d304}\label{interfacesol__utilities_1_1calc__xuq_a17d7f9af7119c48b7203cf683f80d304}} 
+\index{sol\+\_\+utilities\+::calc\+\_\+xuq@{sol\+\_\+utilities\+::calc\+\_\+xuq}!calc\+\_\+xuq\+\_\+arr@{calc\+\_\+xuq\+\_\+arr}}
+\index{calc\+\_\+xuq\+\_\+arr@{calc\+\_\+xuq\+\_\+arr}!sol\+\_\+utilities\+::calc\+\_\+xuq@{sol\+\_\+utilities\+::calc\+\_\+xuq}}
+\subsubsection{\texorpdfstring{calc\+\_\+xuq\+\_\+arr()}{calc\_xuq\_arr()}}
+{\footnotesize\ttfamily integer function sol\+\_\+utilities\+::calc\+\_\+xuq\+::calc\+\_\+xuq\+\_\+arr (\begin{DoxyParamCaption}\item[{type(modes\+\_\+type), intent(in)}]{mds\+\_\+X,  }\item[{type(modes\+\_\+type), intent(in)}]{mds\+\_\+sol,  }\item[{type(\hyperlink{structgrid__vars_1_1grid__type}{grid\+\_\+type}), intent(in)}]{grid\+\_\+eq,  }\item[{type(\hyperlink{structgrid__vars_1_1grid__type}{grid\+\_\+type}), intent(in)}]{grid\+\_\+X,  }\item[{type(\hyperlink{structgrid__vars_1_1grid__type}{grid\+\_\+type}), intent(in)}]{grid\+\_\+sol,  }\item[{type(\hyperlink{structeq__vars_1_1eq__1__type}{eq\+\_\+1\+\_\+type}), intent(in)}]{eq\+\_\+1,  }\item[{type(\hyperlink{structeq__vars_1_1eq__2__type}{eq\+\_\+2\+\_\+type}), intent(in)}]{eq\+\_\+2,  }\item[{type(x\+\_\+1\+\_\+type), intent(in), target}]{X,  }\item[{type(\hyperlink{structsol__vars_1_1sol__type}{sol\+\_\+type}), intent(in)}]{sol,  }\item[{integer, intent(in)}]{X\+\_\+id,  }\item[{integer, intent(in)}]{X\+U\+Q\+\_\+style,  }\item[{real(dp), dimension(\+:), intent(in)}]{time,  }\item[{complex(dp), dimension(\+:,\+:,\+:,\+:), intent(inout)}]{X\+UQ,  }\item[{logical, intent(in), optional}]{deriv }\end{DoxyParamCaption})}
+
+
+
+(time) array version 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em mds\+\_\+x} & general modes variables in perturbation grid\\
+\hline
+\mbox{\tt in}  & {\em mds\+\_\+sol} & general modes variables in solution grid\\
+\hline
+\mbox{\tt in}  & {\em grid\+\_\+eq} & equilibrium grid\\
+\hline
+\mbox{\tt in}  & {\em grid\+\_\+x} & perturbation grid\\
+\hline
+\mbox{\tt in}  & {\em grid\+\_\+sol} & solution grid\\
+\hline
+\mbox{\tt in}  & {\em eq\+\_\+1} & flux equilibrium\\
+\hline
+\mbox{\tt in}  & {\em eq\+\_\+2} & metric equilibrium\\
+\hline
+\mbox{\tt in}  & {\em x} & perturbation variables\\
+\hline
+\mbox{\tt in}  & {\em sol} & solution variables\\
+\hline
+\mbox{\tt in}  & {\em x\+\_\+id} & nr. of Eigenvalue\\
+\hline
+\mbox{\tt in}  & {\em xuq\+\_\+style} & whether to calculate $X$, $U$, $Q_n$ or $Q_g$\\
+\hline
+\mbox{\tt in}  & {\em time} & time range\\
+\hline
+\mbox{\tt in,out}  & {\em xuq} & $X$, $U$, $Q_n$ or $Q_g$\\
+\hline
+\mbox{\tt in}  & {\em deriv} & return parallel derivative \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 67 of file sol\+\_\+utilities.\+f90.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{interfacesol__utilities_1_1calc__xuq_a17d7f9af7119c48b7203cf683f80d304_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{interfacesol__utilities_1_1calc__xuq_a5a102e1e32fac72b138a38df4c543134}\label{interfacesol__utilities_1_1calc__xuq_a5a102e1e32fac72b138a38df4c543134}} 
+\index{sol\+\_\+utilities\+::calc\+\_\+xuq@{sol\+\_\+utilities\+::calc\+\_\+xuq}!calc\+\_\+xuq\+\_\+ind@{calc\+\_\+xuq\+\_\+ind}}
+\index{calc\+\_\+xuq\+\_\+ind@{calc\+\_\+xuq\+\_\+ind}!sol\+\_\+utilities\+::calc\+\_\+xuq@{sol\+\_\+utilities\+::calc\+\_\+xuq}}
+\subsubsection{\texorpdfstring{calc\+\_\+xuq\+\_\+ind()}{calc\_xuq\_ind()}}
+{\footnotesize\ttfamily integer function sol\+\_\+utilities\+::calc\+\_\+xuq\+::calc\+\_\+xuq\+\_\+ind (\begin{DoxyParamCaption}\item[{type(modes\+\_\+type), intent(in)}]{mds\+\_\+X,  }\item[{type(modes\+\_\+type), intent(in)}]{mds\+\_\+sol,  }\item[{type(\hyperlink{structgrid__vars_1_1grid__type}{grid\+\_\+type}), intent(in)}]{grid\+\_\+eq,  }\item[{type(\hyperlink{structgrid__vars_1_1grid__type}{grid\+\_\+type}), intent(in)}]{grid\+\_\+X,  }\item[{type(\hyperlink{structgrid__vars_1_1grid__type}{grid\+\_\+type}), intent(in)}]{grid\+\_\+sol,  }\item[{type(\hyperlink{structeq__vars_1_1eq__1__type}{eq\+\_\+1\+\_\+type}), intent(in)}]{eq\+\_\+1,  }\item[{type(\hyperlink{structeq__vars_1_1eq__2__type}{eq\+\_\+2\+\_\+type}), intent(in)}]{eq\+\_\+2,  }\item[{type(x\+\_\+1\+\_\+type), intent(in)}]{X,  }\item[{type(\hyperlink{structsol__vars_1_1sol__type}{sol\+\_\+type}), intent(in)}]{sol,  }\item[{integer, intent(in)}]{X\+\_\+id,  }\item[{integer, intent(in)}]{X\+U\+Q\+\_\+style,  }\item[{real(dp), intent(in)}]{time,  }\item[{complex(dp), dimension(\+:,\+:,\+:), intent(inout)}]{X\+UQ,  }\item[{logical, intent(in), optional}]{deriv }\end{DoxyParamCaption})}
+
+
+
+(time) individual version 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em mds\+\_\+x} & general modes variables in perturbation grid\\
+\hline
+\mbox{\tt in}  & {\em mds\+\_\+sol} & general modes variables in solution grid\\
+\hline
+\mbox{\tt in}  & {\em grid\+\_\+eq} & equilibrium grid\\
+\hline
+\mbox{\tt in}  & {\em grid\+\_\+x} & perturbation grid\\
+\hline
+\mbox{\tt in}  & {\em grid\+\_\+sol} & solution grid\\
+\hline
+\mbox{\tt in}  & {\em eq\+\_\+1} & flux equilibrium\\
+\hline
+\mbox{\tt in}  & {\em eq\+\_\+2} & metric equilibrium\\
+\hline
+\mbox{\tt in}  & {\em x} & perturbation variables\\
+\hline
+\mbox{\tt in}  & {\em sol} & solution variables\\
+\hline
+\mbox{\tt in}  & {\em x\+\_\+id} & nr. of Eigenvalue\\
+\hline
+\mbox{\tt in}  & {\em xuq\+\_\+style} & whether to calculate X, U, Qn or Qg\\
+\hline
+\mbox{\tt in,out}  & {\em xuq} & normal component of perturbation\\
+\hline
+\mbox{\tt in}  & {\em deriv} & return parallel derivative \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 496 of file sol\+\_\+utilities.\+f90.
+
+
+

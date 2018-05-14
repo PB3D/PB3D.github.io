@@ -1,0 +1,300 @@
+\hypertarget{structx__vars_1_1x__2__type}{}\section{x\+\_\+vars\+:\+:x\+\_\+2\+\_\+type Type Reference}
+\label{structx__vars_1_1x__2__type}\index{x\+\_\+vars\+::x\+\_\+2\+\_\+type@{x\+\_\+vars\+::x\+\_\+2\+\_\+type}}
+
+
+tensorial perturbation type  
+
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+procedure \hyperlink{structx__vars_1_1x__2__type_ac3a132afc759fb6a00e53240fba9266e}{init} =$>$ init\+\_\+\+X\+\_\+2
+\begin{DoxyCompactList}\small\item\em initialize \end{DoxyCompactList}\item 
+procedure \hyperlink{structx__vars_1_1x__2__type_ae52df438c7be00a5cfe07c58ffe637d1}{copy} =$>$ copy\+\_\+\+X\+\_\+2
+\begin{DoxyCompactList}\small\item\em copy \end{DoxyCompactList}\item 
+procedure \hyperlink{structx__vars_1_1x__2__type_a085972ba0d2b6930a028164cc42e1cec}{dealloc} =$>$ dealloc\+\_\+\+X\+\_\+2
+\begin{DoxyCompactList}\small\item\em deallocate \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+integer, dimension(2) \hyperlink{structx__vars_1_1x__2__type_a87efa10d03a1570fca946a56f7af7b25}{n\+\_\+mod}
+\begin{DoxyCompactList}\small\item\em size of $n$ and $m$ (nr. of modes) \end{DoxyCompactList}\item 
+integer, dimension(2, 2) \hyperlink{structx__vars_1_1x__2__type_aac1744d056531f6fe7f7426dd4fcd92b}{lim\+\_\+sec\+\_\+x}
+\begin{DoxyCompactList}\small\item\em limits of {\ttfamily m\+\_\+X} (pol. flux) or {\ttfamily n\+\_\+X} (tor. flux) \end{DoxyCompactList}\item 
+integer, dimension(\+:,\+:), allocatable \hyperlink{structx__vars_1_1x__2__type_afd547fbb0050babada1f7c82017b7513}{n\+\_\+1}
+\begin{DoxyCompactList}\small\item\em vector of toroidal mode numbers of dimension 1 \end{DoxyCompactList}\item 
+integer, dimension(\+:,\+:), allocatable \hyperlink{structx__vars_1_1x__2__type_a8b82d06227f2a27e19f5d5e08e11c95b}{n\+\_\+2}
+\begin{DoxyCompactList}\small\item\em vector of toroidal mode numbers of dimension 2 \end{DoxyCompactList}\item 
+integer, dimension(\+:,\+:), allocatable \hyperlink{structx__vars_1_1x__2__type_a024dedf39f2364d4593fe1bc0c195b10}{m\+\_\+1}
+\begin{DoxyCompactList}\small\item\em vector of poloidal mode numbers of dimension 1 \end{DoxyCompactList}\item 
+integer, dimension(\+:,\+:), allocatable \hyperlink{structx__vars_1_1x__2__type_ae90b6e85d81ec3d3b39488a565512338}{m\+\_\+2}
+\begin{DoxyCompactList}\small\item\em vector of poloidal mode numbers of dimension 2 \end{DoxyCompactList}\item 
+complex(dp), dimension(\+:,\+:,\+:,\+:), allocatable \hyperlink{structx__vars_1_1x__2__type_a5b7c4fa433fe46dabc806a7fbb1832dc}{pv\+\_\+0}
+\begin{DoxyCompactList}\small\item\em $\widetilde{PV}^0$ coefficient \end{DoxyCompactList}\item 
+complex(dp), dimension(\+:,\+:,\+:,\+:), allocatable \hyperlink{structx__vars_1_1x__2__type_a53910430e36de0ca91359322bdcf1e86}{pv\+\_\+1}
+\begin{DoxyCompactList}\small\item\em $\widetilde{PV}^1$ coefficient \end{DoxyCompactList}\item 
+complex(dp), dimension(\+:,\+:,\+:,\+:), allocatable \hyperlink{structx__vars_1_1x__2__type_a02ca37a3af02f70acbc536d20a70bd0e}{pv\+\_\+2}
+\begin{DoxyCompactList}\small\item\em $\widetilde{PV}^2$ coefficient \end{DoxyCompactList}\item 
+complex(dp), dimension(\+:,\+:,\+:,\+:), allocatable \hyperlink{structx__vars_1_1x__2__type_ae7427dad704bb989266d32d97e5d0235}{kv\+\_\+0}
+\begin{DoxyCompactList}\small\item\em $\widetilde{KV}^0$ coefficient \end{DoxyCompactList}\item 
+complex(dp), dimension(\+:,\+:,\+:,\+:), allocatable \hyperlink{structx__vars_1_1x__2__type_a0cad62f1816e668211135c7097916123}{kv\+\_\+1}
+\begin{DoxyCompactList}\small\item\em $\widetilde{KV}^1$ coefficient \end{DoxyCompactList}\item 
+complex(dp), dimension(\+:,\+:,\+:,\+:), allocatable \hyperlink{structx__vars_1_1x__2__type_a7861681a8170e07ce68ae6d29af2f3d3}{kv\+\_\+2}
+\begin{DoxyCompactList}\small\item\em $\widetilde{KV}^2$ coefficient \end{DoxyCompactList}\item 
+real(dp) \hyperlink{structx__vars_1_1x__2__type_ada4dee48cd358adb447688c11170d3b4}{estim\+\_\+mem\+\_\+usage}
+\begin{DoxyCompactList}\small\item\em estimated memory usage \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+tensorial perturbation type 
+
+The arrays here are of the form\+:
+\begin{DoxyItemize}
+\item {\ttfamily P\+V\+\_\+i} and K\+V\+\_\+i\+: {\ttfamily (1\+:angle\+\_\+1,1\+:angle\+\_\+2,1;n\+\_\+mod$^\wedge$2)}
+\end{DoxyItemize}
+
+\begin{DoxySeeAlso}{See also}
+See \hyperlink{structgrid__vars_1_1grid__type}{grid\+\_\+vars.\+grid\+\_\+type} for a discussion on {\ttfamily ang\+\_\+1} and {\ttfamily ang\+\_\+2}.
+\end{DoxySeeAlso}
+\begin{DoxyNote}{Note}
+This type is also used for field-\/averaged tensorial perturbation variables, with {\ttfamily angle\+\_\+1} of size 1. 
+\end{DoxyNote}
+
+
+Definition at line 78 of file X\+\_\+vars.\+f90.
+
+
+
+\subsection{Member Function/\+Subroutine Documentation}
+\mbox{\Hypertarget{structx__vars_1_1x__2__type_ae52df438c7be00a5cfe07c58ffe637d1}\label{structx__vars_1_1x__2__type_ae52df438c7be00a5cfe07c58ffe637d1}} 
+\index{x\+\_\+vars\+::x\+\_\+2\+\_\+type@{x\+\_\+vars\+::x\+\_\+2\+\_\+type}!copy@{copy}}
+\index{copy@{copy}!x\+\_\+vars\+::x\+\_\+2\+\_\+type@{x\+\_\+vars\+::x\+\_\+2\+\_\+type}}
+\subsubsection{\texorpdfstring{copy()}{copy()}}
+{\footnotesize\ttfamily procedure x\+\_\+vars\+::x\+\_\+2\+\_\+type\+::copy (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+copy 
+
+
+
+Definition at line 98 of file X\+\_\+vars.\+f90.
+
+\mbox{\Hypertarget{structx__vars_1_1x__2__type_a085972ba0d2b6930a028164cc42e1cec}\label{structx__vars_1_1x__2__type_a085972ba0d2b6930a028164cc42e1cec}} 
+\index{x\+\_\+vars\+::x\+\_\+2\+\_\+type@{x\+\_\+vars\+::x\+\_\+2\+\_\+type}!dealloc@{dealloc}}
+\index{dealloc@{dealloc}!x\+\_\+vars\+::x\+\_\+2\+\_\+type@{x\+\_\+vars\+::x\+\_\+2\+\_\+type}}
+\subsubsection{\texorpdfstring{dealloc()}{dealloc()}}
+{\footnotesize\ttfamily procedure x\+\_\+vars\+::x\+\_\+2\+\_\+type\+::dealloc (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+deallocate 
+
+
+
+Definition at line 100 of file X\+\_\+vars.\+f90.
+
+\mbox{\Hypertarget{structx__vars_1_1x__2__type_ac3a132afc759fb6a00e53240fba9266e}\label{structx__vars_1_1x__2__type_ac3a132afc759fb6a00e53240fba9266e}} 
+\index{x\+\_\+vars\+::x\+\_\+2\+\_\+type@{x\+\_\+vars\+::x\+\_\+2\+\_\+type}!init@{init}}
+\index{init@{init}!x\+\_\+vars\+::x\+\_\+2\+\_\+type@{x\+\_\+vars\+::x\+\_\+2\+\_\+type}}
+\subsubsection{\texorpdfstring{init()}{init()}}
+{\footnotesize\ttfamily procedure x\+\_\+vars\+::x\+\_\+2\+\_\+type\+::init (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+initialize 
+
+
+
+Definition at line 96 of file X\+\_\+vars.\+f90.
+
+
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{structx__vars_1_1x__2__type_ada4dee48cd358adb447688c11170d3b4}\label{structx__vars_1_1x__2__type_ada4dee48cd358adb447688c11170d3b4}} 
+\index{x\+\_\+vars\+::x\+\_\+2\+\_\+type@{x\+\_\+vars\+::x\+\_\+2\+\_\+type}!estim\+\_\+mem\+\_\+usage@{estim\+\_\+mem\+\_\+usage}}
+\index{estim\+\_\+mem\+\_\+usage@{estim\+\_\+mem\+\_\+usage}!x\+\_\+vars\+::x\+\_\+2\+\_\+type@{x\+\_\+vars\+::x\+\_\+2\+\_\+type}}
+\subsubsection{\texorpdfstring{estim\+\_\+mem\+\_\+usage}{estim\_mem\_usage}}
+{\footnotesize\ttfamily real(dp) x\+\_\+vars\+::x\+\_\+2\+\_\+type\+::estim\+\_\+mem\+\_\+usage}
+
+
+
+estimated memory usage 
+
+\begin{DoxyNote}{Note}
+Debug version only 
+\end{DoxyNote}
+
+
+Definition at line 92 of file X\+\_\+vars.\+f90.
+
+\mbox{\Hypertarget{structx__vars_1_1x__2__type_ae7427dad704bb989266d32d97e5d0235}\label{structx__vars_1_1x__2__type_ae7427dad704bb989266d32d97e5d0235}} 
+\index{x\+\_\+vars\+::x\+\_\+2\+\_\+type@{x\+\_\+vars\+::x\+\_\+2\+\_\+type}!kv\+\_\+0@{kv\+\_\+0}}
+\index{kv\+\_\+0@{kv\+\_\+0}!x\+\_\+vars\+::x\+\_\+2\+\_\+type@{x\+\_\+vars\+::x\+\_\+2\+\_\+type}}
+\subsubsection{\texorpdfstring{kv\+\_\+0}{kv\_0}}
+{\footnotesize\ttfamily complex(dp), dimension(\+:,\+:,\+:,\+:), allocatable x\+\_\+vars\+::x\+\_\+2\+\_\+type\+::kv\+\_\+0}
+
+
+
+$\widetilde{KV}^0$ coefficient 
+
+
+
+Definition at line 88 of file X\+\_\+vars.\+f90.
+
+\mbox{\Hypertarget{structx__vars_1_1x__2__type_a0cad62f1816e668211135c7097916123}\label{structx__vars_1_1x__2__type_a0cad62f1816e668211135c7097916123}} 
+\index{x\+\_\+vars\+::x\+\_\+2\+\_\+type@{x\+\_\+vars\+::x\+\_\+2\+\_\+type}!kv\+\_\+1@{kv\+\_\+1}}
+\index{kv\+\_\+1@{kv\+\_\+1}!x\+\_\+vars\+::x\+\_\+2\+\_\+type@{x\+\_\+vars\+::x\+\_\+2\+\_\+type}}
+\subsubsection{\texorpdfstring{kv\+\_\+1}{kv\_1}}
+{\footnotesize\ttfamily complex(dp), dimension(\+:,\+:,\+:,\+:), allocatable x\+\_\+vars\+::x\+\_\+2\+\_\+type\+::kv\+\_\+1}
+
+
+
+$\widetilde{KV}^1$ coefficient 
+
+
+
+Definition at line 89 of file X\+\_\+vars.\+f90.
+
+\mbox{\Hypertarget{structx__vars_1_1x__2__type_a7861681a8170e07ce68ae6d29af2f3d3}\label{structx__vars_1_1x__2__type_a7861681a8170e07ce68ae6d29af2f3d3}} 
+\index{x\+\_\+vars\+::x\+\_\+2\+\_\+type@{x\+\_\+vars\+::x\+\_\+2\+\_\+type}!kv\+\_\+2@{kv\+\_\+2}}
+\index{kv\+\_\+2@{kv\+\_\+2}!x\+\_\+vars\+::x\+\_\+2\+\_\+type@{x\+\_\+vars\+::x\+\_\+2\+\_\+type}}
+\subsubsection{\texorpdfstring{kv\+\_\+2}{kv\_2}}
+{\footnotesize\ttfamily complex(dp), dimension(\+:,\+:,\+:,\+:), allocatable x\+\_\+vars\+::x\+\_\+2\+\_\+type\+::kv\+\_\+2}
+
+
+
+$\widetilde{KV}^2$ coefficient 
+
+
+
+Definition at line 90 of file X\+\_\+vars.\+f90.
+
+\mbox{\Hypertarget{structx__vars_1_1x__2__type_aac1744d056531f6fe7f7426dd4fcd92b}\label{structx__vars_1_1x__2__type_aac1744d056531f6fe7f7426dd4fcd92b}} 
+\index{x\+\_\+vars\+::x\+\_\+2\+\_\+type@{x\+\_\+vars\+::x\+\_\+2\+\_\+type}!lim\+\_\+sec\+\_\+x@{lim\+\_\+sec\+\_\+x}}
+\index{lim\+\_\+sec\+\_\+x@{lim\+\_\+sec\+\_\+x}!x\+\_\+vars\+::x\+\_\+2\+\_\+type@{x\+\_\+vars\+::x\+\_\+2\+\_\+type}}
+\subsubsection{\texorpdfstring{lim\+\_\+sec\+\_\+x}{lim\_sec\_x}}
+{\footnotesize\ttfamily integer, dimension(2,2) x\+\_\+vars\+::x\+\_\+2\+\_\+type\+::lim\+\_\+sec\+\_\+x}
+
+
+
+limits of {\ttfamily m\+\_\+X} (pol. flux) or {\ttfamily n\+\_\+X} (tor. flux) 
+
+
+
+Definition at line 80 of file X\+\_\+vars.\+f90.
+
+\mbox{\Hypertarget{structx__vars_1_1x__2__type_a024dedf39f2364d4593fe1bc0c195b10}\label{structx__vars_1_1x__2__type_a024dedf39f2364d4593fe1bc0c195b10}} 
+\index{x\+\_\+vars\+::x\+\_\+2\+\_\+type@{x\+\_\+vars\+::x\+\_\+2\+\_\+type}!m\+\_\+1@{m\+\_\+1}}
+\index{m\+\_\+1@{m\+\_\+1}!x\+\_\+vars\+::x\+\_\+2\+\_\+type@{x\+\_\+vars\+::x\+\_\+2\+\_\+type}}
+\subsubsection{\texorpdfstring{m\+\_\+1}{m\_1}}
+{\footnotesize\ttfamily integer, dimension(\+:,\+:), allocatable x\+\_\+vars\+::x\+\_\+2\+\_\+type\+::m\+\_\+1}
+
+
+
+vector of poloidal mode numbers of dimension 1 
+
+
+
+Definition at line 83 of file X\+\_\+vars.\+f90.
+
+\mbox{\Hypertarget{structx__vars_1_1x__2__type_ae90b6e85d81ec3d3b39488a565512338}\label{structx__vars_1_1x__2__type_ae90b6e85d81ec3d3b39488a565512338}} 
+\index{x\+\_\+vars\+::x\+\_\+2\+\_\+type@{x\+\_\+vars\+::x\+\_\+2\+\_\+type}!m\+\_\+2@{m\+\_\+2}}
+\index{m\+\_\+2@{m\+\_\+2}!x\+\_\+vars\+::x\+\_\+2\+\_\+type@{x\+\_\+vars\+::x\+\_\+2\+\_\+type}}
+\subsubsection{\texorpdfstring{m\+\_\+2}{m\_2}}
+{\footnotesize\ttfamily integer, dimension(\+:,\+:), allocatable x\+\_\+vars\+::x\+\_\+2\+\_\+type\+::m\+\_\+2}
+
+
+
+vector of poloidal mode numbers of dimension 2 
+
+
+
+Definition at line 84 of file X\+\_\+vars.\+f90.
+
+\mbox{\Hypertarget{structx__vars_1_1x__2__type_afd547fbb0050babada1f7c82017b7513}\label{structx__vars_1_1x__2__type_afd547fbb0050babada1f7c82017b7513}} 
+\index{x\+\_\+vars\+::x\+\_\+2\+\_\+type@{x\+\_\+vars\+::x\+\_\+2\+\_\+type}!n\+\_\+1@{n\+\_\+1}}
+\index{n\+\_\+1@{n\+\_\+1}!x\+\_\+vars\+::x\+\_\+2\+\_\+type@{x\+\_\+vars\+::x\+\_\+2\+\_\+type}}
+\subsubsection{\texorpdfstring{n\+\_\+1}{n\_1}}
+{\footnotesize\ttfamily integer, dimension(\+:,\+:), allocatable x\+\_\+vars\+::x\+\_\+2\+\_\+type\+::n\+\_\+1}
+
+
+
+vector of toroidal mode numbers of dimension 1 
+
+
+
+Definition at line 81 of file X\+\_\+vars.\+f90.
+
+\mbox{\Hypertarget{structx__vars_1_1x__2__type_a8b82d06227f2a27e19f5d5e08e11c95b}\label{structx__vars_1_1x__2__type_a8b82d06227f2a27e19f5d5e08e11c95b}} 
+\index{x\+\_\+vars\+::x\+\_\+2\+\_\+type@{x\+\_\+vars\+::x\+\_\+2\+\_\+type}!n\+\_\+2@{n\+\_\+2}}
+\index{n\+\_\+2@{n\+\_\+2}!x\+\_\+vars\+::x\+\_\+2\+\_\+type@{x\+\_\+vars\+::x\+\_\+2\+\_\+type}}
+\subsubsection{\texorpdfstring{n\+\_\+2}{n\_2}}
+{\footnotesize\ttfamily integer, dimension(\+:,\+:), allocatable x\+\_\+vars\+::x\+\_\+2\+\_\+type\+::n\+\_\+2}
+
+
+
+vector of toroidal mode numbers of dimension 2 
+
+
+
+Definition at line 82 of file X\+\_\+vars.\+f90.
+
+\mbox{\Hypertarget{structx__vars_1_1x__2__type_a87efa10d03a1570fca946a56f7af7b25}\label{structx__vars_1_1x__2__type_a87efa10d03a1570fca946a56f7af7b25}} 
+\index{x\+\_\+vars\+::x\+\_\+2\+\_\+type@{x\+\_\+vars\+::x\+\_\+2\+\_\+type}!n\+\_\+mod@{n\+\_\+mod}}
+\index{n\+\_\+mod@{n\+\_\+mod}!x\+\_\+vars\+::x\+\_\+2\+\_\+type@{x\+\_\+vars\+::x\+\_\+2\+\_\+type}}
+\subsubsection{\texorpdfstring{n\+\_\+mod}{n\_mod}}
+{\footnotesize\ttfamily integer, dimension(2) x\+\_\+vars\+::x\+\_\+2\+\_\+type\+::n\+\_\+mod}
+
+
+
+size of $n$ and $m$ (nr. of modes) 
+
+
+
+Definition at line 79 of file X\+\_\+vars.\+f90.
+
+\mbox{\Hypertarget{structx__vars_1_1x__2__type_a5b7c4fa433fe46dabc806a7fbb1832dc}\label{structx__vars_1_1x__2__type_a5b7c4fa433fe46dabc806a7fbb1832dc}} 
+\index{x\+\_\+vars\+::x\+\_\+2\+\_\+type@{x\+\_\+vars\+::x\+\_\+2\+\_\+type}!pv\+\_\+0@{pv\+\_\+0}}
+\index{pv\+\_\+0@{pv\+\_\+0}!x\+\_\+vars\+::x\+\_\+2\+\_\+type@{x\+\_\+vars\+::x\+\_\+2\+\_\+type}}
+\subsubsection{\texorpdfstring{pv\+\_\+0}{pv\_0}}
+{\footnotesize\ttfamily complex(dp), dimension(\+:,\+:,\+:,\+:), allocatable x\+\_\+vars\+::x\+\_\+2\+\_\+type\+::pv\+\_\+0}
+
+
+
+$\widetilde{PV}^0$ coefficient 
+
+
+
+Definition at line 85 of file X\+\_\+vars.\+f90.
+
+\mbox{\Hypertarget{structx__vars_1_1x__2__type_a53910430e36de0ca91359322bdcf1e86}\label{structx__vars_1_1x__2__type_a53910430e36de0ca91359322bdcf1e86}} 
+\index{x\+\_\+vars\+::x\+\_\+2\+\_\+type@{x\+\_\+vars\+::x\+\_\+2\+\_\+type}!pv\+\_\+1@{pv\+\_\+1}}
+\index{pv\+\_\+1@{pv\+\_\+1}!x\+\_\+vars\+::x\+\_\+2\+\_\+type@{x\+\_\+vars\+::x\+\_\+2\+\_\+type}}
+\subsubsection{\texorpdfstring{pv\+\_\+1}{pv\_1}}
+{\footnotesize\ttfamily complex(dp), dimension(\+:,\+:,\+:,\+:), allocatable x\+\_\+vars\+::x\+\_\+2\+\_\+type\+::pv\+\_\+1}
+
+
+
+$\widetilde{PV}^1$ coefficient 
+
+
+
+Definition at line 86 of file X\+\_\+vars.\+f90.
+
+\mbox{\Hypertarget{structx__vars_1_1x__2__type_a02ca37a3af02f70acbc536d20a70bd0e}\label{structx__vars_1_1x__2__type_a02ca37a3af02f70acbc536d20a70bd0e}} 
+\index{x\+\_\+vars\+::x\+\_\+2\+\_\+type@{x\+\_\+vars\+::x\+\_\+2\+\_\+type}!pv\+\_\+2@{pv\+\_\+2}}
+\index{pv\+\_\+2@{pv\+\_\+2}!x\+\_\+vars\+::x\+\_\+2\+\_\+type@{x\+\_\+vars\+::x\+\_\+2\+\_\+type}}
+\subsubsection{\texorpdfstring{pv\+\_\+2}{pv\_2}}
+{\footnotesize\ttfamily complex(dp), dimension(\+:,\+:,\+:,\+:), allocatable x\+\_\+vars\+::x\+\_\+2\+\_\+type\+::pv\+\_\+2}
+
+
+
+$\widetilde{PV}^2$ coefficient 
+
+
+
+Definition at line 87 of file X\+\_\+vars.\+f90.
+
+
+

@@ -1,0 +1,27 @@
+var searchData=
+[
+  ['b_5f0',['b_0',['../namespaceeq__vars.html#acdd2464f2282359a818e4159b502e84b',1,'eq_vars']]],
+  ['b_5f0_5fv',['b_0_v',['../namespacevmec__vars.html#a71e1a738f0e423fe6c284f8ea636008e',1,'vmec_vars']]],
+  ['b_5fplot',['b_plot',['../namespaceeq__ops.html#a73a8c3cea1e8a636b4978bc626e0fab0',1,'eq_ops']]],
+  ['b_5fv_5fc',['b_v_c',['../namespacevmec__vars.html#ad6833cc726863147b8fed188d3a28f5d',1,'vmec_vars']]],
+  ['b_5fv_5fs',['b_v_s',['../namespacevmec__vars.html#ab2aa43fe35401e8f2b7ffb2facad7109',1,'vmec_vars']]],
+  ['b_5fv_5fsub_5fc',['b_v_sub_c',['../namespacevmec__vars.html#a2e07a2b5bd2384e16e8af8ca4f5b50d6',1,'vmec_vars']]],
+  ['b_5fv_5fsub_5fs',['b_v_sub_s',['../namespacevmec__vars.html#aac5e249f0f14cf1e542f881d1777b730',1,'vmec_vars']]],
+  ['bc_5fstyle',['bc_style',['../namespacenum__vars.html#aabda06d22d0bad62383df3a0d977a82c',1,'num_vars']]],
+  ['blocking',['blocking',['../structmpi__vars_1_1lock__type.html#a53ce091d52f98ca430a9e97f8bf0c0f4',1,'mpi_vars::lock_type']]],
+  ['bmtog_5fh',['bmtog_h',['../namespacehelena__vars.html#aab2e408c4a8677843633d486dc216dfe',1,'helena_vars']]],
+  ['broadcast_5finput_5fopts',['broadcast_input_opts',['../namespacempi__ops.html#a932eba1c998dd7a0f1191b55cd754be3',1,'mpi_ops']]],
+  ['broadcast_5fvar',['broadcast_var',['../interfacempi__utilities_1_1broadcast__var.html',1,'mpi_utilities']]],
+  ['broadcast_5fvar_5fcomplex_5farr',['broadcast_var_complex_arr',['../interfacempi__utilities_1_1broadcast__var.html#aec408c072cf25bd06f02ff08fef359ef',1,'mpi_utilities::broadcast_var']]],
+  ['broadcast_5fvar_5fint',['broadcast_var_int',['../interfacempi__utilities_1_1broadcast__var.html#a2cde4dd2966657e187d4a85370844e87',1,'mpi_utilities::broadcast_var']]],
+  ['broadcast_5fvar_5fint_5farr',['broadcast_var_int_arr',['../interfacempi__utilities_1_1broadcast__var.html#ae139e28f73e24112a1925ba76933a201',1,'mpi_utilities::broadcast_var']]],
+  ['broadcast_5fvar_5flog',['broadcast_var_log',['../interfacempi__utilities_1_1broadcast__var.html#a7f9573536861cc5fb907d8429bec547d',1,'mpi_utilities::broadcast_var']]],
+  ['broadcast_5fvar_5flog_5farr',['broadcast_var_log_arr',['../interfacempi__utilities_1_1broadcast__var.html#a058444a38b5d1993462500ca9a058376',1,'mpi_utilities::broadcast_var']]],
+  ['broadcast_5fvar_5freal',['broadcast_var_real',['../interfacempi__utilities_1_1broadcast__var.html#a85b3681ed5fea5f629fc58a01db83667',1,'mpi_utilities::broadcast_var']]],
+  ['broadcast_5fvar_5freal_5farr',['broadcast_var_real_arr',['../interfacempi__utilities_1_1broadcast__var.html#aa188bca3f7af8445962cb988bf9da5d2',1,'mpi_utilities::broadcast_var']]],
+  ['bs',['bs',['../structvac__vars_1_1vac__type.html#aacac3cfc228c0a5de03540bf63bc9014',1,'vac_vars::vac_type']]],
+  ['bubble_5fsort',['bubble_sort',['../interfacenum__utilities_1_1bubble__sort.html',1,'num_utilities']]],
+  ['bubble_5fsort_5fint',['bubble_sort_int',['../interfacenum__utilities_1_1bubble__sort.html#a74f1fe19abea32a3b14885d95c21f8e5',1,'num_utilities::bubble_sort']]],
+  ['bubble_5fsort_5freal',['bubble_sort_real',['../interfacenum__utilities_1_1bubble__sort.html#a3aab7865ebc07b9fa200ca574d15819f',1,'num_utilities::bubble_sort']]],
+  ['bibliography',['Bibliography',['../citelist.html',1,'']]]
+];

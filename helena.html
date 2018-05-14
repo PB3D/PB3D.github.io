@@ -1,0 +1,762 @@
+<HTML>
+
+<head>
+<title>
+HELENA Online Manual (version 12)
+</title
+</head>
+
+<style>
+BODY {background:#ffffff; color: #000000; margin-left:1cm;
+      margin-right:1cm;}
+H1   {font-family: helvetica, sans-serif; color: #ffffff; 
+      background: #000099;}
+H2   {font-family: helvetica, sans-serif; color: #000000;
+      font-size: 18pt; background: #00ffff;}
+P    {font-family: Times, serif; color: #000000;
+      font-size: 12pt; background: #ffffff; } 
+.normaltext{
+      font-family: Times, serif; color: #000000;
+      font-size: 12pt; background: #ffffff; } }
+.smalltext{ font-family : Helvetica, sans-serif; font-size:10pt}
+.bluetext { color:#000099; font-style=italic; }
+.redtext  { color:#ff0000; font-style=italic; }
+.invisible { display:none }
+.help { border-width: 1.5pt;
+        border-color: rgb(180,180,180) rgb(80,80,80) 
+                      rgb(80,80,80) rgb(180,180,180);
+        border-style: solid; padding : 3pt;
+        font-family: Courier, sans-serif; font-size: 10pt;
+        letter-spacing: 0em; word-spacing: 0em;
+        position: absolute; left: 60pt; width : 800pt; zindex: 4;
+        background: rgb(255,255,150) }
+.nohelp {position: absolute; left:60pt; width: 800pt; zindex: 0;
+        display:none; }
+</style>
+
+<H1>
+HELENA Online Manual
+</H1>
+
+<H2>
+Description
+</H2>
+<p>
+The Helena code solves the stationary equilibrium equations 
+(the Grad-Shafranov equation) for a general Tokamak geometry.
+The code makes use of two dimensional cubic Hermite finite elements.
+This allows a continuous representation of both the magnetic 
+flux and the magnetic field. The elements are isoparametric,
+i.e. the poloidal plane is discretised using the same cubic
+finite elements as used for the representation of the poloidal
+flux. 
+</p>
+<span id=PG1 CLASS="bluetext" 
+ onmouseover="this.className='redtext';"
+ onmouseout ="this.className='bluetext';"
+ onclick    ="Showit(PG2);">
+ Click ... 
+</span>
+
+<span id=PG2 CLASS="invisible" >
+ on the blue links for an expanded explanation of Helena. <b>Bold</b> values indicate defaults. HELENA was written by <a href="https://www.tue.nl/en/university/departments/applied-physics/the-department/staff/detail/ep/e/d/ep-uid/20142542/" target="_blank">Guido Huijsmans</a>.
+</span>
+
+<H2> Definition of Namelist Input
+</H2>
+
+<H4 id=HG3 CLASS="bluetext"
+ onmouseover="this.className='redtext';"
+ onmouseout ="this.className='bluetext';"
+ onclick    ="Showit(PG3);">
+ <span style="color: 'Black'; font-family: 'helvetica'" id='nml' > 
+ $SHAPE </span> 
+ The shape of the plasma boundary
+</H4>
+
+<table border ID=PG3 CLASS="invisible">
+<tr>
+   <td>IAS</td> <td> <b>0</b>/1 </td> <td> up-down symmetric/asymmetric shape </td>
+</tr>
+<tr>
+   <td rowspan=2> ISHAPE  </td>
+   <td> <b>1</b></td>  <td> shape given by ellip, tria, quad </td>
+</tr> <tr>
+   <td> 2 </td>  <td> shape given by fourier series fm(i) </td>
+</tr> <tr>
+<td><span onmouseover="ShowHelp(hlp2);" onmouseout="HideHelp(hlp2);" CLASS="bluetext">
+ELLIP </span> 
+<span id=hlp2 CLASS="nohelp">
+<pre> x = cos(t + tria sin(t) + quad sin(2t) )
+ y = ellip sin(t) </pre>
+</span>
+</td> <td> <b>1.</b> </td><td> ellipticity (b/a) </td>
+</tr> <tr>
+<td><span onmouseover="ShowHelp(hlp2);" onmouseout="HideHelp(hlp2);" CLASS="bluetext">
+TRIA </span></td> <td> <b>0.</b>  </td> <td> triangularity </td>
+</tr> <tr>
+<td><span onmouseover="ShowHelp(hlp2);" onmouseout="HideHelp(hlp2);" CLASS="bluetext">
+QUAD</span></td> <td> <b>0.</b> </td> <td> quadrangularity </td>
+</tr> <tr>
+<td>
+<span onmouseover="ShowHelp(hlp1);" onmouseout="HideHelp(hlp1);" CLASS="bluetext">
+FM(1:MFM)
+</span> 
+<span id=hlp1 CLASS="nohelp">
+<pre>for ias=1, ishape= 2 :  fm(2*m+1)=cos(m);
+                        fm(2*m+2)=sin(m); 
+for ias=0, ishape= 2 :  fm(m)=cos(m-1); 
+for ias=0, ishape=-2 :  fm(2*m+1)=cos(m); 
+                        fm(2*m+2) not used; 
+radius is normalised to 1 at theta=0, pi</pre>
+</span>
+
+</td> <td>  </td> <td> fourier series of radius(theta) (b/a) for plasma boundary (for ISHAPE=±2) </td>
+</tr> <tr>
+<td>MFM</td> <td> </td> <td> number of harmonics in FM</td>
+</tr> <tr>
+<td>MHARM</td> <td> <b>128</b> </td> <td> number of harmonics for grid generation (MFM/2)</td>
+</tr> <tr>
+<td rowspan=2>IMESH</td> <td> <b>0</b> </td> <td> equidistant radial grid</td>
+</tr> <tr>
+  </td> <td> 2 </td> <td> Gaussian enrichment of radial grid </td>
+</tr> <tr>
+ <td> XR1 </td> <td><b>99.</b> </td> <td> position of radial grid accumulation (for IMESH=2)</td>
+</tr> <tr>
+ <td> SIG1 </td> <td><b>99.</b> </td> <td> width of radial grid accumulation (for IMESH=2)</td>
+</tr> <tr>
+<td rowspan=2>IARC</td> <td> <b>0</b> </td> <td> equidistant poloidal grid</td>
+</tr> <tr>
+  </td> <td> 1 </td> <td> equal arclength poloidal grid </td>
+</tr>
+</table>
+
+<H4 id=HG4 CLASS="bluetext"
+ onmouseover="this.className='redtext';"
+ onmouseout ="this.className='bluetext';"
+ onclick    ="Showit(PG4);">
+ <span style="color: 'Black'; font-family: 'helvetica'" id='nml' > 
+ $PROFILE </span> 
+ The shape of the equilibrium profiles
+</H4>
+<span ID=PG4 CLASS="invisible">
+<table border>
+<tr>
+<td><span onmouseover="ShowHelp(hlp5);" onmouseout="HideHelp(hlp5);" CLASS="bluetext">
+IPAI </span>
+<span id=hlp5 CLASS="nohelp">
+<pre>IPAI=1  : DP = 1. + API*PSI + BPI*PSI^2 + CPI*PSI^3 .. + HPI*PSI^8 ;
+IPAI=2  : DP = (1. + API*PSI + BPI*PSI^2 + CPI*PSI^3 + DPI*PSI^4)^EPI ;
+IPAI=4  : DP = (1. + API*PSI + BPI*PSI^2 + CPI*PSI^3) ;
+          for PSI>EPI, DPR=DPR+FPI*((PSI-EPI)(3.-2*PSI-EPI)/(1.-EPI)^3 )^GPI;
+IPAI=5  : DP = 1. + API*PSI + BPI*PSI^2 + CPI*PSI^3 + DPI*PSI^4 + FPI*DPP^GPI;
+                       = 3*(2*(S-EPI)/(HPI-EPI))^2 - 2*(2*(S-EPI)/(HPI-EPI))^3 for EPI&lt;S&lt;(EPI+HPI)/2;
+          where DPP(S) = 3*(2*(HPI-S)/(HPI-EPI))^2 - 2*(2*(HPI-S)/(HPI-EPI))^3 for (EPI+HPI)/2&lt;S&lt;HPI/2;
+                       = 0 else;
+          and S = sqrt(PSI)
+IPAI=7  : array input using DPR(1:NPTS), points equidistant in PSI,
+          multiplied by 'factor' = 1 + (FPI-1)*(1+TANH((PSI-EPI)/GPI))/2;
+IPAI=8  : as 7 but in stead of 'factor', 'edge pedestal' added, 
+          for PSI>EPI, DPR=DPR+FPI*((PSI-EPI)(3.-2*PSI-EPI)/(1.-EPI)^3 )^GPI;
+IPAI=11 : array input using DPR(1:NPTS), points equidistant in sqrt(PSI);
+IPAI=12 : DP = 1. + AGA*S + BGA*S^2 + CGA*S^3 .. + HPI*S^8; S=sqrt(PSI);
+</pre>
+</span> </td> <td> <b>1</b> </td>
+<td> controls parametrisation of pressure profile </td>
+</tr> <tr>
+<td> API-HPI </td> <td> </td> <td> parameters of the pressure profile </td>
+</tr> <tr>
+<td> DPR(1:NPTS) </td> <td> </td> <td> array input for pressure profile </td>
+</tr> <tr>
+<td> <span onmouseover="ShowHelp(hlp6);" onmouseout="HideHelp(hlp6);" CLASS="bluetext">
+IGAM </span>
+<span id=hlp6 CLASS="nohelp">
+<pre>for igam <= 4 the diamagnetic profile is : Gamma = (p' + FF')/eps
+for igam > 4 the profile is : Gamma = FF'
+igam=1  : DP = 1. + AGA*PSI + BGA*PSI^2 + CGA*PSI^3 .. + HGA*PSI^8 ;
+igam=4  : array input using DF2(1:NPTS), points equidistant in PSI; 
+igam=7  : array input using DF2(1:NPTS), points equidistant in PSI;
+igam=8  : as 7 but 'edge pedestal' added, 
+          for PSI>EGA, DF2=DF2+FGA*((PSI-EGA)(3.-2*PSI-EGA)/(1.-EGA)^3 )^GGA;
+igam=11 : array input using DF2(1:NPTS), points equidistant in SQRT(PSI);
+igam=12 : DF2 = 1. + AGA*S + BGA*S^2 + CGA*S^3 .. + HPI*S^8;
+</pre>
+</span> </td> <td> <b>1</b> </td>
+<td> controls parametrisation of diamagnetic profile (FF') </td>
+</tr> <tr>
+<td> AGA-HGA </td> <td> </td> <td> parameters of the diamagnetic profile </td>
+</tr> <tr>
+<td> DF2(1:NPTS) </td> <td> </td> <td> array input for diamagnetic profile </td>
+</tr> <tr>
+<td> <span onmouseover="ShowHelp(hlp7);" onmouseout="HideHelp(hlp7);" CLASS="bluetext">
+ICUR </span>
+<span id=hlp7 CLASS="nohelp">
+<pre>icur=1  : CUR = (1.0 + ACUR*PSI + BCUR*PSI^2 + CCUR*PSI^3)^HCUR
+          + DCUR*(PSI-PSI^2)^GCUR * EXP(-((PSI-ECUR)/FCUR)^2)
+icur=2  : array input using ZJZ(1:NPTS), points equidistant in PSI;
+          for PSI>ECUR, CUR=CUR+FCUR*((PSI-ECUR)(3.-2*PSI-ECUR)/(1.-ECUR)^3 )^GCUR;
+icur=3  : CUR = 1. + ACUR*PSI + BCUR*PSI^2 + CCUR*PSI^3 .. + HCUR*PSI^8 ; 
+icur=4  : CUR = (1.+ ACUR*PSI + BCUR*PSI^2 + CCUR*PSI^3)^INT(DCUR)
+          for PSI>ECUR, CUR=CUR+FCUR*((PSI-ECUR)(3.-2*PSI-ECUR)/(1.-ECUR)^3 )^GCUR;
+icur=11 : array input using ZJZ(1:NPTS), points equidistant in SQRT(PSI),
+          multiplied by 'factor' = 1 + (FCUR-1)*(1+TANH((PSI-ECUR)/GCUR))/2
+icur=12 : CUR = 1. + ACUR*S + BCUR*S^2 + CCUR*S^3 .. + HCUR*S^8 ; S=SQRT(PSI);
+icur=99 : q-profile array given as QIN(1:NPTS) (experimental!);
+</pre>
+</span> </td> <td> <b>0</b> </td>
+<td> controls parametrisation of current profile; precedence over IGAM (used as initial guess) </td>
+</tr> <tr>
+<td> ACUR-HCUR </td><td> </td> <td> parameters of the current profile </td>
+</tr> <tr>
+<td> ZJZ(1:NPTS) </td> <td> </td> <td> array input for current profile </td>
+</tr> <tr>
+<td> NPTS </td> <td> <b>100</b> </td> <td> number of points in array input of profiles 
+</td> </tr>
+</table>
+</span>
+<H4 id=HG5 CLASS="bluetext"
+ onmouseover="this.className='redtext';"
+ onmouseout ="this.className='bluetext';"
+ onclick    ="Showit(PG5);">
+ <span style="color: 'Black'; font-family: 'helvetica'" id='nml' > 
+ $PHYS </span>  
+ Physics Parameters 
+</H4>
+
+<table border ID=PG5 CLASS="invisible">
+<tr> <td> EPS </td> <td> <b>0.1</b> </td> 
+    <td> inverse aspect ratio a/R<sub>0</sub></td> </tr>
+<tr> <td> B </td>
+    <td > <b>0.1</b> </td>
+    <td>mu<sub>0</sub>p'(0) R<sub>0</sub><sup>2</sup> / FF'(0) </td> 
+</tr>
+ <tr> <td>BETAP </td> <td> <b>-1</b> </td>
+    <td>poloidal beta (ICUR <>0); BETAP has precedence over B (used as initial guess)</td>
+</tr> 
+<tr> <td> ALFA</td>
+    <td> <b>1.</b> </td>
+    <td>normalised poloidal flux, 
+        a<sup>2</sup> B<sub>0</sub>/ (psi<sub>1</sub>- psi<sub>0</sub>) </td>
+</tr> <tr> <td>XIAB </td>
+    <td> <b>-1.</b> </td>
+    <td>normalised total current = mu<sub>0</sub>I / (a B<sub>0</sub>) 
+; precedence over ALFA</td>
+</tr> <tr>
+    <td>q95</td> <td> <b>-1.</b> </td> <td> q<sub>95</sub>;
+    has precedence over XIAB and ALFA</td>
+</tr> <tr>
+<td><span onmouseover="ShowHelp(hlp8);" onmouseout="HideHelp(hlp8);" CLASS="bluetext">
+RVAC </span> 
+<span id=hlp8 CLASS="nohelp">
+<pre> only used to calculate real world data
+ has no influence on geometric data</pre></td>
+ <td> <b>1.</b> </td> <td> major radius of geometric axis [m] (R<sub>0</sub>)</td>
+</tr> <tr>
+    <td><span onmouseover="ShowHelp(hlp8);" onmouseout="HideHelp(hlp8);" CLASS="bluetext">
+BVAC </span></td> <td> <b>1.</b> </td> <td> vacuum magnetic field at geometric axis [T] (B<sub>0</sub>)</td>
+</tr> <tr>
+    <td><span onmouseover="ShowHelp(hlp8);" onmouseout="HideHelp(hlp8);" CLASS="bluetext">
+ZN0 </span></td> <td> <b>1.</b> </td> <td> density at geometric axis
+    [10<sup>19</sup> m<sup>-3</sup>]</td>
+</tr> <tr>
+    <td><span onmouseover="ShowHelp(hlp8);" onmouseout="HideHelp(hlp8);" CLASS="bluetext">
+ZEFF </span></td> <td> <b>1.</b> </td> <td> Z effective</td>
+</tr>
+</table>
+
+
+<H4 id=HG6 CLASS="bluetext"
+ onmouseover="this.className='redtext';"
+ onmouseout ="this.className='bluetext';"
+ onclick    ="Showit(PG6);">
+ <span style="color: 'Black'; font-family: 'helvetica'" id='nml' > 
+ $NUM </span>  
+ Numerical Parameters 
+</H4>
+<table border ID=PG6 CLASS="invisible">
+<tr>
+    <td>NR </td> <td> <b>51</b> </td>
+    <td>number of radial grid points</td>
+</tr>
+<tr>
+    <td>NP</td> <td> <b>33</b> </td>
+    <td>number of poloidal grid points</td>
+</tr>
+<tr>
+    <td>NRMAP</td> <td> <b>101</b> </td>
+    <td>number of radial grid points in mapping to flux surface grid (should be 2*NR)</td>
+</tr>
+<tr>
+    <td>NPMAP</td> <td> <b>65</b> </td>
+    <td>number of poloidal grid points in mapping (should be 2*NP) </td>
+</tr>
+<tr>
+ <td><span onmouseover="ShowHelp(hlp3);" onmouseout="HideHelp(hlp3);" CLASS="bluetext">
+NCHI </span> 
+<span id=hlp3 CLASS="nohelp">
+<pre> for IAS=0 : NCHI = 2<sup>n</sup> + 1
+ for IAS=1 : NCHI = 2<sup>n</sup> </pre>
+</span> <td> <b>129</b> </td>
+    <td>number of poloidal grid points written to output file (should be 2*NMAP)</td>
+</tr>
+<tr>
+    <td>NRCUR </td> <td> <b>51</b> </td>
+    <td>number of radial grid points for iteration current profile (should be NR)</td>
+</tr>
+<tr>
+    <td>NPCUR</td> <td> <b>33</b> </td>
+    <td>number of poloidal grid points (should be NP)</td>
+</tr>
+<tr>
+    <td>NITER</td> <td> <b>50</b> (ICUR≠0) or <b>1</b> (ICUR=0) </td>
+    <td>maximum number of iterations over current profile</td>
+</tr>
+<tr>
+    <td><span onmouseover="ShowHelp(hlp4);" onmouseout="HideHelp(hlp4);" CLASS="bluetext">
+AMIX </span> 
+<span id=hlp4 CLASS="nohelp">
+<pre> the iteration of the GS equation is :
+ psi<sub>n+1</sub>= amix psi<sub>n-1</sub>+ (1-amix)psi<sub>n</sub>
+ amix =0.5 or larger may be usefull 
+ for 'extreme' equilibria </pre>
+    <td> <b>0</b> </td>
+    <td>parameter for control of main iteration of GS equation</td>
+</tr>
+<tr>
+    <td>ERRCUR </td> <td> <b>10<sup>-5</sup></b> </td>
+    <td>error allowed at end of iteration current profile</td>
+</tr>
+<tr>
+    <td>ABB</td> <td> <b>1.</b> </td>
+    <td>parameter for control of current profile iteration</td>
+</tr>
+<tr>
+    <td>BBB</td> <td> <b>1</b> </td>
+    <td>parameter for control of current profile iteration</td>
+</tr>
+<tr>
+    <td>NBB</td> <td> <b>4</b> </td>
+    <td>FF' profile updated after every NBB iterations</td>
+</tr>
+<tr>
+    <td>NMESH</td> <td> <b>1</b> </td>
+    <td>maximum number of iterations of ?</td>
+</tr>
+
+</table>
+
+<H4 id=HG7 CLASS="bluetext"
+ onmouseover="this.className='redtext';"
+ onmouseout ="this.className='bluetext';"
+ onclick    ="Showit(PG7);">
+ <span style="color: 'Black'; font-family: 'helvetica'" id='nml' > 
+ $PRI </span>  
+ Output Options  
+</H4>
+<table border ID=PG7 CLASS="invisible">
+<tr>
+    <td>NPR1</td>
+    <td>0/<b>1</b> </td> <td>switch some of the printing off/on</td>
+</tr>
+<tr>
+    <td>NPR2</td>
+    <td><b>0</b>/1 </td> <td>switch off/on 'real world' data output</td>
+</tr>
+</table>
+
+<H4 id=HG8 CLASS="bluetext"
+ onmouseover="this.className='redtext';"
+ onmouseout ="this.className='bluetext';"
+ onclick    ="Showit(PG8);">
+ <span style="color: 'Black'; font-family: 'helvetica'" id='nml' > 
+ $PLOT </span>  
+ Plotting Options 
+</H4>
+
+<table border ID=PG8 CLASS="invisible">
+<tr /border>
+    <td>NPL1</td>
+    <td>0/<b>1</b> </td> <td> switch plotting off/on</td>
+</tr>
+</table>
+
+<H4 id=HG8 CLASS="bluetext"
+ onmouseover="this.className='redtext';"
+ onmouseout ="this.className='bluetext';"
+ onclick    ="Showit(PG11);">
+ <span style="color: 'Black'; font-family: 'helvetica'" id='nml' > 
+ $BALL </span>  
+ Ballooning Stability 
+</H4>
+
+<table border ID=PG11 CLASS="invisible">
+<tr /border>
+    <td>NQB</td>
+    <td>0/<b>1</b> </td> <td> switch ballooning calculation off/on</td>
+</tr>
+</table>
+<H2> OUTPUT files
+</H2>
+<table border>
+<tr>
+<td> fort.20 </td> <td> Main output file </td>
+</tr> <tr>
+<td> fort.12 </td> <td> Geometric data of flux surface coordinates, input file for Mishka and PB3D </td>
+</tr> <tr>
+<td> fort.21 </td> <td> 'vector' file output, used for post-processing of Mishka output</td>
+</tr> <tr>
+<td> PCUBEQ </td>  <td> The postscript output file </td> 
+</tr> <tr>
+<td> restart </td>  <td> a helena input file to reproduce the same output </td> 
+</tr> <tr>
+<td> EQDSK </td>  <td> mostly empty eqdsk file but with shape and profile data </td> 
+</tr>
+</table>
+
+<H2> EXAMPLE
+</H2>
+<H4 id=HG9 CLASS="bluetext"
+ onmouseover="this.className='redtext';"
+ onmouseout ="this.className='bluetext';"
+ onclick    ="Showit2(PG9);">
+ Example namelist input file 
+</H4>
+<span ID=PG9 CLASS="invisible">
+<pre>
+&SHAPE    IAS=0,    ISHAPE=1, ELLIP=1.5, TRIA=0.2, QUAD=0., &END
+&PROFILE  IPAI  =1, API=-1., BPI=0., 
+          IGAM  =1, AGA=-1., BGA=0.,
+          ICUR  =0,
+&END
+&PHYS  EPS=0.3,  B=0.1 &END
+&NUM   NR=21,    NP=9,  
+       NRMAP=21, NPMAP=17, NCHI=33, 
+       NITER=50,
+&END
+&PRI   NPR1 = 1, NPR2=0  &END
+&PLOT  NPL1 =1           &END
+&BALL  NQB =1            &END
+</pre>
+</span>
+
+<H4 id=HG12 CLASS="bluetext"
+ onmouseover="this.className='redtext';"
+ onmouseout ="this.className='bluetext';"
+ onclick    ="Showit2(PG12);">
+ Output file corresponding to above namelist input 
+</H4>
+<span ID=PG12 CLASS="invisible">
+<pre> *****************************************
+ *  HELENA : GRAD-SHAFRANOV EQUILIBRIUM  *
+ *****************************************
+ *          VERSION 12 (30-7-1999)       *
+ *****************************************
+
+
+ $SHAPE    ELLIP =  1.500, TRIA  =  0.200, QUAD  =  0.000
+           MHARM =128, ISHAPE = 1, ISOL = 0, IAS = 0
+
+ $PROFILE  IGAM = 1 AGA = -1.000, BGA =  0.000 CGA =  0.000 DGA =  0.000,
+                    EGA =  0.000, FGA =  0.000, GGA =  0.000, HGA =  0.000
+           IPAI = 1 API = -1.000, BPI =  0.000 CPI =  0.000 DPI =  0.000,
+                    EPI =  0.000, FPI =  0.000, GPI =  0.000, HPI =  0.000
+
+ $PHYS     EPS  =  0.300, ALFA =  1.000, B =  0.100, C =  1.000,
+           XIAB = -1.000, BETAP =  -1.0000
+
+ $NUM      NR = 11, NP =  9, NRMAP = 11, NPMAP = 17, NCHI =  33, NITER =  50
+
+
+ $PRI      NPR1  = 1
+
+ $PLOT     NPL1  = 1
+
+
+ ***********************************************
+ *        INPUT PROFILES :                     *
+ ***********************************************
+ *  PSI,       dP/dPSI,     Gamma              *
+ ***********************************************
+  0.0000E+00  0.1000E+01  0.1000E+01
+  0.5000E-01  0.9500E+00  0.9500E+00
+  0.1000E+00  0.9000E+00  0.9000E+00
+  0.1500E+00  0.8500E+00  0.8500E+00
+  0.2000E+00  0.8000E+00  0.8000E+00
+  0.2500E+00  0.7500E+00  0.7500E+00
+  0.3000E+00  0.7000E+00  0.7000E+00
+  0.3500E+00  0.6500E+00  0.6500E+00
+  0.4000E+00  0.6000E+00  0.6000E+00
+  0.4500E+00  0.5500E+00  0.5500E+00
+  0.5000E+00  0.5000E+00  0.5000E+00
+  0.5500E+00  0.4500E+00  0.4500E+00
+  0.6000E+00  0.4000E+00  0.4000E+00
+  0.6500E+00  0.3500E+00  0.3500E+00
+  0.7000E+00  0.3000E+00  0.3000E+00
+  0.7500E+00  0.2500E+00  0.2500E+00
+  0.8000E+00  0.2000E+00  0.2000E+00
+  0.8500E+00  0.1500E+00  0.1500E+00
+  0.9000E+00  0.1000E+00  0.1000E+00
+  0.9500E+00  0.5000E-01  0.5000E-01
+  0.1000E+01 -0.8674E-18 -0.8674E-18
+
+ ***************************************
+ * FINAL ITERATION, NR= 11 NP=  9      *
+ ***************************************
+    REST =  8.543E-09 ITERATIONS :  15
+
+ ***************************************
+  MAGNETIC AXIS :   0.05333
+  POLOIDAL BETA :   0.1506E+00
+  TOROIDAL BETA :   0.1650E-01
+  BETA STAR     :   0.2435E-01
+  NORM. BETA    :   0.00816
+  TOTAL CURRENT :   0.2540E+01
+  TOTAL AREA    :   0.4687E+01
+  TOTAL VOLUME  :   0.2901E+02
+  INT. INDUCTANCE :   0.9227E+00
+  POL. FLUX     :   0.1000E+01
+ ***************************************
+
+
+ *******************************************************
+ * I   PSI     S      <J>     ERROR   LENGTH    BUSSAC *
+ *******************************************************
+ 10  0.0100  0.1000  0.9904  9.90E-01  0.6280  0.1694
+  9  0.0400  0.2000  0.9615  9.62E-01  1.2613  0.1691
+  8  0.0900  0.3000  0.9133  9.13E-01  1.9059  0.1685
+  7  0.1600  0.4000  0.8456  8.46E-01  2.5684  0.1678
+  6  0.2500  0.5000  0.7580  7.58E-01  3.2573  0.1667
+  5  0.3600  0.6000  0.6504  6.50E-01  3.9842  0.1654
+  4  0.4900  0.7000  0.5219  5.22E-01  4.7661  0.1639
+  3  0.6400  0.8000  0.3719  3.72E-01  5.6314  0.1621
+  2  0.8100  0.9000  0.1989  1.99E-01  6.6364  0.1605
+  1  1.0000  1.0000  0.0000 -1.04E-17  7.9419  0.1613
+ *******************************************************
+
+
+ *************************************
+ * PRESSURE PROFILE BEFORE NORM.  :  *
+ *************************************
+  0.32052761E-01  0.31414911E-01  0.29539824E-01  0.26542891E-01
+  0.22616428E-01  0.18029678E-01  0.13128811E-01  0.83369231E-02
+  0.41540378E-02  0.11571047E-02  0.00000000E+00
+ *************************************
+
+ RADIUS :   0.2953E+00
+ B0     :   0.8841E+00
+ CPSURF :   0.7709E-01
+
+  Q ON AXIS =  0.5471
+
+  Q PROFILE : 
+
+   5.4709E-01( 1)  5.4908E-01( 2)  5.5540E-01( 3)  5.6660E-01( 4)
+   5.8428E-01( 5)  6.1110E-01( 6)  6.5184E-01( 7)  7.1552E-01( 8)
+   8.2141E-01( 9)  1.0203E+00(10)  1.5281E+00(11)
+
+ ***************************************************
+ MAX. ERROR IN JACOBIAN AFTER MAPPING :  1.874E-03  0.300000  1.767146   8  19
+ ***************************************************
+
+ ***************************************************
+ * I,     X,          PSI,          P,         Q   *
+ ***************************************************
+   1 -0.1000E+01  0.1000E+01  0.0000E+00  0.1528E+01
+   2 -0.8500E+00  0.8100E+00  0.1157E-02  0.1020E+01
+   3 -0.7206E+00  0.6400E+00  0.4154E-02  0.8214E+00
+   4 -0.6044E+00  0.4900E+00  0.8337E-02  0.7155E+00
+   5 -0.4972E+00  0.3600E+00  0.1313E-01  0.6518E+00
+   6 -0.3967E+00  0.2500E+00  0.1803E-01  0.6111E+00
+   7 -0.3011E+00  0.1600E+00  0.2262E-01  0.5843E+00
+   8 -0.2092E+00  0.9000E-01  0.2654E-01  0.5666E+00
+   9 -0.1199E+00  0.4000E-01  0.2954E-01  0.5554E+00
+  10 -0.3264E-01  0.1000E-01  0.3141E-01  0.5491E+00
+  11  0.5333E-01  0.0000E+00  0.3205E-01  0.5471E+00
+  12  0.1386E+00  0.1000E-01  0.3141E-01  0.5491E+00
+  13  0.2238E+00  0.4000E-01  0.2954E-01  0.5554E+00
+  14  0.3094E+00  0.9000E-01  0.2654E-01  0.5666E+00
+  15  0.3961E+00  0.1600E+00  0.2262E-01  0.5843E+00
+  16  0.4846E+00  0.2500E+00  0.1803E-01  0.6111E+00
+  17  0.5758E+00  0.3600E+00  0.1313E-01  0.6518E+00
+  18  0.6708E+00  0.4900E+00  0.8337E-02  0.7155E+00
+  19  0.7713E+00  0.6400E+00  0.4154E-02  0.8214E+00
+  20  0.8796E+00  0.8100E+00  0.1157E-02  0.1020E+01
+  21  0.1000E+01  0.1000E+01  0.0000E+00  0.1528E+01
+ ***************************************************
+
+ *******************************************************************
+ * IDEAL AND RESISTIVE MERCIER CRITERION                           *
+ *******************************************************************
+ *I,    SS,     D_I,     D_R,     H,       Q,   SHEAR,  GEONC    *
+ *******************************************************************
+  1   1.000 -2.50E-01  0.00E+00   0.000   1.528   5.495  2.49E+01
+  2   0.900 -2.49E-01 -1.85E-03   0.003   1.020   2.419  9.91E+00
+  3   0.800 -2.31E-01  1.33E-02   0.006   0.821   1.327  7.04E+00
+  4   0.700 -1.80E-01  6.22E-02   0.008   0.716   0.774  6.30E+00
+  5   0.600 -6.07E-02  1.80E-01   0.010   0.652   0.457  6.55E+00
+  6   0.500  1.99E-01  4.37E-01   0.012   0.611   0.266  7.73E+00
+  7   0.400  7.57E-01  9.94E-01   0.014   0.584   0.149  1.04E+01
+  8   0.300  2.07E+00  2.30E+00   0.015   0.567   0.076  1.67E+01
+  9   0.200  6.11E+00  6.35E+00   0.017   0.555   0.031  3.49E+01
+ 10   0.100  3.76E+01  3.78E+01   0.021   0.549   0.006  1.34E+02
+ *******************************************************************
+ *******************************
+ *   BALLOONING STABILITY      *
+ *   PROGRAM HELBAL VERSION 1  *
+ *******************************
+  0.000000000000000E+000   50.0000000000000     
+          11          33
+
+ AFTER SCALE: SCALEQ=  1.0000E+00
+
+ CPSURF =   7.7086E-02
+
+ QS
+   5.47087651E-01  5.49080627E-01  5.55399632E-01  5.66598322E-01  5.84276019E-01
+   6.11103901E-01  6.51840228E-01  7.15520350E-01  8.21408650E-01  1.02030021E+00
+   1.52806320E+00
+
+ P0
+   2.50556128E-02  2.45570061E-02  2.30912528E-02  2.07485530E-02  1.76792404E-02
+   1.40937822E-02  1.02627790E-02  6.51696490E-03  3.24720742E-03  9.04507623E-04
+   0.00000000E+00
+
+ RBPHI
+   1.00000000E+00  9.97581944E-01  9.90439402E-01  9.78915339E-01  9.63608423E-01
+   9.45413650E-01  9.25577670E-01  9.05762854E-01  8.88104996E-01  8.75234549E-01
+   8.70214384E-01
+
+ *********************************************************************
+ * I, FLUX,    Q,    SHEAR,   ALPHA,   FMARG,  BALLOONING STAB.      *
+ *********************************************************************
+   2  0.010  0.549  0.00647  0.01994    0.697   UNSTABLE AT T =   40.743
+   3  0.040  0.555  0.03143  0.03957    0.500   UNSTABLE AT T =   22.777
+   4  0.090  0.567  0.07458  0.05856    0.500   UNSTABLE AT T =   19.439
+   5  0.160  0.584  0.14757  0.07664    0.746   UNSTABLE AT T =   26.114
+   6  0.250  0.611  0.27169  0.09357    1.301   STABLE                  
+   7  0.360  0.652  0.44469  0.10902    1.984   STABLE                  
+   8  0.490  0.716  0.84916  0.12212    3.403   STABLE                  
+   9  0.640  0.821  1.10247  0.12983    4.463   STABLE                  
+  10  0.810  1.020  3.30565  0.11894   14.855   STABLE                  
+  11  1.000  1.528  3.32292  0.00000 2047.500   STABLE                  
+ *********************************************************************
+
+ *************************************************
+  REAL WORLD OUTPUT :
+ *************************************************
+ MAJOR RADIUS    :    1.0000 [m]
+ MAGNETIC FIELD  :    1.0000 [T]
+ CENTRAL DENSITY :    1.0000 10^19 [m^-3]
+ ZEFF            :    1.0000
+ TE/(TE+TI)      :    0.5000
+ *************************************************
+ **************************************************
+    S,   P [Pa], Ne [10^19m^-3], Te [eV],  Ti [eV],
+ **************************************************
+ 1.000E-01 2.500E+04 9.900E-01 7.880E+03 7.880E+03 1.344E+05 1.256E+05 1.578E-01 3.771E+06
+ 2.000E-01 2.351E+04 9.600E-01 7.642E+03 7.642E+03 1.858E+05 1.717E+05 2.158E-01 3.665E+06
+ 3.000E-01 2.112E+04 9.100E-01 7.244E+03 7.244E+03 2.134E+05 1.973E+05 2.480E-01 3.488E+06
+ 4.000E-01 1.800E+04 8.400E-01 6.686E+03 6.686E+03 2.232E+05 2.073E+05 2.605E-01 3.237E+06
+ 5.000E-01 1.435E+04 7.500E-01 5.970E+03 5.970E+03 2.177E+05 2.033E+05 2.555E-01 2.909E+06
+ 6.000E-01 1.045E+04 6.400E-01 5.094E+03 5.094E+03 1.982E+05 1.864E+05 2.343E-01 2.501E+06
+ 7.000E-01 6.634E+03 5.100E-01 4.060E+03 4.060E+03 1.662E+05 1.574E+05 1.978E-01 2.010E+06
+ 8.000E-01 3.306E+03 3.600E-01 2.866E+03 2.866E+03 1.224E+05 1.168E+05 1.468E-01 1.433E+06
+ 9.000E-01 9.208E+02 1.900E-01 1.512E+03 1.512E+03 6.710E+04 6.462E+04 8.121E-02 7.663E+05
+
+ ***********************************************************************
+ *   S,       Q,      Fcirc,     NU_e,     NU_i,   SIG(Spitz),SIG(neo) *
+ ***********************************************************************
+ 1.000E-01 5.491E-01 7.695E-01 2.180E-03 1.811E-03 7.224E+08 5.211E+08
+ 2.000E-01 5.554E-01 6.737E-01 8.033E-04 6.668E-04 6.904E+08 4.253E+08
+ 3.000E-01 5.666E-01 6.019E-01 4.699E-04 3.896E-04 6.381E+08 3.458E+08
+ 4.000E-01 5.843E-01 5.425E-01 3.402E-04 2.816E-04 5.671E+08 2.742E+08
+ 5.000E-01 6.111E-01 4.913E-01 2.842E-04 2.348E-04 4.799E+08 2.086E+08
+ 6.000E-01 6.518E-01 4.457E-01 2.689E-04 2.214E-04 3.800E+08 1.491E+08
+ 7.000E-01 7.155E-01 4.044E-01 2.917E-04 2.392E-04 2.720E+08 9.661E+07
+ 8.000E-01 8.214E-01 3.663E-01 3.835E-04 3.122E-04 1.629E+08 5.244E+07
+ 9.000E-01 1.020E+00 3.311E-01 7.382E-04 5.928E-04 6.359E+07 1.864E+07
+
+ *****************************************
+ *  NeoClassical Stability Condition     *
+ *****************************************
+ S =  0.100 q =  0.549 J.B=  0.169 D_I =-3.758E+01 D_nc = 1.170E+01 Mercier Unstable
+ S =  0.200 q =  0.555 J.B=  0.234 D_I =-6.113E+00 D_nc = 3.425E+00 Mercier Unstable
+ S =  0.300 q =  0.567 J.B=  0.268 D_I =-2.069E+00 D_nc = 1.692E+00 Mercier Unstable
+ S =  0.400 q =  0.584 J.B=  0.281 D_I =-7.573E-01 D_nc = 9.694E-01 Mercier Unstable
+ S =  0.500 q =  0.611 J.B=  0.274 D_I =-1.989E-01 D_nc = 5.849E-01 Mercier Unstable
+ S =  0.600 q =  0.652 J.B=  0.249 D_I = 6.066E-02 D_nc = 3.548E-01 D_nc+D_R/(a-H) = 5.986E-01
+ S =  0.700 q =  0.716 J.B=  0.209 D_I = 1.801E-01 D_nc = 2.095E-01 D_nc+D_R/(a-H) = 2.774E-01
+ S =  0.800 q =  0.821 J.B=  0.154 D_I = 2.312E-01 D_nc = 1.144E-01 D_nc+D_R/(a-H) = 1.281E-01
+ S =  0.900 q =  1.020 J.B=  0.084 D_I = 2.487E-01 D_nc = 4.936E-02 D_nc+D_R/(a-H) = 4.751E-02
+
+</pre>
+</span>
+<H4 id=HG10 CLASS="bluetext"
+ onmouseover="this.className='redtext';"
+ onmouseout ="this.className='bluetext';"
+ onclick    ="Showit2(PG10);">
+ Example unix shell script to run helena 
+</H4>
+<span ID=PG10 CLASS="invisible">
+<pre>#!/bin/csh
+#
+# This is a shell script to run helena
+
+# Input file definition    
+# =====================
+set tmpdir=$HOME/tmphel$2
+mkdir $tmpdir
+cd $tmpdir
+
+cp $HOME/helena/namelist/$2     fort.10 
+
+# Run
+# ===
+time nice $HOME/helena/$1 
+
+# Output
+# ======
+mv fort.20 $HOME/helena/output/$2
+mv PCUBEQ  $HOME/helena/plot/$2.ps 
+mv fort.12 $HOME/helena/mapping/$2
+mv fort.21 $HOME/helena/output/hel12.vector
+mv fort.30 $HOME/helena/namelist/restart
+mv fort.41 $HOME/helena/output/hegna
+mv eqdsk   $HOME/helena/output/eqdsk
+rm fort.*
+
+cd $HOME/helena
+rmdir $tmpdir
+# End of shell script  
+</pre>
+</span>
+<SCRIPT LANGUAGE=JavaScript>
+
+function Showit(arg1) {
+  if (arg1.className=='invisible') {
+      arg1.className='normaltext';
+  } else {
+      arg1.className='invisible';
+  };
+}
+function Showit2(arg1) {
+  if (arg1.className=='invisible') {
+      arg1.className='smalltext';
+  } else {
+      arg1.className='invisible';
+  };
+}
+function ShowHelp(arg1) {
+  if (arg1.className=='nohelp') {
+      arg1.className='help';
+  } ;
+}
+function HideHelp(arg1) {
+  if (arg1.className=='help') {
+      arg1.className='nohelp';
+  } ;
+}
+
+</SCRIPT>
+</body>
+</html>

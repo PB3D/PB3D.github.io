@@ -1,0 +1,430 @@
+\hypertarget{namespaceeq__vars}{}\section{eq\+\_\+vars Module Reference}
+\label{namespaceeq__vars}\index{eq\+\_\+vars@{eq\+\_\+vars}}
+
+
+Variables that have to do with equilibrium quantities and the grid used in the calculations\+:  
+
+
+\subsection*{Interfaces and Types}
+\begin{DoxyCompactItemize}
+\item 
+type \hyperlink{structeq__vars_1_1eq__1__type}{eq\+\_\+1\+\_\+type}
+\begin{DoxyCompactList}\small\item\em flux equilibrium type \end{DoxyCompactList}\item 
+type \hyperlink{structeq__vars_1_1eq__2__type}{eq\+\_\+2\+\_\+type}
+\begin{DoxyCompactList}\small\item\em metric equilibrium type \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Functions/\+Subroutines}
+\begin{DoxyCompactItemize}
+\item 
+subroutine \hyperlink{namespaceeq__vars_a0270785c6b513c53e6d7c837f38f377b}{init\+\_\+eq\+\_\+1} (eq, grid, setup\+\_\+E, setup\+\_\+F)
+\begin{DoxyCompactList}\small\item\em Initializes new flux equilibrium. \end{DoxyCompactList}\item 
+subroutine \hyperlink{namespaceeq__vars_a93947b772250ef73b25bde7688b33bc2}{init\+\_\+eq\+\_\+2} (eq, grid, setup\+\_\+E, setup\+\_\+F)
+\begin{DoxyCompactList}\small\item\em Initializes new metric equilibrium. \end{DoxyCompactList}\item 
+subroutine \hyperlink{namespaceeq__vars_aa781ffa18b6b17905e126871c43d3267}{copy\+\_\+eq\+\_\+1} (eq\+\_\+i, grid\+\_\+i, eq\+\_\+o)
+\begin{DoxyCompactList}\small\item\em Deep copy of flux equilibrium variables. \end{DoxyCompactList}\item 
+subroutine \hyperlink{namespaceeq__vars_a50561f7dcd43970bd16a31cd87714c12}{copy\+\_\+eq\+\_\+2} (eq\+\_\+i, grid\+\_\+i, eq\+\_\+o)
+\begin{DoxyCompactList}\small\item\em Deep copy of metric equilibrium variables. \end{DoxyCompactList}\item 
+subroutine \hyperlink{namespaceeq__vars_ab106dc007ddc896092d0464233b3ce12}{dealloc\+\_\+eq\+\_\+1} (eq)
+\begin{DoxyCompactList}\small\item\em Deallocates flux equilibrium quantities. \end{DoxyCompactList}\item 
+subroutine \hyperlink{namespaceeq__vars_a206698a627df7d8285921ee4a9f75c11}{dealloc\+\_\+eq\+\_\+2} (eq)
+\begin{DoxyCompactList}\small\item\em Deallocates metric equilibrium quantities. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+real(dp), public \hyperlink{namespaceeq__vars_a0c1f124ab3260a0f6937df9189a18184}{r\+\_\+0}
+\begin{DoxyCompactList}\small\item\em independent normalization constant for nondimensionalization \end{DoxyCompactList}\item 
+real(dp), public \hyperlink{namespaceeq__vars_abce8bbe23c333a591a2ee5cef9512de9}{pres\+\_\+0}
+\begin{DoxyCompactList}\small\item\em independent normalization constant for nondimensionalization \end{DoxyCompactList}\item 
+real(dp), public \hyperlink{namespaceeq__vars_a8c9bdb18a418329b9be241342ea704e3}{rho\+\_\+0}
+\begin{DoxyCompactList}\small\item\em independent normalization constant for nondimensionalization \end{DoxyCompactList}\item 
+real(dp), public \hyperlink{namespaceeq__vars_acdd2464f2282359a818e4159b502e84b}{b\+\_\+0}
+\begin{DoxyCompactList}\small\item\em derived normalization constant for nondimensionalization \end{DoxyCompactList}\item 
+real(dp), public \hyperlink{namespaceeq__vars_a2bb2594492faa83869c3eaf8cabe521e}{psi\+\_\+0}
+\begin{DoxyCompactList}\small\item\em derived normalization constant for nondimensionalization \end{DoxyCompactList}\item 
+real(dp), public \hyperlink{namespaceeq__vars_a5170d0b84bb0faf24d5fdcf7c9371620}{t\+\_\+0}
+\begin{DoxyCompactList}\small\item\em derived normalization constant for nondimensionalization \end{DoxyCompactList}\item 
+real(dp), public \hyperlink{namespaceeq__vars_ac45a3781896236d8c8fe95d920f7337c}{vac\+\_\+perm} = mu\+\_\+0\+\_\+original
+\begin{DoxyCompactList}\small\item\em either usual mu\+\_\+0 (default) or normalized \end{DoxyCompactList}\item 
+real(dp), public \hyperlink{namespaceeq__vars_a863feef76ae60309d2e3ed4eed6bd436}{max\+\_\+flux\+\_\+e}
+\begin{DoxyCompactList}\small\item\em max. flux in Equilibrium coordinates, set in calc\+\_\+norm\+\_\+range\+\_\+\+P\+B3\+D\+\_\+in \end{DoxyCompactList}\item 
+real(dp), public \hyperlink{namespaceeq__vars_a46c97bf2a6d6eca952ca5173fcf9cdcb}{max\+\_\+flux\+\_\+f}
+\begin{DoxyCompactList}\small\item\em max. flux in Flux coordinates, set in calc\+\_\+norm\+\_\+range\+\_\+\+P\+B3\+D\+\_\+in \end{DoxyCompactList}\item 
+integer, public \hyperlink{namespaceeq__vars_aed1853ac20f0da0be39ab8ef82993c4d}{n\+\_\+alloc\+\_\+eq\+\_\+1s}
+\begin{DoxyCompactList}\small\item\em nr. of allocated {\ttfamily eq\+\_\+1} variables \end{DoxyCompactList}\item 
+integer, public \hyperlink{namespaceeq__vars_af75297445b32de13371da989074dd454}{n\+\_\+alloc\+\_\+eq\+\_\+2s}
+\begin{DoxyCompactList}\small\item\em nr. of allocated {\ttfamily eq\+\_\+2} variables \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Variables that have to do with equilibrium quantities and the grid used in the calculations\+: 
+
+
+\begin{DoxyItemize}
+\item The equilibrium variables are comprised of the variables that result from the equilibrium calculation, such as pressure, rotational transform, etc.
+\item The flux variables are tabulated on a 1D grid.
+\item The metric variables are tabulated on a 3D grid
+\begin{DoxyItemize}
+\item In the normal coordinate, they are tabulated in the equilibrium grid.
+\item In the angular coordinates, they are tabulated in the solution grid (V\+M\+EC), or in the equilibrium grid followed by an adaptation to the solution grid (H\+E\+L\+E\+NA).
+\end{DoxyItemize}
+\item However, this is not necessarily always the case, as it depends on the grid angles being aligned with the grid (e.\+g. Providing theta and zeta in the equilibrium grid so that the magnetic field lines are followed.
+\end{DoxyItemize}
+
+\begin{DoxyNote}{Note}
+In general in P\+B3D, there are two kinds of variables, differing from one another in the way in which they are tabulated\+:
+\begin{DoxyItemize}
+\item variables tabulated on the full output grid of the equilibrium code
+\item variables tabulated in an internal grid of this code 
+\end{DoxyItemize}
+
+In many places in the code a range in the normal coordinate is selected for each of the variables on different processes. This selection has to be done correctly and things can get a little bit complicated if trimmed grids are used (grids that have no overlap between processes).
+\end{DoxyNote}
+\begin{DoxySeeAlso}{See also}
+grid\+\_\+ops() 
+\end{DoxySeeAlso}
+
+
+\subsection{Function/\+Subroutine Documentation}
+\mbox{\Hypertarget{namespaceeq__vars_aa781ffa18b6b17905e126871c43d3267}\label{namespaceeq__vars_aa781ffa18b6b17905e126871c43d3267}} 
+\index{eq\+\_\+vars@{eq\+\_\+vars}!copy\+\_\+eq\+\_\+1@{copy\+\_\+eq\+\_\+1}}
+\index{copy\+\_\+eq\+\_\+1@{copy\+\_\+eq\+\_\+1}!eq\+\_\+vars@{eq\+\_\+vars}}
+\subsubsection{\texorpdfstring{copy\+\_\+eq\+\_\+1()}{copy\_eq\_1()}}
+{\footnotesize\ttfamily subroutine eq\+\_\+vars\+::copy\+\_\+eq\+\_\+1 (\begin{DoxyParamCaption}\item[{class(\hyperlink{structeq__vars_1_1eq__1__type}{eq\+\_\+1\+\_\+type}), intent(in)}]{eq\+\_\+i,  }\item[{type(\hyperlink{structgrid__vars_1_1grid__type}{grid\+\_\+type}), intent(in)}]{grid\+\_\+i,  }\item[{type(\hyperlink{structeq__vars_1_1eq__1__type}{eq\+\_\+1\+\_\+type}), intent(inout)}]{eq\+\_\+o }\end{DoxyParamCaption})}
+
+
+
+Deep copy of flux equilibrium variables. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em eq\+\_\+i} & eq\+\_\+1 to be copied\\
+\hline
+\mbox{\tt in}  & {\em grid\+\_\+i} & grid of eq\+\_\+i\\
+\hline
+\mbox{\tt in,out}  & {\em eq\+\_\+o} & copied eq\+\_\+1 \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 439 of file eq\+\_\+vars.\+f90.
+
+\mbox{\Hypertarget{namespaceeq__vars_a50561f7dcd43970bd16a31cd87714c12}\label{namespaceeq__vars_a50561f7dcd43970bd16a31cd87714c12}} 
+\index{eq\+\_\+vars@{eq\+\_\+vars}!copy\+\_\+eq\+\_\+2@{copy\+\_\+eq\+\_\+2}}
+\index{copy\+\_\+eq\+\_\+2@{copy\+\_\+eq\+\_\+2}!eq\+\_\+vars@{eq\+\_\+vars}}
+\subsubsection{\texorpdfstring{copy\+\_\+eq\+\_\+2()}{copy\_eq\_2()}}
+{\footnotesize\ttfamily subroutine eq\+\_\+vars\+::copy\+\_\+eq\+\_\+2 (\begin{DoxyParamCaption}\item[{class(\hyperlink{structeq__vars_1_1eq__2__type}{eq\+\_\+2\+\_\+type}), intent(in)}]{eq\+\_\+i,  }\item[{type(\hyperlink{structgrid__vars_1_1grid__type}{grid\+\_\+type}), intent(in)}]{grid\+\_\+i,  }\item[{type(\hyperlink{structeq__vars_1_1eq__2__type}{eq\+\_\+2\+\_\+type}), intent(inout)}]{eq\+\_\+o }\end{DoxyParamCaption})}
+
+
+
+Deep copy of metric equilibrium variables. 
+
+\begin{DoxyReturn}{Returns}
+ierr
+\end{DoxyReturn}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em eq\+\_\+i} & eq\+\_\+2 to be copied\\
+\hline
+\mbox{\tt in}  & {\em grid\+\_\+i} & grid of eq\+\_\+i\\
+\hline
+\mbox{\tt in,out}  & {\em eq\+\_\+o} & copied eq\+\_\+1 \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 477 of file eq\+\_\+vars.\+f90.
+
+\mbox{\Hypertarget{namespaceeq__vars_ab106dc007ddc896092d0464233b3ce12}\label{namespaceeq__vars_ab106dc007ddc896092d0464233b3ce12}} 
+\index{eq\+\_\+vars@{eq\+\_\+vars}!dealloc\+\_\+eq\+\_\+1@{dealloc\+\_\+eq\+\_\+1}}
+\index{dealloc\+\_\+eq\+\_\+1@{dealloc\+\_\+eq\+\_\+1}!eq\+\_\+vars@{eq\+\_\+vars}}
+\subsubsection{\texorpdfstring{dealloc\+\_\+eq\+\_\+1()}{dealloc\_eq\_1()}}
+{\footnotesize\ttfamily subroutine eq\+\_\+vars\+::dealloc\+\_\+eq\+\_\+1 (\begin{DoxyParamCaption}\item[{class(\hyperlink{structeq__vars_1_1eq__1__type}{eq\+\_\+1\+\_\+type}), intent(inout)}]{eq }\end{DoxyParamCaption})}
+
+
+
+Deallocates flux equilibrium quantities. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in,out}  & {\em eq} & equilibrium to be deallocated \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 531 of file eq\+\_\+vars.\+f90.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespaceeq__vars_ab106dc007ddc896092d0464233b3ce12_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{namespaceeq__vars_a206698a627df7d8285921ee4a9f75c11}\label{namespaceeq__vars_a206698a627df7d8285921ee4a9f75c11}} 
+\index{eq\+\_\+vars@{eq\+\_\+vars}!dealloc\+\_\+eq\+\_\+2@{dealloc\+\_\+eq\+\_\+2}}
+\index{dealloc\+\_\+eq\+\_\+2@{dealloc\+\_\+eq\+\_\+2}!eq\+\_\+vars@{eq\+\_\+vars}}
+\subsubsection{\texorpdfstring{dealloc\+\_\+eq\+\_\+2()}{dealloc\_eq\_2()}}
+{\footnotesize\ttfamily subroutine eq\+\_\+vars\+::dealloc\+\_\+eq\+\_\+2 (\begin{DoxyParamCaption}\item[{class(\hyperlink{structeq__vars_1_1eq__2__type}{eq\+\_\+2\+\_\+type}), intent(inout)}]{eq }\end{DoxyParamCaption})}
+
+
+
+Deallocates metric equilibrium quantities. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in,out}  & {\em eq} & equilibrium to be deallocated \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 578 of file eq\+\_\+vars.\+f90.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespaceeq__vars_a206698a627df7d8285921ee4a9f75c11_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{namespaceeq__vars_a0270785c6b513c53e6d7c837f38f377b}\label{namespaceeq__vars_a0270785c6b513c53e6d7c837f38f377b}} 
+\index{eq\+\_\+vars@{eq\+\_\+vars}!init\+\_\+eq\+\_\+1@{init\+\_\+eq\+\_\+1}}
+\index{init\+\_\+eq\+\_\+1@{init\+\_\+eq\+\_\+1}!eq\+\_\+vars@{eq\+\_\+vars}}
+\subsubsection{\texorpdfstring{init\+\_\+eq\+\_\+1()}{init\_eq\_1()}}
+{\footnotesize\ttfamily subroutine eq\+\_\+vars\+::init\+\_\+eq\+\_\+1 (\begin{DoxyParamCaption}\item[{class(\hyperlink{structeq__vars_1_1eq__1__type}{eq\+\_\+1\+\_\+type}), intent(inout)}]{eq,  }\item[{type(\hyperlink{structgrid__vars_1_1grid__type}{grid\+\_\+type}), intent(in)}]{grid,  }\item[{logical, intent(in), optional}]{setup\+\_\+E,  }\item[{logical, intent(in), optional}]{setup\+\_\+F }\end{DoxyParamCaption})}
+
+
+
+Initializes new flux equilibrium. 
+
+The normal and angular grid can be in any coord. system, as only the grid sizes are used, not the coordinate values.
+
+Optionally, it can be chosen individually whether the E or F(\+D) quantities are allocated. D means that the derivatives are in F as well. The rationale behind this is that the E quantities are only used in the pre-\/perturbation phase. \begin{DoxyNote}{Note}
+
+\begin{DoxyEnumerate}
+\item The E quantities are not written in \hyperlink{interfaceeq__ops_1_1print__output__eq}{eq\+\_\+ops.\+print\+\_\+output\+\_\+eq()}.
+\item The quantities that do not have a derivative are considered F quantities. Alternatively, all quantities that have only one version, are considered F quantities, such as {\ttfamily rho}, {\ttfamily kappa\+\_\+n}, ...
+\item The maximum derivative degree for flux quantities is one higher than {\ttfamily max\+\_\+deriv}, because the derivative of some of them appear in the transformation matrices.
+\end{DoxyEnumerate}
+\end{DoxyNote}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in,out}  & {\em eq} & equilibrium to be initialized\\
+\hline
+\mbox{\tt in}  & {\em grid} & equilibrium grid\\
+\hline
+\mbox{\tt in}  & {\em setup\+\_\+e} & whether to set up E\\
+\hline
+\mbox{\tt in}  & {\em setup\+\_\+f} & whether to set up F \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 174 of file eq\+\_\+vars.\+f90.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespaceeq__vars_a0270785c6b513c53e6d7c837f38f377b_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{namespaceeq__vars_a93947b772250ef73b25bde7688b33bc2}\label{namespaceeq__vars_a93947b772250ef73b25bde7688b33bc2}} 
+\index{eq\+\_\+vars@{eq\+\_\+vars}!init\+\_\+eq\+\_\+2@{init\+\_\+eq\+\_\+2}}
+\index{init\+\_\+eq\+\_\+2@{init\+\_\+eq\+\_\+2}!eq\+\_\+vars@{eq\+\_\+vars}}
+\subsubsection{\texorpdfstring{init\+\_\+eq\+\_\+2()}{init\_eq\_2()}}
+{\footnotesize\ttfamily subroutine eq\+\_\+vars\+::init\+\_\+eq\+\_\+2 (\begin{DoxyParamCaption}\item[{class(\hyperlink{structeq__vars_1_1eq__2__type}{eq\+\_\+2\+\_\+type}), intent(inout)}]{eq,  }\item[{type(\hyperlink{structgrid__vars_1_1grid__type}{grid\+\_\+type}), intent(in)}]{grid,  }\item[{logical, intent(in), optional}]{setup\+\_\+E,  }\item[{logical, intent(in), optional}]{setup\+\_\+F }\end{DoxyParamCaption})}
+
+
+
+Initializes new metric equilibrium. 
+
+\begin{DoxySeeAlso}{See also}
+For explanation see \hyperlink{namespaceeq__vars_a0270785c6b513c53e6d7c837f38f377b}{init\+\_\+eq\+\_\+1()}.
+\end{DoxySeeAlso}
+\begin{DoxyNote}{Note}
+The maximum derivative degree for R, Z and lambda is one higher than {\ttfamily max\+\_\+deriv}, because their first derivative already appears in g\+\_\+C and h\+\_\+C.
+\end{DoxyNote}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in,out}  & {\em eq} & equilibrium to be initialized\\
+\hline
+\mbox{\tt in}  & {\em grid} & equilibrium grid\\
+\hline
+\mbox{\tt in}  & {\em setup\+\_\+e} & whether to set up E\\
+\hline
+\mbox{\tt in}  & {\em setup\+\_\+f} & whether to set up F \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 273 of file eq\+\_\+vars.\+f90.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespaceeq__vars_a93947b772250ef73b25bde7688b33bc2_cgraph}
+\end{center}
+\end{figure}
+
+
+\subsection{Variable Documentation}
+\mbox{\Hypertarget{namespaceeq__vars_acdd2464f2282359a818e4159b502e84b}\label{namespaceeq__vars_acdd2464f2282359a818e4159b502e84b}} 
+\index{eq\+\_\+vars@{eq\+\_\+vars}!b\+\_\+0@{b\+\_\+0}}
+\index{b\+\_\+0@{b\+\_\+0}!eq\+\_\+vars@{eq\+\_\+vars}}
+\subsubsection{\texorpdfstring{b\+\_\+0}{b\_0}}
+{\footnotesize\ttfamily real(dp), public eq\+\_\+vars\+::b\+\_\+0}
+
+
+
+derived normalization constant for nondimensionalization 
+
+
+
+Definition at line 45 of file eq\+\_\+vars.\+f90.
+
+\mbox{\Hypertarget{namespaceeq__vars_a863feef76ae60309d2e3ed4eed6bd436}\label{namespaceeq__vars_a863feef76ae60309d2e3ed4eed6bd436}} 
+\index{eq\+\_\+vars@{eq\+\_\+vars}!max\+\_\+flux\+\_\+e@{max\+\_\+flux\+\_\+e}}
+\index{max\+\_\+flux\+\_\+e@{max\+\_\+flux\+\_\+e}!eq\+\_\+vars@{eq\+\_\+vars}}
+\subsubsection{\texorpdfstring{max\+\_\+flux\+\_\+e}{max\_flux\_e}}
+{\footnotesize\ttfamily real(dp), public eq\+\_\+vars\+::max\+\_\+flux\+\_\+e}
+
+
+
+max. flux in Equilibrium coordinates, set in calc\+\_\+norm\+\_\+range\+\_\+\+P\+B3\+D\+\_\+in 
+
+
+
+Definition at line 49 of file eq\+\_\+vars.\+f90.
+
+\mbox{\Hypertarget{namespaceeq__vars_a46c97bf2a6d6eca952ca5173fcf9cdcb}\label{namespaceeq__vars_a46c97bf2a6d6eca952ca5173fcf9cdcb}} 
+\index{eq\+\_\+vars@{eq\+\_\+vars}!max\+\_\+flux\+\_\+f@{max\+\_\+flux\+\_\+f}}
+\index{max\+\_\+flux\+\_\+f@{max\+\_\+flux\+\_\+f}!eq\+\_\+vars@{eq\+\_\+vars}}
+\subsubsection{\texorpdfstring{max\+\_\+flux\+\_\+f}{max\_flux\_f}}
+{\footnotesize\ttfamily real(dp), public eq\+\_\+vars\+::max\+\_\+flux\+\_\+f}
+
+
+
+max. flux in Flux coordinates, set in calc\+\_\+norm\+\_\+range\+\_\+\+P\+B3\+D\+\_\+in 
+
+
+
+Definition at line 50 of file eq\+\_\+vars.\+f90.
+
+\mbox{\Hypertarget{namespaceeq__vars_aed1853ac20f0da0be39ab8ef82993c4d}\label{namespaceeq__vars_aed1853ac20f0da0be39ab8ef82993c4d}} 
+\index{eq\+\_\+vars@{eq\+\_\+vars}!n\+\_\+alloc\+\_\+eq\+\_\+1s@{n\+\_\+alloc\+\_\+eq\+\_\+1s}}
+\index{n\+\_\+alloc\+\_\+eq\+\_\+1s@{n\+\_\+alloc\+\_\+eq\+\_\+1s}!eq\+\_\+vars@{eq\+\_\+vars}}
+\subsubsection{\texorpdfstring{n\+\_\+alloc\+\_\+eq\+\_\+1s}{n\_alloc\_eq\_1s}}
+{\footnotesize\ttfamily integer, public eq\+\_\+vars\+::n\+\_\+alloc\+\_\+eq\+\_\+1s}
+
+
+
+nr. of allocated {\ttfamily eq\+\_\+1} variables 
+
+\begin{DoxyNote}{Note}
+Debug version only 
+\end{DoxyNote}
+
+
+Definition at line 53 of file eq\+\_\+vars.\+f90.
+
+\mbox{\Hypertarget{namespaceeq__vars_af75297445b32de13371da989074dd454}\label{namespaceeq__vars_af75297445b32de13371da989074dd454}} 
+\index{eq\+\_\+vars@{eq\+\_\+vars}!n\+\_\+alloc\+\_\+eq\+\_\+2s@{n\+\_\+alloc\+\_\+eq\+\_\+2s}}
+\index{n\+\_\+alloc\+\_\+eq\+\_\+2s@{n\+\_\+alloc\+\_\+eq\+\_\+2s}!eq\+\_\+vars@{eq\+\_\+vars}}
+\subsubsection{\texorpdfstring{n\+\_\+alloc\+\_\+eq\+\_\+2s}{n\_alloc\_eq\_2s}}
+{\footnotesize\ttfamily integer, public eq\+\_\+vars\+::n\+\_\+alloc\+\_\+eq\+\_\+2s}
+
+
+
+nr. of allocated {\ttfamily eq\+\_\+2} variables 
+
+\begin{DoxyNote}{Note}
+Debug version only 
+\end{DoxyNote}
+
+
+Definition at line 55 of file eq\+\_\+vars.\+f90.
+
+\mbox{\Hypertarget{namespaceeq__vars_abce8bbe23c333a591a2ee5cef9512de9}\label{namespaceeq__vars_abce8bbe23c333a591a2ee5cef9512de9}} 
+\index{eq\+\_\+vars@{eq\+\_\+vars}!pres\+\_\+0@{pres\+\_\+0}}
+\index{pres\+\_\+0@{pres\+\_\+0}!eq\+\_\+vars@{eq\+\_\+vars}}
+\subsubsection{\texorpdfstring{pres\+\_\+0}{pres\_0}}
+{\footnotesize\ttfamily real(dp), public eq\+\_\+vars\+::pres\+\_\+0}
+
+
+
+independent normalization constant for nondimensionalization 
+
+
+
+Definition at line 43 of file eq\+\_\+vars.\+f90.
+
+\mbox{\Hypertarget{namespaceeq__vars_a2bb2594492faa83869c3eaf8cabe521e}\label{namespaceeq__vars_a2bb2594492faa83869c3eaf8cabe521e}} 
+\index{eq\+\_\+vars@{eq\+\_\+vars}!psi\+\_\+0@{psi\+\_\+0}}
+\index{psi\+\_\+0@{psi\+\_\+0}!eq\+\_\+vars@{eq\+\_\+vars}}
+\subsubsection{\texorpdfstring{psi\+\_\+0}{psi\_0}}
+{\footnotesize\ttfamily real(dp), public eq\+\_\+vars\+::psi\+\_\+0}
+
+
+
+derived normalization constant for nondimensionalization 
+
+
+
+Definition at line 46 of file eq\+\_\+vars.\+f90.
+
+\mbox{\Hypertarget{namespaceeq__vars_a0c1f124ab3260a0f6937df9189a18184}\label{namespaceeq__vars_a0c1f124ab3260a0f6937df9189a18184}} 
+\index{eq\+\_\+vars@{eq\+\_\+vars}!r\+\_\+0@{r\+\_\+0}}
+\index{r\+\_\+0@{r\+\_\+0}!eq\+\_\+vars@{eq\+\_\+vars}}
+\subsubsection{\texorpdfstring{r\+\_\+0}{r\_0}}
+{\footnotesize\ttfamily real(dp), public eq\+\_\+vars\+::r\+\_\+0}
+
+
+
+independent normalization constant for nondimensionalization 
+
+
+
+Definition at line 42 of file eq\+\_\+vars.\+f90.
+
+\mbox{\Hypertarget{namespaceeq__vars_a8c9bdb18a418329b9be241342ea704e3}\label{namespaceeq__vars_a8c9bdb18a418329b9be241342ea704e3}} 
+\index{eq\+\_\+vars@{eq\+\_\+vars}!rho\+\_\+0@{rho\+\_\+0}}
+\index{rho\+\_\+0@{rho\+\_\+0}!eq\+\_\+vars@{eq\+\_\+vars}}
+\subsubsection{\texorpdfstring{rho\+\_\+0}{rho\_0}}
+{\footnotesize\ttfamily real(dp), public eq\+\_\+vars\+::rho\+\_\+0}
+
+
+
+independent normalization constant for nondimensionalization 
+
+
+
+Definition at line 44 of file eq\+\_\+vars.\+f90.
+
+\mbox{\Hypertarget{namespaceeq__vars_a5170d0b84bb0faf24d5fdcf7c9371620}\label{namespaceeq__vars_a5170d0b84bb0faf24d5fdcf7c9371620}} 
+\index{eq\+\_\+vars@{eq\+\_\+vars}!t\+\_\+0@{t\+\_\+0}}
+\index{t\+\_\+0@{t\+\_\+0}!eq\+\_\+vars@{eq\+\_\+vars}}
+\subsubsection{\texorpdfstring{t\+\_\+0}{t\_0}}
+{\footnotesize\ttfamily real(dp), public eq\+\_\+vars\+::t\+\_\+0}
+
+
+
+derived normalization constant for nondimensionalization 
+
+
+
+Definition at line 47 of file eq\+\_\+vars.\+f90.
+
+\mbox{\Hypertarget{namespaceeq__vars_ac45a3781896236d8c8fe95d920f7337c}\label{namespaceeq__vars_ac45a3781896236d8c8fe95d920f7337c}} 
+\index{eq\+\_\+vars@{eq\+\_\+vars}!vac\+\_\+perm@{vac\+\_\+perm}}
+\index{vac\+\_\+perm@{vac\+\_\+perm}!eq\+\_\+vars@{eq\+\_\+vars}}
+\subsubsection{\texorpdfstring{vac\+\_\+perm}{vac\_perm}}
+{\footnotesize\ttfamily real(dp), public eq\+\_\+vars\+::vac\+\_\+perm = mu\+\_\+0\+\_\+original}
+
+
+
+either usual mu\+\_\+0 (default) or normalized 
+
+
+
+Definition at line 48 of file eq\+\_\+vars.\+f90.
+

@@ -1,0 +1,119 @@
+\hypertarget{interfacegrid__utilities_1_1setup__deriv__data}{}\section{grid\+\_\+utilities\+:\+:setup\+\_\+deriv\+\_\+data Interface Reference}
+\label{interfacegrid__utilities_1_1setup__deriv__data}\index{grid\+\_\+utilities\+::setup\+\_\+deriv\+\_\+data@{grid\+\_\+utilities\+::setup\+\_\+deriv\+\_\+data}}
+
+
+Set up the factors for the derivative calculation.  
+
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+integer function \hyperlink{interfacegrid__utilities_1_1setup__deriv__data_aab03825f796bfe596b2df18bbcab86b8}{setup\+\_\+deriv\+\_\+data\+\_\+eqd} (step, n, A, ord, prec, lper)
+\begin{DoxyCompactList}\small\item\em equidistant version \end{DoxyCompactList}\item 
+integer function \hyperlink{interfacegrid__utilities_1_1setup__deriv__data_a46a1d933286ef2f6676f685079a7c008}{setup\+\_\+deriv\+\_\+data\+\_\+reg} (x, A, ord, prec, lper)
+\begin{DoxyCompactList}\small\item\em regular version \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Set up the factors for the derivative calculation. 
+
+This is done through a matrix {\ttfamily A} using finite differences of order {\ttfamily ord} with precision {\ttfamily prec}, by which is meant that the order of the error is at least $\sim \Delta^{\texttt{prec}+1}$.
+
+Afterwards, the matrix {\ttfamily A} has to be multiplied with the variable to be derived to obtain the requested derivative.
+
+For a particular order and precision, the number of different points that have to be combined is {\ttfamily ord+prec}, however, as it is better to use symmetric expressions, this number is possibly aumented by one. This number is saved in {\ttfamily n\+\_\+loc}.
+
+The index {\ttfamily kd} is then defined to go from {\ttfamily -\/(n\+\_\+loc-\/1)/2 .. (n\+\_\+loc-\/1)/2}, which is translated to local coordinates by adding {\ttfamily (n\+\_\+loc+1)/2} and to total coordinates by adding generally the index in total coordinates {\ttfamily i} where the local problem is to be set up, but capping it by {\ttfamily (n\+\_\+loc+1)/2} and {\ttfamily n-\/(n\+\_\+loc-\/1)/2}, i.\+e. by using
+
+{\ttfamily k\+\_\+tot = kd + max((n\+\_\+loc+1)/2,min(id,n-\/(n\+\_\+loc-\/1)/2))},
+
+so that these never go out of bounds {\ttfamily 1 .. n}.
+
+The local matrix element \char`\"{}mat\+\_\+loc\char`\"{} is then set up as follows\+: \[ \left[\begin{array}{ccccc} 1 & 1 & \ldots & 1 & 1 \\ \left(\Delta^{i-2}_i\right) & \left(\Delta^{i-1}_i\right) & 0 & \left(\Delta^{i+1}_i\right) & \left(\Delta^{i+1}_i\right) \\ \frac{\left(\Delta^{i-2}_i\right)^2}{2!} & \frac{\left(\Delta^{i-1}_i\right)^2}{2!} & 0 & \frac{\left(\Delta^{i+1}_i\right)^2}{2!} & \frac{\left(\Delta^{i+1}_i\right)^2}{2!} \\ \frac{\left(\Delta^{i-2}_i\right)^3}{3!} & \frac{\left(\Delta^{i-1}_i\right)^2}{3!} & 0 & \frac{\left(\Delta^{i+1}_i\right)^3}{3!} & \frac{\left(\Delta^{i+1}_i\right)^3}{3!} \\ \ldots & \ldots & \vdots & \ldots & \ldots \\ \end{array}\right]\] for bulk matrices {\ttfamily ((n\+\_\+loc+1)/2 $<$= i $<$= n-\/(n\+\_\+loc-\/1)/2)}, with \[\Delta^j_i = x\left(j\right)-x\left(i\right). \] For other elements, this is shifted, e.\+g.\+:
+
+{\ttfamily mat\+\_\+loc(j,k) = (x(k\+\_\+tot)-\/X(i))$^\wedge$(j-\/1) }
+
+where {\ttfamily j = 1..n\+\_\+loc} and {\ttfamily k = -\/(n\+\_\+mod-\/1)/2..(n\+\_\+mod-\/1)/2} and {\ttfamily k\+\_\+tot} is defined above.
+
+This system of equations {\ttfamily D} can be solved by relating to the Vandermonde matrix {\ttfamily V} \[ D = \text{Diag}\left(\frac{1}{0!},\frac{1}{1!},...,\frac{1}{m!}\right) V^T \] and solving it using the specific formula\textquotesingle{}s, so that the solution is given by row number {\ttfamily ord}, multiplied by {\ttfamily (ord!)}. Here, $m$ = {\ttfamily n\+\_\+loc} 
+
+Finally, there is an option to consider the input data as periodic, through the flag {\ttfamily lper\+:} 
+\begin{DoxyItemize}
+\item 0\+: no periodicity \mbox{[}def\mbox{]}
+\item 1\+: full period periodicity $f(x) = f(x+2\pi)$, with the last point assumed to lie at the end of the full period,
+\item 2\+: even half period periodicity $f(x) = f(2\pi-x)$, with the last point assumed to lie at the middle of the full period,
+\item 3\+: odd half period periodicity $f(x) = -f(2\pi-x)$, with the last point assumed to lie at the middle of the full period,
+\end{DoxyItemize}
+
+where a hypothetical $\left[0\ldots 2\pi\right]$ period was assumed for the sake of illustration.
+
+\begin{DoxyReturn}{Returns}
+ierr 
+\end{DoxyReturn}
+
+
+\subsection{Member Function/\+Subroutine Documentation}
+\mbox{\Hypertarget{interfacegrid__utilities_1_1setup__deriv__data_aab03825f796bfe596b2df18bbcab86b8}\label{interfacegrid__utilities_1_1setup__deriv__data_aab03825f796bfe596b2df18bbcab86b8}} 
+\index{grid\+\_\+utilities\+::setup\+\_\+deriv\+\_\+data@{grid\+\_\+utilities\+::setup\+\_\+deriv\+\_\+data}!setup\+\_\+deriv\+\_\+data\+\_\+eqd@{setup\+\_\+deriv\+\_\+data\+\_\+eqd}}
+\index{setup\+\_\+deriv\+\_\+data\+\_\+eqd@{setup\+\_\+deriv\+\_\+data\+\_\+eqd}!grid\+\_\+utilities\+::setup\+\_\+deriv\+\_\+data@{grid\+\_\+utilities\+::setup\+\_\+deriv\+\_\+data}}
+\subsubsection{\texorpdfstring{setup\+\_\+deriv\+\_\+data\+\_\+eqd()}{setup\_deriv\_data\_eqd()}}
+{\footnotesize\ttfamily integer function grid\+\_\+utilities\+::setup\+\_\+deriv\+\_\+data\+::setup\+\_\+deriv\+\_\+data\+\_\+eqd (\begin{DoxyParamCaption}\item[{real(dp), intent(in)}]{step,  }\item[{integer, intent(in)}]{n,  }\item[{type(\hyperlink{structgrid__vars_1_1disc__type}{disc\+\_\+type}), intent(inout)}]{A,  }\item[{integer, intent(in)}]{ord,  }\item[{integer, intent(in)}]{prec,  }\item[{integer, intent(in), optional}]{lper }\end{DoxyParamCaption})}
+
+
+
+equidistant version 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em step} & step size\\
+\hline
+\mbox{\tt in}  & {\em n} & problem size\\
+\hline
+\mbox{\tt in,out}  & {\em a} & derivation data\\
+\hline
+\mbox{\tt in}  & {\em ord} & order of derivative\\
+\hline
+\mbox{\tt in}  & {\em prec} & precision\\
+\hline
+\mbox{\tt in}  & {\em lper} & periodicity flag \\
+\hline
+\end{DoxyParams}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{interfacegrid__utilities_1_1setup__deriv__data_aab03825f796bfe596b2df18bbcab86b8_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{interfacegrid__utilities_1_1setup__deriv__data_a46a1d933286ef2f6676f685079a7c008}\label{interfacegrid__utilities_1_1setup__deriv__data_a46a1d933286ef2f6676f685079a7c008}} 
+\index{grid\+\_\+utilities\+::setup\+\_\+deriv\+\_\+data@{grid\+\_\+utilities\+::setup\+\_\+deriv\+\_\+data}!setup\+\_\+deriv\+\_\+data\+\_\+reg@{setup\+\_\+deriv\+\_\+data\+\_\+reg}}
+\index{setup\+\_\+deriv\+\_\+data\+\_\+reg@{setup\+\_\+deriv\+\_\+data\+\_\+reg}!grid\+\_\+utilities\+::setup\+\_\+deriv\+\_\+data@{grid\+\_\+utilities\+::setup\+\_\+deriv\+\_\+data}}
+\subsubsection{\texorpdfstring{setup\+\_\+deriv\+\_\+data\+\_\+reg()}{setup\_deriv\_data\_reg()}}
+{\footnotesize\ttfamily integer function grid\+\_\+utilities\+::setup\+\_\+deriv\+\_\+data\+::setup\+\_\+deriv\+\_\+data\+\_\+reg (\begin{DoxyParamCaption}\item[{real(dp), dimension(\+:), intent(in)}]{x,  }\item[{type(\hyperlink{structgrid__vars_1_1disc__type}{disc\+\_\+type}), intent(inout)}]{A,  }\item[{integer, intent(in)}]{ord,  }\item[{integer, intent(in)}]{prec,  }\item[{integer, intent(in), optional}]{lper }\end{DoxyParamCaption})}
+
+
+
+regular version 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em x} & independent variable\\
+\hline
+\mbox{\tt in,out}  & {\em a} & discretization mat\\
+\hline
+\mbox{\tt in}  & {\em ord} & order of derivative\\
+\hline
+\mbox{\tt in}  & {\em prec} & precision\\
+\hline
+\mbox{\tt in}  & {\em lper} & periodicity flag \\
+\hline
+\end{DoxyParams}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{interfacegrid__utilities_1_1setup__deriv__data_a46a1d933286ef2f6676f685079a7c008_cgraph}
+\end{center}
+\end{figure}
+
+

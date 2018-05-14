@@ -1,0 +1,526 @@
+\hypertarget{namespacemessages}{}\section{messages Module Reference}
+\label{namespacemessages}\index{messages@{messages}}
+
+
+Numerical utilities related to giving output.  
+
+
+\subsection*{Functions/\+Subroutines}
+\begin{DoxyCompactItemize}
+\item 
+subroutine, public \hyperlink{namespacemessages_a5e45296f088e9f31115a3b8d869f3177}{init\+\_\+output} ()
+\begin{DoxyCompactList}\small\item\em Initialize the variables for the module. \end{DoxyCompactList}\item 
+subroutine, public \hyperlink{namespacemessages_a60c95b4c352b0087f32ef87279da49ca}{print\+\_\+hello} ()
+\begin{DoxyCompactList}\small\item\em Prints first message. \end{DoxyCompactList}\item 
+subroutine, public \hyperlink{namespacemessages_a5d3f456913230bdf985c363e8cee8489}{print\+\_\+goodbye} ()
+\begin{DoxyCompactList}\small\item\em Prints last messag. \end{DoxyCompactList}\item 
+subroutine, public \hyperlink{namespacemessages_a8ed785522aec7ac549263cdd54a8619a}{init\+\_\+time} ()
+\begin{DoxyCompactList}\small\item\em Intialize the time passed to 0. \end{DoxyCompactList}\item 
+subroutine, public \hyperlink{namespacemessages_a84d5988f3ea5ca8dc2834032f896ae90}{start\+\_\+time} ()
+\begin{DoxyCompactList}\small\item\em Start a timer. \end{DoxyCompactList}\item 
+subroutine, public \hyperlink{namespacemessages_aed343894ae4a28ad6dfbd1d39aac64ff}{stop\+\_\+time} ()
+\begin{DoxyCompactList}\small\item\em Stop a timer. \end{DoxyCompactList}\item 
+subroutine, public \hyperlink{namespacemessages_a34da9df28502ccd63e62674d51fe8de8}{passed\+\_\+time} ()
+\begin{DoxyCompactList}\small\item\em Display the time that has passed between {\ttfamily t1} and {\ttfamily t2}. \end{DoxyCompactList}\item 
+character(len=8) function \hyperlink{namespacemessages_a61fd0b51b5e37d58fdc993c01792a3fd}{get\+\_\+clock} ()
+\begin{DoxyCompactList}\small\item\em Returns the time. \end{DoxyCompactList}\item 
+subroutine, public \hyperlink{namespacemessages_a0da9248828de8b7480b99b47618e8310}{print\+\_\+err\+\_\+msg} (err\+\_\+msg, routine\+\_\+name)
+\begin{DoxyCompactList}\small\item\em Prints an error message that is either user-\/provided, or the name of the calling routine. \end{DoxyCompactList}\item 
+subroutine, public \hyperlink{namespacemessages_a6e6bfb084063e4cc91ee86e542043302}{lvl\+\_\+ud} (inc)
+\begin{DoxyCompactList}\small\item\em Increases/decreases {\ttfamily lvl} of output. \end{DoxyCompactList}\item 
+subroutine, public \hyperlink{namespacemessages_aa4a8d01563e92558e8a0875b075ec54c}{writo} (input\+\_\+str, persistent, error, warning, alert)
+\begin{DoxyCompactList}\small\item\em Write output to file identified by {\ttfamily output\+\_\+i}. \end{DoxyCompactList}\item 
+subroutine, public \hyperlink{namespacemessages_a80797cedef6112b8dccaeda431f0c610}{print\+\_\+ar\+\_\+2} (arr)
+\begin{DoxyCompactList}\small\item\em Print an array of dimension 2 on the screen. \end{DoxyCompactList}\item 
+subroutine, public \hyperlink{namespacemessages_a5686118397930f505259225f3688216b}{print\+\_\+ar\+\_\+1} (arr)
+\begin{DoxyCompactList}\small\item\em Print an array of dimension 1 on the screen. \end{DoxyCompactList}\item 
+integer function, public \hyperlink{namespacemessages_a82dddaab795b78b3d39e1ff1aab2f665}{get\+\_\+mem\+\_\+usage} ()
+\begin{DoxyCompactList}\small\item\em Returns the memory usage in kilobytes. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+integer, public \hyperlink{namespacemessages_a36521a46e57da1d3be83019abdff132e}{lvl}
+\begin{DoxyCompactList}\small\item\em determines the indenting. higher {\ttfamily lvl} = more indenting \end{DoxyCompactList}\item 
+character(len=2), public \hyperlink{namespacemessages_ab1101c3acf2edc71877d4aa71aa3d931}{lvl\+\_\+sep} = \textquotesingle{}\textquotesingle{}
+\begin{DoxyCompactList}\small\item\em characters that separate different levels of output \end{DoxyCompactList}\item 
+character(len=10), public \hyperlink{namespacemessages_abeb2abf0ac1d1fb4f09d881eb57b3dae}{time\+\_\+sep} = \textquotesingle{}\textquotesingle{}
+\begin{DoxyCompactList}\small\item\em defines the length of time part of output \end{DoxyCompactList}\item 
+logical, public \hyperlink{namespacemessages_ace8877914cfa5253cc002da0f387446a}{temp\+\_\+output\+\_\+active}
+\begin{DoxyCompactList}\small\item\em true if temporary output is to be written in {\ttfamily temp\+\_\+output} \end{DoxyCompactList}\item 
+character(len=max\+\_\+str\+\_\+ln), dimension(\+:), allocatable, public \hyperlink{namespacemessages_a07070e72f15146af24816c39eea17088}{temp\+\_\+output}
+\begin{DoxyCompactList}\small\item\em temporary output, before output file is opened \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Numerical utilities related to giving output. 
+
+\subsection{Function/\+Subroutine Documentation}
+\mbox{\Hypertarget{namespacemessages_a61fd0b51b5e37d58fdc993c01792a3fd}\label{namespacemessages_a61fd0b51b5e37d58fdc993c01792a3fd}} 
+\index{messages@{messages}!get\+\_\+clock@{get\+\_\+clock}}
+\index{get\+\_\+clock@{get\+\_\+clock}!messages@{messages}}
+\subsubsection{\texorpdfstring{get\+\_\+clock()}{get\_clock()}}
+{\footnotesize\ttfamily character(len=8) function messages\+::get\+\_\+clock (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Returns the time. 
+
+from \href{http://infohost.nmt.edu/tcc/help/lang/fortran/date.html}{\tt http\+://infohost.\+nmt.\+edu/tcc/help/lang/fortran/date.\+html} 
+
+Definition at line 208 of file messages.\+f90.
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{namespacemessages_a61fd0b51b5e37d58fdc993c01792a3fd_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{namespacemessages_a82dddaab795b78b3d39e1ff1aab2f665}\label{namespacemessages_a82dddaab795b78b3d39e1ff1aab2f665}} 
+\index{messages@{messages}!get\+\_\+mem\+\_\+usage@{get\+\_\+mem\+\_\+usage}}
+\index{get\+\_\+mem\+\_\+usage@{get\+\_\+mem\+\_\+usage}!messages@{messages}}
+\subsubsection{\texorpdfstring{get\+\_\+mem\+\_\+usage()}{get\_mem\_usage()}}
+{\footnotesize\ttfamily integer function, public messages\+::get\+\_\+mem\+\_\+usage (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Returns the memory usage in kilobytes. 
+
+Based on \href{http://stackoverflow.com/questions/22028571/track-memory-usage-in-fortran-90}{\tt http\+://stackoverflow.\+com/questions/22028571/track-\/memory-\/usage-\/in-\/fortran-\/90}
+
+\begin{DoxyNote}{Note}
+Only works under linux.
+
+Debug version only 
+\end{DoxyNote}
+
+
+Definition at line 544 of file messages.\+f90.
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{namespacemessages_a82dddaab795b78b3d39e1ff1aab2f665_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{namespacemessages_a5e45296f088e9f31115a3b8d869f3177}\label{namespacemessages_a5e45296f088e9f31115a3b8d869f3177}} 
+\index{messages@{messages}!init\+\_\+output@{init\+\_\+output}}
+\index{init\+\_\+output@{init\+\_\+output}!messages@{messages}}
+\subsubsection{\texorpdfstring{init\+\_\+output()}{init\_output()}}
+{\footnotesize\ttfamily subroutine, public messages\+::init\+\_\+output (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Initialize the variables for the module. 
+
+
+
+Definition at line 32 of file messages.\+f90.
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=300pt]{namespacemessages_a5e45296f088e9f31115a3b8d869f3177_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{namespacemessages_a8ed785522aec7ac549263cdd54a8619a}\label{namespacemessages_a8ed785522aec7ac549263cdd54a8619a}} 
+\index{messages@{messages}!init\+\_\+time@{init\+\_\+time}}
+\index{init\+\_\+time@{init\+\_\+time}!messages@{messages}}
+\subsubsection{\texorpdfstring{init\+\_\+time()}{init\_time()}}
+{\footnotesize\ttfamily subroutine, public messages\+::init\+\_\+time (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Intialize the time passed to 0. 
+
+
+
+Definition at line 103 of file messages.\+f90.
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespacemessages_a8ed785522aec7ac549263cdd54a8619a_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{namespacemessages_a6e6bfb084063e4cc91ee86e542043302}\label{namespacemessages_a6e6bfb084063e4cc91ee86e542043302}} 
+\index{messages@{messages}!lvl\+\_\+ud@{lvl\+\_\+ud}}
+\index{lvl\+\_\+ud@{lvl\+\_\+ud}!messages@{messages}}
+\subsubsection{\texorpdfstring{lvl\+\_\+ud()}{lvl\_ud()}}
+{\footnotesize\ttfamily subroutine, public messages\+::lvl\+\_\+ud (\begin{DoxyParamCaption}\item[{integer}]{inc }\end{DoxyParamCaption})}
+
+
+
+Increases/decreases {\ttfamily lvl} of output. 
+
+Name stands for level up or down.
+
+
+\begin{DoxyParams}{Parameters}
+{\em inc} & increment of level \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 244 of file messages.\+f90.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespacemessages_a6e6bfb084063e4cc91ee86e542043302_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{namespacemessages_a34da9df28502ccd63e62674d51fe8de8}\label{namespacemessages_a34da9df28502ccd63e62674d51fe8de8}} 
+\index{messages@{messages}!passed\+\_\+time@{passed\+\_\+time}}
+\index{passed\+\_\+time@{passed\+\_\+time}!messages@{messages}}
+\subsubsection{\texorpdfstring{passed\+\_\+time()}{passed\_time()}}
+{\footnotesize\ttfamily subroutine, public messages\+::passed\+\_\+time (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Display the time that has passed between {\ttfamily t1} and {\ttfamily t2}. 
+
+Automatically stops time and resets everything to zero. 
+
+Definition at line 142 of file messages.\+f90.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespacemessages_a34da9df28502ccd63e62674d51fe8de8_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=300pt]{namespacemessages_a34da9df28502ccd63e62674d51fe8de8_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{namespacemessages_a5686118397930f505259225f3688216b}\label{namespacemessages_a5686118397930f505259225f3688216b}} 
+\index{messages@{messages}!print\+\_\+ar\+\_\+1@{print\+\_\+ar\+\_\+1}}
+\index{print\+\_\+ar\+\_\+1@{print\+\_\+ar\+\_\+1}!messages@{messages}}
+\subsubsection{\texorpdfstring{print\+\_\+ar\+\_\+1()}{print\_ar\_1()}}
+{\footnotesize\ttfamily subroutine, public messages\+::print\+\_\+ar\+\_\+1 (\begin{DoxyParamCaption}\item[{real(dp), dimension(\+:), intent(in)}]{arr }\end{DoxyParamCaption})}
+
+
+
+Print an array of dimension 1 on the screen. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em arr} & array to be printed \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 477 of file messages.\+f90.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespacemessages_a5686118397930f505259225f3688216b_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespacemessages_a5686118397930f505259225f3688216b_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{namespacemessages_a80797cedef6112b8dccaeda431f0c610}\label{namespacemessages_a80797cedef6112b8dccaeda431f0c610}} 
+\index{messages@{messages}!print\+\_\+ar\+\_\+2@{print\+\_\+ar\+\_\+2}}
+\index{print\+\_\+ar\+\_\+2@{print\+\_\+ar\+\_\+2}!messages@{messages}}
+\subsubsection{\texorpdfstring{print\+\_\+ar\+\_\+2()}{print\_ar\_2()}}
+{\footnotesize\ttfamily subroutine, public messages\+::print\+\_\+ar\+\_\+2 (\begin{DoxyParamCaption}\item[{real(dp), dimension(\+:,\+:), intent(in)}]{arr }\end{DoxyParamCaption})}
+
+
+
+Print an array of dimension 2 on the screen. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em arr} & array to be printed \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 465 of file messages.\+f90.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespacemessages_a80797cedef6112b8dccaeda431f0c610_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespacemessages_a80797cedef6112b8dccaeda431f0c610_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{namespacemessages_a0da9248828de8b7480b99b47618e8310}\label{namespacemessages_a0da9248828de8b7480b99b47618e8310}} 
+\index{messages@{messages}!print\+\_\+err\+\_\+msg@{print\+\_\+err\+\_\+msg}}
+\index{print\+\_\+err\+\_\+msg@{print\+\_\+err\+\_\+msg}!messages@{messages}}
+\subsubsection{\texorpdfstring{print\+\_\+err\+\_\+msg()}{print\_err\_msg()}}
+{\footnotesize\ttfamily subroutine, public messages\+::print\+\_\+err\+\_\+msg (\begin{DoxyParamCaption}\item[{character(len=$\ast$), intent(in)}]{err\+\_\+msg,  }\item[{character(len=$\ast$), intent(in)}]{routine\+\_\+name }\end{DoxyParamCaption})}
+
+
+
+Prints an error message that is either user-\/provided, or the name of the calling routine. 
+
+\begin{DoxyNote}{Note}
+This should be used with the macro C\+H\+C\+K\+E\+RR.
+\end{DoxyNote}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em err\+\_\+msg} & error message to be printed\\
+\hline
+\mbox{\tt in}  & {\em routine\+\_\+name} & name of the routine \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 224 of file messages.\+f90.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespacemessages_a0da9248828de8b7480b99b47618e8310_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{namespacemessages_a5d3f456913230bdf985c363e8cee8489}\label{namespacemessages_a5d3f456913230bdf985c363e8cee8489}} 
+\index{messages@{messages}!print\+\_\+goodbye@{print\+\_\+goodbye}}
+\index{print\+\_\+goodbye@{print\+\_\+goodbye}!messages@{messages}}
+\subsubsection{\texorpdfstring{print\+\_\+goodbye()}{print\_goodbye()}}
+{\footnotesize\ttfamily subroutine, public messages\+::print\+\_\+goodbye (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Prints last messag. 
+
+
+
+Definition at line 89 of file messages.\+f90.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespacemessages_a5d3f456913230bdf985c363e8cee8489_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=312pt]{namespacemessages_a5d3f456913230bdf985c363e8cee8489_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{namespacemessages_a60c95b4c352b0087f32ef87279da49ca}\label{namespacemessages_a60c95b4c352b0087f32ef87279da49ca}} 
+\index{messages@{messages}!print\+\_\+hello@{print\+\_\+hello}}
+\index{print\+\_\+hello@{print\+\_\+hello}!messages@{messages}}
+\subsubsection{\texorpdfstring{print\+\_\+hello()}{print\_hello()}}
+{\footnotesize\ttfamily subroutine, public messages\+::print\+\_\+hello (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Prints first message. 
+
+
+
+Definition at line 61 of file messages.\+f90.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespacemessages_a60c95b4c352b0087f32ef87279da49ca_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=300pt]{namespacemessages_a60c95b4c352b0087f32ef87279da49ca_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{namespacemessages_a84d5988f3ea5ca8dc2834032f896ae90}\label{namespacemessages_a84d5988f3ea5ca8dc2834032f896ae90}} 
+\index{messages@{messages}!start\+\_\+time@{start\+\_\+time}}
+\index{start\+\_\+time@{start\+\_\+time}!messages@{messages}}
+\subsubsection{\texorpdfstring{start\+\_\+time()}{start\_time()}}
+{\footnotesize\ttfamily subroutine, public messages\+::start\+\_\+time (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Start a timer. 
+
+
+
+Definition at line 111 of file messages.\+f90.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespacemessages_a84d5988f3ea5ca8dc2834032f896ae90_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespacemessages_a84d5988f3ea5ca8dc2834032f896ae90_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{namespacemessages_aed343894ae4a28ad6dfbd1d39aac64ff}\label{namespacemessages_aed343894ae4a28ad6dfbd1d39aac64ff}} 
+\index{messages@{messages}!stop\+\_\+time@{stop\+\_\+time}}
+\index{stop\+\_\+time@{stop\+\_\+time}!messages@{messages}}
+\subsubsection{\texorpdfstring{stop\+\_\+time()}{stop\_time()}}
+{\footnotesize\ttfamily subroutine, public messages\+::stop\+\_\+time (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Stop a timer. 
+
+
+
+Definition at line 122 of file messages.\+f90.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespacemessages_aed343894ae4a28ad6dfbd1d39aac64ff_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespacemessages_aed343894ae4a28ad6dfbd1d39aac64ff_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{namespacemessages_aa4a8d01563e92558e8a0875b075ec54c}\label{namespacemessages_aa4a8d01563e92558e8a0875b075ec54c}} 
+\index{messages@{messages}!writo@{writo}}
+\index{writo@{writo}!messages@{messages}}
+\subsubsection{\texorpdfstring{writo()}{writo()}}
+{\footnotesize\ttfamily subroutine, public messages\+::writo (\begin{DoxyParamCaption}\item[{character(len=$\ast$), intent(in)}]{input\+\_\+str,  }\item[{logical, intent(in), optional}]{persistent,  }\item[{logical, intent(in), optional}]{error,  }\item[{logical, intent(in), optional}]{warning,  }\item[{logical, intent(in), optional}]{alert }\end{DoxyParamCaption})}
+
+
+
+Write output to file identified by {\ttfamily output\+\_\+i}. 
+
+This is done using the correct indentation for the level ({\ttfamily lvl\+\_\+loc}) of the output.
+
+By default, only the master outputs, but this can be changed using {\ttfamily persistent}.
+
+Optionally, special formatting for error, warning or alert can be chosen.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em input\+\_\+str} & the name that is searched for\\
+\hline
+\mbox{\tt in}  & {\em persistent} & output even if not group master\\
+\hline
+\mbox{\tt in}  & {\em error} & error message\\
+\hline
+\mbox{\tt in}  & {\em warning} & warning message\\
+\hline
+\mbox{\tt in}  & {\em alert} & alert message \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 265 of file messages.\+f90.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespacemessages_aa4a8d01563e92558e8a0875b075ec54c_cgraph}
+\end{center}
+\end{figure}
+
+
+\subsection{Variable Documentation}
+\mbox{\Hypertarget{namespacemessages_a36521a46e57da1d3be83019abdff132e}\label{namespacemessages_a36521a46e57da1d3be83019abdff132e}} 
+\index{messages@{messages}!lvl@{lvl}}
+\index{lvl@{lvl}!messages@{messages}}
+\subsubsection{\texorpdfstring{lvl}{lvl}}
+{\footnotesize\ttfamily integer, public messages\+::lvl}
+
+
+
+determines the indenting. higher {\ttfamily lvl} = more indenting 
+
+
+
+Definition at line 20 of file messages.\+f90.
+
+\mbox{\Hypertarget{namespacemessages_ab1101c3acf2edc71877d4aa71aa3d931}\label{namespacemessages_ab1101c3acf2edc71877d4aa71aa3d931}} 
+\index{messages@{messages}!lvl\+\_\+sep@{lvl\+\_\+sep}}
+\index{lvl\+\_\+sep@{lvl\+\_\+sep}!messages@{messages}}
+\subsubsection{\texorpdfstring{lvl\+\_\+sep}{lvl\_sep}}
+{\footnotesize\ttfamily character(len=2), public messages\+::lvl\+\_\+sep = \textquotesingle{}\textquotesingle{}}
+
+
+
+characters that separate different levels of output 
+
+
+
+Definition at line 21 of file messages.\+f90.
+
+\mbox{\Hypertarget{namespacemessages_a07070e72f15146af24816c39eea17088}\label{namespacemessages_a07070e72f15146af24816c39eea17088}} 
+\index{messages@{messages}!temp\+\_\+output@{temp\+\_\+output}}
+\index{temp\+\_\+output@{temp\+\_\+output}!messages@{messages}}
+\subsubsection{\texorpdfstring{temp\+\_\+output}{temp\_output}}
+{\footnotesize\ttfamily character(len=max\+\_\+str\+\_\+ln), dimension(\+:), allocatable, public messages\+::temp\+\_\+output}
+
+
+
+temporary output, before output file is opened 
+
+
+
+Definition at line 27 of file messages.\+f90.
+
+\mbox{\Hypertarget{namespacemessages_ace8877914cfa5253cc002da0f387446a}\label{namespacemessages_ace8877914cfa5253cc002da0f387446a}} 
+\index{messages@{messages}!temp\+\_\+output\+\_\+active@{temp\+\_\+output\+\_\+active}}
+\index{temp\+\_\+output\+\_\+active@{temp\+\_\+output\+\_\+active}!messages@{messages}}
+\subsubsection{\texorpdfstring{temp\+\_\+output\+\_\+active}{temp\_output\_active}}
+{\footnotesize\ttfamily logical, public messages\+::temp\+\_\+output\+\_\+active}
+
+
+
+true if temporary output is to be written in {\ttfamily temp\+\_\+output} 
+
+
+
+Definition at line 26 of file messages.\+f90.
+
+\mbox{\Hypertarget{namespacemessages_abeb2abf0ac1d1fb4f09d881eb57b3dae}\label{namespacemessages_abeb2abf0ac1d1fb4f09d881eb57b3dae}} 
+\index{messages@{messages}!time\+\_\+sep@{time\+\_\+sep}}
+\index{time\+\_\+sep@{time\+\_\+sep}!messages@{messages}}
+\subsubsection{\texorpdfstring{time\+\_\+sep}{time\_sep}}
+{\footnotesize\ttfamily character(len=10), public messages\+::time\+\_\+sep = \textquotesingle{}\textquotesingle{}}
+
+
+
+defines the length of time part of output 
+
+
+
+Definition at line 22 of file messages.\+f90.
+

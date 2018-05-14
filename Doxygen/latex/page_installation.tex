@@ -1,0 +1,269 @@
+\hypertarget{page_installation_installation_introduction}{}\section{Introduction}\label{page_installation_installation_introduction}
+P\+B3D is written in Fortran, and makes use of multiple numerical libraries\+:
+\begin{DoxyItemize}
+\item \href{http://www.netlib.org/lapack/}{\tt blas / lapack}
+\begin{DoxyItemize}
+\item for basic linear algebra
+\end{DoxyItemize}
+\item \href{http://www.netlib.org/scalapack/}{\tt pblas / blacs / scalapack}
+\begin{DoxyItemize}
+\item for parallelized basic linear algebra
+\end{DoxyItemize}
+\item \href{https://www.hdfgroup.org/HDF5/}{\tt H\+D\+F5}
+\begin{DoxyItemize}
+\item for storage files
+\item works in parallel
+\end{DoxyItemize}
+\item \href{https://www.unidata.ucar.edu/software/netcdf/}{\tt Net\+C\+DF}
+\begin{DoxyItemize}
+\item to read input of V\+M\+EC
+\item sequential
+\end{DoxyItemize}
+\item \href{https://www.mcs.anl.gov/petsc/}{\tt P\+E\+T\+Sc} / \href{http://slepc.upv.es/}{\tt S\+L\+E\+Pc}
+\begin{DoxyItemize}
+\item for linear algebra of large, sparse matrices
+\item can reach $\sim \mathcal{O} (n)$ complexity
+\end{DoxyItemize}
+\item \href{http://portal.nersc.gov/project/sparse/strumpack/}{\tt Strum\+Pack}
+\begin{DoxyItemize}
+\item for linear algebra of structured matrices \cite{Ambikasaran2013}
+\item can reach $\sim \mathcal{O} (n \log(n))$ complexity
+\end{DoxyItemize}
+\item \href{http://vmecwiki.pppl.wikispaces.net/STELLOPT+Compilation}{\tt libstell}
+\begin{DoxyItemize}
+\item part of Stellopt suite, which contains V\+M\+EC
+\item provides routines to read V\+M\+EC output data
+\end{DoxyItemize}
+\end{DoxyItemize}
+
+They should probably be installed in this order. On linux distributions such as Ubuntu, they may be available as packages.
+
+Furthermore, P\+B3D comes bundled with some other, smaller libraries\+:
+\begin{DoxyItemize}
+\item \href{http://www.netlib.org/fftpack/}{\tt fftpack}
+\begin{DoxyItemize}
+\item to calculate the fast Fourier transform
+\end{DoxyItemize}
+\item \href{https://github.com/jacobwilliams/bspline-fortran}{\tt bspline-\/fortran}
+\begin{DoxyItemize}
+\item multidimensional b-\/spline interpolation of data on a regular grid
+\end{DoxyItemize}
+\item \href{http://foul.sourceforge.net/}{\tt foul}
+\begin{DoxyItemize}
+\item the Fortran Output Library
+\end{DoxyItemize}
+\end{DoxyItemize}
+
+These do not have to be installed separately.\hypertarget{page_installation_installation_compilation}{}\section{Compilation}\label{page_installation_installation_compilation}
+When all dependencies are satisfied, the program is then compiled in the standard way\+:
+\begin{DoxyItemize}
+\item Including the headers of all the libraries in the compilation of the object files\+:
+\begin{DoxyItemize}
+\item This is done using {\ttfamily -\/I\mbox{[}path\+\_\+to\+\_\+library\mbox{]}}.
+\item Make sure you add the {\ttfamily -\/o} option to create only object files.
+\end{DoxyItemize}
+\item Linking with the actual libraries
+\begin{DoxyItemize}
+\item This is done using {\ttfamily -\/L\mbox{[}path\+\_\+to\+\_\+library\mbox{]} -\/l\mbox{[}library\+\_\+name\mbox{]}}.
+\end{DoxyItemize}
+\end{DoxyItemize}\hypertarget{page_installation_installation_makefile}{}\section{Makefile Example}\label{page_installation_installation_makefile}
+
+\begin{DoxyCodeInclude}
+1 ##############################################################################
+2 #
+3 #   Example makefile for the program PB3D (Peeling Ballooning in 3D)
+4 #   \(\backslash\)author Author: Toon Weyens
+5 #
+6 #   Don't forget to set the directories:
+7 #       - LIBSTELL\_DIR
+8 #       - HDF5\_DIR
+9 #       - NETCDFF\_DIR (note: Fortran library)
+10 #       - PETSC\_DIR
+11 #       - SLEPC\_DIR
+12 #       - STRUMPACK\_DIR
+13 ##############################################################################
+14 
+15 ##############################################################################
+16 #   Include
+17 ##############################################################################
+18 ## [PETSc and SLEPc trick]
+19 include  $(PETSC\_DIR)/lib/petsc/conf/variables
+20 include  $(SLEPC\_DIR)/lib/slepc/conf/slepc\_variables
+21 ## [PETSc and SLEPc trick]
+22 
+23 ## [PETSc and SLEPc trick inc]
+24 INCLUDE = $(PETSC\_FC\_INCLUDES) $(SLEPC\_INCLUDE)
+25 ## [PETSc and SLEPc trick inc]
+26 ## [Libstell special]
+27 INCLUDE += -I$(LIBSTELL\_DIR)/libstell\_dir
+28 ## [Libstell special]
+29 INCLUDE += -I$(STRUMPACK\_DIR)/include
+30 ## [PB3D include]
+31 INCLUDE += -I$(PB3D\_DIR)/include
+32 ## [PB3D include]
+33 INCLUDE += -I/usr/include/hdf5/openmpi
+34 
+35 ##############################################################################
+36 #   Link
+37 ##############################################################################
+38 ## [PB3D libraries]
+39 LIB\_INTERNAL = libdfftpack.a libfoul.a libbspline.a
+40 ## [PB3D libraries]
+41 
+42 LINK := $(LIB\_INTERNAL)
+43 
+44 ## [PETSc and SLEPc trick lib]
+45 LINK += $(PETSC\_LIB)
+46 LINK += $(SLEPC\_LIB)
+47 ## [PETSc and SLEPc trick lib]
+48 LINK += $(LIBSTELL\_DIR)/libstell.a
+49 LINK += -L$(STRUMPACK\_DIR)/lib -lstrumpack
+50 LINK += -L$(HDF5\_DIR) -lhdf5\_fortran -lhdf5
+51 LINK += -L$(NETCDFF\_DIR)/lib -lnetcdff
+52 LINK += -Wl,-R$(NETCDFF\_DIR)/lib
+53 LINK += -lscalapack -lblacs -lblas -lm
+54 LINK += -lstdc++ -lmpi\_cxx
+55 
+56 
+57 ##############################################################################
+58 #   Compiler
+59 ##############################################################################
+60 COMPILER=mpifort
+61 
+62 
+63 ##############################################################################
+64 #   Linker
+65 ##############################################################################
+66 LINKER=mpifort
+67 
+68 
+69 ##############################################################################
+70 #   Compiler flags
+71 #   options (used with -D[name]):
+72 #       ldebug: debug
+73 #       lIB: infiniband
+74 #       lwith\_gnu: use GNU compiler [default]
+75 #       lwith\_intel: use INTEL compiler, (checked for version 12.0.2)
+76 #   note: INTEL warning 6536 is suppressed, which informs about extra "USE".
+77 #   note: INTEL warning 6843 is suppressed, which informs about empty
+78 #       intent(out) variables
+79 ##############################################################################
+80 COMP\_FLAGS = -finit-real=snan -g -Og -Wall -Wextra -pedantic \(\backslash\)
+81     -fimplicit-none -fbacktrace -fno-omit-frame-pointer \(\backslash\)
+82     -fcheck=all -cpp -Dldebug# debug, profiling with gprof2dot, GCC
+83 #COMP\_FLAGS = -O3 -fbacktrace -g -fimplicit-none -fno-omit-frame-pointer \(\backslash\)
+84     #-cpp# optimized, GCC
+85 
+86 #COMP\_FLAGS = -O0 -DlIB -Dldebug -g -heap-arrays 100 -recursive \(\backslash\)
+87     #-ftrapuv -check bounds -check uninit -traceback -implicitnone \(\backslash\)
+88     #-fno-omit-frame-pointer -cpp -Dlwith\_intel -diag-disable 6536 \(\backslash\)
+89     #-diag-disable 6843# debug, profiling with gprof2dot, INTEL
+90 #COMP\_FLAGS = -O3 -DlIB -traceback -g -heap-arrays 100 -recursive \(\backslash\)
+91     #-implicitnone -fno-omit-frame-pointer -cpp -Dlwith\_intel \(\backslash\)
+92     #-diag-disable 6536 -diag-disable 6843# optimized, INTEL
+93 
+94 COMP\_FLAGS\_EX= -O2 -w
+95 
+96 COMP\_FLAGS\_F= -O2 -funroll-loops -fexpensive-optimizations
+97 
+98 
+99 ##############################################################################
+100 #   Link flags
+101 ##############################################################################
+102 LINK\_FLAGS = -fPIC -finit-real=snan# debug
+103 #LINK\_FLAGS = -fPIC# optimized
+104 
+105 
+106 ##############################################################################
+107 #   Prepare
+108 ##############################################################################
+109 # Add "Modules" and "Libraries" to the search path for the prerequisites
+110 VPATH = Modules:Libraries
+111 
+112 # Contains list of source files (.o) and dependencies
+113 DEPLIST = PB3D.dep
+114 OBJLIST = ObjectList# defines "ObjectFiles"
+115 
+116 # Includes source files and dependency list
+117 include $(DEPLIST)# Dependencies of all the objects
+118 include $(OBJLIST)# Names of all the objects
+119 
+120 
+121 ##############################################################################
+122 #   Rules
+123 ##############################################################################
+124 all:    PB3D POST
+125 
+126 PB3D:   $(ObjectFiles) $(LIB\_INTERNAL) PB3D.o
+127     $(LINKER) -o $@ $(ObjectFiles) PB3D.o $(LINK) $(LINK\_FLAGS)
+128 
+129 POST:   $(ObjectFiles) $(LIB\_INTERNAL) POST.o
+130     $(LINKER) -o $@ $(ObjectFiles) POST.o $(LINK) $(LINK\_FLAGS)
+131 
+132 libdfftpack.a:  dfft.o
+133     ar -rcs libdfftpack.a dfft.o
+134 
+135 libfoul.a:  foul.o
+136     ar -rcs libfoul.a foul.o
+137 
+138 libbspline.a:   bspline\_sub\_module.o
+139     ar -rcs libbspline.a bspline\_sub\_module.o
+140 
+141 %.o: %.f90
+142     $(COMPILER) $(INCLUDE) $(COMP\_FLAGS) -c $<
+143 
+144 %.o: %.f
+145     $(COMPILER) $(COMP\_FLAGS\_F) -c $<
+146 
+147 dfft.o: dfft.f
+148     $(COMPILER) $(COMP\_FLAGS\_EX) -c $<
+149 
+150 foul.o: foul.f90
+151     $(COMPILER) $(COMP\_FLAGS\_EX) -c $<
+152 
+153 bspline\_sub\_module.o: bspline\_sub\_module.f90
+154     $(COMPILER) $(COMP\_FLAGS\_EX) -c $<
+155 
+156 clean:
+157     @rm -f *.o *.a *.mod *~ fort.* 
+158 
+159 clean\_all:
+160     @rm -f *.o *.mod *~ fort.* PB3D POST
+\end{DoxyCodeInclude}
+
+
+\begin{DoxyNote}{Note}
+
+\begin{DoxyEnumerate}
+\item P\+E\+T\+Sc and S\+L\+E\+Pc don\textquotesingle{}t like to be included in another makefile. The trick is to include two files\+: 
+\begin{DoxyCodeInclude}
+19 include  $(PETSC\_DIR)/lib/petsc/conf/variables
+20 include  $(SLEPC\_DIR)/lib/slepc/conf/slepc\_variables
+\end{DoxyCodeInclude}
+ which will load the variables {\ttfamily P\+E\+T\+S\+C\+\_\+\+F\+C\+\_\+\+I\+N\+C\+L\+U\+D\+ES} and {\ttfamily S\+L\+E\+P\+C\+\_\+\+I\+N\+C\+L\+U\+DE}, used in 
+\begin{DoxyCodeInclude}
+24 INCLUDE = $(PETSC\_FC\_INCLUDES) $(SLEPC\_INCLUDE)
+\end{DoxyCodeInclude}
+ as well as the variables {\ttfamily P\+E\+T\+S\+C\+\_\+\+L\+IB} and {\ttfamily S\+L\+E\+P\+C\+\_\+\+L\+IB}, used in 
+\begin{DoxyCodeInclude}
+45 LINK += $(PETSC\_LIB)
+46 LINK += $(SLEPC\_LIB)
+\end{DoxyCodeInclude}
+
+\item There are versions of libstell that do not use the standard convention. In this case you have to look for the {\ttfamily $\ast$.mod} files. In the example makefile this is done with 
+\begin{DoxyCodeInclude}
+27 INCLUDE += -I$(LIBSTELL\_DIR)/libstell\_dir
+\end{DoxyCodeInclude}
+ instead of the standard {\ttfamily inc} directory.
+\item In 
+\begin{DoxyCodeInclude}
+31 INCLUDE += -I$(PB3D\_DIR)/include
+\end{DoxyCodeInclude}
+ there are includefiles that contain macros and wrappers specifically for P\+B3D.
+\item In 
+\begin{DoxyCodeInclude}
+39 LIB\_INTERNAL = libdfftpack.a libfoul.a libbspline.a
+\end{DoxyCodeInclude}
+ linking is done with external libraries that are bundled with P\+B3D. 
+\end{DoxyEnumerate}
+\end{DoxyNote}

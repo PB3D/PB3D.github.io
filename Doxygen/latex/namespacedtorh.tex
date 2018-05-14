@@ -1,0 +1,108 @@
+\hypertarget{namespacedtorh}{}\section{dtorh Module Reference}
+\label{namespacedtorh}\index{dtorh@{dtorh}}
+
+
+Calculation of toroidal functions $P_{n-1/2}^m \left(z\right)$ and $Q_{n-1/2}^m \left(z\right)$.  
+
+
+\subsection*{Functions/\+Subroutines}
+\begin{DoxyCompactItemize}
+\item 
+integer function, public \hyperlink{namespacedtorh_af3f58b6705da916bfbaf7cc4ea05f610}{dtorh1} (z, m, nmax, pl, ql, newn, mode, ipre)
+\begin{DoxyCompactList}\small\item\em Calculates toroidal harmonics of a fixed order {\ttfamily m} and degrees up to {\ttfamily nmax}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Calculation of toroidal functions $P_{n-1/2}^m \left(z\right)$ and $Q_{n-1/2}^m \left(z\right)$. 
+
+\begin{DoxyNote}{Note}
+Copied and adapted from the D\+T\+O\+R\+H1 routine by Segura and Gil \cite{Segura2000} . 
+\end{DoxyNote}
+
+
+\subsection{Function/\+Subroutine Documentation}
+\mbox{\Hypertarget{namespacedtorh_af3f58b6705da916bfbaf7cc4ea05f610}\label{namespacedtorh_af3f58b6705da916bfbaf7cc4ea05f610}} 
+\index{dtorh@{dtorh}!dtorh1@{dtorh1}}
+\index{dtorh1@{dtorh1}!dtorh@{dtorh}}
+\subsubsection{\texorpdfstring{dtorh1()}{dtorh1()}}
+{\footnotesize\ttfamily integer function, public dtorh\+::dtorh1 (\begin{DoxyParamCaption}\item[{real(dp), intent(in)}]{z,  }\item[{integer, intent(in)}]{m,  }\item[{integer, intent(in)}]{nmax,  }\item[{real(dp), dimension(0\+:nmax), intent(inout)}]{pl,  }\item[{real(dp), dimension(0\+:nmax), intent(inout)}]{ql,  }\item[{integer, intent(inout)}]{newn,  }\item[{integer, intent(in), optional}]{mode,  }\item[{integer, intent(in), optional}]{ipre }\end{DoxyParamCaption})}
+
+
+
+Calculates toroidal harmonics of a fixed order {\ttfamily m} and degrees up to {\ttfamily nmax}. 
+
+Optionally, the {\ttfamily mode} can be specified to be different from 0 \mbox{[}default\mbox{]}
+\begin{DoxyItemize}
+\item if {\ttfamily mode=1}\+:
+\begin{DoxyItemize}
+\item The set of functions evaluated is\+: \[\frac{P_{n-1/2}^m \left(z\right)}{\Gamma(m+1/2)} \ ,\quad \frac{Q_{n-1/2}^m \left(z\right)}{\Gamma(m+1/2)},\] which are respectively stored in the arrays {\ttfamily pl(n)}, {\ttfamily ql(n)}.
+\item newn refers to this new set of functions.
+\item Note 1. and note 2. also apply in this case.
+\end{DoxyItemize}
+\item if {\ttfamily mode=2}\+:
+\begin{DoxyItemize}
+\item The code performs as for mode 1, but the restriction $ z<20 $.
+\item For the evaluation of the continued fraction is not considered.
+\end{DoxyItemize}
+\end{DoxyItemize}
+
+Also, the parameter {\ttfamily ipre} can be used to select a different precision\+:
+\begin{DoxyItemize}
+\item For {\ttfamily ipre=1}, the precision is $10^{-12}$, taking $\epsilon<10^{-12}$
+\item For {\ttfamily ipre=2}, the precision is $10^{-8}$, taking $\epsilon<10^{-8}$
+\end{DoxyItemize}
+
+where $\epsilon$ controls the accuracy.
+
+\begin{DoxyWarning}{Warning}
+Use {\ttfamily mode} 2 only if high {\ttfamily m} \textquotesingle{}s for $z>20$ are required. The evaluation of the cf may fail to converge for too high {\ttfamily z} \textquotesingle{}s.
+\end{DoxyWarning}
+\begin{DoxyNote}{Note}
+
+\begin{DoxyEnumerate}
+\item For a precision of $10^{-12}$, if $z>5$ and $z/m>0.22$, the code uses a series expansion for {\ttfamily pl(0)}.~\newline
+ When $z<20$ and $z/m<0.22$ a continued fraction is applied.
+\item For a precision of $10^{-8}$, if $z>5$ and $z/m>0.12$, the code uses a series expansion for {\ttfamily pl(0)}.~\newline
+ When $z<20$ and $z/m<0.12$ a continued fraction is applied.
+\end{DoxyEnumerate}
+\end{DoxyNote}
+\begin{DoxyReturn}{Returns}
+ierr
+\end{DoxyReturn}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em z} & (real) point at which toroidal harmonics are evaluated\\
+\hline
+\mbox{\tt in}  & {\em m} & order of toroidal harmonics ({\ttfamily m$>$0})\\
+\hline
+\mbox{\tt in}  & {\em nmax} & maximum degree of toroidal harmonics ({\ttfamily nmax$>$0})\\
+\hline
+\mbox{\tt in,out}  & {\em pl} & toroidal harmonics of first kind $P_{n-1/2}^m\left(z\right)$\\
+\hline
+\mbox{\tt in,out}  & {\em ql} & toroidal harmonics of second kind $Q_{n-1/2}^m\left(z\right)$\\
+\hline
+\mbox{\tt in,out}  & {\em newn} & maximum order of functions calculated when {\ttfamily  pl(nmax+1)$>$1/tiny } with {\ttfamily tiny=} $10^{-290}$\\
+\hline
+\mbox{\tt in}  & {\em mode} & mode that controls output\\
+\hline
+\mbox{\tt in}  & {\em ipre} & precision \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 75 of file dtorh.\+f90.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=348pt]{namespacedtorh_af3f58b6705da916bfbaf7cc4ea05f610_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespacedtorh_af3f58b6705da916bfbaf7cc4ea05f610_icgraph}
+\end{center}
+\end{figure}

@@ -1,0 +1,95 @@
+\hypertarget{interfaceoutput__ops_1_1print__ex__3d}{}\section{output\+\_\+ops\+:\+:print\+\_\+ex\+\_\+3d Interface Reference}
+\label{interfaceoutput__ops_1_1print__ex__3d}\index{output\+\_\+ops\+::print\+\_\+ex\+\_\+3d@{output\+\_\+ops\+::print\+\_\+ex\+\_\+3d}}
+
+
+Print 3-\/D output on a file.  
+
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+subroutine \hyperlink{interfaceoutput__ops_1_1print__ex__3d_aa1665ffffbfabae84fc372d5f138456b}{print\+\_\+ex\+\_\+3d\+\_\+ind} (var\+\_\+name, file\+\_\+name\+\_\+i, z, y, x, draw)
+\begin{DoxyCompactList}\small\item\em individual version \end{DoxyCompactList}\item 
+subroutine \hyperlink{interfaceoutput__ops_1_1print__ex__3d_af4a49d03579403f42201d7ce503fa465}{print\+\_\+ex\+\_\+3d\+\_\+arr} (var\+\_\+names, file\+\_\+name\+\_\+i, z, x, y, draw)
+\begin{DoxyCompactList}\small\item\em array version \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Print 3-\/D output on a file. 
+
+The variables {\ttfamily var\+\_\+name} and {\ttfamily file\+\_\+name} hold the name of the plot and of the file in which the plot data is to be saved, respectively. {\ttfamily z} is the an array containing the function which is stored and {\ttfamily x} and{\ttfamily y} are optional vectors with the x and y-\/values. The logical {\ttfamily draw} can optionally disable calling the external drawing procedure for output on screen \mbox{[}default\mbox{]}, without modifying the plot file.
+
+The first index of {\ttfamily z} (and {\ttfamily x}, {\ttfamily y}) contains the points of a current The plot second index indicates various plots (one or more) 
+
+Definition at line 65 of file output\+\_\+ops.\+f90.
+
+
+
+\subsection{Member Function/\+Subroutine Documentation}
+\mbox{\Hypertarget{interfaceoutput__ops_1_1print__ex__3d_af4a49d03579403f42201d7ce503fa465}\label{interfaceoutput__ops_1_1print__ex__3d_af4a49d03579403f42201d7ce503fa465}} 
+\index{output\+\_\+ops\+::print\+\_\+ex\+\_\+3d@{output\+\_\+ops\+::print\+\_\+ex\+\_\+3d}!print\+\_\+ex\+\_\+3d\+\_\+arr@{print\+\_\+ex\+\_\+3d\+\_\+arr}}
+\index{print\+\_\+ex\+\_\+3d\+\_\+arr@{print\+\_\+ex\+\_\+3d\+\_\+arr}!output\+\_\+ops\+::print\+\_\+ex\+\_\+3d@{output\+\_\+ops\+::print\+\_\+ex\+\_\+3d}}
+\subsubsection{\texorpdfstring{print\+\_\+ex\+\_\+3d\+\_\+arr()}{print\_ex\_3d\_arr()}}
+{\footnotesize\ttfamily subroutine output\+\_\+ops\+::print\+\_\+ex\+\_\+3d\+::print\+\_\+ex\+\_\+3d\+\_\+arr (\begin{DoxyParamCaption}\item[{character(len=$\ast$), dimension(\+:), intent(in)}]{var\+\_\+names,  }\item[{character(len=$\ast$), intent(in)}]{file\+\_\+name\+\_\+i,  }\item[{real(dp), dimension(1\+:,1\+:,1\+:), intent(in)}]{z,  }\item[{real(dp), dimension(1\+:,1\+:,1\+:), intent(in), optional}]{x,  }\item[{real(dp), dimension(1\+:,1\+:,1\+:), intent(in), optional}]{y,  }\item[{logical, intent(in), optional}]{draw }\end{DoxyParamCaption})}
+
+
+
+array version 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em var\+\_\+names} & names of variables in legend\\
+\hline
+\mbox{\tt in}  & {\em file\+\_\+name\+\_\+i} & name of input file\\
+\hline
+\mbox{\tt in}  & {\em z} & ordinate\\
+\hline
+\mbox{\tt in}  & {\em x} & absicca\\
+\hline
+\mbox{\tt in}  & {\em y} & absicca\\
+\hline
+\mbox{\tt in}  & {\em draw} & whether to draw the plot as well \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 310 of file output\+\_\+ops.\+f90.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{interfaceoutput__ops_1_1print__ex__3d_af4a49d03579403f42201d7ce503fa465_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{interfaceoutput__ops_1_1print__ex__3d_aa1665ffffbfabae84fc372d5f138456b}\label{interfaceoutput__ops_1_1print__ex__3d_aa1665ffffbfabae84fc372d5f138456b}} 
+\index{output\+\_\+ops\+::print\+\_\+ex\+\_\+3d@{output\+\_\+ops\+::print\+\_\+ex\+\_\+3d}!print\+\_\+ex\+\_\+3d\+\_\+ind@{print\+\_\+ex\+\_\+3d\+\_\+ind}}
+\index{print\+\_\+ex\+\_\+3d\+\_\+ind@{print\+\_\+ex\+\_\+3d\+\_\+ind}!output\+\_\+ops\+::print\+\_\+ex\+\_\+3d@{output\+\_\+ops\+::print\+\_\+ex\+\_\+3d}}
+\subsubsection{\texorpdfstring{print\+\_\+ex\+\_\+3d\+\_\+ind()}{print\_ex\_3d\_ind()}}
+{\footnotesize\ttfamily subroutine output\+\_\+ops\+::print\+\_\+ex\+\_\+3d\+::print\+\_\+ex\+\_\+3d\+\_\+ind (\begin{DoxyParamCaption}\item[{character(len=$\ast$), intent(in)}]{var\+\_\+name,  }\item[{character(len=$\ast$), intent(in)}]{file\+\_\+name\+\_\+i,  }\item[{real(dp), dimension(1\+:,1\+:), intent(in)}]{z,  }\item[{real(dp), dimension(1\+:,1\+:), intent(in), optional}]{y,  }\item[{real(dp), dimension(1\+:,1\+:), intent(in), optional}]{x,  }\item[{logical, intent(in), optional}]{draw }\end{DoxyParamCaption})}
+
+
+
+individual version 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em var\+\_\+name} & name of variable in legend\\
+\hline
+\mbox{\tt in}  & {\em file\+\_\+name\+\_\+i} & name of input file\\
+\hline
+\mbox{\tt in}  & {\em z} & ordinate\\
+\hline
+\mbox{\tt in}  & {\em x} & absicca\\
+\hline
+\mbox{\tt in}  & {\em y} & absicca\\
+\hline
+\mbox{\tt in}  & {\em draw} & whether to draw the plot as well \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 269 of file output\+\_\+ops.\+f90.
+
+
+

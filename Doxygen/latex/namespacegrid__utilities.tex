@@ -1,0 +1,736 @@
+\hypertarget{namespacegrid__utilities}{}\section{grid\+\_\+utilities Module Reference}
+\label{namespacegrid__utilities}\index{grid\+\_\+utilities@{grid\+\_\+utilities}}
+
+
+Numerical utilities related to the grids and different coordinate systems.  
+
+
+\subsection*{Interfaces and Types}
+\begin{DoxyCompactItemize}
+\item 
+interface \hyperlink{interfacegrid__utilities_1_1calc__eqd__grid}{calc\+\_\+eqd\+\_\+grid}
+\begin{DoxyCompactList}\small\item\em Calculate grid of equidistant points, where optionally the last point can be excluded. \end{DoxyCompactList}\item 
+interface \hyperlink{interfacegrid__utilities_1_1calc__tor__diff}{calc\+\_\+tor\+\_\+diff}
+\begin{DoxyCompactList}\small\item\em Calculates the toroidal difference for a magnitude calculated on three toroidal points\+: two extremities and one in the middle. \end{DoxyCompactList}\item 
+interface \hyperlink{interfacegrid__utilities_1_1coord__e2f}{coord\+\_\+e2f}
+\begin{DoxyCompactList}\small\item\em Converts Equilibrium coordinates $\left(r,\theta,\zeta\right)_\text{E}$. to Flux coordinates $\left(r,\theta,\zeta\right)_\text{F}$. \end{DoxyCompactList}\item 
+interface \hyperlink{interfacegrid__utilities_1_1coord__f2e}{coord\+\_\+f2e}
+\begin{DoxyCompactList}\small\item\em Converts Flux coordinates $\left(r,\theta,\zeta\right)_\text{F}$ to Equilibrium coordinates $\left(r,\theta,\zeta\right)_\text{E}$. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Functions/\+Subroutines}
+\begin{DoxyCompactItemize}
+\item 
+integer function \hyperlink{namespacegrid__utilities_a2a3c0509679b438d9d5aa5bedfb7a7b8}{coord\+\_\+e2f\+\_\+rtz} (grid\+\_\+eq, r\+\_\+E, theta\+\_\+E, zeta\+\_\+E, r\+\_\+F, theta\+\_\+F, zeta\+\_\+F, r\+\_\+\+E\+\_\+array, r\+\_\+\+F\+\_\+array)
+\begin{DoxyCompactList}\small\item\em version with r, theta and zeta \end{DoxyCompactList}\item 
+integer function \hyperlink{namespacegrid__utilities_a7866b2c198255dec7904dac73ccf4340}{coord\+\_\+e2f\+\_\+r} (grid\+\_\+eq, r\+\_\+E, r\+\_\+F, r\+\_\+\+E\+\_\+array, r\+\_\+\+F\+\_\+array)
+\begin{DoxyCompactList}\small\item\em version with only r \end{DoxyCompactList}\item 
+integer function, public \hyperlink{namespacegrid__utilities_a39e7cd9b8f173994358dbdd6b57827e1}{calc\+\_\+xyz\+\_\+grid} (grid\+\_\+eq, grid\+\_\+\+X\+YZ, X, Y, Z, L, R)
+\begin{DoxyCompactList}\small\item\em Calculates $X$, $Y$ and $Z$ on a grid {\ttfamily grid\+\_\+\+X\+YZ}, determined through its E(quilibrium) coordinates. \end{DoxyCompactList}\item 
+integer function, public \hyperlink{namespacegrid__utilities_a414a1a11924bc935afca3a89fc31f2f5}{extend\+\_\+grid\+\_\+f} (grid\+\_\+in, grid\+\_\+ext, grid\+\_\+eq, n\+\_\+theta\+\_\+plot, n\+\_\+zeta\+\_\+plot, lim\+\_\+theta\+\_\+plot, lim\+\_\+zeta\+\_\+plot)
+\begin{DoxyCompactList}\small\item\em Extend a grid angularly. \end{DoxyCompactList}\item 
+integer function, public \hyperlink{namespacegrid__utilities_a04f971c38083f873a04eb6568bed466b}{copy\+\_\+grid} (grid\+\_\+A, grid\+\_\+B, lims\+\_\+B, i\+\_\+lim)
+\begin{DoxyCompactList}\small\item\em Copy a grid A to a new grid B, that was not yet initialized. \end{DoxyCompactList}\item 
+integer function, public \hyperlink{namespacegrid__utilities_a97e3106dbdc10b726af74afa113ba533}{calc\+\_\+int\+\_\+vol} (ang\+\_\+1, ang\+\_\+2, norm, J, f, f\+\_\+int)
+\begin{DoxyCompactList}\small\item\em Calculates volume integral on a 3D grid. \end{DoxyCompactList}\item 
+integer function, public \hyperlink{namespacegrid__utilities_a67001ff9bbcad707aacf17f90a748d90}{trim\+\_\+grid} (grid\+\_\+in, grid\+\_\+out, norm\+\_\+id)
+\begin{DoxyCompactList}\small\item\em Trim a grid, removing any overlap between the different regions. \end{DoxyCompactList}\item 
+integer function, public \hyperlink{namespacegrid__utilities_a4679f24af8e02793070f4e27b43e00b6}{untrim\+\_\+grid} (grid\+\_\+in, grid\+\_\+out, size\+\_\+ghost)
+\begin{DoxyCompactList}\small\item\em Untrims a trimmed grid by introducing an asymmetric ghost regions at the right. \end{DoxyCompactList}\item 
+integer function, public \hyperlink{namespacegrid__utilities_ad3d9386b9abcb1a7e17369a1b3a3750d}{calc\+\_\+vec\+\_\+comp} (grid, grid\+\_\+eq, eq\+\_\+1, eq\+\_\+2, v\+\_\+com, norm\+\_\+disc\+\_\+prec, v\+\_\+mag, base\+\_\+name, max\+\_\+transf, v\+\_\+flux\+\_\+tor, v\+\_\+flux\+\_\+pol, X\+YZ, compare\+\_\+tor\+\_\+pos)
+\begin{DoxyCompactList}\small\item\em Calculates contra-\/ and covariant components of a vector in multiple coordinate systems. \end{DoxyCompactList}\item 
+integer function, public \hyperlink{namespacegrid__utilities_adeb8c22db4d419a278d6fcc68a34100c}{calc\+\_\+n\+\_\+par\+\_\+x\+\_\+rich} (n\+\_\+par\+\_\+\+X\+\_\+rich, only\+\_\+half\+\_\+grid)
+\begin{DoxyCompactList}\small\item\em Calculates the local number of parallel grid points for this Richardson level, taking into account that it ould be half the actual number. \end{DoxyCompactList}\item 
+integer function, public \hyperlink{namespacegrid__utilities_a0854b2d6cc61a31f68b4afe7304077a9}{nufft} (x, f, f\+\_\+F, plot\+\_\+name)
+\begin{DoxyCompactList}\small\item\em calculates the cosine and sine mode numbers of a function defined on a non-\/regular grid. \end{DoxyCompactList}\item 
+subroutine, public \hyperlink{namespacegrid__utilities_ae08e1ff213071c9d411a9b9c76035e1e}{find\+\_\+compr\+\_\+range} (r\+\_\+F, lim\+\_\+r, lim\+\_\+id)
+\begin{DoxyCompactList}\small\item\em finds smallest range that comprises a minimum and maximum value. \end{DoxyCompactList}\item 
+integer function, public \hyperlink{namespacegrid__utilities_ac32a26bff5c635678f3f78ec9a540a65}{calc\+\_\+arc\+\_\+angle} (grid, eq\+\_\+1, eq\+\_\+2, arc, use\+\_\+E)
+\begin{DoxyCompactList}\small\item\em Calculate arclength angle. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+logical, public \hyperlink{namespacegrid__utilities_a0743c0341d508034b14aee614fa4f8a9}{debug\+\_\+calc\+\_\+int\+\_\+vol} = .false.
+\begin{DoxyCompactList}\small\item\em plot debug information for \hyperlink{namespacegrid__utilities_a97e3106dbdc10b726af74afa113ba533}{calc\+\_\+int\+\_\+vol()} \end{DoxyCompactList}\item 
+logical, public \hyperlink{namespacegrid__utilities_ab420036236dc8a9a69e180550499d95b}{debug\+\_\+calc\+\_\+vec\+\_\+comp} = .false.
+\begin{DoxyCompactList}\small\item\em plot debug information for \hyperlink{namespacegrid__utilities_ad3d9386b9abcb1a7e17369a1b3a3750d}{calc\+\_\+vec\+\_\+comp()} \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Numerical utilities related to the grids and different coordinate systems. 
+
+\subsection{Function/\+Subroutine Documentation}
+\mbox{\Hypertarget{namespacegrid__utilities_ac32a26bff5c635678f3f78ec9a540a65}\label{namespacegrid__utilities_ac32a26bff5c635678f3f78ec9a540a65}} 
+\index{grid\+\_\+utilities@{grid\+\_\+utilities}!calc\+\_\+arc\+\_\+angle@{calc\+\_\+arc\+\_\+angle}}
+\index{calc\+\_\+arc\+\_\+angle@{calc\+\_\+arc\+\_\+angle}!grid\+\_\+utilities@{grid\+\_\+utilities}}
+\subsubsection{\texorpdfstring{calc\+\_\+arc\+\_\+angle()}{calc\_arc\_angle()}}
+{\footnotesize\ttfamily integer function, public grid\+\_\+utilities\+::calc\+\_\+arc\+\_\+angle (\begin{DoxyParamCaption}\item[{type(\hyperlink{structgrid__vars_1_1grid__type}{grid\+\_\+type}), intent(in)}]{grid,  }\item[{type(\hyperlink{structeq__vars_1_1eq__1__type}{eq\+\_\+1\+\_\+type}), intent(in)}]{eq\+\_\+1,  }\item[{type(\hyperlink{structeq__vars_1_1eq__2__type}{eq\+\_\+2\+\_\+type}), intent(in)}]{eq\+\_\+2,  }\item[{real(dp), dimension(\+:,\+:,\+:), intent(inout), allocatable}]{arc,  }\item[{logical, intent(in), optional}]{use\+\_\+E }\end{DoxyParamCaption})}
+
+
+
+Calculate arclength angle. 
+
+This angle is based on the calculation of the arclength from the start of the grid, and then normalizing it from $\min(\gamma)\ldots\max(\gamma)$, where $\gamma$ is the parallel angle.
+
+By default, the Flux variables are used, but this can be changed with {\ttfamily use\+\_\+E}.
+
+\begin{DoxyNote}{Note}
+For field-\/aligned grids the projection is taken on the poloidal cross-\/section. For non-\/axisymmetric equilibria, this makes little sense.
+\end{DoxyNote}
+\begin{DoxyReturn}{Returns}
+ierr
+\end{DoxyReturn}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em grid} & equilibrium grid\\
+\hline
+\mbox{\tt in}  & {\em eq\+\_\+1} & flux equilibrium variables\\
+\hline
+\mbox{\tt in}  & {\em eq\+\_\+2} & metric equilibrium variables\\
+\hline
+\mbox{\tt in,out}  & {\em arc} & arclength angle\\
+\hline
+\mbox{\tt in}  & {\em use\+\_\+e} & use E variables instead of F \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 3034 of file grid\+\_\+utilities.\+f90.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespacegrid__utilities_ac32a26bff5c635678f3f78ec9a540a65_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{namespacegrid__utilities_a97e3106dbdc10b726af74afa113ba533}\label{namespacegrid__utilities_a97e3106dbdc10b726af74afa113ba533}} 
+\index{grid\+\_\+utilities@{grid\+\_\+utilities}!calc\+\_\+int\+\_\+vol@{calc\+\_\+int\+\_\+vol}}
+\index{calc\+\_\+int\+\_\+vol@{calc\+\_\+int\+\_\+vol}!grid\+\_\+utilities@{grid\+\_\+utilities}}
+\subsubsection{\texorpdfstring{calc\+\_\+int\+\_\+vol()}{calc\_int\_vol()}}
+{\footnotesize\ttfamily integer function, public grid\+\_\+utilities\+::calc\+\_\+int\+\_\+vol (\begin{DoxyParamCaption}\item[{real(dp), dimension(\+:,\+:,\+:), intent(in)}]{ang\+\_\+1,  }\item[{real(dp), dimension(\+:,\+:,\+:), intent(in)}]{ang\+\_\+2,  }\item[{real(dp), dimension(\+:), intent(in)}]{norm,  }\item[{real(dp), dimension(\+:,\+:,\+:), intent(in)}]{J,  }\item[{complex(dp), dimension(\+:,\+:,\+:,\+:), intent(in)}]{f,  }\item[{complex(dp), dimension(\+:), intent(inout)}]{f\+\_\+int }\end{DoxyParamCaption})}
+
+
+
+Calculates volume integral on a 3D grid. 
+
+Two angular and one normal variable have to be provided on a the grid.
+
+If the {\ttfamily i}\textquotesingle{}th dimension of the grid is equal to one, the function to be integrated is assumed not to vary in this dimension.
+
+Furthermore, if {\ttfamily i} is 1 or 2, the corresponding {\ttfamily i}\textquotesingle{}th (angular) variable is the only variable that is assumed to vary in that dimension. The other angular variable as well as the normal variable are assumed to be constant like the function itself, resulting in a factor $2 \pi$. However, if {\ttfamily i} is 3, an error is displayed as this does not represent a physical situation.
+
+A common case through which to understand this is the axisymmetric case where the first angular variable $\theta$ varies in the dimensions 1 and 3, the second angular variable $\zeta$ varies only in the dimension 2, and the normal variable only varies in the dimension 3.
+
+Alternatively, there is the case of a grid-\/aligned set of coordinates $\theta$ and $\alpha$, where the first dimension corresponds to the direction along the magnetic field line, the second to the geodesical direction and the third to the normal direction. If the calculations for different field lines are decoupled, the variation in the second dimension is not taken into account and no integration happens along it.
+
+Internally, the angular variables and the normal variable are related to the coordinates $\left(x,y,z\right)$ that correspond to the three dimensions. They thus form a computational orthogonal grid to which the original coordinates are related through the transformation of Jacobians\+: \[\mathcal{J}_{xyz} = \mathcal{J}_\text{F} \frac{\partial r_\text{F}}{\partial z} \left(\frac{\partial \gamma_1}{\partial x} \frac{\gamma_2}{\partial y}- \frac{\partial \gamma_1}{\partial y} \frac{\gamma_2}{\partial x}\right) , \] where $\gamma_1$ and $\gamma_2$ are {\ttfamily ang\+\_\+1} and {\ttfamily ang\+\_\+2}, so that the integral becomes \[ \sum_{x,y,z} \left[ f\left(x,y,z\right) \mathcal{J}_\text{F} \frac{\partial r_\text{F}}{\partial z} \left(\frac{\partial \gamma_1}{\partial x} \frac{\gamma_2}{\partial y}- \frac{\partial \gamma_1}{\partial y} \frac{\gamma_2}{\partial x}\right) \Delta_x \Delta_y \Delta_z \right] \] where $\Delta_x$, $\Delta_y$ and $\Delta_z$ are all trivially equal to 1.
+
+The integrand has to be evaluated at the intermediate positions inside the cells. This is done by taking the average of the $2^3=8$ points for {\ttfamily fj} = $f J_\text{F}$ as well as the transformation of the Jacobian to $\left(x,y,z\right)$ coordinates.
+
+\begin{DoxySeeAlso}{See also}
+See \hyperlink{structgrid__vars_1_1grid__type}{grid\+\_\+vars.\+grid\+\_\+type} for a discussion on {\ttfamily ang\+\_\+1} and {\ttfamily ang\+\_\+2}.
+\end{DoxySeeAlso}
+\begin{DoxyNote}{Note}
+
+\begin{DoxyEnumerate}
+\item if the coordinates are independent, this method is equivalent to the repeated numerical integration using the trapezoidal method, {\bfseries N\+OT} Simpson\textquotesingle{}s 3/8 rule!
+\item by setting {\ttfamily debug\+\_\+calc\+\_\+int\+\_\+vol}, this method can be compared to the trapezoidal and simple method for independent coordinates, again {\bfseries N\+OT} for Simpson\textquotesingle{}s 3/8 rule!
+\item The Simpson\textquotesingle{}s 3/8 rule could be developed but it is not of great importance.
+\end{DoxyEnumerate}
+\end{DoxyNote}
+\begin{DoxyReturn}{Returns}
+ierr
+\end{DoxyReturn}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em ang\+\_\+1} & coordinate variable $\gamma_1$\\
+\hline
+\mbox{\tt in}  & {\em ang\+\_\+2} & coordinate variable $\gamma_2$\\
+\hline
+\mbox{\tt in}  & {\em norm} & coordinate variable $r_\text{F}$\\
+\hline
+\mbox{\tt in}  & {\em j} & Jacobian\\
+\hline
+\mbox{\tt in}  & {\em f} & input f(n\+\_\+par,n\+\_\+geo,n\+\_\+r,size\+\_\+\+X$^\wedge$2)\\
+\hline
+\mbox{\tt in,out}  & {\em f\+\_\+int} & output integrated f \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 1315 of file grid\+\_\+utilities.\+f90.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespacegrid__utilities_a97e3106dbdc10b726af74afa113ba533_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespacegrid__utilities_a97e3106dbdc10b726af74afa113ba533_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{namespacegrid__utilities_adeb8c22db4d419a278d6fcc68a34100c}\label{namespacegrid__utilities_adeb8c22db4d419a278d6fcc68a34100c}} 
+\index{grid\+\_\+utilities@{grid\+\_\+utilities}!calc\+\_\+n\+\_\+par\+\_\+x\+\_\+rich@{calc\+\_\+n\+\_\+par\+\_\+x\+\_\+rich}}
+\index{calc\+\_\+n\+\_\+par\+\_\+x\+\_\+rich@{calc\+\_\+n\+\_\+par\+\_\+x\+\_\+rich}!grid\+\_\+utilities@{grid\+\_\+utilities}}
+\subsubsection{\texorpdfstring{calc\+\_\+n\+\_\+par\+\_\+x\+\_\+rich()}{calc\_n\_par\_x\_rich()}}
+{\footnotesize\ttfamily integer function, public grid\+\_\+utilities\+::calc\+\_\+n\+\_\+par\+\_\+x\+\_\+rich (\begin{DoxyParamCaption}\item[{integer, intent(inout)}]{n\+\_\+par\+\_\+\+X\+\_\+rich,  }\item[{logical, intent(in), optional}]{only\+\_\+half\+\_\+grid }\end{DoxyParamCaption})}
+
+
+
+Calculates the local number of parallel grid points for this Richardson level, taking into account that it ould be half the actual number. 
+
+\begin{DoxySeeAlso}{See also}
+\hyperlink{namespacegrid__ops_a06107dbdfd1dd62e372cc29ab0255bad}{calc\+\_\+ang\+\_\+grid\+\_\+eq\+\_\+b()}.
+\end{DoxySeeAlso}
+\begin{DoxyReturn}{Returns}
+ierr
+\end{DoxyReturn}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in,out}  & {\em n\+\_\+par\+\_\+x\+\_\+rich} & n\+\_\+par\+\_\+X for this Richardson level\\
+\hline
+\mbox{\tt in}  & {\em only\+\_\+half\+\_\+grid} & calculate only half grid with even points \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 2857 of file grid\+\_\+utilities.\+f90.
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespacegrid__utilities_adeb8c22db4d419a278d6fcc68a34100c_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{namespacegrid__utilities_ad3d9386b9abcb1a7e17369a1b3a3750d}\label{namespacegrid__utilities_ad3d9386b9abcb1a7e17369a1b3a3750d}} 
+\index{grid\+\_\+utilities@{grid\+\_\+utilities}!calc\+\_\+vec\+\_\+comp@{calc\+\_\+vec\+\_\+comp}}
+\index{calc\+\_\+vec\+\_\+comp@{calc\+\_\+vec\+\_\+comp}!grid\+\_\+utilities@{grid\+\_\+utilities}}
+\subsubsection{\texorpdfstring{calc\+\_\+vec\+\_\+comp()}{calc\_vec\_comp()}}
+{\footnotesize\ttfamily integer function, public grid\+\_\+utilities\+::calc\+\_\+vec\+\_\+comp (\begin{DoxyParamCaption}\item[{type(\hyperlink{structgrid__vars_1_1grid__type}{grid\+\_\+type}), intent(in)}]{grid,  }\item[{type(\hyperlink{structgrid__vars_1_1grid__type}{grid\+\_\+type}), intent(in)}]{grid\+\_\+eq,  }\item[{type(\hyperlink{structeq__vars_1_1eq__1__type}{eq\+\_\+1\+\_\+type}), intent(in)}]{eq\+\_\+1,  }\item[{type(\hyperlink{structeq__vars_1_1eq__2__type}{eq\+\_\+2\+\_\+type}), intent(in)}]{eq\+\_\+2,  }\item[{real(dp), dimension(\+:,\+:,\+:,\+:,\+:), intent(inout)}]{v\+\_\+com,  }\item[{integer, intent(in)}]{norm\+\_\+disc\+\_\+prec,  }\item[{real(dp), dimension(\+:,\+:,\+:), intent(inout), optional}]{v\+\_\+mag,  }\item[{character(len=$\ast$), intent(in), optional}]{base\+\_\+name,  }\item[{integer, intent(in), optional}]{max\+\_\+transf,  }\item[{real(dp), dimension(\+:,\+:), intent(inout), optional, allocatable}]{v\+\_\+flux\+\_\+tor,  }\item[{real(dp), dimension(\+:,\+:), intent(inout), optional, allocatable}]{v\+\_\+flux\+\_\+pol,  }\item[{real(dp), dimension(\+:,\+:,\+:,\+:), intent(in), optional}]{X\+YZ,  }\item[{logical, intent(in), optional}]{compare\+\_\+tor\+\_\+pos }\end{DoxyParamCaption})}
+
+
+
+Calculates contra-\/ and covariant components of a vector in multiple coordinate systems. 
+
+Chain of coordinate systems considered\+:
+\begin{DoxyEnumerate}
+\item Flux F\+: $(\alpha,\psi,\theta)$,
+\item Magnetic M\+: $(\psi,\theta,\zeta)$,
+\begin{DoxyItemize}
+\item H\+: $(\psi,\theta,\phi)$ if H\+E\+L\+E\+NA is used,
+\item V\+: $(r,\theta,\zeta)$ if V\+M\+EC is used,
+\end{DoxyItemize}
+\item Cylindrical C\+: $(R,\varphi,Z)$,
+\item Cartesian X\+: $(X,Y,Z)$, as well as the magnitude, starting from the input in Flux coordinates. Note that the Cartesian components in X, Y and Z can be used to plot the real vector and that covariant components should be equal to contravariant components in this coordinate system.
+\end{DoxyEnumerate}
+
+Also, the fluxes can be calculated and plot by providing a {\ttfamily base\+\_\+name}.
+
+By default, the cartesian components are returned, but this can be indicated differently by providing {\ttfamily max\+\_\+transf}.
+
+\begin{DoxyNote}{Note}
+
+\begin{DoxyEnumerate}
+\item Plots for different Richardson levels can be combined to show the total grid by just plotting them all individually and sequentially.
+\item The metric factors and transformation matrices have to be allocated. They can be calculated using the routines from \hyperlink{namespaceeq__ops}{eq\+\_\+ops}, for {\ttfamily deriv = \mbox{[}0,0,0\mbox{]}}.
+\item For V\+M\+EC, the trigonometric factors of {\ttfamily grid\+\_\+\+X\+YZ} must be calculated beforehand. Optionally, by providing {\ttfamily X}, {\ttfamily Y} and {\ttfamily Z}, the ones calculated in this routine are overwritten. This is useful for, for example, slab geometries.
+\item The normalization factors are taken into account and the output is transformed back to unnormalized values.
+\end{DoxyEnumerate}
+\end{DoxyNote}
+\begin{DoxyReturn}{Returns}
+ierr
+\end{DoxyReturn}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em grid} & grid on which vector is calculated\\
+\hline
+\mbox{\tt in}  & {\em grid\+\_\+eq} & grid on which equilibrium variables are calculated\\
+\hline
+\mbox{\tt in}  & {\em eq\+\_\+1} & flux equilibrium quantities\\
+\hline
+\mbox{\tt in}  & {\em eq\+\_\+2} & metric equilibrium variables\\
+\hline
+\mbox{\tt in,out}  & {\em v\+\_\+com} & covariant and contravariant components {\ttfamily (dim1,dim2,dim3,3,2)}\\
+\hline
+\mbox{\tt in}  & {\em norm\+\_\+disc\+\_\+prec} & precision for normal derivatives\\
+\hline
+\mbox{\tt in,out}  & {\em v\+\_\+mag} & magnitude {\ttfamily (dim1,dim2,dim3)}\\
+\hline
+\mbox{\tt in}  & {\em base\+\_\+name} & base name for output plotting\\
+\hline
+\mbox{\tt in}  & {\em max\+\_\+transf} & maximum transformation level (2\+: Magnetic, 3\+: Equilibrium, 4\+: Cylindrical, 5\+: Cartesian \mbox{[}def\mbox{]})\\
+\hline
+\mbox{\tt in,out}  & {\em v\+\_\+flux\+\_\+pol} & poloidal flux as function of normal coordinate for all toroidal positions\\
+\hline
+\mbox{\tt in,out}  & {\em v\+\_\+flux\+\_\+tor} & toroidal flux as function of normal coordinate for all poloidal positions\\
+\hline
+\mbox{\tt in}  & {\em xyz} & $X$, $Y$ and $Z$ of grid\\
+\hline
+\mbox{\tt in}  & {\em compare\+\_\+tor\+\_\+pos} & compare toroidal positions \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 1854 of file grid\+\_\+utilities.\+f90.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespacegrid__utilities_ad3d9386b9abcb1a7e17369a1b3a3750d_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespacegrid__utilities_ad3d9386b9abcb1a7e17369a1b3a3750d_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{namespacegrid__utilities_a39e7cd9b8f173994358dbdd6b57827e1}\label{namespacegrid__utilities_a39e7cd9b8f173994358dbdd6b57827e1}} 
+\index{grid\+\_\+utilities@{grid\+\_\+utilities}!calc\+\_\+xyz\+\_\+grid@{calc\+\_\+xyz\+\_\+grid}}
+\index{calc\+\_\+xyz\+\_\+grid@{calc\+\_\+xyz\+\_\+grid}!grid\+\_\+utilities@{grid\+\_\+utilities}}
+\subsubsection{\texorpdfstring{calc\+\_\+xyz\+\_\+grid()}{calc\_xyz\_grid()}}
+{\footnotesize\ttfamily integer function, public grid\+\_\+utilities\+::calc\+\_\+xyz\+\_\+grid (\begin{DoxyParamCaption}\item[{type(\hyperlink{structgrid__vars_1_1grid__type}{grid\+\_\+type}), intent(in)}]{grid\+\_\+eq,  }\item[{type(\hyperlink{structgrid__vars_1_1grid__type}{grid\+\_\+type}), intent(in)}]{grid\+\_\+\+X\+YZ,  }\item[{real(dp), dimension(\+:,\+:,\+:), intent(inout)}]{X,  }\item[{real(dp), dimension(\+:,\+:,\+:), intent(inout)}]{Y,  }\item[{real(dp), dimension(\+:,\+:,\+:), intent(inout)}]{Z,  }\item[{real(dp), dimension(\+:,\+:,\+:), intent(inout), optional}]{L,  }\item[{real(dp), dimension(\+:,\+:,\+:), intent(inout), optional}]{R }\end{DoxyParamCaption})}
+
+
+
+Calculates $X$, $Y$ and $Z$ on a grid {\ttfamily grid\+\_\+\+X\+YZ}, determined through its E(quilibrium) coordinates. 
+
+Furthermore, a grid {\ttfamily grid\+\_\+eq} must be provided, which is the grid in which the variables concerning $R$ and $Z$ are tabulated, i.\+e. the full equilibrium grid in E(quilibrium) coordinates.
+
+Of this grid, however, only {\ttfamily r\+\_\+E} is used, and the rest ignored. It can therefore be provided without the angular part, i.\+e. by reconstructing it with a subset.
+
+If V\+M\+EC is the equilibrium model, this routine also optionally calculates $\lambda$ on the grid, as this is also needed some times. for H\+E\+L\+E\+NA this variable is not used.
+
+Optionally, $R$ and $\lambda$ (only for V\+M\+EC) can be returned.
+
+\begin{DoxyNote}{Note}
+
+\begin{DoxyEnumerate}
+\item For V\+M\+EC, the trigonometric factors of {\ttfamily grid\+\_\+\+X\+YZ} must be calculated beforehand.
+\item The normalization factor {\ttfamily R\+\_\+0} for length is taken into account and the output is transformed back to unnormalized values\+:
+\end{DoxyEnumerate}
+\end{DoxyNote}
+\begin{DoxyReturn}{Returns}
+ierr
+\end{DoxyReturn}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em grid\+\_\+eq} & equilibrium grid\\
+\hline
+\mbox{\tt in}  & {\em grid\+\_\+xyz} & grid for which to calculate $X$, $Y$, $Z$ and optionally $L$\\
+\hline
+\mbox{\tt in,out}  & {\em x} & $X$ of grid\\
+\hline
+\mbox{\tt in,out}  & {\em y} & $Y$ of grid\\
+\hline
+\mbox{\tt in,out}  & {\em z} & $Z$ of grid\\
+\hline
+\mbox{\tt in,out}  & {\em l} & $\lambda$ of grid\\
+\hline
+\mbox{\tt in,out}  & {\em r} & $R$ of grid \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 791 of file grid\+\_\+utilities.\+f90.
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespacegrid__utilities_a39e7cd9b8f173994358dbdd6b57827e1_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{namespacegrid__utilities_a7866b2c198255dec7904dac73ccf4340}\label{namespacegrid__utilities_a7866b2c198255dec7904dac73ccf4340}} 
+\index{grid\+\_\+utilities@{grid\+\_\+utilities}!coord\+\_\+e2f\+\_\+r@{coord\+\_\+e2f\+\_\+r}}
+\index{coord\+\_\+e2f\+\_\+r@{coord\+\_\+e2f\+\_\+r}!grid\+\_\+utilities@{grid\+\_\+utilities}}
+\subsubsection{\texorpdfstring{coord\+\_\+e2f\+\_\+r()}{coord\_e2f\_r()}}
+{\footnotesize\ttfamily integer function grid\+\_\+utilities\+::coord\+\_\+e2f\+\_\+r (\begin{DoxyParamCaption}\item[{type(\hyperlink{structgrid__vars_1_1grid__type}{grid\+\_\+type}), intent(in)}]{grid\+\_\+eq,  }\item[{real(dp), dimension(\+:), intent(in)}]{r\+\_\+E,  }\item[{real(dp), dimension(\+:), intent(inout)}]{r\+\_\+F,  }\item[{real(dp), dimension(\+:), intent(in), optional, target}]{r\+\_\+\+E\+\_\+array,  }\item[{real(dp), dimension(\+:), intent(in), optional, target}]{r\+\_\+\+F\+\_\+array }\end{DoxyParamCaption})}
+
+
+
+version with only r 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em grid\+\_\+eq} & equilibrium grid (for normal local limits)\\
+\hline
+\mbox{\tt in}  & {\em r\+\_\+e} & $r_\text{D}$\\
+\hline
+\mbox{\tt in,out}  & {\em r\+\_\+f} & $r_\text{F}$\\
+\hline
+\mbox{\tt in}  & {\em r\+\_\+e\+\_\+array} & optional array that defines mapping between two coord. systems\\
+\hline
+\mbox{\tt in}  & {\em r\+\_\+f\+\_\+array} & optional array that defines mapping between two coord. systems \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 467 of file grid\+\_\+utilities.\+f90.
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespacegrid__utilities_a7866b2c198255dec7904dac73ccf4340_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{namespacegrid__utilities_a2a3c0509679b438d9d5aa5bedfb7a7b8}\label{namespacegrid__utilities_a2a3c0509679b438d9d5aa5bedfb7a7b8}} 
+\index{grid\+\_\+utilities@{grid\+\_\+utilities}!coord\+\_\+e2f\+\_\+rtz@{coord\+\_\+e2f\+\_\+rtz}}
+\index{coord\+\_\+e2f\+\_\+rtz@{coord\+\_\+e2f\+\_\+rtz}!grid\+\_\+utilities@{grid\+\_\+utilities}}
+\subsubsection{\texorpdfstring{coord\+\_\+e2f\+\_\+rtz()}{coord\_e2f\_rtz()}}
+{\footnotesize\ttfamily integer function grid\+\_\+utilities\+::coord\+\_\+e2f\+\_\+rtz (\begin{DoxyParamCaption}\item[{type(\hyperlink{structgrid__vars_1_1grid__type}{grid\+\_\+type}), intent(in)}]{grid\+\_\+eq,  }\item[{real(dp), dimension(\+:), intent(in)}]{r\+\_\+E,  }\item[{real(dp), dimension(\+:,\+:,\+:), intent(in)}]{theta\+\_\+E,  }\item[{real(dp), dimension(\+:,\+:,\+:), intent(in)}]{zeta\+\_\+E,  }\item[{real(dp), dimension(\+:), intent(inout)}]{r\+\_\+F,  }\item[{real(dp), dimension(\+:,\+:,\+:), intent(inout)}]{theta\+\_\+F,  }\item[{real(dp), dimension(\+:,\+:,\+:), intent(inout)}]{zeta\+\_\+F,  }\item[{real(dp), dimension(\+:), intent(in), optional, target}]{r\+\_\+\+E\+\_\+array,  }\item[{real(dp), dimension(\+:), intent(in), optional, target}]{r\+\_\+\+F\+\_\+array }\end{DoxyParamCaption})}
+
+
+
+version with r, theta and zeta 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em grid\+\_\+eq} & equilibrium grid (for normal local limits)\\
+\hline
+\mbox{\tt in}  & {\em r\+\_\+e} & $r_\text{E}$\\
+\hline
+\mbox{\tt in}  & {\em theta\+\_\+e} & $\theta_\text{E}$\\
+\hline
+\mbox{\tt in}  & {\em zeta\+\_\+e} & $\zeta_\text{E}$\\
+\hline
+\mbox{\tt in,out}  & {\em r\+\_\+f} & $r_\text{F}$\\
+\hline
+\mbox{\tt in,out}  & {\em theta\+\_\+f} & $\theta_\text{F}$\\
+\hline
+\mbox{\tt in,out}  & {\em zeta\+\_\+f} & $\zeta_\text{F}$\\
+\hline
+\mbox{\tt in}  & {\em r\+\_\+e\+\_\+array} & optional array that defines mapping between two coord. systems\\
+\hline
+\mbox{\tt in}  & {\em r\+\_\+f\+\_\+array} & optional array that defines mapping between two coord. systems \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 353 of file grid\+\_\+utilities.\+f90.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespacegrid__utilities_a2a3c0509679b438d9d5aa5bedfb7a7b8_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{namespacegrid__utilities_a04f971c38083f873a04eb6568bed466b}\label{namespacegrid__utilities_a04f971c38083f873a04eb6568bed466b}} 
+\index{grid\+\_\+utilities@{grid\+\_\+utilities}!copy\+\_\+grid@{copy\+\_\+grid}}
+\index{copy\+\_\+grid@{copy\+\_\+grid}!grid\+\_\+utilities@{grid\+\_\+utilities}}
+\subsubsection{\texorpdfstring{copy\+\_\+grid()}{copy\_grid()}}
+{\footnotesize\ttfamily integer function, public grid\+\_\+utilities\+::copy\+\_\+grid (\begin{DoxyParamCaption}\item[{class(\hyperlink{structgrid__vars_1_1grid__type}{grid\+\_\+type}), intent(in)}]{grid\+\_\+A,  }\item[{class(\hyperlink{structgrid__vars_1_1grid__type}{grid\+\_\+type}), intent(inout)}]{grid\+\_\+B,  }\item[{integer, dimension(3,2), intent(in), optional}]{lims\+\_\+B,  }\item[{integer, dimension(2), intent(in), optional}]{i\+\_\+lim }\end{DoxyParamCaption})}
+
+
+
+Copy a grid A to a new grid B, that was not yet initialized. 
+
+This new grid can contain a subsection of the previous grid in all dimensions. It can also be a divided grid, by providing the limits
+
+\begin{DoxyNote}{Note}
+
+\begin{DoxyEnumerate}
+\item The normal limits for the divided grid should be given in terms of the normal dimension of {\ttfamily grid} B.
+\item if the grids are not purely normal, the procedure can currently only handle the copying of a {\ttfamily grid\+\_\+A} that is not divided.
+\end{DoxyEnumerate}
+\end{DoxyNote}
+\begin{DoxyReturn}{Returns}
+ierr
+\end{DoxyReturn}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em grid\+\_\+a} & grid to be initialized\\
+\hline
+\mbox{\tt in,out}  & {\em grid\+\_\+b} & grid to be initialized\\
+\hline
+\mbox{\tt in}  & {\em lims\+\_\+b} & ranges for subset of grid\\
+\hline
+\mbox{\tt in}  & {\em i\+\_\+lim} & min. and max. local normal index \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 1184 of file grid\+\_\+utilities.\+f90.
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespacegrid__utilities_a04f971c38083f873a04eb6568bed466b_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{namespacegrid__utilities_a414a1a11924bc935afca3a89fc31f2f5}\label{namespacegrid__utilities_a414a1a11924bc935afca3a89fc31f2f5}} 
+\index{grid\+\_\+utilities@{grid\+\_\+utilities}!extend\+\_\+grid\+\_\+f@{extend\+\_\+grid\+\_\+f}}
+\index{extend\+\_\+grid\+\_\+f@{extend\+\_\+grid\+\_\+f}!grid\+\_\+utilities@{grid\+\_\+utilities}}
+\subsubsection{\texorpdfstring{extend\+\_\+grid\+\_\+f()}{extend\_grid\_f()}}
+{\footnotesize\ttfamily integer function, public grid\+\_\+utilities\+::extend\+\_\+grid\+\_\+f (\begin{DoxyParamCaption}\item[{type(\hyperlink{structgrid__vars_1_1grid__type}{grid\+\_\+type}), intent(in)}]{grid\+\_\+in,  }\item[{type(\hyperlink{structgrid__vars_1_1grid__type}{grid\+\_\+type}), intent(inout)}]{grid\+\_\+ext,  }\item[{type(\hyperlink{structgrid__vars_1_1grid__type}{grid\+\_\+type}), intent(in), optional}]{grid\+\_\+eq,  }\item[{integer, intent(in), optional}]{n\+\_\+theta\+\_\+plot,  }\item[{integer, intent(in), optional}]{n\+\_\+zeta\+\_\+plot,  }\item[{real(dp), dimension(2), intent(in), optional}]{lim\+\_\+theta\+\_\+plot,  }\item[{real(dp), dimension(2), intent(in), optional}]{lim\+\_\+zeta\+\_\+plot }\end{DoxyParamCaption})}
+
+
+
+Extend a grid angularly. 
+
+This is done using equidistant variables of {\ttfamily n\+\_\+theta\+\_\+plot} and {\ttfamily n\+\_\+zeta\+\_\+plot} angular and own {\ttfamily loc\+\_\+n\+\_\+r} points in F coordinates.
+
+Optionally, the grid can also be converted to E coordinates if the equilibrium grid is provided. This is required for many operations, such as the calculation of $X$, $Y$ and $Z$ through calc\+\_\+\+X\+Y\+Z\+\_\+grid().
+
+\begin{DoxyNote}{Note}
+For V\+M\+EC, it can be slow, as \hyperlink{interfacegrid__utilities_1_1coord__f2e}{grid\+\_\+utilities.\+coord\+\_\+f2e()} is used.
+\end{DoxyNote}
+\begin{DoxyReturn}{Returns}
+ierr
+\end{DoxyReturn}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em grid\+\_\+in} & grid to be extended\\
+\hline
+\mbox{\tt in,out}  & {\em grid\+\_\+ext} & extended grid\\
+\hline
+\mbox{\tt in}  & {\em grid\+\_\+eq} & equilibrium grid\\
+\hline
+\mbox{\tt in}  & {\em n\+\_\+theta\+\_\+plot} & number of poins in theta direction\\
+\hline
+\mbox{\tt in}  & {\em n\+\_\+zeta\+\_\+plot} & number of poins in zeta direction\\
+\hline
+\mbox{\tt in}  & {\em lim\+\_\+theta\+\_\+plot} & limits in theta\\
+\hline
+\mbox{\tt in}  & {\em lim\+\_\+zeta\+\_\+plot} & limits in zeta \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 1088 of file grid\+\_\+utilities.\+f90.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespacegrid__utilities_a414a1a11924bc935afca3a89fc31f2f5_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespacegrid__utilities_a414a1a11924bc935afca3a89fc31f2f5_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{namespacegrid__utilities_ae08e1ff213071c9d411a9b9c76035e1e}\label{namespacegrid__utilities_ae08e1ff213071c9d411a9b9c76035e1e}} 
+\index{grid\+\_\+utilities@{grid\+\_\+utilities}!find\+\_\+compr\+\_\+range@{find\+\_\+compr\+\_\+range}}
+\index{find\+\_\+compr\+\_\+range@{find\+\_\+compr\+\_\+range}!grid\+\_\+utilities@{grid\+\_\+utilities}}
+\subsubsection{\texorpdfstring{find\+\_\+compr\+\_\+range()}{find\_compr\_range()}}
+{\footnotesize\ttfamily subroutine, public grid\+\_\+utilities\+::find\+\_\+compr\+\_\+range (\begin{DoxyParamCaption}\item[{real(dp), dimension(\+:), intent(in)}]{r\+\_\+F,  }\item[{real(dp), dimension(2), intent(in)}]{lim\+\_\+r,  }\item[{integer, dimension(2), intent(inout)}]{lim\+\_\+id }\end{DoxyParamCaption})}
+
+
+
+finds smallest range that comprises a minimum and maximum value. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em r\+\_\+f} & all values of coordinate\\
+\hline
+\mbox{\tt in}  & {\em lim\+\_\+r} & limiting range\\
+\hline
+\mbox{\tt in,out}  & {\em lim\+\_\+id} & limiting indices \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 2990 of file grid\+\_\+utilities.\+f90.
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespacegrid__utilities_ae08e1ff213071c9d411a9b9c76035e1e_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{namespacegrid__utilities_a0854b2d6cc61a31f68b4afe7304077a9}\label{namespacegrid__utilities_a0854b2d6cc61a31f68b4afe7304077a9}} 
+\index{grid\+\_\+utilities@{grid\+\_\+utilities}!nufft@{nufft}}
+\index{nufft@{nufft}!grid\+\_\+utilities@{grid\+\_\+utilities}}
+\subsubsection{\texorpdfstring{nufft()}{nufft()}}
+{\footnotesize\ttfamily integer function, public grid\+\_\+utilities\+::nufft (\begin{DoxyParamCaption}\item[{real(dp), dimension(\+:), intent(in)}]{x,  }\item[{real(dp), dimension(\+:), intent(in)}]{f,  }\item[{real(dp), dimension(\+:,\+:), intent(inout), allocatable}]{f\+\_\+F,  }\item[{character(len=$\ast$), intent(in), optional}]{plot\+\_\+name }\end{DoxyParamCaption})}
+
+
+
+calculates the cosine and sine mode numbers of a function defined on a non-\/regular grid. 
+
+If a plot name is provided, the modes are plotted.
+
+\begin{DoxyNote}{Note}
+The fundamental interval is assumed to be $0\ldots 2\pi$ but there should be no overlap between the first and last point.
+\end{DoxyNote}
+\begin{DoxyReturn}{Returns}
+ierr
+\end{DoxyReturn}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em x} & coordinate values\\
+\hline
+\mbox{\tt in}  & {\em f} & function values\\
+\hline
+\mbox{\tt in,out}  & {\em f\+\_\+f} & Fourier modes for $\cos$ and $\sin$\\
+\hline
+\mbox{\tt in}  & {\em plot\+\_\+name} & name of possible plot \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 2896 of file grid\+\_\+utilities.\+f90.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespacegrid__utilities_a0854b2d6cc61a31f68b4afe7304077a9_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespacegrid__utilities_a0854b2d6cc61a31f68b4afe7304077a9_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{namespacegrid__utilities_a67001ff9bbcad707aacf17f90a748d90}\label{namespacegrid__utilities_a67001ff9bbcad707aacf17f90a748d90}} 
+\index{grid\+\_\+utilities@{grid\+\_\+utilities}!trim\+\_\+grid@{trim\+\_\+grid}}
+\index{trim\+\_\+grid@{trim\+\_\+grid}!grid\+\_\+utilities@{grid\+\_\+utilities}}
+\subsubsection{\texorpdfstring{trim\+\_\+grid()}{trim\_grid()}}
+{\footnotesize\ttfamily integer function, public grid\+\_\+utilities\+::trim\+\_\+grid (\begin{DoxyParamCaption}\item[{type(\hyperlink{structgrid__vars_1_1grid__type}{grid\+\_\+type}), intent(in)}]{grid\+\_\+in,  }\item[{type(\hyperlink{structgrid__vars_1_1grid__type}{grid\+\_\+type}), intent(inout)}]{grid\+\_\+out,  }\item[{integer, dimension(2), intent(inout), optional}]{norm\+\_\+id }\end{DoxyParamCaption})}
+
+
+
+Trim a grid, removing any overlap between the different regions. 
+
+by default, the routine assumes a symmetric ghost region and cuts as many grid points from the end of the previous process as from the beginning of the next process, but if the number of overlapping grid points is odd, the next process looses one more point.
+
+optionally, the trimmed indices in the normal direction can be provided in {\ttfamily norm\+\_\+id}, i.\+e. the indices in the old, untrimmed grid that correspond to the start and end indices of the trimmed grid. E.\+g. if
+\begin{DoxyItemize}
+\item proc 0\+: 3 ... 25
+\item proc 1\+: 20 ... 50
+\end{DoxyItemize}
+
+then the trimmed grid will be\+:
+\begin{DoxyItemize}
+\item proc 0\+: 3 ... 22
+\item proc 1\+: 23 ... 50
+\end{DoxyItemize}
+
+which is shifted down by 2 to
+\begin{DoxyItemize}
+\item proc 0\+: 1 ... 20
+\item proc 1\+: 21 ... 48
+\end{DoxyItemize}
+
+in the trimmed grid. The indices of the previous step (3 \& 22 and 23 \& 50) are saved in {\ttfamily norm\+\_\+id}.
+
+\begin{DoxyReturn}{Returns}
+ierr
+\end{DoxyReturn}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em grid\+\_\+in} & input grid\\
+\hline
+\mbox{\tt in,out}  & {\em grid\+\_\+out} & trimmed grid\\
+\hline
+\mbox{\tt in,out}  & {\em norm\+\_\+id} & normal indices corresponding to trimmed part \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 1631 of file grid\+\_\+utilities.\+f90.
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{namespacegrid__utilities_a67001ff9bbcad707aacf17f90a748d90_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{namespacegrid__utilities_a4679f24af8e02793070f4e27b43e00b6}\label{namespacegrid__utilities_a4679f24af8e02793070f4e27b43e00b6}} 
+\index{grid\+\_\+utilities@{grid\+\_\+utilities}!untrim\+\_\+grid@{untrim\+\_\+grid}}
+\index{untrim\+\_\+grid@{untrim\+\_\+grid}!grid\+\_\+utilities@{grid\+\_\+utilities}}
+\subsubsection{\texorpdfstring{untrim\+\_\+grid()}{untrim\_grid()}}
+{\footnotesize\ttfamily integer function, public grid\+\_\+utilities\+::untrim\+\_\+grid (\begin{DoxyParamCaption}\item[{type(\hyperlink{structgrid__vars_1_1grid__type}{grid\+\_\+type}), intent(in)}]{grid\+\_\+in,  }\item[{type(\hyperlink{structgrid__vars_1_1grid__type}{grid\+\_\+type}), intent(inout)}]{grid\+\_\+out,  }\item[{integer, intent(in)}]{size\+\_\+ghost }\end{DoxyParamCaption})}
+
+
+
+Untrims a trimmed grid by introducing an asymmetric ghost regions at the right. 
+
+The width of the ghost region has to be provided.
+
+\begin{DoxyNote}{Note}
+
+\begin{DoxyEnumerate}
+\item the ghosted grid should be deallocated (with \hyperlink{namespacegrid__vars_abc8ea59261a1e773754afebdb13276f9}{dealloc\+\_\+grid()}).
+\item the input grid has to be trimmed.
+\end{DoxyEnumerate}
+\end{DoxyNote}
+\begin{DoxyReturn}{Returns}
+ierr
+\end{DoxyReturn}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em grid\+\_\+in} & input grid\\
+\hline
+\mbox{\tt in,out}  & {\em grid\+\_\+out} & ghosted grid\\
+\hline
+\mbox{\tt in}  & {\em size\+\_\+ghost} & width of ghost region \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 1759 of file grid\+\_\+utilities.\+f90.
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespacegrid__utilities_a4679f24af8e02793070f4e27b43e00b6_icgraph}
+\end{center}
+\end{figure}
+
+
+\subsection{Variable Documentation}
+\mbox{\Hypertarget{namespacegrid__utilities_a0743c0341d508034b14aee614fa4f8a9}\label{namespacegrid__utilities_a0743c0341d508034b14aee614fa4f8a9}} 
+\index{grid\+\_\+utilities@{grid\+\_\+utilities}!debug\+\_\+calc\+\_\+int\+\_\+vol@{debug\+\_\+calc\+\_\+int\+\_\+vol}}
+\index{debug\+\_\+calc\+\_\+int\+\_\+vol@{debug\+\_\+calc\+\_\+int\+\_\+vol}!grid\+\_\+utilities@{grid\+\_\+utilities}}
+\subsubsection{\texorpdfstring{debug\+\_\+calc\+\_\+int\+\_\+vol}{debug\_calc\_int\_vol}}
+{\footnotesize\ttfamily logical, public grid\+\_\+utilities\+::debug\+\_\+calc\+\_\+int\+\_\+vol = .false.}
+
+
+
+plot debug information for \hyperlink{namespacegrid__utilities_a97e3106dbdc10b726af74afa113ba533}{calc\+\_\+int\+\_\+vol()} 
+
+\begin{DoxyNote}{Note}
+Debug version only 
+\end{DoxyNote}
+
+
+Definition at line 25 of file grid\+\_\+utilities.\+f90.
+
+\mbox{\Hypertarget{namespacegrid__utilities_ab420036236dc8a9a69e180550499d95b}\label{namespacegrid__utilities_ab420036236dc8a9a69e180550499d95b}} 
+\index{grid\+\_\+utilities@{grid\+\_\+utilities}!debug\+\_\+calc\+\_\+vec\+\_\+comp@{debug\+\_\+calc\+\_\+vec\+\_\+comp}}
+\index{debug\+\_\+calc\+\_\+vec\+\_\+comp@{debug\+\_\+calc\+\_\+vec\+\_\+comp}!grid\+\_\+utilities@{grid\+\_\+utilities}}
+\subsubsection{\texorpdfstring{debug\+\_\+calc\+\_\+vec\+\_\+comp}{debug\_calc\_vec\_comp}}
+{\footnotesize\ttfamily logical, public grid\+\_\+utilities\+::debug\+\_\+calc\+\_\+vec\+\_\+comp = .false.}
+
+
+
+plot debug information for \hyperlink{namespacegrid__utilities_ad3d9386b9abcb1a7e17369a1b3a3750d}{calc\+\_\+vec\+\_\+comp()} 
+
+\begin{DoxyNote}{Note}
+Debug version only 
+\end{DoxyNote}
+
+
+Definition at line 27 of file grid\+\_\+utilities.\+f90.
+

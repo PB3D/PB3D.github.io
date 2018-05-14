@@ -1,0 +1,107 @@
+\hypertarget{interfacempi__utilities_1_1get__ser__var}{}\section{mpi\+\_\+utilities\+:\+:get\+\_\+ser\+\_\+var Interface Reference}
+\label{interfacempi__utilities_1_1get__ser__var}\index{mpi\+\_\+utilities\+::get\+\_\+ser\+\_\+var@{mpi\+\_\+utilities\+::get\+\_\+ser\+\_\+var}}
+
+
+Gather parallel variable in serial version on group master.  
+
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+integer function \hyperlink{interfacempi__utilities_1_1get__ser__var_abccb70c61fc5611b52b1c25699be37ef}{get\+\_\+ser\+\_\+var\+\_\+complex} (var, ser\+\_\+var, scatter)
+\begin{DoxyCompactList}\small\item\em complex version \end{DoxyCompactList}\item 
+integer function \hyperlink{interfacempi__utilities_1_1get__ser__var_ab67bfedc53ed5ae3f1e18af6f5591357}{get\+\_\+ser\+\_\+var\+\_\+real} (var, ser\+\_\+var, scatter)
+\begin{DoxyCompactList}\small\item\em real version \end{DoxyCompactList}\item 
+integer function \hyperlink{interfacempi__utilities_1_1get__ser__var_ac75d95db26355782b6276e4f36253290}{get\+\_\+ser\+\_\+var\+\_\+int} (var, ser\+\_\+var, scatter)
+\begin{DoxyCompactList}\small\item\em integer version \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Gather parallel variable in serial version on group master. 
+
+Optionally, all the processes receive the parallel variable using {\ttfamily scatter}.
+
+\begin{DoxyNote}{Note}
+The serial variable has to be allocatable and if unallocated, it will be allocated.
+\end{DoxyNote}
+\begin{DoxyReturn}{Returns}
+ierr 
+\end{DoxyReturn}
+
+
+Definition at line 55 of file M\+P\+I\+\_\+utilities.\+f90.
+
+
+
+\subsection{Member Function/\+Subroutine Documentation}
+\mbox{\Hypertarget{interfacempi__utilities_1_1get__ser__var_abccb70c61fc5611b52b1c25699be37ef}\label{interfacempi__utilities_1_1get__ser__var_abccb70c61fc5611b52b1c25699be37ef}} 
+\index{mpi\+\_\+utilities\+::get\+\_\+ser\+\_\+var@{mpi\+\_\+utilities\+::get\+\_\+ser\+\_\+var}!get\+\_\+ser\+\_\+var\+\_\+complex@{get\+\_\+ser\+\_\+var\+\_\+complex}}
+\index{get\+\_\+ser\+\_\+var\+\_\+complex@{get\+\_\+ser\+\_\+var\+\_\+complex}!mpi\+\_\+utilities\+::get\+\_\+ser\+\_\+var@{mpi\+\_\+utilities\+::get\+\_\+ser\+\_\+var}}
+\subsubsection{\texorpdfstring{get\+\_\+ser\+\_\+var\+\_\+complex()}{get\_ser\_var\_complex()}}
+{\footnotesize\ttfamily integer function mpi\+\_\+utilities\+::get\+\_\+ser\+\_\+var\+::get\+\_\+ser\+\_\+var\+\_\+complex (\begin{DoxyParamCaption}\item[{complex(dp), dimension(\+:), intent(in)}]{var,  }\item[{complex(dp), dimension(\+:), intent(inout), allocatable}]{ser\+\_\+var,  }\item[{logical, intent(in), optional}]{scatter }\end{DoxyParamCaption})}
+
+
+
+complex version 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em var} & parallel vector\\
+\hline
+\mbox{\tt in,out}  & {\em ser\+\_\+var} & serial vector\\
+\hline
+\mbox{\tt in}  & {\em scatter} & optionally scatter the result to all the processes \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 107 of file M\+P\+I\+\_\+utilities.\+f90.
+
+\mbox{\Hypertarget{interfacempi__utilities_1_1get__ser__var_ac75d95db26355782b6276e4f36253290}\label{interfacempi__utilities_1_1get__ser__var_ac75d95db26355782b6276e4f36253290}} 
+\index{mpi\+\_\+utilities\+::get\+\_\+ser\+\_\+var@{mpi\+\_\+utilities\+::get\+\_\+ser\+\_\+var}!get\+\_\+ser\+\_\+var\+\_\+int@{get\+\_\+ser\+\_\+var\+\_\+int}}
+\index{get\+\_\+ser\+\_\+var\+\_\+int@{get\+\_\+ser\+\_\+var\+\_\+int}!mpi\+\_\+utilities\+::get\+\_\+ser\+\_\+var@{mpi\+\_\+utilities\+::get\+\_\+ser\+\_\+var}}
+\subsubsection{\texorpdfstring{get\+\_\+ser\+\_\+var\+\_\+int()}{get\_ser\_var\_int()}}
+{\footnotesize\ttfamily integer function mpi\+\_\+utilities\+::get\+\_\+ser\+\_\+var\+::get\+\_\+ser\+\_\+var\+\_\+int (\begin{DoxyParamCaption}\item[{integer, dimension(\+:), intent(in)}]{var,  }\item[{integer, dimension(\+:), intent(inout), allocatable}]{ser\+\_\+var,  }\item[{logical, intent(in), optional}]{scatter }\end{DoxyParamCaption})}
+
+
+
+integer version 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em var} & parallel vector\\
+\hline
+\mbox{\tt in,out}  & {\em ser\+\_\+var} & serial vector\\
+\hline
+\mbox{\tt in}  & {\em scatter} & optionally scatter the result to all the processes \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 255 of file M\+P\+I\+\_\+utilities.\+f90.
+
+\mbox{\Hypertarget{interfacempi__utilities_1_1get__ser__var_ab67bfedc53ed5ae3f1e18af6f5591357}\label{interfacempi__utilities_1_1get__ser__var_ab67bfedc53ed5ae3f1e18af6f5591357}} 
+\index{mpi\+\_\+utilities\+::get\+\_\+ser\+\_\+var@{mpi\+\_\+utilities\+::get\+\_\+ser\+\_\+var}!get\+\_\+ser\+\_\+var\+\_\+real@{get\+\_\+ser\+\_\+var\+\_\+real}}
+\index{get\+\_\+ser\+\_\+var\+\_\+real@{get\+\_\+ser\+\_\+var\+\_\+real}!mpi\+\_\+utilities\+::get\+\_\+ser\+\_\+var@{mpi\+\_\+utilities\+::get\+\_\+ser\+\_\+var}}
+\subsubsection{\texorpdfstring{get\+\_\+ser\+\_\+var\+\_\+real()}{get\_ser\_var\_real()}}
+{\footnotesize\ttfamily integer function mpi\+\_\+utilities\+::get\+\_\+ser\+\_\+var\+::get\+\_\+ser\+\_\+var\+\_\+real (\begin{DoxyParamCaption}\item[{real(dp), dimension(\+:), intent(in)}]{var,  }\item[{real(dp), dimension(\+:), intent(inout), allocatable}]{ser\+\_\+var,  }\item[{logical, intent(in), optional}]{scatter }\end{DoxyParamCaption})}
+
+
+
+real version 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em var} & parallel vector\\
+\hline
+\mbox{\tt in,out}  & {\em ser\+\_\+var} & serial vector\\
+\hline
+\mbox{\tt in}  & {\em scatter} & optionally scatter the result to all the processes \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 181 of file M\+P\+I\+\_\+utilities.\+f90.
+
+
+

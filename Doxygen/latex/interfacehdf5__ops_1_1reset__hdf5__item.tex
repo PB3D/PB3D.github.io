@@ -1,0 +1,87 @@
+\hypertarget{interfacehdf5__ops_1_1reset__hdf5__item}{}\section{hdf5\+\_\+ops\+:\+:reset\+\_\+hdf5\+\_\+item Interface Reference}
+\label{interfacehdf5__ops_1_1reset__hdf5__item}\index{hdf5\+\_\+ops\+::reset\+\_\+hdf5\+\_\+item@{hdf5\+\_\+ops\+::reset\+\_\+hdf5\+\_\+item}}
+
+
+Resets an H\+D\+F5 X\+D\+MF item.  
+
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+subroutine \hyperlink{interfacehdf5__ops_1_1reset__hdf5__item_a6d3555adb7940978c93a259be0ece2c1}{reset\+\_\+hdf5\+\_\+item\+\_\+ind} (X\+D\+M\+F\+\_\+item, ind\+\_\+plot)
+\begin{DoxyCompactList}\small\item\em individual version \end{DoxyCompactList}\item 
+subroutine \hyperlink{interfacehdf5__ops_1_1reset__hdf5__item_aac823723bdd8de3557acc3fb224ac593}{reset\+\_\+hdf5\+\_\+item\+\_\+arr} (X\+D\+M\+F\+\_\+items, ind\+\_\+plot)
+\begin{DoxyCompactList}\small\item\em array version \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Resets an H\+D\+F5 X\+D\+MF item. 
+
+\begin{DoxyNote}{Note}
+individual version cannot make use of array version because then the deallocation does not work properly. 
+\end{DoxyNote}
+
+
+Definition at line 56 of file H\+D\+F5\+\_\+ops.\+f90.
+
+
+
+\subsection{Member Function/\+Subroutine Documentation}
+\mbox{\Hypertarget{interfacehdf5__ops_1_1reset__hdf5__item_aac823723bdd8de3557acc3fb224ac593}\label{interfacehdf5__ops_1_1reset__hdf5__item_aac823723bdd8de3557acc3fb224ac593}} 
+\index{hdf5\+\_\+ops\+::reset\+\_\+hdf5\+\_\+item@{hdf5\+\_\+ops\+::reset\+\_\+hdf5\+\_\+item}!reset\+\_\+hdf5\+\_\+item\+\_\+arr@{reset\+\_\+hdf5\+\_\+item\+\_\+arr}}
+\index{reset\+\_\+hdf5\+\_\+item\+\_\+arr@{reset\+\_\+hdf5\+\_\+item\+\_\+arr}!hdf5\+\_\+ops\+::reset\+\_\+hdf5\+\_\+item@{hdf5\+\_\+ops\+::reset\+\_\+hdf5\+\_\+item}}
+\subsubsection{\texorpdfstring{reset\+\_\+hdf5\+\_\+item\+\_\+arr()}{reset\_hdf5\_item\_arr()}}
+{\footnotesize\ttfamily subroutine hdf5\+\_\+ops\+::reset\+\_\+hdf5\+\_\+item\+::reset\+\_\+hdf5\+\_\+item\+\_\+arr (\begin{DoxyParamCaption}\item[{type(xml\+\_\+str\+\_\+type), dimension(\+:), intent(inout)}]{X\+D\+M\+F\+\_\+items,  }\item[{logical, intent(in), optional}]{ind\+\_\+plot }\end{DoxyParamCaption})}
+
+
+
+array version 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in,out}  & {\em xdmf\+\_\+items} & X\+D\+MF items to reset\\
+\hline
+\mbox{\tt in}  & {\em ind\+\_\+plot} & whether individual plot \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 1789 of file H\+D\+F5\+\_\+ops.\+f90.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{interfacehdf5__ops_1_1reset__hdf5__item_aac823723bdd8de3557acc3fb224ac593_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{interfacehdf5__ops_1_1reset__hdf5__item_a6d3555adb7940978c93a259be0ece2c1}\label{interfacehdf5__ops_1_1reset__hdf5__item_a6d3555adb7940978c93a259be0ece2c1}} 
+\index{hdf5\+\_\+ops\+::reset\+\_\+hdf5\+\_\+item@{hdf5\+\_\+ops\+::reset\+\_\+hdf5\+\_\+item}!reset\+\_\+hdf5\+\_\+item\+\_\+ind@{reset\+\_\+hdf5\+\_\+item\+\_\+ind}}
+\index{reset\+\_\+hdf5\+\_\+item\+\_\+ind@{reset\+\_\+hdf5\+\_\+item\+\_\+ind}!hdf5\+\_\+ops\+::reset\+\_\+hdf5\+\_\+item@{hdf5\+\_\+ops\+::reset\+\_\+hdf5\+\_\+item}}
+\subsubsection{\texorpdfstring{reset\+\_\+hdf5\+\_\+item\+\_\+ind()}{reset\_hdf5\_item\_ind()}}
+{\footnotesize\ttfamily subroutine hdf5\+\_\+ops\+::reset\+\_\+hdf5\+\_\+item\+::reset\+\_\+hdf5\+\_\+item\+\_\+ind (\begin{DoxyParamCaption}\item[{type(xml\+\_\+str\+\_\+type), intent(inout)}]{X\+D\+M\+F\+\_\+item,  }\item[{logical, intent(in), optional}]{ind\+\_\+plot }\end{DoxyParamCaption})}
+
+
+
+individual version 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in,out}  & {\em xdmf\+\_\+item} & X\+D\+MF item to reset\\
+\hline
+\mbox{\tt in}  & {\em ind\+\_\+plot} & whether individual plot \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 1829 of file H\+D\+F5\+\_\+ops.\+f90.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{interfacehdf5__ops_1_1reset__hdf5__item_a6d3555adb7940978c93a259be0ece2c1_cgraph}
+\end{center}
+\end{figure}
+
+

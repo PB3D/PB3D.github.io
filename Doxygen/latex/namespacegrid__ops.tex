@@ -1,0 +1,508 @@
+\hypertarget{namespacegrid__ops}{}\section{grid\+\_\+ops Module Reference}
+\label{namespacegrid__ops}\index{grid\+\_\+ops@{grid\+\_\+ops}}
+
+
+Operations that have to do with the grids and different coordinate systems.  
+
+
+\subsection*{Functions/\+Subroutines}
+\begin{DoxyCompactItemize}
+\item 
+integer function, public \hyperlink{namespacegrid__ops_a1c18f90f93f5fce7ebb4dba60b70e0f8}{calc\+\_\+norm\+\_\+range} (style, in\+\_\+limits, eq\+\_\+limits, X\+\_\+limits, sol\+\_\+limits, r\+\_\+\+F\+\_\+eq, r\+\_\+\+F\+\_\+X, r\+\_\+\+F\+\_\+sol, jq)
+\begin{DoxyCompactList}\small\item\em Calculates normal range for the input grid, the equilibrium grid and/or the solution grid. \end{DoxyCompactList}\item 
+integer function, public \hyperlink{namespacegrid__ops_af63366847d1caa64a7d329672292fd34}{setup\+\_\+grid\+\_\+eq} (grid\+\_\+eq, eq\+\_\+limits)
+\begin{DoxyCompactList}\small\item\em Sets up the equilibrium grid. \end{DoxyCompactList}\item 
+integer function, public \hyperlink{namespacegrid__ops_ad16495ddd320562451c2325bafecf2d8}{setup\+\_\+grid\+\_\+eq\+\_\+b} (grid\+\_\+eq, grid\+\_\+eq\+\_\+B, eq, only\+\_\+half\+\_\+grid)
+\begin{DoxyCompactList}\small\item\em Sets up the field-\/aligned equilibrium grid. \end{DoxyCompactList}\item 
+integer function, public \hyperlink{namespacegrid__ops_a1047889ec84da6e56aae619570a16988}{setup\+\_\+grid\+\_\+x} (grid\+\_\+eq, grid\+\_\+X, r\+\_\+\+F\+\_\+X, X\+\_\+limits)
+\begin{DoxyCompactList}\small\item\em Sets up the general perturbation grid, in which the perturbation variables are calculated. \end{DoxyCompactList}\item 
+integer function, public \hyperlink{namespacegrid__ops_aeff1569cb9a043b03ed49250524fbd95}{setup\+\_\+grid\+\_\+sol} (grid\+\_\+eq, grid\+\_\+X, grid\+\_\+sol, r\+\_\+\+F\+\_\+sol, sol\+\_\+limits)
+\begin{DoxyCompactList}\small\item\em Sets up the general solution grid, in which the solution variables are calculated. \end{DoxyCompactList}\item 
+integer function, public \hyperlink{namespacegrid__ops_a06107dbdfd1dd62e372cc29ab0255bad}{calc\+\_\+ang\+\_\+grid\+\_\+eq\+\_\+b} (grid\+\_\+eq, eq, only\+\_\+half\+\_\+grid)
+\begin{DoxyCompactList}\small\item\em Calculate equilibrium grid that follows magnetic field lines. \end{DoxyCompactList}\item 
+integer function, public \hyperlink{namespacegrid__ops_ab10ef5b486ee3861df2da4e53bc22630}{redistribute\+\_\+output\+\_\+grid} (grid, grid\+\_\+out, no\+\_\+outer\+\_\+trim)
+\begin{DoxyCompactList}\small\item\em Redistribute a grid to match the normal distribution of solution grid. \end{DoxyCompactList}\item 
+integer function, public \hyperlink{namespacegrid__ops_addd76b7b3be0b51e0863ae0cdfef41e6}{magn\+\_\+grid\+\_\+plot} (grid)
+\begin{DoxyCompactList}\small\item\em Plots the grid in real 3-\/D space. \end{DoxyCompactList}\item 
+integer function, public \hyperlink{namespacegrid__ops_a4827e794d37334c0cad9bb2016e64d46}{print\+\_\+output\+\_\+grid} (grid, grid\+\_\+name, data\+\_\+name, rich\+\_\+lvl, par\+\_\+div, remove\+\_\+previous\+\_\+arrs)
+\begin{DoxyCompactList}\small\item\em Print grid variables to an output file. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+logical, public \hyperlink{namespacegrid__ops_ad043ab1b07b2d251bb7596b8c8d2f960}{debug\+\_\+calc\+\_\+ang\+\_\+grid\+\_\+eq\+\_\+b} = .false.
+\begin{DoxyCompactList}\small\item\em plot debug information for \hyperlink{namespacegrid__ops_a06107dbdfd1dd62e372cc29ab0255bad}{calc\+\_\+ang\+\_\+grid\+\_\+eq\+\_\+b()} \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Operations that have to do with the grids and different coordinate systems. 
+
+\subsection{Function/\+Subroutine Documentation}
+\mbox{\Hypertarget{namespacegrid__ops_a06107dbdfd1dd62e372cc29ab0255bad}\label{namespacegrid__ops_a06107dbdfd1dd62e372cc29ab0255bad}} 
+\index{grid\+\_\+ops@{grid\+\_\+ops}!calc\+\_\+ang\+\_\+grid\+\_\+eq\+\_\+b@{calc\+\_\+ang\+\_\+grid\+\_\+eq\+\_\+b}}
+\index{calc\+\_\+ang\+\_\+grid\+\_\+eq\+\_\+b@{calc\+\_\+ang\+\_\+grid\+\_\+eq\+\_\+b}!grid\+\_\+ops@{grid\+\_\+ops}}
+\subsubsection{\texorpdfstring{calc\+\_\+ang\+\_\+grid\+\_\+eq\+\_\+b()}{calc\_ang\_grid\_eq\_b()}}
+{\footnotesize\ttfamily integer function, public grid\+\_\+ops\+::calc\+\_\+ang\+\_\+grid\+\_\+eq\+\_\+b (\begin{DoxyParamCaption}\item[{type(\hyperlink{structgrid__vars_1_1grid__type}{grid\+\_\+type}), intent(inout)}]{grid\+\_\+eq,  }\item[{type(\hyperlink{structeq__vars_1_1eq__1__type}{eq\+\_\+1\+\_\+type}), intent(in), target}]{eq,  }\item[{logical, intent(in), optional}]{only\+\_\+half\+\_\+grid }\end{DoxyParamCaption})}
+
+
+
+Calculate equilibrium grid that follows magnetic field lines. 
+
+This grid is different from the equilibrium grid from setup\+\_\+grid\+\_\+eq for H\+E\+L\+E\+NA, as the latter is the output grid from H\+E\+L\+E\+NA, which is situated in a single poloidal cross-\/section, as opposed to a really field-\/aligne grid.
+
+For V\+M\+EC, this is not used as the grid is field-\/aligned from the start.
+
+\begin{DoxyNote}{Note}
+
+\begin{DoxyEnumerate}
+\item The end-\/points are included for the grids in the parallel direction. This is to facilitate working with the trapezoidal rule or Simpson\textquotesingle{}s 3/8 rule for integration. This is {\bfseries N\+OT} valid in general!
+\item by setting the flag {\ttfamily only\+\_\+half\+\_\+grid}, only the even points of the parallel grid are calculated, which is useful for higher Richardson levels with V\+M\+EC so that only new angular points are calculated and the old ones reused.
+\end{DoxyEnumerate}
+\end{DoxyNote}
+\begin{DoxyReturn}{Returns}
+ierr
+\end{DoxyReturn}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in,out}  & {\em grid\+\_\+eq} & equilibrium grid of which to calculate angular part\\
+\hline
+\mbox{\tt in}  & {\em eq} & flux equilibrium variables\\
+\hline
+\mbox{\tt in}  & {\em only\+\_\+half\+\_\+grid} & calculate only half grid with even points \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 794 of file grid\+\_\+ops.\+f90.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespacegrid__ops_a06107dbdfd1dd62e372cc29ab0255bad_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespacegrid__ops_a06107dbdfd1dd62e372cc29ab0255bad_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{namespacegrid__ops_a1c18f90f93f5fce7ebb4dba60b70e0f8}\label{namespacegrid__ops_a1c18f90f93f5fce7ebb4dba60b70e0f8}} 
+\index{grid\+\_\+ops@{grid\+\_\+ops}!calc\+\_\+norm\+\_\+range@{calc\+\_\+norm\+\_\+range}}
+\index{calc\+\_\+norm\+\_\+range@{calc\+\_\+norm\+\_\+range}!grid\+\_\+ops@{grid\+\_\+ops}}
+\subsubsection{\texorpdfstring{calc\+\_\+norm\+\_\+range()}{calc\_norm\_range()}}
+{\footnotesize\ttfamily integer function, public grid\+\_\+ops\+::calc\+\_\+norm\+\_\+range (\begin{DoxyParamCaption}\item[{character(len=$\ast$), intent(in)}]{style,  }\item[{integer, dimension(2), intent(inout), optional}]{in\+\_\+limits,  }\item[{integer, dimension(2), intent(inout), optional}]{eq\+\_\+limits,  }\item[{integer, dimension(2), intent(inout), optional}]{X\+\_\+limits,  }\item[{integer, dimension(2), intent(inout), optional}]{sol\+\_\+limits,  }\item[{real(dp), dimension(\+:), intent(inout), optional}]{r\+\_\+\+F\+\_\+eq,  }\item[{real(dp), dimension(\+:), intent(inout), optional, allocatable}]{r\+\_\+\+F\+\_\+X,  }\item[{real(dp), dimension(\+:), intent(inout), optional}]{r\+\_\+\+F\+\_\+sol,  }\item[{real(dp), dimension(\+:), intent(in), optional}]{jq }\end{DoxyParamCaption})}
+
+
+
+Calculates normal range for the input grid, the equilibrium grid and/or the solution grid. 
+
+General workings, depending on {\ttfamily X\+\_\+grid\+\_\+style\+:} 
+
+\tabulinesep=1mm
+\begin{longtabu} spread 0pt [c]{*{3}{|X[-1]}|}
+\hline
+\rowcolor{\tableheadbgcolor}\textbf{ 1 (equilibrium) }&\textbf{ 2 (solution ) }&\textbf{ 3 (enriched)  }\\\cline{1-3}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\rowcolor{\tableheadbgcolor}\textbf{ 1 (equilibrium) }&\textbf{ 2 (solution ) }&\textbf{ 3 (enriched)  }\\\cline{1-3}
+\endhead
+calc\+\_\+eq() &calc\+\_\+eq() &calc\+\_\+eq() \\\cline{1-3}
+&redistribute to sol &add points to optimize \\\cline{1-3}
+&interpolate to sol &interpolate to X \\\cline{1-3}
+calc\+\_\+x() &calc\+\_\+x() &calc\+\_\+x() \\\cline{1-3}
+redistribute to sol &copy to sol &redistribute to sol \\\cline{1-3}
+interpolate to sol &&interpolate to sol \\\cline{1-3}
+\end{longtabu}
+\begin{DoxyReturn}{Returns}
+ierr
+\end{DoxyReturn}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em style} & style of calculation (P\+B3D\+: in, eq, X or sol; P\+O\+ST)\\
+\hline
+\mbox{\tt in,out}  & {\em in\+\_\+limits} & min. and max. index of in grid\\
+\hline
+\mbox{\tt in,out}  & {\em eq\+\_\+limits} & min. and max. index of eq grid for this process\\
+\hline
+\mbox{\tt in,out}  & {\em x\+\_\+limits} & min. and max. index of X grid for this process\\
+\hline
+\mbox{\tt in,out}  & {\em sol\+\_\+limits} & min. and max. index of sol grid for this process\\
+\hline
+\mbox{\tt in,out}  & {\em r\+\_\+f\+\_\+eq} & equilibrium r\+\_\+F\\
+\hline
+\mbox{\tt in,out}  & {\em r\+\_\+f\+\_\+x} & perturbation r\+\_\+F\\
+\hline
+\mbox{\tt in,out}  & {\em r\+\_\+f\+\_\+sol} & solution r\+\_\+F\\
+\hline
+\mbox{\tt in}  & {\em jq} & q\+\_\+saf (pol. flux) or rot\+\_\+t (tor. flux) in total Flux variables \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 46 of file grid\+\_\+ops.\+f90.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespacegrid__ops_a1c18f90f93f5fce7ebb4dba60b70e0f8_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespacegrid__ops_a1c18f90f93f5fce7ebb4dba60b70e0f8_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{namespacegrid__ops_addd76b7b3be0b51e0863ae0cdfef41e6}\label{namespacegrid__ops_addd76b7b3be0b51e0863ae0cdfef41e6}} 
+\index{grid\+\_\+ops@{grid\+\_\+ops}!magn\+\_\+grid\+\_\+plot@{magn\+\_\+grid\+\_\+plot}}
+\index{magn\+\_\+grid\+\_\+plot@{magn\+\_\+grid\+\_\+plot}!grid\+\_\+ops@{grid\+\_\+ops}}
+\subsubsection{\texorpdfstring{magn\+\_\+grid\+\_\+plot()}{magn\_grid\_plot()}}
+{\footnotesize\ttfamily integer function, public grid\+\_\+ops\+::magn\+\_\+grid\+\_\+plot (\begin{DoxyParamCaption}\item[{type(\hyperlink{structgrid__vars_1_1grid__type}{grid\+\_\+type}), intent(in)}]{grid }\end{DoxyParamCaption})}
+
+
+
+Plots the grid in real 3-\/D space. 
+
+This creates an animation that can be used by Para\+View or Vis\+It.
+
+The equilibrium grid should contain the fieldline-\/oriented angles with {\ttfamily ang\+\_\+1} the parallel angle and {\ttfamily ang\+\_\+2} the field line label.
+
+\begin{DoxySeeAlso}{See also}
+See \hyperlink{structgrid__vars_1_1grid__type}{grid\+\_\+vars.\+grid\+\_\+type} for a discussion on {\ttfamily ang\+\_\+1} and {\ttfamily ang\+\_\+2}.
+\end{DoxySeeAlso}
+\begin{DoxyNote}{Note}
+
+\begin{DoxyEnumerate}
+\item This procedure does not use {\ttfamily n\+\_\+theta\+\_\+plot} and {\ttfamily n\+\_\+zeta\+\_\+plot} from \hyperlink{namespacenum__vars}{num\+\_\+vars}, but instead temporarily overwrites them with its own, since it is suposed to be 3-\/D also in the axisymmetric case.
+\item The implementation is currently very slow.
+\end{DoxyEnumerate}
+\end{DoxyNote}
+\begin{DoxyReturn}{Returns}
+ierr
+\end{DoxyReturn}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em grid} & fieldline-\/oriented equilibrium grid \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 1111 of file grid\+\_\+ops.\+f90.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespacegrid__ops_addd76b7b3be0b51e0863ae0cdfef41e6_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespacegrid__ops_addd76b7b3be0b51e0863ae0cdfef41e6_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{namespacegrid__ops_a4827e794d37334c0cad9bb2016e64d46}\label{namespacegrid__ops_a4827e794d37334c0cad9bb2016e64d46}} 
+\index{grid\+\_\+ops@{grid\+\_\+ops}!print\+\_\+output\+\_\+grid@{print\+\_\+output\+\_\+grid}}
+\index{print\+\_\+output\+\_\+grid@{print\+\_\+output\+\_\+grid}!grid\+\_\+ops@{grid\+\_\+ops}}
+\subsubsection{\texorpdfstring{print\+\_\+output\+\_\+grid()}{print\_output\_grid()}}
+{\footnotesize\ttfamily integer function, public grid\+\_\+ops\+::print\+\_\+output\+\_\+grid (\begin{DoxyParamCaption}\item[{type(\hyperlink{structgrid__vars_1_1grid__type}{grid\+\_\+type}), intent(in)}]{grid,  }\item[{character(len=$\ast$), intent(in)}]{grid\+\_\+name,  }\item[{character(len=$\ast$), intent(in)}]{data\+\_\+name,  }\item[{integer, intent(in), optional}]{rich\+\_\+lvl,  }\item[{logical, intent(in), optional}]{par\+\_\+div,  }\item[{logical, intent(in), optional}]{remove\+\_\+previous\+\_\+arrs }\end{DoxyParamCaption})}
+
+
+
+Print grid variables to an output file. 
+
+If {\ttfamily rich\+\_\+lvl} is provided, {\ttfamily \+\_\+\+R\+\_\+\mbox{[}rich\+\_\+lvl\mbox{]}} is appended to the data name if it is $>$ 0.
+
+Optionally, it can be specified that this is a divided parallel grid, corresponding to the variable {\ttfamily eq\+\_\+jobs\+\_\+lims} with index {\ttfamily eq\+\_\+job\+\_\+nr}. In this case, the total grid size is adjusted to the one specified by {\ttfamily eq\+\_\+jobs\+\_\+lims} and the grid is written as a subset.
+
+\begin{DoxyNote}{Note}
+{\ttfamily grid\+\_\+} is added in front the data\+\_\+name.
+\end{DoxyNote}
+\begin{DoxyReturn}{Returns}
+ierr
+\end{DoxyReturn}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em grid} & grid variables\\
+\hline
+\mbox{\tt in}  & {\em grid\+\_\+name} & name to display\\
+\hline
+\mbox{\tt in}  & {\em data\+\_\+name} & name under which to store\\
+\hline
+\mbox{\tt in}  & {\em rich\+\_\+lvl} & Richardson level to reconstruct\\
+\hline
+\mbox{\tt in}  & {\em par\+\_\+div} & is a parallely divided grid\\
+\hline
+\mbox{\tt in}  & {\em remove\+\_\+previous\+\_\+arrs} & remove previous variables if present \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 1485 of file grid\+\_\+ops.\+f90.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespacegrid__ops_a4827e794d37334c0cad9bb2016e64d46_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespacegrid__ops_a4827e794d37334c0cad9bb2016e64d46_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{namespacegrid__ops_ab10ef5b486ee3861df2da4e53bc22630}\label{namespacegrid__ops_ab10ef5b486ee3861df2da4e53bc22630}} 
+\index{grid\+\_\+ops@{grid\+\_\+ops}!redistribute\+\_\+output\+\_\+grid@{redistribute\+\_\+output\+\_\+grid}}
+\index{redistribute\+\_\+output\+\_\+grid@{redistribute\+\_\+output\+\_\+grid}!grid\+\_\+ops@{grid\+\_\+ops}}
+\subsubsection{\texorpdfstring{redistribute\+\_\+output\+\_\+grid()}{redistribute\_output\_grid()}}
+{\footnotesize\ttfamily integer function, public grid\+\_\+ops\+::redistribute\+\_\+output\+\_\+grid (\begin{DoxyParamCaption}\item[{type(\hyperlink{structgrid__vars_1_1grid__type}{grid\+\_\+type}), intent(in)}]{grid,  }\item[{type(\hyperlink{structgrid__vars_1_1grid__type}{grid\+\_\+type}), intent(inout)}]{grid\+\_\+out,  }\item[{logical, intent(in), optional}]{no\+\_\+outer\+\_\+trim }\end{DoxyParamCaption})}
+
+
+
+Redistribute a grid to match the normal distribution of solution grid. 
+
+The routine first calculates the smallest eq range that comprises the sol range. Then, it gets the lowest equilibrium limits able to setup an output grid that starts at index 1. After determining the output grid, it then sends the variables to their new processes using M\+PI.
+
+\begin{DoxyNote}{Note}
+
+\begin{DoxyEnumerate}
+\item Only the Flux variables are saved.
+\item the redistributed grid has trimmed outer limits, i.\+e. it starts at 1 and ends at the upper limit of the last process. This can be turned off optionally using {\ttfamily no\+\_\+outer\+\_\+trim}.
+\end{DoxyEnumerate}
+\end{DoxyNote}
+\begin{DoxyReturn}{Returns}
+ierr
+\end{DoxyReturn}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em grid} & equilibrium grid variables\\
+\hline
+\mbox{\tt in,out}  & {\em grid\+\_\+out} & redistributed equilibrium grid variables\\
+\hline
+\mbox{\tt in}  & {\em no\+\_\+outer\+\_\+trim} & do not trim the outer limits \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 991 of file grid\+\_\+ops.\+f90.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespacegrid__ops_ab10ef5b486ee3861df2da4e53bc22630_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespacegrid__ops_ab10ef5b486ee3861df2da4e53bc22630_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{namespacegrid__ops_af63366847d1caa64a7d329672292fd34}\label{namespacegrid__ops_af63366847d1caa64a7d329672292fd34}} 
+\index{grid\+\_\+ops@{grid\+\_\+ops}!setup\+\_\+grid\+\_\+eq@{setup\+\_\+grid\+\_\+eq}}
+\index{setup\+\_\+grid\+\_\+eq@{setup\+\_\+grid\+\_\+eq}!grid\+\_\+ops@{grid\+\_\+ops}}
+\subsubsection{\texorpdfstring{setup\+\_\+grid\+\_\+eq()}{setup\_grid\_eq()}}
+{\footnotesize\ttfamily integer function, public grid\+\_\+ops\+::setup\+\_\+grid\+\_\+eq (\begin{DoxyParamCaption}\item[{type(\hyperlink{structgrid__vars_1_1grid__type}{grid\+\_\+type}), intent(inout)}]{grid\+\_\+eq,  }\item[{integer, dimension(2), intent(in)}]{eq\+\_\+limits }\end{DoxyParamCaption})}
+
+
+
+Sets up the equilibrium grid. 
+
+The following variables are calculated\+:
+\begin{DoxyItemize}
+\item equilibrium variables (eq)
+\item perturbation variables (X)
+\end{DoxyItemize}
+
+For the implementation of the equilibrium grid the normal part of the grid is always given by the output of the equilibrium code, but the angular part depends on the style\+:
+\begin{DoxyItemize}
+\item V\+M\+EC\+: The output is analytic in the angular coordinates, so field-\/aligned coordinates are used. Later, in \hyperlink{namespacegrid__ops_a06107dbdfd1dd62e372cc29ab0255bad}{calc\+\_\+ang\+\_\+grid\+\_\+eq\+\_\+b()}, the angular variables are calculated.
+\item H\+E\+L\+E\+NA\+: The output is given on a poloidal grid (no toroidal dependency due to axisymmetry), which is used.
+\end{DoxyItemize}
+
+\begin{DoxyReturn}{Returns}
+ierr
+\end{DoxyReturn}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in,out}  & {\em grid\+\_\+eq} & equilibrium grid\\
+\hline
+\mbox{\tt in}  & {\em eq\+\_\+limits} & min. and max. index of eq grid of this process \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 528 of file grid\+\_\+ops.\+f90.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespacegrid__ops_af63366847d1caa64a7d329672292fd34_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespacegrid__ops_af63366847d1caa64a7d329672292fd34_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{namespacegrid__ops_ad16495ddd320562451c2325bafecf2d8}\label{namespacegrid__ops_ad16495ddd320562451c2325bafecf2d8}} 
+\index{grid\+\_\+ops@{grid\+\_\+ops}!setup\+\_\+grid\+\_\+eq\+\_\+b@{setup\+\_\+grid\+\_\+eq\+\_\+b}}
+\index{setup\+\_\+grid\+\_\+eq\+\_\+b@{setup\+\_\+grid\+\_\+eq\+\_\+b}!grid\+\_\+ops@{grid\+\_\+ops}}
+\subsubsection{\texorpdfstring{setup\+\_\+grid\+\_\+eq\+\_\+b()}{setup\_grid\_eq\_b()}}
+{\footnotesize\ttfamily integer function, public grid\+\_\+ops\+::setup\+\_\+grid\+\_\+eq\+\_\+b (\begin{DoxyParamCaption}\item[{type(\hyperlink{structgrid__vars_1_1grid__type}{grid\+\_\+type}), intent(inout)}]{grid\+\_\+eq,  }\item[{type(\hyperlink{structgrid__vars_1_1grid__type}{grid\+\_\+type}), intent(inout)}]{grid\+\_\+eq\+\_\+B,  }\item[{type(\hyperlink{structeq__vars_1_1eq__1__type}{eq\+\_\+1\+\_\+type}), intent(in)}]{eq,  }\item[{logical, intent(in), optional}]{only\+\_\+half\+\_\+grid }\end{DoxyParamCaption})}
+
+
+
+Sets up the field-\/aligned equilibrium grid. 
+
+This serves as a bridge to the solution grid, as it contains the same normal coordinate as the general grid, but the angular coordinates are defined by the solution grid.
+
+Optionally, only half the grid can be calculated (i.\+e. only the even points), which is used for Richardson levels greater than 1.
+
+\begin{DoxyNote}{Note}
+In contrast to {\ttfamily setup\+\_\+grid\+\_\+eq}, the angular coordinates are also calculated here.
+\end{DoxyNote}
+\begin{DoxyReturn}{Returns}
+ierr
+\end{DoxyReturn}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in,out}  & {\em grid\+\_\+eq} & general equilibrium grid\\
+\hline
+\mbox{\tt in,out}  & {\em grid\+\_\+eq\+\_\+b} & field-\/aligned equilibrium grid\\
+\hline
+\mbox{\tt in}  & {\em eq} & flux equilibrium variables\\
+\hline
+\mbox{\tt in}  & {\em only\+\_\+half\+\_\+grid} & calculate only half grid with even points \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 600 of file grid\+\_\+ops.\+f90.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespacegrid__ops_ad16495ddd320562451c2325bafecf2d8_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespacegrid__ops_ad16495ddd320562451c2325bafecf2d8_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{namespacegrid__ops_aeff1569cb9a043b03ed49250524fbd95}\label{namespacegrid__ops_aeff1569cb9a043b03ed49250524fbd95}} 
+\index{grid\+\_\+ops@{grid\+\_\+ops}!setup\+\_\+grid\+\_\+sol@{setup\+\_\+grid\+\_\+sol}}
+\index{setup\+\_\+grid\+\_\+sol@{setup\+\_\+grid\+\_\+sol}!grid\+\_\+ops@{grid\+\_\+ops}}
+\subsubsection{\texorpdfstring{setup\+\_\+grid\+\_\+sol()}{setup\_grid\_sol()}}
+{\footnotesize\ttfamily integer function, public grid\+\_\+ops\+::setup\+\_\+grid\+\_\+sol (\begin{DoxyParamCaption}\item[{type(\hyperlink{structgrid__vars_1_1grid__type}{grid\+\_\+type}), intent(in)}]{grid\+\_\+eq,  }\item[{type(\hyperlink{structgrid__vars_1_1grid__type}{grid\+\_\+type}), intent(in)}]{grid\+\_\+X,  }\item[{type(\hyperlink{structgrid__vars_1_1grid__type}{grid\+\_\+type}), intent(inout)}]{grid\+\_\+sol,  }\item[{real(dp), dimension(\+:), intent(in)}]{r\+\_\+\+F\+\_\+sol,  }\item[{integer, dimension(2), intent(in)}]{sol\+\_\+limits }\end{DoxyParamCaption})}
+
+
+
+Sets up the general solution grid, in which the solution variables are calculated. 
+
+For the solution grid, only one parallel point is used, but possibly multiple geodesic points, equal to the number of field lines, {\ttfamily n\+\_\+alpha}.
+
+\begin{DoxyReturn}{Returns}
+ierr
+\end{DoxyReturn}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em grid\+\_\+eq} & equilibrium grid\\
+\hline
+\mbox{\tt in}  & {\em grid\+\_\+x} & perturbation grid\\
+\hline
+\mbox{\tt in,out}  & {\em grid\+\_\+sol} & solution grid\\
+\hline
+\mbox{\tt in}  & {\em r\+\_\+f\+\_\+sol} & points of solution grid\\
+\hline
+\mbox{\tt in}  & {\em sol\+\_\+limits} & min. and max. index of sol grid of this process \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 727 of file grid\+\_\+ops.\+f90.
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespacegrid__ops_aeff1569cb9a043b03ed49250524fbd95_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{namespacegrid__ops_a1047889ec84da6e56aae619570a16988}\label{namespacegrid__ops_a1047889ec84da6e56aae619570a16988}} 
+\index{grid\+\_\+ops@{grid\+\_\+ops}!setup\+\_\+grid\+\_\+x@{setup\+\_\+grid\+\_\+x}}
+\index{setup\+\_\+grid\+\_\+x@{setup\+\_\+grid\+\_\+x}!grid\+\_\+ops@{grid\+\_\+ops}}
+\subsubsection{\texorpdfstring{setup\+\_\+grid\+\_\+x()}{setup\_grid\_x()}}
+{\footnotesize\ttfamily integer function, public grid\+\_\+ops\+::setup\+\_\+grid\+\_\+x (\begin{DoxyParamCaption}\item[{type(\hyperlink{structgrid__vars_1_1grid__type}{grid\+\_\+type}), intent(in)}]{grid\+\_\+eq,  }\item[{type(\hyperlink{structgrid__vars_1_1grid__type}{grid\+\_\+type}), intent(inout)}]{grid\+\_\+X,  }\item[{real(dp), dimension(\+:), intent(in), allocatable}]{r\+\_\+\+F\+\_\+X,  }\item[{integer, dimension(2), intent(in)}]{X\+\_\+limits }\end{DoxyParamCaption})}
+
+
+
+Sets up the general perturbation grid, in which the perturbation variables are calculated. 
+
+For {\ttfamily X\+\_\+grid\+\_\+style} 1, this grid is identical to the equilibrium grid, and for {\ttfamily X\+\_\+grid\+\_\+style} 2,it has the same angular extent but with different normal points, indicated by the variable {\ttfamily r\+\_\+\+F\+\_\+X}.
+
+\begin{DoxyReturn}{Returns}
+ierr
+\end{DoxyReturn}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em grid\+\_\+eq} & equilibrium grid\\
+\hline
+\mbox{\tt in,out}  & {\em grid\+\_\+x} & perturbation grid\\
+\hline
+\mbox{\tt in}  & {\em r\+\_\+f\+\_\+x} & points of perturbation grid\\
+\hline
+\mbox{\tt in}  & {\em x\+\_\+limits} & min. and max. index of perturbation grid of this process \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 654 of file grid\+\_\+ops.\+f90.
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespacegrid__ops_a1047889ec84da6e56aae619570a16988_icgraph}
+\end{center}
+\end{figure}
+
+
+\subsection{Variable Documentation}
+\mbox{\Hypertarget{namespacegrid__ops_ad043ab1b07b2d251bb7596b8c8d2f960}\label{namespacegrid__ops_ad043ab1b07b2d251bb7596b8c8d2f960}} 
+\index{grid\+\_\+ops@{grid\+\_\+ops}!debug\+\_\+calc\+\_\+ang\+\_\+grid\+\_\+eq\+\_\+b@{debug\+\_\+calc\+\_\+ang\+\_\+grid\+\_\+eq\+\_\+b}}
+\index{debug\+\_\+calc\+\_\+ang\+\_\+grid\+\_\+eq\+\_\+b@{debug\+\_\+calc\+\_\+ang\+\_\+grid\+\_\+eq\+\_\+b}!grid\+\_\+ops@{grid\+\_\+ops}}
+\subsubsection{\texorpdfstring{debug\+\_\+calc\+\_\+ang\+\_\+grid\+\_\+eq\+\_\+b}{debug\_calc\_ang\_grid\_eq\_b}}
+{\footnotesize\ttfamily logical, public grid\+\_\+ops\+::debug\+\_\+calc\+\_\+ang\+\_\+grid\+\_\+eq\+\_\+b = .false.}
+
+
+
+plot debug information for \hyperlink{namespacegrid__ops_a06107dbdfd1dd62e372cc29ab0255bad}{calc\+\_\+ang\+\_\+grid\+\_\+eq\+\_\+b()} 
+
+\begin{DoxyNote}{Note}
+Debug version only 
+\end{DoxyNote}
+
+
+Definition at line 25 of file grid\+\_\+ops.\+f90.
+
