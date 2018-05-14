@@ -3,7 +3,7 @@ var menudata={children:[
 {text:"Documentation",url:"pages.html",children:[
 {text:"List of Documentation Pages",url:"pages.html"},
 {text:"List of examples",url:"examples.html"},
-{text:"pdf Manual",url:"https://toonweyens.github.io/PB3D/PB3D_manual.pdf"}]},
+{text:"pdf Manual",url:"https://pb3d.github.io/PB3D_manual.pdf"}]},
 {text:"Modules",url:"namespaces.html",children:[
 {text:"Modules List",url:"namespaces.html"},
 {text:"PB3D",url:"PB3D_8f90.html"},
@@ -84,5 +84,6 @@ var menudata={children:[
 {text:"z",url:"namespacemembers_vars_z.html#index_z"}]}]},
 {text:"Tutorial",url:"page_tutorial.html"},
 {text:"FAQ",url:"page_faq.html"},
-{text:"PB3D Home",url:"https://toonweyens.github.io/PB3D/"},
-{text:"Contact",url:"https://toonweyens.github.io/PB3D/contact.html"}]}
+{text:"PB3D Home",url:"https://pb3d.github.io/"},
+{text:"Source",url:"https://github.com/ToonWeyens/PB3D"},
+{text:"Author",url:"https://toonweyens.github.io/"}]}

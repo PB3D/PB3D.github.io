@@ -15,7 +15,7 @@ integer function \hyperlink{namespacehelena__ops_ab1329afe5af2ff92d96f4be15a096b
 integer function, public \hyperlink{namespacehelena__ops_a7796861de18ae7ac9c3aa07a8628be38}{interp\+\_\+hel\+\_\+on\+\_\+grid} (grid\+\_\+in, grid\+\_\+out, eq\+\_\+2, X\+\_\+1, X\+\_\+2, eq\+\_\+2\+\_\+out, X\+\_\+1\+\_\+out, X\+\_\+2\+\_\+out, eq\+\_\+1, grid\+\_\+name)
 \begin{DoxyCompactList}\small\item\em Interpolate variables resulting from H\+E\+L\+E\+NA equilibria to another grid (angularly). \end{DoxyCompactList}\item 
 integer function, public \hyperlink{namespacehelena__ops_a0f156b3653264fb016d6d311eb59114c}{test\+\_\+metrics\+\_\+h} ()
-\begin{DoxyCompactList}\small\item\em Checks whether the metric elements provided by H\+E\+L\+E\+NA are consistent with a direct calculation using the coordinate transformations {\bfseries [Weyens3D]}. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Checks whether the metric elements provided by H\+E\+L\+E\+NA are consistent with a direct calculation using the coordinate transformations \cite{Weyens3D}. \end{DoxyCompactList}\item 
 integer function, public \hyperlink{namespacehelena__ops_a83f2ad5dc967c7bae287b60fddb8eb0a}{test\+\_\+harm\+\_\+cont\+\_\+h} ()
 \begin{DoxyCompactList}\small\item\em Investaige harmonic content of the H\+E\+L\+E\+NA variables. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
@@ -113,7 +113,7 @@ Also, a message can be printed if a grid name is passed.
 \begin{DoxyNote}{Note}
 
 \begin{DoxyEnumerate}
-\item The metric coefficients are interpolated and then compensated for the straight-\/field-\/line coordinates as in {\bfseries [Weyens3D]} .
+\item The metric coefficients are interpolated and then compensated for the straight-\/field-\/line coordinates as in \cite{Weyens3D} .
 \item By default the interpolated quantities overwrite the original ones, but alternative output variables can be provided.
 \item as the equilibrium and perturbation grid are not generally identical, this routine has to be called separately for the variables tabulated in either grid.
 \end{DoxyEnumerate}
@@ -296,7 +296,7 @@ Here is the caller graph for this function\+:\nopagebreak
 
 
 
-Checks whether the metric elements provided by H\+E\+L\+E\+NA are consistent with a direct calculation using the coordinate transformations {\bfseries [Weyens3D]}. 
+Checks whether the metric elements provided by H\+E\+L\+E\+NA are consistent with a direct calculation using the coordinate transformations \cite{Weyens3D}. 
 
 Direct calculations used\+: \[\begin{aligned} \left|\nabla \psi\right|^2 &= \frac{1}{\mathcal{J}^2} \left(\left(\frac{\partial Z}{\partial \chi}\right)^2 + \left(\frac{\partial R}{\partial \chi}\right)^2\right) \\ \left|\nabla \psi \cdot \nabla \chi\right| &= \frac{1}{\mathcal{J}^2} \left( \frac{\partial Z}{\partial \chi} \frac{\partial Z}{\partial \psi} - \frac{\partial R}{\partial \chi} \frac{\partial R}{\partial \psi} \right) \\ \left|\nabla \chi\right|^2 &= \frac{1}{\mathcal{J}^2} \left(\left(\frac{\partial Z}{\partial \psi}\right)^2 + \left(\frac{\partial R}{\partial \psi}\right)^2\right) \\ \left|\nabla \phi\right|^2 &= \frac{1}{R^2} \end{aligned}\] with \[\mathcal{J} = \frac{\partial Z}{\partial \psi} \frac{\partial R}{\partial \chi} - \frac{\partial R}{\partial \psi} \frac{\partial Z}{\partial \chi}\]
 
