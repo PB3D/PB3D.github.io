@@ -1,16 +1,29 @@
 \hypertarget{namespacenum__ops}{}\section{num\+\_\+ops Module Reference}
 \label{namespacenum__ops}\index{num\+\_\+ops@{num\+\_\+ops}}
+
+
+Numerical operations.  
+
+
+\subsection*{Interfaces and Types}
+\begin{DoxyCompactItemize}
+\item 
+interface \hyperlink{interfacenum__ops_1_1calc__zero__hh}{calc\+\_\+zero\+\_\+hh}
+\begin{DoxyCompactList}\small\item\em Finds the zero of a function using Householder iteration. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Functions/\+Subroutines}
 \begin{DoxyCompactItemize}
 \item 
 character(len=max\+\_\+str\+\_\+ln) function, public \hyperlink{namespacenum__ops_adcc4eacf15c931744316a004f4448b90}{calc\+\_\+zero\+\_\+zhang} (zero, fun, x\+\_\+int\+\_\+in)
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Finds the zero of a function using Zhang\textquotesingle{}s method, which is simpler than Brent\textquotesingle{}s method. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Variables}
 \begin{DoxyCompactItemize}
 \item 
 logical, public \hyperlink{namespacenum__ops_aca06cb91f215c46429e23fbaf8611e5a}{debug\+\_\+calc\+\_\+zero} = .false.
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em plot debug information for calc\+\_\+zero \end{DoxyCompactList}\end{DoxyCompactItemize}
 
+
+\subsection{Detailed Description}
+Numerical operations. 
 
 \subsection{Function/\+Subroutine Documentation}
 \mbox{\Hypertarget{namespacenum__ops_adcc4eacf15c931744316a004f4448b90}\label{namespacenum__ops_adcc4eacf15c931744316a004f4448b90}} 
@@ -21,18 +34,45 @@ logical, public \hyperlink{namespacenum__ops_aca06cb91f215c46429e23fbaf8611e5a}{
 
 
 
-Definition at line 374 of file num\+\_\+ops.\+f90.
+Finds the zero of a function using Zhang\textquotesingle{}s method, which is simpler than Brent\textquotesingle{}s method. 
 
-Here is the call graph for this function\+:
-\nopagebreak
+Taken from from Steven Stage\textquotesingle{}s correction of Zhang\textquotesingle{}s paper \cite{zhang2011improvement}.
+
+Unlike Householder, Zhang\textquotesingle{}s method needs an interval {\ttfamily x\+\_\+int\+\_\+in} to work in, not a guess. Also, it does not require the derivative of the function.
+
+The routine returns an error message if no zero is found, and which is empty otherwise.
+
+\begin{DoxyNote}{Note}
+The interval {\ttfamily x\+\_\+int\+\_\+in} needs to be so that the function values at either end are of different value. 
+\end{DoxyNote}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in,out}  & {\em fun} & {\ttfamily fun(x)} with
+\begin{DoxyItemize}
+\item {\ttfamily x} abscissa
+\item {\ttfamily fun} ordinate
+\end{DoxyItemize}\\
+\hline
+\mbox{\tt in,out}  & {\em zero} & output\\
+\hline
+\mbox{\tt in}  & {\em x\+\_\+int\+\_\+in} & interval\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+possible error message 
+\end{DoxyReturn}
+
+
+Definition at line 462 of file num\+\_\+ops.\+f90.
+
+Here is the call graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{namespacenum__ops_adcc4eacf15c931744316a004f4448b90_cgraph}
 \end{center}
 \end{figure}
-Here is the caller graph for this function\+:
-\nopagebreak
+Here is the caller graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -50,5 +90,12 @@ Here is the caller graph for this function\+:
 
 
 
-Definition at line 21 of file num\+\_\+ops.\+f90.
+plot debug information for calc\+\_\+zero 
+
+\begin{DoxyNote}{Note}
+Debug version only 
+\end{DoxyNote}
+
+
+Definition at line 22 of file num\+\_\+ops.\+f90.
 

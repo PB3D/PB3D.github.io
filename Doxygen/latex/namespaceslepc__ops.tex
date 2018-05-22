@@ -1,184 +1,454 @@
 \hypertarget{namespaceslepc__ops}{}\section{slepc\+\_\+ops Module Reference}
 \label{namespaceslepc__ops}\index{slepc\+\_\+ops@{slepc\+\_\+ops}}
+
+
+Operations that use S\+L\+E\+PC (and P\+E\+T\+SC) routines.  
+
+
 \subsection*{Functions/\+Subroutines}
 \begin{DoxyCompactItemize}
 \item 
-integer function, public \hyperlink{namespaceslepc__ops_ad9d4a9b7275ac5a6b9b35e481a7c1710}{solve\+\_\+ev\+\_\+system\+\_\+slepc} (grid\+\_\+X, grid\+\_\+sol, X, sol, i\+\_\+geo)
-\item 
-integer function \hyperlink{namespaceslepc__ops_a5f69f9325197c270c7975f01360a9648}{start\+\_\+slepc} (n\+\_\+r\+\_\+sol)
-\item 
-integer function \hyperlink{namespaceslepc__ops_af8aa2b9b7c5154ebd595afce3f5ebcd0}{setup\+\_\+mats} (grid\+\_\+X, grid\+\_\+sol, X, A, B, i\+\_\+geo, norm\+\_\+disc\+\_\+coeff)
-\item 
-integer function \hyperlink{namespaceslepc__ops_a6f6de293e91e94dc92eb6eab0525a96e}{setup\+\_\+guess} (sol, A, solver)
-\item 
-integer function \hyperlink{namespaceslepc__ops_a66241540803bca208b2f3bd6b0448491}{store\+\_\+results} (grid\+\_\+sol, sol, solver, max\+\_\+n\+\_\+\+EV, A, B, step\+\_\+size)
-\item 
-integer function \hyperlink{namespaceslepc__ops_ae65ae217581e4b5986da87bc9a23acb8}{stop\+\_\+slepc} (A, B, solver)
-\end{DoxyCompactItemize}
+integer function, public \hyperlink{namespaceslepc__ops_a79c420987056c225931b51c8d30ece1f}{solve\+\_\+ev\+\_\+system\+\_\+slepc} (mds, grid\+\_\+sol, X, vac, sol)
+\begin{DoxyCompactList}\small\item\em Solve the eigenvalue system using S\+L\+E\+PC. \end{DoxyCompactList}\item 
+integer function, public \hyperlink{namespaceslepc__ops_a9cec5d9e8abc41d0d7ffb14352112040}{start\+\_\+slepc} (n\+\_\+r\+\_\+sol)
+\begin{DoxyCompactList}\small\item\em This subroutine starts P\+E\+T\+SC and S\+L\+E\+PC with the correct number of processors. \end{DoxyCompactList}\item 
+integer function, public \hyperlink{namespaceslepc__ops_aac8202cb74cbb06013eb73f1fa0c3118}{setup\+\_\+mats} (mds, grid\+\_\+sol, X, A, B)
+\begin{DoxyCompactList}\small\item\em Sets up the matrices $\overline{\text{A}}$ and $\overline{\text{B}}$ in the EV problem $ \overline{\text{A}} \vec{X} = \lambda \overline{\text{B}} \vec{X}. $. \end{DoxyCompactList}\item 
+integer function, public \hyperlink{namespaceslepc__ops_a05f8a23335ed47ad1996cddf3bcfdc2e}{set\+\_\+bc} (mds, grid\+\_\+sol, X, vac, A, B)
+\begin{DoxyCompactList}\small\item\em Sets the boundary conditions deep in the plasma (1) and at the edge (2). \end{DoxyCompactList}\item 
+integer function, public \hyperlink{namespaceslepc__ops_af2eb258cbc9d353b95fa71d38570afad}{setup\+\_\+solver} (X, A, B, solver)
+\begin{DoxyCompactList}\small\item\em Sets up EV solver. \end{DoxyCompactList}\item 
+integer function, public \hyperlink{namespaceslepc__ops_a17a57b58ac6ca48ff4bdb44e8689bb19}{setup\+\_\+guess} (sol, A, solver)
+\begin{DoxyCompactList}\small\item\em Sets up guess in solver. \end{DoxyCompactList}\item 
+integer function, public \hyperlink{namespaceslepc__ops_aabe2aef90f039316bf3f03e651a6e7e0}{get\+\_\+solution} (solver)
+\begin{DoxyCompactList}\small\item\em Get the solution vectors. \end{DoxyCompactList}\item 
+integer function, public \hyperlink{namespaceslepc__ops_a03193dbc55e7061891d58e96a2bf1dd5}{summarize\+\_\+solution} (solver, max\+\_\+n\+\_\+\+EV)
+\begin{DoxyCompactList}\small\item\em Summarizes solution. \end{DoxyCompactList}\item 
+integer function, public \hyperlink{namespaceslepc__ops_a24d97496000ed55f1d11e4d436e084a6}{store\+\_\+results} (mds, grid\+\_\+sol, sol, solver, max\+\_\+n\+\_\+\+EV, A, B)
+\begin{DoxyCompactList}\small\item\em Stores the results. \end{DoxyCompactList}\item 
+integer function, public \hyperlink{namespaceslepc__ops_aeeac6908b3988f395314e7769829a058}{stop\+\_\+slepc} (A, B, solver)
+\begin{DoxyCompactList}\small\item\em Stop P\+E\+T\+SC and S\+L\+E\+PC. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Variables}
 \begin{DoxyCompactItemize}
 \item 
 logical, public \hyperlink{namespaceslepc__ops_aff5aa0d485bc34e2f6e320172fcc4ccb}{debug\+\_\+setup\+\_\+mats} = .false.
-\item 
+\begin{DoxyCompactList}\small\item\em plot debug information for setup\+\_\+mats \end{DoxyCompactList}\item 
 logical, public \hyperlink{namespaceslepc__ops_ad57b5fd70608c1b97454963bdd1c4f5b}{debug\+\_\+set\+\_\+bc} = .false.
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em plot debug information for set\+\_\+\+BC \end{DoxyCompactList}\item 
+logical, public \hyperlink{namespaceslepc__ops_a57d0ef4131e939894b34bb07e30e631b}{test\+\_\+diff} = .false.
+\begin{DoxyCompactList}\small\item\em test introduction of numerical diff \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Operations that use S\+L\+E\+PC (and P\+E\+T\+SC) routines. 
+
+\begin{DoxyNote}{Note}
+The routines here require a {\bfseries T\+R\+I\+M\+M\+ED} solution grid! 
+\end{DoxyNote}
+\begin{DoxySeeAlso}{See also}
+References\+: \cite{Hernandez2005slepc} 
+\end{DoxySeeAlso}
 
 
 \subsection{Function/\+Subroutine Documentation}
-\mbox{\Hypertarget{namespaceslepc__ops_a6f6de293e91e94dc92eb6eab0525a96e}\label{namespaceslepc__ops_a6f6de293e91e94dc92eb6eab0525a96e}} 
+\mbox{\Hypertarget{namespaceslepc__ops_aabe2aef90f039316bf3f03e651a6e7e0}\label{namespaceslepc__ops_aabe2aef90f039316bf3f03e651a6e7e0}} 
+\index{slepc\+\_\+ops@{slepc\+\_\+ops}!get\+\_\+solution@{get\+\_\+solution}}
+\index{get\+\_\+solution@{get\+\_\+solution}!slepc\+\_\+ops@{slepc\+\_\+ops}}
+\subsubsection{\texorpdfstring{get\+\_\+solution()}{get\_solution()}}
+{\footnotesize\ttfamily integer function, public slepc\+\_\+ops\+::get\+\_\+solution (\begin{DoxyParamCaption}\item[{intent(inout)}]{solver }\end{DoxyParamCaption})}
+
+
+
+Get the solution vectors. 
+
+\begin{DoxyReturn}{Returns}
+ierr 
+\end{DoxyReturn}
+
+
+Definition at line 1521 of file S\+L\+E\+P\+C\+\_\+ops.\+f90.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespaceslepc__ops_aabe2aef90f039316bf3f03e651a6e7e0_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespaceslepc__ops_aabe2aef90f039316bf3f03e651a6e7e0_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{namespaceslepc__ops_a05f8a23335ed47ad1996cddf3bcfdc2e}\label{namespaceslepc__ops_a05f8a23335ed47ad1996cddf3bcfdc2e}} 
+\index{slepc\+\_\+ops@{slepc\+\_\+ops}!set\+\_\+bc@{set\+\_\+bc}}
+\index{set\+\_\+bc@{set\+\_\+bc}!slepc\+\_\+ops@{slepc\+\_\+ops}}
+\subsubsection{\texorpdfstring{set\+\_\+bc()}{set\_bc()}}
+{\footnotesize\ttfamily integer function, public slepc\+\_\+ops\+::set\+\_\+bc (\begin{DoxyParamCaption}\item[{type(modes\+\_\+type), intent(in)}]{mds,  }\item[{type(\hyperlink{structgrid__vars_1_1grid__type}{grid\+\_\+type}), intent(in)}]{grid\+\_\+sol,  }\item[{type(x\+\_\+2\+\_\+type), intent(in)}]{X,  }\item[{type(\hyperlink{structvac__vars_1_1vac__type}{vac\+\_\+type}), intent(in)}]{vac,  }\item[{intent(inout)}]{A,  }\item[{intent(inout)}]{B }\end{DoxyParamCaption})}
+
+
+
+Sets the boundary conditions deep in the plasma (1) and at the edge (2). 
+
+Through {\ttfamily norm\+\_\+disc\+\_\+style\+\_\+sol} it can be chosen whether the finite differences are\+:
+\begin{DoxyEnumerate}
+\item central finite differences
+\item left finite differences
+\end{DoxyEnumerate}
+
+Possibilities for {\ttfamily B\+C\+\_\+style\+:} 
+\begin{DoxyEnumerate}
+\item Set to zero\+:
+\begin{DoxyItemize}
+\item An artificial Eigenvalue {\ttfamily E\+V\+\_\+\+BC} is introduced by setting the diagonal components of A to E\+V\+\_\+\+BC and of B to 1, and the off-\/diagonal elements to zero.
+\end{DoxyItemize}
+\item Minimization of surface energy through asymmetric fin. differences\+:
+\begin{DoxyItemize}
+\item For symmetric finite differences, the last {\ttfamily ndps} grid points are treated asymmetrically in order not go over the edge and the vacuum term is added to the edge element.
+\item For left differences, this is already standard, so the method becomes identical to 2.
+\end{DoxyItemize}
+\item Minimization of surface energy through extension of grid\+:
+\begin{DoxyItemize}
+\item For symmetric finite differences, {\ttfamily ndps} extra grid points are introduced after the edge and the vacuum term is added to the edge element.
+\item For left finite differences, the vacuum term is just added to the edge element, so this method becomes idential to 3.
+\end{DoxyItemize}
+\item Explicit introduction of the surface energy minimization\+:
+\begin{DoxyItemize}
+\item The equation due to the minimization of the vacuum term is introduced explicitely as an asymmetric finite difference equation in the last row. -\/\+This is done using left finite differences.
+\end{DoxyItemize}
+\end{DoxyEnumerate}
+
+\begin{DoxyReturn}{Returns}
+ierr
+\end{DoxyReturn}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em mds} & general modes variables\\
+\hline
+\mbox{\tt in}  & {\em grid\+\_\+sol} & solution grid\\
+\hline
+\mbox{\tt in}  & {\em x} & field-\/averaged perturbation variables (so only first index)\\
+\hline
+\mbox{\tt in}  & {\em vac} & vacuum variables \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 926 of file S\+L\+E\+P\+C\+\_\+ops.\+f90.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespaceslepc__ops_a05f8a23335ed47ad1996cddf3bcfdc2e_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespaceslepc__ops_a05f8a23335ed47ad1996cddf3bcfdc2e_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{namespaceslepc__ops_a17a57b58ac6ca48ff4bdb44e8689bb19}\label{namespaceslepc__ops_a17a57b58ac6ca48ff4bdb44e8689bb19}} 
 \index{slepc\+\_\+ops@{slepc\+\_\+ops}!setup\+\_\+guess@{setup\+\_\+guess}}
 \index{setup\+\_\+guess@{setup\+\_\+guess}!slepc\+\_\+ops@{slepc\+\_\+ops}}
 \subsubsection{\texorpdfstring{setup\+\_\+guess()}{setup\_guess()}}
-{\footnotesize\ttfamily integer function slepc\+\_\+ops\+::setup\+\_\+guess (\begin{DoxyParamCaption}\item[{type(sol\+\_\+type), intent(in)}]{sol,  }\item[{intent(in)}]{A,  }\item[{intent(inout)}]{solver }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily integer function, public slepc\+\_\+ops\+::setup\+\_\+guess (\begin{DoxyParamCaption}\item[{type(\hyperlink{structsol__vars_1_1sol__type}{sol\+\_\+type}), intent(in)}]{sol,  }\item[{intent(in)}]{A,  }\item[{intent(inout)}]{solver }\end{DoxyParamCaption})}
 
 
 
-Definition at line 1490 of file S\+L\+E\+P\+C\+\_\+ops.\+f90.
+Sets up guess in solver. 
 
-Here is the call graph for this function\+:
-\nopagebreak
+\begin{DoxyReturn}{Returns}
+ierr
+\end{DoxyReturn}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em sol} & solution variables \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 1444 of file S\+L\+E\+P\+C\+\_\+ops.\+f90.
+
+Here is the call graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=350pt]{namespaceslepc__ops_a6f6de293e91e94dc92eb6eab0525a96e_cgraph}
+\includegraphics[width=350pt]{namespaceslepc__ops_a17a57b58ac6ca48ff4bdb44e8689bb19_cgraph}
 \end{center}
 \end{figure}
-Here is the caller graph for this function\+:
-\nopagebreak
+Here is the caller graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=350pt]{namespaceslepc__ops_a6f6de293e91e94dc92eb6eab0525a96e_icgraph}
+\includegraphics[width=350pt]{namespaceslepc__ops_a17a57b58ac6ca48ff4bdb44e8689bb19_icgraph}
 \end{center}
 \end{figure}
-\mbox{\Hypertarget{namespaceslepc__ops_af8aa2b9b7c5154ebd595afce3f5ebcd0}\label{namespaceslepc__ops_af8aa2b9b7c5154ebd595afce3f5ebcd0}} 
+\mbox{\Hypertarget{namespaceslepc__ops_aac8202cb74cbb06013eb73f1fa0c3118}\label{namespaceslepc__ops_aac8202cb74cbb06013eb73f1fa0c3118}} 
 \index{slepc\+\_\+ops@{slepc\+\_\+ops}!setup\+\_\+mats@{setup\+\_\+mats}}
 \index{setup\+\_\+mats@{setup\+\_\+mats}!slepc\+\_\+ops@{slepc\+\_\+ops}}
 \subsubsection{\texorpdfstring{setup\+\_\+mats()}{setup\_mats()}}
-{\footnotesize\ttfamily integer function slepc\+\_\+ops\+::setup\+\_\+mats (\begin{DoxyParamCaption}\item[{type(grid\+\_\+type), intent(in)}]{grid\+\_\+X,  }\item[{type(grid\+\_\+type), intent(in)}]{grid\+\_\+sol,  }\item[{type(x\+\_\+2\+\_\+type), intent(in), target}]{X,  }\item[{intent(inout)}]{A,  }\item[{intent(inout)}]{B,  }\item[{integer, intent(in)}]{i\+\_\+geo,  }\item[{dimension(\+:), intent(in)}]{norm\+\_\+disc\+\_\+coeff }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily integer function, public slepc\+\_\+ops\+::setup\+\_\+mats (\begin{DoxyParamCaption}\item[{type(modes\+\_\+type), intent(in)}]{mds,  }\item[{type(\hyperlink{structgrid__vars_1_1grid__type}{grid\+\_\+type}), intent(in)}]{grid\+\_\+sol,  }\item[{type(x\+\_\+2\+\_\+type), intent(in), target}]{X,  }\item[{intent(inout)}]{A,  }\item[{intent(inout)}]{B }\end{DoxyParamCaption})}
 
 
 
-Definition at line 446 of file S\+L\+E\+P\+C\+\_\+ops.\+f90.
+Sets up the matrices $\overline{\text{A}}$ and $\overline{\text{B}}$ in the EV problem $ \overline{\text{A}} \vec{X} = \lambda \overline{\text{B}} \vec{X}. $. 
 
-Here is the call graph for this function\+:
-\nopagebreak
+The matrices are set up in the solution grid, so some processes might not have any part in the storage thereof (if {\ttfamily sol\+\_\+n\+\_\+procs} $<$ {\ttfamily n\+\_\+procs}), but each process sets up the part of the grid that corresponds to their own normal range in the solution grid.
+
+\begin{DoxyReturn}{Returns}
+ierr
+\end{DoxyReturn}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em mds} & general modes variables\\
+\hline
+\mbox{\tt in}  & {\em grid\+\_\+sol} & solution grid\\
+\hline
+\mbox{\tt in}  & {\em x} & field-\/averaged perturbation variables (so only first index) \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 404 of file S\+L\+E\+P\+C\+\_\+ops.\+f90.
+
+Here is the call graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=350pt]{namespaceslepc__ops_af8aa2b9b7c5154ebd595afce3f5ebcd0_cgraph}
+\includegraphics[width=350pt]{namespaceslepc__ops_aac8202cb74cbb06013eb73f1fa0c3118_cgraph}
 \end{center}
 \end{figure}
-Here is the caller graph for this function\+:
-\nopagebreak
+Here is the caller graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=350pt]{namespaceslepc__ops_af8aa2b9b7c5154ebd595afce3f5ebcd0_icgraph}
+\includegraphics[width=350pt]{namespaceslepc__ops_aac8202cb74cbb06013eb73f1fa0c3118_icgraph}
 \end{center}
 \end{figure}
-\mbox{\Hypertarget{namespaceslepc__ops_ad9d4a9b7275ac5a6b9b35e481a7c1710}\label{namespaceslepc__ops_ad9d4a9b7275ac5a6b9b35e481a7c1710}} 
+\mbox{\Hypertarget{namespaceslepc__ops_af2eb258cbc9d353b95fa71d38570afad}\label{namespaceslepc__ops_af2eb258cbc9d353b95fa71d38570afad}} 
+\index{slepc\+\_\+ops@{slepc\+\_\+ops}!setup\+\_\+solver@{setup\+\_\+solver}}
+\index{setup\+\_\+solver@{setup\+\_\+solver}!slepc\+\_\+ops@{slepc\+\_\+ops}}
+\subsubsection{\texorpdfstring{setup\+\_\+solver()}{setup\_solver()}}
+{\footnotesize\ttfamily integer function, public slepc\+\_\+ops\+::setup\+\_\+solver (\begin{DoxyParamCaption}\item[{type(x\+\_\+2\+\_\+type), intent(in)}]{X,  }\item[{intent(inout)}]{A,  }\item[{intent(inout)}]{B,  }\item[{intent(inout)}]{solver }\end{DoxyParamCaption})}
+
+
+
+Sets up EV solver. 
+
+\begin{DoxyReturn}{Returns}
+ierr
+\end{DoxyReturn}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em x} & field-\/averaged perturbation variables (so only first index) \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 1317 of file S\+L\+E\+P\+C\+\_\+ops.\+f90.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespaceslepc__ops_af2eb258cbc9d353b95fa71d38570afad_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespaceslepc__ops_af2eb258cbc9d353b95fa71d38570afad_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{namespaceslepc__ops_a79c420987056c225931b51c8d30ece1f}\label{namespaceslepc__ops_a79c420987056c225931b51c8d30ece1f}} 
 \index{slepc\+\_\+ops@{slepc\+\_\+ops}!solve\+\_\+ev\+\_\+system\+\_\+slepc@{solve\+\_\+ev\+\_\+system\+\_\+slepc}}
 \index{solve\+\_\+ev\+\_\+system\+\_\+slepc@{solve\+\_\+ev\+\_\+system\+\_\+slepc}!slepc\+\_\+ops@{slepc\+\_\+ops}}
 \subsubsection{\texorpdfstring{solve\+\_\+ev\+\_\+system\+\_\+slepc()}{solve\_ev\_system\_slepc()}}
-{\footnotesize\ttfamily integer function, public slepc\+\_\+ops\+::solve\+\_\+ev\+\_\+system\+\_\+slepc (\begin{DoxyParamCaption}\item[{type(grid\+\_\+type), intent(in)}]{grid\+\_\+X,  }\item[{type(grid\+\_\+type), intent(in)}]{grid\+\_\+sol,  }\item[{type(x\+\_\+2\+\_\+type), intent(in)}]{X,  }\item[{type(sol\+\_\+type), intent(inout)}]{sol,  }\item[{integer, intent(in), optional}]{i\+\_\+geo }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily integer function, public slepc\+\_\+ops\+::solve\+\_\+ev\+\_\+system\+\_\+slepc (\begin{DoxyParamCaption}\item[{type(modes\+\_\+type), intent(in)}]{mds,  }\item[{type(\hyperlink{structgrid__vars_1_1grid__type}{grid\+\_\+type}), intent(in)}]{grid\+\_\+sol,  }\item[{type(x\+\_\+2\+\_\+type), intent(in)}]{X,  }\item[{type(\hyperlink{structvac__vars_1_1vac__type}{vac\+\_\+type}), intent(in)}]{vac,  }\item[{type(\hyperlink{structsol__vars_1_1sol__type}{sol\+\_\+type}), intent(inout)}]{sol }\end{DoxyParamCaption})}
 
 
 
-Definition at line 59 of file S\+L\+E\+P\+C\+\_\+ops.\+f90.
+Solve the eigenvalue system using S\+L\+E\+PC. 
 
-Here is the call graph for this function\+:
-\nopagebreak
+This subroutine sets up the matrices A ad B of the generalized EV system described in \cite{Weyens2017PB3D} and solves them using the S\+L\+E\+PC suite. The solutions closest to a target indicated by {\ttfamily E\+V\+\_\+guess} are obtained. \begin{DoxySeeAlso}{See also}
+\hyperlink{namespaceinput__ops_a434acca4f59f9dc1d91e04f846133684}{read\+\_\+input\+\_\+opts()}
+\end{DoxySeeAlso}
+\begin{DoxyReturn}{Returns}
+ierr
+\end{DoxyReturn}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em mds} & general modes variables\\
+\hline
+\mbox{\tt in}  & {\em grid\+\_\+sol} & solution grid\\
+\hline
+\mbox{\tt in}  & {\em x} & field-\/averaged perturbation variables (so only first index)\\
+\hline
+\mbox{\tt in}  & {\em vac} & vacuum variables\\
+\hline
+\mbox{\tt in,out}  & {\em sol} & solution variables \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 60 of file S\+L\+E\+P\+C\+\_\+ops.\+f90.
+
+Here is the call graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=350pt]{namespaceslepc__ops_ad9d4a9b7275ac5a6b9b35e481a7c1710_cgraph}
+\includegraphics[width=350pt]{namespaceslepc__ops_a79c420987056c225931b51c8d30ece1f_cgraph}
 \end{center}
 \end{figure}
-Here is the caller graph for this function\+:
-\nopagebreak
+Here is the caller graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=350pt]{namespaceslepc__ops_ad9d4a9b7275ac5a6b9b35e481a7c1710_icgraph}
+\includegraphics[width=350pt]{namespaceslepc__ops_a79c420987056c225931b51c8d30ece1f_icgraph}
 \end{center}
 \end{figure}
-\mbox{\Hypertarget{namespaceslepc__ops_a5f69f9325197c270c7975f01360a9648}\label{namespaceslepc__ops_a5f69f9325197c270c7975f01360a9648}} 
+\mbox{\Hypertarget{namespaceslepc__ops_a9cec5d9e8abc41d0d7ffb14352112040}\label{namespaceslepc__ops_a9cec5d9e8abc41d0d7ffb14352112040}} 
 \index{slepc\+\_\+ops@{slepc\+\_\+ops}!start\+\_\+slepc@{start\+\_\+slepc}}
 \index{start\+\_\+slepc@{start\+\_\+slepc}!slepc\+\_\+ops@{slepc\+\_\+ops}}
 \subsubsection{\texorpdfstring{start\+\_\+slepc()}{start\_slepc()}}
-{\footnotesize\ttfamily integer function slepc\+\_\+ops\+::start\+\_\+slepc (\begin{DoxyParamCaption}\item[{integer, intent(in)}]{n\+\_\+r\+\_\+sol }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily integer function, public slepc\+\_\+ops\+::start\+\_\+slepc (\begin{DoxyParamCaption}\item[{integer, intent(in)}]{n\+\_\+r\+\_\+sol }\end{DoxyParamCaption})}
 
 
 
-Definition at line 371 of file S\+L\+E\+P\+C\+\_\+ops.\+f90.
+This subroutine starts P\+E\+T\+SC and S\+L\+E\+PC with the correct number of processors. 
 
-Here is the call graph for this function\+:
-\nopagebreak
+\begin{DoxyReturn}{Returns}
+ierr
+\end{DoxyReturn}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em n\+\_\+r\+\_\+sol} & nr. of normal points in solution grid \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 328 of file S\+L\+E\+P\+C\+\_\+ops.\+f90.
+
+Here is the call graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=350pt]{namespaceslepc__ops_a5f69f9325197c270c7975f01360a9648_cgraph}
+\includegraphics[width=350pt]{namespaceslepc__ops_a9cec5d9e8abc41d0d7ffb14352112040_cgraph}
 \end{center}
 \end{figure}
-Here is the caller graph for this function\+:
-\nopagebreak
+Here is the caller graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=350pt]{namespaceslepc__ops_a5f69f9325197c270c7975f01360a9648_icgraph}
+\includegraphics[width=350pt]{namespaceslepc__ops_a9cec5d9e8abc41d0d7ffb14352112040_icgraph}
 \end{center}
 \end{figure}
-\mbox{\Hypertarget{namespaceslepc__ops_ae65ae217581e4b5986da87bc9a23acb8}\label{namespaceslepc__ops_ae65ae217581e4b5986da87bc9a23acb8}} 
+\mbox{\Hypertarget{namespaceslepc__ops_aeeac6908b3988f395314e7769829a058}\label{namespaceslepc__ops_aeeac6908b3988f395314e7769829a058}} 
 \index{slepc\+\_\+ops@{slepc\+\_\+ops}!stop\+\_\+slepc@{stop\+\_\+slepc}}
 \index{stop\+\_\+slepc@{stop\+\_\+slepc}!slepc\+\_\+ops@{slepc\+\_\+ops}}
 \subsubsection{\texorpdfstring{stop\+\_\+slepc()}{stop\_slepc()}}
-{\footnotesize\ttfamily integer function slepc\+\_\+ops\+::stop\+\_\+slepc (\begin{DoxyParamCaption}\item[{intent(in)}]{A,  }\item[{intent(in)}]{B,  }\item[{intent(in)}]{solver }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily integer function, public slepc\+\_\+ops\+::stop\+\_\+slepc (\begin{DoxyParamCaption}\item[{intent(in)}]{A,  }\item[{intent(in)}]{B,  }\item[{intent(in)}]{solver }\end{DoxyParamCaption})}
 
 
 
-Definition at line 2059 of file S\+L\+E\+P\+C\+\_\+ops.\+f90.
+Stop P\+E\+T\+SC and S\+L\+E\+PC. 
 
-Here is the call graph for this function\+:
-\nopagebreak
+\begin{DoxyReturn}{Returns}
+ierr 
+\end{DoxyReturn}
+
+
+Definition at line 2037 of file S\+L\+E\+P\+C\+\_\+ops.\+f90.
+
+Here is the call graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=350pt]{namespaceslepc__ops_ae65ae217581e4b5986da87bc9a23acb8_cgraph}
+\includegraphics[width=350pt]{namespaceslepc__ops_aeeac6908b3988f395314e7769829a058_cgraph}
 \end{center}
 \end{figure}
-Here is the caller graph for this function\+:
-\nopagebreak
+Here is the caller graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=350pt]{namespaceslepc__ops_ae65ae217581e4b5986da87bc9a23acb8_icgraph}
+\includegraphics[width=350pt]{namespaceslepc__ops_aeeac6908b3988f395314e7769829a058_icgraph}
 \end{center}
 \end{figure}
-\mbox{\Hypertarget{namespaceslepc__ops_a66241540803bca208b2f3bd6b0448491}\label{namespaceslepc__ops_a66241540803bca208b2f3bd6b0448491}} 
+\mbox{\Hypertarget{namespaceslepc__ops_a24d97496000ed55f1d11e4d436e084a6}\label{namespaceslepc__ops_a24d97496000ed55f1d11e4d436e084a6}} 
 \index{slepc\+\_\+ops@{slepc\+\_\+ops}!store\+\_\+results@{store\+\_\+results}}
 \index{store\+\_\+results@{store\+\_\+results}!slepc\+\_\+ops@{slepc\+\_\+ops}}
 \subsubsection{\texorpdfstring{store\+\_\+results()}{store\_results()}}
-{\footnotesize\ttfamily integer function slepc\+\_\+ops\+::store\+\_\+results (\begin{DoxyParamCaption}\item[{type(grid\+\_\+type), intent(in)}]{grid\+\_\+sol,  }\item[{type(sol\+\_\+type), intent(inout)}]{sol,  }\item[{intent(inout)}]{solver,  }\item[{intent(inout)}]{max\+\_\+n\+\_\+\+EV,  }\item[{intent(inout)}]{A,  }\item[{intent(inout)}]{B,  }\item[{intent(in)}]{step\+\_\+size }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily integer function, public slepc\+\_\+ops\+::store\+\_\+results (\begin{DoxyParamCaption}\item[{type(modes\+\_\+type), intent(in)}]{mds,  }\item[{type(\hyperlink{structgrid__vars_1_1grid__type}{grid\+\_\+type}), intent(in)}]{grid\+\_\+sol,  }\item[{type(\hyperlink{structsol__vars_1_1sol__type}{sol\+\_\+type}), intent(inout)}]{sol,  }\item[{intent(inout)}]{solver,  }\item[{intent(inout)}]{max\+\_\+n\+\_\+\+EV,  }\item[{intent(inout)}]{A,  }\item[{intent(inout)}]{B }\end{DoxyParamCaption})}
 
 
 
-Definition at line 1650 of file S\+L\+E\+P\+C\+\_\+ops.\+f90.
+Stores the results. 
 
-Here is the call graph for this function\+:
-\nopagebreak
+\begin{DoxyReturn}{Returns}
+ierr
+\end{DoxyReturn}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em mds} & general modes variables\\
+\hline
+\mbox{\tt in}  & {\em grid\+\_\+sol} & solution grid\\
+\hline
+\mbox{\tt in,out}  & {\em sol} & solution variables \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 1621 of file S\+L\+E\+P\+C\+\_\+ops.\+f90.
+
+Here is the call graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=350pt]{namespaceslepc__ops_a66241540803bca208b2f3bd6b0448491_cgraph}
+\includegraphics[width=350pt]{namespaceslepc__ops_a24d97496000ed55f1d11e4d436e084a6_cgraph}
 \end{center}
 \end{figure}
-Here is the caller graph for this function\+:
-\nopagebreak
+Here is the caller graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=350pt]{namespaceslepc__ops_a66241540803bca208b2f3bd6b0448491_icgraph}
+\includegraphics[width=350pt]{namespaceslepc__ops_a24d97496000ed55f1d11e4d436e084a6_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{namespaceslepc__ops_a03193dbc55e7061891d58e96a2bf1dd5}\label{namespaceslepc__ops_a03193dbc55e7061891d58e96a2bf1dd5}} 
+\index{slepc\+\_\+ops@{slepc\+\_\+ops}!summarize\+\_\+solution@{summarize\+\_\+solution}}
+\index{summarize\+\_\+solution@{summarize\+\_\+solution}!slepc\+\_\+ops@{slepc\+\_\+ops}}
+\subsubsection{\texorpdfstring{summarize\+\_\+solution()}{summarize\_solution()}}
+{\footnotesize\ttfamily integer function, public slepc\+\_\+ops\+::summarize\+\_\+solution (\begin{DoxyParamCaption}\item[{intent(inout)}]{solver,  }\item[{intent(inout)}]{max\+\_\+n\+\_\+\+EV }\end{DoxyParamCaption})}
+
+
+
+Summarizes solution. 
+
+\begin{DoxyReturn}{Returns}
+ierr 
+\end{DoxyReturn}
+
+
+Definition at line 1551 of file S\+L\+E\+P\+C\+\_\+ops.\+f90.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespaceslepc__ops_a03193dbc55e7061891d58e96a2bf1dd5_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespaceslepc__ops_a03193dbc55e7061891d58e96a2bf1dd5_icgraph}
 \end{center}
 \end{figure}
 
@@ -192,7 +462,14 @@ Here is the caller graph for this function\+:
 
 
 
-Definition at line 39 of file S\+L\+E\+P\+C\+\_\+ops.\+f90.
+plot debug information for set\+\_\+\+BC 
+
+\begin{DoxyNote}{Note}
+Debug version only 
+\end{DoxyNote}
+
+
+Definition at line 44 of file S\+L\+E\+P\+C\+\_\+ops.\+f90.
 
 \mbox{\Hypertarget{namespaceslepc__ops_aff5aa0d485bc34e2f6e320172fcc4ccb}\label{namespaceslepc__ops_aff5aa0d485bc34e2f6e320172fcc4ccb}} 
 \index{slepc\+\_\+ops@{slepc\+\_\+ops}!debug\+\_\+setup\+\_\+mats@{debug\+\_\+setup\+\_\+mats}}
@@ -202,5 +479,29 @@ Definition at line 39 of file S\+L\+E\+P\+C\+\_\+ops.\+f90.
 
 
 
-Definition at line 38 of file S\+L\+E\+P\+C\+\_\+ops.\+f90.
+plot debug information for setup\+\_\+mats 
+
+\begin{DoxyNote}{Note}
+Debug version only 
+\end{DoxyNote}
+
+
+Definition at line 43 of file S\+L\+E\+P\+C\+\_\+ops.\+f90.
+
+\mbox{\Hypertarget{namespaceslepc__ops_a57d0ef4131e939894b34bb07e30e631b}\label{namespaceslepc__ops_a57d0ef4131e939894b34bb07e30e631b}} 
+\index{slepc\+\_\+ops@{slepc\+\_\+ops}!test\+\_\+diff@{test\+\_\+diff}}
+\index{test\+\_\+diff@{test\+\_\+diff}!slepc\+\_\+ops@{slepc\+\_\+ops}}
+\subsubsection{\texorpdfstring{test\+\_\+diff}{test\_diff}}
+{\footnotesize\ttfamily logical, public slepc\+\_\+ops\+::test\+\_\+diff = .false.}
+
+
+
+test introduction of numerical diff 
+
+\begin{DoxyNote}{Note}
+Debug version only 
+\end{DoxyNote}
+
+
+Definition at line 45 of file S\+L\+E\+P\+C\+\_\+ops.\+f90.
 

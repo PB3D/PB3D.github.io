@@ -29,7 +29,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">PB3D
-   &#160;<span id="projectnumber">[1.73]</span>
+   &#160;<span id="projectnumber">[2.27]</span>
    </div>
    <div id="projectbrief">Ideal linear high-n MHD stability in 3-D</div>
   </td>
@@ -68,280 +68,77 @@ $(function() {
 </div><!-- top -->
 <div class="header">
   <div class="summary">
+<a href="#nested-classes">Interfaces and Types</a> &#124;
 <a href="#func-members">Functions/Subroutines</a> &#124;
 <a href="#var-members">Variables</a>  </div>
   <div class="headertitle">
 <div class="title">mpi_utilities Module Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>Numerical utilities related to MPI.  
+<a href="#details">More...</a></p>
 <table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
+Interfaces and Types</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">interface &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interfacempi__utilities_1_1broadcast__var.html">broadcast_var</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Wrapper function to broadcast a single variable using MPI.  <a href="interfacempi__utilities_1_1broadcast__var.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">interface &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interfacempi__utilities_1_1get__ghost__arr.html">get_ghost_arr</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fill the ghost regions in an array.  <a href="interfacempi__utilities_1_1get__ghost__arr.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">interface &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interfacempi__utilities_1_1get__ser__var.html">get_ser_var</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gather parallel variable in serial version on group master.  <a href="interfacempi__utilities_1_1get__ser__var.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions/Subroutines</h2></td></tr>
-<tr class="memitem:a4ecf85687516f8d8d942afe05652d963"><td class="memItemLeft" align="right" valign="top">integer function&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacempi__utilities.html#a4ecf85687516f8d8d942afe05652d963">get_ser_var_real</a> (var, ser_var, scatter)</td></tr>
-<tr class="separator:a4ecf85687516f8d8d942afe05652d963"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac8eaaa2c9c0901f0e4ea4679986e8c7d"><td class="memItemLeft" align="right" valign="top">integer function&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacempi__utilities.html#ac8eaaa2c9c0901f0e4ea4679986e8c7d">get_ser_var_int</a> (var, ser_var, scatter)</td></tr>
-<tr class="separator:ac8eaaa2c9c0901f0e4ea4679986e8c7d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a128702990bd5fddc582e8fabcffc82b2"><td class="memItemLeft" align="right" valign="top">integer function, public&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacempi__utilities.html#a128702990bd5fddc582e8fabcffc82b2">redistribute_var</a> (var, dis_var, lims, lims_dis)</td></tr>
+<tr class="memdesc:a128702990bd5fddc582e8fabcffc82b2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Redistribute variables according to new limits.  <a href="#a128702990bd5fddc582e8fabcffc82b2">More...</a><br /></td></tr>
 <tr class="separator:a128702990bd5fddc582e8fabcffc82b2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2212e8eedabb82df5c9d430fce6a0010"><td class="memItemLeft" align="right" valign="top">integer function&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacempi__utilities.html#a2212e8eedabb82df5c9d430fce6a0010">get_ghost_arr_3d_complex</a> (arr, size_ghost)</td></tr>
-<tr class="separator:a2212e8eedabb82df5c9d430fce6a0010"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a01b9221fa05f573cb74027343aa8ff6b"><td class="memItemLeft" align="right" valign="top">integer function&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacempi__utilities.html#a01b9221fa05f573cb74027343aa8ff6b">get_ghost_arr_3d_real</a> (arr, size_ghost)</td></tr>
-<tr class="separator:a01b9221fa05f573cb74027343aa8ff6b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a84112225ce7bf0b3f893b23512be58df"><td class="memItemLeft" align="right" valign="top">integer function&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacempi__utilities.html#a84112225ce7bf0b3f893b23512be58df">get_ghost_arr_2d_complex</a> (arr, size_ghost)</td></tr>
-<tr class="separator:a84112225ce7bf0b3f893b23512be58df"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a298564f1d8c0e8720419a10dca24587a"><td class="memItemLeft" align="right" valign="top">integer function&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacempi__utilities.html#a298564f1d8c0e8720419a10dca24587a">get_ghost_arr_1d_real</a> (arr, size_ghost)</td></tr>
-<tr class="separator:a298564f1d8c0e8720419a10dca24587a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7a7d740f6e847cd65e21b4f5d85a0ca7"><td class="memItemLeft" align="right" valign="top">integer function&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacempi__utilities.html#a7a7d740f6e847cd65e21b4f5d85a0ca7">broadcast_var_real</a> (var, source)</td></tr>
-<tr class="separator:a7a7d740f6e847cd65e21b4f5d85a0ca7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a790ea24d32dd0e249541c1e57cd85536"><td class="memItemLeft" align="right" valign="top">integer function, public&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacempi__utilities.html#a790ea24d32dd0e249541c1e57cd85536">wait_mpi</a> ()</td></tr>
+<tr class="memdesc:a790ea24d32dd0e249541c1e57cd85536"><td class="mdescLeft">&#160;</td><td class="mdescRight">Wait for all processes, wrapper to MPI barrier.  <a href="#a790ea24d32dd0e249541c1e57cd85536">More...</a><br /></td></tr>
 <tr class="separator:a790ea24d32dd0e249541c1e57cd85536"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5a789d05be41d6109c01f46cc98620c8"><td class="memItemLeft" align="right" valign="top">integer function, public&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacempi__utilities.html#a5a789d05be41d6109c01f46cc98620c8">lock_req_acc</a> (lock, blocking)</td></tr>
+<tr class="memdesc:a5a789d05be41d6109c01f46cc98620c8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Request access to lock of a BL (blocking) or optionally a NB (non-blocking) type.  <a href="#a5a789d05be41d6109c01f46cc98620c8">More...</a><br /></td></tr>
 <tr class="separator:a5a789d05be41d6109c01f46cc98620c8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a86f9982a0f92b51a916f832d9a3d8ba9"><td class="memItemLeft" align="right" valign="top">integer function, public&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacempi__utilities.html#a86f9982a0f92b51a916f832d9a3d8ba9">lock_return_acc</a> (lock)</td></tr>
+<tr class="memdesc:a86f9982a0f92b51a916f832d9a3d8ba9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns access to a lock.  <a href="#a86f9982a0f92b51a916f832d9a3d8ba9">More...</a><br /></td></tr>
 <tr class="separator:a86f9982a0f92b51a916f832d9a3d8ba9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a74e2e82b561f403ca8087c3925f76e29"><td class="memItemLeft" align="right" valign="top">logical function&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacempi__utilities.html#a74e2e82b561f403ca8087c3925f76e29">wl_empty</a> (wl, proc_type, next_procs)</td></tr>
+<tr class="memdesc:a74e2e82b561f403ca8087c3925f76e29"><td class="mdescLeft">&#160;</td><td class="mdescRight">Decides whether a waiting list is empty.  <a href="#a74e2e82b561f403ca8087c3925f76e29">More...</a><br /></td></tr>
 <tr class="separator:a74e2e82b561f403ca8087c3925f76e29"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5d2dbf8ffba124237c362f06c3d3ac32"><td class="memItemLeft" align="right" valign="top">integer function&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacempi__utilities.html#a5d2dbf8ffba124237c362f06c3d3ac32">lock_notify</a> (lock, rec_rank)</td></tr>
-<tr class="separator:a5d2dbf8ffba124237c362f06c3d3ac32"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9ec02d2ade63716189369640f0da3c5f"><td class="memItemLeft" align="right" valign="top">integer function&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacempi__utilities.html#a9ec02d2ade63716189369640f0da3c5f">lock_get_notified</a> (lock)</td></tr>
-<tr class="separator:a9ec02d2ade63716189369640f0da3c5f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0417983d618bfc9f892d6d2af5d27b1d"><td class="memItemLeft" align="right" valign="top">integer function, public&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacempi__utilities.html#a0417983d618bfc9f892d6d2af5d27b1d">lock_wl_change</a> (wl_action, blocking, lock, wl, ranks)</td></tr>
-<tr class="separator:a0417983d618bfc9f892d6d2af5d27b1d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4c5de9472574b63c69212948d8a3f4e1"><td class="memItemLeft" align="right" valign="top">character(len=max_str_ln) function, public&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacempi__utilities.html#a4c5de9472574b63c69212948d8a3f4e1">lock_header</a> (lock)</td></tr>
-<tr class="separator:a4c5de9472574b63c69212948d8a3f4e1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a263a30c79639d97f5faffdb566b5a811"><td class="memItemLeft" align="right" valign="top">integer function&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacempi__utilities.html#a263a30c79639d97f5faffdb566b5a811">lock_notify</a> (lock_loc, rec_rank)</td></tr>
+<tr class="memdesc:a263a30c79639d97f5faffdb566b5a811"><td class="mdescLeft">&#160;</td><td class="mdescRight">Notifies a rank that they can get the lock.  <a href="#a263a30c79639d97f5faffdb566b5a811">More...</a><br /></td></tr>
+<tr class="separator:a263a30c79639d97f5faffdb566b5a811"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a17c39b0498528e2532c8347b0b7dec86"><td class="memItemLeft" align="right" valign="top">integer function&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacempi__utilities.html#a17c39b0498528e2532c8347b0b7dec86">lock_get_notified</a> (lock_loc)</td></tr>
+<tr class="memdesc:a17c39b0498528e2532c8347b0b7dec86"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get notified that the rank can get the lock.  <a href="#a17c39b0498528e2532c8347b0b7dec86">More...</a><br /></td></tr>
+<tr class="separator:a17c39b0498528e2532c8347b0b7dec86"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3b0349e5ec825e14083e3126c3e7ba65"><td class="memItemLeft" align="right" valign="top">integer function, public&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacempi__utilities.html#a3b0349e5ec825e14083e3126c3e7ba65">lock_wl_change</a> (wl_action, blocking, lock_loc, wl, ranks)</td></tr>
+<tr class="memdesc:a3b0349e5ec825e14083e3126c3e7ba65"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds, removes or sets to active a rank from the waiting list for a lock and returns the lock waiting list:  <a href="#a3b0349e5ec825e14083e3126c3e7ba65">More...</a><br /></td></tr>
+<tr class="separator:a3b0349e5ec825e14083e3126c3e7ba65"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abe5bf3ae3b6a06eda18c2f4d62ac09c5"><td class="memItemLeft" align="right" valign="top">character(len=max_str_ln) function, public&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacempi__utilities.html#abe5bf3ae3b6a06eda18c2f4d62ac09c5">lock_header</a> (lock_loc)</td></tr>
+<tr class="memdesc:abe5bf3ae3b6a06eda18c2f4d62ac09c5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the header for lock debug messages.  <a href="#abe5bf3ae3b6a06eda18c2f4d62ac09c5">More...</a><br /></td></tr>
+<tr class="separator:abe5bf3ae3b6a06eda18c2f4d62ac09c5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
 Variables</h2></td></tr>
 <tr class="memitem:a98291c400747762ea4e3f0d751c5d5f5"><td class="memItemLeft" align="right" valign="top">logical, public&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacempi__utilities.html#a98291c400747762ea4e3f0d751c5d5f5">debug_lock</a> = .false.</td></tr>
+<tr class="memdesc:a98291c400747762ea4e3f0d751c5d5f5"><td class="mdescLeft">&#160;</td><td class="mdescRight">print debug information about lock operations  <a href="#a98291c400747762ea4e3f0d751c5d5f5">More...</a><br /></td></tr>
 <tr class="separator:a98291c400747762ea4e3f0d751c5d5f5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a38a87fa6a7efbd985592bbef4750f02b"><td class="memItemLeft" align="right" valign="top">integer, public&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacempi__utilities.html#a38a87fa6a7efbd985592bbef4750f02b">n_waits</a> = 0</td></tr>
+<tr class="memdesc:a38a87fa6a7efbd985592bbef4750f02b"><td class="mdescLeft">&#160;</td><td class="mdescRight">number of waits  <a href="#a38a87fa6a7efbd985592bbef4750f02b">More...</a><br /></td></tr>
 <tr class="separator:a38a87fa6a7efbd985592bbef4750f02b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Function/Subroutine Documentation</h2>
-<a id="a7a7d740f6e847cd65e21b4f5d85a0ca7"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7a7d740f6e847cd65e21b4f5d85a0ca7">&#9670;&nbsp;</a></span>broadcast_var_real()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">integer function mpi_utilities::broadcast_var_real </td>
-          <td>(</td>
-          <td class="paramtype">real(dp), intent(in)&#160;</td>
-          <td class="paramname"><em>var</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">integer, intent(in), optional&#160;</td>
-          <td class="paramname"><em>source</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="MPI__utilities_8f90_source.html#l00537">537</a> of file <a class="el" href="MPI__utilities_8f90_source.html">MPI_utilities.f90</a>.</p>
-
-</div>
-</div>
-<a id="a298564f1d8c0e8720419a10dca24587a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a298564f1d8c0e8720419a10dca24587a">&#9670;&nbsp;</a></span>get_ghost_arr_1d_real()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">integer function mpi_utilities::get_ghost_arr_1d_real </td>
-          <td>(</td>
-          <td class="paramtype">real(dp), dimension(:), intent(in)&#160;</td>
-          <td class="paramname"><em>arr</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">integer, intent(in)&#160;</td>
-          <td class="paramname"><em>size_ghost</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="MPI__utilities_8f90_source.html#l00494">494</a> of file <a class="el" href="MPI__utilities_8f90_source.html">MPI_utilities.f90</a>.</p>
-
-</div>
-</div>
-<a id="a84112225ce7bf0b3f893b23512be58df"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a84112225ce7bf0b3f893b23512be58df">&#9670;&nbsp;</a></span>get_ghost_arr_2d_complex()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">integer function mpi_utilities::get_ghost_arr_2d_complex </td>
-          <td>(</td>
-          <td class="paramtype">complex(dp), dimension(:,:), intent(inout)&#160;</td>
-          <td class="paramname"><em>arr</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">integer, intent(in)&#160;</td>
-          <td class="paramname"><em>size_ghost</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="MPI__utilities_8f90_source.html#l00451">451</a> of file <a class="el" href="MPI__utilities_8f90_source.html">MPI_utilities.f90</a>.</p>
-
-</div>
-</div>
-<a id="a2212e8eedabb82df5c9d430fce6a0010"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2212e8eedabb82df5c9d430fce6a0010">&#9670;&nbsp;</a></span>get_ghost_arr_3d_complex()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">integer function mpi_utilities::get_ghost_arr_3d_complex </td>
-          <td>(</td>
-          <td class="paramtype">complex(dp), dimension(:,:,:), intent(inout)&#160;</td>
-          <td class="paramname"><em>arr</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">integer, intent(in)&#160;</td>
-          <td class="paramname"><em>size_ghost</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="MPI__utilities_8f90_source.html#l00364">364</a> of file <a class="el" href="MPI__utilities_8f90_source.html">MPI_utilities.f90</a>.</p>
-
-</div>
-</div>
-<a id="a01b9221fa05f573cb74027343aa8ff6b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a01b9221fa05f573cb74027343aa8ff6b">&#9670;&nbsp;</a></span>get_ghost_arr_3d_real()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">integer function mpi_utilities::get_ghost_arr_3d_real </td>
-          <td>(</td>
-          <td class="paramtype">real(dp), dimension(:,:,:), intent(inout)&#160;</td>
-          <td class="paramname"><em>arr</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">integer, intent(in)&#160;</td>
-          <td class="paramname"><em>size_ghost</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="MPI__utilities_8f90_source.html#l00407">407</a> of file <a class="el" href="MPI__utilities_8f90_source.html">MPI_utilities.f90</a>.</p>
-
-</div>
-</div>
-<a id="ac8eaaa2c9c0901f0e4ea4679986e8c7d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac8eaaa2c9c0901f0e4ea4679986e8c7d">&#9670;&nbsp;</a></span>get_ser_var_int()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">integer function mpi_utilities::get_ser_var_int </td>
-          <td>(</td>
-          <td class="paramtype">integer, dimension(:), intent(in)&#160;</td>
-          <td class="paramname"><em>var</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">integer, dimension(:), intent(inout), allocatable&#160;</td>
-          <td class="paramname"><em>ser_var</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">logical, intent(in), optional&#160;</td>
-          <td class="paramname"><em>scatter</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="MPI__utilities_8f90_source.html#l00194">194</a> of file <a class="el" href="MPI__utilities_8f90_source.html">MPI_utilities.f90</a>.</p>
-
-</div>
-</div>
-<a id="a4ecf85687516f8d8d942afe05652d963"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4ecf85687516f8d8d942afe05652d963">&#9670;&nbsp;</a></span>get_ser_var_real()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">integer function mpi_utilities::get_ser_var_real </td>
-          <td>(</td>
-          <td class="paramtype">real(dp), dimension(:), intent(in)&#160;</td>
-          <td class="paramname"><em>var</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">real(dp), dimension(:), intent(inout), allocatable&#160;</td>
-          <td class="paramname"><em>ser_var</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">logical, intent(in), optional&#160;</td>
-          <td class="paramname"><em>scatter</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="MPI__utilities_8f90_source.html#l00121">121</a> of file <a class="el" href="MPI__utilities_8f90_source.html">MPI_utilities.f90</a>.</p>
-
-</div>
-</div>
-<a id="a9ec02d2ade63716189369640f0da3c5f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9ec02d2ade63716189369640f0da3c5f">&#9670;&nbsp;</a></span>lock_get_notified()</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Numerical utilities related to MPI. </p>
+<p>This includes a lock system, which can be both BL (blocking) or NB (non-blocking). It is based on the implementation of an MPI-IO atomic mode without file support, described in <a class="el" href="citelist.html#CITEREF_RossAtomicIO">[12]</a>.</p>
+<dl class="section see"><dt>See also</dt><dd>See <a class="el" href="namespacempi__vars.html" title="Variables pertaining to MPI. ">mpi_vars</a>.</dd></dl>
+<p>The reason for this was the fact that using a simple lock file can lead to crashes.</p>
+<dl class="section note"><dt>Note</dt><dd>A downside of this method is that in some rare cases a deadlock may occur as the master process, which contains the shared variable with a window that other processes may use, is idle and waiting, whereas the others are still performing lock options. As the master is idle and waiting, its MPI asynchronous communication is not performed. To remedy this, just call wait_MPI() after procedures where lock operations are performed. </dd></dl>
+</div><h2 class="groupheader">Function/Subroutine Documentation</h2>
+<a id="a17c39b0498528e2532c8347b0b7dec86"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a17c39b0498528e2532c8347b0b7dec86">&#9670;&nbsp;</a></span>lock_get_notified()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -350,34 +147,42 @@ Variables</h2></td></tr>
           <td class="memname">integer function mpi_utilities::lock_get_notified </td>
           <td>(</td>
           <td class="paramtype">type(lock_type), intent(in)&#160;</td>
-          <td class="paramname"><em>lock</em></td><td>)</td>
+          <td class="paramname"><em>lock_loc</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="MPI__utilities_8f90_source.html#l00889">889</a> of file <a class="el" href="MPI__utilities_8f90_source.html">MPI_utilities.f90</a>.</p>
+<p>Get notified that the rank can get the lock. </p>
+<dl class="section note"><dt>Note</dt><dd>Based on <a class="el" href="citelist.html#CITEREF_RossAtomicIO">[12]</a>.</dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>ierr</dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">lock_loc</td><td>lock </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="MPI__utilities_8f90_source.html#l01063">1063</a> of file <a class="el" href="MPI__utilities_8f90_source.html">MPI_utilities.f90</a>.</p>
 <div id="dynsection-0" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-0-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
 <div id="dynsection-0-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-0-content" class="dyncontent" style="display:none;">
-<div class="center"><iframe scrolling="no" frameborder="0" src="namespacempi__utilities_a9ec02d2ade63716189369640f0da3c5f_cgraph.svg" width="647" height="94"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="namespacempi__utilities_a17c39b0498528e2532c8347b0b7dec86_cgraph.svg" width="647" height="94"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 <div id="dynsection-1" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-1-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
 <div id="dynsection-1-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-1-content" class="dyncontent" style="display:none;">
-<div class="center"><iframe scrolling="no" frameborder="0" src="namespacempi__utilities_a9ec02d2ade63716189369640f0da3c5f_icgraph.svg" width="1912" height="1168"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="namespacempi__utilities_a17c39b0498528e2532c8347b0b7dec86_icgraph.svg" width="1896" height="1476"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
 </div>
-<a id="a4c5de9472574b63c69212948d8a3f4e1"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4c5de9472574b63c69212948d8a3f4e1">&#9670;&nbsp;</a></span>lock_header()</h2>
+<a id="abe5bf3ae3b6a06eda18c2f4d62ac09c5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abe5bf3ae3b6a06eda18c2f4d62ac09c5">&#9670;&nbsp;</a></span>lock_header()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -386,34 +191,41 @@ Variables</h2></td></tr>
           <td class="memname">character(len=max_str_ln) function, public mpi_utilities::lock_header </td>
           <td>(</td>
           <td class="paramtype">type(lock_type), intent(in)&#160;</td>
-          <td class="paramname"><em>lock</em></td><td>)</td>
+          <td class="paramname"><em>lock_loc</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="MPI__utilities_8f90_source.html#l01032">1032</a> of file <a class="el" href="MPI__utilities_8f90_source.html">MPI_utilities.f90</a>.</p>
+<p>Returns the header for lock debug messages. </p>
+<dl class="section note"><dt>Note</dt><dd>Debug version only</dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">lock_loc</td><td>lock </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="MPI__utilities_8f90_source.html#l01217">1217</a> of file <a class="el" href="MPI__utilities_8f90_source.html">MPI_utilities.f90</a>.</p>
 <div id="dynsection-2" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-2-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
 <div id="dynsection-2-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-2-content" class="dyncontent" style="display:none;">
-<div class="center"><iframe scrolling="no" frameborder="0" src="namespacempi__utilities_a4c5de9472574b63c69212948d8a3f4e1_cgraph.svg" width="424" height="94"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="namespacempi__utilities_abe5bf3ae3b6a06eda18c2f4d62ac09c5_cgraph.svg" width="424" height="94"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 <div id="dynsection-3" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-3-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
 <div id="dynsection-3-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-3-content" class="dyncontent" style="display:none;">
-<div class="center"><iframe scrolling="no" frameborder="0" src="namespacempi__utilities_a4c5de9472574b63c69212948d8a3f4e1_icgraph.svg" width="2135" height="1150"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="namespacempi__utilities_abe5bf3ae3b6a06eda18c2f4d62ac09c5_icgraph.svg" width="2119" height="1554"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
 </div>
-<a id="a5d2dbf8ffba124237c362f06c3d3ac32"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5d2dbf8ffba124237c362f06c3d3ac32">&#9670;&nbsp;</a></span>lock_notify()</h2>
+<a id="a263a30c79639d97f5faffdb566b5a811"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a263a30c79639d97f5faffdb566b5a811">&#9670;&nbsp;</a></span>lock_notify()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -422,7 +234,7 @@ Variables</h2></td></tr>
           <td class="memname">integer function mpi_utilities::lock_notify </td>
           <td>(</td>
           <td class="paramtype">type(lock_type), intent(in)&#160;</td>
-          <td class="paramname"><em>lock</em>, </td>
+          <td class="paramname"><em>lock_loc</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -438,22 +250,32 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="MPI__utilities_8f90_source.html#l00861">861</a> of file <a class="el" href="MPI__utilities_8f90_source.html">MPI_utilities.f90</a>.</p>
+<p>Notifies a rank that they can get the lock. </p>
+<p>The signal sent is the rank + 1.</p>
+<dl class="section note"><dt>Note</dt><dd>Based on <a class="el" href="citelist.html#CITEREF_RossAtomicIO">[12]</a>.</dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>ierr</dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">lock_loc</td><td>lock</td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">rec_rank</td><td>receiving rank </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="MPI__utilities_8f90_source.html#l01031">1031</a> of file <a class="el" href="MPI__utilities_8f90_source.html">MPI_utilities.f90</a>.</p>
 <div id="dynsection-4" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-4-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
 <div id="dynsection-4-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-4-content" class="dyncontent" style="display:none;">
-<div class="center"><iframe scrolling="no" frameborder="0" src="namespacempi__utilities_a5d2dbf8ffba124237c362f06c3d3ac32_cgraph.svg" width="647" height="94"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="namespacempi__utilities_a263a30c79639d97f5faffdb566b5a811_cgraph.svg" width="647" height="94"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 <div id="dynsection-5" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-5-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
 <div id="dynsection-5-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-5-content" class="dyncontent" style="display:none;">
-<div class="center"><iframe scrolling="no" frameborder="0" src="namespacempi__utilities_a5d2dbf8ffba124237c362f06c3d3ac32_icgraph.svg" width="1912" height="1131"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="namespacempi__utilities_a263a30c79639d97f5faffdb566b5a811_icgraph.svg" width="1896" height="1482"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
@@ -484,22 +306,24 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="MPI__utilities_8f90_source.html#l00613">613</a> of file <a class="el" href="MPI__utilities_8f90_source.html">MPI_utilities.f90</a>.</p>
+<p>Request access to lock of a BL (blocking) or optionally a NB (non-blocking) type. </p>
+<dl class="section note"><dt>Note</dt><dd>Based on <a class="el" href="citelist.html#CITEREF_RossAtomicIO">[12]</a>.</dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>ierr </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="MPI__utilities_8f90_source.html#l00765">765</a> of file <a class="el" href="MPI__utilities_8f90_source.html">MPI_utilities.f90</a>.</p>
 <div id="dynsection-6" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-6-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
 <div id="dynsection-6-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-6-content" class="dyncontent" style="display:none;">
-<div class="center"><iframe scrolling="no" frameborder="0" src="namespacempi__utilities_a5a789d05be41d6109c01f46cc98620c8_cgraph.svg" width="918" height="304"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="namespacempi__utilities_a5a789d05be41d6109c01f46cc98620c8_cgraph.svg" width="918" height="304"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 <div id="dynsection-7" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-7-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
 <div id="dynsection-7-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-7-content" class="dyncontent" style="display:none;">
-<div class="center"><iframe scrolling="no" frameborder="0" src="namespacempi__utilities_a5a789d05be41d6109c01f46cc98620c8_icgraph.svg" width="1690" height="1168"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="namespacempi__utilities_a5a789d05be41d6109c01f46cc98620c8_icgraph.svg" width="1674" height="1476"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
@@ -520,28 +344,31 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="MPI__utilities_8f90_source.html#l00715">715</a> of file <a class="el" href="MPI__utilities_8f90_source.html">MPI_utilities.f90</a>.</p>
+<p>Returns access to a lock. </p>
+<p>The blocking property has been set when requesting the lock.</p>
+<dl class="section note"><dt>Note</dt><dd>Based on <a class="el" href="citelist.html#CITEREF_RossAtomicIO">[12]</a>.</dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>ierr </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="MPI__utilities_8f90_source.html#l00872">872</a> of file <a class="el" href="MPI__utilities_8f90_source.html">MPI_utilities.f90</a>.</p>
 <div id="dynsection-8" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-8-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
 <div id="dynsection-8-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-8-content" class="dyncontent" style="display:none;">
-<div class="center"><iframe scrolling="no" frameborder="0" src="namespacempi__utilities_a86f9982a0f92b51a916f832d9a3d8ba9_cgraph.svg" width="918" height="207"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="namespacempi__utilities_a86f9982a0f92b51a916f832d9a3d8ba9_cgraph.svg" width="918" height="207"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 <div id="dynsection-9" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-9-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
 <div id="dynsection-9-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-9-content" class="dyncontent" style="display:none;">
-<div class="center"><iframe scrolling="no" frameborder="0" src="namespacempi__utilities_a86f9982a0f92b51a916f832d9a3d8ba9_icgraph.svg" width="1690" height="1168"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="namespacempi__utilities_a86f9982a0f92b51a916f832d9a3d8ba9_icgraph.svg" width="1674" height="1476"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
 </div>
-<a id="a0417983d618bfc9f892d6d2af5d27b1d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0417983d618bfc9f892d6d2af5d27b1d">&#9670;&nbsp;</a></span>lock_wl_change()</h2>
+<a id="a3b0349e5ec825e14083e3126c3e7ba65"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3b0349e5ec825e14083e3126c3e7ba65">&#9670;&nbsp;</a></span>lock_wl_change()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -562,7 +389,7 @@ Variables</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">type(lock_type), intent(inout)&#160;</td>
-          <td class="paramname"><em>lock</em>, </td>
+          <td class="paramname"><em>lock_loc</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -584,22 +411,43 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="MPI__utilities_8f90_source.html#l00928">928</a> of file <a class="el" href="MPI__utilities_8f90_source.html">MPI_utilities.f90</a>.</p>
+<p>Adds, removes or sets to active a rank from the waiting list for a lock and returns the lock waiting list: </p>
+<p>Actions:</p><ul>
+<li><code>wl_action</code> = 0: remove</li>
+<li><code>wl_action</code> = 1: add</li>
+<li><code>wl_action</code> = 2: active</li>
+</ul>
+<p>Or negative equivalents for non-blocking (NB) procs.</p>
+<p>Optionally, the rank(s) of the process for which to perform this action can be passed. This is useful for doing the same action on multiple processes.</p>
+<dl class="section note"><dt>Note</dt><dd>Based on <a class="el" href="citelist.html#CITEREF_RossAtomicIO">[12]</a>.</dd>
+<dd>
+Debug version only</dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>ierr</dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">wl_action</td><td>action to perform</td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">blocking</td><td>the ranks to be changed are blocking</td></tr>
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">lock_loc</td><td>lock</td></tr>
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">wl</td><td>waiting list</td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">ranks</td><td>rank(s) for which to perform option </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="MPI__utilities_8f90_source.html#l01111">1111</a> of file <a class="el" href="MPI__utilities_8f90_source.html">MPI_utilities.f90</a>.</p>
 <div id="dynsection-10" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-10-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
 <div id="dynsection-10-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-10-content" class="dyncontent" style="display:none;">
-<div class="center"><iframe scrolling="no" frameborder="0" src="namespacempi__utilities_a0417983d618bfc9f892d6d2af5d27b1d_cgraph.svg" width="663" height="130"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="namespacempi__utilities_a3b0349e5ec825e14083e3126c3e7ba65_cgraph.svg" width="663" height="130"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 <div id="dynsection-11" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-11-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
 <div id="dynsection-11-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-11-content" class="dyncontent" style="display:none;">
-<div class="center"><iframe scrolling="no" frameborder="0" src="namespacempi__utilities_a0417983d618bfc9f892d6d2af5d27b1d_icgraph.svg" width="1912" height="1130"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="namespacempi__utilities_a3b0349e5ec825e14083e3126c3e7ba65_icgraph.svg" width="1896" height="1519"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
@@ -642,14 +490,24 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="MPI__utilities_8f90_source.html#l00269">269</a> of file <a class="el" href="MPI__utilities_8f90_source.html">MPI_utilities.f90</a>.</p>
+<p>Redistribute variables according to new limits. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">var</td><td>parallel vector</td></tr>
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">dis_var</td><td>redistributed vector</td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">lims</td><td>indices of parallel vector</td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">lims_dis</td><td>indices of redistributed parallel vector </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="MPI__utilities_8f90_source.html#l00330">330</a> of file <a class="el" href="MPI__utilities_8f90_source.html">MPI_utilities.f90</a>.</p>
 <div id="dynsection-12" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-12-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
 <div id="dynsection-12-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-12-content" class="dyncontent" style="display:none;">
-<div class="center"><iframe scrolling="no" frameborder="0" src="namespacempi__utilities_a128702990bd5fddc582e8fabcffc82b2_icgraph.svg" width="894" height="199"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="namespacempi__utilities_a128702990bd5fddc582e8fabcffc82b2_icgraph.svg" width="926" height="411"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
@@ -669,14 +527,16 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="MPI__utilities_8f90_source.html#l00597">597</a> of file <a class="el" href="MPI__utilities_8f90_source.html">MPI_utilities.f90</a>.</p>
+<p>Wait for all processes, wrapper to MPI barrier. </p>
+<dl class="section return"><dt>Returns</dt><dd>ierr </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="MPI__utilities_8f90_source.html#l00744">744</a> of file <a class="el" href="MPI__utilities_8f90_source.html">MPI_utilities.f90</a>.</p>
 <div id="dynsection-13" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-13-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
 <div id="dynsection-13-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-13-content" class="dyncontent" style="display:none;">
-<div class="center"><iframe scrolling="no" frameborder="0" src="namespacempi__utilities_a790ea24d32dd0e249541c1e57cd85536_icgraph.svg" width="2127" height="687"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="namespacempi__utilities_a790ea24d32dd0e249541c1e57cd85536_icgraph.svg" width="1722" height="720"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
@@ -713,14 +573,29 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="MPI__utilities_8f90_source.html#l00820">820</a> of file <a class="el" href="MPI__utilities_8f90_source.html">MPI_utilities.f90</a>.</p>
+<p>Decides whether a waiting list is empty. </p>
+<p>The type of process to find is indicated by an array of possible values.</p>
+<dl class="section see"><dt>See also</dt><dd>See <a class="el" href="namespacempi__utilities.html#a3b0349e5ec825e14083e3126c3e7ba65" title="Adds, removes or sets to active a rank from the waiting list for a lock and returns the lock waiting ...">lock_wl_change()</a> for an explanation of the process type.</dd></dl>
+<p>Additionally, for NB processes, the negative inverse of these values are used.</p>
+<p>If the waiting list is not empty, the next process(es) can optionally be returned.</p>
+<dl class="section note"><dt>Note</dt><dd>Based on <a class="el" href="citelist.html#CITEREF_RossAtomicIO">[12]</a>.</dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>ierr</dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">wl</td><td>waiting list</td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">proc_type</td><td>types of processes accepted</td></tr>
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">next_procs</td><td>next process(es) if not empty </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="MPI__utilities_8f90_source.html#l00985">985</a> of file <a class="el" href="MPI__utilities_8f90_source.html">MPI_utilities.f90</a>.</p>
 <div id="dynsection-14" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-14-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
 <div id="dynsection-14-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-14-content" class="dyncontent" style="display:none;">
-<div class="center"><iframe scrolling="no" frameborder="0" src="namespacempi__utilities_a74e2e82b561f403ca8087c3925f76e29_icgraph.svg" width="1944" height="1131"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="namespacempi__utilities_a74e2e82b561f403ca8087c3925f76e29_icgraph.svg" width="1928" height="1482"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
@@ -738,7 +613,10 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="MPI__utilities_8f90_source.html#l00024">24</a> of file <a class="el" href="MPI__utilities_8f90_source.html">MPI_utilities.f90</a>.</p>
+<p>print debug information about lock operations </p>
+<dl class="section note"><dt>Note</dt><dd>Debug version only </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="MPI__utilities_8f90_source.html#l00040">40</a> of file <a class="el" href="MPI__utilities_8f90_source.html">MPI_utilities.f90</a>.</p>
 
 </div>
 </div>
@@ -754,7 +632,10 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="MPI__utilities_8f90_source.html#l00025">25</a> of file <a class="el" href="MPI__utilities_8f90_source.html">MPI_utilities.f90</a>.</p>
+<p>number of waits </p>
+<dl class="section note"><dt>Note</dt><dd>Debug version only </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="MPI__utilities_8f90_source.html#l00041">41</a> of file <a class="el" href="MPI__utilities_8f90_source.html">MPI_utilities.f90</a>.</p>
 
 </div>
 </div>

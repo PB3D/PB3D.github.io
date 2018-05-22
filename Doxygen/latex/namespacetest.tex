@@ -1,19 +1,27 @@
 \hypertarget{namespacetest}{}\section{test Module Reference}
 \label{namespacetest}\index{test@{test}}
+
+
+Generic tests.  
+
+
 \subsection*{Functions/\+Subroutines}
 \begin{DoxyCompactItemize}
 \item 
 integer function, public \hyperlink{namespacetest_aca21ee464c0b1f4b617177afdde110ec}{generic\+\_\+tests} ()
-\item 
-integer function \hyperlink{namespacetest_af72aaa5773b5bef2ac8d25fd05378439}{test\+\_\+interp} ()
-\item 
-integer function \hyperlink{namespacetest_a4a25e64af6b986091f9e49ba447fc5c4}{test\+\_\+calc\+\_\+rzl} ()
-\item 
+\begin{DoxyCompactList}\small\item\em Performs generic tests. \end{DoxyCompactList}\item 
+integer function \hyperlink{namespacetest_a53c6b3d654d4577af301fe3b04473d6a}{test\+\_\+splines} ()
+\begin{DoxyCompactList}\small\item\em Test splines. \end{DoxyCompactList}\item 
+integer function \hyperlink{namespacetest_ab595ec935321ea0b1168593fb88fad22}{test\+\_\+tor\+\_\+fun} ()
+\begin{DoxyCompactList}\small\item\em Test calculation of toroidal functions. \end{DoxyCompactList}\item 
 integer function \hyperlink{namespacetest_ac574f08ba400cd61070a6a6f13f6f7ee}{test\+\_\+read\+\_\+hdf5\+\_\+subset} ()
-\item 
+\begin{DoxyCompactList}\small\item\em Tests reading of H\+D\+F5 subset. \end{DoxyCompactList}\item 
 integer function \hyperlink{namespacetest_a0d4cb791bf762b2e52260fea7644a3ee}{test\+\_\+calc\+\_\+int\+\_\+vol} ()
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Tests calculation of volume integral. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
+
+\subsection{Detailed Description}
+Generic tests. 
 
 \subsection{Function/\+Subroutine Documentation}
 \mbox{\Hypertarget{namespacetest_aca21ee464c0b1f4b617177afdde110ec}\label{namespacetest_aca21ee464c0b1f4b617177afdde110ec}} 
@@ -24,18 +32,35 @@ integer function \hyperlink{namespacetest_a0d4cb791bf762b2e52260fea7644a3ee}{tes
 
 
 
-Definition at line 23 of file test.\+f90.
+Performs generic tests. 
 
-Here is the call graph for this function\+:
-\nopagebreak
+These tests are run in interactive fashion by running the program with the {\ttfamily --test} command-\/line option. \begin{DoxySeeAlso}{See also}
+\hyperlink{namespacefiles__ops_a1e219b1147f109f758d03bef89d540e8}{init\+\_\+files()}
+\end{DoxySeeAlso}
+\begin{DoxyNote}{Note}
+
+\begin{DoxyEnumerate}
+\item It is probably also recommended to run it with {\ttfamily --do\+\_\+execute\+\_\+command\+\_\+line} in order to generate the plots in real time.
+\item It has not been tested whether testing routines \char`\"{}pollutes\char`\"{} the further simulations. It is therefore best to not use the tests when doing a real run.
+\end{DoxyEnumerate}
+
+Debug version only
+\end{DoxyNote}
+\begin{DoxyReturn}{Returns}
+ierr 
+\end{DoxyReturn}
+
+
+Definition at line 39 of file test.\+f90.
+
+Here is the call graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{namespacetest_aca21ee464c0b1f4b617177afdde110ec_cgraph}
 \end{center}
 \end{figure}
-Here is the caller graph for this function\+:
-\nopagebreak
+Here is the caller graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -50,74 +75,27 @@ Here is the caller graph for this function\+:
 
 
 
-Definition at line 1391 of file test.\+f90.
+Tests calculation of volume integral. 
 
-Here is the call graph for this function\+:
-\nopagebreak
+\begin{DoxyReturn}{Returns}
+ierr 
+\end{DoxyReturn}
+
+
+Definition at line 1246 of file test.\+f90.
+
+Here is the call graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{namespacetest_a0d4cb791bf762b2e52260fea7644a3ee_cgraph}
 \end{center}
 \end{figure}
-Here is the caller graph for this function\+:
-\nopagebreak
+Here is the caller graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{namespacetest_a0d4cb791bf762b2e52260fea7644a3ee_icgraph}
-\end{center}
-\end{figure}
-\mbox{\Hypertarget{namespacetest_a4a25e64af6b986091f9e49ba447fc5c4}\label{namespacetest_a4a25e64af6b986091f9e49ba447fc5c4}} 
-\index{test@{test}!test\+\_\+calc\+\_\+rzl@{test\+\_\+calc\+\_\+rzl}}
-\index{test\+\_\+calc\+\_\+rzl@{test\+\_\+calc\+\_\+rzl}!test@{test}}
-\subsubsection{\texorpdfstring{test\+\_\+calc\+\_\+rzl()}{test\_calc\_rzl()}}
-{\footnotesize\ttfamily integer function test\+::test\+\_\+calc\+\_\+rzl (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
-
-
-
-Definition at line 722 of file test.\+f90.
-
-Here is the call graph for this function\+:
-\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=350pt]{namespacetest_a4a25e64af6b986091f9e49ba447fc5c4_cgraph}
-\end{center}
-\end{figure}
-Here is the caller graph for this function\+:
-\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=350pt]{namespacetest_a4a25e64af6b986091f9e49ba447fc5c4_icgraph}
-\end{center}
-\end{figure}
-\mbox{\Hypertarget{namespacetest_af72aaa5773b5bef2ac8d25fd05378439}\label{namespacetest_af72aaa5773b5bef2ac8d25fd05378439}} 
-\index{test@{test}!test\+\_\+interp@{test\+\_\+interp}}
-\index{test\+\_\+interp@{test\+\_\+interp}!test@{test}}
-\subsubsection{\texorpdfstring{test\+\_\+interp()}{test\_interp()}}
-{\footnotesize\ttfamily integer function test\+::test\+\_\+interp (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
-
-
-
-Definition at line 79 of file test.\+f90.
-
-Here is the call graph for this function\+:
-\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=350pt]{namespacetest_af72aaa5773b5bef2ac8d25fd05378439_cgraph}
-\end{center}
-\end{figure}
-Here is the caller graph for this function\+:
-\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=350pt]{namespacetest_af72aaa5773b5bef2ac8d25fd05378439_icgraph}
 \end{center}
 \end{figure}
 \mbox{\Hypertarget{namespacetest_ac574f08ba400cd61070a6a6f13f6f7ee}\label{namespacetest_ac574f08ba400cd61070a6a6f13f6f7ee}} 
@@ -128,21 +106,88 @@ Here is the caller graph for this function\+:
 
 
 
-Definition at line 867 of file test.\+f90.
+Tests reading of H\+D\+F5 subset. 
 
-Here is the call graph for this function\+:
-\nopagebreak
+\begin{DoxyReturn}{Returns}
+ierr 
+\end{DoxyReturn}
+
+
+Definition at line 717 of file test.\+f90.
+
+Here is the call graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{namespacetest_ac574f08ba400cd61070a6a6f13f6f7ee_cgraph}
 \end{center}
 \end{figure}
-Here is the caller graph for this function\+:
-\nopagebreak
+Here is the caller graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{namespacetest_ac574f08ba400cd61070a6a6f13f6f7ee_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{namespacetest_a53c6b3d654d4577af301fe3b04473d6a}\label{namespacetest_a53c6b3d654d4577af301fe3b04473d6a}} 
+\index{test@{test}!test\+\_\+splines@{test\+\_\+splines}}
+\index{test\+\_\+splines@{test\+\_\+splines}!test@{test}}
+\subsubsection{\texorpdfstring{test\+\_\+splines()}{test\_splines()}}
+{\footnotesize\ttfamily integer function test\+::test\+\_\+splines (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Test splines. 
+
+\begin{DoxyReturn}{Returns}
+ierr 
+\end{DoxyReturn}
+
+
+Definition at line 99 of file test.\+f90.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespacetest_a53c6b3d654d4577af301fe3b04473d6a_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespacetest_a53c6b3d654d4577af301fe3b04473d6a_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{namespacetest_ab595ec935321ea0b1168593fb88fad22}\label{namespacetest_ab595ec935321ea0b1168593fb88fad22}} 
+\index{test@{test}!test\+\_\+tor\+\_\+fun@{test\+\_\+tor\+\_\+fun}}
+\index{test\+\_\+tor\+\_\+fun@{test\+\_\+tor\+\_\+fun}!test@{test}}
+\subsubsection{\texorpdfstring{test\+\_\+tor\+\_\+fun()}{test\_tor\_fun()}}
+{\footnotesize\ttfamily integer function test\+::test\+\_\+tor\+\_\+fun (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Test calculation of toroidal functions. 
+
+\begin{DoxyReturn}{Returns}
+ierr 
+\end{DoxyReturn}
+
+
+Definition at line 575 of file test.\+f90.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespacetest_ab595ec935321ea0b1168593fb88fad22_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespacetest_ab595ec935321ea0b1168593fb88fad22_icgraph}
 \end{center}
 \end{figure}

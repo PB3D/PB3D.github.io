@@ -1,200 +1,54 @@
 \hypertarget{grid__utilities_8f90}{}\section{/opt/\+P\+B3\+D/\+Modules/grid\+\_\+utilities.f90 File Reference}
 \label{grid__utilities_8f90}\index{/opt/\+P\+B3\+D/\+Modules/grid\+\_\+utilities.\+f90@{/opt/\+P\+B3\+D/\+Modules/grid\+\_\+utilities.\+f90}}
+\subsection*{Interfaces and Types}
+\begin{DoxyCompactItemize}
+\item 
+interface \hyperlink{interfacegrid__utilities_1_1coord__f2e}{grid\+\_\+utilities\+::coord\+\_\+f2e}
+\begin{DoxyCompactList}\small\item\em Converts Flux coordinates $\left(r,\theta,\zeta\right)_\text{F}$ to Equilibrium coordinates $\left(r,\theta,\zeta\right)_\text{E}$. \end{DoxyCompactList}\item 
+interface \hyperlink{interfacegrid__utilities_1_1coord__e2f}{grid\+\_\+utilities\+::coord\+\_\+e2f}
+\begin{DoxyCompactList}\small\item\em Converts Equilibrium coordinates $\left(r,\theta,\zeta\right)_\text{E}$. to Flux coordinates $\left(r,\theta,\zeta\right)_\text{F}$. \end{DoxyCompactList}\item 
+interface \hyperlink{interfacegrid__utilities_1_1calc__eqd__grid}{grid\+\_\+utilities\+::calc\+\_\+eqd\+\_\+grid}
+\begin{DoxyCompactList}\small\item\em Calculate grid of equidistant points, where optionally the last point can be excluded. \end{DoxyCompactList}\item 
+interface \hyperlink{interfacegrid__utilities_1_1calc__tor__diff}{grid\+\_\+utilities\+::calc\+\_\+tor\+\_\+diff}
+\begin{DoxyCompactList}\small\item\em Calculates the toroidal difference for a magnitude calculated on three toroidal points\+: two extremities and one in the middle. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Modules}
 \begin{DoxyCompactItemize}
 \item 
 module \hyperlink{namespacegrid__utilities}{grid\+\_\+utilities}
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Numerical utilities related to the grids and different coordinate systems. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Functions/\+Subroutines}
 \begin{DoxyCompactItemize}
 \item 
-integer function \hyperlink{grid__utilities_8f90_aa4643f558c5d0e6149c4a8cbd289777d}{coord\+\_\+f2e\+\_\+vmec} ()
-\item 
-real(dp) function, dimension(dims(1), dims(2), dims(3)) \hyperlink{grid__utilities_8f90_a38078beae178a5dcd051e2ed858d4d35}{fun\+\_\+pol} (dims, theta\+\_\+\+E\+\_\+in, dpol)
-\item 
 integer function \hyperlink{namespacegrid__utilities_a2a3c0509679b438d9d5aa5bedfb7a7b8}{grid\+\_\+utilities\+::coord\+\_\+e2f\+\_\+rtz} (grid\+\_\+eq, r\+\_\+E, theta\+\_\+E, zeta\+\_\+E, r\+\_\+F, theta\+\_\+F, zeta\+\_\+F, r\+\_\+\+E\+\_\+array, r\+\_\+\+F\+\_\+array)
-\item 
-integer function \hyperlink{grid__utilities_8f90_af4a8f2c9e0c72e80e6cbac35617e5f80}{coord\+\_\+e2f\+\_\+vmec} ()
-\item 
+\begin{DoxyCompactList}\small\item\em version with r, theta and zeta \end{DoxyCompactList}\item 
 integer function \hyperlink{namespacegrid__utilities_a7866b2c198255dec7904dac73ccf4340}{grid\+\_\+utilities\+::coord\+\_\+e2f\+\_\+r} (grid\+\_\+eq, r\+\_\+E, r\+\_\+F, r\+\_\+\+E\+\_\+array, r\+\_\+\+F\+\_\+array)
-\item 
+\begin{DoxyCompactList}\small\item\em version with only r \end{DoxyCompactList}\item 
 integer function, public \hyperlink{namespacegrid__utilities_a39e7cd9b8f173994358dbdd6b57827e1}{grid\+\_\+utilities\+::calc\+\_\+xyz\+\_\+grid} (grid\+\_\+eq, grid\+\_\+\+X\+YZ, X, Y, Z, L, R)
-\item 
-integer function \hyperlink{grid__utilities_8f90_aaabf4a8fdce3679e99ff8f8a9a30fcaf}{calc\+\_\+xyz\+\_\+grid\+\_\+vmec} (grid\+\_\+eq, grid\+\_\+\+X\+YZ, X, Y, Z, L, R)
-\item 
-integer function \hyperlink{grid__utilities_8f90_ad39ac81f24bae991c679caf84a4ad757}{calc\+\_\+xyz\+\_\+grid\+\_\+hel} (grid\+\_\+eq, grid\+\_\+\+X\+YZ, X, Y, Z, R)
-\item 
-integer function \hyperlink{namespacegrid__utilities_a1725fdd7bdf52d436152c5e327c36be4}{grid\+\_\+utilities\+::calc\+\_\+eqd\+\_\+grid\+\_\+3d} (var, min\+\_\+grid, max\+\_\+grid, grid\+\_\+dim, excl\+\_\+last)
-\item 
+\begin{DoxyCompactList}\small\item\em Calculates $X$, $Y$ and $Z$ on a grid {\ttfamily grid\+\_\+\+X\+YZ}, determined through its E(quilibrium) coordinates. \end{DoxyCompactList}\item 
 integer function, public \hyperlink{namespacegrid__utilities_a414a1a11924bc935afca3a89fc31f2f5}{grid\+\_\+utilities\+::extend\+\_\+grid\+\_\+f} (grid\+\_\+in, grid\+\_\+ext, grid\+\_\+eq, n\+\_\+theta\+\_\+plot, n\+\_\+zeta\+\_\+plot, lim\+\_\+theta\+\_\+plot, lim\+\_\+zeta\+\_\+plot)
-\item 
+\begin{DoxyCompactList}\small\item\em Extend a grid angularly. \end{DoxyCompactList}\item 
 integer function, public \hyperlink{namespacegrid__utilities_a04f971c38083f873a04eb6568bed466b}{grid\+\_\+utilities\+::copy\+\_\+grid} (grid\+\_\+A, grid\+\_\+B, lims\+\_\+B, i\+\_\+lim)
-\item 
+\begin{DoxyCompactList}\small\item\em Copy a grid A to a new grid B, that was not yet initialized. \end{DoxyCompactList}\item 
 integer function, public \hyperlink{namespacegrid__utilities_a97e3106dbdc10b726af74afa113ba533}{grid\+\_\+utilities\+::calc\+\_\+int\+\_\+vol} (ang\+\_\+1, ang\+\_\+2, norm, J, f, f\+\_\+int)
-\item 
-integer function \hyperlink{namespacegrid__utilities_a32f5edd35f6976236b9848f56f951c83}{grid\+\_\+utilities\+::setup\+\_\+deriv\+\_\+data\+\_\+eqd} (step, n, A, ord, prec)
-\item 
-integer function \hyperlink{namespacegrid__utilities_a383fb7484b5a315a3b8019d388f88617}{grid\+\_\+utilities\+::setup\+\_\+deriv\+\_\+data\+\_\+reg} (x, A, ord, prec)
-\item 
-integer function, public \hyperlink{namespacegrid__utilities_a43206328f85253a6cc821cd46a498bb6}{grid\+\_\+utilities\+::setup\+\_\+interp\+\_\+data} (x, x\+\_\+interp, A, ord, is\+\_\+trigon, norm\+\_\+len)
-\item 
-integer function \hyperlink{namespacegrid__utilities_a9494e086550e67e6d1319d94d37e15ef}{grid\+\_\+utilities\+::apply\+\_\+disc\+\_\+4d\+\_\+real} (var, disc\+\_\+data, dvar, disc\+\_\+dim)
-\item 
-integer function \hyperlink{namespacegrid__utilities_a7fcde4b046076294fc8d2ca130f84add}{grid\+\_\+utilities\+::apply\+\_\+disc\+\_\+4d\+\_\+complex} (var, disc\+\_\+data, dvar, disc\+\_\+dim)
-\item 
-integer function \hyperlink{namespacegrid__utilities_a876f338471e643a680893b9a19715016}{grid\+\_\+utilities\+::apply\+\_\+disc\+\_\+3d\+\_\+real} (var, disc\+\_\+data, dvar, disc\+\_\+dim)
-\item 
-integer function \hyperlink{namespacegrid__utilities_a2e42ad0b765c9292bc7010069359cc28}{grid\+\_\+utilities\+::apply\+\_\+disc\+\_\+3d\+\_\+complex} (var, disc\+\_\+data, dvar, disc\+\_\+dim)
-\item 
-integer function \hyperlink{namespacegrid__utilities_a9ffa0404a239305f4c0c577d1e34a791}{grid\+\_\+utilities\+::apply\+\_\+disc\+\_\+2d\+\_\+real} (var, disc\+\_\+data, dvar, disc\+\_\+dim)
-\item 
-integer function \hyperlink{namespacegrid__utilities_a7cb36e1ff9abd22f7f18d8b65215c67f}{grid\+\_\+utilities\+::apply\+\_\+disc\+\_\+2d\+\_\+complex} (var, disc\+\_\+data, dvar, disc\+\_\+dim)
-\item 
-integer function \hyperlink{namespacegrid__utilities_ae57cbda514cf4bf01714e0746ff342a2}{grid\+\_\+utilities\+::apply\+\_\+disc\+\_\+1d\+\_\+real} (var, disc\+\_\+data, dvar)
-\item 
-integer function \hyperlink{namespacegrid__utilities_a948a0ef995a14a7a80464933e8c28029}{grid\+\_\+utilities\+::apply\+\_\+disc\+\_\+1d\+\_\+complex} (var, disc\+\_\+data, dvar)
-\item 
+\begin{DoxyCompactList}\small\item\em Calculates volume integral on a 3D grid. \end{DoxyCompactList}\item 
 integer function, public \hyperlink{namespacegrid__utilities_a67001ff9bbcad707aacf17f90a748d90}{grid\+\_\+utilities\+::trim\+\_\+grid} (grid\+\_\+in, grid\+\_\+out, norm\+\_\+id)
-\item 
+\begin{DoxyCompactList}\small\item\em Trim a grid, removing any overlap between the different regions. \end{DoxyCompactList}\item 
 integer function, public \hyperlink{namespacegrid__utilities_a4679f24af8e02793070f4e27b43e00b6}{grid\+\_\+utilities\+::untrim\+\_\+grid} (grid\+\_\+in, grid\+\_\+out, size\+\_\+ghost)
-\item 
-integer function, public \hyperlink{namespacegrid__utilities_a3076796477d38ffed189868b3b28efb1}{grid\+\_\+utilities\+::calc\+\_\+vec\+\_\+comp} (grid, grid\+\_\+eq, eq\+\_\+1, eq\+\_\+2, v\+\_\+com, norm\+\_\+disc\+\_\+prec, v\+\_\+mag, base\+\_\+name, max\+\_\+transf, v\+\_\+flux\+\_\+tor, v\+\_\+flux\+\_\+pol)
-\item 
+\begin{DoxyCompactList}\small\item\em Untrims a trimmed grid by introducing an asymmetric ghost regions at the right. \end{DoxyCompactList}\item 
+integer function, public \hyperlink{namespacegrid__utilities_ad3d9386b9abcb1a7e17369a1b3a3750d}{grid\+\_\+utilities\+::calc\+\_\+vec\+\_\+comp} (grid, grid\+\_\+eq, eq\+\_\+1, eq\+\_\+2, v\+\_\+com, norm\+\_\+disc\+\_\+prec, v\+\_\+mag, base\+\_\+name, max\+\_\+transf, v\+\_\+flux\+\_\+tor, v\+\_\+flux\+\_\+pol, X\+YZ, compare\+\_\+tor\+\_\+pos)
+\begin{DoxyCompactList}\small\item\em Calculates contra-\/ and covariant components of a vector in multiple coordinate systems. \end{DoxyCompactList}\item 
 integer function, public \hyperlink{namespacegrid__utilities_adeb8c22db4d419a278d6fcc68a34100c}{grid\+\_\+utilities\+::calc\+\_\+n\+\_\+par\+\_\+x\+\_\+rich} (n\+\_\+par\+\_\+\+X\+\_\+rich, only\+\_\+half\+\_\+grid)
-\item 
+\begin{DoxyCompactList}\small\item\em Calculates the local number of parallel grid points for this Richardson level, taking into account that it ould be half the actual number. \end{DoxyCompactList}\item 
 integer function, public \hyperlink{namespacegrid__utilities_a0854b2d6cc61a31f68b4afe7304077a9}{grid\+\_\+utilities\+::nufft} (x, f, f\+\_\+F, plot\+\_\+name)
-\item 
+\begin{DoxyCompactList}\small\item\em calculates the cosine and sine mode numbers of a function defined on a non-\/regular grid. \end{DoxyCompactList}\item 
 subroutine, public \hyperlink{namespacegrid__utilities_ae08e1ff213071c9d411a9b9c76035e1e}{grid\+\_\+utilities\+::find\+\_\+compr\+\_\+range} (r\+\_\+F, lim\+\_\+r, lim\+\_\+id)
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em finds smallest range that comprises a minimum and maximum value. \end{DoxyCompactList}\item 
+integer function, public \hyperlink{namespacegrid__utilities_ac32a26bff5c635678f3f78ec9a540a65}{grid\+\_\+utilities\+::calc\+\_\+arc\+\_\+angle} (grid, eq\+\_\+1, eq\+\_\+2, arc, use\+\_\+E)
+\begin{DoxyCompactList}\small\item\em Calculate arclength angle. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Variables}
 \begin{DoxyCompactItemize}
 \item 
 logical, public \hyperlink{namespacegrid__utilities_a0743c0341d508034b14aee614fa4f8a9}{grid\+\_\+utilities\+::debug\+\_\+calc\+\_\+int\+\_\+vol} = .false.
-\item 
+\begin{DoxyCompactList}\small\item\em plot debug information for \hyperlink{namespacegrid__utilities_a97e3106dbdc10b726af74afa113ba533}{calc\+\_\+int\+\_\+vol()} \end{DoxyCompactList}\item 
 logical, public \hyperlink{namespacegrid__utilities_ab420036236dc8a9a69e180550499d95b}{grid\+\_\+utilities\+::debug\+\_\+calc\+\_\+vec\+\_\+comp} = .false.
-\end{DoxyCompactItemize}
-
-
-\subsection{Function/\+Subroutine Documentation}
-\mbox{\Hypertarget{grid__utilities_8f90_ad39ac81f24bae991c679caf84a4ad757}\label{grid__utilities_8f90_ad39ac81f24bae991c679caf84a4ad757}} 
-\index{grid\+\_\+utilities.\+f90@{grid\+\_\+utilities.\+f90}!calc\+\_\+xyz\+\_\+grid\+\_\+hel@{calc\+\_\+xyz\+\_\+grid\+\_\+hel}}
-\index{calc\+\_\+xyz\+\_\+grid\+\_\+hel@{calc\+\_\+xyz\+\_\+grid\+\_\+hel}!grid\+\_\+utilities.\+f90@{grid\+\_\+utilities.\+f90}}
-\subsubsection{\texorpdfstring{calc\+\_\+xyz\+\_\+grid\+\_\+hel()}{calc\_xyz\_grid\_hel()}}
-{\footnotesize\ttfamily integer function calc\+\_\+xyz\+\_\+grid\+::calc\+\_\+xyz\+\_\+grid\+\_\+hel (\begin{DoxyParamCaption}\item[{type(grid\+\_\+type), intent(in)}]{grid\+\_\+eq,  }\item[{type(grid\+\_\+type), intent(in)}]{grid\+\_\+\+X\+YZ,  }\item[{real(dp), dimension(\+:,\+:,\+:), intent(inout)}]{X,  }\item[{real(dp), dimension(\+:,\+:,\+:), intent(inout)}]{Y,  }\item[{real(dp), dimension(\+:,\+:,\+:), intent(inout)}]{Z,  }\item[{real(dp), dimension(\+:,\+:,\+:), intent(inout), optional}]{R }\end{DoxyParamCaption})}
-
-
-
-Definition at line 622 of file grid\+\_\+utilities.\+f90.
-
-Here is the call graph for this function\+:
-\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=350pt]{grid__utilities_8f90_ad39ac81f24bae991c679caf84a4ad757_cgraph}
-\end{center}
-\end{figure}
-Here is the caller graph for this function\+:
-\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=350pt]{grid__utilities_8f90_ad39ac81f24bae991c679caf84a4ad757_icgraph}
-\end{center}
-\end{figure}
-\mbox{\Hypertarget{grid__utilities_8f90_aaabf4a8fdce3679e99ff8f8a9a30fcaf}\label{grid__utilities_8f90_aaabf4a8fdce3679e99ff8f8a9a30fcaf}} 
-\index{grid\+\_\+utilities.\+f90@{grid\+\_\+utilities.\+f90}!calc\+\_\+xyz\+\_\+grid\+\_\+vmec@{calc\+\_\+xyz\+\_\+grid\+\_\+vmec}}
-\index{calc\+\_\+xyz\+\_\+grid\+\_\+vmec@{calc\+\_\+xyz\+\_\+grid\+\_\+vmec}!grid\+\_\+utilities.\+f90@{grid\+\_\+utilities.\+f90}}
-\subsubsection{\texorpdfstring{calc\+\_\+xyz\+\_\+grid\+\_\+vmec()}{calc\_xyz\_grid\_vmec()}}
-{\footnotesize\ttfamily integer function calc\+\_\+xyz\+\_\+grid\+::calc\+\_\+xyz\+\_\+grid\+\_\+vmec (\begin{DoxyParamCaption}\item[{type(grid\+\_\+type), intent(in)}]{grid\+\_\+eq,  }\item[{type(grid\+\_\+type), intent(in)}]{grid\+\_\+\+X\+YZ,  }\item[{real(dp), dimension(\+:,\+:,\+:), intent(inout)}]{X,  }\item[{real(dp), dimension(\+:,\+:,\+:), intent(inout)}]{Y,  }\item[{real(dp), dimension(\+:,\+:,\+:), intent(inout)}]{Z,  }\item[{real(dp), dimension(\+:,\+:,\+:), intent(inout), optional}]{L,  }\item[{real(dp), dimension(\+:,\+:,\+:), intent(inout), optional}]{R }\end{DoxyParamCaption})}
-
-
-
-Definition at line 533 of file grid\+\_\+utilities.\+f90.
-
-Here is the call graph for this function\+:
-\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=350pt]{grid__utilities_8f90_aaabf4a8fdce3679e99ff8f8a9a30fcaf_cgraph}
-\end{center}
-\end{figure}
-Here is the caller graph for this function\+:
-\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=350pt]{grid__utilities_8f90_aaabf4a8fdce3679e99ff8f8a9a30fcaf_icgraph}
-\end{center}
-\end{figure}
-\mbox{\Hypertarget{grid__utilities_8f90_af4a8f2c9e0c72e80e6cbac35617e5f80}\label{grid__utilities_8f90_af4a8f2c9e0c72e80e6cbac35617e5f80}} 
-\index{grid\+\_\+utilities.\+f90@{grid\+\_\+utilities.\+f90}!coord\+\_\+e2f\+\_\+vmec@{coord\+\_\+e2f\+\_\+vmec}}
-\index{coord\+\_\+e2f\+\_\+vmec@{coord\+\_\+e2f\+\_\+vmec}!grid\+\_\+utilities.\+f90@{grid\+\_\+utilities.\+f90}}
-\subsubsection{\texorpdfstring{coord\+\_\+e2f\+\_\+vmec()}{coord\_e2f\_vmec()}}
-{\footnotesize\ttfamily integer function coord\+\_\+e2f\+\_\+rtz\+::coord\+\_\+e2f\+\_\+vmec (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
-
-
-
-Definition at line 331 of file grid\+\_\+utilities.\+f90.
-
-Here is the call graph for this function\+:
-\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=350pt]{grid__utilities_8f90_af4a8f2c9e0c72e80e6cbac35617e5f80_cgraph}
-\end{center}
-\end{figure}
-Here is the caller graph for this function\+:
-\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=350pt]{grid__utilities_8f90_af4a8f2c9e0c72e80e6cbac35617e5f80_icgraph}
-\end{center}
-\end{figure}
-\mbox{\Hypertarget{grid__utilities_8f90_aa4643f558c5d0e6149c4a8cbd289777d}\label{grid__utilities_8f90_aa4643f558c5d0e6149c4a8cbd289777d}} 
-\index{grid\+\_\+utilities.\+f90@{grid\+\_\+utilities.\+f90}!coord\+\_\+f2e\+\_\+vmec@{coord\+\_\+f2e\+\_\+vmec}}
-\index{coord\+\_\+f2e\+\_\+vmec@{coord\+\_\+f2e\+\_\+vmec}!grid\+\_\+utilities.\+f90@{grid\+\_\+utilities.\+f90}}
-\subsubsection{\texorpdfstring{coord\+\_\+f2e\+\_\+vmec()}{coord\_f2e\_vmec()}}
-{\footnotesize\ttfamily integer function coord\+\_\+f2e\+\_\+rtz\+::coord\+\_\+f2e\+\_\+vmec (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
-
-
-
-Definition at line 111 of file grid\+\_\+utilities.\+f90.
-
-Here is the call graph for this function\+:
-\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=350pt]{grid__utilities_8f90_aa4643f558c5d0e6149c4a8cbd289777d_cgraph}
-\end{center}
-\end{figure}
-\mbox{\Hypertarget{grid__utilities_8f90_a38078beae178a5dcd051e2ed858d4d35}\label{grid__utilities_8f90_a38078beae178a5dcd051e2ed858d4d35}} 
-\index{grid\+\_\+utilities.\+f90@{grid\+\_\+utilities.\+f90}!fun\+\_\+pol@{fun\+\_\+pol}}
-\index{fun\+\_\+pol@{fun\+\_\+pol}!grid\+\_\+utilities.\+f90@{grid\+\_\+utilities.\+f90}}
-\subsubsection{\texorpdfstring{fun\+\_\+pol()}{fun\_pol()}}
-{\footnotesize\ttfamily real(dp) function, dimension(dims(1),dims(2),dims(3)) coord\+\_\+f2e\+\_\+rtz\+::fun\+\_\+pol (\begin{DoxyParamCaption}\item[{integer, dimension(3), intent(in)}]{dims,  }\item[{real(dp), dimension(dims(1),dims(2),dims(3)), intent(in)}]{theta\+\_\+\+E\+\_\+in,  }\item[{integer, intent(in)}]{dpol }\end{DoxyParamCaption})}
-
-
-
-Definition at line 185 of file grid\+\_\+utilities.\+f90.
-
-Here is the call graph for this function\+:
-\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=350pt]{grid__utilities_8f90_a38078beae178a5dcd051e2ed858d4d35_cgraph}
-\end{center}
-\end{figure}
-Here is the caller graph for this function\+:
-\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=276pt]{grid__utilities_8f90_a38078beae178a5dcd051e2ed858d4d35_icgraph}
-\end{center}
-\end{figure}
+\begin{DoxyCompactList}\small\item\em plot debug information for \hyperlink{namespacegrid__utilities_ad3d9386b9abcb1a7e17369a1b3a3750d}{calc\+\_\+vec\+\_\+comp()} \end{DoxyCompactList}\end{DoxyCompactItemize}

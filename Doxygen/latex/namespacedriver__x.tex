@@ -1,19 +1,27 @@
 \hypertarget{namespacedriver__x}{}\section{driver\+\_\+x Module Reference}
 \label{namespacedriver__x}\index{driver\+\_\+x@{driver\+\_\+x}}
+
+
+Driver of the perturbation part of P\+B3D.  
+
+
 \subsection*{Functions/\+Subroutines}
 \begin{DoxyCompactItemize}
 \item 
 integer function, public \hyperlink{namespacedriver__x_ada3d72a0929daaa5e3da585246d62281}{run\+\_\+driver\+\_\+x} (grid\+\_\+eq, grid\+\_\+eq\+\_\+B, grid\+\_\+X, grid\+\_\+\+X\+\_\+B, eq\+\_\+1, eq\+\_\+2, X\+\_\+1, X\+\_\+2)
-\item 
+\begin{DoxyCompactList}\small\item\em Main driver of P\+B3D perturbation part. \end{DoxyCompactList}\item 
 integer function \hyperlink{namespacedriver__x_a2b82a9bc6c0f4af9f3468d03fedc008e}{run\+\_\+driver\+\_\+x\+\_\+0} (grid\+\_\+eq, grid\+\_\+eq\+\_\+B, grid\+\_\+X, grid\+\_\+\+X\+\_\+B, eq\+\_\+1, eq\+\_\+2, eq\+\_\+2\+\_\+B)
-\item 
+\begin{DoxyCompactList}\small\item\em part 0 of \hyperlink{namespacedriver__x}{driver\+\_\+x}\+: perturbation grid as well as reconstruction of variables. \end{DoxyCompactList}\item 
 integer function \hyperlink{namespacedriver__x_a454779cefa6da3714d32eedcec0ef7de}{run\+\_\+driver\+\_\+x\+\_\+1} (grid\+\_\+eq, grid\+\_\+X, eq\+\_\+1, eq\+\_\+2, X\+\_\+1)
-\item 
+\begin{DoxyCompactList}\small\item\em Part 1 of \hyperlink{namespacedriver__x}{driver\+\_\+x}\+: Vectorial jobs. \end{DoxyCompactList}\item 
 integer function \hyperlink{namespacedriver__x_ad3924b3d66f336f0a9a9559eafffec8e}{run\+\_\+driver\+\_\+x\+\_\+2} (grid\+\_\+eq\+\_\+B, grid\+\_\+X, grid\+\_\+\+X\+\_\+B, eq\+\_\+1, eq\+\_\+2\+\_\+B, X\+\_\+1, X\+\_\+2\+\_\+int)
-\item 
+\begin{DoxyCompactList}\small\item\em Part 2 of driver\+\_\+X\+: Tensorial jobs. \end{DoxyCompactList}\item 
 subroutine \hyperlink{namespacedriver__x_aca49d362e21df044e21d5ba4b2599cf4}{print\+\_\+info\+\_\+x\+\_\+2} ()
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Prints information for tensorial perturbation job. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
+
+\subsection{Detailed Description}
+Driver of the perturbation part of P\+B3D. 
 
 \subsection{Function/\+Subroutine Documentation}
 \mbox{\Hypertarget{namespacedriver__x_aca49d362e21df044e21d5ba4b2599cf4}\label{namespacedriver__x_aca49d362e21df044e21d5ba4b2599cf4}} 
@@ -24,18 +32,20 @@ subroutine \hyperlink{namespacedriver__x_aca49d362e21df044e21d5ba4b2599cf4}{prin
 
 
 
-Definition at line 820 of file driver\+\_\+\+X.\+f90.
+Prints information for tensorial perturbation job. 
 
-Here is the call graph for this function\+:
-\nopagebreak
+
+
+Definition at line 703 of file driver\+\_\+\+X.\+f90.
+
+Here is the call graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{namespacedriver__x_aca49d362e21df044e21d5ba4b2599cf4_cgraph}
 \end{center}
 \end{figure}
-Here is the caller graph for this function\+:
-\nopagebreak
+Here is the caller graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -46,22 +56,75 @@ Here is the caller graph for this function\+:
 \index{driver\+\_\+x@{driver\+\_\+x}!run\+\_\+driver\+\_\+x@{run\+\_\+driver\+\_\+x}}
 \index{run\+\_\+driver\+\_\+x@{run\+\_\+driver\+\_\+x}!driver\+\_\+x@{driver\+\_\+x}}
 \subsubsection{\texorpdfstring{run\+\_\+driver\+\_\+x()}{run\_driver\_x()}}
-{\footnotesize\ttfamily integer function, public driver\+\_\+x\+::run\+\_\+driver\+\_\+x (\begin{DoxyParamCaption}\item[{type(grid\+\_\+type), intent(inout), target}]{grid\+\_\+eq,  }\item[{type(grid\+\_\+type), intent(inout), pointer}]{grid\+\_\+eq\+\_\+B,  }\item[{type(grid\+\_\+type), intent(inout), target}]{grid\+\_\+X,  }\item[{type(grid\+\_\+type), intent(inout), pointer}]{grid\+\_\+\+X\+\_\+B,  }\item[{type(eq\+\_\+1\+\_\+type), intent(in)}]{eq\+\_\+1,  }\item[{type(eq\+\_\+2\+\_\+type), intent(inout), target}]{eq\+\_\+2,  }\item[{type(x\+\_\+1\+\_\+type), intent(inout)}]{X\+\_\+1,  }\item[{type(x\+\_\+2\+\_\+type), intent(inout)}]{X\+\_\+2 }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily integer function, public driver\+\_\+x\+::run\+\_\+driver\+\_\+x (\begin{DoxyParamCaption}\item[{type(\hyperlink{structgrid__vars_1_1grid__type}{grid\+\_\+type}), intent(in), target}]{grid\+\_\+eq,  }\item[{type(\hyperlink{structgrid__vars_1_1grid__type}{grid\+\_\+type}), intent(in), pointer}]{grid\+\_\+eq\+\_\+B,  }\item[{type(\hyperlink{structgrid__vars_1_1grid__type}{grid\+\_\+type}), intent(inout), target}]{grid\+\_\+X,  }\item[{type(\hyperlink{structgrid__vars_1_1grid__type}{grid\+\_\+type}), intent(inout), pointer}]{grid\+\_\+\+X\+\_\+B,  }\item[{type(\hyperlink{structeq__vars_1_1eq__1__type}{eq\+\_\+1\+\_\+type}), intent(in), target}]{eq\+\_\+1,  }\item[{type(\hyperlink{structeq__vars_1_1eq__2__type}{eq\+\_\+2\+\_\+type}), intent(inout), target}]{eq\+\_\+2,  }\item[{type(x\+\_\+1\+\_\+type), intent(inout)}]{X\+\_\+1,  }\item[{type(x\+\_\+2\+\_\+type), intent(inout)}]{X\+\_\+2 }\end{DoxyParamCaption})}
 
 
 
-Definition at line 49 of file driver\+\_\+\+X.\+f90.
+Main driver of P\+B3D perturbation part. 
 
-Here is the call graph for this function\+:
-\nopagebreak
+
+\begin{DoxyItemize}
+\item sets up\+:
+\begin{DoxyItemize}
+\item \mbox{[}0\mbox{]} {\ttfamily grid\+\_\+X} (for H\+E\+L\+E\+NA, only first Richardson level)
+\item \mbox{[}0\mbox{]} {\ttfamily grid\+\_\+\+X\+\_\+B} (for V\+M\+EC, equal to grid\+\_\+\+X\+\_\+out)
+\item \mbox{[}1\mbox{]} {\ttfamily X\+\_\+1} 
+\item \mbox{[}2\mbox{]} {\ttfamily X\+\_\+2} 
+\end{DoxyItemize}
+\item writes to H\+D\+F5\+:
+\begin{DoxyItemize}
+\item \mbox{[}0\mbox{]} {\ttfamily grid\+\_\+X} (for H\+E\+L\+E\+NA, only first Richardson level)
+\item \mbox{[}0\mbox{]} {\ttfamily grid\+\_\+\+X\+\_\+B} (for V\+M\+EC, equal to grid\+\_\+X)
+\item \mbox{[}1\mbox{]} {\ttfamily X\+\_\+1} (only for H\+E\+L\+E\+NA, only first Richardson level)
+\item \mbox{[}2\mbox{]} {\ttfamily X\+\_\+2} 
+\end{DoxyItemize}
+\item deallocates\+:
+\begin{DoxyItemize}
+\item {\ttfamily X\+\_\+1} before setting up
+\item {\ttfamily grid\+\_\+X} before setting up
+\item {\ttfamily grid\+\_\+\+X\+\_\+B} before setting up
+\end{DoxyItemize}
+\end{DoxyItemize}
+
+(\mbox{[}x\mbox{]} indicates driver x)
+
+\begin{DoxyNote}{Note}
+{\ttfamily eq\+\_\+2} needs to be intent(inout) because interp\+\_\+\+H\+E\+L\+\_\+on\+\_\+grid() requires this for generality. The variable is not modified in this driver, though.
+\end{DoxyNote}
+\begin{DoxyReturn}{Returns}
+ierr
+\end{DoxyReturn}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em grid\+\_\+eq} & equilibrium grid (should be in but needs inout for interp\+\_\+\+H\+E\+L\+\_\+on\+\_\+grid)\\
+\hline
+\mbox{\tt in}  & {\em grid\+\_\+eq\+\_\+b} & field-\/aligned equilibrium grid (should be in but needs inout for interp\+\_\+\+H\+E\+L\+\_\+on\+\_\+grid)\\
+\hline
+\mbox{\tt in,out}  & {\em grid\+\_\+x} & perturbation grid\\
+\hline
+\mbox{\tt in,out}  & {\em grid\+\_\+x\+\_\+b} & field-\/aligned perturbation grid\\
+\hline
+\mbox{\tt in}  & {\em eq\+\_\+1} & flux equilibrium variables\\
+\hline
+\mbox{\tt in,out}  & {\em eq\+\_\+2} & metric equilibrium variables (should be in but needs inout for interp\+\_\+\+H\+E\+L\+\_\+on\+\_\+grid)\\
+\hline
+\mbox{\tt in,out}  & {\em x\+\_\+1} & vectorial perturbation variables\\
+\hline
+\mbox{\tt in,out}  & {\em x\+\_\+2} & tensorial perturbation variables \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 59 of file driver\+\_\+\+X.\+f90.
+
+Here is the call graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{namespacedriver__x_ada3d72a0929daaa5e3da585246d62281_cgraph}
 \end{center}
 \end{figure}
-Here is the caller graph for this function\+:
-\nopagebreak
+Here is the caller graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -72,22 +135,41 @@ Here is the caller graph for this function\+:
 \index{driver\+\_\+x@{driver\+\_\+x}!run\+\_\+driver\+\_\+x\+\_\+0@{run\+\_\+driver\+\_\+x\+\_\+0}}
 \index{run\+\_\+driver\+\_\+x\+\_\+0@{run\+\_\+driver\+\_\+x\+\_\+0}!driver\+\_\+x@{driver\+\_\+x}}
 \subsubsection{\texorpdfstring{run\+\_\+driver\+\_\+x\+\_\+0()}{run\_driver\_x\_0()}}
-{\footnotesize\ttfamily integer function driver\+\_\+x\+::run\+\_\+driver\+\_\+x\+\_\+0 (\begin{DoxyParamCaption}\item[{type(grid\+\_\+type), intent(in), target}]{grid\+\_\+eq,  }\item[{type(grid\+\_\+type), intent(in), pointer}]{grid\+\_\+eq\+\_\+B,  }\item[{type(grid\+\_\+type), intent(inout), target}]{grid\+\_\+X,  }\item[{type(grid\+\_\+type), intent(inout), pointer}]{grid\+\_\+\+X\+\_\+B,  }\item[{type(eq\+\_\+1\+\_\+type), intent(in)}]{eq\+\_\+1,  }\item[{type(eq\+\_\+2\+\_\+type), intent(inout), target}]{eq\+\_\+2,  }\item[{type(eq\+\_\+2\+\_\+type), intent(inout), pointer}]{eq\+\_\+2\+\_\+B }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily integer function driver\+\_\+x\+::run\+\_\+driver\+\_\+x\+\_\+0 (\begin{DoxyParamCaption}\item[{type(\hyperlink{structgrid__vars_1_1grid__type}{grid\+\_\+type}), intent(in), target}]{grid\+\_\+eq,  }\item[{type(\hyperlink{structgrid__vars_1_1grid__type}{grid\+\_\+type}), intent(in), pointer}]{grid\+\_\+eq\+\_\+B,  }\item[{type(\hyperlink{structgrid__vars_1_1grid__type}{grid\+\_\+type}), intent(inout), target}]{grid\+\_\+X,  }\item[{type(\hyperlink{structgrid__vars_1_1grid__type}{grid\+\_\+type}), intent(inout), pointer}]{grid\+\_\+\+X\+\_\+B,  }\item[{type(\hyperlink{structeq__vars_1_1eq__1__type}{eq\+\_\+1\+\_\+type}), intent(in)}]{eq\+\_\+1,  }\item[{type(\hyperlink{structeq__vars_1_1eq__2__type}{eq\+\_\+2\+\_\+type}), intent(inout), target}]{eq\+\_\+2,  }\item[{type(\hyperlink{structeq__vars_1_1eq__2__type}{eq\+\_\+2\+\_\+type}), intent(inout), pointer}]{eq\+\_\+2\+\_\+B }\end{DoxyParamCaption})}
 
 
 
-Definition at line 229 of file driver\+\_\+\+X.\+f90.
+part 0 of \hyperlink{namespacedriver__x}{driver\+\_\+x}\+: perturbation grid as well as reconstruction of variables. 
 
-Here is the call graph for this function\+:
-\nopagebreak
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em grid\+\_\+eq} & equilibrium grid\\
+\hline
+\mbox{\tt in}  & {\em grid\+\_\+eq\+\_\+b} & field-\/aligned equilibrium grid\\
+\hline
+\mbox{\tt in,out}  & {\em grid\+\_\+x} & perturbation grid\\
+\hline
+\mbox{\tt in,out}  & {\em grid\+\_\+x\+\_\+b} & field-\/aligned perturbation grid\\
+\hline
+\mbox{\tt in}  & {\em eq\+\_\+1} & flux equilibrium variables\\
+\hline
+\mbox{\tt in,out}  & {\em eq\+\_\+2} & metric equilibrium variables\\
+\hline
+\mbox{\tt in,out}  & {\em eq\+\_\+2\+\_\+b} & field-\/aligned metric equilibrium variables \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 271 of file driver\+\_\+\+X.\+f90.
+
+Here is the call graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{namespacedriver__x_a2b82a9bc6c0f4af9f3468d03fedc008e_cgraph}
 \end{center}
 \end{figure}
-Here is the caller graph for this function\+:
-\nopagebreak
+Here is the caller graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -98,22 +180,43 @@ Here is the caller graph for this function\+:
 \index{driver\+\_\+x@{driver\+\_\+x}!run\+\_\+driver\+\_\+x\+\_\+1@{run\+\_\+driver\+\_\+x\+\_\+1}}
 \index{run\+\_\+driver\+\_\+x\+\_\+1@{run\+\_\+driver\+\_\+x\+\_\+1}!driver\+\_\+x@{driver\+\_\+x}}
 \subsubsection{\texorpdfstring{run\+\_\+driver\+\_\+x\+\_\+1()}{run\_driver\_x\_1()}}
-{\footnotesize\ttfamily integer function driver\+\_\+x\+::run\+\_\+driver\+\_\+x\+\_\+1 (\begin{DoxyParamCaption}\item[{type(grid\+\_\+type), intent(in)}]{grid\+\_\+eq,  }\item[{type(grid\+\_\+type), intent(in)}]{grid\+\_\+X,  }\item[{type(eq\+\_\+1\+\_\+type), intent(in)}]{eq\+\_\+1,  }\item[{type(eq\+\_\+2\+\_\+type), intent(in)}]{eq\+\_\+2,  }\item[{type(x\+\_\+1\+\_\+type), intent(inout)}]{X\+\_\+1 }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily integer function driver\+\_\+x\+::run\+\_\+driver\+\_\+x\+\_\+1 (\begin{DoxyParamCaption}\item[{type(\hyperlink{structgrid__vars_1_1grid__type}{grid\+\_\+type}), intent(in)}]{grid\+\_\+eq,  }\item[{type(\hyperlink{structgrid__vars_1_1grid__type}{grid\+\_\+type}), intent(in)}]{grid\+\_\+X,  }\item[{type(\hyperlink{structeq__vars_1_1eq__1__type}{eq\+\_\+1\+\_\+type}), intent(in)}]{eq\+\_\+1,  }\item[{type(\hyperlink{structeq__vars_1_1eq__2__type}{eq\+\_\+2\+\_\+type}), intent(in)}]{eq\+\_\+2,  }\item[{type(x\+\_\+1\+\_\+type), intent(inout)}]{X\+\_\+1 }\end{DoxyParamCaption})}
 
 
 
-Definition at line 335 of file driver\+\_\+\+X.\+f90.
+Part 1 of \hyperlink{namespacedriver__x}{driver\+\_\+x}\+: Vectorial jobs. 
 
-Here is the call graph for this function\+:
-\nopagebreak
+\begin{DoxyNote}{Note}
+Everything is done here in the original grids, not necessarily field-\/aligned.
+\end{DoxyNote}
+\begin{DoxyReturn}{Returns}
+ierr
+\end{DoxyReturn}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em grid\+\_\+eq} & equilibrium grid\\
+\hline
+\mbox{\tt in}  & {\em grid\+\_\+x} & perturbation grid\\
+\hline
+\mbox{\tt in}  & {\em eq\+\_\+1} & flux equilibrium variables\\
+\hline
+\mbox{\tt in}  & {\em eq\+\_\+2} & metric equilibrium variables\\
+\hline
+\mbox{\tt in,out}  & {\em x\+\_\+1} & vectorial X variables \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 380 of file driver\+\_\+\+X.\+f90.
+
+Here is the call graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{namespacedriver__x_a454779cefa6da3714d32eedcec0ef7de_cgraph}
 \end{center}
 \end{figure}
-Here is the caller graph for this function\+:
-\nopagebreak
+Here is the caller graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -124,22 +227,47 @@ Here is the caller graph for this function\+:
 \index{driver\+\_\+x@{driver\+\_\+x}!run\+\_\+driver\+\_\+x\+\_\+2@{run\+\_\+driver\+\_\+x\+\_\+2}}
 \index{run\+\_\+driver\+\_\+x\+\_\+2@{run\+\_\+driver\+\_\+x\+\_\+2}!driver\+\_\+x@{driver\+\_\+x}}
 \subsubsection{\texorpdfstring{run\+\_\+driver\+\_\+x\+\_\+2()}{run\_driver\_x\_2()}}
-{\footnotesize\ttfamily integer function driver\+\_\+x\+::run\+\_\+driver\+\_\+x\+\_\+2 (\begin{DoxyParamCaption}\item[{type(grid\+\_\+type), intent(in), pointer}]{grid\+\_\+eq\+\_\+B,  }\item[{type(grid\+\_\+type), intent(in), target}]{grid\+\_\+X,  }\item[{type(grid\+\_\+type), intent(in), pointer}]{grid\+\_\+\+X\+\_\+B,  }\item[{type(eq\+\_\+1\+\_\+type), intent(in)}]{eq\+\_\+1,  }\item[{type(eq\+\_\+2\+\_\+type), intent(in), pointer}]{eq\+\_\+2\+\_\+B,  }\item[{type(x\+\_\+1\+\_\+type), intent(in)}]{X\+\_\+1,  }\item[{type(x\+\_\+2\+\_\+type), intent(inout)}]{X\+\_\+2\+\_\+int }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily integer function driver\+\_\+x\+::run\+\_\+driver\+\_\+x\+\_\+2 (\begin{DoxyParamCaption}\item[{type(\hyperlink{structgrid__vars_1_1grid__type}{grid\+\_\+type}), intent(in), pointer}]{grid\+\_\+eq\+\_\+B,  }\item[{type(\hyperlink{structgrid__vars_1_1grid__type}{grid\+\_\+type}), intent(in), target}]{grid\+\_\+X,  }\item[{type(\hyperlink{structgrid__vars_1_1grid__type}{grid\+\_\+type}), intent(in), pointer}]{grid\+\_\+\+X\+\_\+B,  }\item[{type(\hyperlink{structeq__vars_1_1eq__1__type}{eq\+\_\+1\+\_\+type}), intent(in)}]{eq\+\_\+1,  }\item[{type(\hyperlink{structeq__vars_1_1eq__2__type}{eq\+\_\+2\+\_\+type}), intent(in), pointer}]{eq\+\_\+2\+\_\+B,  }\item[{type(x\+\_\+1\+\_\+type), intent(in)}]{X\+\_\+1,  }\item[{type(x\+\_\+2\+\_\+type), intent(inout)}]{X\+\_\+2\+\_\+int }\end{DoxyParamCaption})}
 
 
 
-Definition at line 546 of file driver\+\_\+\+X.\+f90.
+Part 2 of driver\+\_\+X\+: Tensorial jobs. 
 
-Here is the call graph for this function\+:
-\nopagebreak
+\begin{DoxyNote}{Note}
+Everything is done in the field-\/aligned grids, where H\+E\+L\+E\+NA vectorial perturbation variables are first interpolated.
+\end{DoxyNote}
+\begin{DoxyReturn}{Returns}
+ierr
+\end{DoxyReturn}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em grid\+\_\+eq\+\_\+b} & field-\/aligned equilibrium grid\\
+\hline
+\mbox{\tt in}  & {\em grid\+\_\+x} & perturbation grid\\
+\hline
+\mbox{\tt in}  & {\em grid\+\_\+x\+\_\+b} & field-\/aligned perturbation grid\\
+\hline
+\mbox{\tt in}  & {\em eq\+\_\+1} & flux equilibrium variables\\
+\hline
+\mbox{\tt in}  & {\em eq\+\_\+2\+\_\+b} & field-\/aligned metric equilibrium variables\\
+\hline
+\mbox{\tt in}  & {\em x\+\_\+1} & vectorial X variables\\
+\hline
+\mbox{\tt in,out}  & {\em x\+\_\+2\+\_\+int} & tensorial X variables \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 530 of file driver\+\_\+\+X.\+f90.
+
+Here is the call graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{namespacedriver__x_ad3924b3d66f336f0a9a9559eafffec8e_cgraph}
 \end{center}
 \end{figure}
-Here is the caller graph for this function\+:
-\nopagebreak
+Here is the caller graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode

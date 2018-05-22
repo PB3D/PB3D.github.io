@@ -4,47 +4,43 @@
 \begin{DoxyCompactItemize}
 \item 
 module \hyperlink{namespacegrid__ops}{grid\+\_\+ops}
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Operations that have to do with the grids and different coordinate systems. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Functions/\+Subroutines}
 \begin{DoxyCompactItemize}
 \item 
-integer function, public \hyperlink{namespacegrid__ops_a596695cab6971ec6b9d32d13a50708b6}{grid\+\_\+ops\+::calc\+\_\+norm\+\_\+range} (in\+\_\+limits, eq\+\_\+limits, X\+\_\+limits, sol\+\_\+limits, r\+\_\+\+F\+\_\+eq, r\+\_\+\+F\+\_\+X, r\+\_\+\+F\+\_\+sol)
-\item 
+integer function, public \hyperlink{namespacegrid__ops_a1c18f90f93f5fce7ebb4dba60b70e0f8}{grid\+\_\+ops\+::calc\+\_\+norm\+\_\+range} (style, in\+\_\+limits, eq\+\_\+limits, X\+\_\+limits, sol\+\_\+limits, r\+\_\+\+F\+\_\+eq, r\+\_\+\+F\+\_\+X, r\+\_\+\+F\+\_\+sol, jq)
+\begin{DoxyCompactList}\small\item\em Calculates normal range for the input grid, the equilibrium grid and/or the solution grid. \end{DoxyCompactList}\item 
 integer function \hyperlink{grid__ops_8f90_aebe21d718069318bced62bc3d2d09393}{calc\+\_\+norm\+\_\+range\+\_\+pb3d\+\_\+in} (in\+\_\+limits)
-\item 
+\begin{DoxyCompactList}\small\item\em P\+B3D input version. \end{DoxyCompactList}\item 
 subroutine \hyperlink{grid__ops_8f90_a868669b6df6c0fa6a8cedd993042f6ea}{calc\+\_\+norm\+\_\+range\+\_\+pb3d\+\_\+eq} (eq\+\_\+limits)
-\item 
-integer function \hyperlink{grid__ops_8f90_a242e1c26e16f9cd4b7604de7a90a7472}{calc\+\_\+norm\+\_\+range\+\_\+pb3d\+\_\+x} (X\+\_\+limits, r\+\_\+\+F\+\_\+X)
-\item 
+\begin{DoxyCompactList}\small\item\em P\+B3D equilibrium version. \end{DoxyCompactList}\item 
+integer function \hyperlink{grid__ops_8f90_a0bd0af6203161233f7687c029d6c4ca0}{calc\+\_\+norm\+\_\+range\+\_\+pb3d\+\_\+x} (eq\+\_\+limits, X\+\_\+limits, r\+\_\+\+F\+\_\+eq, r\+\_\+\+F\+\_\+X, jq)
+\begin{DoxyCompactList}\small\item\em P\+B3D perturbation version. \end{DoxyCompactList}\item 
 integer function \hyperlink{grid__ops_8f90_a9121423739548f1a1fa4e87055f49010}{calc\+\_\+norm\+\_\+range\+\_\+pb3d\+\_\+sol} (sol\+\_\+limits, r\+\_\+\+F\+\_\+sol, n\+\_\+procs)
-\item 
-subroutine \hyperlink{grid__ops_8f90_ad037c191ae770bd79529506953f0e307}{calc\+\_\+norm\+\_\+range\+\_\+post} (eq\+\_\+limits, X\+\_\+limits, sol\+\_\+limits, r\+\_\+\+F\+\_\+eq, r\+\_\+\+F\+\_\+sol)
-\item 
-integer function, public \hyperlink{namespacegrid__ops_ab749b0904ed8c69253fe8908c2624bcd}{grid\+\_\+ops\+::setup\+\_\+grid\+\_\+eq} (grid\+\_\+eq, eq\+\_\+limits, only\+\_\+half\+\_\+grid)
-\item 
+\begin{DoxyCompactList}\small\item\em P\+B3D solution version. \end{DoxyCompactList}\item 
+subroutine \hyperlink{grid__ops_8f90_aa3b47be0188da6dd19a745f796c1500f}{calc\+\_\+norm\+\_\+range\+\_\+post} (eq\+\_\+limits, X\+\_\+limits, sol\+\_\+limits, r\+\_\+\+F\+\_\+eq, r\+\_\+\+F\+\_\+X, r\+\_\+\+F\+\_\+sol)
+\begin{DoxyCompactList}\small\item\em P\+O\+ST version. \end{DoxyCompactList}\item 
+integer function, public \hyperlink{namespacegrid__ops_af63366847d1caa64a7d329672292fd34}{grid\+\_\+ops\+::setup\+\_\+grid\+\_\+eq} (grid\+\_\+eq, eq\+\_\+limits)
+\begin{DoxyCompactList}\small\item\em Sets up the equilibrium grid. \end{DoxyCompactList}\item 
 integer function, public \hyperlink{namespacegrid__ops_ad16495ddd320562451c2325bafecf2d8}{grid\+\_\+ops\+::setup\+\_\+grid\+\_\+eq\+\_\+b} (grid\+\_\+eq, grid\+\_\+eq\+\_\+B, eq, only\+\_\+half\+\_\+grid)
-\item 
-integer function, public \hyperlink{namespacegrid__ops_ab10ef5b486ee3861df2da4e53bc22630}{grid\+\_\+ops\+::redistribute\+\_\+output\+\_\+grid} (grid, grid\+\_\+out, no\+\_\+outer\+\_\+trim)
-\item 
+\begin{DoxyCompactList}\small\item\em Sets up the field-\/aligned equilibrium grid. \end{DoxyCompactList}\item 
 integer function, public \hyperlink{namespacegrid__ops_a1047889ec84da6e56aae619570a16988}{grid\+\_\+ops\+::setup\+\_\+grid\+\_\+x} (grid\+\_\+eq, grid\+\_\+X, r\+\_\+\+F\+\_\+X, X\+\_\+limits)
-\item 
-integer function, public \hyperlink{namespacegrid__ops_ae4f50f7b63e0a8b84dae6b98fd3e5d71}{grid\+\_\+ops\+::setup\+\_\+grid\+\_\+sol} (grid\+\_\+X, grid\+\_\+sol, sol\+\_\+limits)
-\item 
+\begin{DoxyCompactList}\small\item\em Sets up the general perturbation grid, in which the perturbation variables are calculated. \end{DoxyCompactList}\item 
+integer function, public \hyperlink{namespacegrid__ops_aeff1569cb9a043b03ed49250524fbd95}{grid\+\_\+ops\+::setup\+\_\+grid\+\_\+sol} (grid\+\_\+eq, grid\+\_\+X, grid\+\_\+sol, r\+\_\+\+F\+\_\+sol, sol\+\_\+limits)
+\begin{DoxyCompactList}\small\item\em Sets up the general solution grid, in which the solution variables are calculated. \end{DoxyCompactList}\item 
 integer function, public \hyperlink{namespacegrid__ops_a06107dbdfd1dd62e372cc29ab0255bad}{grid\+\_\+ops\+::calc\+\_\+ang\+\_\+grid\+\_\+eq\+\_\+b} (grid\+\_\+eq, eq, only\+\_\+half\+\_\+grid)
-\item 
+\begin{DoxyCompactList}\small\item\em Calculate equilibrium grid that follows magnetic field lines. \end{DoxyCompactList}\item 
+integer function, public \hyperlink{namespacegrid__ops_ab10ef5b486ee3861df2da4e53bc22630}{grid\+\_\+ops\+::redistribute\+\_\+output\+\_\+grid} (grid, grid\+\_\+out, no\+\_\+outer\+\_\+trim)
+\begin{DoxyCompactList}\small\item\em Redistribute a grid to match the normal distribution of solution grid. \end{DoxyCompactList}\item 
 integer function, public \hyperlink{namespacegrid__ops_addd76b7b3be0b51e0863ae0cdfef41e6}{grid\+\_\+ops\+::magn\+\_\+grid\+\_\+plot} (grid)
-\item 
-subroutine \hyperlink{grid__ops_8f90_ab54f19ae54d39ec48cd2602f7ed0e73b}{get\+\_\+full\+\_\+xyz} (X, Y, Z, X\+\_\+tot, Y\+\_\+tot, Z\+\_\+tot, merge\+\_\+name)
-\item 
-integer function \hyperlink{grid__ops_8f90_a7bfbb51880742066ae3add67ee03df2d}{magn\+\_\+grid\+\_\+plot\+\_\+hdf5} (X\+\_\+1, X\+\_\+2, Y\+\_\+1, Y\+\_\+2, Z\+\_\+1, Z\+\_\+2, anim\+\_\+name)
-\item 
-integer function, public \hyperlink{namespacegrid__ops_ab2a8efa54d36500efcabeb9f1aabbcc6}{grid\+\_\+ops\+::print\+\_\+output\+\_\+grid} (grid, grid\+\_\+name, data\+\_\+name, rich\+\_\+lvl, par\+\_\+div)
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Plots the grid in real 3-\/D space. \end{DoxyCompactList}\item 
+integer function, public \hyperlink{namespacegrid__ops_a4827e794d37334c0cad9bb2016e64d46}{grid\+\_\+ops\+::print\+\_\+output\+\_\+grid} (grid, grid\+\_\+name, data\+\_\+name, rich\+\_\+lvl, par\+\_\+div, remove\+\_\+previous\+\_\+arrs)
+\begin{DoxyCompactList}\small\item\em Print grid variables to an output file. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Variables}
 \begin{DoxyCompactItemize}
 \item 
 logical, public \hyperlink{namespacegrid__ops_ad043ab1b07b2d251bb7596b8c8d2f960}{grid\+\_\+ops\+::debug\+\_\+calc\+\_\+ang\+\_\+grid\+\_\+eq\+\_\+b} = .false.
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em plot debug information for \hyperlink{namespacegrid__ops_a06107dbdfd1dd62e372cc29ab0255bad}{calc\+\_\+ang\+\_\+grid\+\_\+eq\+\_\+b()} \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{Function/\+Subroutine Documentation}
@@ -56,10 +52,23 @@ logical, public \hyperlink{namespacegrid__ops_ad043ab1b07b2d251bb7596b8c8d2f960}
 
 
 
-Definition at line 220 of file grid\+\_\+ops.\+f90.
+P\+B3D equilibrium version. 
 
-Here is the caller graph for this function\+:
-\nopagebreak
+The normal range is calculated by dividing the full equilibrium range passed from the input phase between the processes.
+
+\begin{DoxyNote}{Note}
+For X\+\_\+style 2 (solution) or 3 (optimized), at the end of the equilibrium phase, there will be an exchange of data from each process to each process so that they all have the tightest possible fit of data of the corresponding perturbation limits.
+\end{DoxyNote}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in,out}  & {\em eq\+\_\+limits} & min. and max. index of eq. grid for this process \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 246 of file grid\+\_\+ops.\+f90.
+
+Here is the caller graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -74,18 +83,23 @@ Here is the caller graph for this function\+:
 
 
 
-Definition at line 106 of file grid\+\_\+ops.\+f90.
+P\+B3D input version. 
 
-Here is the call graph for this function\+:
-\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=350pt]{grid__ops_8f90_aebe21d718069318bced62bc3d2d09393_cgraph}
-\end{center}
-\end{figure}
-Here is the caller graph for this function\+:
-\nopagebreak
+The normal range is calculated by finding the tightest range of the input variables encompassing the entire solution range. Additionally, the global max\+\_\+flux variables are set as well..
+
+\begin{DoxyNote}{Note}
+This is the global, undivided range. The division information is calculated in \textquotesingle{}eq\+\_\+limits\textquotesingle{}. Furthermore, the input variables have to be tabulated on the full grid provided by the equilibrium code to be able to be used in P\+B3D and P\+O\+ST.
+\end{DoxyNote}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in,out}  & {\em in\+\_\+limits} & total min. and max. index of eq. grid for this process \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 137 of file grid\+\_\+ops.\+f90.
+
+Here is the caller graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -100,117 +114,122 @@ Here is the caller graph for this function\+:
 
 
 
-Definition at line 266 of file grid\+\_\+ops.\+f90.
+P\+B3D solution version. 
 
-Here is the caller graph for this function\+:
-\nopagebreak
+The normal range is determined by simply dividing the solution range, a ghost range is required.
+
+By default, this routine uses {\ttfamily sol\+\_\+n\+\_\+procs} processes, but this can be overruled.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in,out}  & {\em sol\+\_\+limits} & min. and max. index of sol grid for this process\\
+\hline
+\mbox{\tt in,out}  & {\em r\+\_\+f\+\_\+sol} & solution r\+\_\+F\\
+\hline
+\mbox{\tt in}  & {\em n\+\_\+procs} & how many processes used \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 387 of file grid\+\_\+ops.\+f90.
+
+Here is the caller graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{grid__ops_8f90_a9121423739548f1a1fa4e87055f49010_icgraph}
 \end{center}
 \end{figure}
-\mbox{\Hypertarget{grid__ops_8f90_a242e1c26e16f9cd4b7604de7a90a7472}\label{grid__ops_8f90_a242e1c26e16f9cd4b7604de7a90a7472}} 
+\mbox{\Hypertarget{grid__ops_8f90_a0bd0af6203161233f7687c029d6c4ca0}\label{grid__ops_8f90_a0bd0af6203161233f7687c029d6c4ca0}} 
 \index{grid\+\_\+ops.\+f90@{grid\+\_\+ops.\+f90}!calc\+\_\+norm\+\_\+range\+\_\+pb3d\+\_\+x@{calc\+\_\+norm\+\_\+range\+\_\+pb3d\+\_\+x}}
 \index{calc\+\_\+norm\+\_\+range\+\_\+pb3d\+\_\+x@{calc\+\_\+norm\+\_\+range\+\_\+pb3d\+\_\+x}!grid\+\_\+ops.\+f90@{grid\+\_\+ops.\+f90}}
 \subsubsection{\texorpdfstring{calc\+\_\+norm\+\_\+range\+\_\+pb3d\+\_\+x()}{calc\_norm\_range\_pb3d\_x()}}
-{\footnotesize\ttfamily integer function calc\+\_\+norm\+\_\+range\+::calc\+\_\+norm\+\_\+range\+\_\+pb3d\+\_\+x (\begin{DoxyParamCaption}\item[{integer, dimension(2), intent(inout)}]{X\+\_\+limits,  }\item[{real(dp), dimension(\+:), intent(inout)}]{r\+\_\+\+F\+\_\+X }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily integer function calc\+\_\+norm\+\_\+range\+::calc\+\_\+norm\+\_\+range\+\_\+pb3d\+\_\+x (\begin{DoxyParamCaption}\item[{integer, dimension(2), intent(in)}]{eq\+\_\+limits,  }\item[{integer, dimension(2), intent(inout)}]{X\+\_\+limits,  }\item[{real(dp), dimension(\+:), intent(in)}]{r\+\_\+\+F\+\_\+eq,  }\item[{real(dp), dimension(\+:), intent(inout), allocatable}]{r\+\_\+\+F\+\_\+X,  }\item[{real(dp), dimension(\+:), intent(in)}]{jq }\end{DoxyParamCaption})}
 
 
 
-Definition at line 242 of file grid\+\_\+ops.\+f90.
+P\+B3D perturbation version. 
 
-Here is the call graph for this function\+:
-\nopagebreak
+The normal range is determined according to X\+\_\+grid style\+:
+\begin{DoxyEnumerate}
+\item taken identical to the equilibrium grid, which means that after the perturbation phase the integrated tensorial quantities have to be interpolated in \hyperlink{namespacedriver__sol_af1c4ea0286ad714d3f91bb1608e4fc27}{interp\+\_\+v()} in driver\+\_\+sol() after having been redistributed at the start of the solution driver.
+\item taken identical to the solution grid, which means that the the equilibrium quantities have to be interpolated in \hyperlink{namespacex__ops_a4e39701da15ff952add5133db1897b52}{calc\+\_\+u()}, \hyperlink{namespacex__ops_a045e8903230dfa0fb8b89b458d0c8ee2}{calc\+\_\+kv()} and \hyperlink{namespacex__ops_a51f3bf0b4c8d688ffbcc3a1adbca9762}{calc\+\_\+pv()} after having been redistributed at the end of the equilibrium driver.
+\item by considering an optimal interpolation extension of the equilibrium range, adding intermediairy points between grid points where the safety factor changes too quickly, according to the variable \textquotesingle{}max\+\_\+njq\+\_\+change\textquotesingle{}. This uses {\ttfamily prim\+\_\+X}.
+\end{DoxyEnumerate}
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em eq\+\_\+limits} & min. and max. index of eq grid for this process\\
+\hline
+\mbox{\tt in,out}  & {\em x\+\_\+limits} & min. and max. index of X grid for this process\\
+\hline
+\mbox{\tt in}  & {\em r\+\_\+f\+\_\+eq} & equilibrium r\+\_\+F\\
+\hline
+\mbox{\tt in,out}  & {\em r\+\_\+f\+\_\+x} & perturbation r\+\_\+F\\
+\hline
+\mbox{\tt in}  & {\em jq} & q\+\_\+saf (pol. flux) or rot\+\_\+t (tor. flux) in total Flux variables \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 285 of file grid\+\_\+ops.\+f90.
+
+Here is the call graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=350pt]{grid__ops_8f90_a242e1c26e16f9cd4b7604de7a90a7472_cgraph}
+\includegraphics[width=350pt]{grid__ops_8f90_a0bd0af6203161233f7687c029d6c4ca0_cgraph}
 \end{center}
 \end{figure}
-Here is the caller graph for this function\+:
-\nopagebreak
+Here is the caller graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=350pt]{grid__ops_8f90_a242e1c26e16f9cd4b7604de7a90a7472_icgraph}
+\includegraphics[width=350pt]{grid__ops_8f90_a0bd0af6203161233f7687c029d6c4ca0_icgraph}
 \end{center}
 \end{figure}
-\mbox{\Hypertarget{grid__ops_8f90_ad037c191ae770bd79529506953f0e307}\label{grid__ops_8f90_ad037c191ae770bd79529506953f0e307}} 
+\mbox{\Hypertarget{grid__ops_8f90_aa3b47be0188da6dd19a745f796c1500f}\label{grid__ops_8f90_aa3b47be0188da6dd19a745f796c1500f}} 
 \index{grid\+\_\+ops.\+f90@{grid\+\_\+ops.\+f90}!calc\+\_\+norm\+\_\+range\+\_\+post@{calc\+\_\+norm\+\_\+range\+\_\+post}}
 \index{calc\+\_\+norm\+\_\+range\+\_\+post@{calc\+\_\+norm\+\_\+range\+\_\+post}!grid\+\_\+ops.\+f90@{grid\+\_\+ops.\+f90}}
 \subsubsection{\texorpdfstring{calc\+\_\+norm\+\_\+range\+\_\+post()}{calc\_norm\_range\_post()}}
-{\footnotesize\ttfamily subroutine calc\+\_\+norm\+\_\+range\+::calc\+\_\+norm\+\_\+range\+\_\+post (\begin{DoxyParamCaption}\item[{integer, dimension(2), intent(inout)}]{eq\+\_\+limits,  }\item[{integer, dimension(2), intent(inout)}]{X\+\_\+limits,  }\item[{integer, dimension(2), intent(inout)}]{sol\+\_\+limits,  }\item[{real(dp), dimension(\+:), intent(in)}]{r\+\_\+\+F\+\_\+eq,  }\item[{real(dp), dimension(\+:), intent(in)}]{r\+\_\+\+F\+\_\+sol }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily subroutine calc\+\_\+norm\+\_\+range\+::calc\+\_\+norm\+\_\+range\+\_\+post (\begin{DoxyParamCaption}\item[{integer, dimension(2), intent(inout)}]{eq\+\_\+limits,  }\item[{integer, dimension(2), intent(inout)}]{X\+\_\+limits,  }\item[{integer, dimension(2), intent(inout)}]{sol\+\_\+limits,  }\item[{real(dp), dimension(\+:), intent(in)}]{r\+\_\+\+F\+\_\+eq,  }\item[{real(dp), dimension(\+:), intent(in)}]{r\+\_\+\+F\+\_\+X,  }\item[{real(dp), dimension(\+:), intent(in)}]{r\+\_\+\+F\+\_\+sol }\end{DoxyParamCaption})}
 
 
 
-Definition at line 328 of file grid\+\_\+ops.\+f90.
+P\+O\+ST version. 
 
-Here is the call graph for this function\+:
-\nopagebreak
+The normal range is determined by simply dividing a possible subset of the solution range, indicated by {\ttfamily min\+\_\+r\+\_\+plot} and {\ttfamily max\+\_\+r\+\_\+sol}, including a ghost range and getting a bounding equilibrium and perturbation range.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in,out}  & {\em eq\+\_\+limits} & min. and max. index of eq grid for this process\\
+\hline
+\mbox{\tt in,out}  & {\em x\+\_\+limits} & min. and max. index of X grid for this process\\
+\hline
+\mbox{\tt in,out}  & {\em sol\+\_\+limits} & min. and max. index of sol grid for this process\\
+\hline
+\mbox{\tt in}  & {\em r\+\_\+f\+\_\+eq} & eq r\+\_\+F\\
+\hline
+\mbox{\tt in}  & {\em r\+\_\+f\+\_\+x} & X r\+\_\+F\\
+\hline
+\mbox{\tt in}  & {\em r\+\_\+f\+\_\+sol} & sol r\+\_\+F \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 452 of file grid\+\_\+ops.\+f90.
+
+Here is the call graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=350pt]{grid__ops_8f90_ad037c191ae770bd79529506953f0e307_cgraph}
+\includegraphics[width=350pt]{grid__ops_8f90_aa3b47be0188da6dd19a745f796c1500f_cgraph}
 \end{center}
 \end{figure}
-Here is the caller graph for this function\+:
-\nopagebreak
+Here is the caller graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=350pt]{grid__ops_8f90_ad037c191ae770bd79529506953f0e307_icgraph}
-\end{center}
-\end{figure}
-\mbox{\Hypertarget{grid__ops_8f90_ab54f19ae54d39ec48cd2602f7ed0e73b}\label{grid__ops_8f90_ab54f19ae54d39ec48cd2602f7ed0e73b}} 
-\index{grid\+\_\+ops.\+f90@{grid\+\_\+ops.\+f90}!get\+\_\+full\+\_\+xyz@{get\+\_\+full\+\_\+xyz}}
-\index{get\+\_\+full\+\_\+xyz@{get\+\_\+full\+\_\+xyz}!grid\+\_\+ops.\+f90@{grid\+\_\+ops.\+f90}}
-\subsubsection{\texorpdfstring{get\+\_\+full\+\_\+xyz()}{get\_full\_xyz()}}
-{\footnotesize\ttfamily subroutine magn\+\_\+grid\+\_\+plot\+::get\+\_\+full\+\_\+xyz (\begin{DoxyParamCaption}\item[{real(dp), dimension(\+:,\+:,\+:), intent(in), target}]{X,  }\item[{real(dp), dimension(\+:,\+:,\+:), intent(in), target}]{Y,  }\item[{real(dp), dimension(\+:,\+:,\+:), intent(in), target}]{Z,  }\item[{real(dp), dimension(\+:,\+:,\+:), intent(inout), pointer}]{X\+\_\+tot,  }\item[{real(dp), dimension(\+:,\+:,\+:), intent(inout), pointer}]{Y\+\_\+tot,  }\item[{real(dp), dimension(\+:,\+:,\+:), intent(inout), pointer}]{Z\+\_\+tot,  }\item[{character(len=$\ast$)}]{merge\+\_\+name }\end{DoxyParamCaption})}
-
-
-
-Definition at line 1054 of file grid\+\_\+ops.\+f90.
-
-Here is the call graph for this function\+:
-\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=350pt]{grid__ops_8f90_ab54f19ae54d39ec48cd2602f7ed0e73b_cgraph}
-\end{center}
-\end{figure}
-Here is the caller graph for this function\+:
-\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=350pt]{grid__ops_8f90_ab54f19ae54d39ec48cd2602f7ed0e73b_icgraph}
-\end{center}
-\end{figure}
-\mbox{\Hypertarget{grid__ops_8f90_a7bfbb51880742066ae3add67ee03df2d}\label{grid__ops_8f90_a7bfbb51880742066ae3add67ee03df2d}} 
-\index{grid\+\_\+ops.\+f90@{grid\+\_\+ops.\+f90}!magn\+\_\+grid\+\_\+plot\+\_\+hdf5@{magn\+\_\+grid\+\_\+plot\+\_\+hdf5}}
-\index{magn\+\_\+grid\+\_\+plot\+\_\+hdf5@{magn\+\_\+grid\+\_\+plot\+\_\+hdf5}!grid\+\_\+ops.\+f90@{grid\+\_\+ops.\+f90}}
-\subsubsection{\texorpdfstring{magn\+\_\+grid\+\_\+plot\+\_\+hdf5()}{magn\_grid\_plot\_hdf5()}}
-{\footnotesize\ttfamily integer function magn\+\_\+grid\+\_\+plot\+::magn\+\_\+grid\+\_\+plot\+\_\+hdf5 (\begin{DoxyParamCaption}\item[{real(dp), dimension(\+:,\+:,\+:), intent(in), pointer}]{X\+\_\+1,  }\item[{real(dp), dimension(\+:,\+:,\+:), intent(in), pointer}]{X\+\_\+2,  }\item[{real(dp), dimension(\+:,\+:,\+:), intent(in), pointer}]{Y\+\_\+1,  }\item[{real(dp), dimension(\+:,\+:,\+:), intent(in), pointer}]{Y\+\_\+2,  }\item[{real(dp), dimension(\+:,\+:,\+:), intent(in), pointer}]{Z\+\_\+1,  }\item[{real(dp), dimension(\+:,\+:,\+:), intent(in), pointer}]{Z\+\_\+2,  }\item[{character(len=$\ast$), intent(in)}]{anim\+\_\+name }\end{DoxyParamCaption})}
-
-
-
-Definition at line 1103 of file grid\+\_\+ops.\+f90.
-
-Here is the call graph for this function\+:
-\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=350pt]{grid__ops_8f90_a7bfbb51880742066ae3add67ee03df2d_cgraph}
-\end{center}
-\end{figure}
-Here is the caller graph for this function\+:
-\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=350pt]{grid__ops_8f90_a7bfbb51880742066ae3add67ee03df2d_icgraph}
+\includegraphics[width=350pt]{grid__ops_8f90_aa3b47be0188da6dd19a745f796c1500f_icgraph}
 \end{center}
 \end{figure}

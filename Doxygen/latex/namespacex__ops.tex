@@ -1,74 +1,195 @@
 \hypertarget{namespacex__ops}{}\section{x\+\_\+ops Module Reference}
 \label{namespacex__ops}\index{x\+\_\+ops@{x\+\_\+ops}}
+
+
+Operations considering perturbation quantities.  
+
+
+\subsection*{Interfaces and Types}
+\begin{DoxyCompactItemize}
+\item 
+interface \hyperlink{interfacex__ops_1_1calc__x}{calc\+\_\+x}
+\begin{DoxyCompactList}\small\item\em Calculates either vectorial or tensorial perturbation variables. \end{DoxyCompactList}\item 
+interface \hyperlink{interfacex__ops_1_1print__output__x}{print\+\_\+output\+\_\+x}
+\begin{DoxyCompactList}\small\item\em Print either vectorial or tensorial perturbation quantities of a certain order to an output file. \end{DoxyCompactList}\item 
+interface \hyperlink{interfacex__ops_1_1redistribute__output__x}{redistribute\+\_\+output\+\_\+x}
+\begin{DoxyCompactList}\small\item\em Redistribute the perturbation variables. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Functions/\+Subroutines}
 \begin{DoxyCompactItemize}
 \item 
-integer function, public \hyperlink{namespacex__ops_ad0f44ec07a3b246da23f9aa659683bdf}{setup\+\_\+nm\+\_\+x} (grid\+\_\+eq, grid\+\_\+X, eq, plot\+\_\+nm)
-\item 
+integer function, public \hyperlink{namespacex__ops_a73a80c582379669f8e07b09dd7456878}{init\+\_\+modes} (grid\+\_\+eq, eq)
+\begin{DoxyCompactList}\small\item\em Initializes some variables concerning the mode numbers. \end{DoxyCompactList}\item 
+integer function, public \hyperlink{namespacex__ops_a504451aabcab7d6f0fa59feae08ef8dd}{setup\+\_\+modes} (mds, grid\+\_\+eq, grid, plot\+\_\+nm)
+\begin{DoxyCompactList}\small\item\em Sets up some variables concerning the mode numbers. \end{DoxyCompactList}\item 
 integer function, public \hyperlink{namespacex__ops_a7d9275e2d927d92548416f21b983b604}{check\+\_\+x\+\_\+modes} (grid\+\_\+eq, eq)
-\item 
-integer function, public \hyperlink{namespacex__ops_a25de9da6a17d73109146d0f92bdf11f3}{calc\+\_\+res\+\_\+surf} (grid\+\_\+eq, eq, res\+\_\+surf, info, jq)
-\item 
-integer function, public \hyperlink{namespacex__ops_a766228ae0a64f84c10521a013367cfc8}{resonance\+\_\+plot} (grid, eq)
-\item 
+\begin{DoxyCompactList}\small\item\em Checks whether the high-\/n approximation is valid\+: \end{DoxyCompactList}\item 
+integer function, public \hyperlink{namespacex__ops_a1a90026bbbeddc25e82cfdd304df251f}{calc\+\_\+res\+\_\+surf} (mds, grid\+\_\+eq, eq, res\+\_\+surf, info, jq)
+\begin{DoxyCompactList}\small\item\em Calculates resonating flux surfaces for the perturbation modes. \end{DoxyCompactList}\item 
+integer function, public \hyperlink{namespacex__ops_abdaf1308e13cede3a153e8c6cf35a637}{resonance\+\_\+plot} (mds, grid\+\_\+eq, eq)
+\begin{DoxyCompactList}\small\item\em plot $q$-\/profile or $\iota$-\/profile in flux coordinates with $nq-m = 0$ or $n-\iota m = 0$ indicated if requested. \end{DoxyCompactList}\item 
 integer function \hyperlink{namespacex__ops_a4e39701da15ff952add5133db1897b52}{calc\+\_\+u} (grid\+\_\+eq, grid\+\_\+X, eq\+\_\+1, eq\+\_\+2, X)
-\item 
+\begin{DoxyCompactList}\small\item\em Calculate $U_m^0$, $U_m^1$ or $U_n^0$, $U_n^1$. \end{DoxyCompactList}\item 
 integer function \hyperlink{namespacex__ops_a51f3bf0b4c8d688ffbcc3a1adbca9762}{calc\+\_\+pv} (grid\+\_\+eq, grid\+\_\+X, eq\+\_\+1, eq\+\_\+2, X\+\_\+a, X\+\_\+b, X, lim\+\_\+sec\+\_\+X)
-\item 
+\begin{DoxyCompactList}\small\item\em calculate $\widetilde{PV}_{k,m}^i$ (pol. flux) or $\widetilde{PV}_{l,n}^i$ (tor. flux) at all equilibrium {\ttfamily loc\+\_\+n\+\_\+r} values. \end{DoxyCompactList}\item 
 integer function \hyperlink{namespacex__ops_a045e8903230dfa0fb8b89b458d0c8ee2}{calc\+\_\+kv} (grid\+\_\+eq, grid\+\_\+X, eq\+\_\+1, eq\+\_\+2, X\+\_\+a, X\+\_\+b, X, lim\+\_\+sec\+\_\+X)
-\item 
+\begin{DoxyCompactList}\small\item\em calculate $\widetilde{KV}_{k,m}^i$ (pol. flux) or $\widetilde{KV}_{l,n}^i$ (tor. flux) at all equilibrium {\ttfamily loc\+\_\+n\+\_\+r} values. \end{DoxyCompactList}\item 
 integer function, public \hyperlink{namespacex__ops_a6df79622d1b95d54ab3e542751a5881d}{calc\+\_\+magn\+\_\+ints} (grid\+\_\+eq, grid\+\_\+X, eq, X, X\+\_\+int, prev\+\_\+style, lim\+\_\+sec\+\_\+X)
-\item 
-integer function \hyperlink{namespacex__ops_a28615c2a15bf15a2d2acd71038386135}{print\+\_\+output\+\_\+x\+\_\+2} (grid\+\_\+X, X, data\+\_\+name, rich\+\_\+lvl, par\+\_\+div, lim\+\_\+sec\+\_\+X, is\+\_\+field\+\_\+averaged)
-\item 
+\begin{DoxyCompactList}\small\item\em Calculate the magnetic integrals from $\widetilde{PV}_{k,m}^i$ and $\widetilde{KV}_{k,m}^i$ in an equidistant grid where the step size can vary depending on the normal coordinate. \end{DoxyCompactList}\item 
 integer function, public \hyperlink{namespacex__ops_a677c88d85fe1bfbf3579a2421ce16f2f}{divide\+\_\+x\+\_\+jobs} (arr\+\_\+size)
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Divides the perturbation jobs. \end{DoxyCompactList}\item 
+integer function, public \hyperlink{namespacex__ops_a8bdd87db80570a01cf35ca50184ae879}{print\+\_\+debug\+\_\+x\+\_\+1} (mds, grid\+\_\+X, X\+\_\+1)
+\begin{DoxyCompactList}\small\item\em Prints debug information for X\+\_\+1 driver. \end{DoxyCompactList}\item 
+integer function, public \hyperlink{namespacex__ops_a8879ea26ad86818e981546c3ab2d6165}{print\+\_\+debug\+\_\+x\+\_\+2} (mds, grid\+\_\+X, X\+\_\+2\+\_\+int)
+\begin{DoxyCompactList}\small\item\em Prints debug information for X\+\_\+2 driver. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Variables}
 \begin{DoxyCompactItemize}
 \item 
 logical, public \hyperlink{namespacex__ops_a342c624ea5f9a15264c78767da34684c}{debug\+\_\+check\+\_\+x\+\_\+modes\+\_\+2} = .false.
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em plot debug information for check\+\_\+x\+\_\+modes\+\_\+2() \end{DoxyCompactList}\end{DoxyCompactItemize}
 
+
+\subsection{Detailed Description}
+Operations considering perturbation quantities. 
 
 \subsection{Function/\+Subroutine Documentation}
 \mbox{\Hypertarget{namespacex__ops_a045e8903230dfa0fb8b89b458d0c8ee2}\label{namespacex__ops_a045e8903230dfa0fb8b89b458d0c8ee2}} 
 \index{x\+\_\+ops@{x\+\_\+ops}!calc\+\_\+kv@{calc\+\_\+kv}}
 \index{calc\+\_\+kv@{calc\+\_\+kv}!x\+\_\+ops@{x\+\_\+ops}}
 \subsubsection{\texorpdfstring{calc\+\_\+kv()}{calc\_kv()}}
-{\footnotesize\ttfamily integer function x\+\_\+ops\+::calc\+\_\+kv (\begin{DoxyParamCaption}\item[{type(grid\+\_\+type), intent(in)}]{grid\+\_\+eq,  }\item[{type(grid\+\_\+type), intent(in)}]{grid\+\_\+X,  }\item[{type(eq\+\_\+1\+\_\+type), intent(in)}]{eq\+\_\+1,  }\item[{type(eq\+\_\+2\+\_\+type), intent(in), target}]{eq\+\_\+2,  }\item[{type(x\+\_\+1\+\_\+type), intent(in)}]{X\+\_\+a,  }\item[{type(x\+\_\+1\+\_\+type), intent(in)}]{X\+\_\+b,  }\item[{type(x\+\_\+2\+\_\+type), intent(inout)}]{X,  }\item[{integer, dimension(2,2), intent(in), optional}]{lim\+\_\+sec\+\_\+X }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily integer function x\+\_\+ops\+::calc\+\_\+kv (\begin{DoxyParamCaption}\item[{type(\hyperlink{structgrid__vars_1_1grid__type}{grid\+\_\+type}), intent(in)}]{grid\+\_\+eq,  }\item[{type(\hyperlink{structgrid__vars_1_1grid__type}{grid\+\_\+type}), intent(in)}]{grid\+\_\+X,  }\item[{type(\hyperlink{structeq__vars_1_1eq__1__type}{eq\+\_\+1\+\_\+type}), intent(in)}]{eq\+\_\+1,  }\item[{type(\hyperlink{structeq__vars_1_1eq__2__type}{eq\+\_\+2\+\_\+type}), intent(in), target}]{eq\+\_\+2,  }\item[{type(x\+\_\+1\+\_\+type), intent(in)}]{X\+\_\+a,  }\item[{type(x\+\_\+1\+\_\+type), intent(in)}]{X\+\_\+b,  }\item[{type(x\+\_\+2\+\_\+type), intent(inout)}]{X,  }\item[{integer, dimension(2,2), intent(in), optional}]{lim\+\_\+sec\+\_\+X }\end{DoxyParamCaption})}
 
 
 
-Definition at line 1781 of file X\+\_\+ops.\+f90.
+calculate $\widetilde{KV}_{k,m}^i$ (pol. flux) or $\widetilde{KV}_{l,n}^i$ (tor. flux) at all equilibrium {\ttfamily loc\+\_\+n\+\_\+r} values. 
 
-Here is the call graph for this function\+:
-\nopagebreak
+Like in calc\+\_\+\+U(), use is made of variables {\ttfamily Ti} that are set up in the equilibrium grid and are afterwards converted to {\ttfamily Ti\+\_\+X} in the perturbation grid, which needs to have the same angular coordinates as the equilibrium grid\+: \[\begin{aligned} T_1 &= \rho \mathcal{J}^2 \frac{h^{22}}{\mu_0} g_{33} \\ T_2 &= \rho \frac{1}{h^{22}} \ , \end{aligned}\] with $T_i$ = {\ttfamily Ti}.
+
+The interpolated Ti\+\_\+X are then used to calculate $\widetilde{KV}_{k,m}^i$\+: \[\begin{aligned} \widetilde{KV}_{k,m}^0 &= T_1 U_k^{0*} U_m^0 + T_2 \\ \widetilde{KV}_{k,m}^1 &= T_1 U_k^{0*} U_m^1 \\ \widetilde{KV}_{k,m}^2 &= T_1 U_k^{1*} U_m^1 \ , \end{aligned}\] where \[DU_k^i = i (nq-m) U_k^i + \frac{\partial U_k^i}{\partial\theta} . \]
+
+This is valid for poloidal Flux coordinates and where $n$ is to be replaced by $m$ and $(nq-m)$ by $(n-\iota m)$ for toroidal Flux coordinates.
+
+\begin{DoxySeeAlso}{See also}
+See \cite{weyens2014theory} .
+\end{DoxySeeAlso}
+\begin{DoxyReturn}{Returns}
+ierr
+\end{DoxyReturn}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em grid\+\_\+eq} & equilibrium grid\\
+\hline
+\mbox{\tt in}  & {\em grid\+\_\+x} & perturbation grid\\
+\hline
+\mbox{\tt in}  & {\em eq\+\_\+1} & flux equilibrium\\
+\hline
+\mbox{\tt in}  & {\em eq\+\_\+2} & metric equilibrium\\
+\hline
+\mbox{\tt in}  & {\em x\+\_\+a} & vectorial perturbation variables of dimension 2\\
+\hline
+\mbox{\tt in}  & {\em x\+\_\+b} & vectorial perturbation variables of dimension 2\\
+\hline
+\mbox{\tt in,out}  & {\em x} & tensorial perturbation variables\\
+\hline
+\mbox{\tt in}  & {\em lim\+\_\+sec\+\_\+x} & limits of {\ttfamily m\+\_\+X} (pol flux) or {\ttfamily n\+\_\+X} (tor flux) for both dimensions \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 2865 of file X\+\_\+ops.\+f90.
+
+Here is the call graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{namespacex__ops_a045e8903230dfa0fb8b89b458d0c8ee2_cgraph}
 \end{center}
 \end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespacex__ops_a045e8903230dfa0fb8b89b458d0c8ee2_icgraph}
+\end{center}
+\end{figure}
 \mbox{\Hypertarget{namespacex__ops_a6df79622d1b95d54ab3e542751a5881d}\label{namespacex__ops_a6df79622d1b95d54ab3e542751a5881d}} 
 \index{x\+\_\+ops@{x\+\_\+ops}!calc\+\_\+magn\+\_\+ints@{calc\+\_\+magn\+\_\+ints}}
 \index{calc\+\_\+magn\+\_\+ints@{calc\+\_\+magn\+\_\+ints}!x\+\_\+ops@{x\+\_\+ops}}
 \subsubsection{\texorpdfstring{calc\+\_\+magn\+\_\+ints()}{calc\_magn\_ints()}}
-{\footnotesize\ttfamily integer function, public x\+\_\+ops\+::calc\+\_\+magn\+\_\+ints (\begin{DoxyParamCaption}\item[{type(grid\+\_\+type), intent(in)}]{grid\+\_\+eq,  }\item[{type(grid\+\_\+type), intent(in)}]{grid\+\_\+X,  }\item[{type(eq\+\_\+2\+\_\+type), intent(in)}]{eq,  }\item[{type(x\+\_\+2\+\_\+type), intent(in)}]{X,  }\item[{type(x\+\_\+2\+\_\+type), intent(inout)}]{X\+\_\+int,  }\item[{integer, intent(in), optional}]{prev\+\_\+style,  }\item[{integer, dimension(2,2), intent(in), optional}]{lim\+\_\+sec\+\_\+X }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily integer function, public x\+\_\+ops\+::calc\+\_\+magn\+\_\+ints (\begin{DoxyParamCaption}\item[{type(\hyperlink{structgrid__vars_1_1grid__type}{grid\+\_\+type}), intent(in)}]{grid\+\_\+eq,  }\item[{type(\hyperlink{structgrid__vars_1_1grid__type}{grid\+\_\+type}), intent(in)}]{grid\+\_\+X,  }\item[{type(\hyperlink{structeq__vars_1_1eq__2__type}{eq\+\_\+2\+\_\+type}), intent(in), target}]{eq,  }\item[{type(x\+\_\+2\+\_\+type), intent(in)}]{X,  }\item[{type(x\+\_\+2\+\_\+type), intent(inout)}]{X\+\_\+int,  }\item[{integer, intent(in), optional}]{prev\+\_\+style,  }\item[{integer, dimension(2,2), intent(in), optional}]{lim\+\_\+sec\+\_\+X }\end{DoxyParamCaption})}
 
 
 
-Definition at line 1947 of file X\+\_\+ops.\+f90.
+Calculate the magnetic integrals from $\widetilde{PV}_{k,m}^i$ and $\widetilde{KV}_{k,m}^i$ in an equidistant grid where the step size can vary depending on the normal coordinate. 
 
-Here is the call graph for this function\+:
-\nopagebreak
+All the variables should thus be field-\/line oriented. The result is saved in the first index of the X variables, the other can be ignored.
+
+Using {\ttfamily prev\+\_\+style}, the results of this calculation on X can be combined with the ones already present in {\ttfamily X\+\_\+int}.
+\begin{DoxyItemize}
+\item {\ttfamily prev\+\_\+style=0}\+: Overwrite \mbox{[}def\mbox{]}.
+\item {\ttfamily prev\+\_\+style=1}\+: Add to current integral.
+\item {\ttfamily prev\+\_\+style=2}\+: Divide by 2 and add to current integral. Also modify the indices of the current integral\+:
+\begin{DoxyItemize}
+\item for {\ttfamily magn\+\_\+int\+\_\+style} = 1\+: {\ttfamily 1 2 2 2 2 2 1 -\/$>$ 2 2 2 2 2 2},
+\item for {\ttfamily magn\+\_\+int\+\_\+style} = 2\+: {\ttfamily 1 3 3 2 3 3 1 -\/$>$ 3 2 3 3 2 3}.
+\end{DoxyItemize}
+\item {\ttfamily prev\+\_\+style=3}\+: Add to current integral. Also modify the indices of the current integral as in {\ttfamily prev\+\_\+style} = 2.
+\item else\+: ignore previous magnetic integrals.
+\end{DoxyItemize}
+
+Therefore, it is to be used in order. For example\+:
+\begin{DoxyEnumerate}
+\item $\phantom{\rightarrow}$ (R=1,E=1)\+: style 0,
+\item $\rightarrow$ (R=1,E=2)\+: style 1,
+\item $\rightarrow$ (R=2,E=1)\+: style 2,
+\item $\rightarrow$ (R=2,E=2)\+: style 3.
+\end{DoxyEnumerate}
+
+Afterwards, it would cycle through 2 and 3, as style 0 and 1 are only for the first Richardson level.
+
+\begin{DoxyNote}{Note}
+
+\begin{DoxyEnumerate}
+\item The variable type for the integrated tensorial perturbation variables is also {\ttfamily X\+\_\+2}, but it is assumed that the first index has dimension 1, the rest is ignored.
+\item Simpson\textquotesingle{}s 3/8 rule converges faster than the trapezoidal rule, but normally needs a better starting point (i.\+e. higher {\ttfamily min\+\_\+n\+\_\+par\+\_\+X})
+\item For alpha style 1, Weyl\textquotesingle{}s lemma is used to convert the surface integral into a line integral along the magnetic field. This means that the resulting line integral still needs to be multiplied by $\frac{2\pi}{M}$, where $M$ is the number of times the poloidal or toroidal angle completes a full $2\pi$ tour, depending on {\ttfamily use\+\_\+pol\+\_\+flux\+\_\+F} \cite{Helander2014}.
+\item For alpha style 2, this factor is just the step size in alpha.
+\end{DoxyEnumerate}
+\end{DoxyNote}
+\begin{DoxySeeAlso}{See also}
+See \hyperlink{structx__vars_1_1x__2__type}{x\+\_\+vars.\+x\+\_\+2\+\_\+type}.
+\end{DoxySeeAlso}
+\begin{DoxyReturn}{Returns}
+ierr
+\end{DoxyReturn}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em grid\+\_\+eq} & equilibrium grid\\
+\hline
+\mbox{\tt in}  & {\em grid\+\_\+x} & perturbation grid\\
+\hline
+\mbox{\tt in}  & {\em eq} & metric equilibrium\\
+\hline
+\mbox{\tt in}  & {\em x} & tensorial perturbation variables\\
+\hline
+\mbox{\tt in,out}  & {\em x\+\_\+int} & interpolated tensorial perturbation variables, containing all mode combinations\\
+\hline
+\mbox{\tt in}  & {\em prev\+\_\+style} & style to treat X\+\_\+prev\\
+\hline
+\mbox{\tt in}  & {\em lim\+\_\+sec\+\_\+x} & limits of {\ttfamily m\+\_\+X} (pol flux) or {\ttfamily n\+\_\+X} (tor flux) for both dimensions \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 3067 of file X\+\_\+ops.\+f90.
+
+Here is the call graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{namespacex__ops_a6df79622d1b95d54ab3e542751a5881d_cgraph}
 \end{center}
 \end{figure}
-Here is the caller graph for this function\+:
-\nopagebreak
+Here is the caller graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -79,84 +200,237 @@ Here is the caller graph for this function\+:
 \index{x\+\_\+ops@{x\+\_\+ops}!calc\+\_\+pv@{calc\+\_\+pv}}
 \index{calc\+\_\+pv@{calc\+\_\+pv}!x\+\_\+ops@{x\+\_\+ops}}
 \subsubsection{\texorpdfstring{calc\+\_\+pv()}{calc\_pv()}}
-{\footnotesize\ttfamily integer function x\+\_\+ops\+::calc\+\_\+pv (\begin{DoxyParamCaption}\item[{type(grid\+\_\+type), intent(in)}]{grid\+\_\+eq,  }\item[{type(grid\+\_\+type), intent(in)}]{grid\+\_\+X,  }\item[{type(eq\+\_\+1\+\_\+type), intent(in)}]{eq\+\_\+1,  }\item[{type(eq\+\_\+2\+\_\+type), intent(in), target}]{eq\+\_\+2,  }\item[{type(x\+\_\+1\+\_\+type), intent(in)}]{X\+\_\+a,  }\item[{type(x\+\_\+1\+\_\+type), intent(in)}]{X\+\_\+b,  }\item[{type(x\+\_\+2\+\_\+type), intent(inout)}]{X,  }\item[{integer, dimension(2,2), intent(in), optional}]{lim\+\_\+sec\+\_\+X }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily integer function x\+\_\+ops\+::calc\+\_\+pv (\begin{DoxyParamCaption}\item[{type(\hyperlink{structgrid__vars_1_1grid__type}{grid\+\_\+type}), intent(in)}]{grid\+\_\+eq,  }\item[{type(\hyperlink{structgrid__vars_1_1grid__type}{grid\+\_\+type}), intent(in)}]{grid\+\_\+X,  }\item[{type(\hyperlink{structeq__vars_1_1eq__1__type}{eq\+\_\+1\+\_\+type}), intent(in), target}]{eq\+\_\+1,  }\item[{type(\hyperlink{structeq__vars_1_1eq__2__type}{eq\+\_\+2\+\_\+type}), intent(in), target}]{eq\+\_\+2,  }\item[{type(x\+\_\+1\+\_\+type), intent(in)}]{X\+\_\+a,  }\item[{type(x\+\_\+1\+\_\+type), intent(in)}]{X\+\_\+b,  }\item[{type(x\+\_\+2\+\_\+type), intent(inout)}]{X,  }\item[{integer, dimension(2,2), intent(in), optional}]{lim\+\_\+sec\+\_\+X }\end{DoxyParamCaption})}
 
 
 
-Definition at line 1593 of file X\+\_\+ops.\+f90.
+calculate $\widetilde{PV}_{k,m}^i$ (pol. flux) or $\widetilde{PV}_{l,n}^i$ (tor. flux) at all equilibrium {\ttfamily loc\+\_\+n\+\_\+r} values. 
 
-Here is the call graph for this function\+:
-\nopagebreak
+Like in calc\+\_\+\+U(), use is made of variables {\ttfamily Ti} that are set up in the equilibrium grid and are afterwards converted to {\ttfamily Ti\+\_\+X} in the perturbation grid, which needs to have the same angular coordinates as the equilibrium grid\+: \[\begin{aligned} T_1 &= \frac{h^{22}}{\mu_0} g_{33} \\ T_2 &= \mathcal{J}S + \mu_0 \sigma \frac{g_{33}}{\mathcal{J}} h^{22} \\ T_3 &= \frac{\sigma}{\mathcal{J}} T_2 \\ T_4 &= \frac{1}{\mu_0} \mathcal{J}^2 h^{22} \\ T_5 &= 2 p' \kappa_n \ , \end{aligned}\] with $T_i$ = {\ttfamily Ti}.
+
+The interpolated Ti\+\_\+X are then used to calculate $\widetilde{PV}_{k,m}^i$\+: \[\begin{aligned} \widetilde{PV}_{k,m}^0 &= T_1(DU_k^{0*} - T_2)(DU_m^0 - T_2) - T_3 + (nq-m)(nq-k)T_4 - T_5 \\ \widetilde{PV}_{k,m}^1 &= T_1(DU_k^{0*} - T_2) DU_m^1 \\ \widetilde{PV}_{k,m}^2 &= T_1 DU_k^{1*} DU_m^1 \ , \end{aligned}\] where \[DU_k^i = i (nq-m) U_k^i + \frac{\partial U_k^i}{\partial\theta} . \]
+
+This is valid for poloidal Flux coordinates and where $n$ is to be replaced by $m$ and $(nq-m)$ by $(n-\iota m)$ for toroidal Flux coordinates.
+
+\begin{DoxySeeAlso}{See also}
+See \cite{weyens2014theory} .
+\end{DoxySeeAlso}
+\begin{DoxyReturn}{Returns}
+ierr
+\end{DoxyReturn}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em grid\+\_\+eq} & equilibrium grid\\
+\hline
+\mbox{\tt in}  & {\em grid\+\_\+x} & perturbation grid\\
+\hline
+\mbox{\tt in}  & {\em eq\+\_\+1} & flux equilibrium\\
+\hline
+\mbox{\tt in}  & {\em eq\+\_\+2} & metric equilibrium\\
+\hline
+\mbox{\tt in}  & {\em x\+\_\+a} & vectorial perturbation variables of dimension 2\\
+\hline
+\mbox{\tt in}  & {\em x\+\_\+b} & vectorial perturbation variables of dimension 2\\
+\hline
+\mbox{\tt in,out}  & {\em x} & tensorial perturbation variables\\
+\hline
+\mbox{\tt in}  & {\em lim\+\_\+sec\+\_\+x} & limits of {\ttfamily m\+\_\+X} (pol flux) or {\ttfamily n\+\_\+X} (tor flux) for both dimensions \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 2632 of file X\+\_\+ops.\+f90.
+
+Here is the call graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{namespacex__ops_a51f3bf0b4c8d688ffbcc3a1adbca9762_cgraph}
 \end{center}
 \end{figure}
-\mbox{\Hypertarget{namespacex__ops_a25de9da6a17d73109146d0f92bdf11f3}\label{namespacex__ops_a25de9da6a17d73109146d0f92bdf11f3}} 
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespacex__ops_a51f3bf0b4c8d688ffbcc3a1adbca9762_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{namespacex__ops_a1a90026bbbeddc25e82cfdd304df251f}\label{namespacex__ops_a1a90026bbbeddc25e82cfdd304df251f}} 
 \index{x\+\_\+ops@{x\+\_\+ops}!calc\+\_\+res\+\_\+surf@{calc\+\_\+res\+\_\+surf}}
 \index{calc\+\_\+res\+\_\+surf@{calc\+\_\+res\+\_\+surf}!x\+\_\+ops@{x\+\_\+ops}}
 \subsubsection{\texorpdfstring{calc\+\_\+res\+\_\+surf()}{calc\_res\_surf()}}
-{\footnotesize\ttfamily integer function, public x\+\_\+ops\+::calc\+\_\+res\+\_\+surf (\begin{DoxyParamCaption}\item[{type(grid\+\_\+type), intent(in)}]{grid\+\_\+eq,  }\item[{type(eq\+\_\+1\+\_\+type), intent(in)}]{eq,  }\item[{real(dp), dimension(\+:,\+:), intent(inout), allocatable}]{res\+\_\+surf,  }\item[{logical, intent(in), optional}]{info,  }\item[{real(dp), dimension(\+:), intent(inout), optional, allocatable}]{jq }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily integer function, public x\+\_\+ops\+::calc\+\_\+res\+\_\+surf (\begin{DoxyParamCaption}\item[{type(modes\+\_\+type), intent(in)}]{mds,  }\item[{type(\hyperlink{structgrid__vars_1_1grid__type}{grid\+\_\+type}), intent(in)}]{grid\+\_\+eq,  }\item[{type(\hyperlink{structeq__vars_1_1eq__1__type}{eq\+\_\+1\+\_\+type}), intent(in)}]{eq,  }\item[{real(dp), dimension(\+:,\+:), intent(inout), allocatable}]{res\+\_\+surf,  }\item[{logical, intent(in), optional}]{info,  }\item[{real(dp), dimension(\+:), intent(inout), optional, allocatable}]{jq }\end{DoxyParamCaption})}
 
 
 
-Definition at line 652 of file X\+\_\+ops.\+f90.
+Calculates resonating flux surfaces for the perturbation modes. 
 
-Here is the call graph for this function\+:
-\nopagebreak
+The output consists of mode number, resonating normal position and the fraction $\frac{m}{n}$ or $\frac{n}{m}$. for those modes for which a solution is found that is within the plasma range.
+
+It contains three pieces of information\+:
+\begin{DoxyItemize}
+\item {\ttfamily (\+:,1)}\+: the mode index
+\item {\ttfamily (\+:,2)}\+: the radial position in Flux coordinates
+\item {\ttfamily (\+:,3)}\+: the fraction $\frac{m}{n}$ or $\frac{n}{m}$
+\end{DoxyItemize}
+
+for every single mode in {\ttfamily sec} of {\ttfamily mds}, which can be tabulated in an arbitrary grid, not necessarily the equilibrium one.
+
+Optionally, the total safety factor or rotational transform can be returned to the master.
+
+Also, information can be displayed with .
+
+\begin{DoxyReturn}{Returns}
+ierr
+\end{DoxyReturn}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em mds} & general modes variables\\
+\hline
+\mbox{\tt in}  & {\em grid\+\_\+eq} & equilibrium grid\+\_\+eq\\
+\hline
+\mbox{\tt in}  & {\em eq} & flux equilibrium\\
+\hline
+\mbox{\tt in,out}  & {\em res\+\_\+surf} & resonant surface\\
+\hline
+\mbox{\tt in}  & {\em info} & if info is displayed\\
+\hline
+\mbox{\tt in,out}  & {\em jq} & either safety factor or rotational transform \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 1624 of file X\+\_\+ops.\+f90.
+
+Here is the call graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=350pt]{namespacex__ops_a25de9da6a17d73109146d0f92bdf11f3_cgraph}
+\includegraphics[width=350pt]{namespacex__ops_a1a90026bbbeddc25e82cfdd304df251f_cgraph}
 \end{center}
 \end{figure}
-Here is the caller graph for this function\+:
-\nopagebreak
+Here is the caller graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=350pt]{namespacex__ops_a25de9da6a17d73109146d0f92bdf11f3_icgraph}
+\includegraphics[width=350pt]{namespacex__ops_a1a90026bbbeddc25e82cfdd304df251f_icgraph}
 \end{center}
 \end{figure}
 \mbox{\Hypertarget{namespacex__ops_a4e39701da15ff952add5133db1897b52}\label{namespacex__ops_a4e39701da15ff952add5133db1897b52}} 
 \index{x\+\_\+ops@{x\+\_\+ops}!calc\+\_\+u@{calc\+\_\+u}}
 \index{calc\+\_\+u@{calc\+\_\+u}!x\+\_\+ops@{x\+\_\+ops}}
 \subsubsection{\texorpdfstring{calc\+\_\+u()}{calc\_u()}}
-{\footnotesize\ttfamily integer function x\+\_\+ops\+::calc\+\_\+u (\begin{DoxyParamCaption}\item[{type(grid\+\_\+type), intent(in)}]{grid\+\_\+eq,  }\item[{type(grid\+\_\+type), intent(in)}]{grid\+\_\+X,  }\item[{type(eq\+\_\+1\+\_\+type), intent(in)}]{eq\+\_\+1,  }\item[{type(eq\+\_\+2\+\_\+type), intent(in), target}]{eq\+\_\+2,  }\item[{type(x\+\_\+1\+\_\+type), intent(inout)}]{X }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily integer function x\+\_\+ops\+::calc\+\_\+u (\begin{DoxyParamCaption}\item[{type(\hyperlink{structgrid__vars_1_1grid__type}{grid\+\_\+type}), intent(in)}]{grid\+\_\+eq,  }\item[{type(\hyperlink{structgrid__vars_1_1grid__type}{grid\+\_\+type}), intent(in)}]{grid\+\_\+X,  }\item[{type(\hyperlink{structeq__vars_1_1eq__1__type}{eq\+\_\+1\+\_\+type}), intent(in), target}]{eq\+\_\+1,  }\item[{type(\hyperlink{structeq__vars_1_1eq__2__type}{eq\+\_\+2\+\_\+type}), intent(in), target}]{eq\+\_\+2,  }\item[{type(x\+\_\+1\+\_\+type), intent(inout)}]{X }\end{DoxyParamCaption})}
 
 
 
-Definition at line 1079 of file X\+\_\+ops.\+f90.
+Calculate $U_m^0$, $U_m^1$ or $U_n^0$, $U_n^1$. 
 
-Here is the call graph for this function\+:
-\nopagebreak
+This is done at eq {\ttfamily loc\+\_\+n\+\_\+r} values of the normal coordinate, {\ttfamily n\+\_\+par} values of the parallel coordinate and {\ttfamily size\+\_\+X} values of the poloidal mode number, or of the toroidal mode number, as well as the poloidal derivatives
+
+Use is made of variables {\ttfamily Ti} that are set up in the equilibrium grid and are afterwards converted to {\ttfamily Ti\+\_\+X} in the perturbation grid, which needs to have the same angular coordinates as the equilibrium grid\+: \[\begin{aligned} T_1 &= \frac{B_\alpha}{B_\theta} \\ T_2 &= \Theta^\alpha + q' \theta \\ T_3 &= \frac{B_\alpha}{B_\theta} q' + \frac{\mathcal{J}^2}{B_\theta} \mu_0 p' \\ T_4 &= \frac{B_\alpha}{B_\theta} q' \theta - \frac{B_\psi}{B_\theta} \\ T_5 &= \frac{B_\alpha}{B_\theta} \frac{\partial \Theta^\theta}{\partial \theta} - \frac{\partial\Theta^\theta}{\partial \alpha} \\ T_6 &= \frac{B_\alpha}{B_\theta} \Theta^\theta \ , \end{aligned}\] with $T_i$ = {\ttfamily Ti}.
+
+which is valid for poloidal Flux coordinates.
+
+For toroidal Flux coordinates, $q'$ has to be replaced by $-\iota'$ and $\theta$ by $\zeta$.
+
+The interpolated {\ttfamily Ti\+\_\+X} are then used to calculate $U$\+: \[\begin{aligned} U_0 =& -T_2 &\text{(order 1)}\\ &+ \frac{i}{n}\left(T_3 + i(nq-m) T_4\right) &\text{(order 2)}\\ &+ \left(\frac{i}{n}\right)^2 i(nq-m) \left(-T_5 - (nq-m) T_6\right) &\text{(order 3)}\\ U_1 =& \frac{i}{n} &\text{(order 1)}\\ &+ \left(\frac{i}{n}\right)^2 i(nq-m)(-T_1) &\text{(order 2)} . \end{aligned}\]
+
+This is valid for poloidal Flux coordinates and where $n$ is to be replaced by $m$ and $(nq-m)$ by $(n-\iota m)$ for toroidal Flux coordinates.
+
+For V\+M\+EC, these factors are also derived in the parallel coordinate.
+
+\begin{DoxySeeAlso}{See also}
+See \cite{weyens2014theory}.
+\end{DoxySeeAlso}
+\begin{DoxyReturn}{Returns}
+ierr
+\end{DoxyReturn}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em grid\+\_\+eq} & equilibrium grid variables\\
+\hline
+\mbox{\tt in}  & {\em grid\+\_\+x} & perturbation grid variables\\
+\hline
+\mbox{\tt in}  & {\em eq\+\_\+1} & flux equilibrium\\
+\hline
+\mbox{\tt in}  & {\em eq\+\_\+2} & metric equilibrium\\
+\hline
+\mbox{\tt in,out}  & {\em x} & vectorial perturbation variables \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 2083 of file X\+\_\+ops.\+f90.
+
+Here is the call graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{namespacex__ops_a4e39701da15ff952add5133db1897b52_cgraph}
 \end{center}
 \end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespacex__ops_a4e39701da15ff952add5133db1897b52_icgraph}
+\end{center}
+\end{figure}
 \mbox{\Hypertarget{namespacex__ops_a7d9275e2d927d92548416f21b983b604}\label{namespacex__ops_a7d9275e2d927d92548416f21b983b604}} 
 \index{x\+\_\+ops@{x\+\_\+ops}!check\+\_\+x\+\_\+modes@{check\+\_\+x\+\_\+modes}}
 \index{check\+\_\+x\+\_\+modes@{check\+\_\+x\+\_\+modes}!x\+\_\+ops@{x\+\_\+ops}}
 \subsubsection{\texorpdfstring{check\+\_\+x\+\_\+modes()}{check\_x\_modes()}}
-{\footnotesize\ttfamily integer function, public x\+\_\+ops\+::check\+\_\+x\+\_\+modes (\begin{DoxyParamCaption}\item[{type(grid\+\_\+type), intent(in)}]{grid\+\_\+eq,  }\item[{type(eq\+\_\+1\+\_\+type), intent(in)}]{eq }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily integer function, public x\+\_\+ops\+::check\+\_\+x\+\_\+modes (\begin{DoxyParamCaption}\item[{type(\hyperlink{structgrid__vars_1_1grid__type}{grid\+\_\+type}), intent(in)}]{grid\+\_\+eq,  }\item[{type(\hyperlink{structeq__vars_1_1eq__1__type}{eq\+\_\+1\+\_\+type}), intent(in)}]{eq }\end{DoxyParamCaption})}
 
 
 
-Definition at line 379 of file X\+\_\+ops.\+f90.
+Checks whether the high-\/n approximation is valid\+: 
 
-Here is the call graph for this function\+:
-\nopagebreak
+This depends on the {\ttfamily X\+\_\+style\+:} 
+
+For X\+\_\+style 1 (prescribed)\+: every mode should resonate at least somewhere in the whole normal range\+:
+\begin{DoxyItemize}
+\item $\frac{\left|nq-m\right|}{\left|n\right|} < T$ and $\frac{\left|nq-m\right|}{\left|m\right|} < T$ for poloidal flux
+\item $\frac{\left|q-\iota m\right|}{\left|m\right|} < T$ and $\frac{\left|n-\iota m\right|}{\left|n\right|} < T$ for toroidal flux
+\end{DoxyItemize}
+
+where $T$ = {\ttfamily tol} $<$$<$ 1.
+
+This condition is determined by the sign of $q$ (or $\iota$) and given by\+:
+\begin{DoxyItemize}
+\item $\max\left(q_\text{min}-T,\frac{q_\text{min}}{1+T}\right) < \frac{m}{n} < \min\left(q_\text{max}+T,\frac{q_\text{max}}{1-T}\right)$, $q>0$
+\item $\max\left(q_\text{min}-T,\frac{q_\text{min}}{1-T}\right) < \frac{m}{n} < \min\left(q_\text{max}+T,\frac{q_\text{max}}{1+T}\right)$, $q<0$
+\end{DoxyItemize}
+
+for poloidal flux.
+
+For toroidal flux, $q$ should be replaced by $\iota$ and $\frac{m}{n}$ by $\frac{n}{m}$.
+
+For {\ttfamily X\+\_\+style} 2 (fast)\+: the resonance has been taken care of, but it remains to be checked whether the number of modes is efficient.
+
+\begin{DoxyReturn}{Returns}
+ierr
+\end{DoxyReturn}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em grid\+\_\+eq} & equilibrium grid\\
+\hline
+\mbox{\tt in}  & {\em eq} & flux equilibrium \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 1336 of file X\+\_\+ops.\+f90.
+
+Here is the call graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{namespacex__ops_a7d9275e2d927d92548416f21b983b604_cgraph}
 \end{center}
 \end{figure}
-Here is the caller graph for this function\+:
-\nopagebreak
+Here is the caller graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -171,92 +445,278 @@ Here is the caller graph for this function\+:
 
 
 
-Definition at line 2711 of file X\+\_\+ops.\+f90.
+Divides the perturbation jobs. 
 
-Here is the call graph for this function\+:
-\nopagebreak
+This concerns the calculation of the magnetic integrals of blocks of tensorial perturbation variables. These are set up using the equilibrium and vectorial perturbation variables that are stored in memory, but only the integrated tensorial result is stored in memory, with negligible variables size.
+
+The size of the (k,m) pairs to be calculated is determined by looking at what fits in memory when the equilibrium and vectorial perturbation variables are stored in memory first.
+
+\begin{DoxyReturn}{Returns}
+ierr
+\end{DoxyReturn}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em arr\+\_\+size} & array size (using loc\+\_\+n\+\_\+r) \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 3350 of file X\+\_\+ops.\+f90.
+
+Here is the call graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{namespacex__ops_a677c88d85fe1bfbf3579a2421ce16f2f_cgraph}
 \end{center}
 \end{figure}
-Here is the caller graph for this function\+:
-\nopagebreak
+Here is the caller graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{namespacex__ops_a677c88d85fe1bfbf3579a2421ce16f2f_icgraph}
 \end{center}
 \end{figure}
-\mbox{\Hypertarget{namespacex__ops_a28615c2a15bf15a2d2acd71038386135}\label{namespacex__ops_a28615c2a15bf15a2d2acd71038386135}} 
-\index{x\+\_\+ops@{x\+\_\+ops}!print\+\_\+output\+\_\+x\+\_\+2@{print\+\_\+output\+\_\+x\+\_\+2}}
-\index{print\+\_\+output\+\_\+x\+\_\+2@{print\+\_\+output\+\_\+x\+\_\+2}!x\+\_\+ops@{x\+\_\+ops}}
-\subsubsection{\texorpdfstring{print\+\_\+output\+\_\+x\+\_\+2()}{print\_output\_x\_2()}}
-{\footnotesize\ttfamily integer function x\+\_\+ops\+::print\+\_\+output\+\_\+x\+\_\+2 (\begin{DoxyParamCaption}\item[{type(grid\+\_\+type), intent(in)}]{grid\+\_\+X,  }\item[{type(x\+\_\+2\+\_\+type), intent(in)}]{X,  }\item[{character(len=$\ast$), intent(in)}]{data\+\_\+name,  }\item[{integer, intent(in), optional}]{rich\+\_\+lvl,  }\item[{logical, intent(in), optional}]{par\+\_\+div,  }\item[{integer, dimension(2,2), intent(in), optional}]{lim\+\_\+sec\+\_\+X,  }\item[{logical, intent(in), optional}]{is\+\_\+field\+\_\+averaged }\end{DoxyParamCaption})}
+\mbox{\Hypertarget{namespacex__ops_a73a80c582379669f8e07b09dd7456878}\label{namespacex__ops_a73a80c582379669f8e07b09dd7456878}} 
+\index{x\+\_\+ops@{x\+\_\+ops}!init\+\_\+modes@{init\+\_\+modes}}
+\index{init\+\_\+modes@{init\+\_\+modes}!x\+\_\+ops@{x\+\_\+ops}}
+\subsubsection{\texorpdfstring{init\+\_\+modes()}{init\_modes()}}
+{\footnotesize\ttfamily integer function, public x\+\_\+ops\+::init\+\_\+modes (\begin{DoxyParamCaption}\item[{type(\hyperlink{structgrid__vars_1_1grid__type}{grid\+\_\+type}), intent(in)}]{grid\+\_\+eq,  }\item[{type(\hyperlink{structeq__vars_1_1eq__1__type}{eq\+\_\+1\+\_\+type}), intent(in)}]{eq }\end{DoxyParamCaption})}
 
 
 
-Definition at line 2406 of file X\+\_\+ops.\+f90.
+Initializes some variables concerning the mode numbers. 
 
-Here is the call graph for this function\+:
-\nopagebreak
+Setup minimum and maximum of mode numbers at every flux surface in equilibrium coordinates
+\begin{DoxyItemize}
+\item {\ttfamily min\+\_\+n\+\_\+X}, {\ttfamily max\+\_\+n\+\_\+X} 
+\item {\ttfamily min\+\_\+m\+\_\+X}, {\ttfamily max\+\_\+m\+\_\+X},
+\end{DoxyItemize}
+
+It functions depending on the {\ttfamily X\+\_\+style} used\+: 1 (prescribed) or 2 (fast). For the fast style, at every flux surface the range of modes is sought that resonates most\+:
+\begin{DoxyItemize}
+\item $m = nq \pm \frac{N}{2}$ for poloidal flux
+\item $n = \iota m \pm \frac{N}{2}$ for toroidal flux
+\end{DoxyItemize}
+
+where $N$ = {\ttfamily n\+\_\+mod\+\_\+X}.
+
+However, at the same time, both {\ttfamily m} and {\ttfamily n} have to be larger, in absolute value, than {\ttfamily min\+\_\+sec\+\_\+X}. Therefore, the range of width {\ttfamily n\+\_\+mod\+\_\+X} can be shifted upwards.
+
+\begin{DoxyReturn}{Returns}
+ierr
+\end{DoxyReturn}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em grid\+\_\+eq} & equilibrium grid\\
+\hline
+\mbox{\tt in}  & {\em eq} & flux equilibrium \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 919 of file X\+\_\+ops.\+f90.
+
+Here is the call graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=350pt]{namespacex__ops_a28615c2a15bf15a2d2acd71038386135_cgraph}
+\includegraphics[width=350pt]{namespacex__ops_a73a80c582379669f8e07b09dd7456878_cgraph}
 \end{center}
 \end{figure}
-\mbox{\Hypertarget{namespacex__ops_a766228ae0a64f84c10521a013367cfc8}\label{namespacex__ops_a766228ae0a64f84c10521a013367cfc8}} 
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespacex__ops_a73a80c582379669f8e07b09dd7456878_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{namespacex__ops_a8bdd87db80570a01cf35ca50184ae879}\label{namespacex__ops_a8bdd87db80570a01cf35ca50184ae879}} 
+\index{x\+\_\+ops@{x\+\_\+ops}!print\+\_\+debug\+\_\+x\+\_\+1@{print\+\_\+debug\+\_\+x\+\_\+1}}
+\index{print\+\_\+debug\+\_\+x\+\_\+1@{print\+\_\+debug\+\_\+x\+\_\+1}!x\+\_\+ops@{x\+\_\+ops}}
+\subsubsection{\texorpdfstring{print\+\_\+debug\+\_\+x\+\_\+1()}{print\_debug\_x\_1()}}
+{\footnotesize\ttfamily integer function, public x\+\_\+ops\+::print\+\_\+debug\+\_\+x\+\_\+1 (\begin{DoxyParamCaption}\item[{type(modes\+\_\+type), intent(in)}]{mds,  }\item[{type(\hyperlink{structgrid__vars_1_1grid__type}{grid\+\_\+type}), intent(in)}]{grid\+\_\+X,  }\item[{type(x\+\_\+1\+\_\+type), intent(in)}]{X\+\_\+1 }\end{DoxyParamCaption})}
+
+
+
+Prints debug information for X\+\_\+1 driver. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em mds} & general modes variables\\
+\hline
+\mbox{\tt in}  & {\em grid\+\_\+x} & perturbation grid\\
+\hline
+\mbox{\tt in}  & {\em x\+\_\+1} & vectorial X variables \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 3476 of file X\+\_\+ops.\+f90.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespacex__ops_a8bdd87db80570a01cf35ca50184ae879_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespacex__ops_a8bdd87db80570a01cf35ca50184ae879_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{namespacex__ops_a8879ea26ad86818e981546c3ab2d6165}\label{namespacex__ops_a8879ea26ad86818e981546c3ab2d6165}} 
+\index{x\+\_\+ops@{x\+\_\+ops}!print\+\_\+debug\+\_\+x\+\_\+2@{print\+\_\+debug\+\_\+x\+\_\+2}}
+\index{print\+\_\+debug\+\_\+x\+\_\+2@{print\+\_\+debug\+\_\+x\+\_\+2}!x\+\_\+ops@{x\+\_\+ops}}
+\subsubsection{\texorpdfstring{print\+\_\+debug\+\_\+x\+\_\+2()}{print\_debug\_x\_2()}}
+{\footnotesize\ttfamily integer function, public x\+\_\+ops\+::print\+\_\+debug\+\_\+x\+\_\+2 (\begin{DoxyParamCaption}\item[{type(modes\+\_\+type), intent(in)}]{mds,  }\item[{type(\hyperlink{structgrid__vars_1_1grid__type}{grid\+\_\+type}), intent(in)}]{grid\+\_\+X,  }\item[{type(x\+\_\+2\+\_\+type), intent(in)}]{X\+\_\+2\+\_\+int }\end{DoxyParamCaption})}
+
+
+
+Prints debug information for X\+\_\+2 driver. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em mds} & general modes variables\\
+\hline
+\mbox{\tt in}  & {\em grid\+\_\+x} & perturbation grid\\
+\hline
+\mbox{\tt in}  & {\em x\+\_\+2\+\_\+int} & tensorial X variables \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 3619 of file X\+\_\+ops.\+f90.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespacex__ops_a8879ea26ad86818e981546c3ab2d6165_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespacex__ops_a8879ea26ad86818e981546c3ab2d6165_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{namespacex__ops_abdaf1308e13cede3a153e8c6cf35a637}\label{namespacex__ops_abdaf1308e13cede3a153e8c6cf35a637}} 
 \index{x\+\_\+ops@{x\+\_\+ops}!resonance\+\_\+plot@{resonance\+\_\+plot}}
 \index{resonance\+\_\+plot@{resonance\+\_\+plot}!x\+\_\+ops@{x\+\_\+ops}}
 \subsubsection{\texorpdfstring{resonance\+\_\+plot()}{resonance\_plot()}}
-{\footnotesize\ttfamily integer function, public x\+\_\+ops\+::resonance\+\_\+plot (\begin{DoxyParamCaption}\item[{type(grid\+\_\+type), intent(in)}]{grid,  }\item[{type(eq\+\_\+1\+\_\+type), intent(in)}]{eq }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily integer function, public x\+\_\+ops\+::resonance\+\_\+plot (\begin{DoxyParamCaption}\item[{type(modes\+\_\+type), intent(in)}]{mds,  }\item[{type(\hyperlink{structgrid__vars_1_1grid__type}{grid\+\_\+type}), intent(in)}]{grid\+\_\+eq,  }\item[{type(\hyperlink{structeq__vars_1_1eq__1__type}{eq\+\_\+1\+\_\+type}), intent(in)}]{eq }\end{DoxyParamCaption})}
 
 
 
-Definition at line 827 of file X\+\_\+ops.\+f90.
+plot $q$-\/profile or $\iota$-\/profile in flux coordinates with $nq-m = 0$ or $n-\iota m = 0$ indicated if requested. 
 
-Here is the call graph for this function\+:
-\nopagebreak
+The plot will be done in the grid in which {\ttfamily mds} is tabulated, which is not necessarily the equilibrium one.
+
+\begin{DoxyReturn}{Returns}
+ierr
+\end{DoxyReturn}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em mds} & general modes variables\\
+\hline
+\mbox{\tt in}  & {\em grid\+\_\+eq} & equilibrium grid\\
+\hline
+\mbox{\tt in}  & {\em eq} & flux equilibrium \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 1800 of file X\+\_\+ops.\+f90.
+
+Here is the call graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=350pt]{namespacex__ops_a766228ae0a64f84c10521a013367cfc8_cgraph}
+\includegraphics[width=350pt]{namespacex__ops_abdaf1308e13cede3a153e8c6cf35a637_cgraph}
 \end{center}
 \end{figure}
-Here is the caller graph for this function\+:
-\nopagebreak
+Here is the caller graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=350pt]{namespacex__ops_a766228ae0a64f84c10521a013367cfc8_icgraph}
+\includegraphics[width=350pt]{namespacex__ops_abdaf1308e13cede3a153e8c6cf35a637_icgraph}
 \end{center}
 \end{figure}
-\mbox{\Hypertarget{namespacex__ops_ad0f44ec07a3b246da23f9aa659683bdf}\label{namespacex__ops_ad0f44ec07a3b246da23f9aa659683bdf}} 
-\index{x\+\_\+ops@{x\+\_\+ops}!setup\+\_\+nm\+\_\+x@{setup\+\_\+nm\+\_\+x}}
-\index{setup\+\_\+nm\+\_\+x@{setup\+\_\+nm\+\_\+x}!x\+\_\+ops@{x\+\_\+ops}}
-\subsubsection{\texorpdfstring{setup\+\_\+nm\+\_\+x()}{setup\_nm\_x()}}
-{\footnotesize\ttfamily integer function, public x\+\_\+ops\+::setup\+\_\+nm\+\_\+x (\begin{DoxyParamCaption}\item[{type(grid\+\_\+type)}]{grid\+\_\+eq,  }\item[{type(grid\+\_\+type)}]{grid\+\_\+X,  }\item[{type(eq\+\_\+1\+\_\+type)}]{eq,  }\item[{logical, intent(in), optional}]{plot\+\_\+nm }\end{DoxyParamCaption})}
+\mbox{\Hypertarget{namespacex__ops_a504451aabcab7d6f0fa59feae08ef8dd}\label{namespacex__ops_a504451aabcab7d6f0fa59feae08ef8dd}} 
+\index{x\+\_\+ops@{x\+\_\+ops}!setup\+\_\+modes@{setup\+\_\+modes}}
+\index{setup\+\_\+modes@{setup\+\_\+modes}!x\+\_\+ops@{x\+\_\+ops}}
+\subsubsection{\texorpdfstring{setup\+\_\+modes()}{setup\_modes()}}
+{\footnotesize\ttfamily integer function, public x\+\_\+ops\+::setup\+\_\+modes (\begin{DoxyParamCaption}\item[{type(modes\+\_\+type), intent(inout), target}]{mds,  }\item[{type(\hyperlink{structgrid__vars_1_1grid__type}{grid\+\_\+type}), intent(in)}]{grid\+\_\+eq,  }\item[{type(\hyperlink{structgrid__vars_1_1grid__type}{grid\+\_\+type}), intent(in)}]{grid,  }\item[{logical, intent(in), optional}]{plot\+\_\+nm }\end{DoxyParamCaption})}
 
 
 
-Definition at line 140 of file X\+\_\+ops.\+f90.
+Sets up some variables concerning the mode numbers. 
 
-Here is the call graph for this function\+:
-\nopagebreak
+Apart from the mode numbers
+\begin{DoxyItemize}
+\item {\ttfamily n}, {\ttfamily m},
+\end{DoxyItemize}
+
+also the variables of the secondary modes
+\begin{DoxyItemize}
+\item sec,
+\end{DoxyItemize}
+
+are set up in the coordinates of the grid passed. The normal values of this grid are saved as well, in
+\begin{DoxyItemize}
+\item r\+\_\+F.
+\end{DoxyItemize}
+
+All variables are tabulated in the full normal grid. The mode indices, however, are chosen so that there is maximum overlap between different normal positions. This is trivial for {\ttfamily X\+\_\+style} 1 (prescribed), but for {\ttfamily X\+\_\+style} 2 (fast), this is best explained by an example\+:
+
+\subsubsection*{kd m1 m2 m3 }
+
+1 10 11 12 $<$-\/ start 2 10 11 12 $<$-\/ no change in limits 2 13 11 12 $<$-\/ limits shift up by one 3 13 11 12 $<$-\/ no change in limits 4 13 14 12 $<$-\/ limits shift up by one 5 16 14 15 $<$-\/ limits shift up by two 6 13 14 15 $<$-\/ limits shift down by one
+
+This procedure makes use of the global variables
+\begin{DoxyItemize}
+\item {\ttfamily min\+\_\+m\+\_\+X}, max\+\_\+m\+\_\+X, min\+\_\+n\+\_\+X, max\+\_\+m\+\_\+X
+\end{DoxyItemize}
+
+that have to be set up using init\+\_\+nm\+\_\+x().
+
+Optionally, {\ttfamily n} and {\ttfamily m} can be plot.
+
+\begin{DoxyReturn}{Returns}
+ierr
+\end{DoxyReturn}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in,out}  & {\em mds} & modes variables\\
+\hline
+\mbox{\tt in}  & {\em grid\+\_\+eq} & equilibrium grid\\
+\hline
+\mbox{\tt in}  & {\em grid} & grid at which to calculate modes\\
+\hline
+\mbox{\tt in}  & {\em plot\+\_\+nm} & plot {\ttfamily n} and {\ttfamily m} \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 1060 of file X\+\_\+ops.\+f90.
+
+Here is the call graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=350pt]{namespacex__ops_ad0f44ec07a3b246da23f9aa659683bdf_cgraph}
+\includegraphics[width=350pt]{namespacex__ops_a504451aabcab7d6f0fa59feae08ef8dd_cgraph}
 \end{center}
 \end{figure}
-Here is the caller graph for this function\+:
-\nopagebreak
+Here is the caller graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=350pt]{namespacex__ops_ad0f44ec07a3b246da23f9aa659683bdf_icgraph}
+\includegraphics[width=350pt]{namespacex__ops_a504451aabcab7d6f0fa59feae08ef8dd_icgraph}
 \end{center}
 \end{figure}
 
@@ -270,5 +730,12 @@ Here is the caller graph for this function\+:
 
 
 
-Definition at line 25 of file X\+\_\+ops.\+f90.
+plot debug information for check\+\_\+x\+\_\+modes\+\_\+2() 
+
+\begin{DoxyNote}{Note}
+Debug version only 
+\end{DoxyNote}
+
+
+Definition at line 26 of file X\+\_\+ops.\+f90.
 

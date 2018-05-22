@@ -113,7 +113,7 @@ $2$ &Bokeh for 2-\/D and Mayavi for 3-\/D  \\\cline{1-2}
 
 \\\cline{1-5}
 \multicolumn{5}{|p{(\linewidth-\tabcolsep*5-\arrayrulewidth*1)*5/5}|}{\PBS\centering {\bfseries concerning finding zeros}   }\\\cline{1-5}
-{\ttfamily max\+\_\+it\+\_\+zero} &maximum number of iterations in num\+\_\+ops.\+calc\+\_\+zero\+\_\+hh() and \hyperlink{namespacenum__ops_adcc4eacf15c931744316a004f4448b90}{calc\+\_\+zero\+\_\+zhang()} &$100$ &{\ttfamily int} &(\hyperlink{page_inputs_fni9}{9})  \\\cline{1-5}
+{\ttfamily max\+\_\+it\+\_\+zero} &maximum number of iterations in \hyperlink{interfacenum__ops_1_1calc__zero__hh}{num\+\_\+ops.\+calc\+\_\+zero\+\_\+hh()} and \hyperlink{namespacenum__ops_adcc4eacf15c931744316a004f4448b90}{calc\+\_\+zero\+\_\+zhang()} &$100$ &{\ttfamily int} &(\hyperlink{page_inputs_fni9}{9})  \\\cline{1-5}
 {\ttfamily tol\+\_\+zero} &tolerance for zero finding &$1^{-10}$ &{\ttfamily real} &(\hyperlink{page_inputs_fni9}{9})  \\\cline{1-5}
 {\ttfamily max\+\_\+nr\+\_\+backtracks\+\_\+\+HH} &maximum number of times the correction can be relaxed by half in a backtrack for the Householder methods &$20$ &{\ttfamily int} &(\hyperlink{page_inputs_fni9}{9})  \\\cline{1-5}
 \multicolumn{5}{|p{(\linewidth-\tabcolsep*5-\arrayrulewidth*1)*5/5}|}{\PBS\centering {\bfseries concerning runtime}   }\\\cline{1-5}
@@ -265,7 +265,7 @@ $2$ &Bokeh for 2-\/D and Mayavi for 3-\/D  \\\cline{1-2}
 
 \\\cline{1-5}
 \multicolumn{5}{|p{(\linewidth-\tabcolsep*5-\arrayrulewidth*1)*5/5}|}{\PBS\centering {\bfseries concerning finding zeros}   }\\\cline{1-5}
-{\ttfamily max\+\_\+it\+\_\+zero} &maximum number of iterations in num\+\_\+ops.\+calc\+\_\+zero\+\_\+hh() and \hyperlink{namespacenum__ops_adcc4eacf15c931744316a004f4448b90}{calc\+\_\+zero\+\_\+zhang()} &$100$ &{\ttfamily int} &(\hyperlink{page_inputs_fni9}{9})  \\\cline{1-5}
+{\ttfamily max\+\_\+it\+\_\+zero} &maximum number of iterations in \hyperlink{interfacenum__ops_1_1calc__zero__hh}{num\+\_\+ops.\+calc\+\_\+zero\+\_\+hh()} and \hyperlink{namespacenum__ops_adcc4eacf15c931744316a004f4448b90}{calc\+\_\+zero\+\_\+zhang()} &$100$ &{\ttfamily int} &(\hyperlink{page_inputs_fni9}{9})  \\\cline{1-5}
 {\ttfamily tol\+\_\+zero} &tolerance for zero finding &$1^{-10}$ &{\ttfamily real} &(\hyperlink{page_inputs_fni9}{9})  \\\cline{1-5}
 {\ttfamily max\+\_\+nr\+\_\+backtracks\+\_\+\+HH} &maximum number of times the correction can be relaxed by half in a backtrack for the Householder methods &$20$ &{\ttfamily int} &(\hyperlink{page_inputs_fni9}{9}) 
 
@@ -334,40 +334,40 @@ Should satisfy the high-\/ $n$ approximation, currently set to $>$ 5 .
 If {\ttfamily min\+\_\+sec\+\_\+X} and {\ttfamily max\+\_\+sec\+\_\+X} is set, the user prescribes the secondary mode number range ({\ttfamily X\+\_\+style} = 1). If {\ttfamily n\+\_\+mod\+\_\+X} is set, on the other hand, the user prescribes the size of the range, which is automatically chosen ({\ttfamily X\+\_\+style} = 2). They cannot be both chosen.
 \item \label{page_inputs_fni6}%
 \Hypertarget{page_inputs_fni6}%
-Normalization constants, with exception of {\ttfamily rho\+\_\+0} are set in the routine \hyperlink{namespaceeq__ops_a09b10d95cd83c89e817664a954f7555d}{calc\+\_\+normalization\+\_\+const()}.
+Normalization constants, with exception of {\ttfamily rho\+\_\+0} are set in the routine \hyperlink{namespaceeq__ops_a7cd38586e386e1bc684a327ebcc4c1de}{calc\+\_\+normalization\+\_\+const()}.
 \item \label{page_inputs_fni7}%
 \Hypertarget{page_inputs_fni7}%
-In \hyperlink{namespaceslepc__ops_a66241540803bca208b2f3bd6b0448491}{store\+\_\+results()}, it is decided whether the eigenvalue is physical or not, by considering the ratio between real and imaginary part.
+In \hyperlink{namespaceslepc__ops_a24d97496000ed55f1d11e4d436e084a6}{store\+\_\+results()}, it is decided whether the eigenvalue is physical or not, by considering the ratio between real and imaginary part.
 \item \label{page_inputs_fni8}%
 \Hypertarget{page_inputs_fni8}%
 This needs to be between 1 and the maximum level that was obtained in a previous solution, plus 1. For technical H\+D\+F5 reasons, if Richardson restart is used, the same input fil parameters should be used for {\ttfamily max\+\_\+tot\+\_\+mem} and the same number of processes should be used. Furthermore, it should not exceed {\ttfamily max\+\_\+it\+\_\+rich}.
 \item \label{page_inputs_fni9}%
 \Hypertarget{page_inputs_fni9}%
-For the case of num\+\_\+ops.\+calc\+\_\+zero\+\_\+hh(), at every iteration it is checked whether the correction approximation is better than the original one. If it is not, the correction is relaxed by a factor half. This is done {\ttfamily max\+\_\+nr\+\_\+backtracks\+\_\+\+HH} times.
+For the case of \hyperlink{interfacenum__ops_1_1calc__zero__hh}{num\+\_\+ops.\+calc\+\_\+zero\+\_\+hh()}, at every iteration it is checked whether the correction approximation is better than the original one. If it is not, the correction is relaxed by a factor half. This is done {\ttfamily max\+\_\+nr\+\_\+backtracks\+\_\+\+HH} times.
 \item \label{page_inputs_fni10}%
 \Hypertarget{page_inputs_fni10}%
-See set\+\_\+bc().
+See \hyperlink{namespaceslepc__ops_a05f8a23335ed47ad1996cddf3bcfdc2e}{set\+\_\+bc()}.
 \item \label{page_inputs_fni11}%
 \Hypertarget{page_inputs_fni11}%
-See \hyperlink{namespaceeq__ops_a09b10d95cd83c89e817664a954f7555d}{calc\+\_\+normalization\+\_\+const()}.
+See \hyperlink{namespaceeq__ops_a7cd38586e386e1bc684a327ebcc4c1de}{calc\+\_\+normalization\+\_\+const()}.
 \item \label{page_inputs_fni12}%
 \Hypertarget{page_inputs_fni12}%
-See \hyperlink{namespaceslepc__ops_ad9d4a9b7275ac5a6b9b35e481a7c1710}{solve\+\_\+ev\+\_\+system\+\_\+slepc()}
+See \hyperlink{namespaceslepc__ops_a79c420987056c225931b51c8d30ece1f}{solve\+\_\+ev\+\_\+system\+\_\+slepc()}
 \item \label{page_inputs_fni13}%
 \Hypertarget{page_inputs_fni13}%
-See \hyperlink{namespacex__ops_a766228ae0a64f84c10521a013367cfc8}{resonance\+\_\+plot()}.
+See \hyperlink{namespacex__ops_abdaf1308e13cede3a153e8c6cf35a637}{resonance\+\_\+plot()}.
 \item \label{page_inputs_fni14}%
 \Hypertarget{page_inputs_fni14}%
 See \hyperlink{namespacegrid__ops_addd76b7b3be0b51e0863ae0cdfef41e6}{magn\+\_\+grid\+\_\+plot()}.
 \item \label{page_inputs_fni15}%
 \Hypertarget{page_inputs_fni15}%
-See \hyperlink{namespaceeq__ops_a9dab060a0bbbbaf6c8ccb66e1f5f160b}{b\+\_\+plot()}. The output is done in various coordinate system, as explained in \hyperlink{namespacegrid__utilities_a3076796477d38ffed189868b3b28efb1}{calc\+\_\+vec\+\_\+comp()}.
+See \hyperlink{namespaceeq__ops_a73a8c3cea1e8a636b4978bc626e0fab0}{b\+\_\+plot()}. The output is done in various coordinate system, as explained in \hyperlink{namespacegrid__utilities_ad3d9386b9abcb1a7e17369a1b3a3750d}{calc\+\_\+vec\+\_\+comp()}.
 \item \label{page_inputs_fni16}%
 \Hypertarget{page_inputs_fni16}%
-See \hyperlink{namespaceeq__ops_af611fc0c83d1ab5ed8940d9a1a652d6c}{j\+\_\+plot()}. The output is done in various coordinate system, as explained in \hyperlink{namespacegrid__utilities_a3076796477d38ffed189868b3b28efb1}{calc\+\_\+vec\+\_\+comp()}.
+See \hyperlink{namespaceeq__ops_afabdf28e5c26ceb87e6eb8cf3809919d}{j\+\_\+plot()}. The output is done in various coordinate system, as explained in \hyperlink{namespacegrid__utilities_ad3d9386b9abcb1a7e17369a1b3a3750d}{calc\+\_\+vec\+\_\+comp()}.
 \item \label{page_inputs_fni17}%
 \Hypertarget{page_inputs_fni17}%
-See \hyperlink{namespaceeq__ops_a9ecb744b3812fe838f13c9886307da24}{kappa\+\_\+plot()}. The output is done in various coordinate system, as explained in \hyperlink{namespacegrid__utilities_a3076796477d38ffed189868b3b28efb1}{calc\+\_\+vec\+\_\+comp()}.
+See \hyperlink{namespaceeq__ops_ad173efd111cb85c11bc2bc78a7555096}{kappa\+\_\+plot()}. The output is done in various coordinate system, as explained in \hyperlink{namespacegrid__utilities_ad3d9386b9abcb1a7e17369a1b3a3750d}{calc\+\_\+vec\+\_\+comp()}.
 \item \label{page_inputs_fni18}%
 \Hypertarget{page_inputs_fni18}%
 See \hyperlink{namespaceeq__ops_af0effe20188d46a44680c2648e4572e9}{flux\+\_\+q\+\_\+plot()}.
@@ -379,10 +379,10 @@ For {\ttfamily eq\+\_\+style = 1}, the equilibrium is axisymmetric, so by defaul
 For {\ttfamily eq\+\_\+style = 1}, the equilibrium is axisymmetric, so by default {\ttfamily min\+\_\+zeta\+\_\+plot = max\+\_\+zeta\+\_\+plot 0}; for {\ttfamily eq\+\_\+style = 2}, the equilibrium can be 3-\/D, so {\ttfamily min\+\_\+zeta\+\_\+plot = 0} and {\ttfamily max\+\_\+zeta\+\_\+plot = 2}.
 \item \label{page_inputs_fni21}%
 \Hypertarget{page_inputs_fni21}%
-This refers to the external plots, which are complimentary to the H\+D\+F5 plots. See draw\+\_\+ex().
+This refers to the external plots, which are complimentary to the H\+D\+F5 plots. See \hyperlink{namespaceoutput__ops_a50bfbb88cc91805469353c3ff47b3e2e}{draw\+\_\+ex()}.
 \item \label{page_inputs_fni22}%
 \Hypertarget{page_inputs_fni22}%
-If output is done that requires a solution, this needs to be between 1 and the maximum level that was obtained in P\+B3D. See \hyperlink{namespacerich__ops_acadb2170408937a71a230e655bd15675}{find\+\_\+max\+\_\+rich\+\_\+lvl()}. If no solution is found, some of the outputs that do not depend on this still work.\+Optionally, this can be forced by choosing {\ttfamily P\+B3\+D\+\_\+rich\+\_\+lvl} not positive.
+If output is done that requires a solution, this needs to be between 1 and the maximum level that was obtained in P\+B3D. See \hyperlink{namespacerich__ops_a58e1bed1bed5c2d0b91cc7dc5e3099d9}{find\+\_\+max\+\_\+rich\+\_\+lvl()}. If no solution is found, some of the outputs that do not depend on this still work.\+Optionally, this can be forced by choosing {\ttfamily P\+B3\+D\+\_\+rich\+\_\+lvl} not positive.
 \item \label{page_inputs_fni23}%
 \Hypertarget{page_inputs_fni23}%
 The {\ttfamily P\+O\+S\+T\+\_\+style} determines whether the post-\/processing is done on an extended, new grid, or on the P\+B3D internal grid. On top of this, through {\ttfamily plot\+\_\+grid\+\_\+style} the user can set the output grid for the post-\/processing. Note that some combinations of styles do not make sense.
@@ -394,10 +394,10 @@ By default, the plot normal range is chosen equal to the solution normal range f
 The Cartesian components of the result of the division of {\ttfamily pert\+\_\+mult\+\_\+factor\+\_\+\+P\+O\+ST} by the maximum value of the solution normal mode amplitude is added to the equilibrium Cartesian grid components to illustrate the perturbation in 3-\/D. This is done for each solution independently and sequentially. If it is not positive, it is ignored. Note that {\ttfamily plot\+\_\+sol\+\_\+xi = .true.} is necessary for this to be used.
 \item \label{page_inputs_fni26}%
 \Hypertarget{page_inputs_fni26}%
-These quantities are calculated in sol\+\_\+utilities.\+calc\+\_\+xuq(). This is done for a time sequene, currently hard-\/coded in \hyperlink{namespacesol__ops_ae14af60a6f8f77e7dde1e93dbaa7e6d0}{plot\+\_\+sol\+\_\+vec()}, depending on whether the solution is stable or unstable.
+These quantities are calculated in \hyperlink{interfacesol__utilities_1_1calc__xuq}{sol\+\_\+utilities.\+calc\+\_\+xuq()}. This is done for a time sequene, currently hard-\/coded in \hyperlink{namespacesol__ops_a13b3cf2fb6437a3c93256368fa91c267}{plot\+\_\+sol\+\_\+vec()}, depending on whether the solution is stable or unstable.
 \item \label{page_inputs_fni27}%
 \Hypertarget{page_inputs_fni27}%
-The energy reconstruction is performed in \hyperlink{namespacesol__ops_aaeb4b122754fc6a4f538b22d72b6cba0}{calc\+\_\+e()} if either one of {\ttfamily plot\+\_\+sol\+\_\+xi}, {\ttfamily plot\+\_\+sol\+\_\+Q} or {\ttfamily plot\+\_\+\+E\+\_\+rec} is true.
+The energy reconstruction is performed in \hyperlink{namespacesol__ops_ae094c2a5235324b4aadb53623978d191}{calc\+\_\+e()} if either one of {\ttfamily plot\+\_\+sol\+\_\+xi}, {\ttfamily plot\+\_\+sol\+\_\+Q} or {\ttfamily plot\+\_\+\+E\+\_\+rec} is true.
 \item \label{page_inputs_fni28}%
 \Hypertarget{page_inputs_fni28}%
 Equivalent use is through {\ttfamily -\/t}. If this is used, {\ttfamily do\+\_\+execute\+\_\+command\+\_\+line} should be set to true as well. See \hyperlink{namespacetest_aca21ee464c0b1f4b617177afdde110ec}{generic\+\_\+tests()}.
@@ -412,18 +412,18 @@ This can fail on local systems, and generally works badly on computational clust
 This is done by calling \hyperlink{namespacemessages_a82dddaab795b78b3d39e1ff1aab2f665}{get\+\_\+mem\+\_\+usage()} and storing the result at every allocation and deallocation of an {\ttfamily eq\+\_\+1\+\_\+type}, {\ttfamily eq\+\_\+2\+\_\+type}, {\ttfamily X\+\_\+1\+\_\+type}, {\ttfamily X\+\_\+2\+\_\+type}, {\ttfamily vac\+\_\+type} or {\ttfamily sol\+\_\+type}, as well as for input quantities. Furthermore at every user output with \hyperlink{namespacemessages_aa4a8d01563e92558e8a0875b075ec54c}{writo()}, this is also done, and the output is prepended to the output string. Also, the output is written to a file. See \hyperlink{page_outputs_output_file_mem}{Memory usage file}.
 \item \label{page_inputs_fni32}%
 \Hypertarget{page_inputs_fni32}%
-This is useful to calculate the ripple in these quantities. To use this, it is necessary to have an output grid of only 3 points, where the poloidal projection of the middle point should be the in the middle between the poloidal projections of the two others. Also, you have to provide through {\ttfamily R\+Z\+\_\+0} the $R$ and $Z$ value of the origin of the geometrical poloidal angle that is used to calculate distances. See grid\+\_\+utilities.\+calc\+\_\+tor\+\_\+diff().
+This is useful to calculate the ripple in these quantities. To use this, it is necessary to have an output grid of only 3 points, where the poloidal projection of the middle point should be the in the middle between the poloidal projections of the two others. Also, you have to provide through {\ttfamily R\+Z\+\_\+0} the $R$ and $Z$ value of the origin of the geometrical poloidal angle that is used to calculate distances. See \hyperlink{interfacegrid__utilities_1_1calc__tor__diff}{grid\+\_\+utilities.\+calc\+\_\+tor\+\_\+diff()}.
 \item \label{page_inputs_fni33}%
 \Hypertarget{page_inputs_fni33}%
 Jumping straight to the solution is useful if a simulation already calculated all the necessary quantities to set up the solution matrices $\overline{\text{A}}$ and $\overline{\text{B}}$ in $\overline{\text{A}} \vec{X} = \lambda \overline{\text{B}} \vec{X}$ and the solution needs to be redone, for example because a calculation was attempted with a method that did not converge.
 \item \label{page_inputs_fni34}%
 \Hypertarget{page_inputs_fni34}%
-This is a rather complicated procedure with many possibilities that is intended for expert use. See create\+\_\+vmec\+\_\+input().
+This is a rather complicated procedure with many possibilities that is intended for expert use. See \hyperlink{namespaceeq__ops_a9addef683b3d4a8c587510e4c994ec61}{create\+\_\+vmec\+\_\+input()}.
 \item \label{page_inputs_fni35}%
 \Hypertarget{page_inputs_fni35}%
 Using the toroidal flux is {\bfseries experimental} and {\bfseries untested}.
 \item \label{page_inputs_fni36}%
 \Hypertarget{page_inputs_fni36}%
-Have a look in \hyperlink{namespacegrid__ops_a596695cab6971ec6b9d32d13a50708b6}{calc\+\_\+norm\+\_\+range()}. {\ttfamily X\+\_\+grid\+\_\+style} $1$ is generally too coarse while {\ttfamily X\+\_\+grid\+\_\+style} $2$ is too fine. {\ttfamily X\+\_\+grid\+\_\+style} $3$ was designed to have the both of best world. It only makes sense for {\ttfamily X\+\_\+style} 2 (fast), though, as in the enrichment process the fast secondary mode range is used to limit the maximum amount the quantity $n q$ (when using poloidal flux) or $m \iota$ (when using toroidal flux) to {\ttfamily max\+\_\+njq\+\_\+change} between two normal grid points. 
+Have a look in \hyperlink{namespacegrid__ops_a1c18f90f93f5fce7ebb4dba60b70e0f8}{calc\+\_\+norm\+\_\+range()}. {\ttfamily X\+\_\+grid\+\_\+style} $1$ is generally too coarse while {\ttfamily X\+\_\+grid\+\_\+style} $2$ is too fine. {\ttfamily X\+\_\+grid\+\_\+style} $3$ was designed to have the both of best world. It only makes sense for {\ttfamily X\+\_\+style} 2 (fast), though, as in the enrichment process the fast secondary mode range is used to limit the maximum amount the quantity $n q$ (when using poloidal flux) or $m \iota$ (when using toroidal flux) to {\ttfamily max\+\_\+njq\+\_\+change} between two normal grid points. 
 \end{DoxyEnumerate}
 \end{DoxyNote}

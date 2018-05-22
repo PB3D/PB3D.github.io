@@ -29,7 +29,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">PB3D
-   &#160;<span id="projectnumber">[1.73]</span>
+   &#160;<span id="projectnumber">[2.27]</span>
    </div>
    <div id="projectbrief">Ideal linear high-n MHD stability in 3-D</div>
   </td>
@@ -85,18 +85,90 @@ $(function() {
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="namespaces"></a>
 Modules</h2></td></tr>
 <tr class="memitem:namespaceslepc__utilities"><td class="memItemLeft" align="right" valign="top">module &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceslepc__utilities.html">slepc_utilities</a></td></tr>
+<tr class="memdesc:namespaceslepc__utilities"><td class="mdescLeft">&#160;</td><td class="mdescRight">Numerical utilities related to SLEPC (and PETSC) operations. <br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions/Subroutines</h2></td></tr>
-<tr class="memitem:ae6568f825f3fa8a6e3d45f67f3daf412"><td class="memItemLeft" align="right" valign="top">integer function, public&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceslepc__utilities.html#ae6568f825f3fa8a6e3d45f67f3daf412">slepc_utilities::insert_block_mat</a> (block, mat, r_id, ind, n_sol, transp, overwrite)</td></tr>
-<tr class="separator:ae6568f825f3fa8a6e3d45f67f3daf412"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa34aa361f0bfff9621ecba179f9ed0c6"><td class="memItemLeft" align="right" valign="top">integer function, public&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceslepc__utilities.html#aa34aa361f0bfff9621ecba179f9ed0c6">slepc_utilities::insert_block_mat</a> (mds, block, mat, r_id, ind, n_r, transp, overwrite, ind_insert)</td></tr>
+<tr class="memdesc:aa34aa361f0bfff9621ecba179f9ed0c6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Insert a block pertaining to 1 normal point into a matrix.  <a href="namespaceslepc__utilities.html#aa34aa361f0bfff9621ecba179f9ed0c6">More...</a><br /></td></tr>
+<tr class="separator:aa34aa361f0bfff9621ecba179f9ed0c6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a711d6be49d3b1542ee3375bceb5b4e6d"><td class="memItemLeft" align="right" valign="top">subroutine&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="SLEPC__utilities_8f90.html#a711d6be49d3b1542ee3375bceb5b4e6d">setup_local_block</a> (nm_X, r_id, ind, block, block_loc)</td></tr>
+<tr class="memdesc:a711d6be49d3b1542ee3375bceb5b4e6d"><td class="mdescLeft">&#160;</td><td class="mdescRight">/private Set up local block, possibly translated for fast PB3D.  <a href="#a711d6be49d3b1542ee3375bceb5b4e6d">More...</a><br /></td></tr>
+<tr class="separator:a711d6be49d3b1542ee3375bceb5b4e6d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
 Variables</h2></td></tr>
 <tr class="memitem:a5cb92553633cb22ff703286298862ac7"><td class="memItemLeft" align="right" valign="top">logical, public&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceslepc__utilities.html#a5cb92553633cb22ff703286298862ac7">slepc_utilities::debug_insert_block_mat</a> = .false.</td></tr>
+<tr class="memdesc:a5cb92553633cb22ff703286298862ac7"><td class="mdescLeft">&#160;</td><td class="mdescRight">plot debug information for <a class="el" href="namespaceslepc__utilities.html#aa34aa361f0bfff9621ecba179f9ed0c6" title="Insert a block pertaining to 1 normal point into a matrix. ">insert_block_mat()</a>  <a href="namespaceslepc__utilities.html#a5cb92553633cb22ff703286298862ac7">More...</a><br /></td></tr>
 <tr class="separator:a5cb92553633cb22ff703286298862ac7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<h2 class="groupheader">Function/Subroutine Documentation</h2>
+<a id="a711d6be49d3b1542ee3375bceb5b4e6d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a711d6be49d3b1542ee3375bceb5b4e6d">&#9670;&nbsp;</a></span>setup_local_block()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">subroutine insert_block_mat::setup_local_block </td>
+          <td>(</td>
+          <td class="paramtype">dimension(:,:), intent(in)&#160;</td>
+          <td class="paramname"><em>nm_X</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">intent(in)&#160;</td>
+          <td class="paramname"><em>r_id</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">dimension(2), intent(in)&#160;</td>
+          <td class="paramname"><em>ind</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">dimension(:,:), intent(in)&#160;</td>
+          <td class="paramname"><em>block</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">dimension(:,:), intent(inout)&#160;</td>
+          <td class="paramname"><em>block_loc</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>/private Set up local block, possibly translated for fast PB3D. </p>
+<dl class="section note"><dt>Note</dt><dd>For BC_style 3, there is a grid extension of n_r beyond the tabulated modes variables, which is why there is a 'min(..,size(nm_X,1))' here. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="SLEPC__utilities_8f90_source.html#l00207">207</a> of file <a class="el" href="SLEPC__utilities_8f90_source.html">SLEPC_utilities.f90</a>.</p>
+<div id="dynsection-0" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-0-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
+<div id="dynsection-0-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-0-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="SLEPC__utilities_8f90_a711d6be49d3b1542ee3375bceb5b4e6d_cgraph.svg" width="1076" height="132"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+<div id="dynsection-1" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-1-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
+<div id="dynsection-1-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-1-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="SLEPC__utilities_8f90_a711d6be49d3b1542ee3375bceb5b4e6d_icgraph.svg" width="1267" height="94"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+
+</div>
+</div>
 </div><!-- contents -->
 <!-- HTML footer for doxygen 1.8.13-->
 <!-- start footer part -->

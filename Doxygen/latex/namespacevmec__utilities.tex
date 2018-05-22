@@ -1,16 +1,29 @@
 \hypertarget{namespacevmec__utilities}{}\section{vmec\+\_\+utilities Module Reference}
 \label{namespacevmec__utilities}\index{vmec\+\_\+utilities@{vmec\+\_\+utilities}}
+
+
+Numerical utilities related to the output of V\+M\+EC.  
+
+
+\subsection*{Interfaces and Types}
+\begin{DoxyCompactItemize}
+\item 
+interface \hyperlink{interfacevmec__utilities_1_1fourier2real}{fourier2real}
+\begin{DoxyCompactList}\small\item\em Inverse Fourier transformation, from V\+M\+EC. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Functions/\+Subroutines}
 \begin{DoxyCompactItemize}
 \item 
 integer function, public \hyperlink{namespacevmec__utilities_ac699116fc25fdea3e28e488513d97c87}{calc\+\_\+trigon\+\_\+factors} (theta, zeta, trigon\+\_\+factors)
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Calculate the trigonometric cosine and sine factors. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Variables}
 \begin{DoxyCompactItemize}
 \item 
 logical, public \hyperlink{namespacevmec__utilities_abeb2bf5595170bdf2dd07a6f2bfa89ff}{debug\+\_\+calc\+\_\+trigon\+\_\+factors} = .false.
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em plot debug information for \hyperlink{namespacevmec__utilities_ac699116fc25fdea3e28e488513d97c87}{calc\+\_\+trigon\+\_\+factors()} \end{DoxyCompactList}\end{DoxyCompactItemize}
 
+
+\subsection{Detailed Description}
+Numerical utilities related to the output of V\+M\+EC. 
 
 \subsection{Function/\+Subroutine Documentation}
 \mbox{\Hypertarget{namespacevmec__utilities_ac699116fc25fdea3e28e488513d97c87}\label{namespacevmec__utilities_ac699116fc25fdea3e28e488513d97c87}} 
@@ -21,18 +34,43 @@ logical, public \hyperlink{namespacevmec__utilities_abeb2bf5595170bdf2dd07a6f2bf
 
 
 
-Definition at line 34 of file V\+M\+E\+C\+\_\+utilities.\+f90.
+Calculate the trigonometric cosine and sine factors. 
 
-Here is the call graph for this function\+:
-\nopagebreak
+This is done on a grid {\ttfamily (1\+:mnmax\+\_\+V)} at given 3D arrays for the (V\+M\+EC) E(quilibrium) angles $\theta_\text{E}$ and $\zeta_\text{E}$.
+
+The dimensions of the output array are
+
+{\ttfamily (1\+:mnmax\+\_\+V,1\+:n\+\_\+ang\+\_\+1,1\+:n\+\_\+ang\+\_\+2,1\+:n\+\_\+r,1\+:2)}
+
+where {\ttfamily mnmax\+\_\+V} is the number of modes in V\+M\+EC {\ttfamily n\+\_\+r} is the total number of normal points.
+
+\begin{DoxySeeAlso}{See also}
+See \hyperlink{structgrid__vars_1_1grid__type}{grid\+\_\+vars.\+grid\+\_\+type} for a discussion on {\ttfamily ang\+\_\+1} and {\ttfamily ang\+\_\+2}.
+\end{DoxySeeAlso}
+\begin{DoxyReturn}{Returns}
+ierr
+\end{DoxyReturn}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em theta} & poloidal angles in equilibrium coords.\\
+\hline
+\mbox{\tt in}  & {\em zeta} & toroidal angles in equilibrium coords.\\
+\hline
+\mbox{\tt in,out}  & {\em trigon\+\_\+factors} & trigonometric factor cosine and sine at these angles \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 275 of file V\+M\+E\+C\+\_\+utilities.\+f90.
+
+Here is the call graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{namespacevmec__utilities_ac699116fc25fdea3e28e488513d97c87_cgraph}
 \end{center}
 \end{figure}
-Here is the caller graph for this function\+:
-\nopagebreak
+Here is the caller graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -48,6 +86,13 @@ Here is the caller graph for this function\+:
 \subsubsection{\texorpdfstring{debug\+\_\+calc\+\_\+trigon\+\_\+factors}{debug\_calc\_trigon\_factors}}
 {\footnotesize\ttfamily logical, public vmec\+\_\+utilities\+::debug\+\_\+calc\+\_\+trigon\+\_\+factors = .false.}
 
+
+
+plot debug information for \hyperlink{namespacevmec__utilities_ac699116fc25fdea3e28e488513d97c87}{calc\+\_\+trigon\+\_\+factors()} 
+
+\begin{DoxyNote}{Note}
+Debug version only 
+\end{DoxyNote}
 
 
 Definition at line 22 of file V\+M\+E\+C\+\_\+utilities.\+f90.

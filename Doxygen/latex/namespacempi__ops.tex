@@ -1,19 +1,27 @@
 \hypertarget{namespacempi__ops}{}\section{mpi\+\_\+ops Module Reference}
 \label{namespacempi__ops}\index{mpi\+\_\+ops@{mpi\+\_\+ops}}
+
+
+Operations related to M\+PI.  
+
+
 \subsection*{Functions/\+Subroutines}
 \begin{DoxyCompactItemize}
 \item 
 integer function, public \hyperlink{namespacempi__ops_a804ec65ff711509de1f8873f97bdf967}{start\+\_\+mpi} ()
-\item 
-integer function, public \hyperlink{namespacempi__ops_abaf1ff6b3a25463476a767e196b4a73c}{stop\+\_\+mpi} (grid\+\_\+eq, grid\+\_\+eq\+\_\+B, grid\+\_\+X, grid\+\_\+\+X\+\_\+B, grid\+\_\+sol, eq\+\_\+1, eq\+\_\+2, X\+\_\+1, X\+\_\+2, sol)
-\item 
+\begin{DoxyCompactList}\small\item\em Start M\+PI and gather information. \end{DoxyCompactList}\item 
+integer function, public \hyperlink{namespacempi__ops_a9dcb5624e665c9e15a4203edb5f44b0f}{stop\+\_\+mpi} (grid\+\_\+eq, grid\+\_\+eq\+\_\+B, grid\+\_\+X, grid\+\_\+\+X\+\_\+B, grid\+\_\+sol, eq\+\_\+1, eq\+\_\+2, X\+\_\+1, X\+\_\+2, vac, sol)
+\begin{DoxyCompactList}\small\item\em Stop M\+PI. \end{DoxyCompactList}\item 
 integer function, public \hyperlink{namespacempi__ops_a54d9258ef985728345579e8e57dc8dfe}{abort\+\_\+mpi} ()
-\item 
+\begin{DoxyCompactList}\small\item\em Abort M\+PI suddenly. \end{DoxyCompactList}\item 
 integer function, public \hyperlink{namespacempi__ops_a932eba1c998dd7a0f1191b55cd754be3}{broadcast\+\_\+input\+\_\+opts} ()
-\item 
+\begin{DoxyCompactList}\small\item\em Broadcasts options (e.\+g. user-\/prescribed) that are not passed through the H\+D\+F5 output file (i.\+e. {\ttfamily ltest}, {\ttfamily no\+\_\+plots}, ...). \end{DoxyCompactList}\item 
 subroutine, public \hyperlink{namespacempi__ops_a40e8610357a9a5b075fef9dab1c3f24f}{sudden\+\_\+stop} (ierr)
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Suddenly stops the computations, aborting M\+PI, etc. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
+
+\subsection{Detailed Description}
+Operations related to M\+PI. 
 
 \subsection{Function/\+Subroutine Documentation}
 \mbox{\Hypertarget{namespacempi__ops_a54d9258ef985728345579e8e57dc8dfe}\label{namespacempi__ops_a54d9258ef985728345579e8e57dc8dfe}} 
@@ -24,10 +32,16 @@ subroutine, public \hyperlink{namespacempi__ops_a40e8610357a9a5b075fef9dab1c3f24
 
 
 
-Definition at line 210 of file M\+P\+I\+\_\+ops.\+f90.
+Abort M\+PI suddenly. 
 
-Here is the caller graph for this function\+:
-\nopagebreak
+\begin{DoxyReturn}{Returns}
+ierr 
+\end{DoxyReturn}
+
+
+Definition at line 220 of file M\+P\+I\+\_\+ops.\+f90.
+
+Here is the caller graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -42,18 +56,29 @@ Here is the caller graph for this function\+:
 
 
 
-Definition at line 225 of file M\+P\+I\+\_\+ops.\+f90.
+Broadcasts options (e.\+g. user-\/prescribed) that are not passed through the H\+D\+F5 output file (i.\+e. {\ttfamily ltest}, {\ttfamily no\+\_\+plots}, ...). 
 
-Here is the call graph for this function\+:
-\nopagebreak
+\begin{DoxySeeAlso}{See also}
+\hyperlink{namespaceinput__ops_a434acca4f59f9dc1d91e04f846133684}{read\+\_\+input\+\_\+opts()}
+\end{DoxySeeAlso}
+\begin{DoxyNote}{Note}
+Some variables (e.\+g. {\ttfamily eq\+\_\+style}, ...) are not passed over M\+PI. Every process should call its own \hyperlink{namespacepb3d__ops_ad1481747b9b9832f816d4bf1dd2d6737}{reconstruct\+\_\+pb3d\+\_\+in()} in order to obtain them.
+\end{DoxyNote}
+\begin{DoxyReturn}{Returns}
+ierr 
+\end{DoxyReturn}
+
+
+Definition at line 240 of file M\+P\+I\+\_\+ops.\+f90.
+
+Here is the call graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{namespacempi__ops_a932eba1c998dd7a0f1191b55cd754be3_cgraph}
 \end{center}
 \end{figure}
-Here is the caller graph for this function\+:
-\nopagebreak
+Here is the caller graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -68,48 +93,97 @@ Here is the caller graph for this function\+:
 
 
 
-Definition at line 21 of file M\+P\+I\+\_\+ops.\+f90.
+Start M\+PI and gather information. 
 
-Here is the call graph for this function\+:
-\nopagebreak
+\begin{DoxyReturn}{Returns}
+ierr 
+\end{DoxyReturn}
+
+
+Definition at line 22 of file M\+P\+I\+\_\+ops.\+f90.
+
+Here is the call graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{namespacempi__ops_a804ec65ff711509de1f8873f97bdf967_cgraph}
 \end{center}
 \end{figure}
-Here is the caller graph for this function\+:
-\nopagebreak
+Here is the caller graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=282pt]{namespacempi__ops_a804ec65ff711509de1f8873f97bdf967_icgraph}
 \end{center}
 \end{figure}
-\mbox{\Hypertarget{namespacempi__ops_abaf1ff6b3a25463476a767e196b4a73c}\label{namespacempi__ops_abaf1ff6b3a25463476a767e196b4a73c}} 
+\mbox{\Hypertarget{namespacempi__ops_a9dcb5624e665c9e15a4203edb5f44b0f}\label{namespacempi__ops_a9dcb5624e665c9e15a4203edb5f44b0f}} 
 \index{mpi\+\_\+ops@{mpi\+\_\+ops}!stop\+\_\+mpi@{stop\+\_\+mpi}}
 \index{stop\+\_\+mpi@{stop\+\_\+mpi}!mpi\+\_\+ops@{mpi\+\_\+ops}}
 \subsubsection{\texorpdfstring{stop\+\_\+mpi()}{stop\_mpi()}}
-{\footnotesize\ttfamily integer function, public mpi\+\_\+ops\+::stop\+\_\+mpi (\begin{DoxyParamCaption}\item[{type(grid\+\_\+type), intent(inout), optional}]{grid\+\_\+eq,  }\item[{type(grid\+\_\+type), intent(inout), optional, pointer}]{grid\+\_\+eq\+\_\+B,  }\item[{type(grid\+\_\+type), intent(inout), optional}]{grid\+\_\+X,  }\item[{type(grid\+\_\+type), intent(inout), optional, pointer}]{grid\+\_\+\+X\+\_\+B,  }\item[{type(grid\+\_\+type), intent(inout), optional}]{grid\+\_\+sol,  }\item[{type(eq\+\_\+1\+\_\+type), intent(inout), optional}]{eq\+\_\+1,  }\item[{type(eq\+\_\+2\+\_\+type), intent(inout), optional}]{eq\+\_\+2,  }\item[{type(x\+\_\+1\+\_\+type), intent(inout), optional}]{X\+\_\+1,  }\item[{type(x\+\_\+2\+\_\+type), intent(inout), optional}]{X\+\_\+2,  }\item[{type(sol\+\_\+type), intent(inout), optional}]{sol }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily integer function, public mpi\+\_\+ops\+::stop\+\_\+mpi (\begin{DoxyParamCaption}\item[{type(\hyperlink{structgrid__vars_1_1grid__type}{grid\+\_\+type}), intent(inout), optional}]{grid\+\_\+eq,  }\item[{type(\hyperlink{structgrid__vars_1_1grid__type}{grid\+\_\+type}), intent(inout), optional, pointer}]{grid\+\_\+eq\+\_\+B,  }\item[{type(\hyperlink{structgrid__vars_1_1grid__type}{grid\+\_\+type}), intent(inout), optional}]{grid\+\_\+X,  }\item[{type(\hyperlink{structgrid__vars_1_1grid__type}{grid\+\_\+type}), intent(inout), optional, pointer}]{grid\+\_\+\+X\+\_\+B,  }\item[{type(\hyperlink{structgrid__vars_1_1grid__type}{grid\+\_\+type}), intent(inout), optional}]{grid\+\_\+sol,  }\item[{type(\hyperlink{structeq__vars_1_1eq__1__type}{eq\+\_\+1\+\_\+type}), intent(inout), optional}]{eq\+\_\+1,  }\item[{type(\hyperlink{structeq__vars_1_1eq__2__type}{eq\+\_\+2\+\_\+type}), intent(inout), optional}]{eq\+\_\+2,  }\item[{type(x\+\_\+1\+\_\+type), intent(inout), optional}]{X\+\_\+1,  }\item[{type(x\+\_\+2\+\_\+type), intent(inout), optional}]{X\+\_\+2,  }\item[{type(\hyperlink{structvac__vars_1_1vac__type}{vac\+\_\+type}), intent(inout), optional}]{vac,  }\item[{type(\hyperlink{structsol__vars_1_1sol__type}{sol\+\_\+type}), intent(inout), optional}]{sol }\end{DoxyParamCaption})}
 
 
 
-Definition at line 78 of file M\+P\+I\+\_\+ops.\+f90.
+Stop M\+PI. 
 
-Here is the call graph for this function\+:
-\nopagebreak
+Also deallocates\+:
+\begin{DoxyItemize}
+\item {\ttfamily grid\+\_\+eq} 
+\item {\ttfamily grid\+\_\+eq\+\_\+B} 
+\item {\ttfamily grid\+\_\+X} 
+\item {\ttfamily grid\+\_\+\+X\+\_\+B} 
+\item {\ttfamily grid\+\_\+sol} 
+\item {\ttfamily eq\+\_\+1} 
+\item {\ttfamily eq\+\_\+2} 
+\item {\ttfamily X\+\_\+1} 
+\item {\ttfamily X\+\_\+2} 
+\item {\ttfamily sol} 
+\end{DoxyItemize}
+
+\begin{DoxyReturn}{Returns}
+ierr
+\end{DoxyReturn}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in,out}  & {\em grid\+\_\+eq} & equilibrium grid\\
+\hline
+\mbox{\tt in,out}  & {\em grid\+\_\+eq\+\_\+b} & field-\/aligned equilibrium grid\\
+\hline
+\mbox{\tt in,out}  & {\em grid\+\_\+x} & perturbation grid\\
+\hline
+\mbox{\tt in,out}  & {\em grid\+\_\+x\+\_\+b} & field-\/aligned perturbation grid\\
+\hline
+\mbox{\tt in,out}  & {\em grid\+\_\+sol} & solution grid\\
+\hline
+\mbox{\tt in,out}  & {\em eq\+\_\+1} & Flux equilibrium variables\\
+\hline
+\mbox{\tt in,out}  & {\em eq\+\_\+2} & metric equilibrium variables\\
+\hline
+\mbox{\tt in,out}  & {\em x\+\_\+1} & vectorial perturbation variables\\
+\hline
+\mbox{\tt in,out}  & {\em x\+\_\+2} & integrated tensorial perturbation variables\\
+\hline
+\mbox{\tt in,out}  & {\em vac} & vacuum variables\\
+\hline
+\mbox{\tt in,out}  & {\em sol} & solution variables \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 81 of file M\+P\+I\+\_\+ops.\+f90.
+
+Here is the call graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=350pt]{namespacempi__ops_abaf1ff6b3a25463476a767e196b4a73c_cgraph}
+\includegraphics[width=350pt]{namespacempi__ops_a9dcb5624e665c9e15a4203edb5f44b0f_cgraph}
 \end{center}
 \end{figure}
-Here is the caller graph for this function\+:
-\nopagebreak
+Here is the caller graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=350pt]{namespacempi__ops_abaf1ff6b3a25463476a767e196b4a73c_icgraph}
+\includegraphics[width=350pt]{namespacempi__ops_a9dcb5624e665c9e15a4203edb5f44b0f_icgraph}
 \end{center}
 \end{figure}
 \mbox{\Hypertarget{namespacempi__ops_a40e8610357a9a5b075fef9dab1c3f24f}\label{namespacempi__ops_a40e8610357a9a5b075fef9dab1c3f24f}} 
@@ -120,13 +194,28 @@ Here is the caller graph for this function\+:
 
 
 
-Definition at line 435 of file M\+P\+I\+\_\+ops.\+f90.
+Suddenly stops the computations, aborting M\+PI, etc. 
 
-Here is the call graph for this function\+:
-\nopagebreak
+As a special case, if {\ttfamily ierr} = 66, no error message is printed.
+
+\begin{DoxyReturn}{Returns}
+ierr 
+\end{DoxyReturn}
+
+
+Definition at line 476 of file M\+P\+I\+\_\+ops.\+f90.
+
+Here is the call graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{namespacempi__ops_a40e8610357a9a5b075fef9dab1c3f24f_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=294pt]{namespacempi__ops_a40e8610357a9a5b075fef9dab1c3f24f_icgraph}
 \end{center}
 \end{figure}

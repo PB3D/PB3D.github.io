@@ -24,6 +24,11 @@ all: doc doc_latex
 git-push:
 	git push --follow-tags
 
+info:
+	@echo 'PROJECT_NUMBER = $(PB3D_version)'
+	@echo 'ALIASES += min_nm_X="$(MIN_NM_X)"'
+	@echo 'ALIASES += doxy_version="$(DOXY_version)"'
+
 doc: 
 	@set -e
 	@rm -f temp_user_vars

@@ -1,19 +1,27 @@
 \hypertarget{namespaceinput__utilities}{}\section{input\+\_\+utilities Module Reference}
 \label{namespaceinput__utilities}\index{input\+\_\+utilities@{input\+\_\+utilities}}
+
+
+Numerical utilities related to input.  
+
+
 \subsection*{Functions/\+Subroutines}
 \begin{DoxyCompactItemize}
 \item 
 logical function, public \hyperlink{namespaceinput__utilities_ad9ce824c30b32041ab70f3fb191f06db}{get\+\_\+log} (yes, ind)
-\item 
+\begin{DoxyCompactList}\small\item\em Queries for a logical value yes or no, where the default answer is also to be provided. \end{DoxyCompactList}\item 
 real(dp) function, public \hyperlink{namespaceinput__utilities_a41fc0c806e12bc722771210cfa1edbd3}{get\+\_\+real} (lim\+\_\+lo, lim\+\_\+hi, ind)
-\item 
+\begin{DoxyCompactList}\small\item\em Queries for user input for a real value, where allowable range can be provided as well. \end{DoxyCompactList}\item 
 integer function, public \hyperlink{namespaceinput__utilities_a03e09af96ba6f7e187ea4a1d9b743148}{get\+\_\+int} (lim\+\_\+lo, lim\+\_\+hi, ind)
-\item 
+\begin{DoxyCompactList}\small\item\em Queries for user input for an integer value, where allowable range can be provided as well. \end{DoxyCompactList}\item 
 subroutine, public \hyperlink{namespaceinput__utilities_a71bd36f063d55ab62c7a37864aef1185}{pause\+\_\+prog} (ind)
-\item 
+\begin{DoxyCompactList}\small\item\em Pauses the running of the program. \end{DoxyCompactList}\item 
 subroutine, public \hyperlink{namespaceinput__utilities_aa0cf7578f9c9ab6470f8bb8d025f1daf}{dealloc\+\_\+in} ()
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Cleans up input from equilibrium codes. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
+
+\subsection{Detailed Description}
+Numerical utilities related to input. 
 
 \subsection{Function/\+Subroutine Documentation}
 \mbox{\Hypertarget{namespaceinput__utilities_aa0cf7578f9c9ab6470f8bb8d025f1daf}\label{namespaceinput__utilities_aa0cf7578f9c9ab6470f8bb8d025f1daf}} 
@@ -24,18 +32,20 @@ subroutine, public \hyperlink{namespaceinput__utilities_aa0cf7578f9c9ab6470f8bb8
 
 
 
-Definition at line 256 of file input\+\_\+utilities.\+f90.
+Cleans up input from equilibrium codes. 
 
-Here is the call graph for this function\+:
-\nopagebreak
+
+
+Definition at line 268 of file input\+\_\+utilities.\+f90.
+
+Here is the call graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{namespaceinput__utilities_aa0cf7578f9c9ab6470f8bb8d025f1daf_cgraph}
 \end{center}
 \end{figure}
-Here is the caller graph for this function\+:
-\nopagebreak
+Here is the caller graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -50,18 +60,34 @@ Here is the caller graph for this function\+:
 
 
 
-Definition at line 146 of file input\+\_\+utilities.\+f90.
+Queries for user input for an integer value, where allowable range can be provided as well. 
 
-Here is the call graph for this function\+:
-\nopagebreak
+If not called by all processes at the same time, {\ttfamily ind} should be set to indicate an individual operation.
+
+\begin{DoxyReturn}{Returns}
+output value
+\end{DoxyReturn}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em lim\+\_\+lo} & upper and lower limit\\
+\hline
+\mbox{\tt in}  & {\em lim\+\_\+hi} & upper and lower limit\\
+\hline
+\mbox{\tt in}  & {\em ind} & individual pause or not \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 152 of file input\+\_\+utilities.\+f90.
+
+Here is the call graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{namespaceinput__utilities_a03e09af96ba6f7e187ea4a1d9b743148_cgraph}
 \end{center}
 \end{figure}
-Here is the caller graph for this function\+:
-\nopagebreak
+Here is the caller graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -76,18 +102,32 @@ Here is the caller graph for this function\+:
 
 
 
-Definition at line 20 of file input\+\_\+utilities.\+f90.
+Queries for a logical value yes or no, where the default answer is also to be provided. 
 
-Here is the call graph for this function\+:
-\nopagebreak
+If not called by all processes at the same time, {\ttfamily ind} should be set to indicate an individual operation.
+
+\begin{DoxyReturn}{Returns}
+output value
+\end{DoxyReturn}
+
+\begin{DoxyParams}[1]{Parameters}
+ & {\em yes} & default answer\\
+\hline
+\mbox{\tt in}  & {\em ind} & individual pause or not \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 22 of file input\+\_\+utilities.\+f90.
+
+Here is the call graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{namespaceinput__utilities_ad9ce824c30b32041ab70f3fb191f06db_cgraph}
 \end{center}
 \end{figure}
-Here is the caller graph for this function\+:
-\nopagebreak
+Here is the caller graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -102,18 +142,34 @@ Here is the caller graph for this function\+:
 
 
 
-Definition at line 73 of file input\+\_\+utilities.\+f90.
+Queries for user input for a real value, where allowable range can be provided as well. 
 
-Here is the call graph for this function\+:
-\nopagebreak
+If not called by all processes at the same time, {\ttfamily ind} should be set to indicate an individual operation.
+
+\begin{DoxyReturn}{Returns}
+output value
+\end{DoxyReturn}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em lim\+\_\+lo} & upper and lower limit\\
+\hline
+\mbox{\tt in}  & {\em lim\+\_\+hi} & upper and lower limit\\
+\hline
+\mbox{\tt in}  & {\em ind} & individual pause or not \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 77 of file input\+\_\+utilities.\+f90.
+
+Here is the call graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{namespaceinput__utilities_a41fc0c806e12bc722771210cfa1edbd3_cgraph}
 \end{center}
 \end{figure}
-Here is the caller graph for this function\+:
-\nopagebreak
+Here is the caller graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -128,18 +184,20 @@ Here is the caller graph for this function\+:
 
 
 
-Definition at line 218 of file input\+\_\+utilities.\+f90.
+Pauses the running of the program. 
 
-Here is the call graph for this function\+:
-\nopagebreak
+If not called by all processes at the same time, {\ttfamily ind} should be set to indicate an individual operation. 
+
+Definition at line 226 of file input\+\_\+utilities.\+f90.
+
+Here is the call graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{namespaceinput__utilities_a71bd36f063d55ab62c7a37864aef1185_cgraph}
 \end{center}
 \end{figure}
-Here is the caller graph for this function\+:
-\nopagebreak
+Here is the caller graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode

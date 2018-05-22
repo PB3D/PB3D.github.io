@@ -29,7 +29,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">PB3D
-   &#160;<span id="projectnumber">[1.73]</span>
+   &#160;<span id="projectnumber">[2.27]</span>
    </div>
    <div id="projectbrief">Ideal linear high-n MHD stability in 3-D</div>
   </td>
@@ -68,30 +68,49 @@ $(function() {
 </div><!-- top -->
 <div class="header">
   <div class="summary">
+<a href="#nested-classes">Interfaces and Types</a> &#124;
 <a href="#func-members">Functions/Subroutines</a> &#124;
 <a href="#var-members">Variables</a>  </div>
   <div class="headertitle">
 <div class="title">sol_utilities Module Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>Numerical utilities related to the solution vectors.  
+<a href="#details">More...</a></p>
 <table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
+Interfaces and Types</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">interface &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interfacesol__utilities_1_1calc__xuq.html">calc_xuq</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculates the normal ( \(\cdot_n\)) or geodesic ( \(\cdot_g\)) components of the plasma perturbation \(\vec{\xi}\) or the magnetic perturbation \(\vec{Q} = \nabla \times \left(\vec{x} \times \vec{B}\right)\).  <a href="interfacesol__utilities_1_1calc__xuq.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions/Subroutines</h2></td></tr>
-<tr class="memitem:a687c87db78ca79ec617a4cfb7ed62f9e"><td class="memItemLeft" align="right" valign="top">integer function&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacesol__utilities.html#a687c87db78ca79ec617a4cfb7ed62f9e">calc_xuq_ind</a> (grid_eq, grid_X, eq_1, eq_2, X, sol, X_id, XUQ_style, time, XUQ, deriv)</td></tr>
-<tr class="separator:a687c87db78ca79ec617a4cfb7ed62f9e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad23f2a5293e2d7caf78be4d8fdf5a06d"><td class="memItemLeft" align="right" valign="top">integer function, public&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacesol__utilities.html#ad23f2a5293e2d7caf78be4d8fdf5a06d">calc_tot_sol_vec</a> (i_min, sol_vec_loc, sol_vec_tot)</td></tr>
-<tr class="separator:ad23f2a5293e2d7caf78be4d8fdf5a06d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab58942363de62344fba9faa1d3c95be5"><td class="memItemLeft" align="right" valign="top">integer function, public&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacesol__utilities.html#ab58942363de62344fba9faa1d3c95be5">calc_loc_sol_vec</a> (i_min, sol_vec_tot, sol_vec_loc)</td></tr>
-<tr class="separator:ab58942363de62344fba9faa1d3c95be5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8b902a82ae6a238e725da2cf09e7854f"><td class="memItemLeft" align="right" valign="top">integer function, public&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacesol__utilities.html#a8b902a82ae6a238e725da2cf09e7854f">calc_tot_sol_vec</a> (mds, grid_sol, sol_vec_loc, sol_vec_tot, deriv)</td></tr>
+<tr class="memdesc:a8b902a82ae6a238e725da2cf09e7854f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculate the total version of the solution vector from the local version.  <a href="#a8b902a82ae6a238e725da2cf09e7854f">More...</a><br /></td></tr>
+<tr class="separator:a8b902a82ae6a238e725da2cf09e7854f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a677373f47ee68ad02e9cef5b409bdc26"><td class="memItemLeft" align="right" valign="top">integer function, public&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacesol__utilities.html#a677373f47ee68ad02e9cef5b409bdc26">calc_loc_sol_vec</a> (mds, i_min, sol_vec_tot, sol_vec_loc)</td></tr>
+<tr class="memdesc:a677373f47ee68ad02e9cef5b409bdc26"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculate the local version of the solution vector from the total version.  <a href="#a677373f47ee68ad02e9cef5b409bdc26">More...</a><br /></td></tr>
+<tr class="separator:a677373f47ee68ad02e9cef5b409bdc26"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a93969085ad0fce8e530493a412b1ce38"><td class="memItemLeft" align="right" valign="top">integer function, public&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacesol__utilities.html#a93969085ad0fce8e530493a412b1ce38">interp_v_spline</a> (V_i, V_o, r_i, r_o, extrap, was_copied)</td></tr>
+<tr class="memdesc:a93969085ad0fce8e530493a412b1ce38"><td class="mdescLeft">&#160;</td><td class="mdescRight">Interpolation for a quantity V using splines.  <a href="#a93969085ad0fce8e530493a412b1ce38">More...</a><br /></td></tr>
+<tr class="separator:a93969085ad0fce8e530493a412b1ce38"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
 Variables</h2></td></tr>
 <tr class="memitem:a4779ff845b4ddc046892bf4eb4490dd2"><td class="memItemLeft" align="right" valign="top">logical, public&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacesol__utilities.html#a4779ff845b4ddc046892bf4eb4490dd2">debug_calc_xuq_arr</a> = .false.</td></tr>
+<tr class="memdesc:a4779ff845b4ddc046892bf4eb4490dd2"><td class="mdescLeft">&#160;</td><td class="mdescRight">plot debug information for calc_XUQ_arr  <a href="#a4779ff845b4ddc046892bf4eb4490dd2">More...</a><br /></td></tr>
 <tr class="separator:a4779ff845b4ddc046892bf4eb4490dd2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa36c52e73c02a783074c7c0e5076c903"><td class="memItemLeft" align="right" valign="top">logical, public&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacesol__utilities.html#aa36c52e73c02a783074c7c0e5076c903">debug_interp_v_spline</a> = .false.</td></tr>
+<tr class="memdesc:aa36c52e73c02a783074c7c0e5076c903"><td class="mdescLeft">&#160;</td><td class="mdescRight">debug information for interp_v_spline  <a href="#aa36c52e73c02a783074c7c0e5076c903">More...</a><br /></td></tr>
+<tr class="separator:aa36c52e73c02a783074c7c0e5076c903"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Function/Subroutine Documentation</h2>
-<a id="ab58942363de62344fba9faa1d3c95be5"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab58942363de62344fba9faa1d3c95be5">&#9670;&nbsp;</a></span>calc_loc_sol_vec()</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Numerical utilities related to the solution vectors. </p>
+</div><h2 class="groupheader">Function/Subroutine Documentation</h2>
+<a id="a677373f47ee68ad02e9cef5b409bdc26"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a677373f47ee68ad02e9cef5b409bdc26">&#9670;&nbsp;</a></span>calc_loc_sol_vec()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -99,6 +118,12 @@ Variables</h2></td></tr>
         <tr>
           <td class="memname">integer function, public sol_utilities::calc_loc_sol_vec </td>
           <td>(</td>
+          <td class="paramtype">type(modes_type), intent(in)&#160;</td>
+          <td class="paramname"><em>mds</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
           <td class="paramtype">integer, intent(in)&#160;</td>
           <td class="paramname"><em>i_min</em>, </td>
         </tr>
@@ -122,20 +147,39 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="sol__utilities_8f90_source.html#l00461">461</a> of file <a class="el" href="sol__utilities_8f90_source.html">sol_utilities.f90</a>.</p>
+<p>Calculate the local version of the solution vector from the total version. </p>
+<dl class="section see"><dt>See also</dt><dd>See <a class="el" href="namespacesol__utilities.html#a8b902a82ae6a238e725da2cf09e7854f" title="Calculate the total version of the solution vector from the local version. ">calc_tot_sol_vec()</a>.</dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>ierr</dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">mds</td><td>general modes variables</td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">i_min</td><td><code>i_min</code> of grid in which variables are tabulated</td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">sol_vec_tot</td><td>solution vector for all possible resonating modes</td></tr>
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">sol_vec_loc</td><td>solution vector for local resonating modes </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="sol__utilities_8f90_source.html#l00698">698</a> of file <a class="el" href="sol__utilities_8f90_source.html">sol_utilities.f90</a>.</p>
 <div id="dynsection-0" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-0-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
 <div id="dynsection-0-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-0-content" class="dyncontent" style="display:none;">
-<div class="center"><iframe scrolling="no" frameborder="0" src="namespacesol__utilities_ab58942363de62344fba9faa1d3c95be5_cgraph.svg" width="416" height="58"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="namespacesol__utilities_a677373f47ee68ad02e9cef5b409bdc26_cgraph.svg" width="416" height="58"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
+<div id="dynsection-1" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-1-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
+<div id="dynsection-1-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-1-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="namespacesol__utilities_a677373f47ee68ad02e9cef5b409bdc26_icgraph.svg" width="408" height="58"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
 </div>
-<a id="ad23f2a5293e2d7caf78be4d8fdf5a06d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad23f2a5293e2d7caf78be4d8fdf5a06d">&#9670;&nbsp;</a></span>calc_tot_sol_vec()</h2>
+<a id="a8b902a82ae6a238e725da2cf09e7854f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8b902a82ae6a238e725da2cf09e7854f">&#9670;&nbsp;</a></span>calc_tot_sol_vec()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -143,8 +187,14 @@ Variables</h2></td></tr>
         <tr>
           <td class="memname">integer function, public sol_utilities::calc_tot_sol_vec </td>
           <td>(</td>
-          <td class="paramtype">integer, intent(in)&#160;</td>
-          <td class="paramname"><em>i_min</em>, </td>
+          <td class="paramtype">type(modes_type), intent(in)&#160;</td>
+          <td class="paramname"><em>mds</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">type(<a class="el" href="structgrid__vars_1_1grid__type.html">grid_type</a>), intent(in)&#160;</td>
+          <td class="paramname"><em>grid_sol</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -156,106 +206,12 @@ Variables</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">complex(dp), dimension(:,:), intent(inout), allocatable&#160;</td>
-          <td class="paramname"><em>sol_vec_tot</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="sol__utilities_8f90_source.html#l00390">390</a> of file <a class="el" href="sol__utilities_8f90_source.html">sol_utilities.f90</a>.</p>
-<div id="dynsection-1" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-1-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
-<div id="dynsection-1-summary" class="dynsummary" style="display:block;">
-</div>
-<div id="dynsection-1-content" class="dyncontent" style="display:none;">
-<div class="center"><iframe scrolling="no" frameborder="0" src="namespacesol__utilities_ad23f2a5293e2d7caf78be4d8fdf5a06d_cgraph.svg" width="416" height="58"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
-</div>
-<div id="dynsection-2" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-2-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
-<div id="dynsection-2-summary" class="dynsummary" style="display:block;">
-</div>
-<div id="dynsection-2-content" class="dyncontent" style="display:none;">
-<div class="center"><iframe scrolling="no" frameborder="0" src="namespacesol__utilities_ad23f2a5293e2d7caf78be4d8fdf5a06d_icgraph.svg" width="790" height="58"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
-</div>
-
-</div>
-</div>
-<a id="a687c87db78ca79ec617a4cfb7ed62f9e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a687c87db78ca79ec617a4cfb7ed62f9e">&#9670;&nbsp;</a></span>calc_xuq_ind()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">integer function sol_utilities::calc_xuq_ind </td>
-          <td>(</td>
-          <td class="paramtype">type(grid_type), intent(in)&#160;</td>
-          <td class="paramname"><em>grid_eq</em>, </td>
+          <td class="paramname"><em>sol_vec_tot</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">type(grid_type), intent(in)&#160;</td>
-          <td class="paramname"><em>grid_X</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">type(eq_1_type), intent(in)&#160;</td>
-          <td class="paramname"><em>eq_1</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">type(eq_2_type), intent(in)&#160;</td>
-          <td class="paramname"><em>eq_2</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">type(x_1_type), intent(in)&#160;</td>
-          <td class="paramname"><em>X</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">type(sol_type), intent(in)&#160;</td>
-          <td class="paramname"><em>sol</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">integer, intent(in)&#160;</td>
-          <td class="paramname"><em>X_id</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">integer, intent(in)&#160;</td>
-          <td class="paramname"><em>XUQ_style</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">real(dp), intent(in)&#160;</td>
-          <td class="paramname"><em>time</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">complex(dp), dimension(:,:,:), intent(inout)&#160;</td>
-          <td class="paramname"><em>XUQ</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">logical, intent(in), optional&#160;</td>
+          <td class="paramtype">integer, intent(in), optional&#160;</td>
           <td class="paramname"><em>deriv</em>&#160;</td>
         </tr>
         <tr>
@@ -266,7 +222,109 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="sol__utilities_8f90_source.html#l00341">341</a> of file <a class="el" href="sol__utilities_8f90_source.html">sol_utilities.f90</a>.</p>
+<p>Calculate the total version of the solution vector from the local version. </p>
+<p>This is the solution vector for all of the possible mode numbers, which can be different from the local mode numbers for X style 2 (fast):</p><ul>
+<li>local: the size of the saved perturbation and solution variables, prescribed by the user as input:<ul>
+<li>either directly through <code>n_mod_X</code> </li>
+<li>or through the limits on the modes using <code>min_sec_X</code> and <code>max_sec_X</code>.</li>
+</ul>
+</li>
+<li>total: all the possible modes that can resonate in the plasma, which can be different from the local number for <code>X_style</code> 2, as the mode numbers depend on the normal coordinate.</li>
+</ul>
+<p>If the output variable is not allocated, it is done here.</p>
+<p>Optionally a derivative can be requested, depending on the normal discretization order.</p>
+<dl class="section note"><dt>Note</dt><dd>Need to provide the grid in which mds is tabulated.</dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>ierr</dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">mds</td><td>general modes variables</td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">grid_sol</td><td>solution grid</td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">sol_vec_loc</td><td>solution vector for local resonating modes</td></tr>
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">sol_vec_tot</td><td>solution vector for all possible resonating modes</td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">deriv</td><td>order of derivative </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="sol__utilities_8f90_source.html#l00557">557</a> of file <a class="el" href="sol__utilities_8f90_source.html">sol_utilities.f90</a>.</p>
+<div id="dynsection-2" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-2-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
+<div id="dynsection-2-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-2-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="namespacesol__utilities_a8b902a82ae6a238e725da2cf09e7854f_cgraph.svg" width="416" height="58"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+<div id="dynsection-3" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-3-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
+<div id="dynsection-3-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-3-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="namespacesol__utilities_a8b902a82ae6a238e725da2cf09e7854f_icgraph.svg" width="790" height="112"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+
+</div>
+</div>
+<a id="a93969085ad0fce8e530493a412b1ce38"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a93969085ad0fce8e530493a412b1ce38">&#9670;&nbsp;</a></span>interp_v_spline()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">integer function, public sol_utilities::interp_v_spline </td>
+          <td>(</td>
+          <td class="paramtype">complex(dp), dimension(:,:,:), intent(in)&#160;</td>
+          <td class="paramname"><em>V_i</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">complex(dp), dimension(:,:,:), intent(out)&#160;</td>
+          <td class="paramname"><em>V_o</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">real(dp), dimension(:), intent(in)&#160;</td>
+          <td class="paramname"><em>r_i</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">real(dp), dimension(:), intent(in)&#160;</td>
+          <td class="paramname"><em>r_o</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">logical, intent(in)&#160;</td>
+          <td class="paramname"><em>extrap</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">logical, intent(out), optional&#160;</td>
+          <td class="paramname"><em>was_copied</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Interpolation for a quantity V using splines. </p>
+<p>Optionally, a variable 'was_copied' is returned that indicates whether the interpolation degraded to a plain copy. </p>
+
+<p class="definition">Definition at line <a class="el" href="sol__utilities_8f90_source.html#l00776">776</a> of file <a class="el" href="sol__utilities_8f90_source.html">sol_utilities.f90</a>.</p>
+<div id="dynsection-4" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-4-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
+<div id="dynsection-4-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-4-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="namespacesol__utilities_a93969085ad0fce8e530493a412b1ce38_icgraph.svg" width="814" height="112"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
 
 </div>
 </div>
@@ -283,7 +341,29 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>plot debug information for calc_XUQ_arr </p>
+<dl class="section note"><dt>Note</dt><dd>Debug version only </dd></dl>
+
 <p class="definition">Definition at line <a class="el" href="sol__utilities_8f90_source.html#l00025">25</a> of file <a class="el" href="sol__utilities_8f90_source.html">sol_utilities.f90</a>.</p>
+
+</div>
+</div>
+<a id="aa36c52e73c02a783074c7c0e5076c903"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa36c52e73c02a783074c7c0e5076c903">&#9670;&nbsp;</a></span>debug_interp_v_spline</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">logical, public sol_utilities::debug_interp_v_spline = .false.</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>debug information for interp_v_spline </p>
+<dl class="section note"><dt>Note</dt><dd>Debug version only </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="sol__utilities_8f90_source.html#l00026">26</a> of file <a class="el" href="sol__utilities_8f90_source.html">sol_utilities.f90</a>.</p>
 
 </div>
 </div>

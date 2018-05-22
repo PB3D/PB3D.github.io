@@ -1,39 +1,82 @@
 \hypertarget{namespacedriver__post}{}\section{driver\+\_\+post Module Reference}
 \label{namespacedriver__post}\index{driver\+\_\+post@{driver\+\_\+post}}
+
+
+Main driver of Post\+Processing of program Peeling Ballooning in 3D.  
+
+
 \subsection*{Functions/\+Subroutines}
 \begin{DoxyCompactItemize}
 \item 
 integer function, public \hyperlink{namespacedriver__post_af527706d4e696d4e507443d2f74194ef}{init\+\_\+post} ()
-\item 
+\begin{DoxyCompactList}\small\item\em Initializes the P\+O\+ST driver. \end{DoxyCompactList}\item 
 integer function, public \hyperlink{namespacedriver__post_a33b3c6f9018a0ddc92dce77394b8ab37}{run\+\_\+driver\+\_\+post} ()
-\item 
+\begin{DoxyCompactList}\small\item\em The main driver routine for postprocessing. \end{DoxyCompactList}\item 
 subroutine, public \hyperlink{namespacedriver__post_a71f9fb1935222111e1c7cfc15c5d0269}{stop\+\_\+post} ()
-\item 
+\begin{DoxyCompactList}\small\item\em Cleans up main driver for postprocessing. \end{DoxyCompactList}\item 
 integer function \hyperlink{namespacedriver__post_a5d76f87f131e21b4d74fd5f4a7bbbd6b}{open\+\_\+decomp\+\_\+log} ()
-\item 
+\begin{DoxyCompactList}\small\item\em Opens the decomposition log file. \end{DoxyCompactList}\item 
 integer function \hyperlink{namespacedriver__post_a4981c6c0e63b862c92ba240f43e22e77}{write\+\_\+decomp\+\_\+log} (X\+\_\+id, E\+\_\+pot\+\_\+int, E\+\_\+kin\+\_\+int)
-\item 
+\begin{DoxyCompactList}\small\item\em Write to decomposition log file. \end{DoxyCompactList}\item 
 subroutine \hyperlink{namespacedriver__post_a51ecad1032e415d2a8e6e5b97d2c7e09}{find\+\_\+stab\+\_\+ranges} (sol, min\+\_\+id, max\+\_\+id, last\+\_\+unstable\+\_\+id)
-\item 
+\begin{DoxyCompactList}\small\item\em finds the plot ranges {\ttfamily min\+\_\+id} and {\ttfamily max\+\_\+id}. \end{DoxyCompactList}\item 
 subroutine \hyperlink{namespacedriver__post_af9ce961d2d6825b767a93fdbe8806a1c}{plot\+\_\+sol\+\_\+val\+\_\+comp} (sol\+\_\+val\+\_\+comp)
-\item 
-integer function \hyperlink{namespacedriver__post_aba7a645f4dd2e08db109cefc6ce0df86}{setup\+\_\+out\+\_\+grids} (grids\+\_\+out)
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Plots difference between Eigenvalues and energy fraction. \end{DoxyCompactList}\item 
+integer function \hyperlink{namespacedriver__post_a3438685c5fb7302f756c368fb5f940ee}{setup\+\_\+out\+\_\+grids} (grids\+\_\+out, X\+Y\+Z\+\_\+eq, X\+Y\+Z\+\_\+sol)
+\begin{DoxyCompactList}\small\item\em Sets up the output grids for a particular parallel job. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
+
+\subsection{Detailed Description}
+Main driver of Post\+Processing of program Peeling Ballooning in 3D. 
 
 \subsection{Function/\+Subroutine Documentation}
 \mbox{\Hypertarget{namespacedriver__post_a51ecad1032e415d2a8e6e5b97d2c7e09}\label{namespacedriver__post_a51ecad1032e415d2a8e6e5b97d2c7e09}} 
 \index{driver\+\_\+post@{driver\+\_\+post}!find\+\_\+stab\+\_\+ranges@{find\+\_\+stab\+\_\+ranges}}
 \index{find\+\_\+stab\+\_\+ranges@{find\+\_\+stab\+\_\+ranges}!driver\+\_\+post@{driver\+\_\+post}}
 \subsubsection{\texorpdfstring{find\+\_\+stab\+\_\+ranges()}{find\_stab\_ranges()}}
-{\footnotesize\ttfamily subroutine driver\+\_\+post\+::find\+\_\+stab\+\_\+ranges (\begin{DoxyParamCaption}\item[{type(sol\+\_\+type), intent(in)}]{sol,  }\item[{integer, dimension(3), intent(inout)}]{min\+\_\+id,  }\item[{integer, dimension(3), intent(inout)}]{max\+\_\+id,  }\item[{integer, intent(inout)}]{last\+\_\+unstable\+\_\+id }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily subroutine driver\+\_\+post\+::find\+\_\+stab\+\_\+ranges (\begin{DoxyParamCaption}\item[{type(\hyperlink{structsol__vars_1_1sol__type}{sol\+\_\+type}), intent(in)}]{sol,  }\item[{integer, dimension(3), intent(inout)}]{min\+\_\+id,  }\item[{integer, dimension(3), intent(inout)}]{max\+\_\+id,  }\item[{integer, intent(inout)}]{last\+\_\+unstable\+\_\+id }\end{DoxyParamCaption})}
 
 
 
-Definition at line 1031 of file driver\+\_\+\+P\+O\+S\+T.\+f90.
+finds the plot ranges {\ttfamily min\+\_\+id} and {\ttfamily max\+\_\+id}. 
 
-Here is the caller graph for this function\+:
-\nopagebreak
+There are three ranges, calculated using n\+\_\+sol\+\_\+plotted, which indicates\+:
+\begin{DoxyEnumerate}
+\item how many of the first EV\textquotesingle{}s in the unstable range
+\item how many of the last EV\textquotesingle{}s in the unstable range
+\item how many of the first EV\textquotesingle{}s in the stable range
+\item how many of the last EV\textquotesingle{}s in the stable range
+\end{DoxyEnumerate}
+
+have to be plotted.
+
+This yields maximally three different ranges\+: One starting at the first unstable EV, one centered around the zero of the EV\textquotesingle{}s and one ending at the last EV. These ranges can be disjoint but do not have to be.~\newline
+ Also, it is possible that a range does not exist, for example if there are no unstable EV\textquotesingle{}s.
+
+\begin{DoxyNote}{Note}
+A negative value for the elements in n\+\_\+sol\+\_\+plotted means \char`\"{}all
+ values in range\char`\"{}\+:
+\begin{DoxyEnumerate}
+\item or 2. full unstable range
+\item or 4. full stable range
+\end{DoxyEnumerate}
+\end{DoxyNote}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em sol} & solution variables\\
+\hline
+\mbox{\tt in,out}  & {\em min\+\_\+id} & min. index of range 1, 2 and 3\\
+\hline
+\mbox{\tt in,out}  & {\em max\+\_\+id} & max. index of range 1, 2 and 3\\
+\hline
+\mbox{\tt in,out}  & {\em last\+\_\+unstable\+\_\+id} & index of last unstable EV \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 1027 of file driver\+\_\+\+P\+O\+S\+T.\+f90.
+
+Here is the caller graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -48,18 +91,61 @@ Here is the caller graph for this function\+:
 
 
 
-Definition at line 64 of file driver\+\_\+\+P\+O\+S\+T.\+f90.
+Initializes the P\+O\+ST driver. 
 
-Here is the call graph for this function\+:
-\nopagebreak
+
+\begin{DoxyItemize}
+\item set up preliminary variables
+\begin{DoxyItemize}
+\item global variables
+\item read grids (full)
+\item {\ttfamily eq\+\_\+1} (full) and {\ttfamily n} \& {\ttfamily m} (full)
+\end{DoxyItemize}
+\item set up output grids\+:
+\begin{DoxyItemize}
+\item {\ttfamily  P\+O\+S\+T\+\_\+style = 1}\+: extended grid
+\item {\ttfamily  P\+O\+S\+T\+\_\+style = 2}\+: field-\/aligned grid
+\end{DoxyItemize}
+\item clean up
+\item set up final variables
+\begin{DoxyItemize}
+\item normal limits
+\item read grids (divided), {\ttfamily eq\+\_\+1} (divided) and {\ttfamily sol} (divided) variables
+\end{DoxyItemize}
+\item 1-\/D output plots
+\begin{DoxyItemize}
+\item resonance plot
+\item flux quantities plot
+\item magnetic grid plot
+\end{DoxyItemize}
+\item prepare Eigenvalue plots
+\begin{DoxyItemize}
+\item calculates resonant surfaces
+\item plots Eigenvalues
+\item finds stability ranges for all Eigenvalues to be plot
+\item plots harmonics for every Eigenvalue
+\item calculates the parallel ranges of the equilibrium jobs
+\end{DoxyItemize}
+\item clean up
+\end{DoxyItemize}
+
+In the actual driver, more detailed plots are possibly made for all requested Eigenvalues if {\ttfamily full\+\_\+output}.
+
+\begin{DoxyReturn}{Returns}
+ierr 
+\end{DoxyReturn}
+
+
+Definition at line 76 of file driver\+\_\+\+P\+O\+S\+T.\+f90.
+
+Here is the call graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=350pt]{namespacedriver__post_af527706d4e696d4e507443d2f74194ef_cgraph}
+\includegraphics[height=550pt]{namespacedriver__post_af527706d4e696d4e507443d2f74194ef_cgraph}
 \end{center}
 \end{figure}
-Here is the caller graph for this function\+:
-\nopagebreak
+Here is the caller graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -74,18 +160,23 @@ Here is the caller graph for this function\+:
 
 
 
-Definition at line 844 of file driver\+\_\+\+P\+O\+S\+T.\+f90.
+Opens the decomposition log file. 
 
-Here is the call graph for this function\+:
-\nopagebreak
+\begin{DoxyReturn}{Returns}
+ierr 
+\end{DoxyReturn}
+
+
+Definition at line 831 of file driver\+\_\+\+P\+O\+S\+T.\+f90.
+
+Here is the call graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{namespacedriver__post_a5d76f87f131e21b4d74fd5f4a7bbbd6b_cgraph}
 \end{center}
 \end{figure}
-Here is the caller graph for this function\+:
-\nopagebreak
+Here is the caller graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -96,14 +187,29 @@ Here is the caller graph for this function\+:
 \index{driver\+\_\+post@{driver\+\_\+post}!plot\+\_\+sol\+\_\+val\+\_\+comp@{plot\+\_\+sol\+\_\+val\+\_\+comp}}
 \index{plot\+\_\+sol\+\_\+val\+\_\+comp@{plot\+\_\+sol\+\_\+val\+\_\+comp}!driver\+\_\+post@{driver\+\_\+post}}
 \subsubsection{\texorpdfstring{plot\+\_\+sol\+\_\+val\+\_\+comp()}{plot\_sol\_val\_comp()}}
-{\footnotesize\ttfamily subroutine driver\+\_\+post\+::plot\+\_\+sol\+\_\+val\+\_\+comp (\begin{DoxyParamCaption}\item[{complex(dp), dimension(\+:,\+:,\+:)}]{sol\+\_\+val\+\_\+comp }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily subroutine driver\+\_\+post\+::plot\+\_\+sol\+\_\+val\+\_\+comp (\begin{DoxyParamCaption}\item[{complex(dp), dimension(\+:,\+:,\+:), intent(inout)}]{sol\+\_\+val\+\_\+comp }\end{DoxyParamCaption})}
 
 
 
-Definition at line 1106 of file driver\+\_\+\+P\+O\+S\+T.\+f90.
+Plots difference between Eigenvalues and energy fraction. 
 
-Here is the caller graph for this function\+:
-\nopagebreak
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in,out}  & {\em sol\+\_\+val\+\_\+comp} & fraction between total $E_{\text{pot}}$ and $E_{\text{kin}}$, compared with EV \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 1103 of file driver\+\_\+\+P\+O\+S\+T.\+f90.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespacedriver__post_af9ce961d2d6825b767a93fdbe8806a1c_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -118,48 +224,107 @@ Here is the caller graph for this function\+:
 
 
 
-Definition at line 446 of file driver\+\_\+\+P\+O\+S\+T.\+f90.
+The main driver routine for postprocessing. 
 
-Here is the call graph for this function\+:
-\nopagebreak
+\begin{DoxyNote}{Note}
+The P\+B3D output is given on different grids for different styles of the equilibrium model\+:
+\begin{DoxyItemize}
+\item V\+M\+EC\+: field-\/aligned grid on which EV problem has been solved.
+\item H\+E\+L\+E\+NA\+: output grid on which equilibrium and metric variables are tabulated.
+\end{DoxyItemize}
+\end{DoxyNote}
+Furthermore, if Richardson extrapolation is used, the V\+M\+EC grids and variables are contained in multiple H\+D\+F5 variables. These variables are needed here both in a field-\/aligned and a plot grid.
+
+A consequence of the above is that for V\+M\+EC the field-\/aligned output is already given, but the output on the plot grid has to be calculated from scratch, while for H\+E\+L\+E\+NA both outputs have to be interpolated from the output tables.
+
+The general workflow is as follows\+:
+\begin{DoxyItemize}
+\item take a subset of the output grids for the current equilibrium job.
+\item for {\ttfamily P\+O\+S\+T\+\_\+style = 1} (extended grid)\+:
+\begin{DoxyItemize}
+\item V\+M\+EC\+: recalculate variables
+\item H\+EL\+: interpolate variables for {\ttfamily P\+O\+S\+T\+\_\+style = 2} (B-\/aligned grid)\+:
+\item V\+M\+EC\+: read subset of variables
+\item H\+EL\+: inerpolate variables
+\end{DoxyItemize}
+\item create helper variables
+\item create plots and outputs
+\end{DoxyItemize}
+
+\begin{DoxyReturn}{Returns}
+ierr 
+\end{DoxyReturn}
+
+
+Definition at line 533 of file driver\+\_\+\+P\+O\+S\+T.\+f90.
+
+Here is the call graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{namespacedriver__post_a33b3c6f9018a0ddc92dce77394b8ab37_cgraph}
 \end{center}
 \end{figure}
-Here is the caller graph for this function\+:
-\nopagebreak
+Here is the caller graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=342pt]{namespacedriver__post_a33b3c6f9018a0ddc92dce77394b8ab37_icgraph}
 \end{center}
 \end{figure}
-\mbox{\Hypertarget{namespacedriver__post_aba7a645f4dd2e08db109cefc6ce0df86}\label{namespacedriver__post_aba7a645f4dd2e08db109cefc6ce0df86}} 
+\mbox{\Hypertarget{namespacedriver__post_a3438685c5fb7302f756c368fb5f940ee}\label{namespacedriver__post_a3438685c5fb7302f756c368fb5f940ee}} 
 \index{driver\+\_\+post@{driver\+\_\+post}!setup\+\_\+out\+\_\+grids@{setup\+\_\+out\+\_\+grids}}
 \index{setup\+\_\+out\+\_\+grids@{setup\+\_\+out\+\_\+grids}!driver\+\_\+post@{driver\+\_\+post}}
 \subsubsection{\texorpdfstring{setup\+\_\+out\+\_\+grids()}{setup\_out\_grids()}}
-{\footnotesize\ttfamily integer function driver\+\_\+post\+::setup\+\_\+out\+\_\+grids (\begin{DoxyParamCaption}\item[{type(grid\+\_\+type), dimension(3), intent(inout)}]{grids\+\_\+out }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily integer function driver\+\_\+post\+::setup\+\_\+out\+\_\+grids (\begin{DoxyParamCaption}\item[{type(\hyperlink{structgrid__vars_1_1grid__type}{grid\+\_\+type}), dimension(3), intent(inout)}]{grids\+\_\+out,  }\item[{real(dp), dimension(\+:,\+:,\+:,\+:), intent(inout), allocatable}]{X\+Y\+Z\+\_\+eq,  }\item[{real(dp), dimension(\+:,\+:,\+:,\+:), intent(inout), allocatable}]{X\+Y\+Z\+\_\+sol }\end{DoxyParamCaption})}
 
 
 
-Definition at line 1163 of file driver\+\_\+\+P\+O\+S\+T.\+f90.
+Sets up the output grids for a particular parallel job. 
 
-Here is the call graph for this function\+:
-\nopagebreak
+Three grids are returned\+:
+\begin{DoxyItemize}
+\item eq
+\item X
+\item sol
+\end{DoxyItemize}
+
+The normal coordinates of these grids correspond to the one used in P\+B3D. For X this is determined by {\ttfamily x\+\_\+grid\+\_\+style}.
+
+The angular components of the eq and X grids is determined by {\ttfamily post\+\_\+style\+:} 
+\begin{DoxyItemize}
+\item 1\+: extended grid with {\ttfamily min\+\_\+theta\+\_\+plot}, {\ttfamily max\+\_\+theta\+\_\+plot}, {\ttfamily min\+\_\+zeta\+\_\+plot} and {\ttfamily max\+\_\+zeta\+\_\+plot}.
+\item 2\+: P\+B3D grid.
+\end{DoxyItemize}
+
+\begin{DoxyReturn}{Returns}
+ierr
+\end{DoxyReturn}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in,out}  & {\em grids\+\_\+out} & eq, X and sol output grids (full parallel and normal range)\\
+\hline
+\mbox{\tt in,out}  & {\em xyz\+\_\+eq} & {\ttfamily X}, {\ttfamily Y} and {\ttfamily Z} on output equilibrium grid\\
+\hline
+\mbox{\tt in,out}  & {\em xyz\+\_\+sol} & {\ttfamily X}, {\ttfamily Y} and {\ttfamily Z} on output solution grid \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 1176 of file driver\+\_\+\+P\+O\+S\+T.\+f90.
+
+Here is the call graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=350pt]{namespacedriver__post_aba7a645f4dd2e08db109cefc6ce0df86_cgraph}
+\includegraphics[width=350pt]{namespacedriver__post_a3438685c5fb7302f756c368fb5f940ee_cgraph}
 \end{center}
 \end{figure}
-Here is the caller graph for this function\+:
-\nopagebreak
+Here is the caller graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=350pt]{namespacedriver__post_aba7a645f4dd2e08db109cefc6ce0df86_icgraph}
+\includegraphics[width=350pt]{namespacedriver__post_a3438685c5fb7302f756c368fb5f940ee_icgraph}
 \end{center}
 \end{figure}
 \mbox{\Hypertarget{namespacedriver__post_a71f9fb1935222111e1c7cfc15c5d0269}\label{namespacedriver__post_a71f9fb1935222111e1c7cfc15c5d0269}} 
@@ -170,18 +335,20 @@ Here is the caller graph for this function\+:
 
 
 
-Definition at line 825 of file driver\+\_\+\+P\+O\+S\+T.\+f90.
+Cleans up main driver for postprocessing. 
 
-Here is the call graph for this function\+:
-\nopagebreak
+
+
+Definition at line 806 of file driver\+\_\+\+P\+O\+S\+T.\+f90.
+
+Here is the call graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{namespacedriver__post_a71f9fb1935222111e1c7cfc15c5d0269_cgraph}
 \end{center}
 \end{figure}
-Here is the caller graph for this function\+:
-\nopagebreak
+Here is the caller graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -192,22 +359,36 @@ Here is the caller graph for this function\+:
 \index{driver\+\_\+post@{driver\+\_\+post}!write\+\_\+decomp\+\_\+log@{write\+\_\+decomp\+\_\+log}}
 \index{write\+\_\+decomp\+\_\+log@{write\+\_\+decomp\+\_\+log}!driver\+\_\+post@{driver\+\_\+post}}
 \subsubsection{\texorpdfstring{write\+\_\+decomp\+\_\+log()}{write\_decomp\_log()}}
-{\footnotesize\ttfamily integer function driver\+\_\+post\+::write\+\_\+decomp\+\_\+log (\begin{DoxyParamCaption}\item[{integer, intent(in)}]{X\+\_\+id,  }\item[{complex(dp), dimension(6), intent(in)}]{E\+\_\+pot\+\_\+int,  }\item[{complex(dp), dimension(2), intent(in)}]{E\+\_\+kin\+\_\+int }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily integer function driver\+\_\+post\+::write\+\_\+decomp\+\_\+log (\begin{DoxyParamCaption}\item[{integer, intent(in)}]{X\+\_\+id,  }\item[{complex(dp), dimension(7), intent(in)}]{E\+\_\+pot\+\_\+int,  }\item[{complex(dp), dimension(2), intent(in)}]{E\+\_\+kin\+\_\+int }\end{DoxyParamCaption})}
 
 
 
-Definition at line 922 of file driver\+\_\+\+P\+O\+S\+T.\+f90.
+Write to decomposition log file. 
 
-Here is the call graph for this function\+:
-\nopagebreak
+\begin{DoxyReturn}{Returns}
+ierr
+\end{DoxyReturn}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em x\+\_\+id} & nr. of Eigenvalue\\
+\hline
+\mbox{\tt in}  & {\em e\+\_\+pot\+\_\+int} & E\+\_\+pot integrated for requested solutions\\
+\hline
+\mbox{\tt in}  & {\em e\+\_\+kin\+\_\+int} & E\+\_\+kin integrated for requested solutions \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 912 of file driver\+\_\+\+P\+O\+S\+T.\+f90.
+
+Here is the call graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{namespacedriver__post_a4981c6c0e63b862c92ba240f43e22e77_cgraph}
 \end{center}
 \end{figure}
-Here is the caller graph for this function\+:
-\nopagebreak
+Here is the caller graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode

@@ -29,7 +29,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">PB3D
-   &#160;<span id="projectnumber">[1.73]</span>
+   &#160;<span id="projectnumber">[2.27]</span>
    </div>
    <div id="projectbrief">Ideal linear high-n MHD stability in 3-D</div>
   </td>
@@ -74,20 +74,28 @@ $(function() {
 <div class="title">slepc_utilities Module Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>Numerical utilities related to SLEPC (and PETSC) operations.  
+<a href="#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions/Subroutines</h2></td></tr>
-<tr class="memitem:ae6568f825f3fa8a6e3d45f67f3daf412"><td class="memItemLeft" align="right" valign="top">integer function, public&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceslepc__utilities.html#ae6568f825f3fa8a6e3d45f67f3daf412">insert_block_mat</a> (block, mat, r_id, ind, n_sol, transp, overwrite)</td></tr>
-<tr class="separator:ae6568f825f3fa8a6e3d45f67f3daf412"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa34aa361f0bfff9621ecba179f9ed0c6"><td class="memItemLeft" align="right" valign="top">integer function, public&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceslepc__utilities.html#aa34aa361f0bfff9621ecba179f9ed0c6">insert_block_mat</a> (mds, block, mat, r_id, ind, n_r, transp, overwrite, ind_insert)</td></tr>
+<tr class="memdesc:aa34aa361f0bfff9621ecba179f9ed0c6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Insert a block pertaining to 1 normal point into a matrix.  <a href="#aa34aa361f0bfff9621ecba179f9ed0c6">More...</a><br /></td></tr>
+<tr class="separator:aa34aa361f0bfff9621ecba179f9ed0c6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
 Variables</h2></td></tr>
 <tr class="memitem:a5cb92553633cb22ff703286298862ac7"><td class="memItemLeft" align="right" valign="top">logical, public&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceslepc__utilities.html#a5cb92553633cb22ff703286298862ac7">debug_insert_block_mat</a> = .false.</td></tr>
+<tr class="memdesc:a5cb92553633cb22ff703286298862ac7"><td class="mdescLeft">&#160;</td><td class="mdescRight">plot debug information for <a class="el" href="namespaceslepc__utilities.html#aa34aa361f0bfff9621ecba179f9ed0c6" title="Insert a block pertaining to 1 normal point into a matrix. ">insert_block_mat()</a>  <a href="#a5cb92553633cb22ff703286298862ac7">More...</a><br /></td></tr>
 <tr class="separator:a5cb92553633cb22ff703286298862ac7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Function/Subroutine Documentation</h2>
-<a id="ae6568f825f3fa8a6e3d45f67f3daf412"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae6568f825f3fa8a6e3d45f67f3daf412">&#9670;&nbsp;</a></span>insert_block_mat()</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Numerical utilities related to SLEPC (and PETSC) operations. </p>
+<dl class="section see"><dt>See also</dt><dd>References: <a class="el" href="citelist.html#CITEREF_Hernandez2005slepc">[7]</a> </dd></dl>
+</div><h2 class="groupheader">Function/Subroutine Documentation</h2>
+<a id="aa34aa361f0bfff9621ecba179f9ed0c6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa34aa361f0bfff9621ecba179f9ed0c6">&#9670;&nbsp;</a></span>insert_block_mat()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -95,7 +103,13 @@ Variables</h2></td></tr>
         <tr>
           <td class="memname">integer function, public slepc_utilities::insert_block_mat </td>
           <td>(</td>
-          <td class="paramtype">&#160;</td>
+          <td class="paramtype">type(modes_type), intent(in), target&#160;</td>
+          <td class="paramname"><em>mds</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">dimension(:,:), intent(in)&#160;</td>
           <td class="paramname"><em>block</em>, </td>
         </tr>
         <tr>
@@ -120,7 +134,7 @@ Variables</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">intent(in)&#160;</td>
-          <td class="paramname"><em>n_sol</em>, </td>
+          <td class="paramname"><em>n_r</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -132,7 +146,13 @@ Variables</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">optional&#160;</td>
-          <td class="paramname"><em>overwrite</em>&#160;</td>
+          <td class="paramname"><em>overwrite</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">optional&#160;</td>
+          <td class="paramname"><em>ind_insert</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -142,22 +162,37 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="SLEPC__utilities_8f90_source.html#l00063">63</a> of file <a class="el" href="SLEPC__utilities_8f90_source.html">SLEPC_utilities.f90</a>.</p>
+<p>Insert a block pertaining to 1 normal point into a matrix. </p>
+<p>Optionally, also set the Hermitian transpose and / or overwrite instead of add value.</p>
+<p>This routine takes into account that if the mode numbers change as a function of the normal coordinate, as is the case for X_style 2 (fast), part of the local blocks, which were set up without taking this into account, can have information that correspond to mode numbers that are not present any more for off-diagonal entries, and lack an equal amount of information that corresponds to the mode numbers that have taken their places.</p>
+<p>Omission of this effect is justifiable if there are many more mode couplings that are not omitted (i.e. when <code>n_mod_X</code> is large), so that it is a small effect, and/or when the coupling between these modes is already negligible.</p>
+<p>Unfortunately, it can be argued that this is not generally the case for the fast version (<code>X_style</code> = 2) since \(\widetilde{PV}^1\) and \(\widetilde{PV}^2\) are both \(\sim (nq-m)\), which indicates that the smallest elements in the corresponding off-diagonal blocks lie in the central columns for \(\widetilde{PV}^1\) and in the central columns and rows for \(\widetilde{PV}^2\), while the problematic elements lie farthest away from the central columns for \(\widetilde{PV}^1\) and the central columns and rows for \(\widetilde{PV}^2\), so these are generally not small.</p>
+<p>The coefficients due to normal discretization get increasingly small for higher orders, though, which compensates this for higher orders.</p>
+<p>Finally, an alternative would be to set the problematic elements not to zero but extrapolated from the closest elements, but then consistency would be sacrified, for example in the energy reconstruction of the POST-processing: In the energy reconstruction the exact same terms are neglected as well.</p>
+<p>To conclude, for fast <code>X_style</code> 2, the number of modes (<code>n_mod_X</code>) has to be chosen high enough compared with the variation of the mode numbers; i.e. the variation of the safety factor or rotational transform.</p>
+<dl class="section note"><dt>Note</dt><dd>The grid in which the modes variables <code>mds</code> are tabulated up must be the same as the one in which <code>mat</code> is set up. If this is not the case, the indices in <code>mds</code> have to be adapted.</dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>ierr</dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">mds</td><td>general modes variables </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="SLEPC__utilities_8f90_source.html#l00082">82</a> of file <a class="el" href="SLEPC__utilities_8f90_source.html">SLEPC_utilities.f90</a>.</p>
 <div id="dynsection-0" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-0-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
 <div id="dynsection-0-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-0-content" class="dyncontent" style="display:none;">
-<div class="center"><iframe scrolling="no" frameborder="0" src="namespaceslepc__utilities_ae6568f825f3fa8a6e3d45f67f3daf412_cgraph.svg" width="1427" height="408"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="namespaceslepc__utilities_aa34aa361f0bfff9621ecba179f9ed0c6_cgraph.svg" width="1411" height="482"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 <div id="dynsection-1" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-1-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
 <div id="dynsection-1-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-1-content" class="dyncontent" style="display:none;">
-<div class="center"><iframe scrolling="no" frameborder="0" src="namespaceslepc__utilities_ae6568f825f3fa8a6e3d45f67f3daf412_icgraph.svg" width="1370" height="156"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="namespaceslepc__utilities_aa34aa361f0bfff9621ecba179f9ed0c6_icgraph.svg" width="1060" height="94"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
@@ -174,6 +209,9 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>plot debug information for <a class="el" href="namespaceslepc__utilities.html#aa34aa361f0bfff9621ecba179f9ed0c6" title="Insert a block pertaining to 1 normal point into a matrix. ">insert_block_mat()</a> </p>
+<dl class="section note"><dt>Note</dt><dd>Debug version only </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="SLEPC__utilities_8f90_source.html#l00030">30</a> of file <a class="el" href="SLEPC__utilities_8f90_source.html">SLEPC_utilities.f90</a>.</p>
 

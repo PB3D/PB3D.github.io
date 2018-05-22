@@ -29,7 +29,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">PB3D
-   &#160;<span id="projectnumber">[1.73]</span>
+   &#160;<span id="projectnumber">[2.27]</span>
    </div>
    <div id="projectbrief">Ideal linear high-n MHD stability in 3-D</div>
   </td>
@@ -74,40 +74,211 @@ $(function() {
 <div class="title">slepc_ops Module Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>Operations that use SLEPC (and PETSC) routines.  
+<a href="#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions/Subroutines</h2></td></tr>
-<tr class="memitem:ad9d4a9b7275ac5a6b9b35e481a7c1710"><td class="memItemLeft" align="right" valign="top">integer function, public&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceslepc__ops.html#ad9d4a9b7275ac5a6b9b35e481a7c1710">solve_ev_system_slepc</a> (grid_X, grid_sol, X, sol, i_geo)</td></tr>
-<tr class="separator:ad9d4a9b7275ac5a6b9b35e481a7c1710"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5f69f9325197c270c7975f01360a9648"><td class="memItemLeft" align="right" valign="top">integer function&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceslepc__ops.html#a5f69f9325197c270c7975f01360a9648">start_slepc</a> (n_r_sol)</td></tr>
-<tr class="separator:a5f69f9325197c270c7975f01360a9648"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af8aa2b9b7c5154ebd595afce3f5ebcd0"><td class="memItemLeft" align="right" valign="top">integer function&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceslepc__ops.html#af8aa2b9b7c5154ebd595afce3f5ebcd0">setup_mats</a> (grid_X, grid_sol, X, A, B, i_geo, norm_disc_coeff)</td></tr>
-<tr class="separator:af8aa2b9b7c5154ebd595afce3f5ebcd0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6f6de293e91e94dc92eb6eab0525a96e"><td class="memItemLeft" align="right" valign="top">integer function&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceslepc__ops.html#a6f6de293e91e94dc92eb6eab0525a96e">setup_guess</a> (sol, A, solver)</td></tr>
-<tr class="separator:a6f6de293e91e94dc92eb6eab0525a96e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a66241540803bca208b2f3bd6b0448491"><td class="memItemLeft" align="right" valign="top">integer function&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceslepc__ops.html#a66241540803bca208b2f3bd6b0448491">store_results</a> (grid_sol, sol, solver, max_n_EV, A, B, step_size)</td></tr>
-<tr class="separator:a66241540803bca208b2f3bd6b0448491"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae65ae217581e4b5986da87bc9a23acb8"><td class="memItemLeft" align="right" valign="top">integer function&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceslepc__ops.html#ae65ae217581e4b5986da87bc9a23acb8">stop_slepc</a> (A, B, solver)</td></tr>
-<tr class="separator:ae65ae217581e4b5986da87bc9a23acb8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a79c420987056c225931b51c8d30ece1f"><td class="memItemLeft" align="right" valign="top">integer function, public&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceslepc__ops.html#a79c420987056c225931b51c8d30ece1f">solve_ev_system_slepc</a> (mds, grid_sol, X, vac, sol)</td></tr>
+<tr class="memdesc:a79c420987056c225931b51c8d30ece1f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Solve the eigenvalue system using SLEPC.  <a href="#a79c420987056c225931b51c8d30ece1f">More...</a><br /></td></tr>
+<tr class="separator:a79c420987056c225931b51c8d30ece1f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9cec5d9e8abc41d0d7ffb14352112040"><td class="memItemLeft" align="right" valign="top">integer function, public&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceslepc__ops.html#a9cec5d9e8abc41d0d7ffb14352112040">start_slepc</a> (n_r_sol)</td></tr>
+<tr class="memdesc:a9cec5d9e8abc41d0d7ffb14352112040"><td class="mdescLeft">&#160;</td><td class="mdescRight">This subroutine starts PETSC and SLEPC with the correct number of processors.  <a href="#a9cec5d9e8abc41d0d7ffb14352112040">More...</a><br /></td></tr>
+<tr class="separator:a9cec5d9e8abc41d0d7ffb14352112040"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aac8202cb74cbb06013eb73f1fa0c3118"><td class="memItemLeft" align="right" valign="top">integer function, public&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceslepc__ops.html#aac8202cb74cbb06013eb73f1fa0c3118">setup_mats</a> (mds, grid_sol, X, A, B)</td></tr>
+<tr class="memdesc:aac8202cb74cbb06013eb73f1fa0c3118"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets up the matrices \(\overline{\text{A}}\) and \(\overline{\text{B}}\) in the EV problem \( \overline{\text{A}} \vec{X} = \lambda \overline{\text{B}} \vec{X}. \).  <a href="#aac8202cb74cbb06013eb73f1fa0c3118">More...</a><br /></td></tr>
+<tr class="separator:aac8202cb74cbb06013eb73f1fa0c3118"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a05f8a23335ed47ad1996cddf3bcfdc2e"><td class="memItemLeft" align="right" valign="top">integer function, public&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceslepc__ops.html#a05f8a23335ed47ad1996cddf3bcfdc2e">set_bc</a> (mds, grid_sol, X, vac, A, B)</td></tr>
+<tr class="memdesc:a05f8a23335ed47ad1996cddf3bcfdc2e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the boundary conditions deep in the plasma (1) and at the edge (2).  <a href="#a05f8a23335ed47ad1996cddf3bcfdc2e">More...</a><br /></td></tr>
+<tr class="separator:a05f8a23335ed47ad1996cddf3bcfdc2e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af2eb258cbc9d353b95fa71d38570afad"><td class="memItemLeft" align="right" valign="top">integer function, public&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceslepc__ops.html#af2eb258cbc9d353b95fa71d38570afad">setup_solver</a> (X, A, B, solver)</td></tr>
+<tr class="memdesc:af2eb258cbc9d353b95fa71d38570afad"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets up EV solver.  <a href="#af2eb258cbc9d353b95fa71d38570afad">More...</a><br /></td></tr>
+<tr class="separator:af2eb258cbc9d353b95fa71d38570afad"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a17a57b58ac6ca48ff4bdb44e8689bb19"><td class="memItemLeft" align="right" valign="top">integer function, public&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceslepc__ops.html#a17a57b58ac6ca48ff4bdb44e8689bb19">setup_guess</a> (sol, A, solver)</td></tr>
+<tr class="memdesc:a17a57b58ac6ca48ff4bdb44e8689bb19"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets up guess in solver.  <a href="#a17a57b58ac6ca48ff4bdb44e8689bb19">More...</a><br /></td></tr>
+<tr class="separator:a17a57b58ac6ca48ff4bdb44e8689bb19"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aabe2aef90f039316bf3f03e651a6e7e0"><td class="memItemLeft" align="right" valign="top">integer function, public&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceslepc__ops.html#aabe2aef90f039316bf3f03e651a6e7e0">get_solution</a> (solver)</td></tr>
+<tr class="memdesc:aabe2aef90f039316bf3f03e651a6e7e0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the solution vectors.  <a href="#aabe2aef90f039316bf3f03e651a6e7e0">More...</a><br /></td></tr>
+<tr class="separator:aabe2aef90f039316bf3f03e651a6e7e0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a03193dbc55e7061891d58e96a2bf1dd5"><td class="memItemLeft" align="right" valign="top">integer function, public&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceslepc__ops.html#a03193dbc55e7061891d58e96a2bf1dd5">summarize_solution</a> (solver, max_n_EV)</td></tr>
+<tr class="memdesc:a03193dbc55e7061891d58e96a2bf1dd5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Summarizes solution.  <a href="#a03193dbc55e7061891d58e96a2bf1dd5">More...</a><br /></td></tr>
+<tr class="separator:a03193dbc55e7061891d58e96a2bf1dd5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a24d97496000ed55f1d11e4d436e084a6"><td class="memItemLeft" align="right" valign="top">integer function, public&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceslepc__ops.html#a24d97496000ed55f1d11e4d436e084a6">store_results</a> (mds, grid_sol, sol, solver, max_n_EV, A, B)</td></tr>
+<tr class="memdesc:a24d97496000ed55f1d11e4d436e084a6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stores the results.  <a href="#a24d97496000ed55f1d11e4d436e084a6">More...</a><br /></td></tr>
+<tr class="separator:a24d97496000ed55f1d11e4d436e084a6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aeeac6908b3988f395314e7769829a058"><td class="memItemLeft" align="right" valign="top">integer function, public&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceslepc__ops.html#aeeac6908b3988f395314e7769829a058">stop_slepc</a> (A, B, solver)</td></tr>
+<tr class="memdesc:aeeac6908b3988f395314e7769829a058"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stop PETSC and SLEPC.  <a href="#aeeac6908b3988f395314e7769829a058">More...</a><br /></td></tr>
+<tr class="separator:aeeac6908b3988f395314e7769829a058"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
 Variables</h2></td></tr>
 <tr class="memitem:aff5aa0d485bc34e2f6e320172fcc4ccb"><td class="memItemLeft" align="right" valign="top">logical, public&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceslepc__ops.html#aff5aa0d485bc34e2f6e320172fcc4ccb">debug_setup_mats</a> = .false.</td></tr>
+<tr class="memdesc:aff5aa0d485bc34e2f6e320172fcc4ccb"><td class="mdescLeft">&#160;</td><td class="mdescRight">plot debug information for setup_mats  <a href="#aff5aa0d485bc34e2f6e320172fcc4ccb">More...</a><br /></td></tr>
 <tr class="separator:aff5aa0d485bc34e2f6e320172fcc4ccb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad57b5fd70608c1b97454963bdd1c4f5b"><td class="memItemLeft" align="right" valign="top">logical, public&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceslepc__ops.html#ad57b5fd70608c1b97454963bdd1c4f5b">debug_set_bc</a> = .false.</td></tr>
+<tr class="memdesc:ad57b5fd70608c1b97454963bdd1c4f5b"><td class="mdescLeft">&#160;</td><td class="mdescRight">plot debug information for set_BC  <a href="#ad57b5fd70608c1b97454963bdd1c4f5b">More...</a><br /></td></tr>
 <tr class="separator:ad57b5fd70608c1b97454963bdd1c4f5b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a57d0ef4131e939894b34bb07e30e631b"><td class="memItemLeft" align="right" valign="top">logical, public&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceslepc__ops.html#a57d0ef4131e939894b34bb07e30e631b">test_diff</a> = .false.</td></tr>
+<tr class="memdesc:a57d0ef4131e939894b34bb07e30e631b"><td class="mdescLeft">&#160;</td><td class="mdescRight">test introduction of numerical diff  <a href="#a57d0ef4131e939894b34bb07e30e631b">More...</a><br /></td></tr>
+<tr class="separator:a57d0ef4131e939894b34bb07e30e631b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Function/Subroutine Documentation</h2>
-<a id="a6f6de293e91e94dc92eb6eab0525a96e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6f6de293e91e94dc92eb6eab0525a96e">&#9670;&nbsp;</a></span>setup_guess()</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Operations that use SLEPC (and PETSC) routines. </p>
+<dl class="section note"><dt>Note</dt><dd>The routines here require a <b>TRIMMED</b> solution grid! </dd></dl>
+<dl class="section see"><dt>See also</dt><dd>References: <a class="el" href="citelist.html#CITEREF_Hernandez2005slepc">[7]</a> </dd></dl>
+</div><h2 class="groupheader">Function/Subroutine Documentation</h2>
+<a id="aabe2aef90f039316bf3f03e651a6e7e0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aabe2aef90f039316bf3f03e651a6e7e0">&#9670;&nbsp;</a></span>get_solution()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">integer function slepc_ops::setup_guess </td>
+          <td class="memname">integer function, public slepc_ops::get_solution </td>
           <td>(</td>
-          <td class="paramtype">type(sol_type), intent(in)&#160;</td>
+          <td class="paramtype">intent(inout)&#160;</td>
+          <td class="paramname"><em>solver</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Get the solution vectors. </p>
+<dl class="section return"><dt>Returns</dt><dd>ierr </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="SLEPC__ops_8f90_source.html#l01521">1521</a> of file <a class="el" href="SLEPC__ops_8f90_source.html">SLEPC_ops.f90</a>.</p>
+<div id="dynsection-0" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-0-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
+<div id="dynsection-0-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-0-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="namespaceslepc__ops_aabe2aef90f039316bf3f03e651a6e7e0_cgraph.svg" width="862" height="94"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+<div id="dynsection-1" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-1-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
+<div id="dynsection-1-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-1-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="namespaceslepc__ops_aabe2aef90f039316bf3f03e651a6e7e0_icgraph.svg" width="822" height="58"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+
+</div>
+</div>
+<a id="a05f8a23335ed47ad1996cddf3bcfdc2e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a05f8a23335ed47ad1996cddf3bcfdc2e">&#9670;&nbsp;</a></span>set_bc()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">integer function, public slepc_ops::set_bc </td>
+          <td>(</td>
+          <td class="paramtype">type(modes_type), intent(in)&#160;</td>
+          <td class="paramname"><em>mds</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">type(<a class="el" href="structgrid__vars_1_1grid__type.html">grid_type</a>), intent(in)&#160;</td>
+          <td class="paramname"><em>grid_sol</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">type(x_2_type), intent(in)&#160;</td>
+          <td class="paramname"><em>X</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">type(<a class="el" href="structvac__vars_1_1vac__type.html">vac_type</a>), intent(in)&#160;</td>
+          <td class="paramname"><em>vac</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">intent(inout)&#160;</td>
+          <td class="paramname"><em>A</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">intent(inout)&#160;</td>
+          <td class="paramname"><em>B</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Sets the boundary conditions deep in the plasma (1) and at the edge (2). </p>
+<p>Through <code>norm_disc_style_sol</code> it can be chosen whether the finite differences are:</p><ol type="1">
+<li>central finite differences</li>
+<li>left finite differences</li>
+</ol>
+<p>Possibilities for <code>BC_style:</code> </p><ol type="1">
+<li>Set to zero:<ul>
+<li>An artificial Eigenvalue <code>EV_BC</code> is introduced by setting the diagonal components of A to EV_BC and of B to 1, and the off-diagonal elements to zero.</li>
+</ul>
+</li>
+<li>Minimization of surface energy through asymmetric fin. differences:<ul>
+<li>For symmetric finite differences, the last <code>ndps</code> grid points are treated asymmetrically in order not go over the edge and the vacuum term is added to the edge element.</li>
+<li>For left differences, this is already standard, so the method becomes identical to 2.</li>
+</ul>
+</li>
+<li>Minimization of surface energy through extension of grid:<ul>
+<li>For symmetric finite differences, <code>ndps</code> extra grid points are introduced after the edge and the vacuum term is added to the edge element.</li>
+<li>For left finite differences, the vacuum term is just added to the edge element, so this method becomes idential to 3.</li>
+</ul>
+</li>
+<li>Explicit introduction of the surface energy minimization:<ul>
+<li>The equation due to the minimization of the vacuum term is introduced explicitely as an asymmetric finite difference equation in the last row. -This is done using left finite differences.</li>
+</ul>
+</li>
+</ol>
+<dl class="section return"><dt>Returns</dt><dd>ierr</dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">mds</td><td>general modes variables</td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">grid_sol</td><td>solution grid</td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">x</td><td>field-averaged perturbation variables (so only first index)</td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">vac</td><td>vacuum variables </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="SLEPC__ops_8f90_source.html#l00926">926</a> of file <a class="el" href="SLEPC__ops_8f90_source.html">SLEPC_ops.f90</a>.</p>
+<div id="dynsection-2" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-2-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
+<div id="dynsection-2-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-2-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="namespaceslepc__ops_a05f8a23335ed47ad1996cddf3bcfdc2e_cgraph.svg" width="1682" height="756"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+<div id="dynsection-3" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-3-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
+<div id="dynsection-3-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-3-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="namespaceslepc__ops_a05f8a23335ed47ad1996cddf3bcfdc2e_icgraph.svg" width="774" height="58"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+
+</div>
+</div>
+<a id="a17a57b58ac6ca48ff4bdb44e8689bb19"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a17a57b58ac6ca48ff4bdb44e8689bb19">&#9670;&nbsp;</a></span>setup_guess()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">integer function, public slepc_ops::setup_guess </td>
+          <td>(</td>
+          <td class="paramtype">type(<a class="el" href="structsol__vars_1_1sol__type.html">sol_type</a>), intent(in)&#160;</td>
           <td class="paramname"><em>sol</em>, </td>
         </tr>
         <tr>
@@ -130,42 +301,49 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="SLEPC__ops_8f90_source.html#l01490">1490</a> of file <a class="el" href="SLEPC__ops_8f90_source.html">SLEPC_ops.f90</a>.</p>
-<div id="dynsection-0" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-0-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
-<div id="dynsection-0-summary" class="dynsummary" style="display:block;">
+<p>Sets up guess in solver. </p>
+<dl class="section return"><dt>Returns</dt><dd>ierr</dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">sol</td><td>solution variables </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="SLEPC__ops_8f90_source.html#l01444">1444</a> of file <a class="el" href="SLEPC__ops_8f90_source.html">SLEPC_ops.f90</a>.</p>
+<div id="dynsection-4" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-4-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
+<div id="dynsection-4-summary" class="dynsummary" style="display:block;">
 </div>
-<div id="dynsection-0-content" class="dyncontent" style="display:none;">
-<div class="center"><iframe scrolling="no" frameborder="0" src="namespaceslepc__ops_a6f6de293e91e94dc92eb6eab0525a96e_cgraph.svg" width="1116" height="198"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div id="dynsection-4-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="namespaceslepc__ops_a17a57b58ac6ca48ff4bdb44e8689bb19_cgraph.svg" width="886" height="144"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
+<div id="dynsection-5" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-5-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
+<div id="dynsection-5-summary" class="dynsummary" style="display:block;">
 </div>
-<div id="dynsection-1" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-1-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
-<div id="dynsection-1-summary" class="dynsummary" style="display:block;">
-</div>
-<div id="dynsection-1-content" class="dyncontent" style="display:none;">
-<div class="center"><iframe scrolling="no" frameborder="0" src="namespaceslepc__ops_a6f6de293e91e94dc92eb6eab0525a96e_icgraph.svg" width="814" height="58"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
+<div id="dynsection-5-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="namespaceslepc__ops_a17a57b58ac6ca48ff4bdb44e8689bb19_icgraph.svg" width="814" height="58"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
 </div>
-<a id="af8aa2b9b7c5154ebd595afce3f5ebcd0"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af8aa2b9b7c5154ebd595afce3f5ebcd0">&#9670;&nbsp;</a></span>setup_mats()</h2>
+<a id="aac8202cb74cbb06013eb73f1fa0c3118"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aac8202cb74cbb06013eb73f1fa0c3118">&#9670;&nbsp;</a></span>setup_mats()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">integer function slepc_ops::setup_mats </td>
+          <td class="memname">integer function, public slepc_ops::setup_mats </td>
           <td>(</td>
-          <td class="paramtype">type(grid_type), intent(in)&#160;</td>
-          <td class="paramname"><em>grid_X</em>, </td>
+          <td class="paramtype">type(modes_type), intent(in)&#160;</td>
+          <td class="paramname"><em>mds</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">type(grid_type), intent(in)&#160;</td>
+          <td class="paramtype">type(<a class="el" href="structgrid__vars_1_1grid__type.html">grid_type</a>), intent(in)&#160;</td>
           <td class="paramname"><em>grid_sol</em>, </td>
         </tr>
         <tr>
@@ -184,19 +362,7 @@ Variables</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">intent(inout)&#160;</td>
-          <td class="paramname"><em>B</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">integer, intent(in)&#160;</td>
-          <td class="paramname"><em>i_geo</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">dimension(:), intent(in)&#160;</td>
-          <td class="paramname"><em>norm_disc_coeff</em>&#160;</td>
+          <td class="paramname"><em>B</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -206,28 +372,103 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="SLEPC__ops_8f90_source.html#l00446">446</a> of file <a class="el" href="SLEPC__ops_8f90_source.html">SLEPC_ops.f90</a>.</p>
-<div id="dynsection-2" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-2-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
-<div id="dynsection-2-summary" class="dynsummary" style="display:block;">
+<p>Sets up the matrices \(\overline{\text{A}}\) and \(\overline{\text{B}}\) in the EV problem \( \overline{\text{A}} \vec{X} = \lambda \overline{\text{B}} \vec{X}. \). </p>
+<p>The matrices are set up in the solution grid, so some processes might not have any part in the storage thereof (if <code>sol_n_procs</code> &lt; <code>n_procs</code>), but each process sets up the part of the grid that corresponds to their own normal range in the solution grid.</p>
+<dl class="section return"><dt>Returns</dt><dd>ierr</dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">mds</td><td>general modes variables</td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">grid_sol</td><td>solution grid</td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">x</td><td>field-averaged perturbation variables (so only first index) </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="SLEPC__ops_8f90_source.html#l00404">404</a> of file <a class="el" href="SLEPC__ops_8f90_source.html">SLEPC_ops.f90</a>.</p>
+<div id="dynsection-6" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-6-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
+<div id="dynsection-6-summary" class="dynsummary" style="display:block;">
 </div>
-<div id="dynsection-2-content" class="dyncontent" style="display:none;">
-<div class="center"><iframe scrolling="no" frameborder="0" src="namespaceslepc__ops_af8aa2b9b7c5154ebd595afce3f5ebcd0_cgraph.svg" width="2111" height="1167"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div id="dynsection-6-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="namespaceslepc__ops_aac8202cb74cbb06013eb73f1fa0c3118_cgraph.svg" width="1730" height="923"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
+<div id="dynsection-7" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-7-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
+<div id="dynsection-7-summary" class="dynsummary" style="display:block;">
 </div>
-<div id="dynsection-3" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-3-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
-<div id="dynsection-3-summary" class="dynsummary" style="display:block;">
-</div>
-<div id="dynsection-3-content" class="dyncontent" style="display:none;">
-<div class="center"><iframe scrolling="no" frameborder="0" src="namespaceslepc__ops_af8aa2b9b7c5154ebd595afce3f5ebcd0_icgraph.svg" width="806" height="58"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
+<div id="dynsection-7-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="namespaceslepc__ops_aac8202cb74cbb06013eb73f1fa0c3118_icgraph.svg" width="806" height="58"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
 </div>
-<a id="ad9d4a9b7275ac5a6b9b35e481a7c1710"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad9d4a9b7275ac5a6b9b35e481a7c1710">&#9670;&nbsp;</a></span>solve_ev_system_slepc()</h2>
+<a id="af2eb258cbc9d353b95fa71d38570afad"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af2eb258cbc9d353b95fa71d38570afad">&#9670;&nbsp;</a></span>setup_solver()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">integer function, public slepc_ops::setup_solver </td>
+          <td>(</td>
+          <td class="paramtype">type(x_2_type), intent(in)&#160;</td>
+          <td class="paramname"><em>X</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">intent(inout)&#160;</td>
+          <td class="paramname"><em>A</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">intent(inout)&#160;</td>
+          <td class="paramname"><em>B</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">intent(inout)&#160;</td>
+          <td class="paramname"><em>solver</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Sets up EV solver. </p>
+<dl class="section return"><dt>Returns</dt><dd>ierr</dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">x</td><td>field-averaged perturbation variables (so only first index) </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="SLEPC__ops_8f90_source.html#l01317">1317</a> of file <a class="el" href="SLEPC__ops_8f90_source.html">SLEPC_ops.f90</a>.</p>
+<div id="dynsection-8" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-8-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
+<div id="dynsection-8-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-8-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="namespaceslepc__ops_af2eb258cbc9d353b95fa71d38570afad_cgraph.svg" width="894" height="199"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+<div id="dynsection-9" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-9-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
+<div id="dynsection-9-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-9-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="namespaceslepc__ops_af2eb258cbc9d353b95fa71d38570afad_icgraph.svg" width="822" height="58"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+
+</div>
+</div>
+<a id="a79c420987056c225931b51c8d30ece1f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a79c420987056c225931b51c8d30ece1f">&#9670;&nbsp;</a></span>solve_ev_system_slepc()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -235,13 +476,13 @@ Variables</h2></td></tr>
         <tr>
           <td class="memname">integer function, public slepc_ops::solve_ev_system_slepc </td>
           <td>(</td>
-          <td class="paramtype">type(grid_type), intent(in)&#160;</td>
-          <td class="paramname"><em>grid_X</em>, </td>
+          <td class="paramtype">type(modes_type), intent(in)&#160;</td>
+          <td class="paramname"><em>mds</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">type(grid_type), intent(in)&#160;</td>
+          <td class="paramtype">type(<a class="el" href="structgrid__vars_1_1grid__type.html">grid_type</a>), intent(in)&#160;</td>
           <td class="paramname"><em>grid_sol</em>, </td>
         </tr>
         <tr>
@@ -253,14 +494,14 @@ Variables</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">type(sol_type), intent(inout)&#160;</td>
-          <td class="paramname"><em>sol</em>, </td>
+          <td class="paramtype">type(<a class="el" href="structvac__vars_1_1vac__type.html">vac_type</a>), intent(in)&#160;</td>
+          <td class="paramname"><em>vac</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">integer, intent(in), optional&#160;</td>
-          <td class="paramname"><em>i_geo</em>&#160;</td>
+          <td class="paramtype">type(<a class="el" href="structsol__vars_1_1sol__type.html">sol_type</a>), intent(inout)&#160;</td>
+          <td class="paramname"><em>sol</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -270,34 +511,46 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="SLEPC__ops_8f90_source.html#l00059">59</a> of file <a class="el" href="SLEPC__ops_8f90_source.html">SLEPC_ops.f90</a>.</p>
-<div id="dynsection-4" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-4-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
-<div id="dynsection-4-summary" class="dynsummary" style="display:block;">
+<p>Solve the eigenvalue system using SLEPC. </p>
+<p>This subroutine sets up the matrices A ad B of the generalized EV system described in <a class="el" href="citelist.html#CITEREF_Weyens2017PB3D">[15]</a> and solves them using the SLEPC suite. The solutions closest to a target indicated by <code>EV_guess</code> are obtained. </p><dl class="section see"><dt>See also</dt><dd><a class="el" href="namespaceinput__ops.html#a434acca4f59f9dc1d91e04f846133684" title="Reads input options from user-provided input file. ">read_input_opts()</a></dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>ierr</dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">mds</td><td>general modes variables</td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">grid_sol</td><td>solution grid</td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">x</td><td>field-averaged perturbation variables (so only first index)</td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">vac</td><td>vacuum variables</td></tr>
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">sol</td><td>solution variables </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="SLEPC__ops_8f90_source.html#l00060">60</a> of file <a class="el" href="SLEPC__ops_8f90_source.html">SLEPC_ops.f90</a>.</p>
+<div id="dynsection-10" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-10-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
+<div id="dynsection-10-summary" class="dynsummary" style="display:block;">
 </div>
-<div id="dynsection-4-content" class="dyncontent" style="display:none;">
-<div class="center"><iframe scrolling="no" frameborder="0" src="namespaceslepc__ops_ad9d4a9b7275ac5a6b9b35e481a7c1710_cgraph.svg" width="2318" height="1719"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div id="dynsection-10-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="namespaceslepc__ops_a79c420987056c225931b51c8d30ece1f_cgraph.svg" width="1928" height="1732"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
+<div id="dynsection-11" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-11-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
+<div id="dynsection-11-summary" class="dynsummary" style="display:block;">
 </div>
-<div id="dynsection-5" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-5-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
-<div id="dynsection-5-summary" class="dynsummary" style="display:block;">
-</div>
-<div id="dynsection-5-content" class="dyncontent" style="display:none;">
-<div class="center"><iframe scrolling="no" frameborder="0" src="namespaceslepc__ops_ad9d4a9b7275ac5a6b9b35e481a7c1710_icgraph.svg" width="567" height="58"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
+<div id="dynsection-11-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="namespaceslepc__ops_a79c420987056c225931b51c8d30ece1f_icgraph.svg" width="567" height="58"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
 </div>
-<a id="a5f69f9325197c270c7975f01360a9648"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5f69f9325197c270c7975f01360a9648">&#9670;&nbsp;</a></span>start_slepc()</h2>
+<a id="a9cec5d9e8abc41d0d7ffb14352112040"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9cec5d9e8abc41d0d7ffb14352112040">&#9670;&nbsp;</a></span>start_slepc()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">integer function slepc_ops::start_slepc </td>
+          <td class="memname">integer function, public slepc_ops::start_slepc </td>
           <td>(</td>
           <td class="paramtype">integer, intent(in)&#160;</td>
           <td class="paramname"><em>n_r_sol</em></td><td>)</td>
@@ -306,34 +559,41 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="SLEPC__ops_8f90_source.html#l00371">371</a> of file <a class="el" href="SLEPC__ops_8f90_source.html">SLEPC_ops.f90</a>.</p>
-<div id="dynsection-6" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-6-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
-<div id="dynsection-6-summary" class="dynsummary" style="display:block;">
+<p>This subroutine starts PETSC and SLEPC with the correct number of processors. </p>
+<dl class="section return"><dt>Returns</dt><dd>ierr</dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">n_r_sol</td><td>nr. of normal points in solution grid </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="SLEPC__ops_8f90_source.html#l00328">328</a> of file <a class="el" href="SLEPC__ops_8f90_source.html">SLEPC_ops.f90</a>.</p>
+<div id="dynsection-12" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-12-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
+<div id="dynsection-12-summary" class="dynsummary" style="display:block;">
 </div>
-<div id="dynsection-6-content" class="dyncontent" style="display:none;">
-<div class="center"><iframe scrolling="no" frameborder="0" src="namespaceslepc__ops_a5f69f9325197c270c7975f01360a9648_cgraph.svg" width="1108" height="146"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div id="dynsection-12-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="namespaceslepc__ops_a9cec5d9e8abc41d0d7ffb14352112040_cgraph.svg" width="886" height="146"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
+<div id="dynsection-13" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-13-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
+<div id="dynsection-13-summary" class="dynsummary" style="display:block;">
 </div>
-<div id="dynsection-7" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-7-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
-<div id="dynsection-7-summary" class="dynsummary" style="display:block;">
-</div>
-<div id="dynsection-7-content" class="dyncontent" style="display:none;">
-<div class="center"><iframe scrolling="no" frameborder="0" src="namespaceslepc__ops_a5f69f9325197c270c7975f01360a9648_icgraph.svg" width="814" height="58"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
+<div id="dynsection-13-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="namespaceslepc__ops_a9cec5d9e8abc41d0d7ffb14352112040_icgraph.svg" width="814" height="58"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
 </div>
-<a id="ae65ae217581e4b5986da87bc9a23acb8"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae65ae217581e4b5986da87bc9a23acb8">&#9670;&nbsp;</a></span>stop_slepc()</h2>
+<a id="aeeac6908b3988f395314e7769829a058"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aeeac6908b3988f395314e7769829a058">&#9670;&nbsp;</a></span>stop_slepc()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">integer function slepc_ops::stop_slepc </td>
+          <td class="memname">integer function, public slepc_ops::stop_slepc </td>
           <td>(</td>
           <td class="paramtype">intent(in)&#160;</td>
           <td class="paramname"><em>A</em>, </td>
@@ -358,42 +618,49 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="SLEPC__ops_8f90_source.html#l02059">2059</a> of file <a class="el" href="SLEPC__ops_8f90_source.html">SLEPC_ops.f90</a>.</p>
-<div id="dynsection-8" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-8-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
-<div id="dynsection-8-summary" class="dynsummary" style="display:block;">
+<p>Stop PETSC and SLEPC. </p>
+<dl class="section return"><dt>Returns</dt><dd>ierr </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="SLEPC__ops_8f90_source.html#l02037">2037</a> of file <a class="el" href="SLEPC__ops_8f90_source.html">SLEPC_ops.f90</a>.</p>
+<div id="dynsection-14" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-14-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
+<div id="dynsection-14-summary" class="dynsummary" style="display:block;">
 </div>
-<div id="dynsection-8-content" class="dyncontent" style="display:none;">
-<div class="center"><iframe scrolling="no" frameborder="0" src="namespaceslepc__ops_ae65ae217581e4b5986da87bc9a23acb8_cgraph.svg" width="1068" height="94"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div id="dynsection-14-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="namespaceslepc__ops_aeeac6908b3988f395314e7769829a058_cgraph.svg" width="846" height="94"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
+<div id="dynsection-15" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-15-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
+<div id="dynsection-15-summary" class="dynsummary" style="display:block;">
 </div>
-<div id="dynsection-9" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-9-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
-<div id="dynsection-9-summary" class="dynsummary" style="display:block;">
-</div>
-<div id="dynsection-9-content" class="dyncontent" style="display:none;">
-<div class="center"><iframe scrolling="no" frameborder="0" src="namespaceslepc__ops_ae65ae217581e4b5986da87bc9a23acb8_icgraph.svg" width="806" height="58"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
+<div id="dynsection-15-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="namespaceslepc__ops_aeeac6908b3988f395314e7769829a058_icgraph.svg" width="806" height="58"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
 </div>
-<a id="a66241540803bca208b2f3bd6b0448491"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a66241540803bca208b2f3bd6b0448491">&#9670;&nbsp;</a></span>store_results()</h2>
+<a id="a24d97496000ed55f1d11e4d436e084a6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a24d97496000ed55f1d11e4d436e084a6">&#9670;&nbsp;</a></span>store_results()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">integer function slepc_ops::store_results </td>
+          <td class="memname">integer function, public slepc_ops::store_results </td>
           <td>(</td>
-          <td class="paramtype">type(grid_type), intent(in)&#160;</td>
+          <td class="paramtype">type(modes_type), intent(in)&#160;</td>
+          <td class="paramname"><em>mds</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">type(<a class="el" href="structgrid__vars_1_1grid__type.html">grid_type</a>), intent(in)&#160;</td>
           <td class="paramname"><em>grid_sol</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">type(sol_type), intent(inout)&#160;</td>
+          <td class="paramtype">type(<a class="el" href="structsol__vars_1_1sol__type.html">sol_type</a>), intent(inout)&#160;</td>
           <td class="paramname"><em>sol</em>, </td>
         </tr>
         <tr>
@@ -418,13 +685,7 @@ Variables</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">intent(inout)&#160;</td>
-          <td class="paramname"><em>B</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">intent(in)&#160;</td>
-          <td class="paramname"><em>step_size</em>&#160;</td>
+          <td class="paramname"><em>B</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -434,22 +695,78 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="SLEPC__ops_8f90_source.html#l01650">1650</a> of file <a class="el" href="SLEPC__ops_8f90_source.html">SLEPC_ops.f90</a>.</p>
-<div id="dynsection-10" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-10-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
-<div id="dynsection-10-summary" class="dynsummary" style="display:block;">
+<p>Stores the results. </p>
+<dl class="section return"><dt>Returns</dt><dd>ierr</dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">mds</td><td>general modes variables</td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">grid_sol</td><td>solution grid</td></tr>
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">sol</td><td>solution variables </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="SLEPC__ops_8f90_source.html#l01621">1621</a> of file <a class="el" href="SLEPC__ops_8f90_source.html">SLEPC_ops.f90</a>.</p>
+<div id="dynsection-16" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-16-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
+<div id="dynsection-16-summary" class="dynsummary" style="display:block;">
 </div>
-<div id="dynsection-10-content" class="dyncontent" style="display:none;">
-<div class="center"><iframe scrolling="no" frameborder="0" src="namespaceslepc__ops_a66241540803bca208b2f3bd6b0448491_cgraph.svg" width="1164" height="464"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div id="dynsection-16-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="namespaceslepc__ops_a24d97496000ed55f1d11e4d436e084a6_cgraph.svg" width="942" height="411"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+<div id="dynsection-17" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-17-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
+<div id="dynsection-17-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-17-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="namespaceslepc__ops_a24d97496000ed55f1d11e4d436e084a6_icgraph.svg" width="830" height="58"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+
 </div>
 </div>
-<div id="dynsection-11" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-11-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
-<div id="dynsection-11-summary" class="dynsummary" style="display:block;">
+<a id="a03193dbc55e7061891d58e96a2bf1dd5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a03193dbc55e7061891d58e96a2bf1dd5">&#9670;&nbsp;</a></span>summarize_solution()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">integer function, public slepc_ops::summarize_solution </td>
+          <td>(</td>
+          <td class="paramtype">intent(inout)&#160;</td>
+          <td class="paramname"><em>solver</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">intent(inout)&#160;</td>
+          <td class="paramname"><em>max_n_EV</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Summarizes solution. </p>
+<dl class="section return"><dt>Returns</dt><dd>ierr </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="SLEPC__ops_8f90_source.html#l01551">1551</a> of file <a class="el" href="SLEPC__ops_8f90_source.html">SLEPC_ops.f90</a>.</p>
+<div id="dynsection-18" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-18-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
+<div id="dynsection-18-summary" class="dynsummary" style="display:block;">
 </div>
-<div id="dynsection-11-content" class="dyncontent" style="display:none;">
-<div class="center"><iframe scrolling="no" frameborder="0" src="namespaceslepc__ops_a66241540803bca208b2f3bd6b0448491_icgraph.svg" width="830" height="58"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div id="dynsection-18-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="namespaceslepc__ops_a03193dbc55e7061891d58e96a2bf1dd5_cgraph.svg" width="878" height="198"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
+<div id="dynsection-19" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-19-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
+<div id="dynsection-19-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-19-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="namespaceslepc__ops_a03193dbc55e7061891d58e96a2bf1dd5_icgraph.svg" width="798" height="58"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
@@ -467,7 +784,10 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="SLEPC__ops_8f90_source.html#l00039">39</a> of file <a class="el" href="SLEPC__ops_8f90_source.html">SLEPC_ops.f90</a>.</p>
+<p>plot debug information for set_BC </p>
+<dl class="section note"><dt>Note</dt><dd>Debug version only </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="SLEPC__ops_8f90_source.html#l00044">44</a> of file <a class="el" href="SLEPC__ops_8f90_source.html">SLEPC_ops.f90</a>.</p>
 
 </div>
 </div>
@@ -483,7 +803,29 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="SLEPC__ops_8f90_source.html#l00038">38</a> of file <a class="el" href="SLEPC__ops_8f90_source.html">SLEPC_ops.f90</a>.</p>
+<p>plot debug information for setup_mats </p>
+<dl class="section note"><dt>Note</dt><dd>Debug version only </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="SLEPC__ops_8f90_source.html#l00043">43</a> of file <a class="el" href="SLEPC__ops_8f90_source.html">SLEPC_ops.f90</a>.</p>
+
+</div>
+</div>
+<a id="a57d0ef4131e939894b34bb07e30e631b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a57d0ef4131e939894b34bb07e30e631b">&#9670;&nbsp;</a></span>test_diff</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">logical, public slepc_ops::test_diff = .false.</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>test introduction of numerical diff </p>
+<dl class="section note"><dt>Note</dt><dd>Debug version only </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="SLEPC__ops_8f90_source.html#l00045">45</a> of file <a class="el" href="SLEPC__ops_8f90_source.html">SLEPC_ops.f90</a>.</p>
 
 </div>
 </div>

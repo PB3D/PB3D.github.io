@@ -1,27 +1,35 @@
 \hypertarget{namespacestr__utilities}{}\section{str\+\_\+utilities Module Reference}
 \label{namespacestr__utilities}\index{str\+\_\+utilities@{str\+\_\+utilities}}
+
+
+Operations on strings.  
+
+
 \subsection*{Functions/\+Subroutines}
 \begin{DoxyCompactItemize}
 \item 
 elemental character(len=max\+\_\+str\+\_\+ln) function, public \hyperlink{namespacestr__utilities_a0b97e51770725a3e98ed393d26681414}{i2str} (k)
-\item 
+\begin{DoxyCompactList}\small\item\em Convert an integer to string. \end{DoxyCompactList}\item 
 elemental character(len=max\+\_\+str\+\_\+ln) function, public \hyperlink{namespacestr__utilities_acb8c4e66aead51f178e47fdea8d7a7db}{ii2str} (k)
-\item 
+\begin{DoxyCompactList}\small\item\em Convert an integer to string. \end{DoxyCompactList}\item 
 elemental character(len=max\+\_\+str\+\_\+ln) function, public \hyperlink{namespacestr__utilities_a92ac6c0af1979df094de1caddd28ade0}{r2str} (k)
-\item 
+\begin{DoxyCompactList}\small\item\em Convert a real (double) to string. \end{DoxyCompactList}\item 
 elemental character(len=max\+\_\+str\+\_\+ln) function, public \hyperlink{namespacestr__utilities_ac778d706b2e021672618939ab58fdd32}{r2strt} (k)
-\item 
+\begin{DoxyCompactList}\small\item\em Convert a real (double) to string. \end{DoxyCompactList}\item 
 elemental character(len=max\+\_\+str\+\_\+ln) function, public \hyperlink{namespacestr__utilities_a308e943e5e244e3e0f852f2ecb3e3183}{c2str} (k)
-\item 
+\begin{DoxyCompactList}\small\item\em Convert a complex (double) to string. \end{DoxyCompactList}\item 
 elemental character(len=max\+\_\+str\+\_\+ln) function, public \hyperlink{namespacestr__utilities_abca28d6272d447dc1c0c100624c6ed75}{c2strt} (k)
-\item 
+\begin{DoxyCompactList}\small\item\em Convert a complex (double) to string. \end{DoxyCompactList}\item 
 character(len(input\+\_\+string)) function, public \hyperlink{namespacestr__utilities_a219964a283968cc6a968db0197d2187e}{strh2l} (input\+\_\+string)
-\item 
+\begin{DoxyCompactList}\small\item\em Convert a string to lowercase. \end{DoxyCompactList}\item 
 character(len(input\+\_\+string)) function, public \hyperlink{namespacestr__utilities_a7e2e441d509c12045a3373819040a806}{strl2h} (input\+\_\+string)
-\item 
+\begin{DoxyCompactList}\small\item\em convert a string to uppercase. \end{DoxyCompactList}\item 
 character((len(input\+\_\+strings)+2) $\ast$size(input\+\_\+strings)) function, public \hyperlink{namespacestr__utilities_a6ab16f33c155db79844279c6a56a494c}{merge\+\_\+strings} (input\+\_\+strings)
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Merge array of strings. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
+
+\subsection{Detailed Description}
+Operations on strings. 
 
 \subsection{Function/\+Subroutine Documentation}
 \mbox{\Hypertarget{namespacestr__utilities_a308e943e5e244e3e0f852f2ecb3e3183}\label{namespacestr__utilities_a308e943e5e244e3e0f852f2ecb3e3183}} 
@@ -32,10 +40,21 @@ character((len(input\+\_\+strings)+2) $\ast$size(input\+\_\+strings)) function, 
 
 
 
-Definition at line 52 of file str\+\_\+utilities.\+f90.
+Convert a complex (double) to string. 
 
-Here is the caller graph for this function\+:
-\nopagebreak
+\begin{DoxyNote}{Note}
+See \href{http://www.fortran90.org/src/best-practices.html}{\tt http\+://www.\+fortran90.\+org/src/best-\/practices.\+html} how to not lose precision.
+\end{DoxyNote}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em k} & complex to convert \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 66 of file str\+\_\+utilities.\+f90.
+
+Here is the caller graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -50,10 +69,23 @@ Here is the caller graph for this function\+:
 
 
 
-Definition at line 69 of file str\+\_\+utilities.\+f90.
+Convert a complex (double) to string. 
 
-Here is the caller graph for this function\+:
-\nopagebreak
+Version with less precise output.
+
+\begin{DoxySeeAlso}{See also}
+See \hyperlink{namespacestr__utilities_a308e943e5e244e3e0f852f2ecb3e3183}{c2str()}.
+\end{DoxySeeAlso}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em k} & complex to convert \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 88 of file str\+\_\+utilities.\+f90.
+
+Here is the caller graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -68,7 +100,19 @@ Here is the caller graph for this function\+:
 
 
 
-Definition at line 16 of file str\+\_\+utilities.\+f90.
+Convert an integer to string. 
+
+\begin{DoxySeeAlso}{See also}
+from \href{http://stackoverflow.com/questions/1262695/converting-integers-to-strings-in-fortran}{\tt http\+://stackoverflow.\+com/questions/1262695/converting-\/integers-\/to-\/strings-\/in-\/fortran}
+\end{DoxySeeAlso}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em k} & integer to convert \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 18 of file str\+\_\+utilities.\+f90.
 
 \mbox{\Hypertarget{namespacestr__utilities_acb8c4e66aead51f178e47fdea8d7a7db}\label{namespacestr__utilities_acb8c4e66aead51f178e47fdea8d7a7db}} 
 \index{str\+\_\+utilities@{str\+\_\+utilities}!ii2str@{ii2str}}
@@ -78,10 +122,23 @@ Definition at line 16 of file str\+\_\+utilities.\+f90.
 
 
 
-Definition at line 23 of file str\+\_\+utilities.\+f90.
+Convert an integer to string. 
 
-Here is the caller graph for this function\+:
-\nopagebreak
+Version with kind 8 integers.
+
+\begin{DoxySeeAlso}{See also}
+See \hyperlink{namespacestr__utilities_a0b97e51770725a3e98ed393d26681414}{i2str()}.
+\end{DoxySeeAlso}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em k} & integer to convert \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 30 of file str\+\_\+utilities.\+f90.
+
+Here is the caller graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -96,8 +153,27 @@ Here is the caller graph for this function\+:
 
 
 
-Definition at line 129 of file str\+\_\+utilities.\+f90.
+Merge array of strings. 
 
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em input\+\_\+strings} & array of strings\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+merged string 
+\end{DoxyReturn}
+
+
+Definition at line 152 of file str\+\_\+utilities.\+f90.
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespacestr__utilities_a6ab16f33c155db79844279c6a56a494c_icgraph}
+\end{center}
+\end{figure}
 \mbox{\Hypertarget{namespacestr__utilities_a92ac6c0af1979df094de1caddd28ade0}\label{namespacestr__utilities_a92ac6c0af1979df094de1caddd28ade0}} 
 \index{str\+\_\+utilities@{str\+\_\+utilities}!r2str@{r2str}}
 \index{r2str@{r2str}!str\+\_\+utilities@{str\+\_\+utilities}}
@@ -106,14 +182,25 @@ Definition at line 129 of file str\+\_\+utilities.\+f90.
 
 
 
-Definition at line 34 of file str\+\_\+utilities.\+f90.
+Convert a real (double) to string. 
 
-Here is the caller graph for this function\+:
-\nopagebreak
+\begin{DoxyNote}{Note}
+See \href{http://www.fortran90.org/src/best-practices.html}{\tt http\+://www.\+fortran90.\+org/src/best-\/practices.\+html} how to not lose precision.
+\end{DoxyNote}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em k} & real to convert \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 42 of file str\+\_\+utilities.\+f90.
+
+Here is the caller graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=350pt]{namespacestr__utilities_a92ac6c0af1979df094de1caddd28ade0_icgraph}
+\includegraphics[height=550pt]{namespacestr__utilities_a92ac6c0af1979df094de1caddd28ade0_icgraph}
 \end{center}
 \end{figure}
 \mbox{\Hypertarget{namespacestr__utilities_ac778d706b2e021672618939ab58fdd32}\label{namespacestr__utilities_ac778d706b2e021672618939ab58fdd32}} 
@@ -124,14 +211,27 @@ Here is the caller graph for this function\+:
 
 
 
-Definition at line 41 of file str\+\_\+utilities.\+f90.
+Convert a real (double) to string. 
 
-Here is the caller graph for this function\+:
-\nopagebreak
+Version with less precise output.
+
+\begin{DoxySeeAlso}{See also}
+See \hyperlink{namespacestr__utilities_a92ac6c0af1979df094de1caddd28ade0}{r2str()}.
+\end{DoxySeeAlso}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em k} & real to convert \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 54 of file str\+\_\+utilities.\+f90.
+
+Here is the caller graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=350pt]{namespacestr__utilities_ac778d706b2e021672618939ab58fdd32_icgraph}
+\includegraphics[height=550pt]{namespacestr__utilities_ac778d706b2e021672618939ab58fdd32_icgraph}
 \end{center}
 \end{figure}
 \mbox{\Hypertarget{namespacestr__utilities_a219964a283968cc6a968db0197d2187e}\label{namespacestr__utilities_a219964a283968cc6a968db0197d2187e}} 
@@ -142,10 +242,24 @@ Here is the caller graph for this function\+:
 
 
 
-Definition at line 90 of file str\+\_\+utilities.\+f90.
+Convert a string to lowercase. 
 
-Here is the caller graph for this function\+:
-\nopagebreak
+\begin{DoxySeeAlso}{See also}
+from \cite{RedwineF90}, figure 3.\+5B, pg 80.
+\end{DoxySeeAlso}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em input\+\_\+string} & input string\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+lowercase version 
+\end{DoxyReturn}
+
+
+Definition at line 109 of file str\+\_\+utilities.\+f90.
+
+Here is the caller graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -160,5 +274,20 @@ Here is the caller graph for this function\+:
 
 
 
-Definition at line 109 of file str\+\_\+utilities.\+f90.
+convert a string to uppercase. 
+
+\begin{DoxySeeAlso}{See also}
+See \hyperlink{namespacestr__utilities_a219964a283968cc6a968db0197d2187e}{strh2l()}
+\end{DoxySeeAlso}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em input\+\_\+string} & input string\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+uppercase version 
+\end{DoxyReturn}
+
+
+Definition at line 131 of file str\+\_\+utilities.\+f90.
 

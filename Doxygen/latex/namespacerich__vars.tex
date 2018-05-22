@@ -1,36 +1,44 @@
 \hypertarget{namespacerich__vars}{}\section{rich\+\_\+vars Module Reference}
 \label{namespacerich__vars}\index{rich\+\_\+vars@{rich\+\_\+vars}}
+
+
+Variables concerning Richardson extrapolation.  
+
+
 \subsection*{Functions/\+Subroutines}
 \begin{DoxyCompactItemize}
 \item 
 elemental character(len=max\+\_\+str\+\_\+ln) function, public \hyperlink{namespacerich__vars_a4f54d3fc0ac510fc073220794ee4fa37}{rich\+\_\+info} ()
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Returns string with possible extension with Richardson level or nothing if only one level and one parallel job. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Variables}
 \begin{DoxyCompactItemize}
 \item 
 integer, public \hyperlink{namespacerich__vars_a1b7734ba9ce6cc153b22387e638093c0}{rich\+\_\+lvl}
-\item 
+\begin{DoxyCompactList}\small\item\em current level of Richardson extrapolation \end{DoxyCompactList}\item 
 integer, public \hyperlink{namespacerich__vars_a7a32b8d53450cf925042cd5ddc7e23e6}{n\+\_\+par\+\_\+x}
-\item 
+\begin{DoxyCompactList}\small\item\em nr. of parallel points in field-\/aligned grid \end{DoxyCompactList}\item 
 integer, parameter, public \hyperlink{namespacerich__vars_a94e61b5125377ab3e984334998f5ebae}{req\+\_\+min\+\_\+n\+\_\+par\+\_\+x} = 20
-\item 
+\begin{DoxyCompactList}\small\item\em required minimum {\ttfamily n\+\_\+par\+\_\+X} \end{DoxyCompactList}\item 
 integer, public \hyperlink{namespacerich__vars_a07841cccca6e6ee59aeb4e0661558eda}{min\+\_\+n\+\_\+par\+\_\+x}
-\item 
+\begin{DoxyCompactList}\small\item\em min. of {\ttfamily n\+\_\+par\+\_\+X} (e.\+g. first value in Richardson loop) \end{DoxyCompactList}\item 
 logical, public \hyperlink{namespacerich__vars_aedc7171560db899c515d1610d99582c9}{use\+\_\+guess}
-\item 
+\begin{DoxyCompactList}\small\item\em whether a guess is formed from previous level of Richardson \end{DoxyCompactList}\item 
 logical, public \hyperlink{namespacerich__vars_a167fe55b5d9c1a4566729da683466947}{no\+\_\+guess}
-\item 
+\begin{DoxyCompactList}\small\item\em disable guessing Eigenfunction from previous level of Richardson \end{DoxyCompactList}\item 
 logical, public \hyperlink{namespacerich__vars_adf63efd509bbcda4f77fd7e88c766081}{rich\+\_\+conv}
-\item 
+\begin{DoxyCompactList}\small\item\em if Richarson extrapolation has converged \end{DoxyCompactList}\item 
 complex(dp), dimension(\+:,\+:,\+:), allocatable, public \hyperlink{namespacerich__vars_ae1d3c7deb4c8becd036a63367fca5e20}{sol\+\_\+val\+\_\+rich}
-\item 
+\begin{DoxyCompactList}\small\item\em Richardson array of eigenvalues. \end{DoxyCompactList}\item 
 real(dp), dimension(\+:,\+:), allocatable, public \hyperlink{namespacerich__vars_a7f584d9b84f3e3e230b45ce4b8e0e9b1}{x\+\_\+axis\+\_\+rich}
-\item 
+\begin{DoxyCompactList}\small\item\em x axis for plot of Eigenvalues with Richardson level \end{DoxyCompactList}\item 
 real(dp), dimension(\+:), allocatable, public \hyperlink{namespacerich__vars_afac4d06d60829484cfb7d4964964945b}{max\+\_\+rel\+\_\+err}
-\item 
+\begin{DoxyCompactList}\small\item\em maximum relative error for all Richardson levels \end{DoxyCompactList}\item 
 integer, dimension(\+:,\+:), allocatable, public \hyperlink{namespacerich__vars_af3df7361e33058bc83fe43a803173d89}{loc\+\_\+max\+\_\+rel\+\_\+err}
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em location of maximum of relative error \end{DoxyCompactList}\end{DoxyCompactItemize}
 
+
+\subsection{Detailed Description}
+Variables concerning Richardson extrapolation. 
 
 \subsection{Function/\+Subroutine Documentation}
 \mbox{\Hypertarget{namespacerich__vars_a4f54d3fc0ac510fc073220794ee4fa37}\label{namespacerich__vars_a4f54d3fc0ac510fc073220794ee4fa37}} 
@@ -41,18 +49,20 @@ integer, dimension(\+:,\+:), allocatable, public \hyperlink{namespacerich__vars_
 
 
 
+Returns string with possible extension with Richardson level or nothing if only one level and one parallel job. 
+
+
+
 Definition at line 35 of file rich\+\_\+vars.\+f90.
 
-Here is the call graph for this function\+:
-\nopagebreak
+Here is the call graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{namespacerich__vars_a4f54d3fc0ac510fc073220794ee4fa37_cgraph}
 \end{center}
 \end{figure}
-Here is the caller graph for this function\+:
-\nopagebreak
+Here is the caller graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -70,6 +80,10 @@ Here is the caller graph for this function\+:
 
 
 
+location of maximum of relative error 
+
+
+
 Definition at line 29 of file rich\+\_\+vars.\+f90.
 
 \mbox{\Hypertarget{namespacerich__vars_afac4d06d60829484cfb7d4964964945b}\label{namespacerich__vars_afac4d06d60829484cfb7d4964964945b}} 
@@ -77,6 +91,10 @@ Definition at line 29 of file rich\+\_\+vars.\+f90.
 \index{max\+\_\+rel\+\_\+err@{max\+\_\+rel\+\_\+err}!rich\+\_\+vars@{rich\+\_\+vars}}
 \subsubsection{\texorpdfstring{max\+\_\+rel\+\_\+err}{max\_rel\_err}}
 {\footnotesize\ttfamily real(dp), dimension(\+:), allocatable, public rich\+\_\+vars\+::max\+\_\+rel\+\_\+err}
+
+
+
+maximum relative error for all Richardson levels 
 
 
 
@@ -90,6 +108,10 @@ Definition at line 28 of file rich\+\_\+vars.\+f90.
 
 
 
+min. of {\ttfamily n\+\_\+par\+\_\+X} (e.\+g. first value in Richardson loop) 
+
+
+
 Definition at line 22 of file rich\+\_\+vars.\+f90.
 
 \mbox{\Hypertarget{namespacerich__vars_a7a32b8d53450cf925042cd5ddc7e23e6}\label{namespacerich__vars_a7a32b8d53450cf925042cd5ddc7e23e6}} 
@@ -97,6 +119,10 @@ Definition at line 22 of file rich\+\_\+vars.\+f90.
 \index{n\+\_\+par\+\_\+x@{n\+\_\+par\+\_\+x}!rich\+\_\+vars@{rich\+\_\+vars}}
 \subsubsection{\texorpdfstring{n\+\_\+par\+\_\+x}{n\_par\_x}}
 {\footnotesize\ttfamily integer, public rich\+\_\+vars\+::n\+\_\+par\+\_\+x}
+
+
+
+nr. of parallel points in field-\/aligned grid 
 
 
 
@@ -110,6 +136,10 @@ Definition at line 20 of file rich\+\_\+vars.\+f90.
 
 
 
+disable guessing Eigenfunction from previous level of Richardson 
+
+
+
 Definition at line 24 of file rich\+\_\+vars.\+f90.
 
 \mbox{\Hypertarget{namespacerich__vars_a94e61b5125377ab3e984334998f5ebae}\label{namespacerich__vars_a94e61b5125377ab3e984334998f5ebae}} 
@@ -117,6 +147,10 @@ Definition at line 24 of file rich\+\_\+vars.\+f90.
 \index{req\+\_\+min\+\_\+n\+\_\+par\+\_\+x@{req\+\_\+min\+\_\+n\+\_\+par\+\_\+x}!rich\+\_\+vars@{rich\+\_\+vars}}
 \subsubsection{\texorpdfstring{req\+\_\+min\+\_\+n\+\_\+par\+\_\+x}{req\_min\_n\_par\_x}}
 {\footnotesize\ttfamily integer, parameter, public rich\+\_\+vars\+::req\+\_\+min\+\_\+n\+\_\+par\+\_\+x = 20}
+
+
+
+required minimum {\ttfamily n\+\_\+par\+\_\+X} 
 
 
 
@@ -130,6 +164,10 @@ Definition at line 21 of file rich\+\_\+vars.\+f90.
 
 
 
+if Richarson extrapolation has converged 
+
+
+
 Definition at line 25 of file rich\+\_\+vars.\+f90.
 
 \mbox{\Hypertarget{namespacerich__vars_a1b7734ba9ce6cc153b22387e638093c0}\label{namespacerich__vars_a1b7734ba9ce6cc153b22387e638093c0}} 
@@ -137,6 +175,10 @@ Definition at line 25 of file rich\+\_\+vars.\+f90.
 \index{rich\+\_\+lvl@{rich\+\_\+lvl}!rich\+\_\+vars@{rich\+\_\+vars}}
 \subsubsection{\texorpdfstring{rich\+\_\+lvl}{rich\_lvl}}
 {\footnotesize\ttfamily integer, public rich\+\_\+vars\+::rich\+\_\+lvl}
+
+
+
+current level of Richardson extrapolation 
 
 
 
@@ -150,6 +192,10 @@ Definition at line 19 of file rich\+\_\+vars.\+f90.
 
 
 
+Richardson array of eigenvalues. 
+
+
+
 Definition at line 26 of file rich\+\_\+vars.\+f90.
 
 \mbox{\Hypertarget{namespacerich__vars_aedc7171560db899c515d1610d99582c9}\label{namespacerich__vars_aedc7171560db899c515d1610d99582c9}} 
@@ -160,6 +206,10 @@ Definition at line 26 of file rich\+\_\+vars.\+f90.
 
 
 
+whether a guess is formed from previous level of Richardson 
+
+
+
 Definition at line 23 of file rich\+\_\+vars.\+f90.
 
 \mbox{\Hypertarget{namespacerich__vars_a7f584d9b84f3e3e230b45ce4b8e0e9b1}\label{namespacerich__vars_a7f584d9b84f3e3e230b45ce4b8e0e9b1}} 
@@ -167,6 +217,10 @@ Definition at line 23 of file rich\+\_\+vars.\+f90.
 \index{x\+\_\+axis\+\_\+rich@{x\+\_\+axis\+\_\+rich}!rich\+\_\+vars@{rich\+\_\+vars}}
 \subsubsection{\texorpdfstring{x\+\_\+axis\+\_\+rich}{x\_axis\_rich}}
 {\footnotesize\ttfamily real(dp), dimension(\+:,\+:), allocatable, public rich\+\_\+vars\+::x\+\_\+axis\+\_\+rich}
+
+
+
+x axis for plot of Eigenvalues with Richardson level 
 
 
 
