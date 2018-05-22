@@ -43,5 +43,6 @@ var searchData=
   ['transf_5fderiv_5f3_5find',['transf_deriv_3_ind',['../interfaceeq__utilities_1_1transf__deriv.html#aeb378175eaa132caf243cbd197e2d2ac',1,'eq_utilities::transf_deriv']]],
   ['trigon_5ffactors',['trigon_factors',['../structgrid__vars_1_1grid__type.html#adebef5699de49c33289e03cda2875232',1,'grid_vars::grid_type']]],
   ['trim_5fgrid',['trim_grid',['../namespacegrid__utilities.html#a67001ff9bbcad707aacf17f90a748d90',1,'grid_utilities']]],
+  ['trim_5fmodes',['trim_modes',['../namespacex__utilities.html#afde797341c5056abecc7a9221dbd345e',1,'x_utilities']]],
   ['tutorial_2edox',['tutorial.dox',['../tutorial_8dox.html',1,'']]]
 ];
