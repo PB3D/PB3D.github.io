@@ -1,7 +1,19 @@
 var searchData=
 [
-  ['q_5fsaf_5fe',['q_saf_e',['../structeq__vars_1_1eq__1__type.html#a8735980af7b3fae23eb10ded6ef5b462',1,'eq_vars::eq_1_type']]],
-  ['q_5fsaf_5ffd',['q_saf_fd',['../structeq__vars_1_1eq__1__type.html#a7a513de633cd065f90ed716bd1290cb6',1,'eq_vars::eq_1_type']]],
-  ['q_5fsaf_5fh',['q_saf_h',['../namespacehelena__vars.html#a95906460e4a767f4dd020100b93a631c',1,'helena_vars']]],
-  ['q_5fsaf_5fv',['q_saf_v',['../namespacevmec__vars.html#a08f3862b0bb940623a416a056f03b092',1,'vmec_vars']]]
+  ['r_5f0',['r_0',['../namespaceeq__vars.html#a0c1f124ab3260a0f6937df9189a18184',1,'eq_vars']]],
+  ['r_5fh',['r_h',['../namespacehelena__vars.html#a0d157eace0479c9b8cbd4de9495f9775',1,'helena_vars']]],
+  ['r_5fv_5fc',['r_v_c',['../namespacevmec__vars.html#a8307a4a411dadf5b9be24f8aafac5f39',1,'vmec_vars']]],
+  ['r_5fv_5fs',['r_v_s',['../namespacevmec__vars.html#ac6cdafd632e37856533c42e8ab34a680',1,'vmec_vars']]],
+  ['rank',['rank',['../namespacenum__vars.html#ab47aa91445feaedb05ac9d1a584664fe',1,'num_vars']]],
+  ['rbphi_5fh',['rbphi_h',['../namespacehelena__vars.html#aff62b635308558649bf727ac93fb7fea',1,'helena_vars']]],
+  ['relax_5ffac_5fhh',['relax_fac_hh',['../namespacenum__vars.html#a04aa07618c0f33df6107f2deb0240f59',1,'num_vars']]],
+  ['req_5fmin_5fn_5fpar_5fx',['req_min_n_par_x',['../namespacerich__vars.html#a94e61b5125377ab3e984334998f5ebae',1,'rich_vars']]],
+  ['retain_5fall_5fsol',['retain_all_sol',['../namespacenum__vars.html#adc6255c76bb27f763817adc8e2d80658',1,'num_vars']]],
+  ['rho_5f0',['rho_0',['../namespaceeq__vars.html#a8c9bdb18a418329b9be241342ea704e3',1,'eq_vars']]],
+  ['rho_5fstyle',['rho_style',['../namespacenum__vars.html#a787c23d10a522ff93cf555587b71cc0d',1,'num_vars']]],
+  ['rich_5fconv',['rich_conv',['../namespacerich__vars.html#adf63efd509bbcda4f77fd7e88c766081',1,'rich_vars']]],
+  ['rich_5flvl',['rich_lvl',['../namespacerich__vars.html#a1b7734ba9ce6cc153b22387e638093c0',1,'rich_vars']]],
+  ['rich_5frestart_5flvl',['rich_restart_lvl',['../namespacenum__vars.html#ac4bc885e8034c285bf0a9b76a832a738',1,'num_vars']]],
+  ['rot_5ft_5fh',['rot_t_h',['../namespacehelena__vars.html#ae54b26f364e5cc4da39bbb01807e0da1',1,'helena_vars']]],
+  ['rot_5ft_5fv',['rot_t_v',['../namespacevmec__vars.html#a676475bc7e07d96fc91c2773c8d2c84a',1,'vmec_vars']]]
 ];

@@ -4,17 +4,66 @@
 \begin{DoxyCompactItemize}
 \item 
 module \hyperlink{namespacehelena__ops}{helena\+\_\+ops}
-\begin{DoxyCompactList}\small\item\em Operations on H\+E\+L\+E\+NA variables. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{DoxyCompactItemize}
 \subsection*{Functions/\+Subroutines}
 \begin{DoxyCompactItemize}
 \item 
 integer function, public \hyperlink{namespacehelena__ops_ae05ba1182eb002d93c27ca4ff7ab8cf2}{helena\+\_\+ops\+::read\+\_\+hel} (n\+\_\+r\+\_\+in, use\+\_\+pol\+\_\+flux\+\_\+H)
-\begin{DoxyCompactList}\small\item\em Reads the H\+E\+L\+E\+NA equilibrium data. \end{DoxyCompactList}\item 
+\item 
 integer function \hyperlink{namespacehelena__ops_ab1329afe5af2ff92d96f4be15a096b38}{helena\+\_\+ops\+::get\+\_\+ang\+\_\+interp\+\_\+data\+\_\+hel} (grid\+\_\+in, grid\+\_\+out, theta\+\_\+i, fund\+\_\+theta\+\_\+int\+\_\+displ, tb\+\_\+sym, use\+\_\+E)
-\begin{DoxyCompactList}\small\item\em Calculate interpolation factors for angular interpolation in {\ttfamily grid\+\_\+out} of quantities defined on {\ttfamily grid\+\_\+in}. \end{DoxyCompactList}\item 
+\item 
 integer function, public \hyperlink{namespacehelena__ops_a7796861de18ae7ac9c3aa07a8628be38}{helena\+\_\+ops\+::interp\+\_\+hel\+\_\+on\+\_\+grid} (grid\+\_\+in, grid\+\_\+out, eq\+\_\+2, X\+\_\+1, X\+\_\+2, eq\+\_\+2\+\_\+out, X\+\_\+1\+\_\+out, X\+\_\+2\+\_\+out, eq\+\_\+1, grid\+\_\+name)
-\begin{DoxyCompactList}\small\item\em Interpolate variables resulting from H\+E\+L\+E\+NA equilibria to another grid (angularly). \end{DoxyCompactList}\item 
+\item 
+integer function \hyperlink{HELENA__ops_8f90_a0480c2cb24b13d76286e1f2b0fe100a1}{interp\+\_\+var\+\_\+3d\+\_\+real} (var, var\+\_\+int, sym\+\_\+type)
+\item 
+integer function \hyperlink{HELENA__ops_8f90_a8229f4b89831a39793047106375555cf}{interp\+\_\+var\+\_\+7d\+\_\+real\+\_\+ow} (var, sym\+\_\+type)
+\item 
 integer function, public \hyperlink{namespacehelena__ops_a0f156b3653264fb016d6d311eb59114c}{helena\+\_\+ops\+::test\+\_\+metrics\+\_\+h} ()
-\begin{DoxyCompactList}\small\item\em Checks whether the metric elements provided by H\+E\+L\+E\+NA are consistent with a direct calculation using the coordinate transformations \cite{Weyens3D}. \end{DoxyCompactList}\item 
-integer function, public \hyperlink{namespacehelena__ops_a83f2ad5dc967c7bae287b60fddb8eb0a}{helena\+\_\+ops\+::test\+\_\+harm\+\_\+cont\+\_\+h} ()
-\begin{DoxyCompactList}\small\item\em Investaige harmonic content of the H\+E\+L\+E\+NA variables. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{DoxyCompactItemize}
+
+
+\subsection{Function/\+Subroutine Documentation}
+\mbox{\Hypertarget{HELENA__ops_8f90_a0480c2cb24b13d76286e1f2b0fe100a1}\label{HELENA__ops_8f90_a0480c2cb24b13d76286e1f2b0fe100a1}} 
+\index{H\+E\+L\+E\+N\+A\+\_\+ops.\+f90@{H\+E\+L\+E\+N\+A\+\_\+ops.\+f90}!interp\+\_\+var\+\_\+3d\+\_\+real@{interp\+\_\+var\+\_\+3d\+\_\+real}}
+\index{interp\+\_\+var\+\_\+3d\+\_\+real@{interp\+\_\+var\+\_\+3d\+\_\+real}!H\+E\+L\+E\+N\+A\+\_\+ops.\+f90@{H\+E\+L\+E\+N\+A\+\_\+ops.\+f90}}
+\subsubsection{\texorpdfstring{interp\+\_\+var\+\_\+3d\+\_\+real()}{interp\_var\_3d\_real()}}
+{\footnotesize\ttfamily integer function interp\+\_\+hel\+\_\+on\+\_\+grid\+::interp\+\_\+var\+\_\+3d\+\_\+real (\begin{DoxyParamCaption}\item[{real(dp), dimension(1\+:,1\+:,1\+:), intent(in)}]{var,  }\item[{real(dp), dimension(1\+:,1\+:,1\+:), intent(inout)}]{var\+\_\+int,  }\item[{integer, intent(in), optional}]{sym\+\_\+type }\end{DoxyParamCaption})}
+
+
+
+Definition at line 625 of file H\+E\+L\+E\+N\+A\+\_\+ops.\+f90.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{HELENA__ops_8f90_a0480c2cb24b13d76286e1f2b0fe100a1_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{HELENA__ops_8f90_a0480c2cb24b13d76286e1f2b0fe100a1_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{HELENA__ops_8f90_a8229f4b89831a39793047106375555cf}\label{HELENA__ops_8f90_a8229f4b89831a39793047106375555cf}} 
+\index{H\+E\+L\+E\+N\+A\+\_\+ops.\+f90@{H\+E\+L\+E\+N\+A\+\_\+ops.\+f90}!interp\+\_\+var\+\_\+7d\+\_\+real\+\_\+ow@{interp\+\_\+var\+\_\+7d\+\_\+real\+\_\+ow}}
+\index{interp\+\_\+var\+\_\+7d\+\_\+real\+\_\+ow@{interp\+\_\+var\+\_\+7d\+\_\+real\+\_\+ow}!H\+E\+L\+E\+N\+A\+\_\+ops.\+f90@{H\+E\+L\+E\+N\+A\+\_\+ops.\+f90}}
+\subsubsection{\texorpdfstring{interp\+\_\+var\+\_\+7d\+\_\+real\+\_\+ow()}{interp\_var\_7d\_real\_ow()}}
+{\footnotesize\ttfamily integer function interp\+\_\+hel\+\_\+on\+\_\+grid\+::interp\+\_\+var\+\_\+7d\+\_\+real\+\_\+ow (\begin{DoxyParamCaption}\item[{real(dp), dimension(\+:,\+:,\+:,\+:,\+:,\+:,\+:), intent(inout), allocatable}]{var,  }\item[{integer, intent(in), optional}]{sym\+\_\+type }\end{DoxyParamCaption})}
+
+
+
+Definition at line 1104 of file H\+E\+L\+E\+N\+A\+\_\+ops.\+f90.
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{HELENA__ops_8f90_a8229f4b89831a39793047106375555cf_icgraph}
+\end{center}
+\end{figure}

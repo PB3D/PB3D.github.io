@@ -1,86 +1,272 @@
 \hypertarget{eq__ops_8f90}{}\section{/opt/\+P\+B3\+D/\+Modules/eq\+\_\+ops.f90 File Reference}
 \label{eq__ops_8f90}\index{/opt/\+P\+B3\+D/\+Modules/eq\+\_\+ops.\+f90@{/opt/\+P\+B3\+D/\+Modules/eq\+\_\+ops.\+f90}}
-\subsection*{Interfaces and Types}
-\begin{DoxyCompactItemize}
-\item 
-interface \hyperlink{interfaceeq__ops_1_1calc__eq}{eq\+\_\+ops\+::calc\+\_\+eq}
-\begin{DoxyCompactList}\small\item\em Calculate the equilibrium quantities on a grid determined by straight field lines. \end{DoxyCompactList}\item 
-interface \hyperlink{interfaceeq__ops_1_1print__output__eq}{eq\+\_\+ops\+::print\+\_\+output\+\_\+eq}
-\begin{DoxyCompactList}\small\item\em Print equilibrium quantities to an output file\+: \end{DoxyCompactList}\item 
-interface \hyperlink{interfaceeq__ops_1_1redistribute__output__eq}{eq\+\_\+ops\+::redistribute\+\_\+output\+\_\+eq}
-\begin{DoxyCompactList}\small\item\em Redistribute the equilibrium variables, but only the Flux variables are saved. \end{DoxyCompactList}\item 
-interface \hyperlink{interfaceeq__ops_1_1calc__rzl}{eq\+\_\+ops\+::calc\+\_\+rzl}
-\begin{DoxyCompactList}\small\item\em Calculate $R$, $Z$ \& $\lambda$ and derivatives in V\+M\+EC coordinates. \end{DoxyCompactList}\item 
-interface \hyperlink{interfaceeq__ops_1_1calc__g__c}{eq\+\_\+ops\+::calc\+\_\+g\+\_\+c}
-\begin{DoxyCompactList}\small\item\em Calculate the lower metric elements in the C(ylindrical) coordinate system. \end{DoxyCompactList}\item 
-interface \hyperlink{interfaceeq__ops_1_1calc__g__v}{eq\+\_\+ops\+::calc\+\_\+g\+\_\+v}
-\begin{DoxyCompactList}\small\item\em Calculate the lower metric coefficients in the equilibrium V(\+M\+E\+C) coordinate system. \end{DoxyCompactList}\item 
-interface \hyperlink{interfaceeq__ops_1_1calc__g__h}{eq\+\_\+ops\+::calc\+\_\+g\+\_\+h}
-\begin{DoxyCompactList}\small\item\em Calculate the lower metric coefficients in the equilibrium H(\+E\+L\+E\+N\+A) coordinate system. \end{DoxyCompactList}\item 
-interface \hyperlink{interfaceeq__ops_1_1calc__g__f}{eq\+\_\+ops\+::calc\+\_\+g\+\_\+f}
-\begin{DoxyCompactList}\small\item\em Calculate the metric coefficients in the F(lux) coordinate system. \end{DoxyCompactList}\item 
-interface \hyperlink{interfaceeq__ops_1_1calc__jac__v}{eq\+\_\+ops\+::calc\+\_\+jac\+\_\+v}
-\begin{DoxyCompactList}\small\item\em Calculate $\mathcal{J}_\text{V}$, the jacobian in V(\+M\+E\+C) coordinates. \end{DoxyCompactList}\item 
-interface \hyperlink{interfaceeq__ops_1_1calc__jac__h}{eq\+\_\+ops\+::calc\+\_\+jac\+\_\+h}
-\begin{DoxyCompactList}\small\item\em Calculate $\mathcal{J}_\text{H}$, the jacobian in H\+E\+L\+E\+NA coordinates. \end{DoxyCompactList}\item 
-interface \hyperlink{interfaceeq__ops_1_1calc__jac__f}{eq\+\_\+ops\+::calc\+\_\+jac\+\_\+f}
-\begin{DoxyCompactList}\small\item\em Calculate $\mathcal{J}_\text{F}$, the jacobian in Flux coordinates. \end{DoxyCompactList}\item 
-interface \hyperlink{interfaceeq__ops_1_1calc__t__vc}{eq\+\_\+ops\+::calc\+\_\+t\+\_\+vc}
-\begin{DoxyCompactList}\small\item\em Calculate $\overline{\text{T}}_\text{C}^\text{V}$, the transformation matrix between C(ylindrical) and V(mec) coordinate system. \end{DoxyCompactList}\item 
-interface \hyperlink{interfaceeq__ops_1_1calc__t__vf}{eq\+\_\+ops\+::calc\+\_\+t\+\_\+vf}
-\begin{DoxyCompactList}\small\item\em Calculate $\overline{\text{T}}_\text{V}^\text{F}$, the transformation matrix between V(\+M\+E\+C) and F(lux) coordinate systems. \end{DoxyCompactList}\item 
-interface \hyperlink{interfaceeq__ops_1_1calc__t__hf}{eq\+\_\+ops\+::calc\+\_\+t\+\_\+hf}
-\begin{DoxyCompactList}\small\item\em Calculate $\overline{\text{T}}_\text{H}^\text{F}$, the transformation matrix between H(\+E\+L\+E\+N\+A) and F(lux) coordinate systems. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Modules}
 \begin{DoxyCompactItemize}
 \item 
 module \hyperlink{namespaceeq__ops}{eq\+\_\+ops}
-\begin{DoxyCompactList}\small\item\em Operations on the equilibrium variables. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{DoxyCompactItemize}
 \subsection*{Functions/\+Subroutines}
 \begin{DoxyCompactItemize}
 \item 
-integer function \hyperlink{namespaceeq__ops_a9addef683b3d4a8c587510e4c994ec61}{eq\+\_\+ops\+::create\+\_\+vmec\+\_\+input} (grid\+\_\+eq, eq\+\_\+1)
-\begin{DoxyCompactList}\small\item\em Creates a V\+M\+EC input file. \end{DoxyCompactList}\item 
+subroutine \hyperlink{eq__ops_8f90_a886bd144f9e11efb18f34b5d1f06e5c5}{calc\+\_\+flux\+\_\+q\+\_\+vmec} ()
+\item 
+subroutine \hyperlink{eq__ops_8f90_a6513c2a78e561f6349e4524f6933e283}{calc\+\_\+flux\+\_\+q\+\_\+hel} ()
+\item 
+integer function \hyperlink{eq__ops_8f90_aecc1d4103aa82217d3014ebb09d7f1e5}{write\+\_\+flux\+\_\+q\+\_\+in\+\_\+file\+\_\+for\+\_\+vmec} ()
+\item 
+subroutine \hyperlink{eq__ops_8f90_a627b6dce4cc49504cdcb156e0179f24d}{plot\+\_\+boundary} (B, n, plot\+\_\+name, plot\+\_\+dim, plot\+\_\+lims)
+\item 
+integer function \hyperlink{namespaceeq__ops_a91256e08dadab2ccbabd66cf369c43a5}{eq\+\_\+ops\+::calc\+\_\+eq\+\_\+2} (grid\+\_\+eq, eq\+\_\+1, eq\+\_\+2, dealloc\+\_\+vars)
+\item 
 integer function, public \hyperlink{namespaceeq__ops_af0effe20188d46a44680c2648e4572e9}{eq\+\_\+ops\+::flux\+\_\+q\+\_\+plot} (grid\+\_\+eq, eq)
-\begin{DoxyCompactList}\small\item\em Plots the flux quantities in the solution grid. \end{DoxyCompactList}\item 
-integer function, public \hyperlink{namespaceeq__ops_a087e08ce6d8ad381b5bac8fc51148d50}{eq\+\_\+ops\+::calc\+\_\+derived\+\_\+q} (grid\+\_\+eq, eq\+\_\+1, eq\+\_\+2)
-\begin{DoxyCompactList}\small\item\em Calculates derived equilibrium quantities system. \end{DoxyCompactList}\item 
-integer function, public \hyperlink{namespaceeq__ops_a7cd38586e386e1bc684a327ebcc4c1de}{eq\+\_\+ops\+::calc\+\_\+normalization\+\_\+const} ()
-\begin{DoxyCompactList}\small\item\em Sets up normalization constants. \end{DoxyCompactList}\item 
+\item 
+integer function \hyperlink{eq__ops_8f90_aed8d3363343555190699b29e393b4e23}{flux\+\_\+q\+\_\+plot\+\_\+hdf5} ()
+\item 
+integer function \hyperlink{eq__ops_8f90_aef1c3c58c42be2651bc2153d0a1ae5a9}{flux\+\_\+q\+\_\+plot\+\_\+ex} ()
+\item 
+integer function \hyperlink{namespaceeq__ops_a42524ab0697a7a986e2f86c4c75cdc33}{eq\+\_\+ops\+::calc\+\_\+rzl\+\_\+ind} (grid, eq, deriv)
+\item 
+integer function \hyperlink{namespaceeq__ops_a366f4cef2390a357f73e73ca56a57497}{eq\+\_\+ops\+::calc\+\_\+rzl\+\_\+arr} (grid, eq, deriv)
+\item 
+integer function \hyperlink{namespaceeq__ops_a7f4a16387d43c37a1dfa78eb4f91d4e4}{eq\+\_\+ops\+::calc\+\_\+g\+\_\+c\+\_\+arr} (eq, deriv)
+\item 
+integer function \hyperlink{namespaceeq__ops_acf8e40b36693a2c3cc778a85ef66bc32}{eq\+\_\+ops\+::calc\+\_\+g\+\_\+v\+\_\+arr} (eq, deriv)
+\item 
+integer function \hyperlink{namespaceeq__ops_a2874986e80f079d585725b46a327b9e8}{eq\+\_\+ops\+::calc\+\_\+h\+\_\+h\+\_\+arr} (grid, eq, deriv)
+\item 
+integer function \hyperlink{namespaceeq__ops_a29e2bd79210505601bdb37566a503e2a}{eq\+\_\+ops\+::calc\+\_\+g\+\_\+f\+\_\+arr} (eq, deriv)
+\item 
+integer function \hyperlink{namespaceeq__ops_a1a5caa4fb90d75a3f19aba94f98417e0}{eq\+\_\+ops\+::calc\+\_\+jac\+\_\+v\+\_\+arr} (eq, deriv)
+\item 
+integer function \hyperlink{namespaceeq__ops_a0b0e2f58fe1133e16ff604499fa24d29}{eq\+\_\+ops\+::calc\+\_\+jac\+\_\+h\+\_\+arr} (grid, eq\+\_\+1, eq\+\_\+2, deriv)
+\item 
+integer function \hyperlink{namespaceeq__ops_a7d429e0ee6deefac854d3398955dc73d}{eq\+\_\+ops\+::calc\+\_\+jac\+\_\+f\+\_\+arr} (eq, deriv)
+\item 
+integer function \hyperlink{namespaceeq__ops_acd0be2e627748f6387bb38ee0ad7c906}{eq\+\_\+ops\+::calc\+\_\+t\+\_\+vc\+\_\+arr} (eq, deriv)
+\item 
+integer function \hyperlink{namespaceeq__ops_a9fe661ac183df2bdf7a96b4450be21aa}{eq\+\_\+ops\+::calc\+\_\+t\+\_\+vf\+\_\+arr} (grid, eq\+\_\+1, eq\+\_\+2, deriv)
+\item 
+integer function \hyperlink{namespaceeq__ops_a64fe3de828eafa02ef635def9acafaed}{eq\+\_\+ops\+::calc\+\_\+t\+\_\+hf\+\_\+arr} (grid, eq\+\_\+1, eq\+\_\+2, deriv)
+\item 
+subroutine, public \hyperlink{namespaceeq__ops_a8f774acd7a5af5e9ca315907e3d7a885}{eq\+\_\+ops\+::calc\+\_\+derived\+\_\+q} (grid\+\_\+eq, eq\+\_\+1, eq\+\_\+2)
+\item 
+subroutine, public \hyperlink{namespaceeq__ops_a09b10d95cd83c89e817664a954f7555d}{eq\+\_\+ops\+::calc\+\_\+normalization\+\_\+const} ()
+\item 
+subroutine \hyperlink{eq__ops_8f90_a26984870bf6ddccfc7c55bdf5993a4d8}{calc\+\_\+normalization\+\_\+const\+\_\+vmec}
+\item 
+subroutine \hyperlink{eq__ops_8f90_af011b33f043fd8732eeea7d9f2e03ea3}{calc\+\_\+normalization\+\_\+const\+\_\+hel}
+\item 
 subroutine, public \hyperlink{namespaceeq__ops_a1b4c764da73624722d7e76498a2b80a9}{eq\+\_\+ops\+::normalize\+\_\+input} ()
-\begin{DoxyCompactList}\small\item\em Normalize input quantities. \end{DoxyCompactList}\item 
-integer function, public \hyperlink{namespaceeq__ops_a73a8c3cea1e8a636b4978bc626e0fab0}{eq\+\_\+ops\+::b\+\_\+plot} (grid\+\_\+eq, eq\+\_\+1, eq\+\_\+2, rich\+\_\+lvl, plot\+\_\+fluxes, X\+YZ)
-\begin{DoxyCompactList}\small\item\em Plots the magnetic fields. \end{DoxyCompactList}\item 
-integer function, public \hyperlink{namespaceeq__ops_afabdf28e5c26ceb87e6eb8cf3809919d}{eq\+\_\+ops\+::j\+\_\+plot} (grid\+\_\+eq, eq\+\_\+1, eq\+\_\+2, rich\+\_\+lvl, plot\+\_\+fluxes, X\+YZ)
-\begin{DoxyCompactList}\small\item\em Plots the current. \end{DoxyCompactList}\item 
-integer function, public \hyperlink{namespaceeq__ops_ad173efd111cb85c11bc2bc78a7555096}{eq\+\_\+ops\+::kappa\+\_\+plot} (grid\+\_\+eq, eq\+\_\+1, eq\+\_\+2, rich\+\_\+lvl, X\+YZ)
-\begin{DoxyCompactList}\small\item\em Plots the curvature. \end{DoxyCompactList}\item 
-integer function, public \hyperlink{namespaceeq__ops_ac0a79893900631d25b170be0abd2c131}{eq\+\_\+ops\+::delta\+\_\+r\+\_\+plot} (grid\+\_\+eq, eq\+\_\+1, eq\+\_\+2, X\+YZ, rich\+\_\+lvl)
-\begin{DoxyCompactList}\small\item\em Plots {\bfseries H\+A\+LF} of the change in the position vectors for 2 different toroidal positions, which can correspond to a ripple. \end{DoxyCompactList}\item 
+\item 
+integer function, public \hyperlink{namespaceeq__ops_a9dab060a0bbbbaf6c8ccb66e1f5f160b}{eq\+\_\+ops\+::b\+\_\+plot} (grid\+\_\+eq, eq\+\_\+1, eq\+\_\+2, rich\+\_\+lvl, plot\+\_\+fluxes)
+\item 
+integer function, public \hyperlink{namespaceeq__ops_af611fc0c83d1ab5ed8940d9a1a652d6c}{eq\+\_\+ops\+::j\+\_\+plot} (grid\+\_\+eq, eq\+\_\+1, eq\+\_\+2, rich\+\_\+lvl, plot\+\_\+fluxes)
+\item 
+integer function, public \hyperlink{namespaceeq__ops_a9ecb744b3812fe838f13c9886307da24}{eq\+\_\+ops\+::kappa\+\_\+plot} (grid\+\_\+eq, eq\+\_\+1, eq\+\_\+2, rich\+\_\+lvl)
+\item 
+integer function \hyperlink{namespaceeq__ops_ad7c123990ab1ff23dbd71bb47c3181b8}{eq\+\_\+ops\+::print\+\_\+output\+\_\+eq\+\_\+1} (grid\+\_\+eq, eq, data\+\_\+name)
+\item 
+integer function \hyperlink{namespaceeq__ops_a479e914bb96e5269af860cae149e1a73}{eq\+\_\+ops\+::print\+\_\+output\+\_\+eq\+\_\+2} (grid\+\_\+eq, eq, data\+\_\+name, rich\+\_\+lvl, par\+\_\+div, dealloc\+\_\+vars)
+\item 
+integer function \hyperlink{namespaceeq__ops_adc3d3173255a02f750a4d2c0f1b30044}{eq\+\_\+ops\+::redistribute\+\_\+output\+\_\+eq\+\_\+1} (grid, grid\+\_\+out, eq, eq\+\_\+out)
+\item 
+integer function \hyperlink{namespaceeq__ops_a34003959915249394273824108af61e0}{eq\+\_\+ops\+::redistribute\+\_\+output\+\_\+eq\+\_\+2} (grid, grid\+\_\+out, eq, eq\+\_\+out)
+\item 
 integer function, public \hyperlink{namespaceeq__ops_a8fae749abe55865d8135fef536a8e8f1}{eq\+\_\+ops\+::divide\+\_\+eq\+\_\+jobs} (n\+\_\+par\+\_\+X, arr\+\_\+size, n\+\_\+div, n\+\_\+div\+\_\+max, n\+\_\+par\+\_\+\+X\+\_\+base, range\+\_\+name)
-\begin{DoxyCompactList}\small\item\em Divides the equilibrium jobs. \end{DoxyCompactList}\item 
+\item 
 integer function, public \hyperlink{namespaceeq__ops_a4e20b8725fce149449f83754244dc84e}{eq\+\_\+ops\+::calc\+\_\+eq\+\_\+jobs\+\_\+lims} (n\+\_\+par\+\_\+X, n\+\_\+div)
-\begin{DoxyCompactList}\small\item\em Calculate {\ttfamily eq\+\_\+jobs\+\_\+lims}. \end{DoxyCompactList}\item 
+\item 
 integer function \hyperlink{namespaceeq__ops_a1f5049c3e309fa23ee46fd116c9344f1}{eq\+\_\+ops\+::test\+\_\+t\+\_\+ef} (grid\+\_\+eq, eq\+\_\+1, eq\+\_\+2)
-\begin{DoxyCompactList}\small\item\em See if {\ttfamily T\+\_\+\+EF} it complies with the theory of \cite{Weyens3D}. \end{DoxyCompactList}\item 
+\item 
 integer function \hyperlink{namespaceeq__ops_a003df1e1ab90dc6f586c3eed3dd067e8}{eq\+\_\+ops\+::test\+\_\+d12h\+\_\+h} (grid\+\_\+eq, eq)
-\begin{DoxyCompactList}\small\item\em Tests whether $ \frac{\partial^2}{\partial u_i \partial u_j} h_\text{H} $ is calculated correctly. \end{DoxyCompactList}\item 
+\item 
 integer function \hyperlink{namespaceeq__ops_a05dcd4803b9c7845d3353614c9630c23}{eq\+\_\+ops\+::test\+\_\+jac\+\_\+f} (grid\+\_\+eq, eq\+\_\+1, eq\+\_\+2)
-\begin{DoxyCompactList}\small\item\em Performs tests on $ \mathcal{J}_\text{F}$. \end{DoxyCompactList}\item 
+\item 
 integer function \hyperlink{namespaceeq__ops_a9811c83477d9d85f7401fd7957a590fc}{eq\+\_\+ops\+::test\+\_\+g\+\_\+v} (grid\+\_\+eq, eq)
-\begin{DoxyCompactList}\small\item\em Tests whether $g_\text{V}$ is calculated correctly. \end{DoxyCompactList}\item 
+\item 
 integer function \hyperlink{namespaceeq__ops_aef40d04e93f6a96576f8fe893fb086f8}{eq\+\_\+ops\+::test\+\_\+jac\+\_\+v} (grid\+\_\+eq, eq)
-\begin{DoxyCompactList}\small\item\em Tests whether $\mathcal{J}_\text{V}$ is calculated correctly. \end{DoxyCompactList}\item 
+\item 
 integer function \hyperlink{namespaceeq__ops_a8082c12510696bd8ffdd0deef41860c2}{eq\+\_\+ops\+::test\+\_\+b\+\_\+f} (grid\+\_\+eq, eq\+\_\+1, eq\+\_\+2)
-\begin{DoxyCompactList}\small\item\em Tests whether $\vec{B}_\text{F}$ is calculated correctly. \end{DoxyCompactList}\item 
+\item 
 integer function \hyperlink{namespaceeq__ops_a38b723f6ed5d2e2772c9c3ad14d5ffd4}{eq\+\_\+ops\+::test\+\_\+p} (grid\+\_\+eq, eq\+\_\+1, eq\+\_\+2)
-\begin{DoxyCompactList}\small\item\em Performs tests on pressure balance. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{DoxyCompactItemize}
 \subsection*{Variables}
 \begin{DoxyCompactItemize}
 \item 
-logical, public \hyperlink{namespaceeq__ops_a1b6609a8d8b427d9133bf323e732f209}{eq\+\_\+ops\+::debug\+\_\+calc\+\_\+derived\+\_\+q} = .true.
-\begin{DoxyCompactList}\small\item\em plot debug information for \hyperlink{namespaceeq__ops_a087e08ce6d8ad381b5bac8fc51148d50}{calc\+\_\+derived\+\_\+q()} \end{DoxyCompactList}\item 
+logical, public \hyperlink{namespaceeq__ops_a1b6609a8d8b427d9133bf323e732f209}{eq\+\_\+ops\+::debug\+\_\+calc\+\_\+derived\+\_\+q} = .false.
+\item 
 logical, public \hyperlink{namespaceeq__ops_a45ba7f46fd439bbd73edfd1fd548b58e}{eq\+\_\+ops\+::debug\+\_\+j\+\_\+plot} = .false.
-\begin{DoxyCompactList}\small\item\em plot debug information for \hyperlink{namespaceeq__ops_afabdf28e5c26ceb87e6eb8cf3809919d}{j\+\_\+plot()} \end{DoxyCompactList}\item 
-logical, public \hyperlink{namespaceeq__ops_a07ca60790a262e20bc8632be1530970a}{eq\+\_\+ops\+::debug\+\_\+create\+\_\+vmec\+\_\+input} = .false.
-\begin{DoxyCompactList}\small\item\em plot debug information for \hyperlink{namespaceeq__ops_a9addef683b3d4a8c587510e4c994ec61}{create\+\_\+vmec\+\_\+input()} \end{DoxyCompactList}\end{DoxyCompactItemize}
+\item 
+logical, public \hyperlink{namespaceeq__ops_adf0e2b602c58383d648a2543a17189c9}{eq\+\_\+ops\+::debug\+\_\+write\+\_\+flux\+\_\+q\+\_\+in\+\_\+file\+\_\+for\+\_\+vmec} = .false.
+\end{DoxyCompactItemize}
+
+
+\subsection{Function/\+Subroutine Documentation}
+\mbox{\Hypertarget{eq__ops_8f90_a6513c2a78e561f6349e4524f6933e283}\label{eq__ops_8f90_a6513c2a78e561f6349e4524f6933e283}} 
+\index{eq\+\_\+ops.\+f90@{eq\+\_\+ops.\+f90}!calc\+\_\+flux\+\_\+q\+\_\+hel@{calc\+\_\+flux\+\_\+q\+\_\+hel}}
+\index{calc\+\_\+flux\+\_\+q\+\_\+hel@{calc\+\_\+flux\+\_\+q\+\_\+hel}!eq\+\_\+ops.\+f90@{eq\+\_\+ops.\+f90}}
+\subsubsection{\texorpdfstring{calc\+\_\+flux\+\_\+q\+\_\+hel()}{calc\_flux\_q\_hel()}}
+{\footnotesize\ttfamily subroutine calc\+\_\+eq\+\_\+1\+::calc\+\_\+flux\+\_\+q\+\_\+hel (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 193 of file eq\+\_\+ops.\+f90.
+
+\mbox{\Hypertarget{eq__ops_8f90_a886bd144f9e11efb18f34b5d1f06e5c5}\label{eq__ops_8f90_a886bd144f9e11efb18f34b5d1f06e5c5}} 
+\index{eq\+\_\+ops.\+f90@{eq\+\_\+ops.\+f90}!calc\+\_\+flux\+\_\+q\+\_\+vmec@{calc\+\_\+flux\+\_\+q\+\_\+vmec}}
+\index{calc\+\_\+flux\+\_\+q\+\_\+vmec@{calc\+\_\+flux\+\_\+q\+\_\+vmec}!eq\+\_\+ops.\+f90@{eq\+\_\+ops.\+f90}}
+\subsubsection{\texorpdfstring{calc\+\_\+flux\+\_\+q\+\_\+vmec()}{calc\_flux\_q\_vmec()}}
+{\footnotesize\ttfamily subroutine calc\+\_\+eq\+\_\+1\+::calc\+\_\+flux\+\_\+q\+\_\+vmec (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 164 of file eq\+\_\+ops.\+f90.
+
+\mbox{\Hypertarget{eq__ops_8f90_af011b33f043fd8732eeea7d9f2e03ea3}\label{eq__ops_8f90_af011b33f043fd8732eeea7d9f2e03ea3}} 
+\index{eq\+\_\+ops.\+f90@{eq\+\_\+ops.\+f90}!calc\+\_\+normalization\+\_\+const\+\_\+hel@{calc\+\_\+normalization\+\_\+const\+\_\+hel}}
+\index{calc\+\_\+normalization\+\_\+const\+\_\+hel@{calc\+\_\+normalization\+\_\+const\+\_\+hel}!eq\+\_\+ops.\+f90@{eq\+\_\+ops.\+f90}}
+\subsubsection{\texorpdfstring{calc\+\_\+normalization\+\_\+const\+\_\+hel()}{calc\_normalization\_const\_hel()}}
+{\footnotesize\ttfamily subroutine calc\+\_\+normalization\+\_\+const\+::calc\+\_\+normalization\+\_\+const\+\_\+hel (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 3225 of file eq\+\_\+ops.\+f90.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{eq__ops_8f90_af011b33f043fd8732eeea7d9f2e03ea3_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{eq__ops_8f90_af011b33f043fd8732eeea7d9f2e03ea3_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{eq__ops_8f90_a26984870bf6ddccfc7c55bdf5993a4d8}\label{eq__ops_8f90_a26984870bf6ddccfc7c55bdf5993a4d8}} 
+\index{eq\+\_\+ops.\+f90@{eq\+\_\+ops.\+f90}!calc\+\_\+normalization\+\_\+const\+\_\+vmec@{calc\+\_\+normalization\+\_\+const\+\_\+vmec}}
+\index{calc\+\_\+normalization\+\_\+const\+\_\+vmec@{calc\+\_\+normalization\+\_\+const\+\_\+vmec}!eq\+\_\+ops.\+f90@{eq\+\_\+ops.\+f90}}
+\subsubsection{\texorpdfstring{calc\+\_\+normalization\+\_\+const\+\_\+vmec()}{calc\_normalization\_const\_vmec()}}
+{\footnotesize\ttfamily subroutine calc\+\_\+normalization\+\_\+const\+::calc\+\_\+normalization\+\_\+const\+\_\+vmec (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 3110 of file eq\+\_\+ops.\+f90.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{eq__ops_8f90_a26984870bf6ddccfc7c55bdf5993a4d8_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{eq__ops_8f90_a26984870bf6ddccfc7c55bdf5993a4d8_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{eq__ops_8f90_aef1c3c58c42be2651bc2153d0a1ae5a9}\label{eq__ops_8f90_aef1c3c58c42be2651bc2153d0a1ae5a9}} 
+\index{eq\+\_\+ops.\+f90@{eq\+\_\+ops.\+f90}!flux\+\_\+q\+\_\+plot\+\_\+ex@{flux\+\_\+q\+\_\+plot\+\_\+ex}}
+\index{flux\+\_\+q\+\_\+plot\+\_\+ex@{flux\+\_\+q\+\_\+plot\+\_\+ex}!eq\+\_\+ops.\+f90@{eq\+\_\+ops.\+f90}}
+\subsubsection{\texorpdfstring{flux\+\_\+q\+\_\+plot\+\_\+ex()}{flux\_q\_plot\_ex()}}
+{\footnotesize\ttfamily integer function flux\+\_\+q\+\_\+plot\+::flux\+\_\+q\+\_\+plot\+\_\+ex (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 1721 of file eq\+\_\+ops.\+f90.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{eq__ops_8f90_aef1c3c58c42be2651bc2153d0a1ae5a9_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{eq__ops_8f90_aef1c3c58c42be2651bc2153d0a1ae5a9_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{eq__ops_8f90_aed8d3363343555190699b29e393b4e23}\label{eq__ops_8f90_aed8d3363343555190699b29e393b4e23}} 
+\index{eq\+\_\+ops.\+f90@{eq\+\_\+ops.\+f90}!flux\+\_\+q\+\_\+plot\+\_\+hdf5@{flux\+\_\+q\+\_\+plot\+\_\+hdf5}}
+\index{flux\+\_\+q\+\_\+plot\+\_\+hdf5@{flux\+\_\+q\+\_\+plot\+\_\+hdf5}!eq\+\_\+ops.\+f90@{eq\+\_\+ops.\+f90}}
+\subsubsection{\texorpdfstring{flux\+\_\+q\+\_\+plot\+\_\+hdf5()}{flux\_q\_plot\_hdf5()}}
+{\footnotesize\ttfamily integer function flux\+\_\+q\+\_\+plot\+::flux\+\_\+q\+\_\+plot\+\_\+hdf5 (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 1626 of file eq\+\_\+ops.\+f90.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{eq__ops_8f90_aed8d3363343555190699b29e393b4e23_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{eq__ops_8f90_aed8d3363343555190699b29e393b4e23_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{eq__ops_8f90_a627b6dce4cc49504cdcb156e0179f24d}\label{eq__ops_8f90_a627b6dce4cc49504cdcb156e0179f24d}} 
+\index{eq\+\_\+ops.\+f90@{eq\+\_\+ops.\+f90}!plot\+\_\+boundary@{plot\+\_\+boundary}}
+\index{plot\+\_\+boundary@{plot\+\_\+boundary}!eq\+\_\+ops.\+f90@{eq\+\_\+ops.\+f90}}
+\subsubsection{\texorpdfstring{plot\+\_\+boundary()}{plot\_boundary()}}
+{\footnotesize\ttfamily subroutine calc\+\_\+eq\+\_\+1\+::plot\+\_\+boundary (\begin{DoxyParamCaption}\item[{real(dp), dimension(\+:,\+:,\+:,\+:), intent(in)}]{B,  }\item[{integer, dimension(\+:), intent(in)}]{n,  }\item[{character(len=$\ast$), intent(in)}]{plot\+\_\+name,  }\item[{integer, dimension(2), intent(in)}]{plot\+\_\+dim,  }\item[{real(dp), dimension(2,2), intent(in)}]{plot\+\_\+lims }\end{DoxyParamCaption})}
+
+
+
+Definition at line 1070 of file eq\+\_\+ops.\+f90.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{eq__ops_8f90_a627b6dce4cc49504cdcb156e0179f24d_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=348pt]{eq__ops_8f90_a627b6dce4cc49504cdcb156e0179f24d_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{eq__ops_8f90_aecc1d4103aa82217d3014ebb09d7f1e5}\label{eq__ops_8f90_aecc1d4103aa82217d3014ebb09d7f1e5}} 
+\index{eq\+\_\+ops.\+f90@{eq\+\_\+ops.\+f90}!write\+\_\+flux\+\_\+q\+\_\+in\+\_\+file\+\_\+for\+\_\+vmec@{write\+\_\+flux\+\_\+q\+\_\+in\+\_\+file\+\_\+for\+\_\+vmec}}
+\index{write\+\_\+flux\+\_\+q\+\_\+in\+\_\+file\+\_\+for\+\_\+vmec@{write\+\_\+flux\+\_\+q\+\_\+in\+\_\+file\+\_\+for\+\_\+vmec}!eq\+\_\+ops.\+f90@{eq\+\_\+ops.\+f90}}
+\subsubsection{\texorpdfstring{write\+\_\+flux\+\_\+q\+\_\+in\+\_\+file\+\_\+for\+\_\+vmec()}{write\_flux\_q\_in\_file\_for\_vmec()}}
+{\footnotesize\ttfamily integer function calc\+\_\+eq\+\_\+1\+::write\+\_\+flux\+\_\+q\+\_\+in\+\_\+file\+\_\+for\+\_\+vmec (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 222 of file eq\+\_\+ops.\+f90.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{eq__ops_8f90_aecc1d4103aa82217d3014ebb09d7f1e5_cgraph}
+\end{center}
+\end{figure}

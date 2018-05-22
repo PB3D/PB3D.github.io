@@ -29,7 +29,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">PB3D
-   &#160;<span id="projectnumber">[2.24]</span>
+   &#160;<span id="projectnumber">[1.73]</span>
    </div>
    <div id="projectbrief">Ideal linear high-n MHD stability in 3-D</div>
   </td>
@@ -74,49 +74,34 @@ $(function() {
 <div class="title">grid_ops Module Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
-
-<p>Operations that have to do with the grids and different coordinate systems.  
-<a href="#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions/Subroutines</h2></td></tr>
-<tr class="memitem:a1c18f90f93f5fce7ebb4dba60b70e0f8"><td class="memItemLeft" align="right" valign="top">integer function, public&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacegrid__ops.html#a1c18f90f93f5fce7ebb4dba60b70e0f8">calc_norm_range</a> (style, in_limits, eq_limits, X_limits, sol_limits, r_F_eq, r_F_X, r_F_sol, jq)</td></tr>
-<tr class="memdesc:a1c18f90f93f5fce7ebb4dba60b70e0f8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculates normal range for the input grid, the equilibrium grid and/or the solution grid.  <a href="#a1c18f90f93f5fce7ebb4dba60b70e0f8">More...</a><br /></td></tr>
-<tr class="separator:a1c18f90f93f5fce7ebb4dba60b70e0f8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af63366847d1caa64a7d329672292fd34"><td class="memItemLeft" align="right" valign="top">integer function, public&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacegrid__ops.html#af63366847d1caa64a7d329672292fd34">setup_grid_eq</a> (grid_eq, eq_limits)</td></tr>
-<tr class="memdesc:af63366847d1caa64a7d329672292fd34"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets up the equilibrium grid.  <a href="#af63366847d1caa64a7d329672292fd34">More...</a><br /></td></tr>
-<tr class="separator:af63366847d1caa64a7d329672292fd34"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a596695cab6971ec6b9d32d13a50708b6"><td class="memItemLeft" align="right" valign="top">integer function, public&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacegrid__ops.html#a596695cab6971ec6b9d32d13a50708b6">calc_norm_range</a> (in_limits, eq_limits, X_limits, sol_limits, r_F_eq, r_F_X, r_F_sol)</td></tr>
+<tr class="separator:a596695cab6971ec6b9d32d13a50708b6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab749b0904ed8c69253fe8908c2624bcd"><td class="memItemLeft" align="right" valign="top">integer function, public&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacegrid__ops.html#ab749b0904ed8c69253fe8908c2624bcd">setup_grid_eq</a> (grid_eq, eq_limits, only_half_grid)</td></tr>
+<tr class="separator:ab749b0904ed8c69253fe8908c2624bcd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad16495ddd320562451c2325bafecf2d8"><td class="memItemLeft" align="right" valign="top">integer function, public&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacegrid__ops.html#ad16495ddd320562451c2325bafecf2d8">setup_grid_eq_b</a> (grid_eq, grid_eq_B, eq, only_half_grid)</td></tr>
-<tr class="memdesc:ad16495ddd320562451c2325bafecf2d8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets up the field-aligned equilibrium grid.  <a href="#ad16495ddd320562451c2325bafecf2d8">More...</a><br /></td></tr>
 <tr class="separator:ad16495ddd320562451c2325bafecf2d8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1047889ec84da6e56aae619570a16988"><td class="memItemLeft" align="right" valign="top">integer function, public&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacegrid__ops.html#a1047889ec84da6e56aae619570a16988">setup_grid_x</a> (grid_eq, grid_X, r_F_X, X_limits)</td></tr>
-<tr class="memdesc:a1047889ec84da6e56aae619570a16988"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets up the general perturbation grid, in which the perturbation variables are calculated.  <a href="#a1047889ec84da6e56aae619570a16988">More...</a><br /></td></tr>
-<tr class="separator:a1047889ec84da6e56aae619570a16988"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aeff1569cb9a043b03ed49250524fbd95"><td class="memItemLeft" align="right" valign="top">integer function, public&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacegrid__ops.html#aeff1569cb9a043b03ed49250524fbd95">setup_grid_sol</a> (grid_eq, grid_X, grid_sol, r_F_sol, sol_limits)</td></tr>
-<tr class="memdesc:aeff1569cb9a043b03ed49250524fbd95"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets up the general solution grid, in which the solution variables are calculated.  <a href="#aeff1569cb9a043b03ed49250524fbd95">More...</a><br /></td></tr>
-<tr class="separator:aeff1569cb9a043b03ed49250524fbd95"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a06107dbdfd1dd62e372cc29ab0255bad"><td class="memItemLeft" align="right" valign="top">integer function, public&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacegrid__ops.html#a06107dbdfd1dd62e372cc29ab0255bad">calc_ang_grid_eq_b</a> (grid_eq, eq, only_half_grid)</td></tr>
-<tr class="memdesc:a06107dbdfd1dd62e372cc29ab0255bad"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculate equilibrium grid that follows magnetic field lines.  <a href="#a06107dbdfd1dd62e372cc29ab0255bad">More...</a><br /></td></tr>
-<tr class="separator:a06107dbdfd1dd62e372cc29ab0255bad"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab10ef5b486ee3861df2da4e53bc22630"><td class="memItemLeft" align="right" valign="top">integer function, public&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacegrid__ops.html#ab10ef5b486ee3861df2da4e53bc22630">redistribute_output_grid</a> (grid, grid_out, no_outer_trim)</td></tr>
-<tr class="memdesc:ab10ef5b486ee3861df2da4e53bc22630"><td class="mdescLeft">&#160;</td><td class="mdescRight">Redistribute a grid to match the normal distribution of solution grid.  <a href="#ab10ef5b486ee3861df2da4e53bc22630">More...</a><br /></td></tr>
 <tr class="separator:ab10ef5b486ee3861df2da4e53bc22630"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1047889ec84da6e56aae619570a16988"><td class="memItemLeft" align="right" valign="top">integer function, public&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacegrid__ops.html#a1047889ec84da6e56aae619570a16988">setup_grid_x</a> (grid_eq, grid_X, r_F_X, X_limits)</td></tr>
+<tr class="separator:a1047889ec84da6e56aae619570a16988"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae4f50f7b63e0a8b84dae6b98fd3e5d71"><td class="memItemLeft" align="right" valign="top">integer function, public&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacegrid__ops.html#ae4f50f7b63e0a8b84dae6b98fd3e5d71">setup_grid_sol</a> (grid_X, grid_sol, sol_limits)</td></tr>
+<tr class="separator:ae4f50f7b63e0a8b84dae6b98fd3e5d71"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a06107dbdfd1dd62e372cc29ab0255bad"><td class="memItemLeft" align="right" valign="top">integer function, public&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacegrid__ops.html#a06107dbdfd1dd62e372cc29ab0255bad">calc_ang_grid_eq_b</a> (grid_eq, eq, only_half_grid)</td></tr>
+<tr class="separator:a06107dbdfd1dd62e372cc29ab0255bad"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:addd76b7b3be0b51e0863ae0cdfef41e6"><td class="memItemLeft" align="right" valign="top">integer function, public&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacegrid__ops.html#addd76b7b3be0b51e0863ae0cdfef41e6">magn_grid_plot</a> (grid)</td></tr>
-<tr class="memdesc:addd76b7b3be0b51e0863ae0cdfef41e6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Plots the grid in real 3-D space.  <a href="#addd76b7b3be0b51e0863ae0cdfef41e6">More...</a><br /></td></tr>
 <tr class="separator:addd76b7b3be0b51e0863ae0cdfef41e6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4827e794d37334c0cad9bb2016e64d46"><td class="memItemLeft" align="right" valign="top">integer function, public&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacegrid__ops.html#a4827e794d37334c0cad9bb2016e64d46">print_output_grid</a> (grid, grid_name, data_name, rich_lvl, par_div, remove_previous_arrs)</td></tr>
-<tr class="memdesc:a4827e794d37334c0cad9bb2016e64d46"><td class="mdescLeft">&#160;</td><td class="mdescRight">Print grid variables to an output file.  <a href="#a4827e794d37334c0cad9bb2016e64d46">More...</a><br /></td></tr>
-<tr class="separator:a4827e794d37334c0cad9bb2016e64d46"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab2a8efa54d36500efcabeb9f1aabbcc6"><td class="memItemLeft" align="right" valign="top">integer function, public&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacegrid__ops.html#ab2a8efa54d36500efcabeb9f1aabbcc6">print_output_grid</a> (grid, grid_name, data_name, rich_lvl, par_div)</td></tr>
+<tr class="separator:ab2a8efa54d36500efcabeb9f1aabbcc6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
 Variables</h2></td></tr>
 <tr class="memitem:ad043ab1b07b2d251bb7596b8c8d2f960"><td class="memItemLeft" align="right" valign="top">logical, public&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacegrid__ops.html#ad043ab1b07b2d251bb7596b8c8d2f960">debug_calc_ang_grid_eq_b</a> = .false.</td></tr>
-<tr class="memdesc:ad043ab1b07b2d251bb7596b8c8d2f960"><td class="mdescLeft">&#160;</td><td class="mdescRight">plot debug information for <a class="el" href="namespacegrid__ops.html#a06107dbdfd1dd62e372cc29ab0255bad" title="Calculate equilibrium grid that follows magnetic field lines. ">calc_ang_grid_eq_b()</a>  <a href="#ad043ab1b07b2d251bb7596b8c8d2f960">More...</a><br /></td></tr>
 <tr class="separator:ad043ab1b07b2d251bb7596b8c8d2f960"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Operations that have to do with the grids and different coordinate systems. </p>
-</div><h2 class="groupheader">Function/Subroutine Documentation</h2>
+<h2 class="groupheader">Function/Subroutine Documentation</h2>
 <a id="a06107dbdfd1dd62e372cc29ab0255bad"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a06107dbdfd1dd62e372cc29ab0255bad">&#9670;&nbsp;</a></span>calc_ang_grid_eq_b()</h2>
 
@@ -126,13 +111,13 @@ Variables</h2></td></tr>
         <tr>
           <td class="memname">integer function, public grid_ops::calc_ang_grid_eq_b </td>
           <td>(</td>
-          <td class="paramtype">type(<a class="el" href="structgrid__vars_1_1grid__type.html">grid_type</a>), intent(inout)&#160;</td>
+          <td class="paramtype">type(grid_type), intent(inout)&#160;</td>
           <td class="paramname"><em>grid_eq</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">type(<a class="el" href="structeq__vars_1_1eq__1__type.html">eq_1_type</a>), intent(in), target&#160;</td>
+          <td class="paramtype">type(eq_1_type), intent(in), target&#160;</td>
           <td class="paramname"><em>eq</em>, </td>
         </tr>
         <tr>
@@ -149,44 +134,28 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Calculate equilibrium grid that follows magnetic field lines. </p>
-<p>This grid is different from the equilibrium grid from setup_grid_eq for HELENA, as the latter is the output grid from HELENA, which is situated in a single poloidal cross-section, as opposed to a really field-aligne grid.</p>
-<p>For VMEC, this is not used as the grid is field-aligned from the start.</p>
-<dl class="section note"><dt>Note</dt><dd><ol type="1">
-<li>The end-points are included for the grids in the parallel direction. This is to facilitate working with the trapezoidal rule or Simpson's 3/8 rule for integration. This is <b>NOT</b> valid in general!</li>
-<li>by setting the flag <code>only_half_grid</code>, only the even points of the parallel grid are calculated, which is useful for higher Richardson levels with VMEC so that only new angular points are calculated and the old ones reused.</li>
-</ol>
-</dd></dl>
-<dl class="section return"><dt>Returns</dt><dd>ierr</dd></dl>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramdir">[in,out]</td><td class="paramname">grid_eq</td><td>equilibrium grid of which to calculate angular part</td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">eq</td><td>flux equilibrium variables</td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">only_half_grid</td><td>calculate only half grid with even points </td></tr>
-  </table>
-  </dd>
-</dl>
-
-<p class="definition">Definition at line <a class="el" href="grid__ops_8f90_source.html#l00794">794</a> of file <a class="el" href="grid__ops_8f90_source.html">grid_ops.f90</a>.</p>
+<p class="definition">Definition at line <a class="el" href="grid__ops_8f90_source.html#l00723">723</a> of file <a class="el" href="grid__ops_8f90_source.html">grid_ops.f90</a>.</p>
 <div id="dynsection-0" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-0-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
 <div id="dynsection-0-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-0-content" class="dyncontent" style="display:none;">
-<div class="center"><iframe scrolling="no" frameborder="0" src="namespacegrid__ops_a06107dbdfd1dd62e372cc29ab0255bad_cgraph.svg" width="1140" height="399"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="namespacegrid__ops_a06107dbdfd1dd62e372cc29ab0255bad_cgraph.svg" width="1124" height="339"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 <div id="dynsection-1" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-1-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
 <div id="dynsection-1-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-1-content" class="dyncontent" style="display:none;">
-<div class="center"><iframe scrolling="no" frameborder="0" src="namespacegrid__ops_a06107dbdfd1dd62e372cc29ab0255bad_icgraph.svg" width="814" height="75"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="namespacegrid__ops_a06107dbdfd1dd62e372cc29ab0255bad_icgraph.svg" width="814" height="75"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 
 </div>
 </div>
-<a id="a1c18f90f93f5fce7ebb4dba60b70e0f8"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1c18f90f93f5fce7ebb4dba60b70e0f8">&#9670;&nbsp;</a></span>calc_norm_range()</h2>
+<a id="a596695cab6971ec6b9d32d13a50708b6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a596695cab6971ec6b9d32d13a50708b6">&#9670;&nbsp;</a></span>calc_norm_range()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -194,12 +163,6 @@ Variables</h2></td></tr>
         <tr>
           <td class="memname">integer function, public grid_ops::calc_norm_range </td>
           <td>(</td>
-          <td class="paramtype">character(len=*), intent(in)&#160;</td>
-          <td class="paramname"><em>style</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
           <td class="paramtype">integer, dimension(2), intent(inout), optional&#160;</td>
           <td class="paramname"><em>in_limits</em>, </td>
         </tr>
@@ -230,20 +193,14 @@ Variables</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">real(dp), dimension(:), intent(inout), optional, allocatable&#160;</td>
+          <td class="paramtype">real(dp), dimension(:), intent(inout), optional&#160;</td>
           <td class="paramname"><em>r_F_X</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">real(dp), dimension(:), intent(inout), optional&#160;</td>
-          <td class="paramname"><em>r_F_sol</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">real(dp), dimension(:), intent(in), optional&#160;</td>
-          <td class="paramname"><em>jq</em>&#160;</td>
+          <td class="paramname"><em>r_F_sol</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -253,54 +210,22 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Calculates normal range for the input grid, the equilibrium grid and/or the solution grid. </p>
-<p>General workings, depending on <code>X_grid_style:</code> </p>
-<table class="doxtable">
-<tr>
-<th>1 (equilibrium) </th><th>2 (solution ) </th><th>3 (enriched)  </th></tr>
-<tr>
-<td>calc_eq() </td><td>calc_eq() </td><td>calc_eq() </td></tr>
-<tr>
-<td></td><td>redistribute to sol </td><td>add points to optimize </td></tr>
-<tr>
-<td></td><td>interpolate to sol </td><td>interpolate to X </td></tr>
-<tr>
-<td>calc_x() </td><td>calc_x() </td><td>calc_x() </td></tr>
-<tr>
-<td>redistribute to sol </td><td>copy to sol </td><td>redistribute to sol </td></tr>
-<tr>
-<td>interpolate to sol </td><td></td><td>interpolate to sol </td></tr>
-</table>
-<dl class="section return"><dt>Returns</dt><dd>ierr</dd></dl>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">style</td><td>style of calculation (PB3D: in, eq, X or sol; POST)</td></tr>
-    <tr><td class="paramdir">[in,out]</td><td class="paramname">in_limits</td><td>min. and max. index of in grid</td></tr>
-    <tr><td class="paramdir">[in,out]</td><td class="paramname">eq_limits</td><td>min. and max. index of eq grid for this process</td></tr>
-    <tr><td class="paramdir">[in,out]</td><td class="paramname">x_limits</td><td>min. and max. index of X grid for this process</td></tr>
-    <tr><td class="paramdir">[in,out]</td><td class="paramname">sol_limits</td><td>min. and max. index of sol grid for this process</td></tr>
-    <tr><td class="paramdir">[in,out]</td><td class="paramname">r_f_eq</td><td>equilibrium r_F</td></tr>
-    <tr><td class="paramdir">[in,out]</td><td class="paramname">r_f_x</td><td>perturbation r_F</td></tr>
-    <tr><td class="paramdir">[in,out]</td><td class="paramname">r_f_sol</td><td>solution r_F</td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">jq</td><td>q_saf (pol. flux) or rot_t (tor. flux) in total Flux variables </td></tr>
-  </table>
-  </dd>
-</dl>
-
-<p class="definition">Definition at line <a class="el" href="grid__ops_8f90_source.html#l00046">46</a> of file <a class="el" href="grid__ops_8f90_source.html">grid_ops.f90</a>.</p>
+<p class="definition">Definition at line <a class="el" href="grid__ops_8f90_source.html#l00052">52</a> of file <a class="el" href="grid__ops_8f90_source.html">grid_ops.f90</a>.</p>
 <div id="dynsection-2" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-2-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
 <div id="dynsection-2-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-2-content" class="dyncontent" style="display:none;">
-<div class="center"><iframe scrolling="no" frameborder="0" src="namespacegrid__ops_a1c18f90f93f5fce7ebb4dba60b70e0f8_cgraph.svg" width="1618" height="602"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="namespacegrid__ops_a596695cab6971ec6b9d32d13a50708b6_cgraph.svg" width="934" height="268"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 <div id="dynsection-3" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-3-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
 <div id="dynsection-3-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-3-content" class="dyncontent" style="display:none;">
-<div class="center"><iframe scrolling="no" frameborder="0" src="namespacegrid__ops_a1c18f90f93f5fce7ebb4dba60b70e0f8_icgraph.svg" width="846" height="318"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="namespacegrid__ops_a596695cab6971ec6b9d32d13a50708b6_icgraph.svg" width="846" height="300"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 
 </div>
@@ -314,50 +239,35 @@ Variables</h2></td></tr>
         <tr>
           <td class="memname">integer function, public grid_ops::magn_grid_plot </td>
           <td>(</td>
-          <td class="paramtype">type(<a class="el" href="structgrid__vars_1_1grid__type.html">grid_type</a>), intent(in)&#160;</td>
+          <td class="paramtype">type(grid_type), intent(in)&#160;</td>
           <td class="paramname"><em>grid</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Plots the grid in real 3-D space. </p>
-<p>This creates an animation that can be used by ParaView or VisIt.</p>
-<p>The equilibrium grid should contain the fieldline-oriented angles with <code>ang_1</code> the parallel angle and <code>ang_2</code> the field line label.</p>
-<dl class="section see"><dt>See also</dt><dd>See <a class="el" href="structgrid__vars_1_1grid__type.html" title="Type for grids. ">grid_vars.grid_type</a> for a discussion on <code>ang_1</code> and <code>ang_2</code>.</dd></dl>
-<dl class="section note"><dt>Note</dt><dd><ol type="1">
-<li>This procedure does not use <code>n_theta_plot</code> and <code>n_zeta_plot</code> from <a class="el" href="namespacenum__vars.html" title="Numerical variables used by most other modules. ">num_vars</a>, but instead temporarily overwrites them with its own, since it is suposed to be 3-D also in the axisymmetric case.</li>
-<li>The implementation is currently very slow.</li>
-</ol>
-</dd></dl>
-<dl class="section return"><dt>Returns</dt><dd>ierr</dd></dl>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">grid</td><td>fieldline-oriented equilibrium grid </td></tr>
-  </table>
-  </dd>
-</dl>
-
-<p class="definition">Definition at line <a class="el" href="grid__ops_8f90_source.html#l01111">1111</a> of file <a class="el" href="grid__ops_8f90_source.html">grid_ops.f90</a>.</p>
+<p class="definition">Definition at line <a class="el" href="grid__ops_8f90_source.html#l00906">906</a> of file <a class="el" href="grid__ops_8f90_source.html">grid_ops.f90</a>.</p>
 <div id="dynsection-4" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-4-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
 <div id="dynsection-4-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-4-content" class="dyncontent" style="display:none;">
-<div class="center"><iframe scrolling="no" frameborder="0" src="namespacegrid__ops_addd76b7b3be0b51e0863ae0cdfef41e6_cgraph.svg" width="1212" height="860"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="namespacegrid__ops_addd76b7b3be0b51e0863ae0cdfef41e6_cgraph.svg" width="1515" height="938"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 <div id="dynsection-5" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-5-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
 <div id="dynsection-5-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-5-content" class="dyncontent" style="display:none;">
-<div class="center"><iframe scrolling="no" frameborder="0" src="namespacegrid__ops_addd76b7b3be0b51e0863ae0cdfef41e6_icgraph.svg" width="591" height="94"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="namespacegrid__ops_addd76b7b3be0b51e0863ae0cdfef41e6_icgraph.svg" width="591" height="94"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 
 </div>
 </div>
-<a id="a4827e794d37334c0cad9bb2016e64d46"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4827e794d37334c0cad9bb2016e64d46">&#9670;&nbsp;</a></span>print_output_grid()</h2>
+<a id="ab2a8efa54d36500efcabeb9f1aabbcc6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab2a8efa54d36500efcabeb9f1aabbcc6">&#9670;&nbsp;</a></span>print_output_grid()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -365,7 +275,7 @@ Variables</h2></td></tr>
         <tr>
           <td class="memname">integer function, public grid_ops::print_output_grid </td>
           <td>(</td>
-          <td class="paramtype">type(<a class="el" href="structgrid__vars_1_1grid__type.html">grid_type</a>), intent(in)&#160;</td>
+          <td class="paramtype">type(grid_type), intent(in)&#160;</td>
           <td class="paramname"><em>grid</em>, </td>
         </tr>
         <tr>
@@ -390,13 +300,7 @@ Variables</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">logical, intent(in), optional&#160;</td>
-          <td class="paramname"><em>par_div</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">logical, intent(in), optional&#160;</td>
-          <td class="paramname"><em>remove_previous_arrs</em>&#160;</td>
+          <td class="paramname"><em>par_div</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -406,37 +310,22 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Print grid variables to an output file. </p>
-<p>If <code>rich_lvl</code> is provided, <code>_R_[rich_lvl]</code> is appended to the data name if it is &gt; 0.</p>
-<p>Optionally, it can be specified that this is a divided parallel grid, corresponding to the variable <code>eq_jobs_lims</code> with index <code>eq_job_nr</code>. In this case, the total grid size is adjusted to the one specified by <code>eq_jobs_lims</code> and the grid is written as a subset.</p>
-<dl class="section note"><dt>Note</dt><dd><code>grid_</code> is added in front the data_name.</dd></dl>
-<dl class="section return"><dt>Returns</dt><dd>ierr</dd></dl>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">grid</td><td>grid variables</td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">grid_name</td><td>name to display</td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">data_name</td><td>name under which to store</td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">rich_lvl</td><td>Richardson level to reconstruct</td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">par_div</td><td>is a parallely divided grid</td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">remove_previous_arrs</td><td>remove previous variables if present </td></tr>
-  </table>
-  </dd>
-</dl>
-
-<p class="definition">Definition at line <a class="el" href="grid__ops_8f90_source.html#l01485">1485</a> of file <a class="el" href="grid__ops_8f90_source.html">grid_ops.f90</a>.</p>
+<p class="definition">Definition at line <a class="el" href="grid__ops_8f90_source.html#l01265">1265</a> of file <a class="el" href="grid__ops_8f90_source.html">grid_ops.f90</a>.</p>
 <div id="dynsection-6" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-6-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
 <div id="dynsection-6-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-6-content" class="dyncontent" style="display:none;">
-<div class="center"><iframe scrolling="no" frameborder="0" src="namespacegrid__ops_a4827e794d37334c0cad9bb2016e64d46_cgraph.svg" width="1491" height="674"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="namespacegrid__ops_ab2a8efa54d36500efcabeb9f1aabbcc6_cgraph.svg" width="1491" height="556"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 <div id="dynsection-7" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-7-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
 <div id="dynsection-7-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-7-content" class="dyncontent" style="display:none;">
-<div class="center"><iframe scrolling="no" frameborder="0" src="namespacegrid__ops_a4827e794d37334c0cad9bb2016e64d46_icgraph.svg" width="894" height="146"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="namespacegrid__ops_ab2a8efa54d36500efcabeb9f1aabbcc6_icgraph.svg" width="894" height="146"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 
 </div>
@@ -450,13 +339,13 @@ Variables</h2></td></tr>
         <tr>
           <td class="memname">integer function, public grid_ops::redistribute_output_grid </td>
           <td>(</td>
-          <td class="paramtype">type(<a class="el" href="structgrid__vars_1_1grid__type.html">grid_type</a>), intent(in)&#160;</td>
+          <td class="paramtype">type(grid_type), intent(in)&#160;</td>
           <td class="paramname"><em>grid</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">type(<a class="el" href="structgrid__vars_1_1grid__type.html">grid_type</a>), intent(inout)&#160;</td>
+          <td class="paramtype">type(grid_type), intent(inout)&#160;</td>
           <td class="paramname"><em>grid_out</em>, </td>
         </tr>
         <tr>
@@ -473,43 +362,28 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Redistribute a grid to match the normal distribution of solution grid. </p>
-<p>The routine first calculates the smallest eq range that comprises the sol range. Then, it gets the lowest equilibrium limits able to setup an output grid that starts at index 1. After determining the output grid, it then sends the variables to their new processes using MPI.</p>
-<dl class="section note"><dt>Note</dt><dd><ol type="1">
-<li>Only the Flux variables are saved.</li>
-<li>the redistributed grid has trimmed outer limits, i.e. it starts at 1 and ends at the upper limit of the last process. This can be turned off optionally using <code>no_outer_trim</code>.</li>
-</ol>
-</dd></dl>
-<dl class="section return"><dt>Returns</dt><dd>ierr</dd></dl>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">grid</td><td>equilibrium grid variables</td></tr>
-    <tr><td class="paramdir">[in,out]</td><td class="paramname">grid_out</td><td>redistributed equilibrium grid variables</td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">no_outer_trim</td><td>do not trim the outer limits </td></tr>
-  </table>
-  </dd>
-</dl>
-
-<p class="definition">Definition at line <a class="el" href="grid__ops_8f90_source.html#l00991">991</a> of file <a class="el" href="grid__ops_8f90_source.html">grid_ops.f90</a>.</p>
+<p class="definition">Definition at line <a class="el" href="grid__ops_8f90_source.html#l00525">525</a> of file <a class="el" href="grid__ops_8f90_source.html">grid_ops.f90</a>.</p>
 <div id="dynsection-8" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-8-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
 <div id="dynsection-8-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-8-content" class="dyncontent" style="display:none;">
-<div class="center"><iframe scrolling="no" frameborder="0" src="namespacegrid__ops_ab10ef5b486ee3861df2da4e53bc22630_cgraph.svg" width="1960" height="687"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="namespacegrid__ops_ab10ef5b486ee3861df2da4e53bc22630_cgraph.svg" width="1276" height="295"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 <div id="dynsection-9" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-9-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
 <div id="dynsection-9-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-9-content" class="dyncontent" style="display:none;">
-<div class="center"><iframe scrolling="no" frameborder="0" src="namespacegrid__ops_ab10ef5b486ee3861df2da4e53bc22630_icgraph.svg" width="591" height="94"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="namespacegrid__ops_ab10ef5b486ee3861df2da4e53bc22630_icgraph.svg" width="575" height="58"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 
 </div>
 </div>
-<a id="af63366847d1caa64a7d329672292fd34"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af63366847d1caa64a7d329672292fd34">&#9670;&nbsp;</a></span>setup_grid_eq()</h2>
+<a id="ab749b0904ed8c69253fe8908c2624bcd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab749b0904ed8c69253fe8908c2624bcd">&#9670;&nbsp;</a></span>setup_grid_eq()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -517,14 +391,20 @@ Variables</h2></td></tr>
         <tr>
           <td class="memname">integer function, public grid_ops::setup_grid_eq </td>
           <td>(</td>
-          <td class="paramtype">type(<a class="el" href="structgrid__vars_1_1grid__type.html">grid_type</a>), intent(inout)&#160;</td>
+          <td class="paramtype">type(grid_type), intent(inout)&#160;</td>
           <td class="paramname"><em>grid_eq</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">integer, dimension(2), intent(in)&#160;</td>
-          <td class="paramname"><em>eq_limits</em>&#160;</td>
+          <td class="paramname"><em>eq_limits</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">logical, intent(in), optional&#160;</td>
+          <td class="paramname"><em>only_half_grid</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -534,38 +414,22 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Sets up the equilibrium grid. </p>
-<p>The following variables are calculated:</p><ul>
-<li>equilibrium variables (eq)</li>
-<li>perturbation variables (X)</li>
-</ul>
-<p>For the implementation of the equilibrium grid the normal part of the grid is always given by the output of the equilibrium code, but the angular part depends on the style:</p><ul>
-<li>VMEC: The output is analytic in the angular coordinates, so field-aligned coordinates are used. Later, in <a class="el" href="namespacegrid__ops.html#a06107dbdfd1dd62e372cc29ab0255bad" title="Calculate equilibrium grid that follows magnetic field lines. ">calc_ang_grid_eq_b()</a>, the angular variables are calculated.</li>
-<li>HELENA: The output is given on a poloidal grid (no toroidal dependency due to axisymmetry), which is used.</li>
-</ul>
-<dl class="section return"><dt>Returns</dt><dd>ierr</dd></dl>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramdir">[in,out]</td><td class="paramname">grid_eq</td><td>equilibrium grid</td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">eq_limits</td><td>min. and max. index of eq grid of this process </td></tr>
-  </table>
-  </dd>
-</dl>
-
-<p class="definition">Definition at line <a class="el" href="grid__ops_8f90_source.html#l00528">528</a> of file <a class="el" href="grid__ops_8f90_source.html">grid_ops.f90</a>.</p>
+<p class="definition">Definition at line <a class="el" href="grid__ops_8f90_source.html#l00396">396</a> of file <a class="el" href="grid__ops_8f90_source.html">grid_ops.f90</a>.</p>
 <div id="dynsection-10" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-10-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
 <div id="dynsection-10-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-10-content" class="dyncontent" style="display:none;">
-<div class="center"><iframe scrolling="no" frameborder="0" src="namespacegrid__ops_af63366847d1caa64a7d329672292fd34_cgraph.svg" width="711" height="174"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="namespacegrid__ops_ab749b0904ed8c69253fe8908c2624bcd_cgraph.svg" width="934" height="219"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 <div id="dynsection-11" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-11-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
 <div id="dynsection-11-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-11-content" class="dyncontent" style="display:none;">
-<div class="center"><iframe scrolling="no" frameborder="0" src="namespacegrid__ops_af63366847d1caa64a7d329672292fd34_icgraph.svg" width="583" height="40"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="namespacegrid__ops_ab749b0904ed8c69253fe8908c2624bcd_icgraph.svg" width="583" height="40"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 
 </div>
@@ -579,19 +443,19 @@ Variables</h2></td></tr>
         <tr>
           <td class="memname">integer function, public grid_ops::setup_grid_eq_b </td>
           <td>(</td>
-          <td class="paramtype">type(<a class="el" href="structgrid__vars_1_1grid__type.html">grid_type</a>), intent(inout)&#160;</td>
+          <td class="paramtype">type(grid_type), intent(inout)&#160;</td>
           <td class="paramname"><em>grid_eq</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">type(<a class="el" href="structgrid__vars_1_1grid__type.html">grid_type</a>), intent(inout)&#160;</td>
+          <td class="paramtype">type(grid_type), intent(inout)&#160;</td>
           <td class="paramname"><em>grid_eq_B</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">type(<a class="el" href="structeq__vars_1_1eq__1__type.html">eq_1_type</a>), intent(in)&#160;</td>
+          <td class="paramtype">type(eq_1_type), intent(in)&#160;</td>
           <td class="paramname"><em>eq</em>, </td>
         </tr>
         <tr>
@@ -608,41 +472,28 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Sets up the field-aligned equilibrium grid. </p>
-<p>This serves as a bridge to the solution grid, as it contains the same normal coordinate as the general grid, but the angular coordinates are defined by the solution grid.</p>
-<p>Optionally, only half the grid can be calculated (i.e. only the even points), which is used for Richardson levels greater than 1.</p>
-<dl class="section note"><dt>Note</dt><dd>In contrast to <code>setup_grid_eq</code>, the angular coordinates are also calculated here.</dd></dl>
-<dl class="section return"><dt>Returns</dt><dd>ierr</dd></dl>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramdir">[in,out]</td><td class="paramname">grid_eq</td><td>general equilibrium grid</td></tr>
-    <tr><td class="paramdir">[in,out]</td><td class="paramname">grid_eq_b</td><td>field-aligned equilibrium grid</td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">eq</td><td>flux equilibrium variables</td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">only_half_grid</td><td>calculate only half grid with even points </td></tr>
-  </table>
-  </dd>
-</dl>
-
-<p class="definition">Definition at line <a class="el" href="grid__ops_8f90_source.html#l00600">600</a> of file <a class="el" href="grid__ops_8f90_source.html">grid_ops.f90</a>.</p>
+<p class="definition">Definition at line <a class="el" href="grid__ops_8f90_source.html#l00468">468</a> of file <a class="el" href="grid__ops_8f90_source.html">grid_ops.f90</a>.</p>
 <div id="dynsection-12" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-12-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
 <div id="dynsection-12-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-12-content" class="dyncontent" style="display:none;">
-<div class="center"><iframe scrolling="no" frameborder="0" src="namespacegrid__ops_ad16495ddd320562451c2325bafecf2d8_cgraph.svg" width="1411" height="399"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="namespacegrid__ops_ad16495ddd320562451c2325bafecf2d8_cgraph.svg" width="1395" height="339"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 <div id="dynsection-13" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-13-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
 <div id="dynsection-13-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-13-content" class="dyncontent" style="display:none;">
-<div class="center"><iframe scrolling="no" frameborder="0" src="namespacegrid__ops_ad16495ddd320562451c2325bafecf2d8_icgraph.svg" width="599" height="40"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="namespacegrid__ops_ad16495ddd320562451c2325bafecf2d8_icgraph.svg" width="599" height="40"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 
 </div>
 </div>
-<a id="aeff1569cb9a043b03ed49250524fbd95"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aeff1569cb9a043b03ed49250524fbd95">&#9670;&nbsp;</a></span>setup_grid_sol()</h2>
+<a id="ae4f50f7b63e0a8b84dae6b98fd3e5d71"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae4f50f7b63e0a8b84dae6b98fd3e5d71">&#9670;&nbsp;</a></span>setup_grid_sol()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -650,26 +501,14 @@ Variables</h2></td></tr>
         <tr>
           <td class="memname">integer function, public grid_ops::setup_grid_sol </td>
           <td>(</td>
-          <td class="paramtype">type(<a class="el" href="structgrid__vars_1_1grid__type.html">grid_type</a>), intent(in)&#160;</td>
-          <td class="paramname"><em>grid_eq</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">type(<a class="el" href="structgrid__vars_1_1grid__type.html">grid_type</a>), intent(in)&#160;</td>
+          <td class="paramtype">type(grid_type), intent(in)&#160;</td>
           <td class="paramname"><em>grid_X</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">type(<a class="el" href="structgrid__vars_1_1grid__type.html">grid_type</a>), intent(inout)&#160;</td>
+          <td class="paramtype">type(grid_type), intent(inout)&#160;</td>
           <td class="paramname"><em>grid_sol</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">real(dp), dimension(:), intent(in)&#160;</td>
-          <td class="paramname"><em>r_F_sol</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -685,27 +524,14 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Sets up the general solution grid, in which the solution variables are calculated. </p>
-<p>For the solution grid, only one parallel point is used, but possibly multiple geodesic points, equal to the number of field lines, <code>n_alpha</code>.</p>
-<dl class="section return"><dt>Returns</dt><dd>ierr</dd></dl>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">grid_eq</td><td>equilibrium grid</td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">grid_x</td><td>perturbation grid</td></tr>
-    <tr><td class="paramdir">[in,out]</td><td class="paramname">grid_sol</td><td>solution grid</td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">r_f_sol</td><td>points of solution grid</td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">sol_limits</td><td>min. and max. index of sol grid of this process </td></tr>
-  </table>
-  </dd>
-</dl>
-
-<p class="definition">Definition at line <a class="el" href="grid__ops_8f90_source.html#l00727">727</a> of file <a class="el" href="grid__ops_8f90_source.html">grid_ops.f90</a>.</p>
+<p class="definition">Definition at line <a class="el" href="grid__ops_8f90_source.html#l00689">689</a> of file <a class="el" href="grid__ops_8f90_source.html">grid_ops.f90</a>.</p>
 <div id="dynsection-14" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-14-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
 <div id="dynsection-14-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-14-content" class="dyncontent" style="display:none;">
-<div class="center"><iframe scrolling="no" frameborder="0" src="namespacegrid__ops_aeff1569cb9a043b03ed49250524fbd95_icgraph.svg" width="607" height="40"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="namespacegrid__ops_ae4f50f7b63e0a8b84dae6b98fd3e5d71_icgraph.svg" width="607" height="40"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 
 </div>
@@ -719,19 +545,19 @@ Variables</h2></td></tr>
         <tr>
           <td class="memname">integer function, public grid_ops::setup_grid_x </td>
           <td>(</td>
-          <td class="paramtype">type(<a class="el" href="structgrid__vars_1_1grid__type.html">grid_type</a>), intent(in)&#160;</td>
+          <td class="paramtype">type(grid_type), intent(in)&#160;</td>
           <td class="paramname"><em>grid_eq</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">type(<a class="el" href="structgrid__vars_1_1grid__type.html">grid_type</a>), intent(inout)&#160;</td>
+          <td class="paramtype">type(grid_type), intent(inout)&#160;</td>
           <td class="paramname"><em>grid_X</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">real(dp), dimension(:), intent(in), allocatable&#160;</td>
+          <td class="paramtype">real(dp), dimension(:), intent(in)&#160;</td>
           <td class="paramname"><em>r_F_X</em>, </td>
         </tr>
         <tr>
@@ -748,26 +574,22 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Sets up the general perturbation grid, in which the perturbation variables are calculated. </p>
-<p>For <code>X_grid_style</code> 1, this grid is identical to the equilibrium grid, and for <code>X_grid_style</code> 2,it has the same angular extent but with different normal points, indicated by the variable <code>r_F_X</code>.</p>
-<dl class="section return"><dt>Returns</dt><dd>ierr</dd></dl>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">grid_eq</td><td>equilibrium grid</td></tr>
-    <tr><td class="paramdir">[in,out]</td><td class="paramname">grid_x</td><td>perturbation grid</td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">r_f_x</td><td>points of perturbation grid</td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">x_limits</td><td>min. and max. index of perturbation grid of this process </td></tr>
-  </table>
-  </dd>
-</dl>
-
-<p class="definition">Definition at line <a class="el" href="grid__ops_8f90_source.html#l00654">654</a> of file <a class="el" href="grid__ops_8f90_source.html">grid_ops.f90</a>.</p>
+<p class="definition">Definition at line <a class="el" href="grid__ops_8f90_source.html#l00632">632</a> of file <a class="el" href="grid__ops_8f90_source.html">grid_ops.f90</a>.</p>
 <div id="dynsection-15" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-15-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
+  <img id="dynsection-15-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
 <div id="dynsection-15-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-15-content" class="dyncontent" style="display:none;">
-<div class="center"><iframe scrolling="no" frameborder="0" src="namespacegrid__ops_a1047889ec84da6e56aae619570a16988_icgraph.svg" width="822" height="40"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="namespacegrid__ops_a1047889ec84da6e56aae619570a16988_cgraph.svg" width="679" height="58"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+<div id="dynsection-16" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-16-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
+<div id="dynsection-16-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-16-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="namespacegrid__ops_a1047889ec84da6e56aae619570a16988_icgraph.svg" width="822" height="40"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 
 </div>
@@ -785,10 +607,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>plot debug information for <a class="el" href="namespacegrid__ops.html#a06107dbdfd1dd62e372cc29ab0255bad" title="Calculate equilibrium grid that follows magnetic field lines. ">calc_ang_grid_eq_b()</a> </p>
-<dl class="section note"><dt>Note</dt><dd>Debug version only </dd></dl>
-
-<p class="definition">Definition at line <a class="el" href="grid__ops_8f90_source.html#l00025">25</a> of file <a class="el" href="grid__ops_8f90_source.html">grid_ops.f90</a>.</p>
+<p class="definition">Definition at line <a class="el" href="grid__ops_8f90_source.html#l00024">24</a> of file <a class="el" href="grid__ops_8f90_source.html">grid_ops.f90</a>.</p>
 
 </div>
 </div>

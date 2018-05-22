@@ -1,87 +1,42 @@
 \hypertarget{namespacenum__utilities}{}\section{num\+\_\+utilities Module Reference}
 \label{namespacenum__utilities}\index{num\+\_\+utilities@{num\+\_\+utilities}}
-
-
-Numerical utilities.  
-
-
-\subsection*{Interfaces and Types}
-\begin{DoxyCompactItemize}
-\item 
-interface \hyperlink{interfacenum__utilities_1_1add__arr__mult}{add\+\_\+arr\+\_\+mult}
-\begin{DoxyCompactList}\small\item\em Add to an array (3) the product of arrays (1) and (2). \end{DoxyCompactList}\item 
-interface \hyperlink{interfacenum__utilities_1_1bubble__sort}{bubble\+\_\+sort}
-\begin{DoxyCompactList}\small\item\em Sorting with the bubble sort routine. \end{DoxyCompactList}\item 
-interface \hyperlink{interfacenum__utilities_1_1calc__det}{calc\+\_\+det}
-\begin{DoxyCompactList}\small\item\em Calculate determinant of a matrix. \end{DoxyCompactList}\item 
-interface \hyperlink{interfacenum__utilities_1_1calc__int}{calc\+\_\+int}
-\begin{DoxyCompactList}\small\item\em Integrates a function using the trapezoidal rule. \end{DoxyCompactList}\item 
-interface \hyperlink{interfacenum__utilities_1_1calc__inv}{calc\+\_\+inv}
-\begin{DoxyCompactList}\small\item\em Calculate inverse of square matrix {\ttfamily A}. \end{DoxyCompactList}\item 
-interface \hyperlink{interfacenum__utilities_1_1calc__mult}{calc\+\_\+mult}
-\begin{DoxyCompactList}\small\item\em Calculate matrix multiplication of two square matrices $\overline{\text{AB}} = \overline{\text{A}} \ \overline{\text{B}}$. \end{DoxyCompactList}\item 
-interface \hyperlink{interfacenum__utilities_1_1con}{con}
-\begin{DoxyCompactList}\small\item\em Either takes the complex conjugate of a square matrix element A, defined on a 3-\/D grid, or not. \end{DoxyCompactList}\item 
-interface \hyperlink{interfacenum__utilities_1_1con2dis}{con2dis}
-\begin{DoxyCompactList}\small\item\em Convert between points from a continuous grid to a discrete grid. \end{DoxyCompactList}\item 
-interface \hyperlink{interfacenum__utilities_1_1conv__mat}{conv\+\_\+mat}
-\begin{DoxyCompactList}\small\item\em Converts a (symmetric) matrix A with the storage convention described in \hyperlink{structeq__vars_1_1eq__2__type}{eq\+\_\+vars.\+eq\+\_\+2\+\_\+type}. \end{DoxyCompactList}\item 
-interface \hyperlink{interfacenum__utilities_1_1dis2con}{dis2con}
-\begin{DoxyCompactList}\small\item\em Convert between points from a discrete grid to a continuous grid. \end{DoxyCompactList}\item 
-interface \hyperlink{interfacenum__utilities_1_1order__per__fun}{order\+\_\+per\+\_\+fun}
-\begin{DoxyCompactList}\small\item\em Order a periodic function to include $0\ldots 2\pi$ and an overlap. \end{DoxyCompactList}\item 
-interface \hyperlink{interfacenum__utilities_1_1round__with__tol}{round\+\_\+with\+\_\+tol}
-\begin{DoxyCompactList}\small\item\em Rounds an arry of values to limits, with a tolerance $10^{-5}$ that can optionally be modified. \end{DoxyCompactList}\item 
-interface \hyperlink{interfacenum__utilities_1_1spline}{spline}
-\begin{DoxyCompactList}\small\item\em Wrapper to the pspline library, making it easier to use for 1-\/D applications where speed is not the main priority. If spline representations are to be reused, manually use the library. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Functions/\+Subroutines}
 \begin{DoxyCompactItemize}
 \item 
-integer function \hyperlink{namespacenum__utilities_ac6699d422f3a588b51234c2d62ff389f}{calc\+\_\+inv\+\_\+0d} (inv\+\_\+0D, A)
-\begin{DoxyCompactList}\small\item\em private constant version \end{DoxyCompactList}\item 
 subroutine, public \hyperlink{namespacenum__utilities_af461ae4c95a7a45da875dcf311e323f5}{calc\+\_\+aux\+\_\+utilities} (n\+\_\+mod)
-\begin{DoxyCompactList}\small\item\em Initialize utilities for fast future reference, depending on program style. \end{DoxyCompactList}\item 
+\item 
 integer function \hyperlink{namespacenum__utilities_af2e9ffd7ce2f9391bf8b6f1c344fabca}{calc\+\_\+derivs\+\_\+1d\+\_\+id} (deriv, dims)
-\begin{DoxyCompactList}\small\item\em Returns the 1D indices for derivatives of a certain order in certain dimensions. \end{DoxyCompactList}\item 
+\item 
 integer function, dimension(\+:,\+:), allocatable, public \hyperlink{namespacenum__utilities_ac827c18dd05a9b5a06675eac942f3b51}{derivs} (order, dims)
-\begin{DoxyCompactList}\small\item\em Returns derivatives of certain order. \end{DoxyCompactList}\item 
+\item 
 integer function, public \hyperlink{namespacenum__utilities_a00f4cfe18a734eaa5d66f529e52f7c31}{check\+\_\+deriv} (deriv, max\+\_\+deriv, sr\+\_\+name)
-\begin{DoxyCompactList}\small\item\em checks whether the derivatives requested for a certain subroutine are valid \end{DoxyCompactList}\item 
+\item 
 integer function, public \hyperlink{namespacenum__utilities_a2d5d9c66db19fb6edeeb50db6182397f}{calc\+\_\+ext\+\_\+var} (ext\+\_\+var, var, var\+\_\+points, ext\+\_\+point, deriv\+\_\+in)
-\begin{DoxyCompactList}\small\item\em Extrapolates a function. \end{DoxyCompactList}\item 
-integer function, public \hyperlink{namespacenum__utilities_a4dffe3beba7165dd17cff19a99a9e2ac}{calc\+\_\+coeff\+\_\+fin\+\_\+diff} (deriv, nr, ind, coeff)
-\begin{DoxyCompactList}\small\item\em Calculate the coefficients for finite differences. \end{DoxyCompactList}\item 
+\item 
+integer function, public \hyperlink{namespacenum__utilities_a87132bd5006387bcc2afe5ca375f0830}{calc\+\_\+coeff\+\_\+fin\+\_\+diff} (deriv, ord, coeff)
+\item 
 integer function, public \hyperlink{namespacenum__utilities_a5ee3fbd1fe67d0deefc7194631389f2a}{c} (ij, sym, n, lim\+\_\+n)
-\begin{DoxyCompactList}\small\item\em Convert 2-\/D coordinates (i,j) to the storage convention used in matrices. \end{DoxyCompactList}\item 
-recursive integer function, public \hyperlink{namespacenum__utilities_a43ab60f9e202b55221373286a5bbb954}{fac} (n)
-\begin{DoxyCompactList}\small\item\em Calculate factorial. \end{DoxyCompactList}\item 
+\item 
 integer function, public \hyperlink{namespacenum__utilities_a4e6994b5c92b3d16c8538b54db0beadd}{is\+\_\+sym} (n, nn, sym)
-\begin{DoxyCompactList}\small\item\em Determines whether a matrix making use of the storage convention in \hyperlink{structeq__vars_1_1eq__2__type}{eq\+\_\+vars.\+eq\+\_\+2\+\_\+type} is symmetric or not. \end{DoxyCompactList}\item 
-recursive integer function, public \hyperlink{namespacenum__utilities_a33fc1483c840d5d3f9b12acfce21cad1}{lcm} (u, v)
-\begin{DoxyCompactList}\small\item\em Returns common multiple using the Euclid\textquotesingle{}s algorithm. \end{DoxyCompactList}\item 
+\item 
+recursive integer function, public \hyperlink{namespacenum__utilities_a43ab60f9e202b55221373286a5bbb954}{fac} (n)
+\item 
 recursive integer function, public \hyperlink{namespacenum__utilities_a3d0d04a582b3a528fc7f9975d5d2a807}{gcd} (u, v)
-\begin{DoxyCompactList}\small\item\em Returns least denominator using the G\+CD. \end{DoxyCompactList}\item 
-subroutine, public \hyperlink{namespacenum__utilities_a859f442a1b860d82662eed17c4374c38}{shift\+\_\+f} (A, B, C)
-\begin{DoxyCompactList}\small\item\em Calculate multiplication through shifting of fourier modes A and B into C. \end{DoxyCompactList}\item 
-subroutine, public \hyperlink{namespacenum__utilities_a54c65e345182e2e7e13ac14a0ba3647a}{solve\+\_\+vand} (n, a, b, x, transp)
-\begin{DoxyCompactList}\small\item\em Solve a Vandermonde system $\overline{\text{A}} \ \vec{X} = \vec{B}$. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{DoxyCompactItemize}
 \subsection*{Variables}
 \begin{DoxyCompactItemize}
 \item 
 integer, dimension(\+:,\+:,\+:), allocatable, public \hyperlink{namespacenum__utilities_a763215553acfcc054b1ec1bc207a1793}{d}
-\begin{DoxyCompactList}\small\item\em 1-\/D array indices of derivatives \end{DoxyCompactList}\item 
+\item 
 integer, dimension(\+:,\+:), allocatable, public \hyperlink{namespacenum__utilities_ad7a7ae2abf02a2df9e00b2aca669617c}{m}
-\begin{DoxyCompactList}\small\item\em 1-\/D array indices of metric indices \end{DoxyCompactList}\item 
+\item 
 integer, dimension(\+:,\+:), allocatable, public \hyperlink{namespacenum__utilities_a8e3399292fcb3a5fc35ae87f7811bbb5}{f}
-\begin{DoxyCompactList}\small\item\em 1-\/D array indices of Fourier mode combination indices \end{DoxyCompactList}\item 
+\item 
 logical, public \hyperlink{namespacenum__utilities_ab7138a230a3c494c7a2b71b2a7fffc0a}{debug\+\_\+con2dis\+\_\+reg} = .false.
-\begin{DoxyCompactList}\small\item\em plot debug information for con2dis\+\_\+reg() \end{DoxyCompactList}\item 
+\item 
 logical, public \hyperlink{namespacenum__utilities_ae20985c8049d39f987fa23d728688cbc}{debug\+\_\+calc\+\_\+coeff\+\_\+fin\+\_\+diff} = .false.
-\begin{DoxyCompactList}\small\item\em plot debug information for \hyperlink{namespacenum__utilities_a4dffe3beba7165dd17cff19a99a9e2ac}{calc\+\_\+coeff\+\_\+fin\+\_\+diff()} \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{DoxyCompactItemize}
 
-
-\subsection{Detailed Description}
-Numerical utilities. 
 
 \subsection{Function/\+Subroutine Documentation}
 \mbox{\Hypertarget{namespacenum__utilities_a5ee3fbd1fe67d0deefc7194631389f2a}\label{namespacenum__utilities_a5ee3fbd1fe67d0deefc7194631389f2a}} 
@@ -92,48 +47,14 @@ Numerical utilities.
 
 
 
-Convert 2-\/D coordinates (i,j) to the storage convention used in matrices. 
+Definition at line 1703 of file num\+\_\+utilities.\+f90.
 
-Their size is by default taken to be 3\+: \[ \left(\begin{array}{ccc} 1 & 4 & 7 \\ 2 & 5 & 8 \\ 3 & 6 & 9 \end{array}\right) \ \text{or} \ \left(\begin{array}{ccc} 1 & & \\ 2 & 4 & \\ 3 & 5 & 6 \end{array}\right) \ \text{for symmetic matrices} \ . \] Optionally, this can be changed using {\ttfamily n}.
-
-The value of $c$ is then given by \[c = (j-1) n + i\] for non-\/symmetric matrices, and by \[\begin{aligned} c &= (j-1)n + i - (j-1)\frac{j}{2} & \text{if} \ i > j \\ c &= (i-1)n + j - (i-1)\frac{i}{2} & \text{if} \ j > i \end{aligned}\] since $\sum_{k=1}^{j-1} k = \frac{(j-1)j}{2}$.
-
-For local indices in submatrices, the limits in both dimensions have to be passed. The results for the full matrix are then subtracted by amount corresponding to the left, above and below parts with respect to the submatrix\+:
-\begin{DoxyItemize}
-\item left\+: \[\sum_{i=1}^{m(2)-1} n-i+1 = (m(2)-1) \left(n+1-\frac{m(2)}{2}\right) \]
-\item above (if positive)\+: \[\sum_{i=1}^j \left(m(1)-m(2)+1-i\right) = j \left(m(1)-m(2)+\frac{1}{2} - \frac{j^*}{2}\right) \ , \ \text{with} \ j^* = \text{min}\left(0,j,m(1)-m(2)+1\right) \]
-\item below\+: \[\sum_{i=1}^{j-1} n-M(1) = \left(n-M(1)\right) \left(j-1\right) \]
-\end{DoxyItemize}
-
-where $m$ = {\ttfamily min} and $M$ = {\ttfamily max}.
-
-\begin{DoxyNote}{Note}
-
-\begin{DoxyEnumerate}
-\item The submatrix version is not fast, so results should be saved and reused.
-\item No checks are done whether the indices make sense.
-\end{DoxyEnumerate}
-\end{DoxyNote}
-
-\begin{DoxyParams}[1]{Parameters}
-\mbox{\tt in}  & {\em ij} & 2D coords. (i,j)\\
-\hline
-\mbox{\tt in}  & {\em sym} & whether symmetric\\
-\hline
-\mbox{\tt in}  & {\em n} & max of 2-\/D coords.\\
-\hline
-\mbox{\tt in}  & {\em lim\+\_\+n} & min. and max. of 2-\/D coords. \\
-\hline
-\end{DoxyParams}
-
-
-Definition at line 2522 of file num\+\_\+utilities.\+f90.
-
-Here is the caller graph for this function\+:\nopagebreak
+Here is the caller graph for this function\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[height=550pt]{namespacenum__utilities_a5ee3fbd1fe67d0deefc7194631389f2a_icgraph}
+\includegraphics[width=350pt]{namespacenum__utilities_a5ee3fbd1fe67d0deefc7194631389f2a_icgraph}
 \end{center}
 \end{figure}
 \mbox{\Hypertarget{namespacenum__utilities_af461ae4c95a7a45da875dcf311e323f5}\label{namespacenum__utilities_af461ae4c95a7a45da875dcf311e323f5}} 
@@ -144,106 +65,48 @@ Here is the caller graph for this function\+:\nopagebreak
 
 
 
-Initialize utilities for fast future reference, depending on program style. 
+Definition at line 75 of file num\+\_\+utilities.\+f90.
 
-Utilities initialized\+:
-\begin{DoxyItemize}
-\item derivatives
-\item metrics
-\item Fourier modes (optionally)
-\end{DoxyItemize}
-
-If Fourier modes are also initialized, the quantity {\ttfamily n\+\_\+mod} has to be provided as well.
-
-
-\begin{DoxyParams}[1]{Parameters}
-\mbox{\tt in}  & {\em n\+\_\+mod} & n\+\_\+mod for Fourier modes \\
-\hline
-\end{DoxyParams}
-
-
-Definition at line 2029 of file num\+\_\+utilities.\+f90.
-
-Here is the call graph for this function\+:\nopagebreak
+Here is the call graph for this function\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{namespacenum__utilities_af461ae4c95a7a45da875dcf311e323f5_cgraph}
 \end{center}
 \end{figure}
-Here is the caller graph for this function\+:\nopagebreak
+Here is the caller graph for this function\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{namespacenum__utilities_af461ae4c95a7a45da875dcf311e323f5_icgraph}
 \end{center}
 \end{figure}
-\mbox{\Hypertarget{namespacenum__utilities_a4dffe3beba7165dd17cff19a99a9e2ac}\label{namespacenum__utilities_a4dffe3beba7165dd17cff19a99a9e2ac}} 
+\mbox{\Hypertarget{namespacenum__utilities_a87132bd5006387bcc2afe5ca375f0830}\label{namespacenum__utilities_a87132bd5006387bcc2afe5ca375f0830}} 
 \index{num\+\_\+utilities@{num\+\_\+utilities}!calc\+\_\+coeff\+\_\+fin\+\_\+diff@{calc\+\_\+coeff\+\_\+fin\+\_\+diff}}
 \index{calc\+\_\+coeff\+\_\+fin\+\_\+diff@{calc\+\_\+coeff\+\_\+fin\+\_\+diff}!num\+\_\+utilities@{num\+\_\+utilities}}
 \subsubsection{\texorpdfstring{calc\+\_\+coeff\+\_\+fin\+\_\+diff()}{calc\_coeff\_fin\_diff()}}
-{\footnotesize\ttfamily integer function, public num\+\_\+utilities\+::calc\+\_\+coeff\+\_\+fin\+\_\+diff (\begin{DoxyParamCaption}\item[{integer, intent(in)}]{deriv,  }\item[{integer, intent(in)}]{nr,  }\item[{integer, intent(in)}]{ind,  }\item[{real(dp), dimension(\+:), intent(inout), allocatable}]{coeff }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily integer function, public num\+\_\+utilities\+::calc\+\_\+coeff\+\_\+fin\+\_\+diff (\begin{DoxyParamCaption}\item[{integer, intent(in)}]{deriv,  }\item[{integer, intent(in)}]{ord,  }\item[{real(dp), dimension(\+:), intent(inout), allocatable}]{coeff }\end{DoxyParamCaption})}
 
 
 
-Calculate the coefficients for finite differences. 
+Definition at line 1582 of file num\+\_\+utilities.\+f90.
 
-These represent a derivative of degree {\ttfamily deriv} at an index {\ttfamily ind}, by the weighted sum of a number {\ttfamily nr} of points with {\ttfamily 1$<$=ind$<$=nr}.
-
-They are found by solving a Vandermonde system, multiplied by the faculty of the derivative.
-
-The result returned in {\ttfamily coeff(1\+:nr)} are used in \[\frac{d f}{d x} = \sum_{j=1}^n c(j) f(i+j) . \]
-
-where $i$ = {\ttfamily ind}, $n$ = {\ttfamily nr} and $c$ = {\ttfamily coeff} 
-
-\begin{DoxyNote}{Note}
-They need to be divided by the step size before usage.
-\end{DoxyNote}
-Examples\+:
-\begin{DoxyItemize}
-\item symmetric finite differences for derivative {\ttfamily deriv} of order {\ttfamily ord\+:} 
-\begin{DoxyItemize}
-\item $m = \text{ceiling}(\frac{p+d}{2})$ to guarantee the order
-\item $n = 1+2m$
-\item $i = 1+m$
-\end{DoxyItemize}
-\item left finite differences for derivative {\ttfamily deriv} of order {\ttfamily ord\+:} 
-\begin{DoxyItemize}
-\item $n = 1+d+p $
-\item $i = m$ where $p$ = {\ttfamily ord}, $d$ = {\ttfamily deriv} and $m$ = {\ttfamily nr\+\_\+2}.
-\end{DoxyItemize}
-\end{DoxyItemize}
-
-\begin{DoxyReturn}{Returns}
-ierr
-\end{DoxyReturn}
-
-\begin{DoxyParams}[1]{Parameters}
-\mbox{\tt in}  & {\em deriv} & degree of derivative\\
-\hline
-\mbox{\tt in}  & {\em nr} & number of points\\
-\hline
-\mbox{\tt in}  & {\em ind} & position of derivative\\
-\hline
-\mbox{\tt in,out}  & {\em coeff} & output coefficients \\
-\hline
-\end{DoxyParams}
-
-
-Definition at line 2415 of file num\+\_\+utilities.\+f90.
-
-Here is the call graph for this function\+:\nopagebreak
+Here is the call graph for this function\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=350pt]{namespacenum__utilities_a4dffe3beba7165dd17cff19a99a9e2ac_cgraph}
+\includegraphics[width=350pt]{namespacenum__utilities_a87132bd5006387bcc2afe5ca375f0830_cgraph}
 \end{center}
 \end{figure}
-Here is the caller graph for this function\+:\nopagebreak
+Here is the caller graph for this function\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=350pt]{namespacenum__utilities_a4dffe3beba7165dd17cff19a99a9e2ac_icgraph}
+\includegraphics[width=350pt]{namespacenum__utilities_a87132bd5006387bcc2afe5ca375f0830_icgraph}
 \end{center}
 \end{figure}
 \mbox{\Hypertarget{namespacenum__utilities_af2e9ffd7ce2f9391bf8b6f1c344fabca}\label{namespacenum__utilities_af2e9ffd7ce2f9391bf8b6f1c344fabca}} 
@@ -254,51 +117,18 @@ Here is the caller graph for this function\+:\nopagebreak
 
 
 
-Returns the 1D indices for derivatives of a certain order in certain dimensions. 
+Definition at line 146 of file num\+\_\+utilities.\+f90.
 
-The algorithm works by considering a structure such as the following example in three dimensions\+:
-\begin{DoxyEnumerate}
-\item (0,0,0)
-\item (1,0,0)
-\item (0,1,0)
-\item (0,0,1)
-\item (2,0,0)
-\item (1,1,0)
-\item (1,0,1)
-\item (0,2,0)
-\item (0,1,1)
-\item (0,0,2)
-\item (3,0,0)
-\item (2,1,0)
-\end{DoxyEnumerate}
-
-etc...
-
-By then defining $d$ as the vector of derivatives, $n$ as the size of $d$, $D = \sum_i^n d(i)$ the total degree of the derivative, and $I$ as the index of the last nonzero element in $d$, and extending $d$ to the left by considering $d(0)$ = 0, the following formula can be can be deduced for the displacements in this table with respect to index 1\+:
-
-displacements in this table with respect to index 1\+: \[\sum_{j=0}^{I-1} \sum_{i=0}^ {D-(d(0)+...+d(j))-1} \left(\begin{array}{c}n-j+i-1\\i\end{array}\right) , \] making use of the binomial coefficients \[\left(\begin{array}{c}a\\b\end{array}\right) = \frac{a!}{b!(a-b)!}\]
-
-It can be seen that each of the terms in the summation in $j$ corresponds to the displacement in dimension $j$ and the binomial coefficient comes from the classic stars and bars problem.
-
-
-\begin{DoxyParams}[1]{Parameters}
-\mbox{\tt in}  & {\em deriv} & derivatives\\
-\hline
-\mbox{\tt in}  & {\em dims} & nr. of dimensions \\
-\hline
-\end{DoxyParams}
-
-
-Definition at line 2112 of file num\+\_\+utilities.\+f90.
-
-Here is the call graph for this function\+:\nopagebreak
+Here is the call graph for this function\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{namespacenum__utilities_af2e9ffd7ce2f9391bf8b6f1c344fabca_cgraph}
 \end{center}
 \end{figure}
-Here is the caller graph for this function\+:\nopagebreak
+Here is the caller graph for this function\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -313,68 +143,16 @@ Here is the caller graph for this function\+:\nopagebreak
 
 
 
-Extrapolates a function. 
+Definition at line 383 of file num\+\_\+utilities.\+f90.
 
-This is done using linear or quadratic interpolation, depending on the number of points and values given.
-
-The data should be given sorted, in ascending order, without duplicate points in var\+\_\+points.
-
-It uses the following solution\+: \[\overline{\text{A}} \ \vec{b} = \vec{c}\] which is written out to \[\left(\begin{array}{cccc} x_1^0 & x_1^1 & x_1^2 & \ldots \\ x_2^0 & x_2^1 & x_2^2 & \ldots \\ x_3^0 & x_3^1 & x_3^2 & \ldots \\ \vdots & \vdots & \vdots & \ddots \\ \end{array}\right) \left(\begin{array}{c} a_0 \\ a_1 \\ a_2 \\ \vdots \end{array}\right) = \left(\begin{array}{c} v_0 \\ v_1 \\ v_2 \\ \vdots \end{array}\right) \] where $v_{i-1}$ = {\ttfamily var\+\_\+i}.
-
-This is solved for the coefficients of the interpolating polynomial
-
-{\ttfamily ext\+\_\+var = a\+\_\+0 + a\+\_\+1 x + a\+\_\+2 x$^\wedge$2 + ...}
-
-There is an optional flag to look for the $k^\text{th}$ derivative of the function instead of the function itself, where $k$ should be lower than the degree of the polynomial.
-
-\begin{DoxyReturn}{Returns}
-ierr
-\end{DoxyReturn}
-
-\begin{DoxyParams}[1]{Parameters}
-\mbox{\tt in,out}  & {\em ext\+\_\+var} & output\\
-\hline
-\mbox{\tt in}  & {\em var} & abscissa\\
-\hline
-\mbox{\tt in}  & {\em var\+\_\+points} & ordinate\\
-\hline
-\mbox{\tt in}  & {\em ext\+\_\+point} & point to which extrapolate\\
-\hline
-\mbox{\tt in}  & {\em deriv\+\_\+in} & specifies an optional derivative \\
-\hline
-\end{DoxyParams}
-
-
-Definition at line 2291 of file num\+\_\+utilities.\+f90.
-
-Here is the call graph for this function\+:\nopagebreak
+Here is the call graph for this function\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{namespacenum__utilities_a2d5d9c66db19fb6edeeb50db6182397f_cgraph}
 \end{center}
 \end{figure}
-\mbox{\Hypertarget{namespacenum__utilities_ac6699d422f3a588b51234c2d62ff389f}\label{namespacenum__utilities_ac6699d422f3a588b51234c2d62ff389f}} 
-\index{num\+\_\+utilities@{num\+\_\+utilities}!calc\+\_\+inv\+\_\+0d@{calc\+\_\+inv\+\_\+0d}}
-\index{calc\+\_\+inv\+\_\+0d@{calc\+\_\+inv\+\_\+0d}!num\+\_\+utilities@{num\+\_\+utilities}}
-\subsubsection{\texorpdfstring{calc\+\_\+inv\+\_\+0d()}{calc\_inv\_0d()}}
-{\footnotesize\ttfamily integer function num\+\_\+utilities\+::calc\+\_\+inv\+\_\+0d (\begin{DoxyParamCaption}\item[{real(dp), dimension(\+:,\+:), intent(inout)}]{inv\+\_\+0D,  }\item[{real(dp), dimension(\+:,\+:), intent(in)}]{A }\end{DoxyParamCaption})}
-
-
-
-private constant version 
-
-
-\begin{DoxyParams}[1]{Parameters}
-\mbox{\tt in,out}  & {\em inv\+\_\+0d} & output\\
-\hline
-\mbox{\tt in}  & {\em a} & input \\
-\hline
-\end{DoxyParams}
-
-
-Definition at line 772 of file num\+\_\+utilities.\+f90.
-
 \mbox{\Hypertarget{namespacenum__utilities_a00f4cfe18a734eaa5d66f529e52f7c31}\label{namespacenum__utilities_a00f4cfe18a734eaa5d66f529e52f7c31}} 
 \index{num\+\_\+utilities@{num\+\_\+utilities}!check\+\_\+deriv@{check\+\_\+deriv}}
 \index{check\+\_\+deriv@{check\+\_\+deriv}!num\+\_\+utilities@{num\+\_\+utilities}}
@@ -383,32 +161,18 @@ Definition at line 772 of file num\+\_\+utilities.\+f90.
 
 
 
-checks whether the derivatives requested for a certain subroutine are valid 
+Definition at line 248 of file num\+\_\+utilities.\+f90.
 
-\begin{DoxyReturn}{Returns}
-ierr
-\end{DoxyReturn}
-
-\begin{DoxyParams}[1]{Parameters}
-\mbox{\tt in}  & {\em deriv} & derivative to be checked\\
-\hline
-\mbox{\tt in}  & {\em max\+\_\+deriv} & maximum derivative allowed\\
-\hline
-\mbox{\tt in}  & {\em sr\+\_\+name} & name of subroutine \\
-\hline
-\end{DoxyParams}
-
-
-Definition at line 2226 of file num\+\_\+utilities.\+f90.
-
-Here is the call graph for this function\+:\nopagebreak
+Here is the call graph for this function\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{namespacenum__utilities_a00f4cfe18a734eaa5d66f529e52f7c31_cgraph}
 \end{center}
 \end{figure}
-Here is the caller graph for this function\+:\nopagebreak
+Here is the caller graph for this function\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -423,23 +187,10 @@ Here is the caller graph for this function\+:\nopagebreak
 
 
 
-Returns derivatives of certain order. 
+Definition at line 236 of file num\+\_\+utilities.\+f90.
 
-
-\begin{DoxyParams}[1]{Parameters}
-\mbox{\tt in}  & {\em order} & order of derivative\\
-\hline
-\mbox{\tt in}  & {\em dims} & nr. of dimensions\\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-array of all unique derivatives 
-\end{DoxyReturn}
-
-
-Definition at line 2212 of file num\+\_\+utilities.\+f90.
-
-Here is the caller graph for this function\+:\nopagebreak
+Here is the caller graph for this function\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -454,21 +205,10 @@ Here is the caller graph for this function\+:\nopagebreak
 
 
 
-Calculate factorial. 
+Definition at line 1845 of file num\+\_\+utilities.\+f90.
 
-
-\begin{DoxyParams}[1]{Parameters}
-\mbox{\tt in}  & {\em n} & input\\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-output 
-\end{DoxyReturn}
-
-
-Definition at line 2575 of file num\+\_\+utilities.\+f90.
-
-Here is the caller graph for this function\+:\nopagebreak
+Here is the caller graph for this function\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -483,26 +223,10 @@ Here is the caller graph for this function\+:\nopagebreak
 
 
 
-Returns least denominator using the G\+CD. 
+Definition at line 1931 of file num\+\_\+utilities.\+f90.
 
-\begin{DoxySeeAlso}{See also}
-From \href{https://rosettacode.org/wiki/Least_common_multiple#Fortran}{\tt https\+://rosettacode.\+org/wiki/\+Least\+\_\+common\+\_\+multiple\#\+Fortran}
-\end{DoxySeeAlso}
-
-\begin{DoxyParams}[1]{Parameters}
-\mbox{\tt in}  & {\em u} & input\\
-\hline
-\mbox{\tt in}  & {\em v} & input\\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-result 
-\end{DoxyReturn}
-
-
-Definition at line 2635 of file num\+\_\+utilities.\+f90.
-
-Here is the caller graph for this function\+:\nopagebreak
+Here is the caller graph for this function\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -517,146 +241,14 @@ Here is the caller graph for this function\+:\nopagebreak
 
 
 
-Determines whether a matrix making use of the storage convention in \hyperlink{structeq__vars_1_1eq__2__type}{eq\+\_\+vars.\+eq\+\_\+2\+\_\+type} is symmetric or not. 
+Definition at line 1756 of file num\+\_\+utilities.\+f90.
 
-\begin{DoxyReturn}{Returns}
-ierr
-\end{DoxyReturn}
-
-\begin{DoxyParams}[1]{Parameters}
-\mbox{\tt in}  & {\em n} & size of matrix\\
-\hline
-\mbox{\tt in}  & {\em nn} & number of elements in matrix\\
-\hline
-\mbox{\tt in,out}  & {\em sym} & output \\
-\hline
-\end{DoxyParams}
-
-
-Definition at line 2592 of file num\+\_\+utilities.\+f90.
-
-Here is the caller graph for this function\+:\nopagebreak
+Here is the caller graph for this function\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{namespacenum__utilities_a4e6994b5c92b3d16c8538b54db0beadd_icgraph}
-\end{center}
-\end{figure}
-\mbox{\Hypertarget{namespacenum__utilities_a33fc1483c840d5d3f9b12acfce21cad1}\label{namespacenum__utilities_a33fc1483c840d5d3f9b12acfce21cad1}} 
-\index{num\+\_\+utilities@{num\+\_\+utilities}!lcm@{lcm}}
-\index{lcm@{lcm}!num\+\_\+utilities@{num\+\_\+utilities}}
-\subsubsection{\texorpdfstring{lcm()}{lcm()}}
-{\footnotesize\ttfamily recursive integer function, public num\+\_\+utilities\+::lcm (\begin{DoxyParamCaption}\item[{integer, intent(in)}]{u,  }\item[{integer, intent(in)}]{v }\end{DoxyParamCaption})}
-
-
-
-Returns common multiple using the Euclid\textquotesingle{}s algorithm. 
-
-\begin{DoxySeeAlso}{See also}
-From \href{https://rosettacode.org/wiki/Greatest_common_divisor#Recursive_Euclid_algorithm_3}{\tt https\+://rosettacode.\+org/wiki/\+Greatest\+\_\+common\+\_\+divisor\#\+Recursive\+\_\+\+Euclid\+\_\+algorithm\+\_\+3}
-\end{DoxySeeAlso}
-
-\begin{DoxyParams}[1]{Parameters}
-\mbox{\tt in}  & {\em u} & input\\
-\hline
-\mbox{\tt in}  & {\em v} & input\\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-result 
-\end{DoxyReturn}
-
-
-Definition at line 2623 of file num\+\_\+utilities.\+f90.
-
-Here is the call graph for this function\+:\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=350pt]{namespacenum__utilities_a33fc1483c840d5d3f9b12acfce21cad1_cgraph}
-\end{center}
-\end{figure}
-Here is the caller graph for this function\+:\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=350pt]{namespacenum__utilities_a33fc1483c840d5d3f9b12acfce21cad1_icgraph}
-\end{center}
-\end{figure}
-\mbox{\Hypertarget{namespacenum__utilities_a859f442a1b860d82662eed17c4374c38}\label{namespacenum__utilities_a859f442a1b860d82662eed17c4374c38}} 
-\index{num\+\_\+utilities@{num\+\_\+utilities}!shift\+\_\+f@{shift\+\_\+f}}
-\index{shift\+\_\+f@{shift\+\_\+f}!num\+\_\+utilities@{num\+\_\+utilities}}
-\subsubsection{\texorpdfstring{shift\+\_\+f()}{shift\_f()}}
-{\footnotesize\ttfamily subroutine, public num\+\_\+utilities\+::shift\+\_\+f (\begin{DoxyParamCaption}\item[{real(dp), dimension(0\+:,\+:), intent(in)}]{A,  }\item[{real(dp), dimension(0\+:,\+:), intent(in)}]{B,  }\item[{real(dp), dimension(0\+:,\+:), intent(inout)}]{C }\end{DoxyParamCaption})}
-
-
-
-Calculate multiplication through shifting of fourier modes A and B into C. 
-
-\begin{DoxyNote}{Note}
-
-\begin{DoxyEnumerate}
-\item These all are assumed to have nonzero mode numers starting from 0. Any negative modes are converted into positive ones.
-\item Modes that are larger than what C can hold are thrown away.
-\end{DoxyEnumerate}
-\end{DoxyNote}
-
-\begin{DoxyParams}[1]{Parameters}
-\mbox{\tt in}  & {\em a} & input\\
-\hline
-\mbox{\tt in}  & {\em b} & input\\
-\hline
-\mbox{\tt in,out}  & {\em c} & result \\
-\hline
-\end{DoxyParams}
-
-
-Definition at line 2654 of file num\+\_\+utilities.\+f90.
-
-Here is the caller graph for this function\+:\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=350pt]{namespacenum__utilities_a859f442a1b860d82662eed17c4374c38_icgraph}
-\end{center}
-\end{figure}
-\mbox{\Hypertarget{namespacenum__utilities_a54c65e345182e2e7e13ac14a0ba3647a}\label{namespacenum__utilities_a54c65e345182e2e7e13ac14a0ba3647a}} 
-\index{num\+\_\+utilities@{num\+\_\+utilities}!solve\+\_\+vand@{solve\+\_\+vand}}
-\index{solve\+\_\+vand@{solve\+\_\+vand}!num\+\_\+utilities@{num\+\_\+utilities}}
-\subsubsection{\texorpdfstring{solve\+\_\+vand()}{solve\_vand()}}
-{\footnotesize\ttfamily subroutine, public num\+\_\+utilities\+::solve\+\_\+vand (\begin{DoxyParamCaption}\item[{integer, intent(in)}]{n,  }\item[{real(dp), dimension(n), intent(in)}]{a,  }\item[{real(dp), dimension(n), intent(in)}]{b,  }\item[{real(dp), dimension(n), intent(inout)}]{x,  }\item[{logical, intent(in), optional}]{transp }\end{DoxyParamCaption})}
-
-
-
-Solve a Vandermonde system $\overline{\text{A}} \ \vec{X} = \vec{B}$. 
-
-The Vandermonde matrix has the form \[A = \left(\begin{array}{ccccc} 1 & a_1 & a_1^2 & \cdots & a_1^n \\ 1 & a_2 & a_2^2 & \cdots & a_2^n \\ 1 & a_3 & a_3^2 & \cdots & a_3^n \\ \vdots & \vdots & \vdots & \ddots & \vdots \\ 1 & a_n & a_n^2 & \cdots & a_n^n \end{array}\right)\]
-
-\begin{DoxySeeAlso}{See also}
-Adapted from two routines {\ttfamily dvand} and {\ttfamily pvand} in \href{https://people.sc.fsu.edu/~jburkardt/f_src/vandermonde/vandermonde.html}{\tt https\+://people.\+sc.\+fsu.\+edu/$\sim$jburkardt/f\+\_\+src/vandermonde/vandermonde.\+html} based on the Björk-\/\+Pereyra Algorithm \cite{Bjorck1970}.
-\end{DoxySeeAlso}
-
-\begin{DoxyParams}[1]{Parameters}
-\mbox{\tt in}  & {\em n} & matrix size\\
-\hline
-\mbox{\tt in}  & {\em a} & parameters of Vandermonde matrix\\
-\hline
-\mbox{\tt in}  & {\em b} & right-\/hand side\\
-\hline
-\mbox{\tt in,out}  & {\em x} & solution\\
-\hline
-\mbox{\tt in}  & {\em transp} & transposed Vandermonde matrix \\
-\hline
-\end{DoxyParams}
-
-
-Definition at line 2717 of file num\+\_\+utilities.\+f90.
-
-Here is the caller graph for this function\+:\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=350pt]{namespacenum__utilities_a54c65e345182e2e7e13ac14a0ba3647a_icgraph}
 \end{center}
 \end{figure}
 
@@ -670,11 +262,7 @@ Here is the caller graph for this function\+:\nopagebreak
 
 
 
-1-\/D array indices of derivatives 
-
-
-
-Definition at line 23 of file num\+\_\+utilities.\+f90.
+Definition at line 21 of file num\+\_\+utilities.\+f90.
 
 \mbox{\Hypertarget{namespacenum__utilities_ae20985c8049d39f987fa23d728688cbc}\label{namespacenum__utilities_ae20985c8049d39f987fa23d728688cbc}} 
 \index{num\+\_\+utilities@{num\+\_\+utilities}!debug\+\_\+calc\+\_\+coeff\+\_\+fin\+\_\+diff@{debug\+\_\+calc\+\_\+coeff\+\_\+fin\+\_\+diff}}
@@ -684,14 +272,7 @@ Definition at line 23 of file num\+\_\+utilities.\+f90.
 
 
 
-plot debug information for \hyperlink{namespacenum__utilities_a4dffe3beba7165dd17cff19a99a9e2ac}{calc\+\_\+coeff\+\_\+fin\+\_\+diff()} 
-
-\begin{DoxyNote}{Note}
-Debug version only 
-\end{DoxyNote}
-
-
-Definition at line 28 of file num\+\_\+utilities.\+f90.
+Definition at line 26 of file num\+\_\+utilities.\+f90.
 
 \mbox{\Hypertarget{namespacenum__utilities_ab7138a230a3c494c7a2b71b2a7fffc0a}\label{namespacenum__utilities_ab7138a230a3c494c7a2b71b2a7fffc0a}} 
 \index{num\+\_\+utilities@{num\+\_\+utilities}!debug\+\_\+con2dis\+\_\+reg@{debug\+\_\+con2dis\+\_\+reg}}
@@ -701,14 +282,7 @@ Definition at line 28 of file num\+\_\+utilities.\+f90.
 
 
 
-plot debug information for con2dis\+\_\+reg() 
-
-\begin{DoxyNote}{Note}
-Debug version only 
-\end{DoxyNote}
-
-
-Definition at line 27 of file num\+\_\+utilities.\+f90.
+Definition at line 25 of file num\+\_\+utilities.\+f90.
 
 \mbox{\Hypertarget{namespacenum__utilities_a8e3399292fcb3a5fc35ae87f7811bbb5}\label{namespacenum__utilities_a8e3399292fcb3a5fc35ae87f7811bbb5}} 
 \index{num\+\_\+utilities@{num\+\_\+utilities}!f@{f}}
@@ -718,11 +292,7 @@ Definition at line 27 of file num\+\_\+utilities.\+f90.
 
 
 
-1-\/D array indices of Fourier mode combination indices 
-
-
-
-Definition at line 25 of file num\+\_\+utilities.\+f90.
+Definition at line 23 of file num\+\_\+utilities.\+f90.
 
 \mbox{\Hypertarget{namespacenum__utilities_ad7a7ae2abf02a2df9e00b2aca669617c}\label{namespacenum__utilities_ad7a7ae2abf02a2df9e00b2aca669617c}} 
 \index{num\+\_\+utilities@{num\+\_\+utilities}!m@{m}}
@@ -732,9 +302,5 @@ Definition at line 25 of file num\+\_\+utilities.\+f90.
 
 
 
-1-\/D array indices of metric indices 
-
-
-
-Definition at line 24 of file num\+\_\+utilities.\+f90.
+Definition at line 22 of file num\+\_\+utilities.\+f90.
 

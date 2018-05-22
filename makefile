@@ -21,6 +21,9 @@ clean:
 
 all: doc doc_latex
 
+git-push:
+	git push --follow-tags
+
 doc: 
 	@set -e
 	@rm -f temp_user_vars

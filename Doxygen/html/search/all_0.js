@@ -1,12 +1,19 @@
 var searchData=
 [
   ['abort_5fmpi',['abort_mpi',['../namespacempi__ops.html#a54d9258ef985728345579e8e57dc8dfe',1,'mpi_ops']]],
-  ['add_5farr_5fmult',['add_arr_mult',['../interfacenum__utilities_1_1add__arr__mult.html',1,'num_utilities']]],
-  ['add_5farr_5fmult_5f1_5f1',['add_arr_mult_1_1',['../interfacenum__utilities_1_1add__arr__mult.html#a61e9ce82de87924edbbdfd8fc212998d',1,'num_utilities::add_arr_mult']]],
-  ['add_5farr_5fmult_5f3_5f1',['add_arr_mult_3_1',['../interfacenum__utilities_1_1add__arr__mult.html#ab295a49037477209b1d658e3c3e99dda',1,'num_utilities::add_arr_mult']]],
-  ['add_5farr_5fmult_5f3_5f3',['add_arr_mult_3_3',['../interfacenum__utilities_1_1add__arr__mult.html#a377e810d6da5185289008c0eb547db9a',1,'num_utilities::add_arr_mult']]],
+  ['adapt_5fmin_5fn_5fpar_5fx',['adapt_min_n_par_x',['../input__ops_8f90.html#a911791dfa1bc69e9c2e00488d0a5d60b',1,'input_ops.f90']]],
+  ['adapt_5frich',['adapt_rich',['../input__ops_8f90.html#ab580aa4852afcd4a9de50b1b98de14cb',1,'input_ops.f90']]],
+  ['adapt_5frun_5fpb3d',['adapt_run_pb3d',['../input__ops_8f90.html#a4f2af8cdda395ccda6a1adea6c1d578c',1,'input_ops.f90']]],
+  ['adapt_5frun_5fpost',['adapt_run_post',['../input__ops_8f90.html#a0ba5a762c885daaf5fcc2c60ab81c535',1,'input_ops.f90']]],
   ['add_5fhdf5_5fitem',['add_hdf5_item',['../namespacehdf5__ops.html#ade36dbd73b60da30e33a1059e590f734',1,'hdf5_ops']]],
-  ['alpha',['alpha',['../namespacegrid__vars.html#a07bf4730be1d5ab8b42f85be63e11797',1,'grid_vars']]],
-  ['alpha_5fstyle',['alpha_style',['../namespacenum__vars.html#aa3b575dadc3dc227a57d52b118408d62',1,'num_vars']]],
-  ['ang',['ang',['../structvac__vars_1_1vac__type.html#a8a79c1f2b383fda22b5f3cca1f7afd31',1,'vac_vars::vac_type']]]
+  ['alpha',['alpha',['../namespacesol__vars.html#adbe33095cf2396e4a5c9108d7d1dcf11',1,'sol_vars']]],
+  ['apply_5fdisc_5f1d_5fcomplex',['apply_disc_1d_complex',['../namespacegrid__utilities.html#a948a0ef995a14a7a80464933e8c28029',1,'grid_utilities']]],
+  ['apply_5fdisc_5f1d_5freal',['apply_disc_1d_real',['../namespacegrid__utilities.html#ae57cbda514cf4bf01714e0746ff342a2',1,'grid_utilities']]],
+  ['apply_5fdisc_5f2d_5fcomplex',['apply_disc_2d_complex',['../namespacegrid__utilities.html#a7cb36e1ff9abd22f7f18d8b65215c67f',1,'grid_utilities']]],
+  ['apply_5fdisc_5f2d_5freal',['apply_disc_2d_real',['../namespacegrid__utilities.html#a9ffa0404a239305f4c0c577d1e34a791',1,'grid_utilities']]],
+  ['apply_5fdisc_5f3d_5fcomplex',['apply_disc_3d_complex',['../namespacegrid__utilities.html#a2e42ad0b765c9292bc7010069359cc28',1,'grid_utilities']]],
+  ['apply_5fdisc_5f3d_5freal',['apply_disc_3d_real',['../namespacegrid__utilities.html#a876f338471e643a680893b9a19715016',1,'grid_utilities']]],
+  ['apply_5fdisc_5f4d_5fcomplex',['apply_disc_4d_complex',['../namespacegrid__utilities.html#a7fcde4b046076294fc8d2ca130f84add',1,'grid_utilities']]],
+  ['apply_5fdisc_5f4d_5freal',['apply_disc_4d_real',['../namespacegrid__utilities.html#a9494e086550e67e6d1319d94d37e15ef',1,'grid_utilities']]],
+  ['apply_5fopt_5fpb3d',['apply_opt_pb3d',['../files__ops_8f90.html#a0aab73e3be6acf8b28310674ffabb246',1,'files_ops.f90']]]
 ];

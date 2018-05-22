@@ -1,82 +1,42 @@
 \hypertarget{namespaceslepc__utilities}{}\section{slepc\+\_\+utilities Module Reference}
 \label{namespaceslepc__utilities}\index{slepc\+\_\+utilities@{slepc\+\_\+utilities}}
-
-
-Numerical utilities related to S\+L\+E\+PC (and P\+E\+T\+SC) operations.  
-
-
 \subsection*{Functions/\+Subroutines}
 \begin{DoxyCompactItemize}
 \item 
-integer function, public \hyperlink{namespaceslepc__utilities_aa34aa361f0bfff9621ecba179f9ed0c6}{insert\+\_\+block\+\_\+mat} (mds, block, mat, r\+\_\+id, ind, n\+\_\+r, transp, overwrite, ind\+\_\+insert)
-\begin{DoxyCompactList}\small\item\em Insert a block pertaining to 1 normal point into a matrix. \end{DoxyCompactList}\end{DoxyCompactItemize}
+integer function, public \hyperlink{namespaceslepc__utilities_ae6568f825f3fa8a6e3d45f67f3daf412}{insert\+\_\+block\+\_\+mat} (block, mat, r\+\_\+id, ind, n\+\_\+sol, transp, overwrite)
+\end{DoxyCompactItemize}
 \subsection*{Variables}
 \begin{DoxyCompactItemize}
 \item 
 logical, public \hyperlink{namespaceslepc__utilities_a5cb92553633cb22ff703286298862ac7}{debug\+\_\+insert\+\_\+block\+\_\+mat} = .false.
-\begin{DoxyCompactList}\small\item\em plot debug information for \hyperlink{namespaceslepc__utilities_aa34aa361f0bfff9621ecba179f9ed0c6}{insert\+\_\+block\+\_\+mat()} \end{DoxyCompactList}\end{DoxyCompactItemize}
-
-
-\subsection{Detailed Description}
-Numerical utilities related to S\+L\+E\+PC (and P\+E\+T\+SC) operations. 
-
-\begin{DoxySeeAlso}{See also}
-References\+: \cite{Hernandez2005slepc} 
-\end{DoxySeeAlso}
+\end{DoxyCompactItemize}
 
 
 \subsection{Function/\+Subroutine Documentation}
-\mbox{\Hypertarget{namespaceslepc__utilities_aa34aa361f0bfff9621ecba179f9ed0c6}\label{namespaceslepc__utilities_aa34aa361f0bfff9621ecba179f9ed0c6}} 
+\mbox{\Hypertarget{namespaceslepc__utilities_ae6568f825f3fa8a6e3d45f67f3daf412}\label{namespaceslepc__utilities_ae6568f825f3fa8a6e3d45f67f3daf412}} 
 \index{slepc\+\_\+utilities@{slepc\+\_\+utilities}!insert\+\_\+block\+\_\+mat@{insert\+\_\+block\+\_\+mat}}
 \index{insert\+\_\+block\+\_\+mat@{insert\+\_\+block\+\_\+mat}!slepc\+\_\+utilities@{slepc\+\_\+utilities}}
 \subsubsection{\texorpdfstring{insert\+\_\+block\+\_\+mat()}{insert\_block\_mat()}}
-{\footnotesize\ttfamily integer function, public slepc\+\_\+utilities\+::insert\+\_\+block\+\_\+mat (\begin{DoxyParamCaption}\item[{type(modes\+\_\+type), intent(in), target}]{mds,  }\item[{dimension(\+:,\+:), intent(in)}]{block,  }\item[{intent(inout)}]{mat,  }\item[{intent(in)}]{r\+\_\+id,  }\item[{dimension(2), intent(in)}]{ind,  }\item[{intent(in)}]{n\+\_\+r,  }\item[{optional}]{transp,  }\item[{optional}]{overwrite,  }\item[{optional}]{ind\+\_\+insert }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily integer function, public slepc\+\_\+utilities\+::insert\+\_\+block\+\_\+mat (\begin{DoxyParamCaption}\item[{}]{block,  }\item[{intent(inout)}]{mat,  }\item[{intent(in)}]{r\+\_\+id,  }\item[{dimension(2), intent(in)}]{ind,  }\item[{intent(in)}]{n\+\_\+sol,  }\item[{optional}]{transp,  }\item[{optional}]{overwrite }\end{DoxyParamCaption})}
 
 
 
-Insert a block pertaining to 1 normal point into a matrix. 
+Definition at line 63 of file S\+L\+E\+P\+C\+\_\+utilities.\+f90.
 
-Optionally, also set the Hermitian transpose and / or overwrite instead of add value.
-
-This routine takes into account that if the mode numbers change as a function of the normal coordinate, as is the case for X\+\_\+style 2 (fast), part of the local blocks, which were set up without taking this into account, can have information that correspond to mode numbers that are not present any more for off-\/diagonal entries, and lack an equal amount of information that corresponds to the mode numbers that have taken their places.
-
-Omission of this effect is justifiable if there are many more mode couplings that are not omitted (i.\+e. when {\ttfamily n\+\_\+mod\+\_\+X} is large), so that it is a small effect, and/or when the coupling between these modes is already negligible.
-
-Unfortunately, it can be argued that this is not generally the case for the fast version ({\ttfamily X\+\_\+style} = 2) since $\widetilde{PV}^1$ and $\widetilde{PV}^2$ are both $\sim (nq-m)$, which indicates that the smallest elements in the corresponding off-\/diagonal blocks lie in the central columns for $\widetilde{PV}^1$ and in the central columns and rows for $\widetilde{PV}^2$, while the problematic elements lie farthest away from the central columns for $\widetilde{PV}^1$ and the central columns and rows for $\widetilde{PV}^2$, so these are generally not small.
-
-The coefficients due to normal discretization get increasingly small for higher orders, though, which compensates this for higher orders.
-
-Finally, an alternative would be to set the problematic elements not to zero but extrapolated from the closest elements, but then consistency would be sacrified, for example in the energy reconstruction of the P\+O\+S\+T-\/processing\+: In the energy reconstruction the exact same terms are neglected as well.
-
-To conclude, for fast {\ttfamily X\+\_\+style} 2, the number of modes ({\ttfamily n\+\_\+mod\+\_\+X}) has to be chosen high enough compared with the variation of the mode numbers; i.\+e. the variation of the safety factor or rotational transform.
-
-\begin{DoxyNote}{Note}
-The grid in which the modes variables {\ttfamily mds} are tabulated up must be the same as the one in which {\ttfamily mat} is set up. If this is not the case, the indices in {\ttfamily mds} have to be adapted.
-\end{DoxyNote}
-\begin{DoxyReturn}{Returns}
-ierr
-\end{DoxyReturn}
-
-\begin{DoxyParams}[1]{Parameters}
-\mbox{\tt in}  & {\em mds} & general modes variables \\
-\hline
-\end{DoxyParams}
-
-
-Definition at line 82 of file S\+L\+E\+P\+C\+\_\+utilities.\+f90.
-
-Here is the call graph for this function\+:\nopagebreak
+Here is the call graph for this function\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=350pt]{namespaceslepc__utilities_aa34aa361f0bfff9621ecba179f9ed0c6_cgraph}
+\includegraphics[width=350pt]{namespaceslepc__utilities_ae6568f825f3fa8a6e3d45f67f3daf412_cgraph}
 \end{center}
 \end{figure}
-Here is the caller graph for this function\+:\nopagebreak
+Here is the caller graph for this function\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=350pt]{namespaceslepc__utilities_aa34aa361f0bfff9621ecba179f9ed0c6_icgraph}
+\includegraphics[width=350pt]{namespaceslepc__utilities_ae6568f825f3fa8a6e3d45f67f3daf412_icgraph}
 \end{center}
 \end{figure}
 
@@ -88,13 +48,6 @@ Here is the caller graph for this function\+:\nopagebreak
 \subsubsection{\texorpdfstring{debug\+\_\+insert\+\_\+block\+\_\+mat}{debug\_insert\_block\_mat}}
 {\footnotesize\ttfamily logical, public slepc\+\_\+utilities\+::debug\+\_\+insert\+\_\+block\+\_\+mat = .false.}
 
-
-
-plot debug information for \hyperlink{namespaceslepc__utilities_aa34aa361f0bfff9621ecba179f9ed0c6}{insert\+\_\+block\+\_\+mat()} 
-
-\begin{DoxyNote}{Note}
-Debug version only 
-\end{DoxyNote}
 
 
 Definition at line 30 of file S\+L\+E\+P\+C\+\_\+utilities.\+f90.

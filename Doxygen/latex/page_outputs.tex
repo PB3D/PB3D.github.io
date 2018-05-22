@@ -11,7 +11,7 @@ Some of these files are opened in \hyperlink{namespacefiles__ops_ad681a9e8083a6f
 Both P\+B3D and P\+O\+ST produce a log file, in addition to what is produced on the screen.
 
 These log files are called {\ttfamily P\+B3\+D\+\_\+out.\+txt} and {\ttfamily P\+O\+S\+T\+\_\+out.\+txt} and they contain the same information as the output on the screen, but without the special formatting provided by the foul library (see \hyperlink{page_installation_installation_introduction}{Introduction}).\hypertarget{page_outputs_output_file_shell}{}\subsection{Shell commands file}\label{page_outputs_output_file_shell}
-Some output routines make use of \hyperlink{namespaceoutput__ops_aa9e4855511b6ea16a08b3efb587bec51}{use\+\_\+execute\+\_\+command\+\_\+line()} in order to execute shell commands. This can be, for example, the creation of a plot by calling Gnu\+Plot, among other things.
+Some output routines make use of use\+\_\+execute\+\_\+command\+\_\+line() in order to execute shell commands. This can be, for example, the creation of a plot by calling Gnu\+Plot, among other things.
 
 However, this often does not work well by default (see \hyperlink{page_inputs_fni30}{30} in \hyperlink{page_inputs}{Input variables}). In P\+B3D and P\+O\+ST, therefore, by default, these commands are not executed, but written to an output file. After execution of P\+B3D and P\+O\+ST has finished, this file can be made executed.
 
@@ -44,7 +44,7 @@ P\+B3D writes variables to an H\+D\+F5 output file during execution, as shown in
 \rowcolor{\tableheadbgcolor}\textbf{ variable type }&\textbf{ V\+M\+EC ({\ttfamily eq\+\_\+style = 1}) }&\textbf{ H\+E\+L\+E\+NA ({\ttfamily eq\+\_\+style = 2})   }\\\cline{1-3}
 \endhead
 \multirow{1}{\linewidth}{inputs }&\multicolumn{2}{p{(\linewidth-\tabcolsep*3-\arrayrulewidth*2)*2/3}|}{in preliminary phase   }\\\cline{1-3}
-\multirow{10}{\linewidth}{grids of \hyperlink{structgrid__vars_1_1grid__type}{grid\+\_\+vars.\+grid\+\_\+type} }&\multicolumn{2}{p{(\linewidth-\tabcolsep*3-\arrayrulewidth*2)*2/3}|}{\PBS\centering {\bfseries equilibrium}   }\\\cline{2-3}
+\multirow{10}{\linewidth}{grids of grid\+\_\+vars.\+grid\+\_\+type }&\multicolumn{2}{p{(\linewidth-\tabcolsep*3-\arrayrulewidth*2)*2/3}|}{\PBS\centering {\bfseries equilibrium}   }\\\cline{2-3}
 &\multicolumn{2}{p{(\linewidth-\tabcolsep*3-\arrayrulewidth*2)*2/3}|}{field-\/aligned-\/grid at every Richardson level  }\\\cline{2-3}
 &&also output H\+E\+L\+E\+NA grid at first Richardson level  \\\cline{2-3}
 &&used later for interpolation to field-\/aligned grid  \\\cline{2-3}
@@ -54,12 +54,12 @@ P\+B3D writes variables to an H\+D\+F5 output file during execution, as shown in
 &&used later for interpolation to field-\/aligned grid  \\\cline{2-3}
 &\multicolumn{2}{p{(\linewidth-\tabcolsep*3-\arrayrulewidth*2)*2/3}|}{\PBS\centering {\bfseries solution}   }\\\cline{2-3}
 &\multicolumn{2}{p{(\linewidth-\tabcolsep*3-\arrayrulewidth*2)*2/3}|}{only at first Richardson level  }\\\cline{1-3}
-\multirow{1}{\linewidth}{flux equilibria of \hyperlink{structeq__vars_1_1eq__1__type}{eq\+\_\+vars.\+eq\+\_\+1\+\_\+type} }&\multicolumn{2}{p{(\linewidth-\tabcolsep*3-\arrayrulewidth*2)*2/3}|}{only at first Richardson level   }\\\cline{1-3}
-\multirow{3}{\linewidth}{metric equilibria of \hyperlink{structeq__vars_1_1eq__2__type}{eq\+\_\+vars.\+eq\+\_\+2\+\_\+type} }&\multicolumn{2}{p{(\linewidth-\tabcolsep*3-\arrayrulewidth*2)*2/3}|}{only at first Richardson level   }\\\cline{2-3}
+\multirow{1}{\linewidth}{flux equilibria of eq\+\_\+vars.\+eq\+\_\+1\+\_\+type }&\multicolumn{2}{p{(\linewidth-\tabcolsep*3-\arrayrulewidth*2)*2/3}|}{only at first Richardson level   }\\\cline{1-3}
+\multirow{3}{\linewidth}{metric equilibria of eq\+\_\+vars.\+eq\+\_\+2\+\_\+type }&\multicolumn{2}{p{(\linewidth-\tabcolsep*3-\arrayrulewidth*2)*2/3}|}{only at first Richardson level   }\\\cline{2-3}
 &&also output H\+E\+L\+E\+NA grid at first Richardson level  \\\cline{2-3}
 &&used later for interpolation to field-\/aligned grid  \\\cline{1-3}
-\multirow{1}{\linewidth}{vacuums of \hyperlink{structvac__vars_1_1vac__type}{vac\+\_\+vars.\+vac\+\_\+type} }&at every Richardson level  &only at first Richardson level   \\\cline{1-3}
-\multirow{1}{\linewidth}{solutions of \hyperlink{structsol__vars_1_1sol__type}{sol\+\_\+vars.\+sol\+\_\+type} }&\multicolumn{2}{p{(\linewidth-\tabcolsep*3-\arrayrulewidth*2)*2/3}|}{at every Richardson level   }\\\cline{1-3}
+\multirow{1}{\linewidth}{vacuums of vac\+\_\+vars.\+vac\+\_\+type }&at every Richardson level  &only at first Richardson level   \\\cline{1-3}
+\multirow{1}{\linewidth}{solutions of sol\+\_\+vars.\+sol\+\_\+type }&\multicolumn{2}{p{(\linewidth-\tabcolsep*3-\arrayrulewidth*2)*2/3}|}{at every Richardson level   }\\\cline{1-3}
 \end{longtabu}
 
 
@@ -68,7 +68,7 @@ This data is used for Richardson restart (see variable {\ttfamily rich\+\_\+rest
 In the post-\/processing phase, P\+O\+ST reads this data as well.\hypertarget{page_outputs_output_file_EV}{}\subsection{Eigenvalue summary file}\label{page_outputs_output_file_EV}
 In each Richardson extrapolation level, after the solution of the eigenvalue system of equations, eigenvalues are stored in P\+B3D.
 \begin{DoxyItemize}
-\item For S\+L\+E\+PC, the results are saved in the procedure \hyperlink{namespaceslepc__ops_a24d97496000ed55f1d11e4d436e084a6}{store\+\_\+results()}\+:
+\item For S\+L\+E\+PC, the results are saved in the procedure \hyperlink{namespaceslepc__ops_a66241540803bca208b2f3bd6b0448491}{store\+\_\+results()}\+:
 \begin{DoxyItemize}
 \item If normalization is used, the normalization time scale is also stored.
 \item If an unphysical complex eigenvalue is detected, this is indicated. See {\ttfamily option} retain\+\_\+all\+\_\+sol in \hyperlink{page_inputs_inputs_PB3D_file}{Input file}.
@@ -76,7 +76,7 @@ In each Richardson extrapolation level, after the solution of the eigenvalue sys
 \end{DoxyItemize}\hypertarget{page_outputs_output_file_E_rec}{}\subsection{Energy reconstruction file}\label{page_outputs_output_file_E_rec}
 If energy reconstruction is performed by P\+O\+ST (see {\ttfamily plot\+\_\+\+E\+\_\+rec} in \hyperlink{page_inputs}{Input variables}), the individual terms that make up the perturbed potential energy as well as the kinetic energy of the perturbation are calculated and plot. (\hyperlink{page_outputs_fno3}{3}) Furthermore, the integration of these quantities over the whole volume, is returned in an output file.
 
-In table \doxytablelink{page_outputs_e_rec_tab}{2}, an overview is given of the different terms. Here, $\rho$ is the density, $\sigma = \frac{\vec{B}\cdot\vec{J}}{B^2}$ is the parallel current and $\kappa = \frac{\vec{B}}{B} \cdot \nabla \frac{\vec{B}}{B}$ is the magnetic curvature. See \hyperlink{namespacesol__ops_ae094c2a5235324b4aadb53623978d191}{calc\+\_\+e()}.
+In table \doxytablelink{page_outputs_e_rec_tab}{2}, an overview is given of the different terms. Here, $\rho$ is the density, $\sigma = \frac{\vec{B}\cdot\vec{J}}{B^2}$ is the parallel current and $\kappa = \frac{\vec{B}}{B} \cdot \nabla \frac{\vec{B}}{B}$ is the magnetic curvature. See \hyperlink{namespacesol__ops_aaeb4b122754fc6a4f538b22d72b6cba0}{calc\+\_\+e()}.
 
 \hypertarget{page_outputs_e_rec_tab}{}
 \tabulinesep=1mm
@@ -121,8 +121,8 @@ The plots themselves fall in two categories\+:
 \begin{DoxyItemize}
 \item Plots using an external program.
 \begin{DoxyItemize}
-\item Produced by \hyperlink{interfaceoutput__ops_1_1print__ex__2d}{output\+\_\+ops.\+print\+\_\+ex\+\_\+2d()} or \hyperlink{interfaceoutput__ops_1_1print__ex__3d}{output\+\_\+ops.\+print\+\_\+ex\+\_\+3d()} combined with \hyperlink{namespaceoutput__ops_a50bfbb88cc91805469353c3ff47b3e2e}{draw\+\_\+ex()}.
-\item A list of external programs is given in \hyperlink{namespaceoutput__ops_a50bfbb88cc91805469353c3ff47b3e2e}{draw\+\_\+ex()}.
+\item Produced by output\+\_\+ops.\+print\+\_\+ex\+\_\+2d() or output\+\_\+ops.\+print\+\_\+ex\+\_\+3d() combined with draw\+\_\+ex().
+\item A list of external programs is given in draw\+\_\+ex().
 \item These plots require a shell command to be run, which is disabled by default and the commands are stored in a \hyperlink{page_outputs_output_file_shell}{Shell commands file}.
 \item The produced plots can be 2-\/D or 3-\/D, and they can be interactive or not, depending on the {\ttfamily ex\+\_\+plot\+\_\+style} (see \hyperlink{page_inputs}{Input variables}).
 \end{DoxyItemize}

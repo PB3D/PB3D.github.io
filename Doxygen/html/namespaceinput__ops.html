@@ -29,7 +29,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">PB3D
-   &#160;<span id="projectnumber">[2.24]</span>
+   &#160;<span id="projectnumber">[1.73]</span>
    </div>
    <div id="projectbrief">Ideal linear high-n MHD stability in 3-D</div>
   </td>
@@ -73,25 +73,17 @@ $(function() {
 <div class="title">input_ops Module Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
-
-<p>Operations concerning giving input.  
-<a href="#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions/Subroutines</h2></td></tr>
 <tr class="memitem:a434acca4f59f9dc1d91e04f846133684"><td class="memItemLeft" align="right" valign="top">integer function, public&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceinput__ops.html#a434acca4f59f9dc1d91e04f846133684">read_input_opts</a> ()</td></tr>
-<tr class="memdesc:a434acca4f59f9dc1d91e04f846133684"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reads input options from user-provided input file.  <a href="#a434acca4f59f9dc1d91e04f846133684">More...</a><br /></td></tr>
 <tr class="separator:a434acca4f59f9dc1d91e04f846133684"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a577c897cc266961eb40bb5ef747fa077"><td class="memItemLeft" align="right" valign="top">integer function, public&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceinput__ops.html#a577c897cc266961eb40bb5ef747fa077">read_input_eq</a> ()</td></tr>
-<tr class="memdesc:a577c897cc266961eb40bb5ef747fa077"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reads the equilibrium input file if no Richardson restart.  <a href="#a577c897cc266961eb40bb5ef747fa077">More...</a><br /></td></tr>
 <tr class="separator:a577c897cc266961eb40bb5ef747fa077"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a84ec7b3833da80ebb36ae0d5ff1a9e0a"><td class="memItemLeft" align="right" valign="top">integer function, public&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceinput__ops.html#a84ec7b3833da80ebb36ae0d5ff1a9e0a">print_output_in</a> (data_name)</td></tr>
-<tr class="memdesc:a84ec7b3833da80ebb36ae0d5ff1a9e0a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Print input quantities to an output file.  <a href="#a84ec7b3833da80ebb36ae0d5ff1a9e0a">More...</a><br /></td></tr>
 <tr class="separator:a84ec7b3833da80ebb36ae0d5ff1a9e0a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Operations concerning giving input. </p>
-</div><h2 class="groupheader">Function/Subroutine Documentation</h2>
+<h2 class="groupheader">Function/Subroutine Documentation</h2>
 <a id="a84ec7b3833da80ebb36ae0d5ff1a9e0a"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a84ec7b3833da80ebb36ae0d5ff1a9e0a">&#9670;&nbsp;</a></span>print_output_in()</h2>
 
@@ -108,60 +100,22 @@ Functions/Subroutines</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Print input quantities to an output file. </p>
-<p>Variables printed:</p><ul>
-<li><code>misc_in:</code> <code>prog_version</code>, <code>eq_style</code>, <code>rho_style</code>, <code>R_0</code>, <code>pres_0</code>, <code>B_0</code>, <code>psi_0</code> <code>rho_0</code>, <code>T_0</code>, <code>vac_perm</code>, <code>use_pol_flux_F</code>, <code>use_pol_flux_E</code>, <code>use_normalization</code>, <code>norm_disc_prec_eq</code>, <code>norm_disc_style_sol</code>, <code>n_r_in</code>, <code>n_r_eq</code>, <code>n_r_sol</code>, <code>debug_version</code> </li>
-<li><code>misc_in_V:</code> <code>is_asym_V</code>, <code>is_freeb_V</code>, <code>mnmax_V</code>, <code>mpol_V</code>, <code>ntor_V</code>, <code>gam_V</code> </li>
-<li><code>flux_t_V</code> </li>
-<li><code>flux_p_V</code> </li>
-<li><code>pres_V</code> </li>
-<li><code>rot_t_V</code> </li>
-<li><code>q_saf_V</code> </li>
-<li><code>mn_V</code> </li>
-<li><code>R_V_c</code> </li>
-<li><code>R_V_s</code> </li>
-<li><code>Z_V_c</code> </li>
-<li><code>Z_V_s</code> </li>
-<li><code>L_V_c</code> </li>
-<li><code>L_V_s</code> </li>
-<li><code>B_V_sub:</code> <code>B_V_sub_c</code>, <code>B_V_sub_s</code> </li>
-<li><code>B_V:</code> <code>B_V_c</code>, <code>B_V_s</code> </li>
-<li><code>J_V_sup_int</code> </li>
-<li><code>jac_V:</code> <code>jac_V_c</code>, <code>jac_V_s</code> </li>
-<li><code>misc_in_H:</code> <code>ias</code>, <code>nchi</code> </li>
-<li><code>RZ_H:</code> <code>R_H</code>, <code>Z_H</code> </li>
-<li><code>chi_H</code> </li>
-<li><code>q_saf_H</code> </li>
-<li><code>rot_t_H</code> </li>
-<li><code>RBphi_H</code> </li>
-<li><code>pres_H</code> </li>
-<li><code>flux_p_H</code> </li>
-<li><code>flux_t_H</code> </li>
-<li><code>misc_X:</code> <code>prim_X</code>, <code>n_mod_X</code>, <code>min_sec_X</code>, <code>max_sec_X</code>, <code>norm_disc_prec_X</code>, <code>norm_style</code>, <code>U_style</code>, <code>X_style</code>, <code>matrix_SLEPC_style</code>, <code>K_style</code>, <code>alpha_style</code> </li>
-<li><code>misc_sol:</code> <code>min_r_sol</code>, <code>max_r_sol</code>, <code>norm_disc_prec_sol</code>, <code>BC_style</code>, <code>EV_BC</code>, <code>EV_BC</code> </li>
-</ul>
-<dl class="section return"><dt>Returns</dt><dd>ierr</dd></dl>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">data_name</td><td>name under which to store </td></tr>
-  </table>
-  </dd>
-</dl>
-
-<p class="definition">Definition at line <a class="el" href="input__ops_8f90_source.html#l01173">1173</a> of file <a class="el" href="input__ops_8f90_source.html">input_ops.f90</a>.</p>
+<p class="definition">Definition at line <a class="el" href="input__ops_8f90_source.html#l00913">913</a> of file <a class="el" href="input__ops_8f90_source.html">input_ops.f90</a>.</p>
 <div id="dynsection-0" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-0-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
 <div id="dynsection-0-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-0-content" class="dyncontent" style="display:none;">
-<div class="center"><iframe scrolling="no" frameborder="0" src="namespaceinput__ops_a84ec7b3833da80ebb36ae0d5ff1a9e0a_cgraph.svg" width="1984" height="1332"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="namespaceinput__ops_a84ec7b3833da80ebb36ae0d5ff1a9e0a_cgraph.svg" width="1523" height="932"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 <div id="dynsection-1" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-1-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
 <div id="dynsection-1-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-1-content" class="dyncontent" style="display:none;">
-<div class="center"><iframe scrolling="no" frameborder="0" src="namespaceinput__ops_a84ec7b3833da80ebb36ae0d5ff1a9e0a_icgraph.svg" width="344" height="40"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="namespaceinput__ops_a84ec7b3833da80ebb36ae0d5ff1a9e0a_icgraph.svg" width="344" height="40"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 
 </div>
@@ -181,25 +135,22 @@ Functions/Subroutines</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Reads the equilibrium input file if no Richardson restart. </p>
-<p>These variables will be passed on through the HDF5 data system.</p>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="namespacepb3d__ops.html#ad1481747b9b9832f816d4bf1dd2d6737" title="Reconstructs the input variables from PB3D HDF5 output. ">reconstruct_pb3d_in()</a>.</dd></dl>
-<dl class="section return"><dt>Returns</dt><dd>ierr </dd></dl>
-
-<p class="definition">Definition at line <a class="el" href="input__ops_8f90_source.html#l01103">1103</a> of file <a class="el" href="input__ops_8f90_source.html">input_ops.f90</a>.</p>
+<p class="definition">Definition at line <a class="el" href="input__ops_8f90_source.html#l00851">851</a> of file <a class="el" href="input__ops_8f90_source.html">input_ops.f90</a>.</p>
 <div id="dynsection-2" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-2-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
 <div id="dynsection-2-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-2-content" class="dyncontent" style="display:none;">
-<div class="center"><iframe scrolling="no" frameborder="0" src="namespaceinput__ops_a577c897cc266961eb40bb5ef747fa077_cgraph.svg" width="1594" height="484"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="namespaceinput__ops_a577c897cc266961eb40bb5ef747fa077_cgraph.svg" width="1355" height="224"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 <div id="dynsection-3" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-3-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
 <div id="dynsection-3-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-3-content" class="dyncontent" style="display:none;">
-<div class="center"><iframe scrolling="no" frameborder="0" src="namespaceinput__ops_a577c897cc266961eb40bb5ef747fa077_icgraph.svg" width="328" height="40"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="namespaceinput__ops_a577c897cc266961eb40bb5ef747fa077_icgraph.svg" width="328" height="40"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 
 </div>
@@ -219,24 +170,22 @@ Functions/Subroutines</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Reads input options from user-provided input file. </p>
-<p>This is done by the master process and these variables will then be passed on through MPI to other processes in <a class="el" href="namespacempi__ops.html#a932eba1c998dd7a0f1191b55cd754be3" title="Broadcasts options (e.g. user-prescribed) that are not passed through the HDF5 output file (i...">broadcast_input_opts()</a>.</p>
-<dl class="section return"><dt>Returns</dt><dd>ierr </dd></dl>
-
-<p class="definition">Definition at line <a class="el" href="input__ops_8f90_source.html#l00023">23</a> of file <a class="el" href="input__ops_8f90_source.html">input_ops.f90</a>.</p>
+<p class="definition">Definition at line <a class="el" href="input__ops_8f90_source.html#l00020">20</a> of file <a class="el" href="input__ops_8f90_source.html">input_ops.f90</a>.</p>
 <div id="dynsection-4" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-4-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
 <div id="dynsection-4-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-4-content" class="dyncontent" style="display:none;">
-<div class="center"><iframe scrolling="no" frameborder="0" src="namespaceinput__ops_a434acca4f59f9dc1d91e04f846133684_cgraph.svg" width="1698" height="654"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="namespaceinput__ops_a434acca4f59f9dc1d91e04f846133684_cgraph.svg" width="1896" height="910"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 <div id="dynsection-5" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-5-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
 <div id="dynsection-5-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-5-content" class="dyncontent" style="display:none;">
-<div class="center"><iframe scrolling="no" frameborder="0" src="namespaceinput__ops_a434acca4f59f9dc1d91e04f846133684_icgraph.svg" width="344" height="94"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="namespaceinput__ops_a434acca4f59f9dc1d91e04f846133684_icgraph.svg" width="344" height="94"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 
 </div>

@@ -1,194 +1,51 @@
 \hypertarget{namespacegrid__vars}{}\section{grid\+\_\+vars Module Reference}
 \label{namespacegrid__vars}\index{grid\+\_\+vars@{grid\+\_\+vars}}
-
-
-Variables pertaining to the different grids used.  
-
-
-\subsection*{Interfaces and Types}
-\begin{DoxyCompactItemize}
-\item 
-type \hyperlink{structgrid__vars_1_1grid__type}{grid\+\_\+type}
-\begin{DoxyCompactList}\small\item\em Type for grids. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Functions/\+Subroutines}
 \begin{DoxyCompactItemize}
 \item 
-integer function \hyperlink{namespacegrid__vars_aa0d888796fd875e9024443e46eeb11f8}{init\+\_\+grid} (grid, n, i\+\_\+lim, divided)
-\begin{DoxyCompactList}\small\item\em Initializes a new grid. \end{DoxyCompactList}\item 
 subroutine \hyperlink{namespacegrid__vars_abc8ea59261a1e773754afebdb13276f9}{dealloc\+\_\+grid} (grid)
-\begin{DoxyCompactList}\small\item\em Deallocates a grid. \end{DoxyCompactList}\item 
-integer function \hyperlink{namespacegrid__vars_a6fa9a9920f1a700d50075bc9c291a247}{copy\+\_\+grid} (grid\+\_\+i, grid\+\_\+o)
-\begin{DoxyCompactList}\small\item\em Deep copy of a grid. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{DoxyCompactItemize}
 \subsection*{Variables}
 \begin{DoxyCompactItemize}
 \item 
 integer, public \hyperlink{namespacegrid__vars_ad1047cc6f07720d61c8e6fdc3c68a317}{n\+\_\+r\+\_\+in}
-\begin{DoxyCompactList}\small\item\em nr. of normal points in input grid \end{DoxyCompactList}\item 
+\item 
 integer, public \hyperlink{namespacegrid__vars_aa3785d71892d3d7db81aca0b6aa880b0}{n\+\_\+r\+\_\+eq}
-\begin{DoxyCompactList}\small\item\em nr. of normal points in equilibrium grid \end{DoxyCompactList}\item 
-integer, public \hyperlink{namespacegrid__vars_abee8a41de92fe25b2d3dfaf472b02cd2}{n\+\_\+r\+\_\+x}
-\begin{DoxyCompactList}\small\item\em nr. of normal points in perturbation grid \end{DoxyCompactList}\item 
+\item 
 integer, public \hyperlink{namespacegrid__vars_ad998db12a656afb94d2d54a7d0eca642}{n\+\_\+r\+\_\+sol}
-\begin{DoxyCompactList}\small\item\em nr. of normal points in solution grid \end{DoxyCompactList}\item 
-integer, public \hyperlink{namespacegrid__vars_a83a6486b23c4a218822540da15904426}{n\+\_\+alpha}
-\begin{DoxyCompactList}\small\item\em nr. of field-\/lines \end{DoxyCompactList}\item 
+\item 
 real(dp), public \hyperlink{namespacegrid__vars_a689c08cf03bc54338878f85c6429b856}{min\+\_\+par\+\_\+x}
-\begin{DoxyCompactList}\small\item\em min. of parallel coordinate \mbox{[} $\pi$\mbox{]} in field-\/aligned grid \end{DoxyCompactList}\item 
+\item 
 real(dp), public \hyperlink{namespacegrid__vars_acaa1fd21d0c728ad8f24591c0d2a5801}{max\+\_\+par\+\_\+x}
-\begin{DoxyCompactList}\small\item\em max. of parallel coordinate \mbox{[} $\pi$\mbox{]} in field-\/aligned grid \end{DoxyCompactList}\item 
-real(dp), public \hyperlink{namespacegrid__vars_ad6f74227054278479670c68d8950e0e2}{min\+\_\+alpha}
-\begin{DoxyCompactList}\small\item\em min. of field-\/line label \mbox{[} $\pi$\mbox{]} in field-\/aligned grid \end{DoxyCompactList}\item 
-real(dp), public \hyperlink{namespacegrid__vars_ad3cab5cd1037b6956ccf74cde4539298}{max\+\_\+alpha}
-\begin{DoxyCompactList}\small\item\em max. of field-\/line label \mbox{[} $\pi$\mbox{]} in field-\/aligned grid \end{DoxyCompactList}\item 
-real(dp), dimension(\+:), allocatable, public \hyperlink{namespacegrid__vars_a07bf4730be1d5ab8b42f85be63e11797}{alpha}
-\begin{DoxyCompactList}\small\item\em field line label alpha \end{DoxyCompactList}\item 
+\item 
 integer, public \hyperlink{namespacegrid__vars_ac4b43443d16af06fdc62d542b3eadee2}{n\+\_\+alloc\+\_\+grids}
-\begin{DoxyCompactList}\small\item\em nr. of allocated grids \end{DoxyCompactList}\item 
+\item 
 integer, public \hyperlink{namespacegrid__vars_a23b5e4789dc5d3d0d6dadeb47909ddbd}{n\+\_\+alloc\+\_\+discs}
-\begin{DoxyCompactList}\small\item\em nr. of allocated discretizations \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{DoxyCompactItemize}
 
-
-\subsection{Detailed Description}
-Variables pertaining to the different grids used. 
 
 \subsection{Function/\+Subroutine Documentation}
-\mbox{\Hypertarget{namespacegrid__vars_a6fa9a9920f1a700d50075bc9c291a247}\label{namespacegrid__vars_a6fa9a9920f1a700d50075bc9c291a247}} 
-\index{grid\+\_\+vars@{grid\+\_\+vars}!copy\+\_\+grid@{copy\+\_\+grid}}
-\index{copy\+\_\+grid@{copy\+\_\+grid}!grid\+\_\+vars@{grid\+\_\+vars}}
-\subsubsection{\texorpdfstring{copy\+\_\+grid()}{copy\_grid()}}
-{\footnotesize\ttfamily integer function grid\+\_\+vars\+::copy\+\_\+grid (\begin{DoxyParamCaption}\item[{class(\hyperlink{structgrid__vars_1_1grid__type}{grid\+\_\+type}), intent(in)}]{grid\+\_\+i,  }\item[{type(\hyperlink{structgrid__vars_1_1grid__type}{grid\+\_\+type}), intent(inout)}]{grid\+\_\+o }\end{DoxyParamCaption})}
-
-
-
-Deep copy of a grid. 
-
-\begin{DoxyNote}{Note}
-Does not copy possible trigoniometric factors.
-\end{DoxyNote}
-\begin{DoxyReturn}{Returns}
-ierr
-\end{DoxyReturn}
-
-\begin{DoxyParams}[1]{Parameters}
-\mbox{\tt in}  & {\em grid\+\_\+i} & grid to be copied\\
-\hline
-\mbox{\tt in,out}  & {\em grid\+\_\+o} & copied grid \\
-\hline
-\end{DoxyParams}
-
-
-Definition at line 267 of file grid\+\_\+vars.\+f90.
-
-Here is the call graph for this function\+:\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=350pt]{namespacegrid__vars_a6fa9a9920f1a700d50075bc9c291a247_cgraph}
-\end{center}
-\end{figure}
 \mbox{\Hypertarget{namespacegrid__vars_abc8ea59261a1e773754afebdb13276f9}\label{namespacegrid__vars_abc8ea59261a1e773754afebdb13276f9}} 
 \index{grid\+\_\+vars@{grid\+\_\+vars}!dealloc\+\_\+grid@{dealloc\+\_\+grid}}
 \index{dealloc\+\_\+grid@{dealloc\+\_\+grid}!grid\+\_\+vars@{grid\+\_\+vars}}
 \subsubsection{\texorpdfstring{dealloc\+\_\+grid()}{dealloc\_grid()}}
-{\footnotesize\ttfamily subroutine grid\+\_\+vars\+::dealloc\+\_\+grid (\begin{DoxyParamCaption}\item[{class(\hyperlink{structgrid__vars_1_1grid__type}{grid\+\_\+type}), intent(inout)}]{grid }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily subroutine grid\+\_\+vars\+::dealloc\+\_\+grid (\begin{DoxyParamCaption}\item[{class(grid\+\_\+type), intent(inout)}]{grid }\end{DoxyParamCaption})}
 
 
 
-Deallocates a grid. 
+Definition at line 195 of file grid\+\_\+vars.\+f90.
 
-
-\begin{DoxyParams}[1]{Parameters}
-\mbox{\tt in,out}  & {\em grid} & grid to be deallocated \\
-\hline
-\end{DoxyParams}
-
-
-Definition at line 203 of file grid\+\_\+vars.\+f90.
-
-Here is the call graph for this function\+:\nopagebreak
+Here is the call graph for this function\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{namespacegrid__vars_abc8ea59261a1e773754afebdb13276f9_cgraph}
 \end{center}
 \end{figure}
-\mbox{\Hypertarget{namespacegrid__vars_aa0d888796fd875e9024443e46eeb11f8}\label{namespacegrid__vars_aa0d888796fd875e9024443e46eeb11f8}} 
-\index{grid\+\_\+vars@{grid\+\_\+vars}!init\+\_\+grid@{init\+\_\+grid}}
-\index{init\+\_\+grid@{init\+\_\+grid}!grid\+\_\+vars@{grid\+\_\+vars}}
-\subsubsection{\texorpdfstring{init\+\_\+grid()}{init\_grid()}}
-{\footnotesize\ttfamily integer function grid\+\_\+vars\+::init\+\_\+grid (\begin{DoxyParamCaption}\item[{class(\hyperlink{structgrid__vars_1_1grid__type}{grid\+\_\+type}), intent(inout)}]{grid,  }\item[{integer, dimension(3), intent(in)}]{n,  }\item[{integer, dimension(2), intent(in), optional}]{i\+\_\+lim,  }\item[{logical, intent(in), optional}]{divided }\end{DoxyParamCaption})}
-
-
-
-Initializes a new grid. 
-
-Optionally, the local limits can be provided for a divided grid.
-
-Optionally, it can be set whether the grid is divided or not. A situation where this is useful is when only a subset of M\+PI processes is used to calculate the solution in S\+L\+E\+PC. In this case, the extra ranks all only contain the last grid point, and the last used process has as upper limit this same grid point. This way, all the procedures are reusable, but in this case if only one process is used, this procedure becomes confused and sets this process to undivided. In most cases, this functionality probably does not need to be used.
-
-\begin{DoxyReturn}{Returns}
-ierr
-\end{DoxyReturn}
-
-\begin{DoxyParams}[1]{Parameters}
-\mbox{\tt in,out}  & {\em grid} & grid to be initialized\\
-\hline
-\mbox{\tt in}  & {\em n} & tot. nr. of points (par,r,alpha)\\
-\hline
-\mbox{\tt in}  & {\em i\+\_\+lim} & min. and max. local normal index\\
-\hline
-\mbox{\tt in}  & {\em divided} & divided grid or not \\
-\hline
-\end{DoxyParams}
-
-
-Definition at line 102 of file grid\+\_\+vars.\+f90.
-
-Here is the call graph for this function\+:\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=350pt]{namespacegrid__vars_aa0d888796fd875e9024443e46eeb11f8_cgraph}
-\end{center}
-\end{figure}
-Here is the caller graph for this function\+:\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=350pt]{namespacegrid__vars_aa0d888796fd875e9024443e46eeb11f8_icgraph}
-\end{center}
-\end{figure}
 
 
 \subsection{Variable Documentation}
-\mbox{\Hypertarget{namespacegrid__vars_a07bf4730be1d5ab8b42f85be63e11797}\label{namespacegrid__vars_a07bf4730be1d5ab8b42f85be63e11797}} 
-\index{grid\+\_\+vars@{grid\+\_\+vars}!alpha@{alpha}}
-\index{alpha@{alpha}!grid\+\_\+vars@{grid\+\_\+vars}}
-\subsubsection{\texorpdfstring{alpha}{alpha}}
-{\footnotesize\ttfamily real(dp), dimension(\+:), allocatable, public grid\+\_\+vars\+::alpha}
-
-
-
-field line label alpha 
-
-
-
-Definition at line 28 of file grid\+\_\+vars.\+f90.
-
-\mbox{\Hypertarget{namespacegrid__vars_ad3cab5cd1037b6956ccf74cde4539298}\label{namespacegrid__vars_ad3cab5cd1037b6956ccf74cde4539298}} 
-\index{grid\+\_\+vars@{grid\+\_\+vars}!max\+\_\+alpha@{max\+\_\+alpha}}
-\index{max\+\_\+alpha@{max\+\_\+alpha}!grid\+\_\+vars@{grid\+\_\+vars}}
-\subsubsection{\texorpdfstring{max\+\_\+alpha}{max\_alpha}}
-{\footnotesize\ttfamily real(dp), public grid\+\_\+vars\+::max\+\_\+alpha}
-
-
-
-max. of field-\/line label \mbox{[} $\pi$\mbox{]} in field-\/aligned grid 
-
-
-
-Definition at line 27 of file grid\+\_\+vars.\+f90.
-
 \mbox{\Hypertarget{namespacegrid__vars_acaa1fd21d0c728ad8f24591c0d2a5801}\label{namespacegrid__vars_acaa1fd21d0c728ad8f24591c0d2a5801}} 
 \index{grid\+\_\+vars@{grid\+\_\+vars}!max\+\_\+par\+\_\+x@{max\+\_\+par\+\_\+x}}
 \index{max\+\_\+par\+\_\+x@{max\+\_\+par\+\_\+x}!grid\+\_\+vars@{grid\+\_\+vars}}
@@ -197,25 +54,7 @@ Definition at line 27 of file grid\+\_\+vars.\+f90.
 
 
 
-max. of parallel coordinate \mbox{[} $\pi$\mbox{]} in field-\/aligned grid 
-
-
-
-Definition at line 25 of file grid\+\_\+vars.\+f90.
-
-\mbox{\Hypertarget{namespacegrid__vars_ad6f74227054278479670c68d8950e0e2}\label{namespacegrid__vars_ad6f74227054278479670c68d8950e0e2}} 
-\index{grid\+\_\+vars@{grid\+\_\+vars}!min\+\_\+alpha@{min\+\_\+alpha}}
-\index{min\+\_\+alpha@{min\+\_\+alpha}!grid\+\_\+vars@{grid\+\_\+vars}}
-\subsubsection{\texorpdfstring{min\+\_\+alpha}{min\_alpha}}
-{\footnotesize\ttfamily real(dp), public grid\+\_\+vars\+::min\+\_\+alpha}
-
-
-
-min. of field-\/line label \mbox{[} $\pi$\mbox{]} in field-\/aligned grid 
-
-
-
-Definition at line 26 of file grid\+\_\+vars.\+f90.
+Definition at line 22 of file grid\+\_\+vars.\+f90.
 
 \mbox{\Hypertarget{namespacegrid__vars_a689c08cf03bc54338878f85c6429b856}\label{namespacegrid__vars_a689c08cf03bc54338878f85c6429b856}} 
 \index{grid\+\_\+vars@{grid\+\_\+vars}!min\+\_\+par\+\_\+x@{min\+\_\+par\+\_\+x}}
@@ -225,11 +64,7 @@ Definition at line 26 of file grid\+\_\+vars.\+f90.
 
 
 
-min. of parallel coordinate \mbox{[} $\pi$\mbox{]} in field-\/aligned grid 
-
-
-
-Definition at line 24 of file grid\+\_\+vars.\+f90.
+Definition at line 22 of file grid\+\_\+vars.\+f90.
 
 \mbox{\Hypertarget{namespacegrid__vars_a23b5e4789dc5d3d0d6dadeb47909ddbd}\label{namespacegrid__vars_a23b5e4789dc5d3d0d6dadeb47909ddbd}} 
 \index{grid\+\_\+vars@{grid\+\_\+vars}!n\+\_\+alloc\+\_\+discs@{n\+\_\+alloc\+\_\+discs}}
@@ -239,14 +74,7 @@ Definition at line 24 of file grid\+\_\+vars.\+f90.
 
 
 
-nr. of allocated discretizations 
-
-\begin{DoxyNote}{Note}
-Debug version only 
-\end{DoxyNote}
-
-
-Definition at line 31 of file grid\+\_\+vars.\+f90.
+Definition at line 25 of file grid\+\_\+vars.\+f90.
 
 \mbox{\Hypertarget{namespacegrid__vars_ac4b43443d16af06fdc62d542b3eadee2}\label{namespacegrid__vars_ac4b43443d16af06fdc62d542b3eadee2}} 
 \index{grid\+\_\+vars@{grid\+\_\+vars}!n\+\_\+alloc\+\_\+grids@{n\+\_\+alloc\+\_\+grids}}
@@ -256,38 +84,13 @@ Definition at line 31 of file grid\+\_\+vars.\+f90.
 
 
 
-nr. of allocated grids 
-
-\begin{DoxyNote}{Note}
-Debug version only 
-\end{DoxyNote}
-
-
-Definition at line 30 of file grid\+\_\+vars.\+f90.
-
-\mbox{\Hypertarget{namespacegrid__vars_a83a6486b23c4a218822540da15904426}\label{namespacegrid__vars_a83a6486b23c4a218822540da15904426}} 
-\index{grid\+\_\+vars@{grid\+\_\+vars}!n\+\_\+alpha@{n\+\_\+alpha}}
-\index{n\+\_\+alpha@{n\+\_\+alpha}!grid\+\_\+vars@{grid\+\_\+vars}}
-\subsubsection{\texorpdfstring{n\+\_\+alpha}{n\_alpha}}
-{\footnotesize\ttfamily integer, public grid\+\_\+vars\+::n\+\_\+alpha}
-
-
-
-nr. of field-\/lines 
-
-
-
-Definition at line 23 of file grid\+\_\+vars.\+f90.
+Definition at line 24 of file grid\+\_\+vars.\+f90.
 
 \mbox{\Hypertarget{namespacegrid__vars_aa3785d71892d3d7db81aca0b6aa880b0}\label{namespacegrid__vars_aa3785d71892d3d7db81aca0b6aa880b0}} 
 \index{grid\+\_\+vars@{grid\+\_\+vars}!n\+\_\+r\+\_\+eq@{n\+\_\+r\+\_\+eq}}
 \index{n\+\_\+r\+\_\+eq@{n\+\_\+r\+\_\+eq}!grid\+\_\+vars@{grid\+\_\+vars}}
 \subsubsection{\texorpdfstring{n\+\_\+r\+\_\+eq}{n\_r\_eq}}
 {\footnotesize\ttfamily integer, public grid\+\_\+vars\+::n\+\_\+r\+\_\+eq}
-
-
-
-nr. of normal points in equilibrium grid 
 
 
 
@@ -301,10 +104,6 @@ Definition at line 20 of file grid\+\_\+vars.\+f90.
 
 
 
-nr. of normal points in input grid 
-
-
-
 Definition at line 19 of file grid\+\_\+vars.\+f90.
 
 \mbox{\Hypertarget{namespacegrid__vars_ad998db12a656afb94d2d54a7d0eca642}\label{namespacegrid__vars_ad998db12a656afb94d2d54a7d0eca642}} 
@@ -312,24 +111,6 @@ Definition at line 19 of file grid\+\_\+vars.\+f90.
 \index{n\+\_\+r\+\_\+sol@{n\+\_\+r\+\_\+sol}!grid\+\_\+vars@{grid\+\_\+vars}}
 \subsubsection{\texorpdfstring{n\+\_\+r\+\_\+sol}{n\_r\_sol}}
 {\footnotesize\ttfamily integer, public grid\+\_\+vars\+::n\+\_\+r\+\_\+sol}
-
-
-
-nr. of normal points in solution grid 
-
-
-
-Definition at line 22 of file grid\+\_\+vars.\+f90.
-
-\mbox{\Hypertarget{namespacegrid__vars_abee8a41de92fe25b2d3dfaf472b02cd2}\label{namespacegrid__vars_abee8a41de92fe25b2d3dfaf472b02cd2}} 
-\index{grid\+\_\+vars@{grid\+\_\+vars}!n\+\_\+r\+\_\+x@{n\+\_\+r\+\_\+x}}
-\index{n\+\_\+r\+\_\+x@{n\+\_\+r\+\_\+x}!grid\+\_\+vars@{grid\+\_\+vars}}
-\subsubsection{\texorpdfstring{n\+\_\+r\+\_\+x}{n\_r\_x}}
-{\footnotesize\ttfamily integer, public grid\+\_\+vars\+::n\+\_\+r\+\_\+x}
-
-
-
-nr. of normal points in perturbation grid 
 
 
 

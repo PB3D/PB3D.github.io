@@ -8,4 +8,4 @@
     * commit
 
 *Note*:
-PB3D.github.io is a user profile page for the user "PB3D". It is registered under PB3Dcode@gmail.com.
+PB3D.github.io is a user profile page for the user "PB3D", through PB3Dcode@gmail.com.

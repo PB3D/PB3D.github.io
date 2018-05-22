@@ -29,7 +29,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">PB3D
-   &#160;<span id="projectnumber">[2.24]</span>
+   &#160;<span id="projectnumber">[1.73]</span>
    </div>
    <div id="projectbrief">Ideal linear high-n MHD stability in 3-D</div>
   </td>
@@ -68,38 +68,24 @@ $(function() {
 </div><!-- top -->
 <div class="header">
   <div class="summary">
-<a href="#nested-classes">Interfaces and Types</a> &#124;
 <a href="#func-members">Functions/Subroutines</a> &#124;
 <a href="#var-members">Variables</a>  </div>
   <div class="headertitle">
 <div class="title">vmec_utilities Module Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
-
-<p>Numerical utilities related to the output of VMEC.  
-<a href="#details">More...</a></p>
 <table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
-Interfaces and Types</h2></td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">interface &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interfacevmec__utilities_1_1fourier2real.html">fourier2real</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Inverse Fourier transformation, from VMEC.  <a href="interfacevmec__utilities_1_1fourier2real.html#details">More...</a><br /></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions/Subroutines</h2></td></tr>
 <tr class="memitem:ac699116fc25fdea3e28e488513d97c87"><td class="memItemLeft" align="right" valign="top">integer function, public&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacevmec__utilities.html#ac699116fc25fdea3e28e488513d97c87">calc_trigon_factors</a> (theta, zeta, trigon_factors)</td></tr>
-<tr class="memdesc:ac699116fc25fdea3e28e488513d97c87"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculate the trigonometric cosine and sine factors.  <a href="#ac699116fc25fdea3e28e488513d97c87">More...</a><br /></td></tr>
 <tr class="separator:ac699116fc25fdea3e28e488513d97c87"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
 Variables</h2></td></tr>
 <tr class="memitem:abeb2bf5595170bdf2dd07a6f2bfa89ff"><td class="memItemLeft" align="right" valign="top">logical, public&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacevmec__utilities.html#abeb2bf5595170bdf2dd07a6f2bfa89ff">debug_calc_trigon_factors</a> = .false.</td></tr>
-<tr class="memdesc:abeb2bf5595170bdf2dd07a6f2bfa89ff"><td class="mdescLeft">&#160;</td><td class="mdescRight">plot debug information for <a class="el" href="namespacevmec__utilities.html#ac699116fc25fdea3e28e488513d97c87" title="Calculate the trigonometric cosine and sine factors. ">calc_trigon_factors()</a>  <a href="#abeb2bf5595170bdf2dd07a6f2bfa89ff">More...</a><br /></td></tr>
 <tr class="separator:abeb2bf5595170bdf2dd07a6f2bfa89ff"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Numerical utilities related to the output of VMEC. </p>
-</div><h2 class="groupheader">Function/Subroutine Documentation</h2>
+<h2 class="groupheader">Function/Subroutine Documentation</h2>
 <a id="ac699116fc25fdea3e28e488513d97c87"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ac699116fc25fdea3e28e488513d97c87">&#9670;&nbsp;</a></span>calc_trigon_factors()</h2>
 
@@ -132,36 +118,22 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Calculate the trigonometric cosine and sine factors. </p>
-<p>This is done on a grid <code>(1:mnmax_V)</code> at given 3D arrays for the (VMEC) E(quilibrium) angles \(\theta_\text{E}\) and \(\zeta_\text{E}\).</p>
-<p>The dimensions of the output array are</p>
-<p><code>(1:mnmax_V,1:n_ang_1,1:n_ang_2,1:n_r,1:2)</code></p>
-<p>where <code>mnmax_V</code> is the number of modes in VMEC <code>n_r</code> is the total number of normal points.</p>
-<dl class="section see"><dt>See also</dt><dd>See <a class="el" href="structgrid__vars_1_1grid__type.html" title="Type for grids. ">grid_vars.grid_type</a> for a discussion on <code>ang_1</code> and <code>ang_2</code>.</dd></dl>
-<dl class="section return"><dt>Returns</dt><dd>ierr</dd></dl>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">theta</td><td>poloidal angles in equilibrium coords.</td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">zeta</td><td>toroidal angles in equilibrium coords.</td></tr>
-    <tr><td class="paramdir">[in,out]</td><td class="paramname">trigon_factors</td><td>trigonometric factor cosine and sine at these angles </td></tr>
-  </table>
-  </dd>
-</dl>
-
-<p class="definition">Definition at line <a class="el" href="VMEC__utilities_8f90_source.html#l00275">275</a> of file <a class="el" href="VMEC__utilities_8f90_source.html">VMEC_utilities.f90</a>.</p>
+<p class="definition">Definition at line <a class="el" href="VMEC__utilities_8f90_source.html#l00034">34</a> of file <a class="el" href="VMEC__utilities_8f90_source.html">VMEC_utilities.f90</a>.</p>
 <div id="dynsection-0" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-0-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
 <div id="dynsection-0-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-0-content" class="dyncontent" style="display:none;">
-<div class="center"><iframe scrolling="no" frameborder="0" src="namespacevmec__utilities_ac699116fc25fdea3e28e488513d97c87_cgraph.svg" width="679" height="120"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="namespacevmec__utilities_ac699116fc25fdea3e28e488513d97c87_cgraph.svg" width="902" height="120"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 <div id="dynsection-1" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-1-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
 <div id="dynsection-1-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-1-content" class="dyncontent" style="display:none;">
-<div class="center"><iframe scrolling="no" frameborder="0" src="namespacevmec__utilities_ac699116fc25fdea3e28e488513d97c87_icgraph.svg" width="1132" height="614"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="namespacevmec__utilities_ac699116fc25fdea3e28e488513d97c87_icgraph.svg" width="1084" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 
 </div>
@@ -178,9 +150,6 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>plot debug information for <a class="el" href="namespacevmec__utilities.html#ac699116fc25fdea3e28e488513d97c87" title="Calculate the trigonometric cosine and sine factors. ">calc_trigon_factors()</a> </p>
-<dl class="section note"><dt>Note</dt><dd>Debug version only </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="VMEC__utilities_8f90_source.html#l00022">22</a> of file <a class="el" href="VMEC__utilities_8f90_source.html">VMEC_utilities.f90</a>.</p>
 

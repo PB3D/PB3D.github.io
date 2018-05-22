@@ -1,33 +1,25 @@
 \hypertarget{namespacerich__ops}{}\section{rich\+\_\+ops Module Reference}
 \label{namespacerich__ops}\index{rich\+\_\+ops@{rich\+\_\+ops}}
-
-
-Operations concerning Richardson extrapolation.  
-
-
 \subsection*{Functions/\+Subroutines}
 \begin{DoxyCompactItemize}
 \item 
 integer function, public \hyperlink{namespacerich__ops_a9fbbda93eab8973d33063e277c489e7b}{init\+\_\+rich} ()
-\begin{DoxyCompactList}\small\item\em Initialize Richardson extrapolation system. \end{DoxyCompactList}\item 
+\item 
 subroutine, public \hyperlink{namespacerich__ops_a3cf72a3ed0806ac9ddff262a00b2e33d}{term\+\_\+rich} ()
-\begin{DoxyCompactList}\small\item\em Terminate the Richardson extrapolation system. \end{DoxyCompactList}\item 
+\item 
 logical function, public \hyperlink{namespacerich__ops_a50f4088b9ddd59597987fb4112f2a73e}{do\+\_\+rich} ()
-\begin{DoxyCompactList}\small\item\em Tests whether this Richardson level should be done. \end{DoxyCompactList}\item 
+\item 
 integer function, public \hyperlink{namespacerich__ops_a97206a15127960366fcb41d6889cb3b5}{start\+\_\+rich\+\_\+lvl} ()
-\begin{DoxyCompactList}\small\item\em Start a Richardson level. \end{DoxyCompactList}\item 
-subroutine, public \hyperlink{namespacerich__ops_a0cce16b835e18b025d366a038b22efe1}{stop\+\_\+rich\+\_\+lvl} ()
-\begin{DoxyCompactList}\small\item\em Stop a Richardson level. \end{DoxyCompactList}\item 
+\item 
+subroutine, public \hyperlink{namespacerich__ops_a56eae87ecc82010895d63b45a16e6106}{stop\+\_\+rich\+\_\+lvl}
+\item 
 subroutine, public \hyperlink{namespacerich__ops_ad2717df0206a397d0d7845a96aa5da23}{calc\+\_\+rich\+\_\+ex} (sol\+\_\+val)
-\begin{DoxyCompactList}\small\item\em Calculates the coefficients of the Eigenvalues in the Richardson extrapolation. \end{DoxyCompactList}\item 
+\item 
 subroutine \hyperlink{namespacerich__ops_ac00cce686d45540b238b3b6e39c9bdeb}{check\+\_\+conv} ()
-\begin{DoxyCompactList}\small\item\em Decides whether convergence has been reached for the Richardson extrapolation. \end{DoxyCompactList}\item 
-integer function, public \hyperlink{namespacerich__ops_a58e1bed1bed5c2d0b91cc7dc5e3099d9}{find\+\_\+max\+\_\+rich\+\_\+lvl} (lvl\+\_\+rich\+\_\+req, max\+\_\+lvl\+\_\+rich\+\_\+file)
-\begin{DoxyCompactList}\small\item\em Probe to find out which Richardson levels are available. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\item 
+integer function, public \hyperlink{namespacerich__ops_acadb2170408937a71a230e655bd15675}{find\+\_\+max\+\_\+rich\+\_\+lvl} (max\+\_\+lvl\+\_\+rich\+\_\+file)
+\end{DoxyCompactItemize}
 
-
-\subsection{Detailed Description}
-Operations concerning Richardson extrapolation. 
 
 \subsection{Function/\+Subroutine Documentation}
 \mbox{\Hypertarget{namespacerich__ops_ad2717df0206a397d0d7845a96aa5da23}\label{namespacerich__ops_ad2717df0206a397d0d7845a96aa5da23}} 
@@ -38,20 +30,10 @@ Operations concerning Richardson extrapolation.
 
 
 
-Calculates the coefficients of the Eigenvalues in the Richardson extrapolation. 
+Definition at line 416 of file rich\+\_\+ops.\+f90.
 
-This is done using the recursive formula\+: \[ s(l,i,:) = s(l,i-1,:) + \frac{1}{2^{2 \ p \ i} - 1} (s(l,i-1,:) - s(l-1,i-1,:)), \] where $s$ = {\ttfamily sol\+\_\+val\+\_\+rich}, $i$ = {\ttfamily ir}, $l$ = {\ttfamily lvl} and $p$ = {\ttfamily norm\+\_\+disc\+\_\+prec\+\_\+sol}, the order of the numerical discretization. as described in \cite{dahlquist2003numerical}, algorithm 3.\+2, p. 306.
-
-
-\begin{DoxyParams}[1]{Parameters}
-\mbox{\tt in}  & {\em sol\+\_\+val} & EV for this Richardson level \\
-\hline
-\end{DoxyParams}
-
-
-Definition at line 462 of file rich\+\_\+ops.\+f90.
-
-Here is the caller graph for this function\+:\nopagebreak
+Here is the caller graph for this function\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -66,27 +48,18 @@ Here is the caller graph for this function\+:\nopagebreak
 
 
 
-Decides whether convergence has been reached for the Richardson extrapolation. 
+Definition at line 441 of file rich\+\_\+ops.\+f90.
 
-This is done by checking whether the difference between the approximation of the Eigenvalues in this Richardson level and the previous Richardson level, with the same order of the error, falls below a threshold.
-
-Also increases the next tol\+\_\+\+S\+L\+E\+PC if it is too low.
-
-\begin{DoxySeeAlso}{See also}
-\hyperlink{namespacerich__ops_ad2717df0206a397d0d7845a96aa5da23}{calc\+\_\+rich\+\_\+ex()} 
-\end{DoxySeeAlso}
-
-
-Definition at line 492 of file rich\+\_\+ops.\+f90.
-
-Here is the call graph for this function\+:\nopagebreak
+Here is the call graph for this function\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{namespacerich__ops_ac00cce686d45540b238b3b6e39c9bdeb_cgraph}
 \end{center}
 \end{figure}
-Here is the caller graph for this function\+:\nopagebreak
+Here is the caller graph for this function\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -101,55 +74,40 @@ Here is the caller graph for this function\+:\nopagebreak
 
 
 
-Tests whether this Richardson level should be done. 
+Definition at line 285 of file rich\+\_\+ops.\+f90.
 
-
-
-Definition at line 316 of file rich\+\_\+ops.\+f90.
-
-Here is the caller graph for this function\+:\nopagebreak
+Here is the caller graph for this function\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=276pt]{namespacerich__ops_a50f4088b9ddd59597987fb4112f2a73e_icgraph}
 \end{center}
 \end{figure}
-\mbox{\Hypertarget{namespacerich__ops_a58e1bed1bed5c2d0b91cc7dc5e3099d9}\label{namespacerich__ops_a58e1bed1bed5c2d0b91cc7dc5e3099d9}} 
+\mbox{\Hypertarget{namespacerich__ops_acadb2170408937a71a230e655bd15675}\label{namespacerich__ops_acadb2170408937a71a230e655bd15675}} 
 \index{rich\+\_\+ops@{rich\+\_\+ops}!find\+\_\+max\+\_\+rich\+\_\+lvl@{find\+\_\+max\+\_\+rich\+\_\+lvl}}
 \index{find\+\_\+max\+\_\+rich\+\_\+lvl@{find\+\_\+max\+\_\+rich\+\_\+lvl}!rich\+\_\+ops@{rich\+\_\+ops}}
 \subsubsection{\texorpdfstring{find\+\_\+max\+\_\+rich\+\_\+lvl()}{find\_max\_rich\_lvl()}}
-{\footnotesize\ttfamily integer function, public rich\+\_\+ops\+::find\+\_\+max\+\_\+rich\+\_\+lvl (\begin{DoxyParamCaption}\item[{integer, intent(inout)}]{lvl\+\_\+rich\+\_\+req,  }\item[{integer, intent(inout)}]{max\+\_\+lvl\+\_\+rich\+\_\+file }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily integer function, public rich\+\_\+ops\+::find\+\_\+max\+\_\+rich\+\_\+lvl (\begin{DoxyParamCaption}\item[{integer, intent(inout)}]{max\+\_\+lvl\+\_\+rich\+\_\+file }\end{DoxyParamCaption})}
 
 
 
-Probe to find out which Richardson levels are available. 
+Definition at line 489 of file rich\+\_\+ops.\+f90.
 
-\begin{DoxyReturn}{Returns}
-ierr
-\end{DoxyReturn}
-
-\begin{DoxyParams}[1]{Parameters}
-\mbox{\tt in,out}  & {\em lvl\+\_\+rich\+\_\+req} & requested Richardson level\\
-\hline
-\mbox{\tt in,out}  & {\em max\+\_\+lvl\+\_\+rich\+\_\+file} & max. Richardson level found in file \\
-\hline
-\end{DoxyParams}
-
-
-Definition at line 542 of file rich\+\_\+ops.\+f90.
-
-Here is the call graph for this function\+:\nopagebreak
+Here is the call graph for this function\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=350pt]{namespacerich__ops_a58e1bed1bed5c2d0b91cc7dc5e3099d9_cgraph}
+\includegraphics[width=350pt]{namespacerich__ops_acadb2170408937a71a230e655bd15675_cgraph}
 \end{center}
 \end{figure}
-Here is the caller graph for this function\+:\nopagebreak
+Here is the caller graph for this function\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=350pt]{namespacerich__ops_a58e1bed1bed5c2d0b91cc7dc5e3099d9_icgraph}
+\includegraphics[width=350pt]{namespacerich__ops_acadb2170408937a71a230e655bd15675_icgraph}
 \end{center}
 \end{figure}
 \mbox{\Hypertarget{namespacerich__ops_a9fbbda93eab8973d33063e277c489e7b}\label{namespacerich__ops_a9fbbda93eab8973d33063e277c489e7b}} 
@@ -160,25 +118,18 @@ Here is the caller graph for this function\+:\nopagebreak
 
 
 
-Initialize Richardson extrapolation system. 
+Definition at line 23 of file rich\+\_\+ops.\+f90.
 
-Needs to be called only once.
-
-\begin{DoxyReturn}{Returns}
-ierr 
-\end{DoxyReturn}
-
-
-Definition at line 28 of file rich\+\_\+ops.\+f90.
-
-Here is the call graph for this function\+:\nopagebreak
+Here is the call graph for this function\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{namespacerich__ops_a9fbbda93eab8973d33063e277c489e7b_cgraph}
 \end{center}
 \end{figure}
-Here is the caller graph for this function\+:\nopagebreak
+Here is the caller graph for this function\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -193,32 +144,25 @@ Here is the caller graph for this function\+:\nopagebreak
 
 
 
-Start a Richardson level. 
+Definition at line 294 of file rich\+\_\+ops.\+f90.
 
-Calculates {\ttfamily n\+\_\+par\+\_\+X} for this level. Then uses this to divide the jobs. equilibrium Finally, the limits are set up for these jobs.
-
-\begin{DoxyReturn}{Returns}
-ierr 
-\end{DoxyReturn}
-
-
-Definition at line 330 of file rich\+\_\+ops.\+f90.
-
-Here is the call graph for this function\+:\nopagebreak
+Here is the call graph for this function\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{namespacerich__ops_a97206a15127960366fcb41d6889cb3b5_cgraph}
 \end{center}
 \end{figure}
-Here is the caller graph for this function\+:\nopagebreak
+Here is the caller graph for this function\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=318pt]{namespacerich__ops_a97206a15127960366fcb41d6889cb3b5_icgraph}
 \end{center}
 \end{figure}
-\mbox{\Hypertarget{namespacerich__ops_a0cce16b835e18b025d366a038b22efe1}\label{namespacerich__ops_a0cce16b835e18b025d366a038b22efe1}} 
+\mbox{\Hypertarget{namespacerich__ops_a56eae87ecc82010895d63b45a16e6106}\label{namespacerich__ops_a56eae87ecc82010895d63b45a16e6106}} 
 \index{rich\+\_\+ops@{rich\+\_\+ops}!stop\+\_\+rich\+\_\+lvl@{stop\+\_\+rich\+\_\+lvl}}
 \index{stop\+\_\+rich\+\_\+lvl@{stop\+\_\+rich\+\_\+lvl}!rich\+\_\+ops@{rich\+\_\+ops}}
 \subsubsection{\texorpdfstring{stop\+\_\+rich\+\_\+lvl()}{stop\_rich\_lvl()}}
@@ -226,24 +170,22 @@ Here is the caller graph for this function\+:\nopagebreak
 
 
 
-Stop a Richardson level. 
+Definition at line 368 of file rich\+\_\+ops.\+f90.
 
-It decides whether convergence has been reached, and possibly sets a guess for the next level. 
-
-Definition at line 408 of file rich\+\_\+ops.\+f90.
-
-Here is the call graph for this function\+:\nopagebreak
+Here is the call graph for this function\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=350pt]{namespacerich__ops_a0cce16b835e18b025d366a038b22efe1_cgraph}
+\includegraphics[width=350pt]{namespacerich__ops_a56eae87ecc82010895d63b45a16e6106_cgraph}
 \end{center}
 \end{figure}
-Here is the caller graph for this function\+:\nopagebreak
+Here is the caller graph for this function\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=312pt]{namespacerich__ops_a0cce16b835e18b025d366a038b22efe1_icgraph}
+\includegraphics[width=312pt]{namespacerich__ops_a56eae87ecc82010895d63b45a16e6106_icgraph}
 \end{center}
 \end{figure}
 \mbox{\Hypertarget{namespacerich__ops_a3cf72a3ed0806ac9ddff262a00b2e33d}\label{namespacerich__ops_a3cf72a3ed0806ac9ddff262a00b2e33d}} 
@@ -254,20 +196,18 @@ Here is the caller graph for this function\+:\nopagebreak
 
 
 
-Terminate the Richardson extrapolation system. 
+Definition at line 193 of file rich\+\_\+ops.\+f90.
 
-Needs to be called only once. 
-
-Definition at line 223 of file rich\+\_\+ops.\+f90.
-
-Here is the call graph for this function\+:\nopagebreak
+Here is the call graph for this function\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{namespacerich__ops_a3cf72a3ed0806ac9ddff262a00b2e33d_cgraph}
 \end{center}
 \end{figure}
-Here is the caller graph for this function\+:\nopagebreak
+Here is the caller graph for this function\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode

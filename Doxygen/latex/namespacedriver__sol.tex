@@ -1,136 +1,54 @@
 \hypertarget{namespacedriver__sol}{}\section{driver\+\_\+sol Module Reference}
 \label{namespacedriver__sol}\index{driver\+\_\+sol@{driver\+\_\+sol}}
-
-
-Driver of the solution part of P\+B3D.  
-
-
 \subsection*{Functions/\+Subroutines}
 \begin{DoxyCompactItemize}
 \item 
-integer function, public \hyperlink{namespacedriver__sol_ad3b1765b3ecc5f82129bfc683ffc6c5c}{run\+\_\+driver\+\_\+sol} (grid\+\_\+eq, grid\+\_\+X, grid\+\_\+sol, X, vac, sol)
-\begin{DoxyCompactList}\small\item\em Main driver of P\+B3D solution part. \end{DoxyCompactList}\item 
-integer function \hyperlink{namespacedriver__sol_af1c4ea0286ad714d3f91bb1608e4fc27}{interp\+\_\+v} (mds\+\_\+i, grid\+\_\+i, X\+\_\+i, mds\+\_\+o, grid\+\_\+o, X\+\_\+o)
-\begin{DoxyCompactList}\small\item\em Interpolate tensorial perturbation quantities in the third dimension. \end{DoxyCompactList}\end{DoxyCompactItemize}
+integer function, public \hyperlink{namespacedriver__sol_a208ddea649ee160b7a55da8d0a5d4847}{run\+\_\+driver\+\_\+sol} (grid\+\_\+X, grid\+\_\+\+X\+\_\+B, grid\+\_\+sol, X, sol)
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+logical, public \hyperlink{namespacedriver__sol_a00a6ea22e1eda4ae9ec46da624d0cfb0}{debug\+\_\+sol\+\_\+grid} = .false.
+\end{DoxyCompactItemize}
 
-
-\subsection{Detailed Description}
-Driver of the solution part of P\+B3D. 
 
 \subsection{Function/\+Subroutine Documentation}
-\mbox{\Hypertarget{namespacedriver__sol_af1c4ea0286ad714d3f91bb1608e4fc27}\label{namespacedriver__sol_af1c4ea0286ad714d3f91bb1608e4fc27}} 
-\index{driver\+\_\+sol@{driver\+\_\+sol}!interp\+\_\+v@{interp\+\_\+v}}
-\index{interp\+\_\+v@{interp\+\_\+v}!driver\+\_\+sol@{driver\+\_\+sol}}
-\subsubsection{\texorpdfstring{interp\+\_\+v()}{interp\_v()}}
-{\footnotesize\ttfamily integer function driver\+\_\+sol\+::interp\+\_\+v (\begin{DoxyParamCaption}\item[{type(modes\+\_\+type), intent(in)}]{mds\+\_\+i,  }\item[{type(\hyperlink{structgrid__vars_1_1grid__type}{grid\+\_\+type}), intent(in)}]{grid\+\_\+i,  }\item[{type(x\+\_\+2\+\_\+type), intent(in), target}]{X\+\_\+i,  }\item[{type(modes\+\_\+type), intent(in)}]{mds\+\_\+o,  }\item[{type(\hyperlink{structgrid__vars_1_1grid__type}{grid\+\_\+type}), intent(in)}]{grid\+\_\+o,  }\item[{type(x\+\_\+2\+\_\+type), intent(inout), target}]{X\+\_\+o }\end{DoxyParamCaption})}
-
-
-
-Interpolate tensorial perturbation quantities in the third dimension. 
-
-The input grid should not be divided, whereas the output grid can be.
-
-The procedure considers all possible mode number combinations. For {\ttfamily X\+\_\+style} 2 (fast), each secondary mode only lives in a certain normal range of the plasma. Therefore, each secondary mode pair also has a limited normal range, given by the overlap of the ranges of the members.
-
-The interpolated mode number combinations have a normal range that might slightly differ from the input ranges, in which case extrapolation can be done if the method allows for it.
-
-\begin{DoxyNote}{Note}
-If the input grid is too coarse, but the interpolated grid is not, it is in theory possible that there are mode numbers and therefore mode number pairs that exist in the input grid, though they do so in the interpolated grid. In this case, they can not be calculated and are currently set to zero. However, the current implementation of \hyperlink{namespacex__ops_a504451aabcab7d6f0fa59feae08ef8dd}{setup\+\_\+modes()} produces an error if less than the full range of mode numbers is accurately present.
-\end{DoxyNote}
-
-\begin{DoxyParams}[1]{Parameters}
-\mbox{\tt in}  & {\em mds\+\_\+i} & general modes variables for input\\
-\hline
-\mbox{\tt in}  & {\em grid\+\_\+i} & grid at which {\ttfamily X\+\_\+i} is tabulated\\
-\hline
-\mbox{\tt in}  & {\em x\+\_\+i} & tensorial perturbation variable on input grid\\
-\hline
-\mbox{\tt in}  & {\em mds\+\_\+o} & general modes variables for output\\
-\hline
-\mbox{\tt in}  & {\em grid\+\_\+o} & grid at which {\ttfamily X\+\_\+o} is interpolated\\
-\hline
-\mbox{\tt in,out}  & {\em x\+\_\+o} & interpolated tensorial perturbation variable \\
-\hline
-\end{DoxyParams}
-
-
-Definition at line 278 of file driver\+\_\+sol.\+f90.
-
-Here is the call graph for this function\+:\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=350pt]{namespacedriver__sol_af1c4ea0286ad714d3f91bb1608e4fc27_cgraph}
-\end{center}
-\end{figure}
-Here is the caller graph for this function\+:\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=350pt]{namespacedriver__sol_af1c4ea0286ad714d3f91bb1608e4fc27_icgraph}
-\end{center}
-\end{figure}
-\mbox{\Hypertarget{namespacedriver__sol_ad3b1765b3ecc5f82129bfc683ffc6c5c}\label{namespacedriver__sol_ad3b1765b3ecc5f82129bfc683ffc6c5c}} 
+\mbox{\Hypertarget{namespacedriver__sol_a208ddea649ee160b7a55da8d0a5d4847}\label{namespacedriver__sol_a208ddea649ee160b7a55da8d0a5d4847}} 
 \index{driver\+\_\+sol@{driver\+\_\+sol}!run\+\_\+driver\+\_\+sol@{run\+\_\+driver\+\_\+sol}}
 \index{run\+\_\+driver\+\_\+sol@{run\+\_\+driver\+\_\+sol}!driver\+\_\+sol@{driver\+\_\+sol}}
 \subsubsection{\texorpdfstring{run\+\_\+driver\+\_\+sol()}{run\_driver\_sol()}}
-{\footnotesize\ttfamily integer function, public driver\+\_\+sol\+::run\+\_\+driver\+\_\+sol (\begin{DoxyParamCaption}\item[{type(\hyperlink{structgrid__vars_1_1grid__type}{grid\+\_\+type}), intent(in)}]{grid\+\_\+eq,  }\item[{type(\hyperlink{structgrid__vars_1_1grid__type}{grid\+\_\+type}), intent(in), target}]{grid\+\_\+X,  }\item[{type(\hyperlink{structgrid__vars_1_1grid__type}{grid\+\_\+type}), intent(inout)}]{grid\+\_\+sol,  }\item[{type(x\+\_\+2\+\_\+type), intent(in)}]{X,  }\item[{type(\hyperlink{structvac__vars_1_1vac__type}{vac\+\_\+type}), intent(inout)}]{vac,  }\item[{type(\hyperlink{structsol__vars_1_1sol__type}{sol\+\_\+type}), intent(inout)}]{sol }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily integer function, public driver\+\_\+sol\+::run\+\_\+driver\+\_\+sol (\begin{DoxyParamCaption}\item[{type(grid\+\_\+type), intent(in), target}]{grid\+\_\+X,  }\item[{type(grid\+\_\+type), intent(inout), pointer}]{grid\+\_\+\+X\+\_\+B,  }\item[{type(grid\+\_\+type), intent(inout)}]{grid\+\_\+sol,  }\item[{type(x\+\_\+2\+\_\+type), intent(in)}]{X,  }\item[{type(sol\+\_\+type), intent(inout)}]{sol }\end{DoxyParamCaption})}
 
 
 
-Main driver of P\+B3D solution part. 
+Definition at line 39 of file driver\+\_\+sol.\+f90.
 
-
-\begin{DoxyItemize}
-\item sets up\+:
-\begin{DoxyItemize}
-\item {\ttfamily grid\+\_\+sol} (only first Richardson level)
-\item {\ttfamily sol} 
-\end{DoxyItemize}
-\item writes to H\+D\+F5\+:
-\begin{DoxyItemize}
-\item {\ttfamily grid\+\_\+sol} (only first Richardson level)
-\item {\ttfamily sol} 
-\end{DoxyItemize}
-\item deallocates\+:
-\begin{DoxyItemize}
-\item sol before setting up (but after guess)
-\end{DoxyItemize}
-\end{DoxyItemize}
-
-\begin{DoxyReturn}{Returns}
-ierr
-\end{DoxyReturn}
-
-\begin{DoxyParams}[1]{Parameters}
-\mbox{\tt in}  & {\em grid\+\_\+eq} & equilibrium grid\\
-\hline
-\mbox{\tt in}  & {\em grid\+\_\+x} & perturbation grid\\
-\hline
-\mbox{\tt in,out}  & {\em grid\+\_\+sol} & solution grid\\
-\hline
-\mbox{\tt in}  & {\em x} & integrated tensorial perturbation variables\\
-\hline
-\mbox{\tt in,out}  & {\em vac} & vacuum variables\\
-\hline
-\mbox{\tt in,out}  & {\em sol} & solution variables \\
-\hline
-\end{DoxyParams}
-
-
-Definition at line 43 of file driver\+\_\+sol.\+f90.
-
-Here is the call graph for this function\+:\nopagebreak
+Here is the call graph for this function\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=350pt]{namespacedriver__sol_ad3b1765b3ecc5f82129bfc683ffc6c5c_cgraph}
+\includegraphics[width=350pt]{namespacedriver__sol_a208ddea649ee160b7a55da8d0a5d4847_cgraph}
 \end{center}
 \end{figure}
-Here is the caller graph for this function\+:\nopagebreak
+Here is the caller graph for this function\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=330pt]{namespacedriver__sol_ad3b1765b3ecc5f82129bfc683ffc6c5c_icgraph}
+\includegraphics[width=330pt]{namespacedriver__sol_a208ddea649ee160b7a55da8d0a5d4847_icgraph}
 \end{center}
 \end{figure}
+
+
+\subsection{Variable Documentation}
+\mbox{\Hypertarget{namespacedriver__sol_a00a6ea22e1eda4ae9ec46da624d0cfb0}\label{namespacedriver__sol_a00a6ea22e1eda4ae9ec46da624d0cfb0}} 
+\index{driver\+\_\+sol@{driver\+\_\+sol}!debug\+\_\+sol\+\_\+grid@{debug\+\_\+sol\+\_\+grid}}
+\index{debug\+\_\+sol\+\_\+grid@{debug\+\_\+sol\+\_\+grid}!driver\+\_\+sol@{driver\+\_\+sol}}
+\subsubsection{\texorpdfstring{debug\+\_\+sol\+\_\+grid}{debug\_sol\_grid}}
+{\footnotesize\ttfamily logical, public driver\+\_\+sol\+::debug\+\_\+sol\+\_\+grid = .false.}
+
+
+
+Definition at line 24 of file driver\+\_\+sol.\+f90.
+

@@ -1,46 +1,96 @@
 \hypertarget{HDF5__ops_8f90}{}\section{/opt/\+P\+B3\+D/\+Modules/\+H\+D\+F5\+\_\+ops.f90 File Reference}
 \label{HDF5__ops_8f90}\index{/opt/\+P\+B3\+D/\+Modules/\+H\+D\+F5\+\_\+ops.\+f90@{/opt/\+P\+B3\+D/\+Modules/\+H\+D\+F5\+\_\+ops.\+f90}}
-\subsection*{Interfaces and Types}
-\begin{DoxyCompactItemize}
-\item 
-interface \hyperlink{interfacehdf5__ops_1_1reset__hdf5__item}{hdf5\+\_\+ops\+::reset\+\_\+hdf5\+\_\+item}
-\begin{DoxyCompactList}\small\item\em Resets an H\+D\+F5 X\+D\+MF item. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Modules}
 \begin{DoxyCompactItemize}
 \item 
 module \hyperlink{namespacehdf5__ops}{hdf5\+\_\+ops}
-\begin{DoxyCompactList}\small\item\em Operations on H\+D\+F5 and X\+D\+MF variables. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{DoxyCompactItemize}
 \subsection*{Functions/\+Subroutines}
 \begin{DoxyCompactItemize}
 \item 
-integer function, public \hyperlink{namespacehdf5__ops_a72c3974bb01858e1b232fc888d387bb6}{hdf5\+\_\+ops\+::open\+\_\+hdf5\+\_\+file} (file\+\_\+info, file\+\_\+name, sym\+\_\+type, descr, ind\+\_\+plot, cont\+\_\+plot)
-\begin{DoxyCompactList}\small\item\em Opens an H\+D\+F5 file and accompanying xmf file and returns the handles. \end{DoxyCompactList}\item 
+integer function, public \hyperlink{namespacehdf5__ops_a28cdecb45d88592a69dada6fd5ab9919}{hdf5\+\_\+ops\+::open\+\_\+hdf5\+\_\+file} (file\+\_\+info, file\+\_\+name, sym\+\_\+type, description, ind\+\_\+plot, cont\+\_\+plot)
+\item 
 integer function, public \hyperlink{namespacehdf5__ops_ad6c53fff55bd71f63470ca1e525ddb56}{hdf5\+\_\+ops\+::close\+\_\+hdf5\+\_\+file} (file\+\_\+info, ind\+\_\+plot, cont\+\_\+plot)
-\begin{DoxyCompactList}\small\item\em Closes an H\+D\+F5 file and writes the accompanying xmf file. \end{DoxyCompactList}\item 
+\item 
 integer function, public \hyperlink{namespacehdf5__ops_ade36dbd73b60da30e33a1059e590f734}{hdf5\+\_\+ops\+::add\+\_\+hdf5\+\_\+item} (file\+\_\+info, X\+D\+M\+F\+\_\+item, reset, ind\+\_\+plot)
-\begin{DoxyCompactList}\small\item\em Add an X\+D\+MF item to a H\+D\+F5 file. \end{DoxyCompactList}\item 
+\item 
 integer function, public \hyperlink{namespacehdf5__ops_ad794d069ca355f28536fba7e0d21bc13}{hdf5\+\_\+ops\+::print\+\_\+hdf5\+\_\+3d\+\_\+data\+\_\+item} (dataitem\+\_\+id, file\+\_\+info, var\+\_\+name, var, dim\+\_\+tot, loc\+\_\+dim, loc\+\_\+offset, init\+\_\+val, ind\+\_\+plot, cont\+\_\+plot)
-\begin{DoxyCompactList}\small\item\em Prints an H\+D\+F5 data item. \end{DoxyCompactList}\item 
+\item 
+integer function \hyperlink{HDF5__ops_8f90_a80c977815900dc90dfb63bc20a2abb5e}{check\+\_\+for\+\_\+parallel\+\_\+3d} (dim\+\_\+tot, loc\+\_\+dim\+\_\+out, loc\+\_\+offset\+\_\+out, loc\+\_\+dim\+\_\+in, loc\+\_\+offset\+\_\+in)
+\item 
 subroutine, public \hyperlink{namespacehdf5__ops_a7b18b66402089eef2288b2d532f6af5d}{hdf5\+\_\+ops\+::merge\+\_\+hdf5\+\_\+3d\+\_\+data\+\_\+items} (merged\+\_\+id, dataitem\+\_\+ids, var\+\_\+name, dim\+\_\+tot, reset, ind\+\_\+plot, cont\+\_\+plot)
-\begin{DoxyCompactList}\small\item\em Joins dataitems in a vector. \end{DoxyCompactList}\item 
+\item 
 subroutine, public \hyperlink{namespacehdf5__ops_a4d0ba813f369f904a9e991804662d099}{hdf5\+\_\+ops\+::print\+\_\+hdf5\+\_\+att} (att\+\_\+id, att\+\_\+dataitem, att\+\_\+name, att\+\_\+center, att\+\_\+type, reset, ind\+\_\+plot)
-\begin{DoxyCompactList}\small\item\em Prints an H\+D\+F5 attribute. \end{DoxyCompactList}\item 
+\item 
 subroutine, public \hyperlink{namespacehdf5__ops_af34b4aea64a8b67ec827aaf4a7425caf}{hdf5\+\_\+ops\+::print\+\_\+hdf5\+\_\+top} (top\+\_\+id, top\+\_\+type, top\+\_\+n\+\_\+elem, ind\+\_\+plot)
-\begin{DoxyCompactList}\small\item\em Prints an H\+D\+F5 topology. \end{DoxyCompactList}\item 
+\item 
 subroutine, public \hyperlink{namespacehdf5__ops_ac23a71e7029f46e5f38a95468fc10e22}{hdf5\+\_\+ops\+::print\+\_\+hdf5\+\_\+geom} (geom\+\_\+id, geom\+\_\+type, geom\+\_\+dataitems, reset, ind\+\_\+plot)
-\begin{DoxyCompactList}\small\item\em Prints an H\+D\+F5 geometry. \end{DoxyCompactList}\item 
+\item 
 integer function, public \hyperlink{namespacehdf5__ops_a144d595445778d89ec1a1bc0b12a94fb}{hdf5\+\_\+ops\+::print\+\_\+hdf5\+\_\+grid} (grid\+\_\+id, grid\+\_\+name, grid\+\_\+type, grid\+\_\+time, grid\+\_\+top, grid\+\_\+geom, grid\+\_\+atts, grid\+\_\+grids, reset, ind\+\_\+plot)
-\begin{DoxyCompactList}\small\item\em Prints an H\+D\+F5 grid. \end{DoxyCompactList}\item 
+\item 
 integer function, public \hyperlink{namespacehdf5__ops_a1263636fffc4f4aa86f72bd5fd3352a0}{hdf5\+\_\+ops\+::create\+\_\+output\+\_\+hdf5} (H\+D\+F5\+\_\+name)
-\begin{DoxyCompactList}\small\item\em Creates an H\+D\+F5 output file. \end{DoxyCompactList}\item 
-integer function, public \hyperlink{namespacehdf5__ops_af80b879ed614698ed91b8235cf1cb22a}{hdf5\+\_\+ops\+::print\+\_\+hdf5\+\_\+arrs} (vars, P\+B3\+D\+\_\+name, head\+\_\+name, rich\+\_\+lvl, disp\+\_\+info, ind\+\_\+print, remove\+\_\+previous\+\_\+arrs)
-\begin{DoxyCompactList}\small\item\em Prints a series of arrays, in the form of an array of pointers, to an H\+D\+F5 file. \end{DoxyCompactList}\item 
+\item 
+integer function, public \hyperlink{namespacehdf5__ops_a18a07099350020b44d6fbe93ed36e804}{hdf5\+\_\+ops\+::print\+\_\+hdf5\+\_\+arrs} (vars, P\+B3\+D\+\_\+name, head\+\_\+name, rich\+\_\+lvl, disp\+\_\+info, ind\+\_\+print)
+\item 
+subroutine \hyperlink{HDF5__ops_8f90_a9ce89bbcdaf88002bfab4d531536c989}{detect\+\_\+ind\+\_\+print} (ind\+\_\+print)
+\item 
 integer function, public \hyperlink{namespacehdf5__ops_a5108e0d6f6b492cb981505ebceedd9ee}{hdf5\+\_\+ops\+::read\+\_\+hdf5\+\_\+arr} (var, P\+B3\+D\+\_\+name, head\+\_\+name, var\+\_\+name, rich\+\_\+lvl, disp\+\_\+info, lim\+\_\+loc)
-\begin{DoxyCompactList}\small\item\em Reads a P\+B3D output file in H\+D\+F5 format. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\item 
+subroutine \hyperlink{namespacehdf5__ops_aed5661fcfa44910873fc0f87bb6ed914}{hdf5\+\_\+ops\+::reset\+\_\+hdf5\+\_\+item\+\_\+arr} (X\+D\+M\+F\+\_\+items, ind\+\_\+plot)
+\item 
+subroutine \hyperlink{namespacehdf5__ops_a0f8db30a23145c71cb14906e7557cc33}{hdf5\+\_\+ops\+::reset\+\_\+hdf5\+\_\+item\+\_\+ind} (X\+D\+M\+F\+\_\+item, ind\+\_\+plot)
+\end{DoxyCompactItemize}
 \subsection*{Variables}
 \begin{DoxyCompactItemize}
 \item 
 logical, public \hyperlink{namespacehdf5__ops_a9b7c63811a63e9454539f1a2c89678b4}{hdf5\+\_\+ops\+::debug\+\_\+hdf5\+\_\+ops} = .false.
-\begin{DoxyCompactList}\small\item\em set to true to debug general information \end{DoxyCompactList}\item 
+\item 
 logical, public \hyperlink{namespacehdf5__ops_a00bbaa77652e040350c9726668cc22ac}{hdf5\+\_\+ops\+::debug\+\_\+print\+\_\+hdf5\+\_\+arrs} = .false.
-\begin{DoxyCompactList}\small\item\em set to true to debug print\+\_\+\+H\+D\+F5\+\_\+arrs \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{DoxyCompactItemize}
+
+
+\subsection{Function/\+Subroutine Documentation}
+\mbox{\Hypertarget{HDF5__ops_8f90_a80c977815900dc90dfb63bc20a2abb5e}\label{HDF5__ops_8f90_a80c977815900dc90dfb63bc20a2abb5e}} 
+\index{H\+D\+F5\+\_\+ops.\+f90@{H\+D\+F5\+\_\+ops.\+f90}!check\+\_\+for\+\_\+parallel\+\_\+3d@{check\+\_\+for\+\_\+parallel\+\_\+3d}}
+\index{check\+\_\+for\+\_\+parallel\+\_\+3d@{check\+\_\+for\+\_\+parallel\+\_\+3d}!H\+D\+F5\+\_\+ops.\+f90@{H\+D\+F5\+\_\+ops.\+f90}}
+\subsubsection{\texorpdfstring{check\+\_\+for\+\_\+parallel\+\_\+3d()}{check\_for\_parallel\_3d()}}
+{\footnotesize\ttfamily integer function print\+\_\+hdf5\+\_\+3d\+\_\+data\+\_\+item\+::check\+\_\+for\+\_\+parallel\+\_\+3d (\begin{DoxyParamCaption}\item[{integer, dimension(3), intent(in)}]{dim\+\_\+tot,  }\item[{integer, dimension(3), intent(inout)}]{loc\+\_\+dim\+\_\+out,  }\item[{integer, dimension(3), intent(inout)}]{loc\+\_\+offset\+\_\+out,  }\item[{integer, dimension(3), intent(in), optional}]{loc\+\_\+dim\+\_\+in,  }\item[{integer, dimension(3), intent(in), optional}]{loc\+\_\+offset\+\_\+in }\end{DoxyParamCaption})}
+
+
+
+Definition at line 542 of file H\+D\+F5\+\_\+ops.\+f90.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{HDF5__ops_8f90_a80c977815900dc90dfb63bc20a2abb5e_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{HDF5__ops_8f90_a80c977815900dc90dfb63bc20a2abb5e_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{HDF5__ops_8f90_a9ce89bbcdaf88002bfab4d531536c989}\label{HDF5__ops_8f90_a9ce89bbcdaf88002bfab4d531536c989}} 
+\index{H\+D\+F5\+\_\+ops.\+f90@{H\+D\+F5\+\_\+ops.\+f90}!detect\+\_\+ind\+\_\+print@{detect\+\_\+ind\+\_\+print}}
+\index{detect\+\_\+ind\+\_\+print@{detect\+\_\+ind\+\_\+print}!H\+D\+F5\+\_\+ops.\+f90@{H\+D\+F5\+\_\+ops.\+f90}}
+\subsubsection{\texorpdfstring{detect\+\_\+ind\+\_\+print()}{detect\_ind\_print()}}
+{\footnotesize\ttfamily subroutine print\+\_\+hdf5\+\_\+arrs\+::detect\+\_\+ind\+\_\+print (\begin{DoxyParamCaption}\item[{logical, intent(inout)}]{ind\+\_\+print }\end{DoxyParamCaption})}
+
+
+
+Definition at line 1431 of file H\+D\+F5\+\_\+ops.\+f90.
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{HDF5__ops_8f90_a9ce89bbcdaf88002bfab4d531536c989_icgraph}
+\end{center}
+\end{figure}

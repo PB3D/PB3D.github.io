@@ -1,57 +1,19 @@
 \hypertarget{namespacefiles__utilities}{}\section{files\+\_\+utilities Module Reference}
 \label{namespacefiles__utilities}\index{files\+\_\+utilities@{files\+\_\+utilities}}
-
-
-Numerical utilities related to files.  
-
-
 \subsection*{Functions/\+Subroutines}
 \begin{DoxyCompactItemize}
 \item 
 integer function, public \hyperlink{namespacefiles__utilities_ac6066df405564ba2f5e3c4bba726c1f8}{nextunit} (unit)
-\begin{DoxyCompactList}\small\item\em Search for available new unit. \end{DoxyCompactList}\item 
-integer function, public \hyperlink{namespacefiles__utilities_ac5befac3b753b28003e6878bec2af381}{skip\+\_\+comment} (file\+\_\+i, file\+\_\+name)
-\begin{DoxyCompactList}\small\item\em Skips comment when reading a file. \end{DoxyCompactList}\item 
+\item 
 subroutine, public \hyperlink{namespacefiles__utilities_a07f2e430ff33c1e291731ad64c1fe482}{get\+\_\+file\+\_\+info} (file\+\_\+name, file\+\_\+size, acc\+\_\+time, mod\+\_\+time)
-\begin{DoxyCompactList}\small\item\em Gets file information. \end{DoxyCompactList}\item 
+\item 
 character(len=max\+\_\+str\+\_\+ln) function, public \hyperlink{namespacefiles__utilities_a43f1c2b7e128b1b2cdbcdb8963daab0e}{get\+\_\+full\+\_\+pb3d\+\_\+name} (rich\+\_\+lvl)
-\begin{DoxyCompactList}\small\item\em Returns the name of the P\+B3D output file. \end{DoxyCompactList}\item 
+\item 
 integer function, public \hyperlink{namespacefiles__utilities_a083c08dfd3919fa2a1df01507fe431af}{delete\+\_\+file} (file\+\_\+name)
-\begin{DoxyCompactList}\small\item\em Removes a file. \end{DoxyCompactList}\item 
-integer function, public \hyperlink{namespacefiles__utilities_a3ec80c9937d23aba0d8da951ea292a83}{count\+\_\+lines} (file\+\_\+i)
-\begin{DoxyCompactList}\small\item\em Count non-\/comment lines in a file. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{DoxyCompactItemize}
 
-
-\subsection{Detailed Description}
-Numerical utilities related to files. 
 
 \subsection{Function/\+Subroutine Documentation}
-\mbox{\Hypertarget{namespacefiles__utilities_a3ec80c9937d23aba0d8da951ea292a83}\label{namespacefiles__utilities_a3ec80c9937d23aba0d8da951ea292a83}} 
-\index{files\+\_\+utilities@{files\+\_\+utilities}!count\+\_\+lines@{count\+\_\+lines}}
-\index{count\+\_\+lines@{count\+\_\+lines}!files\+\_\+utilities@{files\+\_\+utilities}}
-\subsubsection{\texorpdfstring{count\+\_\+lines()}{count\_lines()}}
-{\footnotesize\ttfamily integer function, public files\+\_\+utilities\+::count\+\_\+lines (\begin{DoxyParamCaption}\item[{integer, intent(in)}]{file\+\_\+i }\end{DoxyParamCaption})}
-
-
-
-Count non-\/comment lines in a file. 
-
-
-\begin{DoxyParams}[1]{Parameters}
-\mbox{\tt in}  & {\em file\+\_\+i} & file identifier \\
-\hline
-\end{DoxyParams}
-
-
-Definition at line 170 of file files\+\_\+utilities.\+f90.
-
-Here is the caller graph for this function\+:\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=350pt]{namespacefiles__utilities_a3ec80c9937d23aba0d8da951ea292a83_icgraph}
-\end{center}
-\end{figure}
 \mbox{\Hypertarget{namespacefiles__utilities_a083c08dfd3919fa2a1df01507fe431af}\label{namespacefiles__utilities_a083c08dfd3919fa2a1df01507fe431af}} 
 \index{files\+\_\+utilities@{files\+\_\+utilities}!delete\+\_\+file@{delete\+\_\+file}}
 \index{delete\+\_\+file@{delete\+\_\+file}!files\+\_\+utilities@{files\+\_\+utilities}}
@@ -60,28 +22,18 @@ Here is the caller graph for this function\+:\nopagebreak
 
 
 
-Removes a file. 
+Definition at line 100 of file files\+\_\+utilities.\+f90.
 
-\begin{DoxyReturn}{Returns}
-istat
-\end{DoxyReturn}
-
-\begin{DoxyParams}[1]{Parameters}
-\mbox{\tt in,out}  & {\em file\+\_\+name} & the name that is deleted \\
-\hline
-\end{DoxyParams}
-
-
-Definition at line 144 of file files\+\_\+utilities.\+f90.
-
-Here is the call graph for this function\+:\nopagebreak
+Here is the call graph for this function\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{namespacefiles__utilities_a083c08dfd3919fa2a1df01507fe431af_cgraph}
 \end{center}
 \end{figure}
-Here is the caller graph for this function\+:\nopagebreak
+Here is the caller graph for this function\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -96,26 +48,10 @@ Here is the caller graph for this function\+:\nopagebreak
 
 
 
-Gets file information. 
+Definition at line 47 of file files\+\_\+utilities.\+f90.
 
-The time informations can be converted to strings using the intrinsic function \char`\"{}ctime\char`\"{}.
-
-
-\begin{DoxyParams}[1]{Parameters}
-\mbox{\tt in}  & {\em file\+\_\+name} & name of file\\
-\hline
-\mbox{\tt in,out}  & {\em file\+\_\+size} & file size\\
-\hline
-\mbox{\tt in,out}  & {\em acc\+\_\+time} & file access time\\
-\hline
-\mbox{\tt in,out}  & {\em mod\+\_\+time} & file modification time \\
-\hline
-\end{DoxyParams}
-
-
-Definition at line 86 of file files\+\_\+utilities.\+f90.
-
-Here is the call graph for this function\+:\nopagebreak
+Here is the call graph for this function\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -130,15 +66,10 @@ Here is the call graph for this function\+:\nopagebreak
 
 
 
-Returns the name of the P\+B3D output file. 
+Definition at line 77 of file files\+\_\+utilities.\+f90.
 
-Optionally, the Richardson level can be appended as {\ttfamily \+\_\+\+R\+\_\+\mbox{[}lvl\mbox{]}}.
-
-If not positive, it is ignored. 
-
-Definition at line 119 of file files\+\_\+utilities.\+f90.
-
-Here is the call graph for this function\+:\nopagebreak
+Here is the call graph for this function\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -153,51 +84,13 @@ Here is the call graph for this function\+:\nopagebreak
 
 
 
-Search for available new unit. 
+Definition at line 21 of file files\+\_\+utilities.\+f90.
 
-{\ttfamily lun\+\_\+min} and {\ttfamily lun\+\_\+max} define the range of possible luns to check.
-
-The unit value is returned by the function, and also by the optional argument. This allows the function to be used directly in an open statement, and optionally save the result in a local variable.
-
-If no units are available, -\/1 is returned.
-
-\begin{DoxySeeAlso}{See also}
-Adapted from \href{http://fortranwiki.org/fortran/show/newunit}{\tt http\+://fortranwiki.\+org/fortran/show/newunit} 
-\end{DoxySeeAlso}
-
-
-Definition at line 27 of file files\+\_\+utilities.\+f90.
-
-Here is the caller graph for this function\+:\nopagebreak
+Here is the caller graph for this function\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{namespacefiles__utilities_ac6066df405564ba2f5e3c4bba726c1f8_icgraph}
-\end{center}
-\end{figure}
-\mbox{\Hypertarget{namespacefiles__utilities_ac5befac3b753b28003e6878bec2af381}\label{namespacefiles__utilities_ac5befac3b753b28003e6878bec2af381}} 
-\index{files\+\_\+utilities@{files\+\_\+utilities}!skip\+\_\+comment@{skip\+\_\+comment}}
-\index{skip\+\_\+comment@{skip\+\_\+comment}!files\+\_\+utilities@{files\+\_\+utilities}}
-\subsubsection{\texorpdfstring{skip\+\_\+comment()}{skip\_comment()}}
-{\footnotesize\ttfamily integer function, public files\+\_\+utilities\+::skip\+\_\+comment (\begin{DoxyParamCaption}\item[{integer, intent(in)}]{file\+\_\+i,  }\item[{character(len=$\ast$), intent(in), optional}]{file\+\_\+name }\end{DoxyParamCaption})}
-
-
-
-Skips comment when reading a file. 
-
-By comment, a line is meant that starts with the character {\ttfamily \#}.
-
-\begin{DoxyReturn}{Returns}
-ierr 
-\end{DoxyReturn}
-
-
-Definition at line 55 of file files\+\_\+utilities.\+f90.
-
-Here is the caller graph for this function\+:\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=350pt]{namespacefiles__utilities_ac5befac3b753b28003e6878bec2af381_icgraph}
 \end{center}
 \end{figure}

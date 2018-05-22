@@ -29,7 +29,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">PB3D
-   &#160;<span id="projectnumber">[2.24]</span>
+   &#160;<span id="projectnumber">[1.73]</span>
    </div>
    <div id="projectbrief">Ideal linear high-n MHD stability in 3-D</div>
   </td>
@@ -72,7 +72,6 @@ $(function() {
 </div><!-- top -->
 <div class="header">
   <div class="summary">
-<a href="#nested-classes">Interfaces and Types</a> &#124;
 <a href="#namespaces">Modules</a> &#124;
 <a href="#func-members">Functions/Subroutines</a> &#124;
 <a href="#var-members">Variables</a>  </div>
@@ -83,78 +82,340 @@ $(function() {
 
 <p><a href="grid__utilities_8f90_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
-Interfaces and Types</h2></td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">interface &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interfacegrid__utilities_1_1coord__f2e.html">grid_utilities::coord_f2e</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts Flux coordinates \(\left(r,\theta,\zeta\right)_\text{F}\) to Equilibrium coordinates \(\left(r,\theta,\zeta\right)_\text{E}\).  <a href="interfacegrid__utilities_1_1coord__f2e.html#details">More...</a><br /></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">interface &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interfacegrid__utilities_1_1coord__e2f.html">grid_utilities::coord_e2f</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts Equilibrium coordinates \(\left(r,\theta,\zeta\right)_\text{E}\). to Flux coordinates \(\left(r,\theta,\zeta\right)_\text{F}\).  <a href="interfacegrid__utilities_1_1coord__e2f.html#details">More...</a><br /></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">interface &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interfacegrid__utilities_1_1calc__eqd__grid.html">grid_utilities::calc_eqd_grid</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculate grid of equidistant points, where optionally the last point can be excluded.  <a href="interfacegrid__utilities_1_1calc__eqd__grid.html#details">More...</a><br /></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">interface &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interfacegrid__utilities_1_1calc__tor__diff.html">grid_utilities::calc_tor_diff</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculates the toroidal difference for a magnitude calculated on three toroidal points: two extremities and one in the middle.  <a href="interfacegrid__utilities_1_1calc__tor__diff.html#details">More...</a><br /></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="namespaces"></a>
 Modules</h2></td></tr>
 <tr class="memitem:namespacegrid__utilities"><td class="memItemLeft" align="right" valign="top">module &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacegrid__utilities.html">grid_utilities</a></td></tr>
-<tr class="memdesc:namespacegrid__utilities"><td class="mdescLeft">&#160;</td><td class="mdescRight">Numerical utilities related to the grids and different coordinate systems. <br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions/Subroutines</h2></td></tr>
+<tr class="memitem:aa4643f558c5d0e6149c4a8cbd289777d"><td class="memItemLeft" align="right" valign="top">integer function&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="grid__utilities_8f90.html#aa4643f558c5d0e6149c4a8cbd289777d">coord_f2e_vmec</a> ()</td></tr>
+<tr class="separator:aa4643f558c5d0e6149c4a8cbd289777d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a38078beae178a5dcd051e2ed858d4d35"><td class="memItemLeft" align="right" valign="top">real(dp) function, dimension(dims(1), dims(2), dims(3))&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="grid__utilities_8f90.html#a38078beae178a5dcd051e2ed858d4d35">fun_pol</a> (dims, theta_E_in, dpol)</td></tr>
+<tr class="separator:a38078beae178a5dcd051e2ed858d4d35"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2a3c0509679b438d9d5aa5bedfb7a7b8"><td class="memItemLeft" align="right" valign="top">integer function&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacegrid__utilities.html#a2a3c0509679b438d9d5aa5bedfb7a7b8">grid_utilities::coord_e2f_rtz</a> (grid_eq, r_E, theta_E, zeta_E, r_F, theta_F, zeta_F, r_E_array, r_F_array)</td></tr>
-<tr class="memdesc:a2a3c0509679b438d9d5aa5bedfb7a7b8"><td class="mdescLeft">&#160;</td><td class="mdescRight">version with r, theta and zeta  <a href="namespacegrid__utilities.html#a2a3c0509679b438d9d5aa5bedfb7a7b8">More...</a><br /></td></tr>
 <tr class="separator:a2a3c0509679b438d9d5aa5bedfb7a7b8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af4a8f2c9e0c72e80e6cbac35617e5f80"><td class="memItemLeft" align="right" valign="top">integer function&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="grid__utilities_8f90.html#af4a8f2c9e0c72e80e6cbac35617e5f80">coord_e2f_vmec</a> ()</td></tr>
+<tr class="separator:af4a8f2c9e0c72e80e6cbac35617e5f80"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7866b2c198255dec7904dac73ccf4340"><td class="memItemLeft" align="right" valign="top">integer function&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacegrid__utilities.html#a7866b2c198255dec7904dac73ccf4340">grid_utilities::coord_e2f_r</a> (grid_eq, r_E, r_F, r_E_array, r_F_array)</td></tr>
-<tr class="memdesc:a7866b2c198255dec7904dac73ccf4340"><td class="mdescLeft">&#160;</td><td class="mdescRight">version with only r  <a href="namespacegrid__utilities.html#a7866b2c198255dec7904dac73ccf4340">More...</a><br /></td></tr>
 <tr class="separator:a7866b2c198255dec7904dac73ccf4340"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a39e7cd9b8f173994358dbdd6b57827e1"><td class="memItemLeft" align="right" valign="top">integer function, public&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacegrid__utilities.html#a39e7cd9b8f173994358dbdd6b57827e1">grid_utilities::calc_xyz_grid</a> (grid_eq, grid_XYZ, X, Y, Z, L, R)</td></tr>
-<tr class="memdesc:a39e7cd9b8f173994358dbdd6b57827e1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculates \(X\), \(Y\) and \(Z\) on a grid <code>grid_XYZ</code>, determined through its E(quilibrium) coordinates.  <a href="namespacegrid__utilities.html#a39e7cd9b8f173994358dbdd6b57827e1">More...</a><br /></td></tr>
 <tr class="separator:a39e7cd9b8f173994358dbdd6b57827e1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaabf4a8fdce3679e99ff8f8a9a30fcaf"><td class="memItemLeft" align="right" valign="top">integer function&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="grid__utilities_8f90.html#aaabf4a8fdce3679e99ff8f8a9a30fcaf">calc_xyz_grid_vmec</a> (grid_eq, grid_XYZ, X, Y, Z, L, R)</td></tr>
+<tr class="separator:aaabf4a8fdce3679e99ff8f8a9a30fcaf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad39ac81f24bae991c679caf84a4ad757"><td class="memItemLeft" align="right" valign="top">integer function&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="grid__utilities_8f90.html#ad39ac81f24bae991c679caf84a4ad757">calc_xyz_grid_hel</a> (grid_eq, grid_XYZ, X, Y, Z, R)</td></tr>
+<tr class="separator:ad39ac81f24bae991c679caf84a4ad757"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1725fdd7bdf52d436152c5e327c36be4"><td class="memItemLeft" align="right" valign="top">integer function&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacegrid__utilities.html#a1725fdd7bdf52d436152c5e327c36be4">grid_utilities::calc_eqd_grid_3d</a> (var, min_grid, max_grid, grid_dim, excl_last)</td></tr>
+<tr class="separator:a1725fdd7bdf52d436152c5e327c36be4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a414a1a11924bc935afca3a89fc31f2f5"><td class="memItemLeft" align="right" valign="top">integer function, public&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacegrid__utilities.html#a414a1a11924bc935afca3a89fc31f2f5">grid_utilities::extend_grid_f</a> (grid_in, grid_ext, grid_eq, n_theta_plot, n_zeta_plot, lim_theta_plot, lim_zeta_plot)</td></tr>
-<tr class="memdesc:a414a1a11924bc935afca3a89fc31f2f5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Extend a grid angularly.  <a href="namespacegrid__utilities.html#a414a1a11924bc935afca3a89fc31f2f5">More...</a><br /></td></tr>
 <tr class="separator:a414a1a11924bc935afca3a89fc31f2f5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a04f971c38083f873a04eb6568bed466b"><td class="memItemLeft" align="right" valign="top">integer function, public&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacegrid__utilities.html#a04f971c38083f873a04eb6568bed466b">grid_utilities::copy_grid</a> (grid_A, grid_B, lims_B, i_lim)</td></tr>
-<tr class="memdesc:a04f971c38083f873a04eb6568bed466b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Copy a grid A to a new grid B, that was not yet initialized.  <a href="namespacegrid__utilities.html#a04f971c38083f873a04eb6568bed466b">More...</a><br /></td></tr>
 <tr class="separator:a04f971c38083f873a04eb6568bed466b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a97e3106dbdc10b726af74afa113ba533"><td class="memItemLeft" align="right" valign="top">integer function, public&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacegrid__utilities.html#a97e3106dbdc10b726af74afa113ba533">grid_utilities::calc_int_vol</a> (ang_1, ang_2, norm, J, f, f_int)</td></tr>
-<tr class="memdesc:a97e3106dbdc10b726af74afa113ba533"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculates volume integral on a 3D grid.  <a href="namespacegrid__utilities.html#a97e3106dbdc10b726af74afa113ba533">More...</a><br /></td></tr>
 <tr class="separator:a97e3106dbdc10b726af74afa113ba533"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a32f5edd35f6976236b9848f56f951c83"><td class="memItemLeft" align="right" valign="top">integer function&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacegrid__utilities.html#a32f5edd35f6976236b9848f56f951c83">grid_utilities::setup_deriv_data_eqd</a> (step, n, A, ord, prec)</td></tr>
+<tr class="separator:a32f5edd35f6976236b9848f56f951c83"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a383fb7484b5a315a3b8019d388f88617"><td class="memItemLeft" align="right" valign="top">integer function&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacegrid__utilities.html#a383fb7484b5a315a3b8019d388f88617">grid_utilities::setup_deriv_data_reg</a> (x, A, ord, prec)</td></tr>
+<tr class="separator:a383fb7484b5a315a3b8019d388f88617"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a43206328f85253a6cc821cd46a498bb6"><td class="memItemLeft" align="right" valign="top">integer function, public&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacegrid__utilities.html#a43206328f85253a6cc821cd46a498bb6">grid_utilities::setup_interp_data</a> (x, x_interp, A, ord, is_trigon, norm_len)</td></tr>
+<tr class="separator:a43206328f85253a6cc821cd46a498bb6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9494e086550e67e6d1319d94d37e15ef"><td class="memItemLeft" align="right" valign="top">integer function&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacegrid__utilities.html#a9494e086550e67e6d1319d94d37e15ef">grid_utilities::apply_disc_4d_real</a> (var, disc_data, dvar, disc_dim)</td></tr>
+<tr class="separator:a9494e086550e67e6d1319d94d37e15ef"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7fcde4b046076294fc8d2ca130f84add"><td class="memItemLeft" align="right" valign="top">integer function&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacegrid__utilities.html#a7fcde4b046076294fc8d2ca130f84add">grid_utilities::apply_disc_4d_complex</a> (var, disc_data, dvar, disc_dim)</td></tr>
+<tr class="separator:a7fcde4b046076294fc8d2ca130f84add"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a876f338471e643a680893b9a19715016"><td class="memItemLeft" align="right" valign="top">integer function&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacegrid__utilities.html#a876f338471e643a680893b9a19715016">grid_utilities::apply_disc_3d_real</a> (var, disc_data, dvar, disc_dim)</td></tr>
+<tr class="separator:a876f338471e643a680893b9a19715016"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2e42ad0b765c9292bc7010069359cc28"><td class="memItemLeft" align="right" valign="top">integer function&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacegrid__utilities.html#a2e42ad0b765c9292bc7010069359cc28">grid_utilities::apply_disc_3d_complex</a> (var, disc_data, dvar, disc_dim)</td></tr>
+<tr class="separator:a2e42ad0b765c9292bc7010069359cc28"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9ffa0404a239305f4c0c577d1e34a791"><td class="memItemLeft" align="right" valign="top">integer function&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacegrid__utilities.html#a9ffa0404a239305f4c0c577d1e34a791">grid_utilities::apply_disc_2d_real</a> (var, disc_data, dvar, disc_dim)</td></tr>
+<tr class="separator:a9ffa0404a239305f4c0c577d1e34a791"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7cb36e1ff9abd22f7f18d8b65215c67f"><td class="memItemLeft" align="right" valign="top">integer function&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacegrid__utilities.html#a7cb36e1ff9abd22f7f18d8b65215c67f">grid_utilities::apply_disc_2d_complex</a> (var, disc_data, dvar, disc_dim)</td></tr>
+<tr class="separator:a7cb36e1ff9abd22f7f18d8b65215c67f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae57cbda514cf4bf01714e0746ff342a2"><td class="memItemLeft" align="right" valign="top">integer function&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacegrid__utilities.html#ae57cbda514cf4bf01714e0746ff342a2">grid_utilities::apply_disc_1d_real</a> (var, disc_data, dvar)</td></tr>
+<tr class="separator:ae57cbda514cf4bf01714e0746ff342a2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a948a0ef995a14a7a80464933e8c28029"><td class="memItemLeft" align="right" valign="top">integer function&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacegrid__utilities.html#a948a0ef995a14a7a80464933e8c28029">grid_utilities::apply_disc_1d_complex</a> (var, disc_data, dvar)</td></tr>
+<tr class="separator:a948a0ef995a14a7a80464933e8c28029"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a67001ff9bbcad707aacf17f90a748d90"><td class="memItemLeft" align="right" valign="top">integer function, public&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacegrid__utilities.html#a67001ff9bbcad707aacf17f90a748d90">grid_utilities::trim_grid</a> (grid_in, grid_out, norm_id)</td></tr>
-<tr class="memdesc:a67001ff9bbcad707aacf17f90a748d90"><td class="mdescLeft">&#160;</td><td class="mdescRight">Trim a grid, removing any overlap between the different regions.  <a href="namespacegrid__utilities.html#a67001ff9bbcad707aacf17f90a748d90">More...</a><br /></td></tr>
 <tr class="separator:a67001ff9bbcad707aacf17f90a748d90"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4679f24af8e02793070f4e27b43e00b6"><td class="memItemLeft" align="right" valign="top">integer function, public&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacegrid__utilities.html#a4679f24af8e02793070f4e27b43e00b6">grid_utilities::untrim_grid</a> (grid_in, grid_out, size_ghost)</td></tr>
-<tr class="memdesc:a4679f24af8e02793070f4e27b43e00b6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Untrims a trimmed grid by introducing an asymmetric ghost regions at the right.  <a href="namespacegrid__utilities.html#a4679f24af8e02793070f4e27b43e00b6">More...</a><br /></td></tr>
 <tr class="separator:a4679f24af8e02793070f4e27b43e00b6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad3d9386b9abcb1a7e17369a1b3a3750d"><td class="memItemLeft" align="right" valign="top">integer function, public&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacegrid__utilities.html#ad3d9386b9abcb1a7e17369a1b3a3750d">grid_utilities::calc_vec_comp</a> (grid, grid_eq, eq_1, eq_2, v_com, norm_disc_prec, v_mag, base_name, max_transf, v_flux_tor, v_flux_pol, XYZ, compare_tor_pos)</td></tr>
-<tr class="memdesc:ad3d9386b9abcb1a7e17369a1b3a3750d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculates contra- and covariant components of a vector in multiple coordinate systems.  <a href="namespacegrid__utilities.html#ad3d9386b9abcb1a7e17369a1b3a3750d">More...</a><br /></td></tr>
-<tr class="separator:ad3d9386b9abcb1a7e17369a1b3a3750d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3076796477d38ffed189868b3b28efb1"><td class="memItemLeft" align="right" valign="top">integer function, public&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacegrid__utilities.html#a3076796477d38ffed189868b3b28efb1">grid_utilities::calc_vec_comp</a> (grid, grid_eq, eq_1, eq_2, v_com, norm_disc_prec, v_mag, base_name, max_transf, v_flux_tor, v_flux_pol)</td></tr>
+<tr class="separator:a3076796477d38ffed189868b3b28efb1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adeb8c22db4d419a278d6fcc68a34100c"><td class="memItemLeft" align="right" valign="top">integer function, public&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacegrid__utilities.html#adeb8c22db4d419a278d6fcc68a34100c">grid_utilities::calc_n_par_x_rich</a> (n_par_X_rich, only_half_grid)</td></tr>
-<tr class="memdesc:adeb8c22db4d419a278d6fcc68a34100c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculates the local number of parallel grid points for this Richardson level, taking into account that it ould be half the actual number.  <a href="namespacegrid__utilities.html#adeb8c22db4d419a278d6fcc68a34100c">More...</a><br /></td></tr>
 <tr class="separator:adeb8c22db4d419a278d6fcc68a34100c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0854b2d6cc61a31f68b4afe7304077a9"><td class="memItemLeft" align="right" valign="top">integer function, public&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacegrid__utilities.html#a0854b2d6cc61a31f68b4afe7304077a9">grid_utilities::nufft</a> (x, f, f_F, plot_name)</td></tr>
-<tr class="memdesc:a0854b2d6cc61a31f68b4afe7304077a9"><td class="mdescLeft">&#160;</td><td class="mdescRight">calculates the cosine and sine mode numbers of a function defined on a non-regular grid.  <a href="namespacegrid__utilities.html#a0854b2d6cc61a31f68b4afe7304077a9">More...</a><br /></td></tr>
 <tr class="separator:a0854b2d6cc61a31f68b4afe7304077a9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae08e1ff213071c9d411a9b9c76035e1e"><td class="memItemLeft" align="right" valign="top">subroutine, public&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacegrid__utilities.html#ae08e1ff213071c9d411a9b9c76035e1e">grid_utilities::find_compr_range</a> (r_F, lim_r, lim_id)</td></tr>
-<tr class="memdesc:ae08e1ff213071c9d411a9b9c76035e1e"><td class="mdescLeft">&#160;</td><td class="mdescRight">finds smallest range that comprises a minimum and maximum value.  <a href="namespacegrid__utilities.html#ae08e1ff213071c9d411a9b9c76035e1e">More...</a><br /></td></tr>
 <tr class="separator:ae08e1ff213071c9d411a9b9c76035e1e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac32a26bff5c635678f3f78ec9a540a65"><td class="memItemLeft" align="right" valign="top">integer function, public&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacegrid__utilities.html#ac32a26bff5c635678f3f78ec9a540a65">grid_utilities::calc_arc_angle</a> (grid, eq_1, eq_2, arc, use_E)</td></tr>
-<tr class="memdesc:ac32a26bff5c635678f3f78ec9a540a65"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculate arclength angle.  <a href="namespacegrid__utilities.html#ac32a26bff5c635678f3f78ec9a540a65">More...</a><br /></td></tr>
-<tr class="separator:ac32a26bff5c635678f3f78ec9a540a65"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
 Variables</h2></td></tr>
 <tr class="memitem:a0743c0341d508034b14aee614fa4f8a9"><td class="memItemLeft" align="right" valign="top">logical, public&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacegrid__utilities.html#a0743c0341d508034b14aee614fa4f8a9">grid_utilities::debug_calc_int_vol</a> = .false.</td></tr>
-<tr class="memdesc:a0743c0341d508034b14aee614fa4f8a9"><td class="mdescLeft">&#160;</td><td class="mdescRight">plot debug information for <a class="el" href="namespacegrid__utilities.html#a97e3106dbdc10b726af74afa113ba533" title="Calculates volume integral on a 3D grid. ">calc_int_vol()</a>  <a href="namespacegrid__utilities.html#a0743c0341d508034b14aee614fa4f8a9">More...</a><br /></td></tr>
 <tr class="separator:a0743c0341d508034b14aee614fa4f8a9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab420036236dc8a9a69e180550499d95b"><td class="memItemLeft" align="right" valign="top">logical, public&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacegrid__utilities.html#ab420036236dc8a9a69e180550499d95b">grid_utilities::debug_calc_vec_comp</a> = .false.</td></tr>
-<tr class="memdesc:ab420036236dc8a9a69e180550499d95b"><td class="mdescLeft">&#160;</td><td class="mdescRight">plot debug information for <a class="el" href="namespacegrid__utilities.html#ad3d9386b9abcb1a7e17369a1b3a3750d" title="Calculates contra- and covariant components of a vector in multiple coordinate systems. ">calc_vec_comp()</a>  <a href="namespacegrid__utilities.html#ab420036236dc8a9a69e180550499d95b">More...</a><br /></td></tr>
 <tr class="separator:ab420036236dc8a9a69e180550499d95b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<h2 class="groupheader">Function/Subroutine Documentation</h2>
+<a id="ad39ac81f24bae991c679caf84a4ad757"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad39ac81f24bae991c679caf84a4ad757">&#9670;&nbsp;</a></span>calc_xyz_grid_hel()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">integer function calc_xyz_grid::calc_xyz_grid_hel </td>
+          <td>(</td>
+          <td class="paramtype">type(grid_type), intent(in)&#160;</td>
+          <td class="paramname"><em>grid_eq</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">type(grid_type), intent(in)&#160;</td>
+          <td class="paramname"><em>grid_XYZ</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">real(dp), dimension(:,:,:), intent(inout)&#160;</td>
+          <td class="paramname"><em>X</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">real(dp), dimension(:,:,:), intent(inout)&#160;</td>
+          <td class="paramname"><em>Y</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">real(dp), dimension(:,:,:), intent(inout)&#160;</td>
+          <td class="paramname"><em>Z</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">real(dp), dimension(:,:,:), intent(inout), optional&#160;</td>
+          <td class="paramname"><em>R</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="grid__utilities_8f90_source.html#l00622">622</a> of file <a class="el" href="grid__utilities_8f90_source.html">grid_utilities.f90</a>.</p>
+<div id="dynsection-0" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-0-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
+<div id="dynsection-0-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-0-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="grid__utilities_8f90_ad39ac81f24bae991c679caf84a4ad757_cgraph.svg" width="639" height="58"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+<div id="dynsection-1" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-1-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
+<div id="dynsection-1-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-1-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="grid__utilities_8f90_ad39ac81f24bae991c679caf84a4ad757_icgraph.svg" width="1291" height="483"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<a id="aaabf4a8fdce3679e99ff8f8a9a30fcaf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaabf4a8fdce3679e99ff8f8a9a30fcaf">&#9670;&nbsp;</a></span>calc_xyz_grid_vmec()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">integer function calc_xyz_grid::calc_xyz_grid_vmec </td>
+          <td>(</td>
+          <td class="paramtype">type(grid_type), intent(in)&#160;</td>
+          <td class="paramname"><em>grid_eq</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">type(grid_type), intent(in)&#160;</td>
+          <td class="paramname"><em>grid_XYZ</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">real(dp), dimension(:,:,:), intent(inout)&#160;</td>
+          <td class="paramname"><em>X</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">real(dp), dimension(:,:,:), intent(inout)&#160;</td>
+          <td class="paramname"><em>Y</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">real(dp), dimension(:,:,:), intent(inout)&#160;</td>
+          <td class="paramname"><em>Z</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">real(dp), dimension(:,:,:), intent(inout), optional&#160;</td>
+          <td class="paramname"><em>L</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">real(dp), dimension(:,:,:), intent(inout), optional&#160;</td>
+          <td class="paramname"><em>R</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="grid__utilities_8f90_source.html#l00533">533</a> of file <a class="el" href="grid__utilities_8f90_source.html">grid_utilities.f90</a>.</p>
+<div id="dynsection-2" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-2-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
+<div id="dynsection-2-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-2-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="grid__utilities_8f90_aaabf4a8fdce3679e99ff8f8a9a30fcaf_cgraph.svg" width="647" height="58"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+<div id="dynsection-3" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-3-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
+<div id="dynsection-3-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-3-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="grid__utilities_8f90_aaabf4a8fdce3679e99ff8f8a9a30fcaf_icgraph.svg" width="1299" height="483"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<a id="af4a8f2c9e0c72e80e6cbac35617e5f80"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af4a8f2c9e0c72e80e6cbac35617e5f80">&#9670;&nbsp;</a></span>coord_e2f_vmec()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">integer function coord_e2f_rtz::coord_e2f_vmec </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="grid__utilities_8f90_source.html#l00331">331</a> of file <a class="el" href="grid__utilities_8f90_source.html">grid_utilities.f90</a>.</p>
+<div id="dynsection-4" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-4-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
+<div id="dynsection-4-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-4-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="grid__utilities_8f90_af4a8f2c9e0c72e80e6cbac35617e5f80_cgraph.svg" width="615" height="58"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+<div id="dynsection-5" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-5-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
+<div id="dynsection-5-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-5-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="grid__utilities_8f90_af4a8f2c9e0c72e80e6cbac35617e5f80_icgraph.svg" width="384" height="58"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<a id="aa4643f558c5d0e6149c4a8cbd289777d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa4643f558c5d0e6149c4a8cbd289777d">&#9670;&nbsp;</a></span>coord_f2e_vmec()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">integer function coord_f2e_rtz::coord_f2e_vmec </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="grid__utilities_8f90_source.html#l00111">111</a> of file <a class="el" href="grid__utilities_8f90_source.html">grid_utilities.f90</a>.</p>
+<div id="dynsection-6" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-6-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
+<div id="dynsection-6-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-6-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="grid__utilities_8f90_aa4643f558c5d0e6149c4a8cbd289777d_cgraph.svg" width="854" height="128"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<a id="a38078beae178a5dcd051e2ed858d4d35"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a38078beae178a5dcd051e2ed858d4d35">&#9670;&nbsp;</a></span>fun_pol()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">real(dp) function, dimension(dims(1),dims(2),dims(3)) coord_f2e_rtz::fun_pol </td>
+          <td>(</td>
+          <td class="paramtype">integer, dimension(3), intent(in)&#160;</td>
+          <td class="paramname"><em>dims</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">real(dp), dimension(dims(1),dims(2),dims(3)), intent(in)&#160;</td>
+          <td class="paramname"><em>theta_E_in</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">integer, intent(in)&#160;</td>
+          <td class="paramname"><em>dpol</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="grid__utilities_8f90_source.html#l00185">185</a> of file <a class="el" href="grid__utilities_8f90_source.html">grid_utilities.f90</a>.</p>
+<div id="dynsection-7" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-7-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
+<div id="dynsection-7-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-7-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="grid__utilities_8f90_a38078beae178a5dcd051e2ed858d4d35_cgraph.svg" width="559" height="58"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+<div id="dynsection-8" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-8-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
+<div id="dynsection-8-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-8-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="grid__utilities_8f90_a38078beae178a5dcd051e2ed858d4d35_icgraph.svg" width="272" height="40"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
 </div><!-- contents -->
 <!-- HTML footer for doxygen 1.8.13-->
 <!-- start footer part -->

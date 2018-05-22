@@ -29,7 +29,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">PB3D
-   &#160;<span id="projectnumber">[2.24]</span>
+   &#160;<span id="projectnumber">[1.73]</span>
    </div>
    <div id="projectbrief">Ideal linear high-n MHD stability in 3-D</div>
   </td>
@@ -88,14 +88,14 @@ $(function() {
 <p>Furthermore, a multitude of plots can be produced. This is the topic of section <a class="el" href="page_outputs.html#output_plots">Output Plots</a>.</p>
 <h1><a class="anchor" id="output_files"></a>
 Output Files</h1>
-<p>Some of these files are opened in <a class="el" href="namespacefiles__ops.html#ad681a9e8083a6f664cf0f9d17ebe279c" title="Open the output files. ">open_output()</a>, but others are opened afterwards.</p>
+<p>Some of these files are opened in <a class="el" href="namespacefiles__ops.html#ad681a9e8083a6f664cf0f9d17ebe279c">open_output()</a>, but others are opened afterwards.</p>
 <h2><a class="anchor" id="output_file_log"></a>
 Log file</h2>
 <p>Both PB3D and POST produce a log file, in addition to what is produced on the screen.</p>
 <p>These log files are called <code>PB3D_out.txt</code> and <code>POST_out.txt</code> and they contain the same information as the output on the screen, but without the special formatting provided by the foul library (see <a class="el" href="page_installation.html#installation_introduction">Introduction</a>).</p>
 <h2><a class="anchor" id="output_file_shell"></a>
 Shell commands file</h2>
-<p>Some output routines make use of <a class="el" href="namespaceoutput__ops.html#aa9e4855511b6ea16a08b3efb587bec51" title="Executes command line, or displays a message if disabled. ">use_execute_command_line()</a> in order to execute shell commands. This can be, for example, the creation of a plot by calling GnuPlot, among other things.</p>
+<p>Some output routines make use of use_execute_command_line() in order to execute shell commands. This can be, for example, the creation of a plot by calling GnuPlot, among other things.</p>
 <p>However, this often does not work well by default (see <a class="el" href="page_inputs.html#fni30">30</a> in <a class="el" href="page_inputs.html">Input variables</a>). In PB3D and POST, therefore, by default, these commands are not executed, but written to an output file. After execution of PB3D and POST has finished, this file can be made executed.</p>
 <p>This behavior can be changed using the <code>&ndash;do_execute_command_line</code> flag (see <a class="el" href="page_inputs.html">Input variables</a>).</p>
 <h2><a class="anchor" id="output_file_HDF5"></a>
@@ -121,7 +121,7 @@ HDF5 output file</h2>
 <tr>
 <td rowspan="1">inputs </td><td colspan="2">in preliminary phase   </td></tr>
 <tr>
-<td rowspan="10">grids of <a class="el" href="structgrid__vars_1_1grid__type.html" title="Type for grids. ">grid_vars.grid_type</a> </td><td colspan="2" bgcolor="LightGray" align="center"><b>equilibrium</b>   </td></tr>
+<td rowspan="10">grids of grid_vars.grid_type </td><td colspan="2" bgcolor="LightGray" align="center"><b>equilibrium</b>   </td></tr>
 <tr>
 <td colspan="2">field-aligned-grid at every Richardson level  </td></tr>
 <tr>
@@ -141,24 +141,24 @@ HDF5 output file</h2>
 <tr>
 <td colspan="2">only at first Richardson level  </td></tr>
 <tr>
-<td rowspan="1">flux equilibria of <a class="el" href="structeq__vars_1_1eq__1__type.html" title="flux equilibrium type ">eq_vars.eq_1_type</a> </td><td colspan="2">only at first Richardson level   </td></tr>
+<td rowspan="1">flux equilibria of eq_vars.eq_1_type </td><td colspan="2">only at first Richardson level   </td></tr>
 <tr>
-<td rowspan="3">metric equilibria of <a class="el" href="structeq__vars_1_1eq__2__type.html" title="metric equilibrium type ">eq_vars.eq_2_type</a> </td><td colspan="2">only at first Richardson level   </td></tr>
+<td rowspan="3">metric equilibria of eq_vars.eq_2_type </td><td colspan="2">only at first Richardson level   </td></tr>
 <tr>
 <td></td><td>also output HELENA grid at first Richardson level  </td></tr>
 <tr>
 <td></td><td>used later for interpolation to field-aligned grid  </td></tr>
 <tr>
-<td rowspan="1">vacuums of <a class="el" href="structvac__vars_1_1vac__type.html" title="vacuum type ">vac_vars.vac_type</a> </td><td>at every Richardson level  </td><td>only at first Richardson level   </td></tr>
+<td rowspan="1">vacuums of vac_vars.vac_type </td><td>at every Richardson level  </td><td>only at first Richardson level   </td></tr>
 <tr>
-<td rowspan="1">solutions of <a class="el" href="structsol__vars_1_1sol__type.html" title="solution type ">sol_vars.sol_type</a> </td><td colspan="2">at every Richardson level   </td></tr>
+<td rowspan="1">solutions of sol_vars.sol_type </td><td colspan="2">at every Richardson level   </td></tr>
 </table>
 <p>This data is used for Richardson restart (see variable <code>rich_restart_lvl</code> in <a class="el" href="page_inputs.html">Input variables</a>).</p>
 <p>In the post-processing phase, POST reads this data as well.</p>
 <h2><a class="anchor" id="output_file_EV"></a>
 Eigenvalue summary file</h2>
 <p>In each Richardson extrapolation level, after the solution of the eigenvalue system of equations, eigenvalues are stored in PB3D.</p><ul>
-<li>For SLEPC, the results are saved in the procedure <a class="el" href="namespaceslepc__ops.html#a24d97496000ed55f1d11e4d436e084a6" title="Stores the results. ">store_results()</a>:<ul>
+<li>For SLEPC, the results are saved in the procedure <a class="el" href="namespaceslepc__ops.html#a66241540803bca208b2f3bd6b0448491">store_results()</a>:<ul>
 <li>If normalization is used, the normalization time scale is also stored.</li>
 <li>If an unphysical complex eigenvalue is detected, this is indicated. See <code>option</code> retain_all_sol in <a class="el" href="page_inputs.html#inputs_PB3D_file">Input file</a>.</li>
 </ul>
@@ -167,7 +167,7 @@ Eigenvalue summary file</h2>
 <h2><a class="anchor" id="output_file_E_rec"></a>
 Energy reconstruction file</h2>
 <p>If energy reconstruction is performed by POST (see <code>plot_E_rec</code> in <a class="el" href="page_inputs.html">Input variables</a>), the individual terms that make up the perturbed potential energy as well as the kinetic energy of the perturbation are calculated and plot. (<a class="el" href="page_outputs.html#fno3">3</a>) Furthermore, the integration of these quantities over the whole volume, is returned in an output file.</p>
-<p>In table <a class="el" href="page_outputs.html#e_rec_tab">2</a>, an overview is given of the different terms. Here, \(\rho\) is the density, \(\sigma = \frac{\vec{B}\cdot\vec{J}}{B^2}\) is the parallel current and \(\kappa = \frac{\vec{B}}{B} \cdot \nabla \frac{\vec{B}}{B}\) is the magnetic curvature. See <a class="el" href="namespacesol__ops.html#ae094c2a5235324b4aadb53623978d191" title="Calculate the energy terms in the energy decomposition. ">calc_e()</a>.</p>
+<p>In table <a class="el" href="page_outputs.html#e_rec_tab">2</a>, an overview is given of the different terms. Here, \(\rho\) is the density, \(\sigma = \frac{\vec{B}\cdot\vec{J}}{B^2}\) is the parallel current and \(\kappa = \frac{\vec{B}}{B} \cdot \nabla \frac{\vec{B}}{B}\) is the magnetic curvature. See <a class="el" href="namespacesol__ops.html#aaeb4b122754fc6a4f538b22d72b6cba0">calc_e()</a>.</p>
 <a class="anchor" id="e_rec_tab"></a>
 <table class="doxtable">
 <caption>Table 2. energy reconstruction</caption>
@@ -207,8 +207,8 @@ Output Plots</h1>
 <p>POST can produce all the plots that PB3D can, and some more.</p>
 <p>The plots themselves fall in two categories:</p><ul>
 <li>Plots using an external program.<ul>
-<li>Produced by <a class="el" href="interfaceoutput__ops_1_1print__ex__2d.html" title="Print 2-D output on a file. ">output_ops.print_ex_2d()</a> or <a class="el" href="interfaceoutput__ops_1_1print__ex__3d.html" title="Print 3-D output on a file. ">output_ops.print_ex_3d()</a> combined with <a class="el" href="namespaceoutput__ops.html#a50bfbb88cc91805469353c3ff47b3e2e" title="Use external program to draw a plot. ">draw_ex()</a>.</li>
-<li>A list of external programs is given in <a class="el" href="namespaceoutput__ops.html#a50bfbb88cc91805469353c3ff47b3e2e" title="Use external program to draw a plot. ">draw_ex()</a>.</li>
+<li>Produced by output_ops.print_ex_2d() or output_ops.print_ex_3d() combined with draw_ex().</li>
+<li>A list of external programs is given in draw_ex().</li>
 <li>These plots require a shell command to be run, which is disabled by default and the commands are stored in a <a class="el" href="page_outputs.html#output_file_shell">Shell commands file</a>.</li>
 <li>The produced plots can be 2-D or 3-D, and they can be interactive or not, depending on the <code>ex_plot_style</code> (see <a class="el" href="page_inputs.html">Input variables</a>).</li>
 </ul>
