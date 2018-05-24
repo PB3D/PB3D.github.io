@@ -29,6 +29,8 @@ subroutine \hyperlink{namespacex__vars_aeaa25b69e4ef9cc5882c9dcf894201d7}{copy\+
 \begin{DoxyCompactList}\small\item\em Deep copy of tensorial perturbation variables. \end{DoxyCompactList}\item 
 integer function, public \hyperlink{namespacex__vars_a90d744aee4358a8cc35d29304d1bb120}{set\+\_\+nn\+\_\+mod} (sym, lim\+\_\+sec\+\_\+X)
 \begin{DoxyCompactList}\small\item\em Sets number of entries for tensorial perturbation variables. \end{DoxyCompactList}\item 
+subroutine \hyperlink{namespacex__vars_a4a7e4b95bbcb90e8afb4985fc9456e67}{dealloc\+\_\+mds} (mds)
+\begin{DoxyCompactList}\small\item\em Deallocates modes variables. \end{DoxyCompactList}\item 
 subroutine \hyperlink{namespacex__vars_a20679fb70a3dbfcdf2479b1219b847d1}{dealloc\+\_\+x\+\_\+1} (X)
 \begin{DoxyCompactList}\small\item\em Deallocates vectorial perturbation variables. \end{DoxyCompactList}\item 
 subroutine \hyperlink{namespacex__vars_ac052defbe764e6d02f436bd29d72db6d}{dealloc\+\_\+x\+\_\+2} (X)
@@ -95,7 +97,7 @@ Deep copy of vectorial perturbation variables.
 \end{DoxyParams}
 
 
-Definition at line 335 of file X\+\_\+vars.\+f90.
+Definition at line 338 of file X\+\_\+vars.\+f90.
 
 \mbox{\Hypertarget{namespacex__vars_aeaa25b69e4ef9cc5882c9dcf894201d7}\label{namespacex__vars_aeaa25b69e4ef9cc5882c9dcf894201d7}} 
 \index{x\+\_\+vars@{x\+\_\+vars}!copy\+\_\+x\+\_\+2@{copy\+\_\+x\+\_\+2}}
@@ -120,7 +122,26 @@ Deep copy of tensorial perturbation variables.
 \end{DoxyParams}
 
 
-Definition at line 356 of file X\+\_\+vars.\+f90.
+Definition at line 359 of file X\+\_\+vars.\+f90.
+
+\mbox{\Hypertarget{namespacex__vars_a4a7e4b95bbcb90e8afb4985fc9456e67}\label{namespacex__vars_a4a7e4b95bbcb90e8afb4985fc9456e67}} 
+\index{x\+\_\+vars@{x\+\_\+vars}!dealloc\+\_\+mds@{dealloc\+\_\+mds}}
+\index{dealloc\+\_\+mds@{dealloc\+\_\+mds}!x\+\_\+vars@{x\+\_\+vars}}
+\subsubsection{\texorpdfstring{dealloc\+\_\+mds()}{dealloc\_mds()}}
+{\footnotesize\ttfamily subroutine x\+\_\+vars\+::dealloc\+\_\+mds (\begin{DoxyParamCaption}\item[{class(\hyperlink{structx__vars_1_1modes__type}{modes\+\_\+type}), intent(inout)}]{mds }\end{DoxyParamCaption})}
+
+
+
+Deallocates modes variables. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in,out}  & {\em mds} & modes variables to be deallocated \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 412 of file X\+\_\+vars.\+f90.
 
 \mbox{\Hypertarget{namespacex__vars_a20679fb70a3dbfcdf2479b1219b847d1}\label{namespacex__vars_a20679fb70a3dbfcdf2479b1219b847d1}} 
 \index{x\+\_\+vars@{x\+\_\+vars}!dealloc\+\_\+x\+\_\+1@{dealloc\+\_\+x\+\_\+1}}
@@ -139,7 +160,7 @@ Deallocates vectorial perturbation variables.
 \end{DoxyParams}
 
 
-Definition at line 409 of file X\+\_\+vars.\+f90.
+Definition at line 428 of file X\+\_\+vars.\+f90.
 
 Here is the call graph for this function\+:\nopagebreak
 \begin{figure}[H]
@@ -165,7 +186,7 @@ Deallocates tensorial perturbation variables.
 \end{DoxyParams}
 
 
-Definition at line 455 of file X\+\_\+vars.\+f90.
+Definition at line 474 of file X\+\_\+vars.\+f90.
 
 Here is the call graph for this function\+:\nopagebreak
 \begin{figure}[H]
@@ -204,7 +225,7 @@ If the lowest limits of the grid is not 1 (e.\+g. {\ttfamily grid\+\_\+soli\+\_\
 \end{DoxyParams}
 
 
-Definition at line 201 of file X\+\_\+vars.\+f90.
+Definition at line 204 of file X\+\_\+vars.\+f90.
 
 Here is the call graph for this function\+:\nopagebreak
 \begin{figure}[H]
@@ -244,7 +265,7 @@ The tensorial perturbation type can also be used for field-\/aligned variables, 
 \end{DoxyParams}
 
 
-Definition at line 268 of file X\+\_\+vars.\+f90.
+Definition at line 271 of file X\+\_\+vars.\+f90.
 
 Here is the call graph for this function\+:\nopagebreak
 \begin{figure}[H]
@@ -272,7 +293,7 @@ Sets number of entries for tensorial perturbation variables.
 \end{DoxyParams}
 
 
-Definition at line 380 of file X\+\_\+vars.\+f90.
+Definition at line 383 of file X\+\_\+vars.\+f90.
 
 Here is the caller graph for this function\+:\nopagebreak
 \begin{figure}[H]
@@ -296,7 +317,7 @@ highest poloidal mode number {\ttfamily m\+\_\+X}, in total eq grid
 
 
 
-Definition at line 131 of file X\+\_\+vars.\+f90.
+Definition at line 134 of file X\+\_\+vars.\+f90.
 
 \mbox{\Hypertarget{namespacex__vars_a2f04400f8c1489db3f2d66fa972852a5}\label{namespacex__vars_a2f04400f8c1489db3f2d66fa972852a5}} 
 \index{x\+\_\+vars@{x\+\_\+vars}!max\+\_\+n\+\_\+x@{max\+\_\+n\+\_\+x}}
@@ -310,7 +331,7 @@ highest poloidal mode number {\ttfamily m\+\_\+X}, in total eq grid
 
 
 
-Definition at line 129 of file X\+\_\+vars.\+f90.
+Definition at line 132 of file X\+\_\+vars.\+f90.
 
 \mbox{\Hypertarget{namespacex__vars_a0f45dfddb928623424eeb8b8bdd2b0f9}\label{namespacex__vars_a0f45dfddb928623424eeb8b8bdd2b0f9}} 
 \index{x\+\_\+vars@{x\+\_\+vars}!max\+\_\+r\+\_\+sol@{max\+\_\+r\+\_\+sol}}
@@ -324,7 +345,7 @@ max. normal range for pert.
 
 
 
-Definition at line 133 of file X\+\_\+vars.\+f90.
+Definition at line 136 of file X\+\_\+vars.\+f90.
 
 \mbox{\Hypertarget{namespacex__vars_ae19ca528c5688228ff20912a45290b2a}\label{namespacex__vars_ae19ca528c5688228ff20912a45290b2a}} 
 \index{x\+\_\+vars@{x\+\_\+vars}!max\+\_\+sec\+\_\+x@{max\+\_\+sec\+\_\+x}}
@@ -338,7 +359,7 @@ Definition at line 133 of file X\+\_\+vars.\+f90.
 
 
 
-Definition at line 125 of file X\+\_\+vars.\+f90.
+Definition at line 128 of file X\+\_\+vars.\+f90.
 
 \mbox{\Hypertarget{namespacex__vars_ac74f59668de6caca7038decc7191c6a1}\label{namespacex__vars_ac74f59668de6caca7038decc7191c6a1}} 
 \index{x\+\_\+vars@{x\+\_\+vars}!mds\+\_\+sol@{mds\+\_\+sol}}
@@ -352,7 +373,7 @@ modes variables for solution grid
 
 
 
-Definition at line 122 of file X\+\_\+vars.\+f90.
+Definition at line 125 of file X\+\_\+vars.\+f90.
 
 \mbox{\Hypertarget{namespacex__vars_a690d4228d2a81ec5a7a6cd13be3a56a1}\label{namespacex__vars_a690d4228d2a81ec5a7a6cd13be3a56a1}} 
 \index{x\+\_\+vars@{x\+\_\+vars}!mds\+\_\+x@{mds\+\_\+x}}
@@ -366,7 +387,7 @@ modes variables for perturbation grid
 
 
 
-Definition at line 121 of file X\+\_\+vars.\+f90.
+Definition at line 124 of file X\+\_\+vars.\+f90.
 
 \mbox{\Hypertarget{namespacex__vars_aae62c7b4f8043dcccad97454b5857690}\label{namespacex__vars_aae62c7b4f8043dcccad97454b5857690}} 
 \index{x\+\_\+vars@{x\+\_\+vars}!min\+\_\+m\+\_\+x@{min\+\_\+m\+\_\+x}}
@@ -380,7 +401,7 @@ lowest poloidal mode number {\ttfamily m\+\_\+X}, in total eq grid
 
 
 
-Definition at line 130 of file X\+\_\+vars.\+f90.
+Definition at line 133 of file X\+\_\+vars.\+f90.
 
 \mbox{\Hypertarget{namespacex__vars_a07485e5ebf54c236ae6f3c25e9cd2a93}\label{namespacex__vars_a07485e5ebf54c236ae6f3c25e9cd2a93}} 
 \index{x\+\_\+vars@{x\+\_\+vars}!min\+\_\+n\+\_\+x@{min\+\_\+n\+\_\+x}}
@@ -394,7 +415,7 @@ lowest poloidal mode number {\ttfamily m\+\_\+X}, in total eq grid
 
 
 
-Definition at line 128 of file X\+\_\+vars.\+f90.
+Definition at line 131 of file X\+\_\+vars.\+f90.
 
 \mbox{\Hypertarget{namespacex__vars_adec89f548ba63e203297222dce675b94}\label{namespacex__vars_adec89f548ba63e203297222dce675b94}} 
 \index{x\+\_\+vars@{x\+\_\+vars}!min\+\_\+nm\+\_\+x@{min\+\_\+nm\+\_\+x}}
@@ -408,7 +429,7 @@ minimum for the high-\/n theory (debable)
 
 
 
-Definition at line 127 of file X\+\_\+vars.\+f90.
+Definition at line 130 of file X\+\_\+vars.\+f90.
 
 \mbox{\Hypertarget{namespacex__vars_a50c610efcf5afa4ec4b0eb7119b5d520}\label{namespacex__vars_a50c610efcf5afa4ec4b0eb7119b5d520}} 
 \index{x\+\_\+vars@{x\+\_\+vars}!min\+\_\+r\+\_\+sol@{min\+\_\+r\+\_\+sol}}
@@ -422,7 +443,7 @@ min. normal range for pert.
 
 
 
-Definition at line 132 of file X\+\_\+vars.\+f90.
+Definition at line 135 of file X\+\_\+vars.\+f90.
 
 \mbox{\Hypertarget{namespacex__vars_a0d63825aabc4c71623c6ea7ffe033949}\label{namespacex__vars_a0d63825aabc4c71623c6ea7ffe033949}} 
 \index{x\+\_\+vars@{x\+\_\+vars}!min\+\_\+sec\+\_\+x@{min\+\_\+sec\+\_\+x}}
@@ -436,7 +457,7 @@ Definition at line 132 of file X\+\_\+vars.\+f90.
 
 
 
-Definition at line 124 of file X\+\_\+vars.\+f90.
+Definition at line 127 of file X\+\_\+vars.\+f90.
 
 \mbox{\Hypertarget{namespacex__vars_af565ad5c65071b130e69d528aa6faf1d}\label{namespacex__vars_af565ad5c65071b130e69d528aa6faf1d}} 
 \index{x\+\_\+vars@{x\+\_\+vars}!n\+\_\+alloc\+\_\+x\+\_\+1s@{n\+\_\+alloc\+\_\+x\+\_\+1s}}
@@ -453,7 +474,7 @@ Debug version only
 \end{DoxyNote}
 
 
-Definition at line 135 of file X\+\_\+vars.\+f90.
+Definition at line 138 of file X\+\_\+vars.\+f90.
 
 \mbox{\Hypertarget{namespacex__vars_add0d925899063fbe0c4ff05d21f35a23}\label{namespacex__vars_add0d925899063fbe0c4ff05d21f35a23}} 
 \index{x\+\_\+vars@{x\+\_\+vars}!n\+\_\+alloc\+\_\+x\+\_\+2s@{n\+\_\+alloc\+\_\+x\+\_\+2s}}
@@ -470,7 +491,7 @@ Debug version only
 \end{DoxyNote}
 
 
-Definition at line 136 of file X\+\_\+vars.\+f90.
+Definition at line 139 of file X\+\_\+vars.\+f90.
 
 \mbox{\Hypertarget{namespacex__vars_a2e8fe6c5fe1cf61704bf176925d2b02e}\label{namespacex__vars_a2e8fe6c5fe1cf61704bf176925d2b02e}} 
 \index{x\+\_\+vars@{x\+\_\+vars}!n\+\_\+mod\+\_\+x@{n\+\_\+mod\+\_\+x}}
@@ -484,7 +505,7 @@ size of {\ttfamily m\+\_\+X} (pol. flux) or {\ttfamily n\+\_\+X} (tor. flux)
 
 
 
-Definition at line 126 of file X\+\_\+vars.\+f90.
+Definition at line 129 of file X\+\_\+vars.\+f90.
 
 \mbox{\Hypertarget{namespacex__vars_ae7f7061534fb3ad68a538cdcea20d1d9}\label{namespacex__vars_ae7f7061534fb3ad68a538cdcea20d1d9}} 
 \index{x\+\_\+vars@{x\+\_\+vars}!prim\+\_\+x@{prim\+\_\+x}}
@@ -498,5 +519,5 @@ Definition at line 126 of file X\+\_\+vars.\+f90.
 
 
 
-Definition at line 123 of file X\+\_\+vars.\+f90.
+Definition at line 126 of file X\+\_\+vars.\+f90.
 

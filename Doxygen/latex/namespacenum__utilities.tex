@@ -64,7 +64,9 @@ recursive integer function, public \hyperlink{namespacenum__utilities_a3d0d04a58
 subroutine, public \hyperlink{namespacenum__utilities_a859f442a1b860d82662eed17c4374c38}{shift\+\_\+f} (A, B, C)
 \begin{DoxyCompactList}\small\item\em Calculate multiplication through shifting of fourier modes A and B into C. \end{DoxyCompactList}\item 
 subroutine, public \hyperlink{namespacenum__utilities_a54c65e345182e2e7e13ac14a0ba3647a}{solve\+\_\+vand} (n, a, b, x, transp)
-\begin{DoxyCompactList}\small\item\em Solve a Vandermonde system $\overline{\text{A}} \ \vec{X} = \vec{B}$. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Solve a Vandermonde system $\overline{\text{A}} \ \vec{X} = \vec{B}$. \end{DoxyCompactList}\item 
+integer function, public \hyperlink{namespacenum__utilities_ab4c91a6478c4dd6f519f8ccbccc4094f}{calc\+\_\+d2\+\_\+smooth} (fil\+\_\+N, x, y, D2y, style)
+\begin{DoxyCompactList}\small\item\em Calculate second derivative with smoothing formula by Holoborodko, \cite{holoborodko2008diff}. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Variables}
 \begin{DoxyCompactItemize}
 \item 
@@ -244,6 +246,65 @@ Here is the caller graph for this function\+:\nopagebreak
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{namespacenum__utilities_a4dffe3beba7165dd17cff19a99a9e2ac_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{namespacenum__utilities_ab4c91a6478c4dd6f519f8ccbccc4094f}\label{namespacenum__utilities_ab4c91a6478c4dd6f519f8ccbccc4094f}} 
+\index{num\+\_\+utilities@{num\+\_\+utilities}!calc\+\_\+d2\+\_\+smooth@{calc\+\_\+d2\+\_\+smooth}}
+\index{calc\+\_\+d2\+\_\+smooth@{calc\+\_\+d2\+\_\+smooth}!num\+\_\+utilities@{num\+\_\+utilities}}
+\subsubsection{\texorpdfstring{calc\+\_\+d2\+\_\+smooth()}{calc\_d2\_smooth()}}
+{\footnotesize\ttfamily integer function, public num\+\_\+utilities\+::calc\+\_\+d2\+\_\+smooth (\begin{DoxyParamCaption}\item[{integer, intent(in)}]{fil\+\_\+N,  }\item[{real(dp), dimension(\+:), intent(in)}]{x,  }\item[{real(dp), dimension(\+:), intent(in)}]{y,  }\item[{real(dp), dimension(\+:), intent(inout)}]{D2y,  }\item[{integer, intent(in)}]{style }\end{DoxyParamCaption})}
+
+
+
+Calculate second derivative with smoothing formula by Holoborodko, \cite{holoborodko2008diff}. 
+
+The formula used is
+
+$s\left(k\right) = \left[\left(2N-10\right)s\left(k+1\right) - \left(N+2k+3\right)s\left(k+2\right)\right]/\left(N-2k-1\right)$
+
+with $s\left(k>M\right) = 0$ and $\left(k=N\right) = 1$.
+
+for a given $N$.
+
+For {\ttfamily style} 1, central differences are used\+:
+
+$\frac{\partial^2 y}{\partial x^2} \approx \frac{1}{2^{N-3}} \left(\sum_{k=1}^M \alpha_k \left(y_k + y_{-k} \right) - 2 y_0 \sum_{k=1}^M \alpha_k \right)$
+
+and for {\ttfamily style} 2, backward differences\+:
+
+$\frac{\partial^2 y}{\partial x^2} \approx \frac{1}{2^{N-3}} \left(\sum_{k=1}^M \beta_k \left(y_{-M+k} + y_{-M-k} \right) - 2 y_{-M} \sum_{k=1}^M \beta_k \right)$
+
+with $\alpha_k$ and $\beta_k$ given by
+
+$\begin{aligned} \alpha_k &= \frac{4k^2 s_k}{\left(x_k-x_{-k}\right)^2} \\ \beta_k &= \frac{4k^2 s_k}{\left(x_{-M+k}-x_{-M-k}\right)^2} \end{aligned}$.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em fil\+\_\+n} & filter length (must be odd)\\
+\hline
+\mbox{\tt in}  & {\em x} & input abscissa\\
+\hline
+\mbox{\tt in}  & {\em y} & input ordinate\\
+\hline
+\mbox{\tt in,out}  & {\em d2y} & second derivative \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 2795 of file num\+\_\+utilities.\+f90.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespacenum__utilities_ab4c91a6478c4dd6f519f8ccbccc4094f_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespacenum__utilities_ab4c91a6478c4dd6f519f8ccbccc4094f_icgraph}
 \end{center}
 \end{figure}
 \mbox{\Hypertarget{namespacenum__utilities_af2e9ffd7ce2f9391bf8b6f1c344fabca}\label{namespacenum__utilities_af2e9ffd7ce2f9391bf8b6f1c344fabca}} 

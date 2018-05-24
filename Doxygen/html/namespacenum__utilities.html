@@ -29,7 +29,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">PB3D
-   &#160;<span id="projectnumber">[2.27]</span>
+   &#160;<span id="projectnumber">[2.29]</span>
    </div>
    <div id="projectbrief">Ideal linear high-n MHD stability in 3-D</div>
   </td>
@@ -165,6 +165,9 @@ Functions/Subroutines</h2></td></tr>
 <tr class="memitem:a54c65e345182e2e7e13ac14a0ba3647a"><td class="memItemLeft" align="right" valign="top">subroutine, public&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacenum__utilities.html#a54c65e345182e2e7e13ac14a0ba3647a">solve_vand</a> (n, a, b, x, transp)</td></tr>
 <tr class="memdesc:a54c65e345182e2e7e13ac14a0ba3647a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Solve a Vandermonde system \(\overline{\text{A}} \ \vec{X} = \vec{B}\).  <a href="#a54c65e345182e2e7e13ac14a0ba3647a">More...</a><br /></td></tr>
 <tr class="separator:a54c65e345182e2e7e13ac14a0ba3647a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab4c91a6478c4dd6f519f8ccbccc4094f"><td class="memItemLeft" align="right" valign="top">integer function, public&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacenum__utilities.html#ab4c91a6478c4dd6f519f8ccbccc4094f">calc_d2_smooth</a> (fil_N, x, y, D2y, style)</td></tr>
+<tr class="memdesc:ab4c91a6478c4dd6f519f8ccbccc4094f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculate second derivative with smoothing formula by Holoborodko, <a class="el" href="citelist.html#CITEREF_holoborodko2008diff">[9]</a>.  <a href="#ab4c91a6478c4dd6f519f8ccbccc4094f">More...</a><br /></td></tr>
+<tr class="separator:ab4c91a6478c4dd6f519f8ccbccc4094f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
 Variables</h2></td></tr>
@@ -414,6 +417,89 @@ Variables</h2></td></tr>
 
 </div>
 </div>
+<a id="ab4c91a6478c4dd6f519f8ccbccc4094f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab4c91a6478c4dd6f519f8ccbccc4094f">&#9670;&nbsp;</a></span>calc_d2_smooth()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">integer function, public num_utilities::calc_d2_smooth </td>
+          <td>(</td>
+          <td class="paramtype">integer, intent(in)&#160;</td>
+          <td class="paramname"><em>fil_N</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">real(dp), dimension(:), intent(in)&#160;</td>
+          <td class="paramname"><em>x</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">real(dp), dimension(:), intent(in)&#160;</td>
+          <td class="paramname"><em>y</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">real(dp), dimension(:), intent(inout)&#160;</td>
+          <td class="paramname"><em>D2y</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">integer, intent(in)&#160;</td>
+          <td class="paramname"><em>style</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Calculate second derivative with smoothing formula by Holoborodko, <a class="el" href="citelist.html#CITEREF_holoborodko2008diff">[9]</a>. </p>
+<p>The formula used is</p>
+<p>\(s\left(k\right) = \left[\left(2N-10\right)s\left(k+1\right) - \left(N+2k+3\right)s\left(k+2\right)\right]/\left(N-2k-1\right)\)</p>
+<p>with \(s\left(k&gt;M\right) = 0\) and \(\left(k=N\right) = 1\).</p>
+<p>for a given \(N\).</p>
+<p>For <code>style</code> 1, central differences are used:</p>
+<p>\(\frac{\partial^2 y}{\partial x^2} \approx \frac{1}{2^{N-3}} \left(\sum_{k=1}^M \alpha_k \left(y_k + y_{-k} \right) - 2 y_0 \sum_{k=1}^M \alpha_k \right)\)</p>
+<p>and for <code>style</code> 2, backward differences:</p>
+<p>\(\frac{\partial^2 y}{\partial x^2} \approx \frac{1}{2^{N-3}} \left(\sum_{k=1}^M \beta_k \left(y_{-M+k} + y_{-M-k} \right) - 2 y_{-M} \sum_{k=1}^M \beta_k \right)\)</p>
+<p>with \(\alpha_k\) and \(\beta_k\) given by</p>
+<p>\(\begin{aligned} \alpha_k &amp;= \frac{4k^2 s_k}{\left(x_k-x_{-k}\right)^2} \\ \beta_k &amp;= \frac{4k^2 s_k}{\left(x_{-M+k}-x_{-M-k}\right)^2} \end{aligned}\).</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">fil_n</td><td>filter length (must be odd)</td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">x</td><td>input abscissa</td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">y</td><td>input ordinate</td></tr>
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">d2y</td><td>second derivative </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="num__utilities_8f90_source.html#l02795">2795</a> of file <a class="el" href="num__utilities_8f90_source.html">num_utilities.f90</a>.</p>
+<div id="dynsection-5" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-5-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
+<div id="dynsection-5-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-5-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="namespacenum__utilities_ab4c91a6478c4dd6f519f8ccbccc4094f_cgraph.svg" width="416" height="58"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+<div id="dynsection-6" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-6-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
+<div id="dynsection-6-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-6-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="namespacenum__utilities_ab4c91a6478c4dd6f519f8ccbccc4094f_icgraph.svg" width="726" height="94"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+
+</div>
+</div>
 <a id="af2e9ffd7ce2f9391bf8b6f1c344fabca"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#af2e9ffd7ce2f9391bf8b6f1c344fabca">&#9670;&nbsp;</a></span>calc_derivs_1d_id()</h2>
 
@@ -473,18 +559,18 @@ Variables</h2></td></tr>
 </dl>
 
 <p class="definition">Definition at line <a class="el" href="num__utilities_8f90_source.html#l02112">2112</a> of file <a class="el" href="num__utilities_8f90_source.html">num_utilities.f90</a>.</p>
-<div id="dynsection-5" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-5-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
-<div id="dynsection-5-summary" class="dynsummary" style="display:block;">
+<div id="dynsection-7" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-7-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
+<div id="dynsection-7-summary" class="dynsummary" style="display:block;">
 </div>
-<div id="dynsection-5-content" class="dyncontent" style="display:none;">
+<div id="dynsection-7-content" class="dyncontent" style="display:none;">
 <div class="center"><iframe scrolling="no" frameborder="0" src="namespacenum__utilities_af2e9ffd7ce2f9391bf8b6f1c344fabca_cgraph.svg" width="400" height="58"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
-<div id="dynsection-6" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-6-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
-<div id="dynsection-6-summary" class="dynsummary" style="display:block;">
+<div id="dynsection-8" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-8-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
+<div id="dynsection-8-summary" class="dynsummary" style="display:block;">
 </div>
-<div id="dynsection-6-content" class="dyncontent" style="display:none;">
+<div id="dynsection-8-content" class="dyncontent" style="display:none;">
 <div class="center"><iframe scrolling="no" frameborder="0" src="namespacenum__utilities_af2e9ffd7ce2f9391bf8b6f1c344fabca_icgraph.svg" width="806" height="58"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
@@ -560,11 +646,11 @@ Variables</h2></td></tr>
 </dl>
 
 <p class="definition">Definition at line <a class="el" href="num__utilities_8f90_source.html#l02291">2291</a> of file <a class="el" href="num__utilities_8f90_source.html">num_utilities.f90</a>.</p>
-<div id="dynsection-7" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-7-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
-<div id="dynsection-7-summary" class="dynsummary" style="display:block;">
+<div id="dynsection-9" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-9-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
+<div id="dynsection-9-summary" class="dynsummary" style="display:block;">
 </div>
-<div id="dynsection-7-content" class="dyncontent" style="display:none;">
+<div id="dynsection-9-content" class="dyncontent" style="display:none;">
 <div class="center"><iframe scrolling="no" frameborder="0" src="namespacenum__utilities_a2d5d9c66db19fb6edeeb50db6182397f_cgraph.svg" width="1092" height="164"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
@@ -653,18 +739,18 @@ Variables</h2></td></tr>
 </dl>
 
 <p class="definition">Definition at line <a class="el" href="num__utilities_8f90_source.html#l02226">2226</a> of file <a class="el" href="num__utilities_8f90_source.html">num_utilities.f90</a>.</p>
-<div id="dynsection-8" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-8-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
-<div id="dynsection-8-summary" class="dynsummary" style="display:block;">
+<div id="dynsection-10" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-10-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
+<div id="dynsection-10-summary" class="dynsummary" style="display:block;">
 </div>
-<div id="dynsection-8-content" class="dyncontent" style="display:none;">
+<div id="dynsection-10-content" class="dyncontent" style="display:none;">
 <div class="center"><iframe scrolling="no" frameborder="0" src="namespacenum__utilities_a00f4cfe18a734eaa5d66f529e52f7c31_cgraph.svg" width="424" height="58"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
-<div id="dynsection-9" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-9-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
-<div id="dynsection-9-summary" class="dynsummary" style="display:block;">
+<div id="dynsection-11" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-11-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
+<div id="dynsection-11-summary" class="dynsummary" style="display:block;">
 </div>
-<div id="dynsection-9-content" class="dyncontent" style="display:none;">
+<div id="dynsection-11-content" class="dyncontent" style="display:none;">
 <div class="center"><iframe scrolling="no" frameborder="0" src="namespacenum__utilities_a00f4cfe18a734eaa5d66f529e52f7c31_icgraph.svg" width="440" height="340"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
@@ -707,11 +793,11 @@ Variables</h2></td></tr>
 <dl class="section return"><dt>Returns</dt><dd>array of all unique derivatives </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="num__utilities_8f90_source.html#l02212">2212</a> of file <a class="el" href="num__utilities_8f90_source.html">num_utilities.f90</a>.</p>
-<div id="dynsection-10" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-10-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
-<div id="dynsection-10-summary" class="dynsummary" style="display:block;">
+<div id="dynsection-12" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-12-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
+<div id="dynsection-12-summary" class="dynsummary" style="display:block;">
 </div>
-<div id="dynsection-10-content" class="dyncontent" style="display:none;">
+<div id="dynsection-12-content" class="dyncontent" style="display:none;">
 <div class="center"><iframe scrolling="no" frameborder="0" src="namespacenum__utilities_ac827c18dd05a9b5a06675eac942f3b51_icgraph.svg" width="1140" height="370"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
@@ -743,11 +829,11 @@ Variables</h2></td></tr>
 <dl class="section return"><dt>Returns</dt><dd>output </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="num__utilities_8f90_source.html#l02575">2575</a> of file <a class="el" href="num__utilities_8f90_source.html">num_utilities.f90</a>.</p>
-<div id="dynsection-11" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-11-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
-<div id="dynsection-11-summary" class="dynsummary" style="display:block;">
+<div id="dynsection-13" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-13-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
+<div id="dynsection-13-summary" class="dynsummary" style="display:block;">
 </div>
-<div id="dynsection-11-content" class="dyncontent" style="display:none;">
+<div id="dynsection-13-content" class="dyncontent" style="display:none;">
 <div class="center"><iframe scrolling="no" frameborder="0" src="namespacenum__utilities_a43ab60f9e202b55221373286a5bbb954_icgraph.svg" width="1371" height="236"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
@@ -791,11 +877,11 @@ Variables</h2></td></tr>
 <dl class="section return"><dt>Returns</dt><dd>result </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="num__utilities_8f90_source.html#l02635">2635</a> of file <a class="el" href="num__utilities_8f90_source.html">num_utilities.f90</a>.</p>
-<div id="dynsection-12" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-12-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
-<div id="dynsection-12-summary" class="dynsummary" style="display:block;">
+<div id="dynsection-14" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-14-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
+<div id="dynsection-14-summary" class="dynsummary" style="display:block;">
 </div>
-<div id="dynsection-12-content" class="dyncontent" style="display:none;">
+<div id="dynsection-14-content" class="dyncontent" style="display:none;">
 <div class="center"><iframe scrolling="no" frameborder="0" src="namespacenum__utilities_a3d0d04a582b3a528fc7f9975d5d2a807_icgraph.svg" width="1060" height="112"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
@@ -845,11 +931,11 @@ Variables</h2></td></tr>
 </dl>
 
 <p class="definition">Definition at line <a class="el" href="num__utilities_8f90_source.html#l02592">2592</a> of file <a class="el" href="num__utilities_8f90_source.html">num_utilities.f90</a>.</p>
-<div id="dynsection-13" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-13-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
-<div id="dynsection-13-summary" class="dynsummary" style="display:block;">
+<div id="dynsection-15" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-15-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
+<div id="dynsection-15-summary" class="dynsummary" style="display:block;">
 </div>
-<div id="dynsection-13-content" class="dyncontent" style="display:none;">
+<div id="dynsection-15-content" class="dyncontent" style="display:none;">
 <div class="center"><iframe scrolling="no" frameborder="0" src="namespacenum__utilities_a4e6994b5c92b3d16c8538b54db0beadd_icgraph.svg" width="472" height="519"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
@@ -893,18 +979,18 @@ Variables</h2></td></tr>
 <dl class="section return"><dt>Returns</dt><dd>result </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="num__utilities_8f90_source.html#l02623">2623</a> of file <a class="el" href="num__utilities_8f90_source.html">num_utilities.f90</a>.</p>
-<div id="dynsection-14" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-14-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
-<div id="dynsection-14-summary" class="dynsummary" style="display:block;">
+<div id="dynsection-16" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-16-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
+<div id="dynsection-16-summary" class="dynsummary" style="display:block;">
 </div>
-<div id="dynsection-14-content" class="dyncontent" style="display:none;">
+<div id="dynsection-16-content" class="dyncontent" style="display:none;">
 <div class="center"><iframe scrolling="no" frameborder="0" src="namespacenum__utilities_a33fc1483c840d5d3f9b12acfce21cad1_cgraph.svg" width="392" height="40"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
-<div id="dynsection-15" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-15-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
-<div id="dynsection-15-summary" class="dynsummary" style="display:block;">
+<div id="dynsection-17" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-17-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
+<div id="dynsection-17-summary" class="dynsummary" style="display:block;">
 </div>
-<div id="dynsection-15-content" class="dyncontent" style="display:none;">
+<div id="dynsection-17-content" class="dyncontent" style="display:none;">
 <div class="center"><iframe scrolling="no" frameborder="0" src="namespacenum__utilities_a33fc1483c840d5d3f9b12acfce21cad1_icgraph.svg" width="798" height="40"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
@@ -958,11 +1044,11 @@ Variables</h2></td></tr>
 </dl>
 
 <p class="definition">Definition at line <a class="el" href="num__utilities_8f90_source.html#l02654">2654</a> of file <a class="el" href="num__utilities_8f90_source.html">num_utilities.f90</a>.</p>
-<div id="dynsection-16" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-16-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
-<div id="dynsection-16-summary" class="dynsummary" style="display:block;">
+<div id="dynsection-18" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-18-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
+<div id="dynsection-18-summary" class="dynsummary" style="display:block;">
 </div>
-<div id="dynsection-16-content" class="dyncontent" style="display:none;">
+<div id="dynsection-18-content" class="dyncontent" style="display:none;">
 <div class="center"><iframe scrolling="no" frameborder="0" src="namespacenum__utilities_a859f442a1b860d82662eed17c4374c38_icgraph.svg" width="711" height="58"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
@@ -1029,11 +1115,11 @@ Variables</h2></td></tr>
 </dl>
 
 <p class="definition">Definition at line <a class="el" href="num__utilities_8f90_source.html#l02717">2717</a> of file <a class="el" href="num__utilities_8f90_source.html">num_utilities.f90</a>.</p>
-<div id="dynsection-17" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-17-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
-<div id="dynsection-17-summary" class="dynsummary" style="display:block;">
+<div id="dynsection-19" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-19-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
+<div id="dynsection-19-summary" class="dynsummary" style="display:block;">
 </div>
-<div id="dynsection-17-content" class="dyncontent" style="display:none;">
+<div id="dynsection-19-content" class="dyncontent" style="display:none;">
 <div class="center"><iframe scrolling="no" frameborder="0" src="namespacenum__utilities_a54c65e345182e2e7e13ac14a0ba3647a_icgraph.svg" width="1299" height="94"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 

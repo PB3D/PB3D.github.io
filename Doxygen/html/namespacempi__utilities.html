@@ -29,7 +29,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">PB3D
-   &#160;<span id="projectnumber">[2.27]</span>
+   &#160;<span id="projectnumber">[2.29]</span>
    </div>
    <div id="projectbrief">Ideal linear high-n MHD stability in 3-D</div>
   </td>
@@ -132,7 +132,7 @@ Variables</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Numerical utilities related to MPI. </p>
-<p>This includes a lock system, which can be both BL (blocking) or NB (non-blocking). It is based on the implementation of an MPI-IO atomic mode without file support, described in <a class="el" href="citelist.html#CITEREF_RossAtomicIO">[12]</a>.</p>
+<p>This includes a lock system, which can be both BL (blocking) or NB (non-blocking). It is based on the implementation of an MPI-IO atomic mode without file support, described in <a class="el" href="citelist.html#CITEREF_RossAtomicIO">[13]</a>.</p>
 <dl class="section see"><dt>See also</dt><dd>See <a class="el" href="namespacempi__vars.html" title="Variables pertaining to MPI. ">mpi_vars</a>.</dd></dl>
 <p>The reason for this was the fact that using a simple lock file can lead to crashes.</p>
 <dl class="section note"><dt>Note</dt><dd>A downside of this method is that in some rare cases a deadlock may occur as the master process, which contains the shared variable with a window that other processes may use, is idle and waiting, whereas the others are still performing lock options. As the master is idle and waiting, its MPI asynchronous communication is not performed. To remedy this, just call wait_MPI() after procedures where lock operations are performed. </dd></dl>
@@ -154,7 +154,7 @@ Variables</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Get notified that the rank can get the lock. </p>
-<dl class="section note"><dt>Note</dt><dd>Based on <a class="el" href="citelist.html#CITEREF_RossAtomicIO">[12]</a>.</dd></dl>
+<dl class="section note"><dt>Note</dt><dd>Based on <a class="el" href="citelist.html#CITEREF_RossAtomicIO">[13]</a>.</dd></dl>
 <dl class="section return"><dt>Returns</dt><dd>ierr</dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -252,7 +252,7 @@ Variables</h2></td></tr>
 
 <p>Notifies a rank that they can get the lock. </p>
 <p>The signal sent is the rank + 1.</p>
-<dl class="section note"><dt>Note</dt><dd>Based on <a class="el" href="citelist.html#CITEREF_RossAtomicIO">[12]</a>.</dd></dl>
+<dl class="section note"><dt>Note</dt><dd>Based on <a class="el" href="citelist.html#CITEREF_RossAtomicIO">[13]</a>.</dd></dl>
 <dl class="section return"><dt>Returns</dt><dd>ierr</dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -307,7 +307,7 @@ Variables</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Request access to lock of a BL (blocking) or optionally a NB (non-blocking) type. </p>
-<dl class="section note"><dt>Note</dt><dd>Based on <a class="el" href="citelist.html#CITEREF_RossAtomicIO">[12]</a>.</dd></dl>
+<dl class="section note"><dt>Note</dt><dd>Based on <a class="el" href="citelist.html#CITEREF_RossAtomicIO">[13]</a>.</dd></dl>
 <dl class="section return"><dt>Returns</dt><dd>ierr </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="MPI__utilities_8f90_source.html#l00765">765</a> of file <a class="el" href="MPI__utilities_8f90_source.html">MPI_utilities.f90</a>.</p>
@@ -346,7 +346,7 @@ Variables</h2></td></tr>
 
 <p>Returns access to a lock. </p>
 <p>The blocking property has been set when requesting the lock.</p>
-<dl class="section note"><dt>Note</dt><dd>Based on <a class="el" href="citelist.html#CITEREF_RossAtomicIO">[12]</a>.</dd></dl>
+<dl class="section note"><dt>Note</dt><dd>Based on <a class="el" href="citelist.html#CITEREF_RossAtomicIO">[13]</a>.</dd></dl>
 <dl class="section return"><dt>Returns</dt><dd>ierr </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="MPI__utilities_8f90_source.html#l00872">872</a> of file <a class="el" href="MPI__utilities_8f90_source.html">MPI_utilities.f90</a>.</p>
@@ -419,7 +419,7 @@ Variables</h2></td></tr>
 </ul>
 <p>Or negative equivalents for non-blocking (NB) procs.</p>
 <p>Optionally, the rank(s) of the process for which to perform this action can be passed. This is useful for doing the same action on multiple processes.</p>
-<dl class="section note"><dt>Note</dt><dd>Based on <a class="el" href="citelist.html#CITEREF_RossAtomicIO">[12]</a>.</dd>
+<dl class="section note"><dt>Note</dt><dd>Based on <a class="el" href="citelist.html#CITEREF_RossAtomicIO">[13]</a>.</dd>
 <dd>
 Debug version only</dd></dl>
 <dl class="section return"><dt>Returns</dt><dd>ierr</dd></dl>
@@ -578,7 +578,7 @@ Debug version only</dd></dl>
 <dl class="section see"><dt>See also</dt><dd>See <a class="el" href="namespacempi__utilities.html#a3b0349e5ec825e14083e3126c3e7ba65" title="Adds, removes or sets to active a rank from the waiting list for a lock and returns the lock waiting ...">lock_wl_change()</a> for an explanation of the process type.</dd></dl>
 <p>Additionally, for NB processes, the negative inverse of these values are used.</p>
 <p>If the waiting list is not empty, the next process(es) can optionally be returned.</p>
-<dl class="section note"><dt>Note</dt><dd>Based on <a class="el" href="citelist.html#CITEREF_RossAtomicIO">[12]</a>.</dd></dl>
+<dl class="section note"><dt>Note</dt><dd>Based on <a class="el" href="citelist.html#CITEREF_RossAtomicIO">[13]</a>.</dd></dl>
 <dl class="section return"><dt>Returns</dt><dd>ierr</dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">

@@ -29,7 +29,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">PB3D
-   &#160;<span id="projectnumber">[2.27]</span>
+   &#160;<span id="projectnumber">[2.29]</span>
    </div>
    <div id="projectbrief">Ideal linear high-n MHD stability in 3-D</div>
   </td>
@@ -81,10 +81,10 @@ $(function() {
 <li class="level1"><a href="#overview_POST">POST Overview</a></li>
 </ul>
 </div>
-<div class="textblock"><p>This page describes the general code structure of PB3D, as well as its accompanying post-process program POST. It is more complete than the documentation that can be found in <a class="el" href="citelist.html#CITEREF_Weyens2017PB3D">[15]</a>.</p>
+<div class="textblock"><p>This page describes the general code structure of PB3D, as well as its accompanying post-process program POST. It is more complete than the documentation that can be found in <a class="el" href="citelist.html#CITEREF_Weyens2017PB3D">[16]</a>.</p>
 <h1><a class="anchor" id="overview_PB3D_flowchart"></a>
 PB3D flowchart</h1>
-<p>In <a class="el" href="page_overview.html#flowchart_fig">figure 1</a>, the top-level flowchart of PB3D is shown (adapted from <a class="el" href="citelist.html#CITEREF_Weyens2017PB3D">[15]</a>):</p>
+<p>In <a class="el" href="page_overview.html#flowchart_fig">figure 1</a>, the top-level flowchart of PB3D is shown (adapted from <a class="el" href="citelist.html#CITEREF_Weyens2017PB3D">[16]</a>):</p>
 <p><a class="anchor" id="flowchart_fig"></a></p><div class="image">
 <object type="image/svg+xml" data="flowchart.svg" width="40%">flowchart.svg</object>
 <div class="caption">
@@ -98,11 +98,11 @@ PB3D flowchart</h1>
 <p>The <b>input driver</b> sets the other drivers up by reading input options as well as quantities from equilibrium codes, and converting them to the internal PB3D format.</p>
 <p>The <b>equilibrium driver</b> uses these input variables to set up equilibrium quantities.</p><ul>
 <li>On the one hand these consist of flux equilibrium quantities (stored in a <a class="el" href="structeq__vars_1_1eq__1__type.html" title="flux equilibrium type ">eq_vars.eq_1_type</a>) that only depend on the flux coordinates, such as the pressure \(p\), the safety factor \(q\), etc.</li>
-<li>On the other hand, they consist of metric equilibrium quantities (stored in a <a class="el" href="structeq__vars_1_1eq__2__type.html" title="metric equilibrium type ">eq_vars.eq_2_type</a>) that depend on the angular position as well, such as the metric quantities of the grid \(g_{ij} = \vec{e}_i \cdot \vec{e}_j\) and \(h_{ij} = \nabla u^i \cdot \nabla u^j\), as well as derived quantities such as the parallel current \(\sigma = \frac{\vec{B}\cdot\vec{J}}{B^2}\), etc. <a class="el" href="citelist.html#CITEREF_weyens2014theory">[14]</a></li>
+<li>On the other hand, they consist of metric equilibrium quantities (stored in a <a class="el" href="structeq__vars_1_1eq__2__type.html" title="metric equilibrium type ">eq_vars.eq_2_type</a>) that depend on the angular position as well, such as the metric quantities of the grid \(g_{ij} = \vec{e}_i \cdot \vec{e}_j\) and \(h_{ij} = \nabla u^i \cdot \nabla u^j\), as well as derived quantities such as the parallel current \(\sigma = \frac{\vec{B}\cdot\vec{J}}{B^2}\), etc. <a class="el" href="citelist.html#CITEREF_weyens2014theory">[15]</a></li>
 </ul>
 <p>The <b>perturbation driver</b> uses both types of equation variables to calculate perturbation quantites. Again, there are two types.</p><ul>
 <li>The first type of variables are the vectorial perturbation quantities (stored in a <a class="el" href="structx__vars_1_1x__1__type.html" title="vectorial perturbation type ">x_vars.x_1_type</a>), which contains the geodesic component of the perturbation \(U = \frac{\nabla \times \vec{B}}{\left|\nabla \psi\right|^2} \cdot \vec{\xi}\) where \(\vec{\xi}\) is the perturbation. Also the parallel derivatives of these quantities are calculated.</li>
-<li>The other type re the tensorial perturbation quantities (stored in a <a class="el" href="structx__vars_1_1x__2__type.html" title="tensorial perturbation type ">x_vars.x_2_type</a>), and it combines the vectorial perturbation quantities with the equilibrium quantities to form the tensorial quantities \(\widetilde{PV}_{k,m}^i\) and \(\widetilde{KV}_{k,m}^i\) that represent the perturbed potential energy as well as the kinetic energy of the perturbation <a class="el" href="citelist.html#CITEREF_weyens2014theory">[14]</a>.</li>
+<li>The other type re the tensorial perturbation quantities (stored in a <a class="el" href="structx__vars_1_1x__2__type.html" title="tensorial perturbation type ">x_vars.x_2_type</a>), and it combines the vectorial perturbation quantities with the equilibrium quantities to form the tensorial quantities \(\widetilde{PV}_{k,m}^i\) and \(\widetilde{KV}_{k,m}^i\) that represent the perturbed potential energy as well as the kinetic energy of the perturbation <a class="el" href="citelist.html#CITEREF_weyens2014theory">[15]</a>.</li>
 </ul>
 <p>These are also complemented by \(\delta_{k,m}^\text{vac}\), the vacuum contribution to the perturbed potential energy (<a class="el" href="page_overview.html#fng1">1</a>).</p>
 <p>After integrating them along the magnetic field lines, these magnetic integrals form the building blocks of the discretized matrices \(\overline{\text{A}}\) and \(\overline{\text{B}}\) in the generalized system of eigenvalue equations \(\overline{\text{A}} \vec{X} = \lambda \overline{\text{B}}\vec{X}\).</p>

@@ -11,6 +11,7 @@ var searchData=
   ['test',['test',['../namespacetest.html',1,'']]],
   ['test_2ef90',['test.f90',['../test_8f90.html',1,'']]],
   ['test_5fb_5ff',['test_b_f',['../namespaceeq__ops.html#a8082c12510696bd8ffdd0deef41860c2',1,'eq_ops']]],
+  ['test_5fcalc_5fd2_5fsmooth',['test_calc_d2_smooth',['../namespacetest.html#a1c04fcea513c8c2efb189049d810318a',1,'test']]],
   ['test_5fcalc_5fint_5fvol',['test_calc_int_vol',['../namespacetest.html#a0d4cb791bf762b2e52260fea7644a3ee',1,'test']]],
   ['test_5fd12h_5fh',['test_d12h_h',['../namespaceeq__ops.html#a003df1e1ab90dc6f586c3eed3dd067e8',1,'eq_ops']]],
   ['test_5fdiff',['test_diff',['../namespaceslepc__ops.html#a57d0ef4131e939894b34bb07e30e631b',1,'slepc_ops']]],

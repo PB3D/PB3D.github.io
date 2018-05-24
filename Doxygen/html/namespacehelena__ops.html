@@ -29,7 +29,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">PB3D
-   &#160;<span id="projectnumber">[2.27]</span>
+   &#160;<span id="projectnumber">[2.29]</span>
    </div>
    <div id="projectbrief">Ideal linear high-n MHD stability in 3-D</div>
   </td>
@@ -89,7 +89,7 @@ Functions/Subroutines</h2></td></tr>
 <tr class="memdesc:a7796861de18ae7ac9c3aa07a8628be38"><td class="mdescLeft">&#160;</td><td class="mdescRight">Interpolate variables resulting from HELENA equilibria to another grid (angularly).  <a href="#a7796861de18ae7ac9c3aa07a8628be38">More...</a><br /></td></tr>
 <tr class="separator:a7796861de18ae7ac9c3aa07a8628be38"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0f156b3653264fb016d6d311eb59114c"><td class="memItemLeft" align="right" valign="top">integer function, public&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacehelena__ops.html#a0f156b3653264fb016d6d311eb59114c">test_metrics_h</a> ()</td></tr>
-<tr class="memdesc:a0f156b3653264fb016d6d311eb59114c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks whether the metric elements provided by HELENA are consistent with a direct calculation using the coordinate transformations <a class="el" href="citelist.html#CITEREF_Weyens3D">[16]</a>.  <a href="#a0f156b3653264fb016d6d311eb59114c">More...</a><br /></td></tr>
+<tr class="memdesc:a0f156b3653264fb016d6d311eb59114c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks whether the metric elements provided by HELENA are consistent with a direct calculation using the coordinate transformations <a class="el" href="citelist.html#CITEREF_Weyens3D">[17]</a>.  <a href="#a0f156b3653264fb016d6d311eb59114c">More...</a><br /></td></tr>
 <tr class="separator:a0f156b3653264fb016d6d311eb59114c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a83f2ad5dc967c7bae287b60fddb8eb0a"><td class="memItemLeft" align="right" valign="top">integer function, public&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacehelena__ops.html#a83f2ad5dc967c7bae287b60fddb8eb0a">test_harm_cont_h</a> ()</td></tr>
 <tr class="memdesc:a83f2ad5dc967c7bae287b60fddb8eb0a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Investaige harmonic content of the HELENA variables.  <a href="#a83f2ad5dc967c7bae287b60fddb8eb0a">More...</a><br /></td></tr>
@@ -274,7 +274,7 @@ Functions/Subroutines</h2></td></tr>
 </ul>
 <p>Also, a message can be printed if a grid name is passed.</p>
 <dl class="section note"><dt>Note</dt><dd><ol type="1">
-<li>The metric coefficients are interpolated and then compensated for the straight-field-line coordinates as in <a class="el" href="citelist.html#CITEREF_Weyens3D">[16]</a> .</li>
+<li>The metric coefficients are interpolated and then compensated for the straight-field-line coordinates as in <a class="el" href="citelist.html#CITEREF_Weyens3D">[17]</a> .</li>
 <li>By default the interpolated quantities overwrite the original ones, but alternative output variables can be provided.</li>
 <li>as the equilibrium and perturbation grid are not generally identical, this routine has to be called separately for the variables tabulated in either grid.</li>
 </ol>
@@ -463,7 +463,7 @@ Finally, the variables IAS and B0 are in the mapping file (12) only in patched v
       </table>
 </div><div class="memdoc">
 
-<p>Checks whether the metric elements provided by HELENA are consistent with a direct calculation using the coordinate transformations <a class="el" href="citelist.html#CITEREF_Weyens3D">[16]</a>. </p>
+<p>Checks whether the metric elements provided by HELENA are consistent with a direct calculation using the coordinate transformations <a class="el" href="citelist.html#CITEREF_Weyens3D">[17]</a>. </p>
 <p>Direct calculations used: </p><p class="formulaDsp">
 \[\begin{aligned} \left|\nabla \psi\right|^2 &amp;= \frac{1}{\mathcal{J}^2} \left(\left(\frac{\partial Z}{\partial \chi}\right)^2 + \left(\frac{\partial R}{\partial \chi}\right)^2\right) \\ \left|\nabla \psi \cdot \nabla \chi\right| &amp;= \frac{1}{\mathcal{J}^2} \left( \frac{\partial Z}{\partial \chi} \frac{\partial Z}{\partial \psi} - \frac{\partial R}{\partial \chi} \frac{\partial R}{\partial \psi} \right) \\ \left|\nabla \chi\right|^2 &amp;= \frac{1}{\mathcal{J}^2} \left(\left(\frac{\partial Z}{\partial \psi}\right)^2 + \left(\frac{\partial R}{\partial \psi}\right)^2\right) \\ \left|\nabla \phi\right|^2 &amp;= \frac{1}{R^2} \end{aligned}\]
 </p>

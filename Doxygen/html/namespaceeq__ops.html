@@ -29,7 +29,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">PB3D
-   &#160;<span id="projectnumber">[2.27]</span>
+   &#160;<span id="projectnumber">[2.29]</span>
    </div>
    <div id="projectbrief">Ideal linear high-n MHD stability in 3-D</div>
   </td>
@@ -160,7 +160,7 @@ Functions/Subroutines</h2></td></tr>
 <tr class="memdesc:a4e20b8725fce149449f83754244dc84e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculate <code>eq_jobs_lims</code>.  <a href="#a4e20b8725fce149449f83754244dc84e">More...</a><br /></td></tr>
 <tr class="separator:a4e20b8725fce149449f83754244dc84e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1f5049c3e309fa23ee46fd116c9344f1"><td class="memItemLeft" align="right" valign="top">integer function&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceeq__ops.html#a1f5049c3e309fa23ee46fd116c9344f1">test_t_ef</a> (grid_eq, eq_1, eq_2)</td></tr>
-<tr class="memdesc:a1f5049c3e309fa23ee46fd116c9344f1"><td class="mdescLeft">&#160;</td><td class="mdescRight">See if <code>T_EF</code> it complies with the theory of <a class="el" href="citelist.html#CITEREF_Weyens3D">[16]</a>.  <a href="#a1f5049c3e309fa23ee46fd116c9344f1">More...</a><br /></td></tr>
+<tr class="memdesc:a1f5049c3e309fa23ee46fd116c9344f1"><td class="mdescLeft">&#160;</td><td class="mdescRight">See if <code>T_EF</code> it complies with the theory of <a class="el" href="citelist.html#CITEREF_Weyens3D">[17]</a>.  <a href="#a1f5049c3e309fa23ee46fd116c9344f1">More...</a><br /></td></tr>
 <tr class="separator:a1f5049c3e309fa23ee46fd116c9344f1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a003df1e1ab90dc6f586c3eed3dd067e8"><td class="memItemLeft" align="right" valign="top">integer function&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceeq__ops.html#a003df1e1ab90dc6f586c3eed3dd067e8">test_d12h_h</a> (grid_eq, eq)</td></tr>
 <tr class="memdesc:a003df1e1ab90dc6f586c3eed3dd067e8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tests whether \( \frac{\partial^2}{\partial u_i \partial u_j} h_\text{H} \) is calculated correctly.  <a href="#a003df1e1ab90dc6f586c3eed3dd067e8">More...</a><br /></td></tr>
@@ -277,7 +277,7 @@ Variables</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="eq__ops_8f90_source.html#l04798">4798</a> of file <a class="el" href="eq__ops_8f90_source.html">eq_ops.f90</a>.</p>
+<p class="definition">Definition at line <a class="el" href="eq__ops_8f90_source.html#l04800">4800</a> of file <a class="el" href="eq__ops_8f90_source.html">eq_ops.f90</a>.</p>
 <div id="dynsection-0" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-0-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
 <div id="dynsection-0-summary" class="dynsummary" style="display:block;">
@@ -358,15 +358,15 @@ Variables</h2></td></tr>
 </ol>
 <p>An advantage of using this formulation is that no normal derivatives are needed, so that nothing has to implicitely cancel out.</p>
 <h2>The parallel current </h2>
-<p>The parallel current is calculated with the help of equation 3.26 of <a class="el" href="citelist.html#CITEREF_Weyens3D">[16]</a> :</p>
+<p>The parallel current is calculated with the help of equation 3.26 of <a class="el" href="citelist.html#CITEREF_Weyens3D">[17]</a> :</p>
 <p>\(\sigma = \frac{\partial B_\psi}{\partial \alpha} - \frac{\partial B_\alpha}{\partial \psi} - \mu_0 p&#39; \mathcal{J} \frac{B_\alpha}{B_\theta}\)</p>
 <p>where care must be taken withi the normal derivative of \(B_\alpha\).</p>
 <p>It is found that the best way to perform this derivative is numerically, directly on the VMEC output, without passing through the equation for the magnetic field covariant components:</p>
 <p>\(B_i = \frac{g_{i,theta}}{\mathcal{J}}\)</p>
-<p>In debug mode, it can be checked whether the current is indeed divergence-free, with the help of equation 3.33 of <a class="el" href="citelist.html#CITEREF_Weyens3D">[16]</a>.</p>
+<p>In debug mode, it can be checked whether the current is indeed divergence-free, with the help of equation 3.33 of <a class="el" href="citelist.html#CITEREF_Weyens3D">[17]</a>.</p>
 <p>\( -2 p&#39; \int_{\theta_0}^\theta \mathcal{J} \kappa_g \text{d}{\theta} = \sigma\left(\theta\right) - \sigma_0\)</p>
 <h2>The shear </h2>
-<p>The local shear \(S\) is calculated using equation 3.22 from <a class="el" href="citelist.html#CITEREF_Weyens3D">[16]</a> :</p>
+<p>The local shear \(S\) is calculated using equation 3.22 from <a class="el" href="citelist.html#CITEREF_Weyens3D">[17]</a> :</p>
 <p>\(S = - \frac{1}{\mathcal{J}} \frac{\partial}{\partial \theta} \left(\frac{ h^{\psi\alpha}}{ h^{\psi \psi}}\right)\)</p>
 <p>which doesn't pose any particular problems as there are only angular derivatives.</p>
 <dl class="section note"><dt>Note</dt><dd><ol type="1">
@@ -394,7 +394,7 @@ Variables</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="eq__ops_8f90_source.html#l03981">3981</a> of file <a class="el" href="eq__ops_8f90_source.html">eq_ops.f90</a>.</p>
+<p class="definition">Definition at line <a class="el" href="eq__ops_8f90_source.html#l03984">3984</a> of file <a class="el" href="eq__ops_8f90_source.html">eq_ops.f90</a>.</p>
 <div id="dynsection-2" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-2-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
 <div id="dynsection-2-summary" class="dynsummary" style="display:block;">
@@ -454,7 +454,7 @@ Variables</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="eq__ops_8f90_source.html#l05799">5799</a> of file <a class="el" href="eq__ops_8f90_source.html">eq_ops.f90</a>.</p>
+<p class="definition">Definition at line <a class="el" href="eq__ops_8f90_source.html#l05801">5801</a> of file <a class="el" href="eq__ops_8f90_source.html">eq_ops.f90</a>.</p>
 <div id="dynsection-4" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-4-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
 <div id="dynsection-4-summary" class="dynsummary" style="display:block;">
@@ -509,7 +509,7 @@ Variables</h2></td></tr>
 <dl class="section note"><dt>Note</dt><dd><code>rho_0</code> is not given through by the equilibrium codes and should be user-supplied</dd></dl>
 <dl class="section return"><dt>Returns</dt><dd>ierr </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="eq__ops_8f90_source.html#l04503">4503</a> of file <a class="el" href="eq__ops_8f90_source.html">eq_ops.f90</a>.</p>
+<p class="definition">Definition at line <a class="el" href="eq__ops_8f90_source.html#l04505">4505</a> of file <a class="el" href="eq__ops_8f90_source.html">eq_ops.f90</a>.</p>
 <div id="dynsection-5" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-5-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
 <div id="dynsection-5-summary" class="dynsummary" style="display:block;">
@@ -653,7 +653,7 @@ Variables</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="eq__ops_8f90_source.html#l05271">5271</a> of file <a class="el" href="eq__ops_8f90_source.html">eq_ops.f90</a>.</p>
+<p class="definition">Definition at line <a class="el" href="eq__ops_8f90_source.html#l05273">5273</a> of file <a class="el" href="eq__ops_8f90_source.html">eq_ops.f90</a>.</p>
 <div id="dynsection-9" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-9-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
 <div id="dynsection-9-summary" class="dynsummary" style="display:block;">
@@ -751,7 +751,7 @@ Variables</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="eq__ops_8f90_source.html#l05664">5664</a> of file <a class="el" href="eq__ops_8f90_source.html">eq_ops.f90</a>.</p>
+<p class="definition">Definition at line <a class="el" href="eq__ops_8f90_source.html#l05666">5666</a> of file <a class="el" href="eq__ops_8f90_source.html">eq_ops.f90</a>.</p>
 <div id="dynsection-11" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-11-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
 <div id="dynsection-11-summary" class="dynsummary" style="display:block;">
@@ -812,7 +812,7 @@ Variables</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="eq__ops_8f90_source.html#l03588">3588</a> of file <a class="el" href="eq__ops_8f90_source.html">eq_ops.f90</a>.</p>
+<p class="definition">Definition at line <a class="el" href="eq__ops_8f90_source.html#l03591">3591</a> of file <a class="el" href="eq__ops_8f90_source.html">eq_ops.f90</a>.</p>
 <div id="dynsection-13" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-13-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
 <div id="dynsection-13-summary" class="dynsummary" style="display:block;">
@@ -916,7 +916,7 @@ Variables</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="eq__ops_8f90_source.html#l04901">4901</a> of file <a class="el" href="eq__ops_8f90_source.html">eq_ops.f90</a>.</p>
+<p class="definition">Definition at line <a class="el" href="eq__ops_8f90_source.html#l04903">4903</a> of file <a class="el" href="eq__ops_8f90_source.html">eq_ops.f90</a>.</p>
 <div id="dynsection-15" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-15-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
 <div id="dynsection-15-summary" class="dynsummary" style="display:block;">
@@ -1003,7 +1003,7 @@ Variables</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="eq__ops_8f90_source.html#l05069">5069</a> of file <a class="el" href="eq__ops_8f90_source.html">eq_ops.f90</a>.</p>
+<p class="definition">Definition at line <a class="el" href="eq__ops_8f90_source.html#l05071">5071</a> of file <a class="el" href="eq__ops_8f90_source.html">eq_ops.f90</a>.</p>
 <div id="dynsection-17" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-17-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
 <div id="dynsection-17-summary" class="dynsummary" style="display:block;">
@@ -1039,7 +1039,7 @@ Variables</h2></td></tr>
 <p>Normalize input quantities. </p>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="namespaceeq__ops.html#a7cd38586e386e1bc684a327ebcc4c1de" title="Sets up normalization constants. ">calc_normalization_const()</a> </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="eq__ops_8f90_source.html#l04741">4741</a> of file <a class="el" href="eq__ops_8f90_source.html">eq_ops.f90</a>.</p>
+<p class="definition">Definition at line <a class="el" href="eq__ops_8f90_source.html#l04743">4743</a> of file <a class="el" href="eq__ops_8f90_source.html">eq_ops.f90</a>.</p>
 <div id="dynsection-19" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-19-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
 <div id="dynsection-19-summary" class="dynsummary" style="display:block;">
@@ -1101,7 +1101,7 @@ Variables</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="eq__ops_8f90_source.html#l06442">6442</a> of file <a class="el" href="eq__ops_8f90_source.html">eq_ops.f90</a>.</p>
+<p class="definition">Definition at line <a class="el" href="eq__ops_8f90_source.html#l06444">6444</a> of file <a class="el" href="eq__ops_8f90_source.html">eq_ops.f90</a>.</p>
 <div id="dynsection-21" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-21-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
 <div id="dynsection-21-summary" class="dynsummary" style="display:block;">
@@ -1156,7 +1156,7 @@ Variables</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="eq__ops_8f90_source.html#l06051">6051</a> of file <a class="el" href="eq__ops_8f90_source.html">eq_ops.f90</a>.</p>
+<p class="definition">Definition at line <a class="el" href="eq__ops_8f90_source.html#l06053">6053</a> of file <a class="el" href="eq__ops_8f90_source.html">eq_ops.f90</a>.</p>
 <div id="dynsection-23" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-23-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
 <div id="dynsection-23-summary" class="dynsummary" style="display:block;">
@@ -1211,7 +1211,7 @@ Variables</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="eq__ops_8f90_source.html#l06279">6279</a> of file <a class="el" href="eq__ops_8f90_source.html">eq_ops.f90</a>.</p>
+<p class="definition">Definition at line <a class="el" href="eq__ops_8f90_source.html#l06281">6281</a> of file <a class="el" href="eq__ops_8f90_source.html">eq_ops.f90</a>.</p>
 <div id="dynsection-25" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-25-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
 <div id="dynsection-25-summary" class="dynsummary" style="display:block;">
@@ -1277,7 +1277,7 @@ Variables</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="eq__ops_8f90_source.html#l06162">6162</a> of file <a class="el" href="eq__ops_8f90_source.html">eq_ops.f90</a>.</p>
+<p class="definition">Definition at line <a class="el" href="eq__ops_8f90_source.html#l06164">6164</a> of file <a class="el" href="eq__ops_8f90_source.html">eq_ops.f90</a>.</p>
 <div id="dynsection-27" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-27-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
 <div id="dynsection-27-summary" class="dynsummary" style="display:block;">
@@ -1332,7 +1332,7 @@ Variables</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="eq__ops_8f90_source.html#l06378">6378</a> of file <a class="el" href="eq__ops_8f90_source.html">eq_ops.f90</a>.</p>
+<p class="definition">Definition at line <a class="el" href="eq__ops_8f90_source.html#l06380">6380</a> of file <a class="el" href="eq__ops_8f90_source.html">eq_ops.f90</a>.</p>
 <div id="dynsection-29" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-29-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
 <div id="dynsection-29-summary" class="dynsummary" style="display:block;">
@@ -1401,7 +1401,7 @@ Variables</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="eq__ops_8f90_source.html#l06600">6600</a> of file <a class="el" href="eq__ops_8f90_source.html">eq_ops.f90</a>.</p>
+<p class="definition">Definition at line <a class="el" href="eq__ops_8f90_source.html#l06602">6602</a> of file <a class="el" href="eq__ops_8f90_source.html">eq_ops.f90</a>.</p>
 <div id="dynsection-31" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-31-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
 <div id="dynsection-31-summary" class="dynsummary" style="display:block;">
@@ -1451,7 +1451,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>See if <code>T_EF</code> it complies with the theory of <a class="el" href="citelist.html#CITEREF_Weyens3D">[16]</a>. </p>
+<p>See if <code>T_EF</code> it complies with the theory of <a class="el" href="citelist.html#CITEREF_Weyens3D">[17]</a>. </p>
 <dl class="section note"><dt>Note</dt><dd>Debug version only</dd></dl>
 <dl class="section return"><dt>Returns</dt><dd>ierr</dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
@@ -1463,7 +1463,7 @@ Variables</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="eq__ops_8f90_source.html#l05877">5877</a> of file <a class="el" href="eq__ops_8f90_source.html">eq_ops.f90</a>.</p>
+<p class="definition">Definition at line <a class="el" href="eq__ops_8f90_source.html#l05879">5879</a> of file <a class="el" href="eq__ops_8f90_source.html">eq_ops.f90</a>.</p>
 <div id="dynsection-33" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-33-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
 <div id="dynsection-33-summary" class="dynsummary" style="display:block;">
