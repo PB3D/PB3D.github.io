@@ -44,6 +44,9 @@
         It is, however, possible that a small fraction, possibly of the order of a percent remains in the relative difference.
         This is probably due to the fact that in PB3D for \c X_style 2 (fast), the stencil is cut when the normal index falls out of its mode range (see insert_block_mat()). </td>
     </tr>
+    <tr>
+        <td>Changing input does not work for Richardson extrapolation</td> <td> You cannot change the inputs as Richardson extrapolation depends on having these constant (with the exception of the number of poins in the parallel integrals, but this is done internally in PB3D). The important exception to this fact, however, is that you can change some of the solution grid parameters, such as \c n_r_sol (see \ref page_inputs).  </td>
+    </tr>
     </table>
     
     

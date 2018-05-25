@@ -29,7 +29,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">PB3D
-   &#160;<span id="projectnumber">[2.29]</span>
+   &#160;<span id="projectnumber">[2.30]</span>
    </div>
    <div id="projectbrief">Ideal linear high-n MHD stability in 3-D</div>
   </td>
@@ -85,15 +85,15 @@ Functions/Subroutines</h2></td></tr>
 <tr class="memitem:a577c897cc266961eb40bb5ef747fa077"><td class="memItemLeft" align="right" valign="top">integer function, public&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceinput__ops.html#a577c897cc266961eb40bb5ef747fa077">read_input_eq</a> ()</td></tr>
 <tr class="memdesc:a577c897cc266961eb40bb5ef747fa077"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reads the equilibrium input file if no Richardson restart.  <a href="#a577c897cc266961eb40bb5ef747fa077">More...</a><br /></td></tr>
 <tr class="separator:a577c897cc266961eb40bb5ef747fa077"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a84ec7b3833da80ebb36ae0d5ff1a9e0a"><td class="memItemLeft" align="right" valign="top">integer function, public&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceinput__ops.html#a84ec7b3833da80ebb36ae0d5ff1a9e0a">print_output_in</a> (data_name)</td></tr>
-<tr class="memdesc:a84ec7b3833da80ebb36ae0d5ff1a9e0a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Print input quantities to an output file.  <a href="#a84ec7b3833da80ebb36ae0d5ff1a9e0a">More...</a><br /></td></tr>
-<tr class="separator:a84ec7b3833da80ebb36ae0d5ff1a9e0a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6a1237ee3005ebd6f4978e7092ab2dc5"><td class="memItemLeft" align="right" valign="top">integer function, public&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceinput__ops.html#a6a1237ee3005ebd6f4978e7092ab2dc5">print_output_in</a> (data_name, remove_previous_arrs)</td></tr>
+<tr class="memdesc:a6a1237ee3005ebd6f4978e7092ab2dc5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Print input quantities to an output file.  <a href="#a6a1237ee3005ebd6f4978e7092ab2dc5">More...</a><br /></td></tr>
+<tr class="separator:a6a1237ee3005ebd6f4978e7092ab2dc5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Operations concerning giving input. </p>
 </div><h2 class="groupheader">Function/Subroutine Documentation</h2>
-<a id="a84ec7b3833da80ebb36ae0d5ff1a9e0a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a84ec7b3833da80ebb36ae0d5ff1a9e0a">&#9670;&nbsp;</a></span>print_output_in()</h2>
+<a id="a6a1237ee3005ebd6f4978e7092ab2dc5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6a1237ee3005ebd6f4978e7092ab2dc5">&#9670;&nbsp;</a></span>print_output_in()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -102,8 +102,18 @@ Functions/Subroutines</h2></td></tr>
           <td class="memname">integer function, public input_ops::print_output_in </td>
           <td>(</td>
           <td class="paramtype">character(len=*), intent(in)&#160;</td>
-          <td class="paramname"><em>data_name</em></td><td>)</td>
+          <td class="paramname"><em>data_name</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">logical, intent(in), optional&#160;</td>
+          <td class="paramname"><em>remove_previous_arrs</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -143,25 +153,26 @@ Functions/Subroutines</h2></td></tr>
 <dl class="section return"><dt>Returns</dt><dd>ierr</dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">data_name</td><td>name under which to store </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">data_name</td><td>name under which to store</td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">remove_previous_arrs</td><td>remove previous variables if present </td></tr>
   </table>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="input__ops_8f90_source.html#l01173">1173</a> of file <a class="el" href="input__ops_8f90_source.html">input_ops.f90</a>.</p>
+<p class="definition">Definition at line <a class="el" href="input__ops_8f90_source.html#l01174">1174</a> of file <a class="el" href="input__ops_8f90_source.html">input_ops.f90</a>.</p>
 <div id="dynsection-0" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-0-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
 <div id="dynsection-0-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-0-content" class="dyncontent" style="display:none;">
-<div class="center"><iframe scrolling="no" frameborder="0" src="namespaceinput__ops_a84ec7b3833da80ebb36ae0d5ff1a9e0a_cgraph.svg" width="1984" height="1332"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="namespaceinput__ops_a6a1237ee3005ebd6f4978e7092ab2dc5_cgraph.svg" width="1984" height="1332"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 <div id="dynsection-1" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-1-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
 <div id="dynsection-1-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-1-content" class="dyncontent" style="display:none;">
-<div class="center"><iframe scrolling="no" frameborder="0" src="namespaceinput__ops_a84ec7b3833da80ebb36ae0d5ff1a9e0a_icgraph.svg" width="344" height="40"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="namespaceinput__ops_a6a1237ee3005ebd6f4978e7092ab2dc5_icgraph.svg" width="344" height="40"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
