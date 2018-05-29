@@ -29,7 +29,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">PB3D
-   &#160;<span id="projectnumber">[2.30]</span>
+   &#160;<span id="projectnumber">[2.32]</span>
    </div>
    <div id="projectbrief">Ideal linear high-n MHD stability in 3-D</div>
   </td>
@@ -90,6 +90,12 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a93f9c07c6d225f6cbd200a100b14ccc8"><td class="memItemLeft" align="right" valign="top">integer function&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interfaceeq__ops_1_1calc__jac__v.html#a93f9c07c6d225f6cbd200a100b14ccc8">calc_jac_v_arr</a> (grid, eq, deriv)</td></tr>
 <tr class="memdesc:a93f9c07c6d225f6cbd200a100b14ccc8"><td class="mdescLeft">&#160;</td><td class="mdescRight">array version  <a href="#a93f9c07c6d225f6cbd200a100b14ccc8">More...</a><br /></td></tr>
 <tr class="separator:a93f9c07c6d225f6cbd200a100b14ccc8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aee94f0bad510a7c93f9ae0d185dc4965"><td class="memItemLeft" align="right" valign="top">integer function&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interfaceeq__ops_1_1calc__jac__v.html#aee94f0bad510a7c93f9ae0d185dc4965">calc_jac_v_ind</a> (grid, eq, deriv)</td></tr>
+<tr class="memdesc:aee94f0bad510a7c93f9ae0d185dc4965"><td class="mdescLeft">&#160;</td><td class="mdescRight">individual version  <a href="#aee94f0bad510a7c93f9ae0d185dc4965">More...</a><br /></td></tr>
+<tr class="separator:aee94f0bad510a7c93f9ae0d185dc4965"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a93f9c07c6d225f6cbd200a100b14ccc8"><td class="memItemLeft" align="right" valign="top">integer function&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interfaceeq__ops_1_1calc__jac__v.html#a93f9c07c6d225f6cbd200a100b14ccc8">calc_jac_v_arr</a> (grid, eq, deriv)</td></tr>
+<tr class="memdesc:a93f9c07c6d225f6cbd200a100b14ccc8"><td class="mdescLeft">&#160;</td><td class="mdescRight">array version  <a href="#a93f9c07c6d225f6cbd200a100b14ccc8">More...</a><br /></td></tr>
+<tr class="separator:a93f9c07c6d225f6cbd200a100b14ccc8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Calculate \(\mathcal{J}_\text{V}\), the jacobian in V(MEC) coordinates. </p>
@@ -99,7 +105,7 @@ Public Member Functions</h2></td></tr>
 <p class="definition">Definition at line <a class="el" href="eq__ops_8f90_source.html#l00196">196</a> of file <a class="el" href="eq__ops_8f90_source.html">eq_ops.f90</a>.</p>
 </div><h2 class="groupheader">Member Function/Subroutine Documentation</h2>
 <a id="a93f9c07c6d225f6cbd200a100b14ccc8"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a93f9c07c6d225f6cbd200a100b14ccc8">&#9670;&nbsp;</a></span>calc_jac_v_arr()</h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a93f9c07c6d225f6cbd200a100b14ccc8">&#9670;&nbsp;</a></span>calc_jac_v_arr() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -140,12 +146,58 @@ Public Member Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="eq__ops_8f90_source.html#l02946">2946</a> of file <a class="el" href="eq__ops_8f90_source.html">eq_ops.f90</a>.</p>
+<p class="definition">Definition at line <a class="el" href="OLD__eq__ops_8f90_source.html#l02946">2946</a> of file <a class="el" href="OLD__eq__ops_8f90_source.html">OLD_eq_ops.f90</a>.</p>
+
+</div>
+</div>
+<a id="a93f9c07c6d225f6cbd200a100b14ccc8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a93f9c07c6d225f6cbd200a100b14ccc8">&#9670;&nbsp;</a></span>calc_jac_v_arr() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">integer function eq_ops::calc_jac_v::calc_jac_v_arr </td>
+          <td>(</td>
+          <td class="paramtype">type(<a class="el" href="structgrid__vars_1_1grid__type.html">grid_type</a>), intent(in)&#160;</td>
+          <td class="paramname"><em>grid</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">type(<a class="el" href="structeq__vars_1_1eq__2__type.html">eq_2_type</a>), intent(inout)&#160;</td>
+          <td class="paramname"><em>eq</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">integer, dimension(:,:), intent(in)&#160;</td>
+          <td class="paramname"><em>deriv</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>array version </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">grid</td><td>grid for which to calculate Jacobian</td></tr>
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">eq</td><td>metric equilibrium</td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">deriv</td><td>derivatives </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="eq__ops_8f90_source.html#l03112">3112</a> of file <a class="el" href="eq__ops_8f90_source.html">eq_ops.f90</a>.</p>
 
 </div>
 </div>
 <a id="aee94f0bad510a7c93f9ae0d185dc4965"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aee94f0bad510a7c93f9ae0d185dc4965">&#9670;&nbsp;</a></span>calc_jac_v_ind()</h2>
+<h2 class="memtitle"><span class="permalink"><a href="#aee94f0bad510a7c93f9ae0d185dc4965">&#9670;&nbsp;</a></span>calc_jac_v_ind() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -186,19 +238,75 @@ Public Member Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="eq__ops_8f90_source.html#l02915">2915</a> of file <a class="el" href="eq__ops_8f90_source.html">eq_ops.f90</a>.</p>
+<p class="definition">Definition at line <a class="el" href="OLD__eq__ops_8f90_source.html#l02915">2915</a> of file <a class="el" href="OLD__eq__ops_8f90_source.html">OLD_eq_ops.f90</a>.</p>
 <div id="dynsection-0" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-0-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
 <div id="dynsection-0-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-0-content" class="dyncontent" style="display:none;">
-<div class="center"><iframe scrolling="no" frameborder="0" src="interfaceeq__ops_1_1calc__jac__v_aee94f0bad510a7c93f9ae0d185dc4965_cgraph.svg" width="639" height="58"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="interfaceeq__ops_1_1calc__jac__v_aee94f0bad510a7c93f9ae0d185dc4965_cgraph.svg" width="639" height="58"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 
 </div>
 </div>
-<hr/>The documentation for this interface was generated from the following file:<ul>
+<a id="aee94f0bad510a7c93f9ae0d185dc4965"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aee94f0bad510a7c93f9ae0d185dc4965">&#9670;&nbsp;</a></span>calc_jac_v_ind() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">integer function eq_ops::calc_jac_v::calc_jac_v_ind </td>
+          <td>(</td>
+          <td class="paramtype">type(<a class="el" href="structgrid__vars_1_1grid__type.html">grid_type</a>), intent(in)&#160;</td>
+          <td class="paramname"><em>grid</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">type(<a class="el" href="structeq__vars_1_1eq__2__type.html">eq_2_type</a>), intent(inout)&#160;</td>
+          <td class="paramname"><em>eq</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">integer, dimension(:), intent(in)&#160;</td>
+          <td class="paramname"><em>deriv</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>individual version </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">grid</td><td>grid for which to calculate Jacobian</td></tr>
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">eq</td><td>metric equilibrium</td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">deriv</td><td>derivatives </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="eq__ops_8f90_source.html#l03081">3081</a> of file <a class="el" href="eq__ops_8f90_source.html">eq_ops.f90</a>.</p>
+<div id="dynsection-1" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-1-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
+<div id="dynsection-1-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-1-content" class="dyncontent" style="display:none;">
+<div class="center"><iframe scrolling="no" frameborder="0" src="interfaceeq__ops_1_1calc__jac__v_aee94f0bad510a7c93f9ae0d185dc4965_cgraph.svg" width="639" height="58"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+</div>
+
+</div>
+</div>
+<hr/>The documentation for this interface was generated from the following files:<ul>
 <li>/opt/PB3D/Modules/<a class="el" href="eq__ops_8f90_source.html">eq_ops.f90</a></li>
+<li>/opt/PB3D/Modules/<a class="el" href="OLD__eq__ops_8f90_source.html">OLD_eq_ops.f90</a></li>
 </ul>
 </div><!-- contents -->
 <!-- HTML footer for doxygen 1.8.13-->

@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['b_5fplot',['b_plot',['../namespaceeq__ops.html#a73a8c3cea1e8a636b4978bc626e0fab0',1,'eq_ops']]],
+  ['b_5fplot',['b_plot',['../namespaceeq__ops.html#a5591339a686f1c8591c4b43f40b15065',1,'eq_ops']]],
   ['broadcast_5finput_5fopts',['broadcast_input_opts',['../namespacempi__ops.html#a932eba1c998dd7a0f1191b55cd754be3',1,'mpi_ops']]],
   ['broadcast_5fvar_5fcomplex_5farr',['broadcast_var_complex_arr',['../interfacempi__utilities_1_1broadcast__var.html#aec408c072cf25bd06f02ff08fef359ef',1,'mpi_utilities::broadcast_var']]],
   ['broadcast_5fvar_5fint',['broadcast_var_int',['../interfacempi__utilities_1_1broadcast__var.html#a2cde4dd2966657e187d4a85370844e87',1,'mpi_utilities::broadcast_var']]],

@@ -11,6 +11,10 @@ Calculate $R$, $Z$ \& $\lambda$ and derivatives in V\+M\+EC coordinates.
 integer function \hyperlink{interfaceeq__ops_1_1calc__rzl_ac161b0609f9e3748553befd2d62d083c}{calc\+\_\+rzl\+\_\+ind} (grid\+\_\+eq, eq, deriv)
 \begin{DoxyCompactList}\small\item\em individual version \end{DoxyCompactList}\item 
 integer function \hyperlink{interfaceeq__ops_1_1calc__rzl_ab117adebbc8a50ce2ef9c9dfa96674bb}{calc\+\_\+rzl\+\_\+arr} (grid\+\_\+eq, eq, deriv)
+\begin{DoxyCompactList}\small\item\em array version \end{DoxyCompactList}\item 
+integer function \hyperlink{interfaceeq__ops_1_1calc__rzl_ac161b0609f9e3748553befd2d62d083c}{calc\+\_\+rzl\+\_\+ind} (grid\+\_\+eq, eq, deriv)
+\begin{DoxyCompactList}\small\item\em individual version \end{DoxyCompactList}\item 
+integer function \hyperlink{interfaceeq__ops_1_1calc__rzl_ab117adebbc8a50ce2ef9c9dfa96674bb}{calc\+\_\+rzl\+\_\+arr} (grid\+\_\+eq, eq, deriv)
 \begin{DoxyCompactList}\small\item\em array version \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
@@ -40,7 +44,7 @@ Definition at line 126 of file eq\+\_\+ops.\+f90.
 \mbox{\Hypertarget{interfaceeq__ops_1_1calc__rzl_ab117adebbc8a50ce2ef9c9dfa96674bb}\label{interfaceeq__ops_1_1calc__rzl_ab117adebbc8a50ce2ef9c9dfa96674bb}} 
 \index{eq\+\_\+ops\+::calc\+\_\+rzl@{eq\+\_\+ops\+::calc\+\_\+rzl}!calc\+\_\+rzl\+\_\+arr@{calc\+\_\+rzl\+\_\+arr}}
 \index{calc\+\_\+rzl\+\_\+arr@{calc\+\_\+rzl\+\_\+arr}!eq\+\_\+ops\+::calc\+\_\+rzl@{eq\+\_\+ops\+::calc\+\_\+rzl}}
-\subsubsection{\texorpdfstring{calc\+\_\+rzl\+\_\+arr()}{calc\_rzl\_arr()}}
+\subsubsection{\texorpdfstring{calc\+\_\+rzl\+\_\+arr()}{calc\_rzl\_arr()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
 {\footnotesize\ttfamily integer function eq\+\_\+ops\+::calc\+\_\+rzl\+::calc\+\_\+rzl\+\_\+arr (\begin{DoxyParamCaption}\item[{type(\hyperlink{structgrid__vars_1_1grid__type}{grid\+\_\+type}), intent(in)}]{grid\+\_\+eq,  }\item[{type(\hyperlink{structeq__vars_1_1eq__2__type}{eq\+\_\+2\+\_\+type}), intent(inout)}]{eq,  }\item[{integer, dimension(\+:,\+:), intent(in)}]{deriv }\end{DoxyParamCaption})}
 
 
@@ -58,12 +62,35 @@ array version
 \end{DoxyParams}
 
 
-Definition at line 2587 of file eq\+\_\+ops.\+f90.
+Definition at line 2587 of file O\+L\+D\+\_\+eq\+\_\+ops.\+f90.
+
+\mbox{\Hypertarget{interfaceeq__ops_1_1calc__rzl_ab117adebbc8a50ce2ef9c9dfa96674bb}\label{interfaceeq__ops_1_1calc__rzl_ab117adebbc8a50ce2ef9c9dfa96674bb}} 
+\index{eq\+\_\+ops\+::calc\+\_\+rzl@{eq\+\_\+ops\+::calc\+\_\+rzl}!calc\+\_\+rzl\+\_\+arr@{calc\+\_\+rzl\+\_\+arr}}
+\index{calc\+\_\+rzl\+\_\+arr@{calc\+\_\+rzl\+\_\+arr}!eq\+\_\+ops\+::calc\+\_\+rzl@{eq\+\_\+ops\+::calc\+\_\+rzl}}
+\subsubsection{\texorpdfstring{calc\+\_\+rzl\+\_\+arr()}{calc\_rzl\_arr()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily integer function eq\+\_\+ops\+::calc\+\_\+rzl\+::calc\+\_\+rzl\+\_\+arr (\begin{DoxyParamCaption}\item[{type(\hyperlink{structgrid__vars_1_1grid__type}{grid\+\_\+type}), intent(in)}]{grid\+\_\+eq,  }\item[{type(\hyperlink{structeq__vars_1_1eq__2__type}{eq\+\_\+2\+\_\+type}), intent(inout)}]{eq,  }\item[{integer, dimension(\+:,\+:), intent(in)}]{deriv }\end{DoxyParamCaption})}
+
+
+
+array version 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em grid\+\_\+eq} & equilibrium grid\\
+\hline
+\mbox{\tt in,out}  & {\em eq} & metric equilibrium\\
+\hline
+\mbox{\tt in}  & {\em deriv} & derivatives \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 2753 of file eq\+\_\+ops.\+f90.
 
 \mbox{\Hypertarget{interfaceeq__ops_1_1calc__rzl_ac161b0609f9e3748553befd2d62d083c}\label{interfaceeq__ops_1_1calc__rzl_ac161b0609f9e3748553befd2d62d083c}} 
 \index{eq\+\_\+ops\+::calc\+\_\+rzl@{eq\+\_\+ops\+::calc\+\_\+rzl}!calc\+\_\+rzl\+\_\+ind@{calc\+\_\+rzl\+\_\+ind}}
 \index{calc\+\_\+rzl\+\_\+ind@{calc\+\_\+rzl\+\_\+ind}!eq\+\_\+ops\+::calc\+\_\+rzl@{eq\+\_\+ops\+::calc\+\_\+rzl}}
-\subsubsection{\texorpdfstring{calc\+\_\+rzl\+\_\+ind()}{calc\_rzl\_ind()}}
+\subsubsection{\texorpdfstring{calc\+\_\+rzl\+\_\+ind()}{calc\_rzl\_ind()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
 {\footnotesize\ttfamily integer function eq\+\_\+ops\+::calc\+\_\+rzl\+::calc\+\_\+rzl\+\_\+ind (\begin{DoxyParamCaption}\item[{type(\hyperlink{structgrid__vars_1_1grid__type}{grid\+\_\+type}), intent(in)}]{grid\+\_\+eq,  }\item[{type(\hyperlink{structeq__vars_1_1eq__2__type}{eq\+\_\+2\+\_\+type}), intent(inout)}]{eq,  }\item[{integer, dimension(3), intent(in)}]{deriv }\end{DoxyParamCaption})}
 
 
@@ -81,9 +108,41 @@ individual version
 \end{DoxyParams}
 
 
-Definition at line 2549 of file eq\+\_\+ops.\+f90.
+Definition at line 2549 of file O\+L\+D\+\_\+eq\+\_\+ops.\+f90.
 
-Here is the call graph for this function\+:\nopagebreak
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{interfaceeq__ops_1_1calc__rzl_ac161b0609f9e3748553befd2d62d083c_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{interfaceeq__ops_1_1calc__rzl_ac161b0609f9e3748553befd2d62d083c}\label{interfaceeq__ops_1_1calc__rzl_ac161b0609f9e3748553befd2d62d083c}} 
+\index{eq\+\_\+ops\+::calc\+\_\+rzl@{eq\+\_\+ops\+::calc\+\_\+rzl}!calc\+\_\+rzl\+\_\+ind@{calc\+\_\+rzl\+\_\+ind}}
+\index{calc\+\_\+rzl\+\_\+ind@{calc\+\_\+rzl\+\_\+ind}!eq\+\_\+ops\+::calc\+\_\+rzl@{eq\+\_\+ops\+::calc\+\_\+rzl}}
+\subsubsection{\texorpdfstring{calc\+\_\+rzl\+\_\+ind()}{calc\_rzl\_ind()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily integer function eq\+\_\+ops\+::calc\+\_\+rzl\+::calc\+\_\+rzl\+\_\+ind (\begin{DoxyParamCaption}\item[{type(\hyperlink{structgrid__vars_1_1grid__type}{grid\+\_\+type}), intent(in)}]{grid\+\_\+eq,  }\item[{type(\hyperlink{structeq__vars_1_1eq__2__type}{eq\+\_\+2\+\_\+type}), intent(inout)}]{eq,  }\item[{integer, dimension(3), intent(in)}]{deriv }\end{DoxyParamCaption})}
+
+
+
+individual version 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em grid\+\_\+eq} & equilibrium grid\\
+\hline
+\mbox{\tt in,out}  & {\em eq} & metric equilibrium\\
+\hline
+\mbox{\tt in}  & {\em deriv} & derivatives \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 2715 of file eq\+\_\+ops.\+f90.
+
+Here is the call graph for this function\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
