@@ -42,7 +42,7 @@ var searchData=
   ['norm_5fdisc_5fprec_5fx',['norm_disc_prec_x',['../namespacenum__vars.html#acba4a05e477f116855028f2057ce4e49',1,'num_vars']]],
   ['norm_5fdisc_5fstyle_5fsol',['norm_disc_style_sol',['../namespacenum__vars.html#a5afcab5bc4c55fdb6a816bf7261160e2',1,'num_vars']]],
   ['norm_5fstyle',['norm_style',['../namespacenum__vars.html#acefc971404bce11e23308d5214d96d32',1,'num_vars']]],
-  ['normalize_5finput',['normalize_input',['../namespaceeq__ops.html#a99eda092b39e3afe8ad14f9916f60d1d',1,'eq_ops']]],
+  ['normalize_5finput',['normalize_input',['../namespaceeq__ops.html#a1b4c764da73624722d7e76498a2b80a9',1,'eq_ops']]],
   ['normalize_5fvmec',['normalize_vmec',['../namespacevmec__ops.html#a95f04a642fd732a538aef30052a12863',1,'vmec_ops']]],
   ['nufft',['nufft',['../namespacegrid__utilities.html#a0854b2d6cc61a31f68b4afe7304077a9',1,'grid_utilities']]],
   ['num_5fops',['num_ops',['../namespacenum__ops.html',1,'']]],

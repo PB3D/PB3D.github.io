@@ -2,7 +2,7 @@ var searchData=
 [
   ['b_5f0',['b_0',['../namespaceeq__vars.html#acdd2464f2282359a818e4159b502e84b',1,'eq_vars']]],
   ['b_5f0_5fv',['b_0_v',['../namespacevmec__vars.html#a71e1a738f0e423fe6c284f8ea636008e',1,'vmec_vars']]],
-  ['b_5fplot',['b_plot',['../namespaceeq__ops.html#a5591339a686f1c8591c4b43f40b15065',1,'eq_ops']]],
+  ['b_5fplot',['b_plot',['../namespaceeq__ops.html#a73a8c3cea1e8a636b4978bc626e0fab0',1,'eq_ops']]],
   ['b_5fv_5fc',['b_v_c',['../namespacevmec__vars.html#ad6833cc726863147b8fed188d3a28f5d',1,'vmec_vars']]],
   ['b_5fv_5fs',['b_v_s',['../namespacevmec__vars.html#ab2aa43fe35401e8f2b7ffb2facad7109',1,'vmec_vars']]],
   ['b_5fv_5fsub_5fc',['b_v_sub_c',['../namespacevmec__vars.html#a2e07a2b5bd2384e16e8af8ca4f5b50d6',1,'vmec_vars']]],
