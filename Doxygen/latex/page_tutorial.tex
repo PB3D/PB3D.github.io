@@ -162,16 +162,25 @@ Take a look at these output files and shuffle a bit with the input parameters if
 For V\+M\+EC, the magnetic axis is a bit problematic. It is necessary, therefore, to choose {\ttfamily min\+\_\+r\+\_\+sol} to be slightly larger than 0; 0.\+01 for example.
 \end{DoxyNote}
 \hypertarget{page_tutorial_tutorial_scripts}{}\section{Run Script Tools}\label{page_tutorial_tutorial_scripts}
-P\+B3D comes with a bunch of extra run tools, for which no support is given, but which may be useful for advanced users. In table \doxytablelink{page_tutorial_tutorial_scripts_tab}{2}, an overview is given\+: \hypertarget{page_tutorial_tutorial_scripts_tab}{}
+P\+B3D comes with a bunch of extra run tools, which can greatly improve user experience.
+
+\begin{DoxyNote}{Note}
+These tools now come in a separate git repository, {\ttfamily } \href{https://github.com/ToonWeyens/PB3D_tools}{\tt P\+B3\+D\+\_\+tools}.
+\end{DoxyNote}
+In table \doxytablelink{page_tutorial_tutorial_scripts_tab}{2}, an overview is given\+: \hypertarget{page_tutorial_tutorial_scripts_tab}{}
 \tabulinesep=1mm
 \begin{longtabu} spread 0pt [c]{*{2}{|X[-1]}|}
 \caption{Table 2. extra tools}\label{page_tutorial_tutorial_scripts_tab}\\
 \hline
-{\ttfamily setup\+\_\+\+Run.\+sh}  &Sets up the required files and scripts to run P\+B3D simulations in a folder different than the P\+B3D compilation folder.   \\\cline{1-2}
-{\ttfamily run.\+sh}  &modifiable run script that can be used for P\+B3D and P\+O\+ST. It can also run for an array of input variables, which is useful for parameter studies.   \\\cline{1-2}
-{\ttfamily change\+\_\+input\+\_\+var.\+sh}  &Changes the value of a variable in a P\+B3D input file. This is used by {\ttfamily run.\+sh}.   \\\cline{1-2}
-{\ttfamily extract\+\_\+jobs\+\_\+info.\+sh}  &Extracts the eigenvalues from the results of an input array produced by {\ttfamily run.\+sh}.   \\\cline{1-2}
-{\ttfamily inspect\+\_\+\+S\+L\+U\+R\+M\+\_\+jobs.\+sh}  &Finds the directories of all the jobs currently running in S\+L\+U\+RM and in every directory, it gives the tail of {\ttfamily P\+B3\+D.\+out}. The user can decide to cancel the job.   \\\cline{1-2}
+{\ttfamily run}  &Run script that can be used for P\+B3D and P\+O\+ST with an extensive range of features including
+\begin{DoxyItemize}
+\item the possibility to do a parameter scan for a variety of input variables
+\item automatic support for schedulers such as P\+BS and S\+L\+U\+RM
+\item support for running on local folders when on a H\+PC cluster
+\item etc...   
+\end{DoxyItemize}\\\cline{1-2}
+{\ttfamily extract\+\_\+jobs\+\_\+info}  &Extracts the eigenvalues from the results of a parameter scan produced by {\ttfamily run} with input variable modifications.   \\\cline{1-2}
+{\ttfamily inspect\+\_\+\+S\+L\+U\+R\+M\+\_\+jobs}  &Finds the directories of all the jobs currently running in S\+L\+U\+RM and in every directory, it gives the tail of {\ttfamily P\+B3\+D.\+out}. The user can decide to cancel the job.   \\\cline{1-2}
 \end{longtabu}
 \hypertarget{page_tutorial_tutorial_POST}{}\section{Post-\/processing With P\+O\+ST}\label{page_tutorial_tutorial_POST}
 P\+O\+ST provides a way to visualize the results from P\+B3D. Many options are possible, and they can be activated using {\ttfamily plot\+\_\+} flags (see \hyperlink{page_inputs_inputs_POST_file}{Input file}).

@@ -137,23 +137,26 @@
 
     \section tutorial_scripts Run Script Tools
 
-    PB3D comes with a bunch of extra run tools, for which no support is given, but which may be useful for advanced users. In table \ref tutorial_scripts_tab "2", an overview is given:
+    PB3D comes with a bunch of extra run tools, which can greatly improve user experience.
+    
+    \note These tools now come in a separate git repository, \c <a href="https://github.com/ToonWeyens/PB3D_tools">PB3D_tools</a>.
+
+    In table \ref tutorial_scripts_tab "2", an overview is given:
     <table>
     <caption id="tutorial_scripts_tab">Table 2. extra tools</caption>
     <tr>
-        <td> <tt>setup_Run.sh</tt>  </td> <td> Sets up the required files and scripts to run PB3D simulations in a folder different than the PB3D compilation folder. </td>
+        <td> <tt>run</tt> </td> <td> Run script that can be used for PB3D and POST with an extensive range of features including
+            - the possibility to do a parameter scan for a variety of input variables
+            - automatic support for schedulers such as PBS and SLURM
+            - support for running on local folders when on a HPC cluster
+            - etc...
+        </td>
     </tr>
     <tr>
-        <td> <tt>run.sh</tt> </td> <td> modifiable run script that can be used for PB3D and POST. It can also run for an array of input variables, which is useful for parameter studies. </td>
+        <td> <tt>extract_jobs_info</tt>  </td> <td> Extracts the eigenvalues from the results of a parameter scan produced by <tt>run</tt> with input variable modifications. </td>
     </tr>
     <tr>
-        <td> <tt>change_input_var.sh</tt>  </td> <td> Changes the value of a variable in a PB3D input file. This is used by <tt>run.sh</tt>. </td>
-    </tr>
-    <tr>
-        <td> <tt>extract_jobs_info.sh</tt>  </td> <td> Extracts the eigenvalues from the results of an input array produced by <tt>run.sh</tt>. </td>
-    </tr>
-    <tr>
-        <td> <tt>inspect_SLURM_jobs.sh</tt>  </td> <td> Finds the directories of all the jobs currently running in SLURM and in every directory, it gives the tail of <tt>PB3D.out</tt>. The user can decide to cancel the job. </td>
+        <td> <tt>inspect_SLURM_jobs</tt>  </td> <td> Finds the directories of all the jobs currently running in SLURM and in every directory, it gives the tail of <tt>PB3D.out</tt>. The user can decide to cancel the job. </td>
     </tr>
     </table>
 

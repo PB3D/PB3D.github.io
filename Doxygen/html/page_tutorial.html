@@ -29,7 +29,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">PB3D
-   &#160;<span id="projectnumber">[2.33]</span>
+   &#160;<span id="projectnumber">[2.34]</span>
    </div>
    <div id="projectbrief">Ideal linear high-n MHD stability in 3-D</div>
   </td>
@@ -147,19 +147,23 @@ Running PB3D</h1>
 <dl class="section note"><dt>Note</dt><dd>For VMEC, the magnetic axis is a bit problematic. It is necessary, therefore, to choose <code>min_r_sol</code> to be slightly larger than 0; 0.01 for example.</dd></dl>
 <h1><a class="anchor" id="tutorial_scripts"></a>
 Run Script Tools</h1>
-<p>PB3D comes with a bunch of extra run tools, for which no support is given, but which may be useful for advanced users. In table <a class="el" href="page_tutorial.html#tutorial_scripts_tab">2</a>, an overview is given: </p><a class="anchor" id="tutorial_scripts_tab"></a>
+<p>PB3D comes with a bunch of extra run tools, which can greatly improve user experience.</p>
+<dl class="section note"><dt>Note</dt><dd>These tools now come in a separate git repository, <code></code> <a href="https://github.com/ToonWeyens/PB3D_tools">PB3D_tools</a>.</dd></dl>
+<p>In table <a class="el" href="page_tutorial.html#tutorial_scripts_tab">2</a>, an overview is given: </p><a class="anchor" id="tutorial_scripts_tab"></a>
 <table class="doxtable">
 <caption>Table 2. extra tools</caption>
 <tr>
-<td><code>setup_Run.sh</code>  </td><td>Sets up the required files and scripts to run PB3D simulations in a folder different than the PB3D compilation folder.   </td></tr>
+<td><code>run</code>  </td><td>Run script that can be used for PB3D and POST with an extensive range of features including<ul>
+<li>the possibility to do a parameter scan for a variety of input variables</li>
+<li>automatic support for schedulers such as PBS and SLURM</li>
+<li>support for running on local folders when on a HPC cluster</li>
+<li>etc...   </li>
+</ul>
+</td></tr>
 <tr>
-<td><code>run.sh</code>  </td><td>modifiable run script that can be used for PB3D and POST. It can also run for an array of input variables, which is useful for parameter studies.   </td></tr>
+<td><code>extract_jobs_info</code>  </td><td>Extracts the eigenvalues from the results of a parameter scan produced by <code>run</code> with input variable modifications.   </td></tr>
 <tr>
-<td><code>change_input_var.sh</code>  </td><td>Changes the value of a variable in a PB3D input file. This is used by <code>run.sh</code>.   </td></tr>
-<tr>
-<td><code>extract_jobs_info.sh</code>  </td><td>Extracts the eigenvalues from the results of an input array produced by <code>run.sh</code>.   </td></tr>
-<tr>
-<td><code>inspect_SLURM_jobs.sh</code>  </td><td>Finds the directories of all the jobs currently running in SLURM and in every directory, it gives the tail of <code>PB3D.out</code>. The user can decide to cancel the job.   </td></tr>
+<td><code>inspect_SLURM_jobs</code>  </td><td>Finds the directories of all the jobs currently running in SLURM and in every directory, it gives the tail of <code>PB3D.out</code>. The user can decide to cancel the job.   </td></tr>
 </table>
 <h1><a class="anchor" id="tutorial_POST"></a>
 Post-processing With POST</h1>
