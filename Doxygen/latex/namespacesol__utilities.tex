@@ -17,7 +17,7 @@ integer function, public \hyperlink{namespacesol__utilities_a8b902a82ae6a238e725
 \begin{DoxyCompactList}\small\item\em Calculate the total version of the solution vector from the local version. \end{DoxyCompactList}\item 
 integer function, public \hyperlink{namespacesol__utilities_a677373f47ee68ad02e9cef5b409bdc26}{calc\+\_\+loc\+\_\+sol\+\_\+vec} (mds, i\+\_\+min, sol\+\_\+vec\+\_\+tot, sol\+\_\+vec\+\_\+loc)
 \begin{DoxyCompactList}\small\item\em Calculate the local version of the solution vector from the total version. \end{DoxyCompactList}\item 
-integer function, public \hyperlink{namespacesol__utilities_a93969085ad0fce8e530493a412b1ce38}{interp\+\_\+v\+\_\+spline} (V\+\_\+i, V\+\_\+o, r\+\_\+i, r\+\_\+o, extrap, was\+\_\+copied)
+integer function, public \hyperlink{namespacesol__utilities_a9af30f5bb948778dcafa7b80af6ea1fa}{interp\+\_\+v\+\_\+spline} (V\+\_\+i, V\+\_\+o, r\+\_\+i, r\+\_\+o, extrap, ivs\+\_\+stat)
 \begin{DoxyCompactList}\small\item\em Interpolation for a quantity V using splines. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Variables}
 \begin{DoxyCompactItemize}
@@ -138,25 +138,26 @@ Here is the caller graph for this function\+:\nopagebreak
 \includegraphics[width=350pt]{namespacesol__utilities_a8b902a82ae6a238e725da2cf09e7854f_icgraph}
 \end{center}
 \end{figure}
-\mbox{\Hypertarget{namespacesol__utilities_a93969085ad0fce8e530493a412b1ce38}\label{namespacesol__utilities_a93969085ad0fce8e530493a412b1ce38}} 
+\mbox{\Hypertarget{namespacesol__utilities_a9af30f5bb948778dcafa7b80af6ea1fa}\label{namespacesol__utilities_a9af30f5bb948778dcafa7b80af6ea1fa}} 
 \index{sol\+\_\+utilities@{sol\+\_\+utilities}!interp\+\_\+v\+\_\+spline@{interp\+\_\+v\+\_\+spline}}
 \index{interp\+\_\+v\+\_\+spline@{interp\+\_\+v\+\_\+spline}!sol\+\_\+utilities@{sol\+\_\+utilities}}
 \subsubsection{\texorpdfstring{interp\+\_\+v\+\_\+spline()}{interp\_v\_spline()}}
-{\footnotesize\ttfamily integer function, public sol\+\_\+utilities\+::interp\+\_\+v\+\_\+spline (\begin{DoxyParamCaption}\item[{complex(dp), dimension(\+:,\+:,\+:), intent(in)}]{V\+\_\+i,  }\item[{complex(dp), dimension(\+:,\+:,\+:), intent(out)}]{V\+\_\+o,  }\item[{real(dp), dimension(\+:), intent(in)}]{r\+\_\+i,  }\item[{real(dp), dimension(\+:), intent(in)}]{r\+\_\+o,  }\item[{logical, intent(in)}]{extrap,  }\item[{logical, intent(out), optional}]{was\+\_\+copied }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily integer function, public sol\+\_\+utilities\+::interp\+\_\+v\+\_\+spline (\begin{DoxyParamCaption}\item[{complex(dp), dimension(\+:,\+:,\+:), intent(in)}]{V\+\_\+i,  }\item[{complex(dp), dimension(\+:,\+:,\+:), intent(out)}]{V\+\_\+o,  }\item[{real(dp), dimension(\+:), intent(in)}]{r\+\_\+i,  }\item[{real(dp), dimension(\+:), intent(in)}]{r\+\_\+o,  }\item[{logical, intent(in)}]{extrap,  }\item[{integer, intent(out), optional}]{ivs\+\_\+stat }\end{DoxyParamCaption})}
 
 
 
 Interpolation for a quantity V using splines. 
 
-Optionally, a variable \textquotesingle{}was\+\_\+copied\textquotesingle{} is returned that indicates whether the interpolation degraded to a plain copy. 
+Optionally, a variable \textquotesingle{}ivs\+\_\+stat\textquotesingle{} is returned that indicates whether the interpolation was a plain copy (1), a linear interpolation (2) or a spline interpolation (3). 
 
-Definition at line 798 of file sol\+\_\+utilities.\+f90.
+Definition at line 799 of file sol\+\_\+utilities.\+f90.
 
-Here is the caller graph for this function\+:\nopagebreak
+Here is the caller graph for this function\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=350pt]{namespacesol__utilities_a93969085ad0fce8e530493a412b1ce38_icgraph}
+\includegraphics[width=350pt]{namespacesol__utilities_a9af30f5bb948778dcafa7b80af6ea1fa_icgraph}
 \end{center}
 \end{figure}
 

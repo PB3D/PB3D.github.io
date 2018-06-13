@@ -29,7 +29,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">PB3D
-   &#160;<span id="projectnumber">[2.34]</span>
+   &#160;<span id="projectnumber">[2.35]</span>
    </div>
    <div id="projectbrief">Ideal linear high-n MHD stability in 3-D</div>
   </td>
@@ -93,9 +93,9 @@ Functions/Subroutines</h2></td></tr>
 <tr class="memitem:a677373f47ee68ad02e9cef5b409bdc26"><td class="memItemLeft" align="right" valign="top">integer function, public&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacesol__utilities.html#a677373f47ee68ad02e9cef5b409bdc26">calc_loc_sol_vec</a> (mds, i_min, sol_vec_tot, sol_vec_loc)</td></tr>
 <tr class="memdesc:a677373f47ee68ad02e9cef5b409bdc26"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculate the local version of the solution vector from the total version.  <a href="#a677373f47ee68ad02e9cef5b409bdc26">More...</a><br /></td></tr>
 <tr class="separator:a677373f47ee68ad02e9cef5b409bdc26"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a93969085ad0fce8e530493a412b1ce38"><td class="memItemLeft" align="right" valign="top">integer function, public&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacesol__utilities.html#a93969085ad0fce8e530493a412b1ce38">interp_v_spline</a> (V_i, V_o, r_i, r_o, extrap, was_copied)</td></tr>
-<tr class="memdesc:a93969085ad0fce8e530493a412b1ce38"><td class="mdescLeft">&#160;</td><td class="mdescRight">Interpolation for a quantity V using splines.  <a href="#a93969085ad0fce8e530493a412b1ce38">More...</a><br /></td></tr>
-<tr class="separator:a93969085ad0fce8e530493a412b1ce38"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9af30f5bb948778dcafa7b80af6ea1fa"><td class="memItemLeft" align="right" valign="top">integer function, public&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacesol__utilities.html#a9af30f5bb948778dcafa7b80af6ea1fa">interp_v_spline</a> (V_i, V_o, r_i, r_o, extrap, ivs_stat)</td></tr>
+<tr class="memdesc:a9af30f5bb948778dcafa7b80af6ea1fa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Interpolation for a quantity V using splines.  <a href="#a9af30f5bb948778dcafa7b80af6ea1fa">More...</a><br /></td></tr>
+<tr class="separator:a9af30f5bb948778dcafa7b80af6ea1fa"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
 Variables</h2></td></tr>
@@ -264,8 +264,8 @@ Variables</h2></td></tr>
 
 </div>
 </div>
-<a id="a93969085ad0fce8e530493a412b1ce38"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a93969085ad0fce8e530493a412b1ce38">&#9670;&nbsp;</a></span>interp_v_spline()</h2>
+<a id="a9af30f5bb948778dcafa7b80af6ea1fa"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9af30f5bb948778dcafa7b80af6ea1fa">&#9670;&nbsp;</a></span>interp_v_spline()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -303,8 +303,8 @@ Variables</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">logical, intent(out), optional&#160;</td>
-          <td class="paramname"><em>was_copied</em>&#160;</td>
+          <td class="paramtype">integer, intent(out), optional&#160;</td>
+          <td class="paramname"><em>ivs_stat</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -315,15 +315,16 @@ Variables</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Interpolation for a quantity V using splines. </p>
-<p>Optionally, a variable 'was_copied' is returned that indicates whether the interpolation degraded to a plain copy. </p>
+<p>Optionally, a variable 'ivs_stat' is returned that indicates whether the interpolation was a plain copy (1), a linear interpolation (2) or a spline interpolation (3). </p>
 
-<p class="definition">Definition at line <a class="el" href="sol__utilities_8f90_source.html#l00798">798</a> of file <a class="el" href="sol__utilities_8f90_source.html">sol_utilities.f90</a>.</p>
+<p class="definition">Definition at line <a class="el" href="sol__utilities_8f90_source.html#l00799">799</a> of file <a class="el" href="sol__utilities_8f90_source.html">sol_utilities.f90</a>.</p>
 <div id="dynsection-4" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-4-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
 <div id="dynsection-4-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-4-content" class="dyncontent" style="display:none;">
-<div class="center"><iframe scrolling="no" frameborder="0" src="namespacesol__utilities_a93969085ad0fce8e530493a412b1ce38_icgraph.svg" width="814" height="112"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="namespacesol__utilities_a9af30f5bb948778dcafa7b80af6ea1fa_icgraph.svg" width="814" height="112"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 
 </div>
