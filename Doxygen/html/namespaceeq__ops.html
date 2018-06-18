@@ -29,7 +29,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">PB3D
-   &#160;<span id="projectnumber">[2.35]</span>
+   &#160;<span id="projectnumber">[2.36]</span>
    </div>
    <div id="projectbrief">Ideal linear high-n MHD stability in 3-D</div>
   </td>
@@ -183,7 +183,7 @@ Functions/Subroutines</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
 Variables</h2></td></tr>
-<tr class="memitem:a1b6609a8d8b427d9133bf323e732f209"><td class="memItemLeft" align="right" valign="top">logical, public&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceeq__ops.html#a1b6609a8d8b427d9133bf323e732f209">debug_calc_derived_q</a> = .true.</td></tr>
+<tr class="memitem:a1b6609a8d8b427d9133bf323e732f209"><td class="memItemLeft" align="right" valign="top">logical, public&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceeq__ops.html#a1b6609a8d8b427d9133bf323e732f209">debug_calc_derived_q</a> = .false.</td></tr>
 <tr class="memdesc:a1b6609a8d8b427d9133bf323e732f209"><td class="mdescLeft">&#160;</td><td class="mdescRight">plot debug information for <a class="el" href="namespaceeq__ops.html#a087e08ce6d8ad381b5bac8fc51148d50" title="Calculates derived equilibrium quantities system. ">calc_derived_q()</a>  <a href="#a1b6609a8d8b427d9133bf323e732f209">More...</a><br /></td></tr>
 <tr class="separator:a1b6609a8d8b427d9133bf323e732f209"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a45ba7f46fd439bbd73edfd1fd548b58e"><td class="memItemLeft" align="right" valign="top">logical, public&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceeq__ops.html#a45ba7f46fd439bbd73edfd1fd548b58e">debug_j_plot</a> = .false.</td></tr>
@@ -277,7 +277,7 @@ Variables</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="eq__ops_8f90_source.html#l05076">5076</a> of file <a class="el" href="eq__ops_8f90_source.html">eq_ops.f90</a>.</p>
+<p class="definition">Definition at line <a class="el" href="eq__ops_8f90_source.html#l05484">5484</a> of file <a class="el" href="eq__ops_8f90_source.html">eq_ops.f90</a>.</p>
 <div id="dynsection-0" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-0-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
 <div id="dynsection-0-summary" class="dynsummary" style="display:block;">
@@ -336,6 +336,8 @@ Variables</h2></td></tr>
 </ul>
 <p>Naive implementations of these quantities, with the exception of <code>S</code>, give numerically very unfavorable results, so special care must be taken in this procedure.</p>
 <p>This is an important issue as these derived equilbrium quantities are important building blocks of the perturbed potential energy, including the drivers of instabilities.</p>
+<p>The general formulas are derived under the first section, VMEC. For axisymmetric HELENA, however, simplified equations are possible and these are presented afterwards.</p>
+<h1>VMEC </h1>
 <h2>The shear </h2>
 <p>The local shear \(S\) is calculated using equation 3.22 from <a class="el" href="citelist.html#CITEREF_Weyens3D">[17]</a> :</p>
 <p>\(S = - \frac{1}{\mathcal{J}} \frac{\partial}{\partial \theta} \left(\frac{ h^{\psi\alpha}}{ h^{\psi \psi}}\right)\)</p>
@@ -374,8 +376,22 @@ Variables</h2></td></tr>
 <p>In debug mode, it can be checked whether the current is indeed divergence-free, with the help of equation 3.33 of <a class="el" href="citelist.html#CITEREF_Weyens3D">[17]</a>.</p>
 <p>\( -2 p&#39; \int_{\theta_0}^\theta \mathcal{J} \kappa_g \text{d}{\theta} = \sigma\left(\theta\right) - \sigma_0\)</p>
 <p>and whether a direct, naive implementation of the parallel current from equation 3.26 of <a class="el" href="citelist.html#CITEREF_Weyens3D">[17]</a> agrees with the more accurate results used here:</p>
-<p>\(\sigma = \frac{\partial B_\psi}{\partial \alpha} - \frac{\partial B_\alpha}{\partial \psi} - \mu_0 p&#39; \mathcal{J} \frac{B_\alpha}{B_\theta}\) .</p>
+<p>\(\mu_0 \sigma = \frac{\partial B_\psi}{\partial \alpha} - \frac{\partial B_\alpha}{\partial \psi} - \mu_0 p&#39; \mathcal{J} \frac{B_\alpha}{B_\theta}\) .</p>
 <p>The reason why they are generally different is that this implementation relies on the cancellation of large terms.</p>
+<h1>HELENA </h1>
+<h2>The parallel current </h2>
+<p>As \(B_\alpha = F\left(\psi\right)\) and \(\vec{e}_{\alpha,\text{F}} = \vec{e}_{\phi,\text{H}}\), the naive expression for the shear becomes simply</p>
+<p>\(\sigma = -F&#39; - \mu_0 p&#39; \frac{F}{B^2}\) ,</p>
+<p>which can be used like that.</p>
+<h2>The shear </h2>
+<p>The calculate the local shear \(S\) is looks like it is best to use equation 3.22 from <a class="el" href="citelist.html#CITEREF_Weyens3D">[17]</a> , just as in the VMEC case:</p>
+<p>As a test, however, equation 3.29 of <a class="el" href="citelist.html#CITEREF_Weyens3D">[17]</a> can be used in stead:</p>
+<p>\(\mathcal{J}\left|\nabla \psi\right|^2 S + \mu_0 \mathcal{J}B^2 \sigma = - 2 \frac{F}{R} \left( \frac{Z_\theta}{R} + \frac{Z_\theta R_{\theta\theta} - R_\theta Z_{\theta\theta}}{R_\theta^2 + Z_\theta^2} \right)\).</p>
+<p>from which \(\sigma\) can be obtained.</p>
+<h2>The curvature </h2>
+<p>Also the curvature expressions can be simplified for axisymmetric situations. The result is given by</p>
+<p>\(\kappa_n = \frac{q R}{F} \frac{Z_\theta \left( R_{\theta\theta} - q^2 R\right) - R_\theta Z_{\theta\theta}} {\left(R_\theta^2 + Z_\theta^2 + \left(q R\right)^2\right) \left( R_\theta^2 + Z_\theta^2 \right)} \)</p>
+<p>\(\kappa_g = q R \frac{R_\theta \left( 2 \left(R_\theta^2 + Z_\theta^2\right) + \left(qR\right)^2 \right) - R \left(R_\theta R_{\theta\theta} + Z_\theta Z_{\theta\theta}\right)} {\left(R_\theta^2 + Z_\theta^2 + \left(q R\right)^2\right)^2} \)</p>
 <dl class="section note"><dt>Note</dt><dd><ol type="1">
 <li>If the toroidal flux is used instead, the actual curvature obviously is unchanged, which implies that the normal component has to be multiplied by the safety factor and the geodesic component has to be divided by it.</li>
 <li>The formulas for the normal and geodesic basis vectors for VMEC are<ul>
@@ -390,7 +406,6 @@ Variables</h2></td></tr>
 <li>\(\frac{\nabla \psi \times \vec{B}}{B^2} = \frac{q R^2}{R_\theta^2 + Z_\theta^2 + q^2 R^2} \left(-R_\theta, -\frac{R_\theta^2 + Z_\theta^2}{q}, -Z_\theta\right)_\text{C}\)</li>
 </ul>
 </li>
-<li>The expression for \(\mathcal{J}\left|\nabla \psi\right|^2 S + \mu_0 \mathcal{J}B^2 \sigma\) for HELENA is \(- 2 \frac{F}{R} \left( \frac{Z_\theta}{R} + \frac{Z_\theta R_{\theta\theta} - R_\theta Z_{\theta\theta}}{R_\theta^2 + Z_\theta^2} \right)\).</li>
 </ol>
 </dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
@@ -402,20 +417,22 @@ Variables</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="eq__ops_8f90_source.html#l04186">4186</a> of file <a class="el" href="eq__ops_8f90_source.html">eq_ops.f90</a>.</p>
+<p class="definition">Definition at line <a class="el" href="eq__ops_8f90_source.html#l04234">4234</a> of file <a class="el" href="eq__ops_8f90_source.html">eq_ops.f90</a>.</p>
 <div id="dynsection-2" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-2-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
 <div id="dynsection-2-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-2-content" class="dyncontent" style="display:none;">
-<div class="center"><iframe scrolling="no" frameborder="0" src="namespaceeq__ops_a087e08ce6d8ad381b5bac8fc51148d50_cgraph.svg" width="1172" height="374"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="namespaceeq__ops_a087e08ce6d8ad381b5bac8fc51148d50_cgraph.svg" width="1435" height="374"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 <div id="dynsection-3" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-3-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
 <div id="dynsection-3-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-3-content" class="dyncontent" style="display:none;">
-<div class="center"><iframe scrolling="no" frameborder="0" src="namespaceeq__ops_a087e08ce6d8ad381b5bac8fc51148d50_icgraph.svg" width="488" height="40"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="namespaceeq__ops_a087e08ce6d8ad381b5bac8fc51148d50_icgraph.svg" width="488" height="40"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 
 </div>
@@ -462,13 +479,14 @@ Variables</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="eq__ops_8f90_source.html#l06077">6077</a> of file <a class="el" href="eq__ops_8f90_source.html">eq_ops.f90</a>.</p>
+<p class="definition">Definition at line <a class="el" href="eq__ops_8f90_source.html#l06485">6485</a> of file <a class="el" href="eq__ops_8f90_source.html">eq_ops.f90</a>.</p>
 <div id="dynsection-4" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-4-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
 <div id="dynsection-4-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-4-content" class="dyncontent" style="display:none;">
-<div class="center"><iframe scrolling="no" frameborder="0" src="namespaceeq__ops_a4e20b8725fce149449f83754244dc84e_icgraph.svg" width="599" height="94"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="namespaceeq__ops_a4e20b8725fce149449f83754244dc84e_icgraph.svg" width="599" height="94"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 
 </div>
@@ -517,20 +535,22 @@ Variables</h2></td></tr>
 <dl class="section note"><dt>Note</dt><dd><code>rho_0</code> is not given through by the equilibrium codes and should be user-supplied</dd></dl>
 <dl class="section return"><dt>Returns</dt><dd>ierr </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="eq__ops_8f90_source.html#l04781">4781</a> of file <a class="el" href="eq__ops_8f90_source.html">eq_ops.f90</a>.</p>
+<p class="definition">Definition at line <a class="el" href="eq__ops_8f90_source.html#l05189">5189</a> of file <a class="el" href="eq__ops_8f90_source.html">eq_ops.f90</a>.</p>
 <div id="dynsection-5" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-5-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
 <div id="dynsection-5-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-5-content" class="dyncontent" style="display:none;">
-<div class="center"><iframe scrolling="no" frameborder="0" src="namespaceeq__ops_a7cd38586e386e1bc684a327ebcc4c1de_cgraph.svg" width="918" height="199"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="namespaceeq__ops_a7cd38586e386e1bc684a327ebcc4c1de_cgraph.svg" width="918" height="199"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 <div id="dynsection-6" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-6-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
 <div id="dynsection-6-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-6-content" class="dyncontent" style="display:none;">
-<div class="center"><iframe scrolling="no" frameborder="0" src="namespaceeq__ops_a7cd38586e386e1bc684a327ebcc4c1de_icgraph.svg" width="344" height="58"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="namespaceeq__ops_a7cd38586e386e1bc684a327ebcc4c1de_icgraph.svg" width="344" height="58"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 
 </div>
@@ -589,14 +609,16 @@ Variables</h2></td></tr>
 <div id="dynsection-7-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-7-content" class="dyncontent" style="display:none;">
-<div class="center"><iframe scrolling="no" frameborder="0" src="namespaceeq__ops_a9addef683b3d4a8c587510e4c994ec61_cgraph.svg" width="1634" height="1034"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="namespaceeq__ops_a9addef683b3d4a8c587510e4c994ec61_cgraph.svg" width="1634" height="1034"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 <div id="dynsection-8" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-8-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
 <div id="dynsection-8-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-8-content" class="dyncontent" style="display:none;">
-<div class="center"><iframe scrolling="no" frameborder="0" src="namespaceeq__ops_a9addef683b3d4a8c587510e4c994ec61_icgraph.svg" width="464" height="58"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="namespaceeq__ops_a9addef683b3d4a8c587510e4c994ec61_icgraph.svg" width="464" height="58"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 
 </div>
@@ -661,20 +683,22 @@ Variables</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="eq__ops_8f90_source.html#l05549">5549</a> of file <a class="el" href="eq__ops_8f90_source.html">eq_ops.f90</a>.</p>
+<p class="definition">Definition at line <a class="el" href="eq__ops_8f90_source.html#l05957">5957</a> of file <a class="el" href="eq__ops_8f90_source.html">eq_ops.f90</a>.</p>
 <div id="dynsection-9" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-9-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
 <div id="dynsection-9-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-9-content" class="dyncontent" style="display:none;">
-<div class="center"><iframe scrolling="no" frameborder="0" src="namespaceeq__ops_ac0a79893900631d25b170be0abd2c131_cgraph.svg" width="1618" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="namespaceeq__ops_ac0a79893900631d25b170be0abd2c131_cgraph.svg" width="1618" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 <div id="dynsection-10" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-10-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
 <div id="dynsection-10-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-10-content" class="dyncontent" style="display:none;">
-<div class="center"><iframe scrolling="no" frameborder="0" src="namespaceeq__ops_ac0a79893900631d25b170be0abd2c131_icgraph.svg" width="591" height="40"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="namespaceeq__ops_ac0a79893900631d25b170be0abd2c131_icgraph.svg" width="591" height="40"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 
 </div>
@@ -759,20 +783,22 @@ Variables</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="eq__ops_8f90_source.html#l05942">5942</a> of file <a class="el" href="eq__ops_8f90_source.html">eq_ops.f90</a>.</p>
+<p class="definition">Definition at line <a class="el" href="eq__ops_8f90_source.html#l06350">6350</a> of file <a class="el" href="eq__ops_8f90_source.html">eq_ops.f90</a>.</p>
 <div id="dynsection-11" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-11-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
 <div id="dynsection-11-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-11-content" class="dyncontent" style="display:none;">
-<div class="center"><iframe scrolling="no" frameborder="0" src="namespaceeq__ops_a8fae749abe55865d8135fef536a8e8f1_cgraph.svg" width="1132" height="320"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="namespaceeq__ops_a8fae749abe55865d8135fef536a8e8f1_cgraph.svg" width="1132" height="320"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 <div id="dynsection-12" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-12-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
 <div id="dynsection-12-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-12-content" class="dyncontent" style="display:none;">
-<div class="center"><iframe scrolling="no" frameborder="0" src="namespaceeq__ops_a8fae749abe55865d8135fef536a8e8f1_icgraph.svg" width="575" height="94"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="namespaceeq__ops_a8fae749abe55865d8135fef536a8e8f1_icgraph.svg" width="575" height="94"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 
 </div>
@@ -826,14 +852,16 @@ Variables</h2></td></tr>
 <div id="dynsection-13-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-13-content" class="dyncontent" style="display:none;">
-<div class="center"><iframe scrolling="no" frameborder="0" src="namespaceeq__ops_af0effe20188d46a44680c2648e4572e9_cgraph.svg" width="1347" height="687"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="namespaceeq__ops_af0effe20188d46a44680c2648e4572e9_cgraph.svg" width="1347" height="687"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 <div id="dynsection-14" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-14-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
 <div id="dynsection-14-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-14-content" class="dyncontent" style="display:none;">
-<div class="center"><iframe scrolling="no" frameborder="0" src="namespaceeq__ops_af0effe20188d46a44680c2648e4572e9_icgraph.svg" width="551" height="94"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="namespaceeq__ops_af0effe20188d46a44680c2648e4572e9_icgraph.svg" width="551" height="94"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 
 </div>
@@ -924,20 +952,22 @@ Variables</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="eq__ops_8f90_source.html#l05179">5179</a> of file <a class="el" href="eq__ops_8f90_source.html">eq_ops.f90</a>.</p>
+<p class="definition">Definition at line <a class="el" href="eq__ops_8f90_source.html#l05587">5587</a> of file <a class="el" href="eq__ops_8f90_source.html">eq_ops.f90</a>.</p>
 <div id="dynsection-15" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-15-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
 <div id="dynsection-15-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-15-content" class="dyncontent" style="display:none;">
-<div class="center"><iframe scrolling="no" frameborder="0" src="namespaceeq__ops_afabdf28e5c26ceb87e6eb8cf3809919d_cgraph.svg" width="1562" height="642"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="namespaceeq__ops_afabdf28e5c26ceb87e6eb8cf3809919d_cgraph.svg" width="1562" height="642"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 <div id="dynsection-16" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-16-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
 <div id="dynsection-16-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-16-content" class="dyncontent" style="display:none;">
-<div class="center"><iframe scrolling="no" frameborder="0" src="namespaceeq__ops_afabdf28e5c26ceb87e6eb8cf3809919d_icgraph.svg" width="543" height="94"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="namespaceeq__ops_afabdf28e5c26ceb87e6eb8cf3809919d_icgraph.svg" width="543" height="94"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 
 </div>
@@ -1011,20 +1041,22 @@ Variables</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="eq__ops_8f90_source.html#l05347">5347</a> of file <a class="el" href="eq__ops_8f90_source.html">eq_ops.f90</a>.</p>
+<p class="definition">Definition at line <a class="el" href="eq__ops_8f90_source.html#l05755">5755</a> of file <a class="el" href="eq__ops_8f90_source.html">eq_ops.f90</a>.</p>
 <div id="dynsection-17" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-17-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
 <div id="dynsection-17-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-17-content" class="dyncontent" style="display:none;">
-<div class="center"><iframe scrolling="no" frameborder="0" src="namespaceeq__ops_ad173efd111cb85c11bc2bc78a7555096_cgraph.svg" width="1634" height="726"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="namespaceeq__ops_ad173efd111cb85c11bc2bc78a7555096_cgraph.svg" width="1634" height="726"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 <div id="dynsection-18" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-18-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
 <div id="dynsection-18-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-18-content" class="dyncontent" style="display:none;">
-<div class="center"><iframe scrolling="no" frameborder="0" src="namespaceeq__ops_ad173efd111cb85c11bc2bc78a7555096_icgraph.svg" width="575" height="94"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="namespaceeq__ops_ad173efd111cb85c11bc2bc78a7555096_icgraph.svg" width="575" height="94"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 
 </div>
@@ -1047,20 +1079,22 @@ Variables</h2></td></tr>
 <p>Normalize input quantities. </p>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="namespaceeq__ops.html#a7cd38586e386e1bc684a327ebcc4c1de" title="Sets up normalization constants. ">calc_normalization_const()</a> </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="eq__ops_8f90_source.html#l05019">5019</a> of file <a class="el" href="eq__ops_8f90_source.html">eq_ops.f90</a>.</p>
+<p class="definition">Definition at line <a class="el" href="eq__ops_8f90_source.html#l05427">5427</a> of file <a class="el" href="eq__ops_8f90_source.html">eq_ops.f90</a>.</p>
 <div id="dynsection-19" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-19-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
 <div id="dynsection-19-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-19-content" class="dyncontent" style="display:none;">
-<div class="center"><iframe scrolling="no" frameborder="0" src="namespaceeq__ops_a1b4c764da73624722d7e76498a2b80a9_cgraph.svg" width="926" height="146"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="namespaceeq__ops_a1b4c764da73624722d7e76498a2b80a9_cgraph.svg" width="926" height="146"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 <div id="dynsection-20" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-20-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
 <div id="dynsection-20-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-20-content" class="dyncontent" style="display:none;">
-<div class="center"><iframe scrolling="no" frameborder="0" src="namespaceeq__ops_a1b4c764da73624722d7e76498a2b80a9_icgraph.svg" width="320" height="40"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="namespaceeq__ops_a1b4c764da73624722d7e76498a2b80a9_icgraph.svg" width="320" height="40"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 
 </div>
@@ -1109,20 +1143,22 @@ Variables</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="eq__ops_8f90_source.html#l06720">6720</a> of file <a class="el" href="eq__ops_8f90_source.html">eq_ops.f90</a>.</p>
+<p class="definition">Definition at line <a class="el" href="eq__ops_8f90_source.html#l07128">7128</a> of file <a class="el" href="eq__ops_8f90_source.html">eq_ops.f90</a>.</p>
 <div id="dynsection-21" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-21-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
 <div id="dynsection-21-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-21-content" class="dyncontent" style="display:none;">
-<div class="center"><iframe scrolling="no" frameborder="0" src="namespaceeq__ops_a8082c12510696bd8ffdd0deef41860c2_cgraph.svg" width="1124" height="302"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="namespaceeq__ops_a8082c12510696bd8ffdd0deef41860c2_cgraph.svg" width="1124" height="302"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 <div id="dynsection-22" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-22-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
 <div id="dynsection-22-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-22-content" class="dyncontent" style="display:none;">
-<div class="center"><iframe scrolling="no" frameborder="0" src="namespaceeq__ops_a8082c12510696bd8ffdd0deef41860c2_icgraph.svg" width="440" height="40"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="namespaceeq__ops_a8082c12510696bd8ffdd0deef41860c2_icgraph.svg" width="440" height="40"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 
 </div>
@@ -1164,20 +1200,22 @@ Variables</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="eq__ops_8f90_source.html#l06329">6329</a> of file <a class="el" href="eq__ops_8f90_source.html">eq_ops.f90</a>.</p>
+<p class="definition">Definition at line <a class="el" href="eq__ops_8f90_source.html#l06737">6737</a> of file <a class="el" href="eq__ops_8f90_source.html">eq_ops.f90</a>.</p>
 <div id="dynsection-23" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-23-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
 <div id="dynsection-23-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-23-content" class="dyncontent" style="display:none;">
-<div class="center"><iframe scrolling="no" frameborder="0" src="namespaceeq__ops_a003df1e1ab90dc6f586c3eed3dd067e8_cgraph.svg" width="1148" height="302"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="namespaceeq__ops_a003df1e1ab90dc6f586c3eed3dd067e8_cgraph.svg" width="1148" height="302"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 <div id="dynsection-24" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-24-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
 <div id="dynsection-24-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-24-content" class="dyncontent" style="display:none;">
-<div class="center"><iframe scrolling="no" frameborder="0" src="namespaceeq__ops_a003df1e1ab90dc6f586c3eed3dd067e8_icgraph.svg" width="464" height="40"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="namespaceeq__ops_a003df1e1ab90dc6f586c3eed3dd067e8_icgraph.svg" width="464" height="40"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 
 </div>
@@ -1219,20 +1257,22 @@ Variables</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="eq__ops_8f90_source.html#l06557">6557</a> of file <a class="el" href="eq__ops_8f90_source.html">eq_ops.f90</a>.</p>
+<p class="definition">Definition at line <a class="el" href="eq__ops_8f90_source.html#l06965">6965</a> of file <a class="el" href="eq__ops_8f90_source.html">eq_ops.f90</a>.</p>
 <div id="dynsection-25" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-25-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
 <div id="dynsection-25-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-25-content" class="dyncontent" style="display:none;">
-<div class="center"><iframe scrolling="no" frameborder="0" src="namespaceeq__ops_a9811c83477d9d85f7401fd7957a590fc_cgraph.svg" width="1124" height="302"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="namespaceeq__ops_a9811c83477d9d85f7401fd7957a590fc_cgraph.svg" width="1124" height="302"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 <div id="dynsection-26" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-26-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
 <div id="dynsection-26-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-26-content" class="dyncontent" style="display:none;">
-<div class="center"><iframe scrolling="no" frameborder="0" src="namespaceeq__ops_a9811c83477d9d85f7401fd7957a590fc_icgraph.svg" width="440" height="40"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="namespaceeq__ops_a9811c83477d9d85f7401fd7957a590fc_icgraph.svg" width="440" height="40"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 
 </div>
@@ -1285,20 +1325,22 @@ Variables</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="eq__ops_8f90_source.html#l06440">6440</a> of file <a class="el" href="eq__ops_8f90_source.html">eq_ops.f90</a>.</p>
+<p class="definition">Definition at line <a class="el" href="eq__ops_8f90_source.html#l06848">6848</a> of file <a class="el" href="eq__ops_8f90_source.html">eq_ops.f90</a>.</p>
 <div id="dynsection-27" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-27-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
 <div id="dynsection-27-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-27-content" class="dyncontent" style="display:none;">
-<div class="center"><iframe scrolling="no" frameborder="0" src="namespaceeq__ops_a05dcd4803b9c7845d3353614c9630c23_cgraph.svg" width="1140" height="248"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="namespaceeq__ops_a05dcd4803b9c7845d3353614c9630c23_cgraph.svg" width="1140" height="248"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 <div id="dynsection-28" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-28-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
 <div id="dynsection-28-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-28-content" class="dyncontent" style="display:none;">
-<div class="center"><iframe scrolling="no" frameborder="0" src="namespaceeq__ops_a05dcd4803b9c7845d3353614c9630c23_icgraph.svg" width="456" height="40"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="namespaceeq__ops_a05dcd4803b9c7845d3353614c9630c23_icgraph.svg" width="456" height="40"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 
 </div>
@@ -1340,20 +1382,22 @@ Variables</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="eq__ops_8f90_source.html#l06656">6656</a> of file <a class="el" href="eq__ops_8f90_source.html">eq_ops.f90</a>.</p>
+<p class="definition">Definition at line <a class="el" href="eq__ops_8f90_source.html#l07064">7064</a> of file <a class="el" href="eq__ops_8f90_source.html">eq_ops.f90</a>.</p>
 <div id="dynsection-29" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-29-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
 <div id="dynsection-29-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-29-content" class="dyncontent" style="display:none;">
-<div class="center"><iframe scrolling="no" frameborder="0" src="namespaceeq__ops_aef40d04e93f6a96576f8fe893fb086f8_cgraph.svg" width="1140" height="248"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="namespaceeq__ops_aef40d04e93f6a96576f8fe893fb086f8_cgraph.svg" width="1140" height="248"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 <div id="dynsection-30" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-30-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
 <div id="dynsection-30-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-30-content" class="dyncontent" style="display:none;">
-<div class="center"><iframe scrolling="no" frameborder="0" src="namespaceeq__ops_aef40d04e93f6a96576f8fe893fb086f8_icgraph.svg" width="456" height="40"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="namespaceeq__ops_aef40d04e93f6a96576f8fe893fb086f8_icgraph.svg" width="456" height="40"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 
 </div>
@@ -1409,20 +1453,22 @@ Variables</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="eq__ops_8f90_source.html#l06878">6878</a> of file <a class="el" href="eq__ops_8f90_source.html">eq_ops.f90</a>.</p>
+<p class="definition">Definition at line <a class="el" href="eq__ops_8f90_source.html#l07286">7286</a> of file <a class="el" href="eq__ops_8f90_source.html">eq_ops.f90</a>.</p>
 <div id="dynsection-31" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-31-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
 <div id="dynsection-31-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-31-content" class="dyncontent" style="display:none;">
-<div class="center"><iframe scrolling="no" frameborder="0" src="namespaceeq__ops_a38b723f6ed5d2e2772c9c3ad14d5ffd4_cgraph.svg" width="1108" height="302"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="namespaceeq__ops_a38b723f6ed5d2e2772c9c3ad14d5ffd4_cgraph.svg" width="1108" height="302"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 <div id="dynsection-32" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-32-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
 <div id="dynsection-32-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-32-content" class="dyncontent" style="display:none;">
-<div class="center"><iframe scrolling="no" frameborder="0" src="namespaceeq__ops_a38b723f6ed5d2e2772c9c3ad14d5ffd4_icgraph.svg" width="424" height="40"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="namespaceeq__ops_a38b723f6ed5d2e2772c9c3ad14d5ffd4_icgraph.svg" width="424" height="40"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 
 </div>
@@ -1471,20 +1517,22 @@ Variables</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="eq__ops_8f90_source.html#l06155">6155</a> of file <a class="el" href="eq__ops_8f90_source.html">eq_ops.f90</a>.</p>
+<p class="definition">Definition at line <a class="el" href="eq__ops_8f90_source.html#l06563">6563</a> of file <a class="el" href="eq__ops_8f90_source.html">eq_ops.f90</a>.</p>
 <div id="dynsection-33" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-33-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
 <div id="dynsection-33-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-33-content" class="dyncontent" style="display:none;">
-<div class="center"><iframe scrolling="no" frameborder="0" src="namespaceeq__ops_a1f5049c3e309fa23ee46fd116c9344f1_cgraph.svg" width="1132" height="302"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="namespaceeq__ops_a1f5049c3e309fa23ee46fd116c9344f1_cgraph.svg" width="1132" height="302"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 <div id="dynsection-34" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-34-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
 <div id="dynsection-34-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-34-content" class="dyncontent" style="display:none;">
-<div class="center"><iframe scrolling="no" frameborder="0" src="namespaceeq__ops_a1f5049c3e309fa23ee46fd116c9344f1_icgraph.svg" width="448" height="40"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="namespaceeq__ops_a1f5049c3e309fa23ee46fd116c9344f1_icgraph.svg" width="448" height="40"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 
 </div>
@@ -1497,7 +1545,7 @@ Variables</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">logical, public eq_ops::debug_calc_derived_q = .true.</td>
+          <td class="memname">logical, public eq_ops::debug_calc_derived_q = .false.</td>
         </tr>
       </table>
 </div><div class="memdoc">

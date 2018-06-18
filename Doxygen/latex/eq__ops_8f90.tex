@@ -45,6 +45,8 @@ integer function, public \hyperlink{namespaceeq__ops_af0effe20188d46a44680c2648e
 \begin{DoxyCompactList}\small\item\em Plots the flux quantities in the solution grid. \end{DoxyCompactList}\item 
 integer function, public \hyperlink{namespaceeq__ops_a087e08ce6d8ad381b5bac8fc51148d50}{eq\+\_\+ops\+::calc\+\_\+derived\+\_\+q} (grid\+\_\+eq, eq\+\_\+1, eq\+\_\+2)
 \begin{DoxyCompactList}\small\item\em Calculates derived equilibrium quantities system. \end{DoxyCompactList}\item 
+subroutine \hyperlink{eq__ops_8f90_a369b73b541213d572d7197e0d549c014}{calc\+\_\+derived\+\_\+de\+\_\+epar\+\_\+hel} (grid\+\_\+eq, eq\+\_\+1, Rchi, Zchi, de, D\+\_\+de, b\+\_\+n, b\+\_\+g)
+\item 
 integer function, public \hyperlink{namespaceeq__ops_a7cd38586e386e1bc684a327ebcc4c1de}{eq\+\_\+ops\+::calc\+\_\+normalization\+\_\+const} ()
 \begin{DoxyCompactList}\small\item\em Sets up normalization constants. \end{DoxyCompactList}\item 
 subroutine, public \hyperlink{namespaceeq__ops_a1b4c764da73624722d7e76498a2b80a9}{eq\+\_\+ops\+::normalize\+\_\+input} ()
@@ -78,9 +80,57 @@ integer function \hyperlink{namespaceeq__ops_a38b723f6ed5d2e2772c9c3ad14d5ffd4}{
 \subsection*{Variables}
 \begin{DoxyCompactItemize}
 \item 
-logical, public \hyperlink{namespaceeq__ops_a1b6609a8d8b427d9133bf323e732f209}{eq\+\_\+ops\+::debug\+\_\+calc\+\_\+derived\+\_\+q} = .true.
+logical, public \hyperlink{namespaceeq__ops_a1b6609a8d8b427d9133bf323e732f209}{eq\+\_\+ops\+::debug\+\_\+calc\+\_\+derived\+\_\+q} = .false.
 \begin{DoxyCompactList}\small\item\em plot debug information for \hyperlink{namespaceeq__ops_a087e08ce6d8ad381b5bac8fc51148d50}{calc\+\_\+derived\+\_\+q()} \end{DoxyCompactList}\item 
 logical, public \hyperlink{namespaceeq__ops_a45ba7f46fd439bbd73edfd1fd548b58e}{eq\+\_\+ops\+::debug\+\_\+j\+\_\+plot} = .false.
 \begin{DoxyCompactList}\small\item\em plot debug information for \hyperlink{namespaceeq__ops_afabdf28e5c26ceb87e6eb8cf3809919d}{j\+\_\+plot()} \end{DoxyCompactList}\item 
 logical, public \hyperlink{namespaceeq__ops_a07ca60790a262e20bc8632be1530970a}{eq\+\_\+ops\+::debug\+\_\+create\+\_\+vmec\+\_\+input} = .false.
 \begin{DoxyCompactList}\small\item\em plot debug information for \hyperlink{namespaceeq__ops_a9addef683b3d4a8c587510e4c994ec61}{create\+\_\+vmec\+\_\+input()} \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Function/\+Subroutine Documentation}
+\mbox{\Hypertarget{eq__ops_8f90_a369b73b541213d572d7197e0d549c014}\label{eq__ops_8f90_a369b73b541213d572d7197e0d549c014}} 
+\index{eq\+\_\+ops.\+f90@{eq\+\_\+ops.\+f90}!calc\+\_\+derived\+\_\+de\+\_\+epar\+\_\+hel@{calc\+\_\+derived\+\_\+de\+\_\+epar\+\_\+hel}}
+\index{calc\+\_\+derived\+\_\+de\+\_\+epar\+\_\+hel@{calc\+\_\+derived\+\_\+de\+\_\+epar\+\_\+hel}!eq\+\_\+ops.\+f90@{eq\+\_\+ops.\+f90}}
+\subsubsection{\texorpdfstring{calc\+\_\+derived\+\_\+de\+\_\+epar\+\_\+hel()}{calc\_derived\_de\_epar\_hel()}}
+{\footnotesize\ttfamily subroutine calc\+\_\+derived\+\_\+q\+::calc\+\_\+derived\+\_\+de\+\_\+epar\+\_\+hel (\begin{DoxyParamCaption}\item[{type(grid\+\_\+type), intent(in)}]{grid\+\_\+eq,  }\item[{type(\hyperlink{structeq__vars_1_1eq__1__type}{eq\+\_\+1\+\_\+type}), intent(in)}]{eq\+\_\+1,  }\item[{real(dp), dimension(\+:,\+:,0\+:), intent(in)}]{Rchi,  }\item[{real(dp), dimension(\+:,\+:,0\+:), intent(in)}]{Zchi,  }\item[{real(dp), dimension(\+:,\+:,\+:,\+:,\+:,\+:), intent(out)}]{de,  }\item[{real(dp), dimension(\+:,\+:,\+:,\+:,\+:), intent(out)}]{D\+\_\+de,  }\item[{real(dp), dimension(\+:,\+:,\+:,\+:), intent(out)}]{b\+\_\+n,  }\item[{real(dp), dimension(\+:,\+:,\+:,\+:), intent(out)}]{b\+\_\+g }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em grid\+\_\+eq} & equilibrium grid\\
+\hline
+\mbox{\tt in}  & {\em eq\+\_\+1} & flux equilibrium variables\\
+\hline
+\mbox{\tt in}  & {\em rchi} & chi and chi$^\wedge$2 derivatives of R\\
+\hline
+\mbox{\tt in}  & {\em zchi} & chi and chi$^\wedge$2 derivatives of Z\\
+\hline
+\mbox{\tt out}  & {\em de} & derivs of cov. unit vector in E (space,deriv.,unitvec,output)\\
+\hline
+\mbox{\tt out}  & {\em d\+\_\+de} & derivs of transf. matrix in E (space,deriv.,output)\\
+\hline
+\mbox{\tt out}  & {\em b\+\_\+n} & covariant Cylindrical components of normal basis vector\\
+\hline
+\mbox{\tt out}  & {\em b\+\_\+g} & covariant Cylindrical components of geodesic basis vector \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 4657 of file eq\+\_\+ops.\+f90.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{eq__ops_8f90_a369b73b541213d572d7197e0d549c014_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{eq__ops_8f90_a369b73b541213d572d7197e0d549c014_icgraph}
+\end{center}
+\end{figure}

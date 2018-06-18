@@ -78,7 +78,7 @@ integer function \hyperlink{namespaceeq__ops_a38b723f6ed5d2e2772c9c3ad14d5ffd4}{
 \subsection*{Variables}
 \begin{DoxyCompactItemize}
 \item 
-logical, public \hyperlink{namespaceeq__ops_a1b6609a8d8b427d9133bf323e732f209}{debug\+\_\+calc\+\_\+derived\+\_\+q} = .true.
+logical, public \hyperlink{namespaceeq__ops_a1b6609a8d8b427d9133bf323e732f209}{debug\+\_\+calc\+\_\+derived\+\_\+q} = .false.
 \begin{DoxyCompactList}\small\item\em plot debug information for \hyperlink{namespaceeq__ops_a087e08ce6d8ad381b5bac8fc51148d50}{calc\+\_\+derived\+\_\+q()} \end{DoxyCompactList}\item 
 logical, public \hyperlink{namespaceeq__ops_a45ba7f46fd439bbd73edfd1fd548b58e}{debug\+\_\+j\+\_\+plot} = .false.
 \begin{DoxyCompactList}\small\item\em plot debug information for \hyperlink{namespaceeq__ops_afabdf28e5c26ceb87e6eb8cf3809919d}{j\+\_\+plot()} \end{DoxyCompactList}\item 
@@ -135,7 +135,7 @@ ierr
 \end{DoxyParams}
 
 
-Definition at line 5076 of file eq\+\_\+ops.\+f90.
+Definition at line 5484 of file eq\+\_\+ops.\+f90.
 
 Here is the call graph for this function\+:\nopagebreak
 \begin{figure}[H]
@@ -172,6 +172,10 @@ Calculates derived equilibrium quantities system.
 Naive implementations of these quantities, with the exception of {\ttfamily S}, give numerically very unfavorable results, so special care must be taken in this procedure.
 
 This is an important issue as these derived equilbrium quantities are important building blocks of the perturbed potential energy, including the drivers of instabilities.
+
+The general formulas are derived under the first section, V\+M\+EC. For axisymmetric H\+E\+L\+E\+NA, however, simplified equations are possible and these are presented afterwards.
+
+\subsection*{V\+M\+EC }
 
 \subsubsection*{The shear }
 
@@ -242,9 +246,37 @@ $ -2 p' \int_{\theta_0}^\theta \mathcal{J} \kappa_g \text{d}{\theta} = \sigma\le
 
 and whether a direct, naive implementation of the parallel current from equation 3.\+26 of \cite{Weyens3D} agrees with the more accurate results used here\+:
 
-$\sigma = \frac{\partial B_\psi}{\partial \alpha} - \frac{\partial B_\alpha}{\partial \psi} - \mu_0 p' \mathcal{J} \frac{B_\alpha}{B_\theta}$ .
+$\mu_0 \sigma = \frac{\partial B_\psi}{\partial \alpha} - \frac{\partial B_\alpha}{\partial \psi} - \mu_0 p' \mathcal{J} \frac{B_\alpha}{B_\theta}$ .
 
 The reason why they are generally different is that this implementation relies on the cancellation of large terms.
+
+\subsection*{H\+E\+L\+E\+NA }
+
+\subsubsection*{The parallel current }
+
+As $B_\alpha = F\left(\psi\right)$ and $\vec{e}_{\alpha,\text{F}} = \vec{e}_{\phi,\text{H}}$, the naive expression for the shear becomes simply
+
+$\sigma = -F' - \mu_0 p' \frac{F}{B^2}$ ,
+
+which can be used like that.
+
+\subsubsection*{The shear }
+
+The calculate the local shear $S$ is looks like it is best to use equation 3.\+22 from \cite{Weyens3D} , just as in the V\+M\+EC case\+:
+
+As a test, however, equation 3.\+29 of \cite{Weyens3D} can be used in stead\+:
+
+$\mathcal{J}\left|\nabla \psi\right|^2 S + \mu_0 \mathcal{J}B^2 \sigma = - 2 \frac{F}{R} \left( \frac{Z_\theta}{R} + \frac{Z_\theta R_{\theta\theta} - R_\theta Z_{\theta\theta}}{R_\theta^2 + Z_\theta^2} \right)$.
+
+from which $\sigma$ can be obtained.
+
+\subsubsection*{The curvature }
+
+Also the curvature expressions can be simplified for axisymmetric situations. The result is given by
+
+$\kappa_n = \frac{q R}{F} \frac{Z_\theta \left( R_{\theta\theta} - q^2 R\right) - R_\theta Z_{\theta\theta}} {\left(R_\theta^2 + Z_\theta^2 + \left(q R\right)^2\right) \left( R_\theta^2 + Z_\theta^2 \right)} $
+
+$\kappa_g = q R \frac{R_\theta \left( 2 \left(R_\theta^2 + Z_\theta^2\right) + \left(qR\right)^2 \right) - R \left(R_\theta R_{\theta\theta} + Z_\theta Z_{\theta\theta}\right)} {\left(R_\theta^2 + Z_\theta^2 + \left(q R\right)^2\right)^2} $
 
 \begin{DoxyNote}{Note}
 
@@ -262,7 +294,6 @@ The reason why they are generally different is that this implementation relies o
 \item $\frac{\nabla \psi}{\left|\nabla\psi\right|^2} = -\frac{1}{Z_\theta^2 + R_\theta^2} \frac{q R}{F} \left( -Z_\theta , 0, R_\theta\right)_\text{C}$
 \item $\frac{\nabla \psi \times \vec{B}}{B^2} = \frac{q R^2}{R_\theta^2 + Z_\theta^2 + q^2 R^2} \left(-R_\theta, -\frac{R_\theta^2 + Z_\theta^2}{q}, -Z_\theta\right)_\text{C}$
 \end{DoxyItemize}
-\item The expression for $\mathcal{J}\left|\nabla \psi\right|^2 S + \mu_0 \mathcal{J}B^2 \sigma$ for H\+E\+L\+E\+NA is $- 2 \frac{F}{R} \left( \frac{Z_\theta}{R} + \frac{Z_\theta R_{\theta\theta} - R_\theta Z_{\theta\theta}}{R_\theta^2 + Z_\theta^2} \right)$.
 \end{DoxyEnumerate}
 \end{DoxyNote}
 
@@ -276,16 +307,18 @@ The reason why they are generally different is that this implementation relies o
 \end{DoxyParams}
 
 
-Definition at line 4186 of file eq\+\_\+ops.\+f90.
+Definition at line 4234 of file eq\+\_\+ops.\+f90.
 
-Here is the call graph for this function\+:\nopagebreak
+Here is the call graph for this function\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{namespaceeq__ops_a087e08ce6d8ad381b5bac8fc51148d50_cgraph}
 \end{center}
 \end{figure}
-Here is the caller graph for this function\+:\nopagebreak
+Here is the caller graph for this function\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -325,9 +358,10 @@ ierr
 \end{DoxyParams}
 
 
-Definition at line 6077 of file eq\+\_\+ops.\+f90.
+Definition at line 6485 of file eq\+\_\+ops.\+f90.
 
-Here is the caller graph for this function\+:\nopagebreak
+Here is the caller graph for this function\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -381,16 +415,18 @@ ierr
 \end{DoxyReturn}
 
 
-Definition at line 4781 of file eq\+\_\+ops.\+f90.
+Definition at line 5189 of file eq\+\_\+ops.\+f90.
 
-Here is the call graph for this function\+:\nopagebreak
+Here is the call graph for this function\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{namespaceeq__ops_a7cd38586e386e1bc684a327ebcc4c1de_cgraph}
 \end{center}
 \end{figure}
-Here is the caller graph for this function\+:\nopagebreak
+Here is the caller graph for this function\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -438,14 +474,16 @@ Meaning of the indices of {\ttfamily B\+\_\+F}, {\ttfamily B\+\_\+\+F\+\_\+dum\+
 
 Definition at line 753 of file eq\+\_\+ops.\+f90.
 
-Here is the call graph for this function\+:\nopagebreak
+Here is the call graph for this function\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{namespaceeq__ops_a9addef683b3d4a8c587510e4c994ec61_cgraph}
 \end{center}
 \end{figure}
-Here is the caller graph for this function\+:\nopagebreak
+Here is the caller graph for this function\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -487,16 +525,18 @@ ierr
 \end{DoxyParams}
 
 
-Definition at line 5549 of file eq\+\_\+ops.\+f90.
+Definition at line 5957 of file eq\+\_\+ops.\+f90.
 
-Here is the call graph for this function\+:\nopagebreak
+Here is the call graph for this function\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{namespaceeq__ops_ac0a79893900631d25b170be0abd2c131_cgraph}
 \end{center}
 \end{figure}
-Here is the caller graph for this function\+:\nopagebreak
+Here is the caller graph for this function\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -562,16 +602,18 @@ ierr
 \end{DoxyParams}
 
 
-Definition at line 5942 of file eq\+\_\+ops.\+f90.
+Definition at line 6350 of file eq\+\_\+ops.\+f90.
 
-Here is the call graph for this function\+:\nopagebreak
+Here is the call graph for this function\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{namespaceeq__ops_a8fae749abe55865d8135fef536a8e8f1_cgraph}
 \end{center}
 \end{figure}
-Here is the caller graph for this function\+:\nopagebreak
+Here is the caller graph for this function\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -611,14 +653,16 @@ ierr
 
 Definition at line 3757 of file eq\+\_\+ops.\+f90.
 
-Here is the call graph for this function\+:\nopagebreak
+Here is the call graph for this function\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{namespaceeq__ops_af0effe20188d46a44680c2648e4572e9_cgraph}
 \end{center}
 \end{figure}
-Here is the caller graph for this function\+:\nopagebreak
+Here is the caller graph for this function\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -668,16 +712,18 @@ ierr
 \end{DoxyParams}
 
 
-Definition at line 5179 of file eq\+\_\+ops.\+f90.
+Definition at line 5587 of file eq\+\_\+ops.\+f90.
 
-Here is the call graph for this function\+:\nopagebreak
+Here is the call graph for this function\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{namespaceeq__ops_afabdf28e5c26ceb87e6eb8cf3809919d_cgraph}
 \end{center}
 \end{figure}
-Here is the caller graph for this function\+:\nopagebreak
+Here is the caller graph for this function\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -727,16 +773,18 @@ ierr
 \end{DoxyParams}
 
 
-Definition at line 5347 of file eq\+\_\+ops.\+f90.
+Definition at line 5755 of file eq\+\_\+ops.\+f90.
 
-Here is the call graph for this function\+:\nopagebreak
+Here is the call graph for this function\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{namespaceeq__ops_ad173efd111cb85c11bc2bc78a7555096_cgraph}
 \end{center}
 \end{figure}
-Here is the caller graph for this function\+:\nopagebreak
+Here is the caller graph for this function\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -758,16 +806,18 @@ Normalize input quantities.
 \end{DoxySeeAlso}
 
 
-Definition at line 5019 of file eq\+\_\+ops.\+f90.
+Definition at line 5427 of file eq\+\_\+ops.\+f90.
 
-Here is the call graph for this function\+:\nopagebreak
+Here is the call graph for this function\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{namespaceeq__ops_a1b4c764da73624722d7e76498a2b80a9_cgraph}
 \end{center}
 \end{figure}
-Here is the caller graph for this function\+:\nopagebreak
+Here is the caller graph for this function\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -801,16 +851,18 @@ ierr
 \end{DoxyParams}
 
 
-Definition at line 6720 of file eq\+\_\+ops.\+f90.
+Definition at line 7128 of file eq\+\_\+ops.\+f90.
 
-Here is the call graph for this function\+:\nopagebreak
+Here is the call graph for this function\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{namespaceeq__ops_a8082c12510696bd8ffdd0deef41860c2_cgraph}
 \end{center}
 \end{figure}
-Here is the caller graph for this function\+:\nopagebreak
+Here is the caller graph for this function\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -842,16 +894,18 @@ ierr
 \end{DoxyParams}
 
 
-Definition at line 6329 of file eq\+\_\+ops.\+f90.
+Definition at line 6737 of file eq\+\_\+ops.\+f90.
 
-Here is the call graph for this function\+:\nopagebreak
+Here is the call graph for this function\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{namespaceeq__ops_a003df1e1ab90dc6f586c3eed3dd067e8_cgraph}
 \end{center}
 \end{figure}
-Here is the caller graph for this function\+:\nopagebreak
+Here is the caller graph for this function\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -883,16 +937,18 @@ ierr
 \end{DoxyParams}
 
 
-Definition at line 6557 of file eq\+\_\+ops.\+f90.
+Definition at line 6965 of file eq\+\_\+ops.\+f90.
 
-Here is the call graph for this function\+:\nopagebreak
+Here is the call graph for this function\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{namespaceeq__ops_a9811c83477d9d85f7401fd7957a590fc_cgraph}
 \end{center}
 \end{figure}
-Here is the caller graph for this function\+:\nopagebreak
+Here is the caller graph for this function\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -932,16 +988,18 @@ ierr
 \end{DoxyParams}
 
 
-Definition at line 6440 of file eq\+\_\+ops.\+f90.
+Definition at line 6848 of file eq\+\_\+ops.\+f90.
 
-Here is the call graph for this function\+:\nopagebreak
+Here is the call graph for this function\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{namespaceeq__ops_a05dcd4803b9c7845d3353614c9630c23_cgraph}
 \end{center}
 \end{figure}
-Here is the caller graph for this function\+:\nopagebreak
+Here is the caller graph for this function\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -973,16 +1031,18 @@ ierr
 \end{DoxyParams}
 
 
-Definition at line 6656 of file eq\+\_\+ops.\+f90.
+Definition at line 7064 of file eq\+\_\+ops.\+f90.
 
-Here is the call graph for this function\+:\nopagebreak
+Here is the call graph for this function\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{namespaceeq__ops_aef40d04e93f6a96576f8fe893fb086f8_cgraph}
 \end{center}
 \end{figure}
-Here is the caller graph for this function\+:\nopagebreak
+Here is the caller graph for this function\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -1018,16 +1078,18 @@ ierr
 \end{DoxyParams}
 
 
-Definition at line 6878 of file eq\+\_\+ops.\+f90.
+Definition at line 7286 of file eq\+\_\+ops.\+f90.
 
-Here is the call graph for this function\+:\nopagebreak
+Here is the call graph for this function\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{namespaceeq__ops_a38b723f6ed5d2e2772c9c3ad14d5ffd4_cgraph}
 \end{center}
 \end{figure}
-Here is the caller graph for this function\+:\nopagebreak
+Here is the caller graph for this function\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -1061,16 +1123,18 @@ ierr
 \end{DoxyParams}
 
 
-Definition at line 6155 of file eq\+\_\+ops.\+f90.
+Definition at line 6563 of file eq\+\_\+ops.\+f90.
 
-Here is the call graph for this function\+:\nopagebreak
+Here is the call graph for this function\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{namespaceeq__ops_a1f5049c3e309fa23ee46fd116c9344f1_cgraph}
 \end{center}
 \end{figure}
-Here is the caller graph for this function\+:\nopagebreak
+Here is the caller graph for this function\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -1084,7 +1148,7 @@ Here is the caller graph for this function\+:\nopagebreak
 \index{eq\+\_\+ops@{eq\+\_\+ops}!debug\+\_\+calc\+\_\+derived\+\_\+q@{debug\+\_\+calc\+\_\+derived\+\_\+q}}
 \index{debug\+\_\+calc\+\_\+derived\+\_\+q@{debug\+\_\+calc\+\_\+derived\+\_\+q}!eq\+\_\+ops@{eq\+\_\+ops}}
 \subsubsection{\texorpdfstring{debug\+\_\+calc\+\_\+derived\+\_\+q}{debug\_calc\_derived\_q}}
-{\footnotesize\ttfamily logical, public eq\+\_\+ops\+::debug\+\_\+calc\+\_\+derived\+\_\+q = .true.}
+{\footnotesize\ttfamily logical, public eq\+\_\+ops\+::debug\+\_\+calc\+\_\+derived\+\_\+q = .false.}
 
 
 

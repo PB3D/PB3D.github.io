@@ -21,7 +21,7 @@ var searchData=
   ['setup_5flim_5fvals',['setup_lim_vals',['../num__utilities_8f90.html#a41f0ec23e08348e7498587997f483a00',1,'num_utilities.f90']]],
   ['setup_5flocal_5fblock',['setup_local_block',['../SLEPC__utilities_8f90.html#a711d6be49d3b1542ee3375bceb5b4e6d',1,'SLEPC_utilities.f90']]],
   ['setup_5fmats',['setup_mats',['../namespaceslepc__ops.html#aac8202cb74cbb06013eb73f1fa0c3118',1,'slepc_ops']]],
-  ['setup_5fmodes',['setup_modes',['../namespacex__ops.html#a504451aabcab7d6f0fa59feae08ef8dd',1,'x_ops']]],
+  ['setup_5fmodes',['setup_modes',['../namespacex__ops.html#a640d64aeae8a574eb05f164c1bdad3bd',1,'x_ops']]],
   ['setup_5fout_5fgrids',['setup_out_grids',['../namespacedriver__post.html#a3438685c5fb7302f756c368fb5f940ee',1,'driver_post']]],
   ['setup_5fpar_5fid',['setup_par_id',['../namespacepb3d__utilities.html#ad047cd7b197aae821e2565933faccfa3',1,'pb3d_utilities']]],
   ['setup_5frich_5fid',['setup_rich_id',['../namespacepb3d__utilities.html#ab461e756a85b3c6e8fa1ccaa6556c5b0',1,'pb3d_utilities']]],

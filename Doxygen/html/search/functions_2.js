@@ -8,6 +8,7 @@ var searchData=
   ['calc_5faux_5futilities',['calc_aux_utilities',['../namespacenum__utilities.html#af461ae4c95a7a45da875dcf311e323f5',1,'num_utilities']]],
   ['calc_5fcoeff_5ffin_5fdiff',['calc_coeff_fin_diff',['../namespacenum__utilities.html#a4dffe3beba7165dd17cff19a99a9e2ac',1,'num_utilities']]],
   ['calc_5fd2_5fsmooth',['calc_d2_smooth',['../namespacenum__utilities.html#ab4c91a6478c4dd6f519f8ccbccc4094f',1,'num_utilities']]],
+  ['calc_5fderived_5fde_5fepar_5fhel',['calc_derived_de_epar_hel',['../eq__ops_8f90.html#a369b73b541213d572d7197e0d549c014',1,'eq_ops.f90']]],
   ['calc_5fderived_5fq',['calc_derived_q',['../namespaceeq__ops.html#a087e08ce6d8ad381b5bac8fc51148d50',1,'eq_ops']]],
   ['calc_5fderivs_5f1d_5fid',['calc_derivs_1d_id',['../namespacenum__utilities.html#af2e9ffd7ce2f9391bf8b6f1c344fabca',1,'num_utilities']]],
   ['calc_5fdet_5f0d',['calc_det_0d',['../interfacenum__utilities_1_1calc__det.html#a2e4cb14f30a1269383252f02dd561523',1,'num_utilities::calc_det']]],
