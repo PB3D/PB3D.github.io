@@ -64,7 +64,46 @@ write(nmap,8) RAXIS, B0
 \end{DoxyCode}
  in the subroutine {\ttfamily mapping} and recompile and re-\/run H\+E\+L\+E\+NA.
 \end{DoxyNote}
-\hypertarget{page_tutorial_tutorial_inputs}{}\section{Setting Up the Input File}\label{page_tutorial_tutorial_inputs}
+\hypertarget{page_tutorial_tutorial_test_eq}{}\section{Checking the equilibrium (optional)}\label{page_tutorial_tutorial_test_eq}
+It is always important that the equilibrium has been properly calculated, well-\/converged, etc.
+
+It is possible to use P\+B3D to check this. This will be quickly described in this optional section.
+
+The checks described below are only possible with the code compiled with the debug flag on (see \hyperlink{page_installation}{Installation}). Using the debug version, the tests can be triggered using the {\ttfamily --test} option when running P\+B3D (or P\+O\+ST), and using the interactive user interface.
+
+They generally output H\+D\+F5 files that can be read with Para\+View or Vis\+It to check the difference between two plots. After having a look in the code (search for {\ttfamily ltest}), this should be self-\/explanatory.
+
+\begin{DoxyNote}{Note}
+Most of the checks are only useful for developers. However, the tests on {\ttfamily B\+\_\+F} and on the pressure balance consistency are vital.
+\end{DoxyNote}
+\hypertarget{page_tutorial_tutorial_test_eq_tab}{}
+\tabulinesep=1mm
+\begin{longtabu} spread 0pt [c]{*{2}{|X[-1]}|}
+\caption{Table 1. the most important tests}\label{page_tutorial_tutorial_test_eq_tab}\\
+\hline
+\rowcolor{\tableheadbgcolor}\textbf{ tests }&\textbf{ purpose   }\\\cline{1-2}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\rowcolor{\tableheadbgcolor}\textbf{ tests }&\textbf{ purpose   }\\\cline{1-2}
+\endhead
+calculation of {\ttfamily g\+\_\+V} &Check whether equilibrium metric coefficients calculated for V\+M\+EC equilibria through application of transformation matrices match with a direct implementation of the V\+M\+EC metric coefficients. Note that the reason why the transformation matrices are used, is that derivatives can be easily calculated as well, with high precision.   \\\cline{1-2}
+calculation of {\ttfamily jac\+\_\+V} &Similar to the test on the calculation of {\ttfamily g\+\_\+V}, but this time for the Jacobian of V\+M\+EC coordinates.   \\\cline{1-2}
+consistency of H\+E\+L\+E\+NA metric factors &Check whether the metric factors returned by H\+E\+L\+E\+NA are consistent with the ones calculated from the flux quantities, $R$ and $Z$. Basically, this is a measure for the accuracy with which the pressure balance is satisfied.   \\\cline{1-2}
+harmonic content of H\+E\+L\+E\+NA output &Analyze harmonic content of H\+E\+L\+E\+NA variables.   \\\cline{1-2}
+calculation of {\ttfamily D1 D2 h\+\_\+H} &Check whether the cross-\/derivatives are correctly and accurately calculated.   \\\cline{1-2}
+calculation of {\ttfamily T\+\_\+\+EF} &Check is $\mathcal{T}_\text{E}^\text{F}$ complies with the (unpublished) theory.   \\\cline{1-2}
+calculation of {\ttfamily jac\+\_\+F} &Similar to the test on the calculation of {\ttfamily jac\+\_\+V}, but this time for the Jacobian of Flux coordinates.   \\\cline{1-2}
+calculation of {\ttfamily B\+\_\+F} &Similar to the test on the calculation of {\ttfamily jac\+\_\+F}, but this time for the covariant components and magnitude of the magnetic field in Flux coordinates.   \\\cline{1-2}
+consistency of pressure balance &Check how well the pressure balance is satisfied. This is a very crucial requirement for the correct calculation of stability\+: If the pressure balance is not satisfied up to high precision, there is not much for P\+B3D to do.   \\\cline{1-2}
+calculation of {\ttfamily DU} &Check how well the poloidal derivative of the geodesical component of the minimizing perturbation, $U$, is calculated by comparing it to the numerical derivative.   \\\cline{1-2}
+\end{longtabu}
+
+
+For the specific case of V\+M\+EC equilibria, finally, there is the additional {\ttfamily --plot\+\_\+\+V\+M\+E\+C\+\_\+modes} option that produces outputs of the harmonics of the different quantities\+: $R$, $Z$, $\lambda$, $\mathcal{J}$ and $\vec{B}$.
+
+It is very important that these are well-\/converged, as the internal consistency depends strongly on this. Therefore, if this is not the case, be prepared to receive unaccurate stability results.\hypertarget{page_tutorial_tutorial_inputs}{}\section{Setting Up the Input File}\label{page_tutorial_tutorial_inputs}
 Now that we have the equilibrium files, it is time to have a look at the input file.
 
 

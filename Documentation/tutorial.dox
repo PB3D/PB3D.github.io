@@ -58,6 +58,63 @@
     \code write(nmap,8) RAXIS, B0 \endcode
     in the subroutine \c mapping and recompile and re-run HELENA.
 
+
+
+    \section tutorial_test_eq Checking the equilibrium (optional)
+    It is always important that the equilibrium has been properly calculated, well-converged, etc.
+
+    It is possible to use PB3D to check this. This will be quickly described in this optional section.
+    
+    The checks described below are only possible with the code compiled with the debug flag on (see \ref page_installation).
+    Using the debug version, the tests can be triggered using the \c --test option when running PB3D (or POST), and using the interactive user interface.
+
+    They generally output HDF5 files that can be read with ParaView or VisIt to check the difference between two plots.
+    After having a look in the code (search for \c ltest), this should be self-explanatory.
+
+    \note Most of the checks are only useful for developers. However, the tests on \c B_F and on the pressure balance consistency are vital.
+    
+    <table>
+    <caption id="tutorial_test_eq_tab">Table 1. the most important tests</caption>
+    <tr>
+        <th> tests </th><th> purpose </th>
+    </tr>
+    <tr>
+        <td> calculation of \c g_V </td><td> Check whether equilibrium metric coefficients calculated for VMEC equilibria through application of transformation matrices match with a direct implementation of the VMEC metric coefficients. Note that the reason why the transformation matrices are used, is that derivatives can be easily calculated as well, with high precision. </td>
+    </tr>
+    <tr>
+        <td> calculation of \c jac_V </td><td> Similar to the test on the calculation of \c g_V, but this time for the Jacobian of VMEC coordinates. </td>
+    </tr>
+    <tr>
+        <td> consistency of HELENA metric factors </td><td> Check whether the metric factors returned by HELENA are consistent with the ones calculated from the flux quantities, \f$R\f$ and \f$Z\f$. Basically, this is a measure for the accuracy with which the pressure balance is satisfied. </td>
+    </tr>
+    <tr>
+        <td> harmonic content of HELENA output </td><td> Analyze harmonic content of HELENA variables. </td>
+    </tr>
+    <tr>
+        <td> calculation of <tt>D1 D2 h_H</tt> </td><td> Check whether the cross-derivatives are correctly and accurately calculated. </td>
+    </tr>
+    <tr>
+        <td> calculation of \c T_EF </td><td> Check is \f$\mathcal{T}_\text{E}^\text{F}\f$ complies with the (unpublished) theory. </td>
+    </tr>
+    <tr>
+        <td> calculation of \c jac_F </td><td> Similar to the test on the calculation of \c jac_V, but this time for the Jacobian of Flux coordinates. </td>
+    </tr>
+    <tr>
+        <td> calculation of \c B_F </td><td> Similar to the test on the calculation of \c jac_F, but this time for the covariant components and magnitude of the magnetic field in Flux coordinates. </td>
+    </tr>
+    <tr>
+        <td> consistency of pressure balance </td><td> Check how well the pressure balance is satisfied. This is a very crucial requirement for the correct calculation of stability: If the pressure balance is not satisfied up to high precision, there is not much for PB3D to do. </td>
+    </tr>
+    <tr>
+        <td> calculation of \c DU </td><td> Check how well the poloidal derivative of the geodesical component of the minimizing perturbation, \f$U\f$, is calculated by comparing it to the numerical derivative. </td>
+    </tr>
+    </table>
+    
+
+    For the specific case of VMEC equilibria, finally, there is the additional \c --plot_VMEC_modes option that produces outputs of the harmonics of the different quantities: \f$R\f$, \f$Z\f$, \f$\lambda\f$, \f$\mathcal{J}\f$ and \f$\vec{B}\f$.
+
+    It is very important that these are well-converged, as the internal consistency depends strongly on this. Therefore, if this is not the case, be prepared to receive unaccurate stability results.
+
     
 
     \section tutorial_inputs Setting Up the Input File
