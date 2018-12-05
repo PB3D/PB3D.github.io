@@ -47,6 +47,12 @@
     <tr>
         <td>Changing input does not work for Richardson extrapolation</td> <td> You cannot change the inputs as Richardson extrapolation depends on having these constant (with the exception of the number of poins in the parallel integrals, but this is done internally in PB3D). The important exception to this fact, however, is that you can change some of the solution grid parameters, such as \c n_r_sol (see \ref page_inputs).  </td>
     </tr>
+    <tr>
+        <td>The code has not been tested satisfactorily for decreasing normal coordinate.</td> <td> When the normal coordinate is decreasing (but still monotonous), the code should be able to handle this. However, a quick test gave some problems, which have to be debuged. An easy workaround is to just run the equilibrium solver again with inverted fields and currents.  </td>
+    </tr>
+    <tr>
+        <td>The code has to be adapted for reversed-shear regions still.</td> <td> When there are reversed-shear regions, the routines that calculate the resonant flux surfaces, such as \c calc_res_surf() need to be extended. If this is not done, there will be problems, mostly for \c X_style 2 (fast), and especially for \c X_grid_style 3 (enriched). </td>
+    </tr>
     </table>
     
     
