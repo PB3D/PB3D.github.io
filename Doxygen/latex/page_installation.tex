@@ -23,6 +23,24 @@ P\+B3D is written in Fortran, and makes use of multiple numerical libraries\+:
 \begin{DoxyItemize}
 \item for linear algebra of large, sparse matrices
 \item can reach $\sim \mathcal{O} (n)$ complexity
+\item Minimal installation instructions\+:
+\begin{DoxyEnumerate}
+\item Configure P\+E\+T\+Sc using {\ttfamily ./configure P\+E\+T\+S\+C\+\_\+\+A\+R\+CH=complex C\+O\+P\+T\+F\+L\+A\+GS=-\/\+O3 C\+X\+X\+O\+P\+T\+F\+L\+A\+GS=-\/\+O3 F\+O\+P\+T\+F\+L\+A\+GS=-\/\+O3 \textbackslash{}}~\newline
+ {\ttfamily -\/-\/with-\/scalar-\/type=complex \textbackslash{}}~\newline
+ {\ttfamily -\/-\/download-\/metis \textbackslash{}}~\newline
+ {\ttfamily -\/-\/download-\/mumps \textbackslash{}}~\newline
+ {\ttfamily -\/-\/download-\/parmetis \textbackslash{}}~\newline
+ {\ttfamily -\/-\/with-\/scalapack-\/lib=\char`\"{}-\/\+L\mbox{[}\+S\+C\+A\+L\+A\+P\+C\+K\+D\+I\+R\mbox{]} -\/lscalapack\char`\"{} \textbackslash{}}~\newline
+ {\ttfamily -\/-\/with-\/valgrind-\/dir=/usr \textbackslash{}}~\newline
+ {\ttfamily -\/-\/with-\/debugging=no \textbackslash{}}~\newline
+ {\ttfamily -\/-\/with-\/fortran-\/kernels=1}~\newline
+ (If you want debug, remove {\ttfamily -\/-\/with-\/debugging=no}, {\ttfamily -\/-\/with-\/fortran-\/kernels=1}, C\+O\+P\+T\+S\+F\+L\+A\+GS, C\+X\+X\+O\+P\+T\+F\+L\+A\+GS and F\+O\+P\+T\+F\+L\+A\+GS, and change P\+E\+T\+S\+C\+\_\+\+A\+R\+CH to {\ttfamily debug-\/complex}.)~\newline
+ (If you use a different H\+D\+F5, add {\ttfamily -\/-\/with-\/hdf5-\/dir=\mbox{[}H\+D\+F5\+D\+IR\mbox{]}}.)
+\item follow instructions to do makes and tests.
+\item Set global variables {\ttfamily export S\+L\+E\+P\+C\+\_\+\+D\+IR=\mbox{[}S\+L\+E\+PC D\+IR\mbox{]}}, {\ttfamily export P\+E\+T\+S\+C\+\_\+\+D\+IR=\mbox{[}P\+E\+T\+S\+C\+\_\+\+D\+IR\mbox{]}} and {\ttfamily export P\+E\+T\+S\+C\+\_\+\+A\+R\+CH=\mbox{[}debug-\/\mbox{]}complex} (depending on whether it is debug or not).
+\item Configure S\+L\+E\+Pc using {\ttfamily ./configure}
+\item follow instructions to do makes and tests
+\end{DoxyEnumerate}
 \end{DoxyItemize}
 \item \href{http://portal.nersc.gov/project/sparse/strumpack/}{\tt Strum\+Pack}
 \begin{DoxyItemize}
@@ -34,6 +52,31 @@ P\+B3D is written in Fortran, and makes use of multiple numerical libraries\+:
 \item part of Stellopt suite, which contains V\+M\+EC
 \item provides routines to read V\+M\+EC output data
 \end{DoxyItemize}
+\item \href{https://w3.pppl.gov/ntcc/PSPLINE/}{\tt pspline}
+\begin{DoxyItemize}
+\item Princeton Spline and Hermite Cubic Interpolation Routines
+\item Minimal installation instructions\+:
+\begin{DoxyEnumerate}
+\item Export {\ttfamily F\+F\+L\+A\+GS} en {\ttfamily C\+F\+L\+A\+GS} if you want to optimize\+:
+\begin{DoxyItemize}
+\item copy {\ttfamily share/\+Make.\+overwrite.\+sample} to {\ttfamily share/\+Make.\+overwrite}
+\item Run the gmake below and note the flags, then edit these and put them in {\ttfamily share/\+Make.\+overwrite}
+\item if G\+CC\+:
+\begin{DoxyItemize}
+\item {\ttfamily F\+F\+L\+A\+GS = -\/c -\/\+O3 -\/m64 -\/fno-\/range-\/check -\/fdollar-\/ok -\/cpp ; export F\+F\+L\+A\+GS}
+\item {\ttfamily C\+F\+L\+A\+GS = -\/c -\/\+O3 -\/m64 ; export C\+F\+L\+A\+GS}
+\item {\ttfamily C\+X\+X\+F\+L\+A\+GS = -\/c -\/\+O3 -\/m64 ; export C\+X\+X\+F\+L\+A\+GS}
+\end{DoxyItemize}
+\item if Intel\+:
+\begin{DoxyItemize}
+\item {\ttfamily F\+F\+L\+A\+GS = -\/c -\/\+O3 -\/nowarn -\/ftz -\/auto-\/scalar -\/traceback -\/align dcommons}
+\item {\ttfamily M\+P\+I\+\_\+\+F\+F\+L\+A\+GS = -\/c -\/\+O3 -\/nowarn -\/ftz -\/traceback -\/align dcommons -\/auto-\/scalar} (possibly add FC=mpiifort, {\ttfamily C\+XX=mpicpc}, {\ttfamily CC=mpiicc} if on a cluster)
+\end{DoxyItemize}
+\end{DoxyItemize}
+\item Compile with {\ttfamily gmake N\+E\+T\+C\+D\+F\+\_\+\+D\+IR= F\+O\+R\+T\+R\+A\+N\+\_\+\+V\+A\+R\+I\+A\+NT=\mbox{[}V\+A\+R\+I\+A\+NT\mbox{]}} with {\ttfamily \mbox{[}V\+A\+R\+I\+A\+NT\mbox{]}} either {\ttfamily G\+CC} or {\ttfamily Intel} (add {\ttfamily D\+E\+B\+UG=1} and remove the F\+L\+A\+GS if debug wanted). Possibly also add {\ttfamily O\+BJ=\$\mbox{[}C\+O\+M\+P\+\_\+\+D\+IR\mbox{]}} if on a cluster, with {\ttfamily \mbox{[}C\+O\+M\+P\+\_\+\+D\+IR\mbox{]}} the directory where to put the resulting library.
+\item Run tests from {\ttfamily R\+E\+A\+D\+M\+E\+\_\+\+Pspline}.
+\end{DoxyEnumerate}
+\end{DoxyItemize}
 \end{DoxyItemize}
 
 They should probably be installed in this order. On linux distributions such as Ubuntu, they may be available as packages.
@@ -43,10 +86,6 @@ Furthermore, P\+B3D comes bundled with some other, smaller libraries\+:
 \item \href{http://www.netlib.org/fftpack/}{\tt fftpack}
 \begin{DoxyItemize}
 \item to calculate the fast Fourier transform
-\end{DoxyItemize}
-\item \href{https://github.com/jacobwilliams/bspline-fortran}{\tt bspline-\/fortran}
-\begin{DoxyItemize}
-\item multidimensional b-\/spline interpolation of data on a regular grid
 \end{DoxyItemize}
 \item \href{http://foul.sourceforge.net/}{\tt foul}
 \begin{DoxyItemize}

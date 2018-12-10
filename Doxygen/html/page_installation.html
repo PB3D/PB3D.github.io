@@ -101,6 +101,24 @@ Introduction</h1>
 <li><a href="https://www.mcs.anl.gov/petsc/">PETSc</a> / <a href="http://slepc.upv.es/">SLEPc</a><ul>
 <li>for linear algebra of large, sparse matrices</li>
 <li>can reach \(\sim \mathcal{O} (n)\) complexity</li>
+<li>Minimal installation instructions:<ol type="1">
+<li>Configure PETSc using <code>./configure PETSC_ARCH=complex COPTFLAGS=-O3 CXXOPTFLAGS=-O3 FOPTFLAGS=-O3 \</code><br />
+ <code>--with-scalar-type=complex \</code><br />
+ <code>--download-metis \</code><br />
+ <code>--download-mumps \</code><br />
+ <code>--download-parmetis \</code><br />
+ <code>--with-scalapack-lib="-L[SCALAPCKDIR] -lscalapack" \</code><br />
+ <code>--with-valgrind-dir=/usr \</code><br />
+ <code>--with-debugging=no \</code><br />
+ <code>--with-fortran-kernels=1</code><br />
+ (If you want debug, remove <code>--with-debugging=no</code>, <code>--with-fortran-kernels=1</code>, COPTSFLAGS, CXXOPTFLAGS and FOPTFLAGS, and change PETSC_ARCH to <code>debug-complex</code>.)<br />
+ (If you use a different HDF5, add <code>--with-hdf5-dir=[HDF5DIR]</code>.)</li>
+<li>follow instructions to do makes and tests.</li>
+<li>Set global variables <code>export SLEPC_DIR=[SLEPC DIR]</code>, <code>export PETSC_DIR=[PETSC_DIR]</code> and <code>export PETSC_ARCH=[debug-]complex</code> (depending on whether it is debug or not).</li>
+<li>Configure SLEPc using <code>./configure</code></li>
+<li>follow instructions to do makes and tests</li>
+</ol>
+</li>
 </ul>
 </li>
 <li><a href="http://portal.nersc.gov/project/sparse/strumpack/">StrumPack</a><ul>
@@ -113,15 +131,36 @@ Introduction</h1>
 <li>provides routines to read VMEC output data</li>
 </ul>
 </li>
+<li><a href="https://w3.pppl.gov/ntcc/PSPLINE/">pspline</a><ul>
+<li>Princeton Spline and Hermite Cubic Interpolation Routines</li>
+<li>Minimal installation instructions:<ol type="1">
+<li>Export <code>FFLAGS</code> en <code>CFLAGS</code> if you want to optimize:<ul>
+<li>copy <code>share/Make.overwrite.sample</code> to <code>share/Make.overwrite</code></li>
+<li>Run the gmake below and note the flags, then edit these and put them in <code>share/Make.overwrite</code></li>
+<li>if GCC:<ul>
+<li><code>FFLAGS = -c -O3 -m64 -fno-range-check -fdollar-ok -cpp ; export FFLAGS</code></li>
+<li><code>CFLAGS = -c -O3 -m64 ; export CFLAGS</code></li>
+<li><code>CXXFLAGS = -c -O3 -m64 ; export CXXFLAGS</code></li>
+</ul>
+</li>
+<li>if Intel:<ul>
+<li><code>FFLAGS = -c -O3 -nowarn -ftz -auto-scalar -traceback -align dcommons</code></li>
+<li><code>MPI_FFLAGS = -c -O3 -nowarn -ftz -traceback -align dcommons -auto-scalar</code> (possibly add FC=mpiifort, <code>CXX=mpicpc</code>, <code>CC=mpiicc</code> if on a cluster)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Compile with <code>gmake NETCDF_DIR= FORTRAN_VARIANT=[VARIANT]</code> with <code>[VARIANT]</code> either <code>GCC</code> or <code>Intel</code> (add <code>DEBUG=1</code> and remove the FLAGS if debug wanted). Possibly also add <code>OBJ=$[COMP_DIR]</code> if on a cluster, with <code>[COMP_DIR]</code> the directory where to put the resulting library.</li>
+<li>Run tests from <code>README_Pspline</code>.</li>
+</ol>
+</li>
+</ul>
+</li>
 </ul>
 <p>They should probably be installed in this order. On linux distributions such as Ubuntu, they may be available as packages.</p>
 <p>Furthermore, PB3D comes bundled with some other, smaller libraries:</p><ul>
 <li><a href="http://www.netlib.org/fftpack/">fftpack</a><ul>
 <li>to calculate the fast Fourier transform</li>
-</ul>
-</li>
-<li><a href="https://github.com/jacobwilliams/bspline-fortran">bspline-fortran</a><ul>
-<li>multidimensional b-spline interpolation of data on a regular grid</li>
 </ul>
 </li>
 <li><a href="http://foul.sourceforge.net/">foul</a><ul>

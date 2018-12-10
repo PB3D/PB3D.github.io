@@ -18,20 +18,51 @@
         - <a href="https://www.mcs.anl.gov/petsc/">PETSc</a> / <a href="http://slepc.upv.es/">SLEPc</a>
             - for linear algebra of large, sparse matrices
             - can reach \f$\sim \mathcal{O} (n)\f$ complexity
+            - Minimal installation instructions:
+                -# Configure PETSc using
+                    `./configure PETSC_ARCH=complex COPTFLAGS=-O3 CXXOPTFLAGS=-O3 FOPTFLAGS=-O3 \`<br/>
+                    `--with-scalar-type=complex \`<br/>
+                    `--download-metis \`<br/>
+                    `--download-mumps \`<br/>
+                    `--download-parmetis \`<br/>
+                    `--with-scalapack-lib="-L[SCALAPCKDIR] -lscalapack" \`<br/>
+                    `--with-valgrind-dir=/usr \`<br/>
+                    `--with-debugging=no \`<br/>
+                    `--with-fortran-kernels=1`<br/>
+                  (If you want debug, remove `--with-debugging=no`, `--with-fortran-kernels=1`, COPTSFLAGS, CXXOPTFLAGS and FOPTFLAGS, and change PETSC_ARCH to `debug-complex`.)<br/>
+                  (If you use a different HDF5, add `--with-hdf5-dir=[HDF5DIR]`.)
+                -# follow instructions to do makes and tests.
+                -# Set global variables `export SLEPC_DIR=[SLEPC DIR]`, `export PETSC_DIR=[PETSC_DIR]` and `export PETSC_ARCH=[debug-]complex` (depending on whether it is debug or not).
+                -# Configure SLEPc using `./configure`
+                -# follow instructions to do makes and tests
         - <a href="http://portal.nersc.gov/project/sparse/strumpack/">StrumPack</a>
             - for linear algebra of structured matrices \cite Ambikasaran2013
             - can reach \f$\sim \mathcal{O} (n \log(n))\f$ complexity
         - <a href="http://vmecwiki.pppl.wikispaces.net/STELLOPT+Compilation">libstell</a>
             - part of Stellopt suite, which contains VMEC
             - provides routines to read VMEC output data
+        - <a href="https://w3.pppl.gov/ntcc/PSPLINE/">pspline</a>
+            - Princeton Spline and Hermite Cubic Interpolation Routines
+            - Minimal installation instructions:
+                -# Export \c FFLAGS en \c CFLAGS if you want to optimize:
+                    - copy `share/Make.overwrite.sample` to `share/Make.overwrite`
+                    - Run the gmake below and note the flags, then edit these and put them in `share/Make.overwrite`
+                    - if GCC:
+                        - `FFLAGS = -c -O3 -m64 -fno-range-check -fdollar-ok -cpp ; export FFLAGS`
+                        - `CFLAGS = -c -O3 -m64 ; export CFLAGS`
+                        - `CXXFLAGS = -c -O3 -m64 ; export CXXFLAGS`
+                    - if Intel:
+                        - `FFLAGS = -c -O3 -nowarn -ftz -auto-scalar -traceback -align dcommons`
+                        - `MPI_FFLAGS =  -c -O3 -nowarn  -ftz -traceback -align dcommons -auto-scalar`
+                          (possibly add FC=mpiifort, \c CXX=mpicpc, \c CC=mpiicc if on a cluster)
+                -# Compile with `gmake NETCDF_DIR= FORTRAN_VARIANT=[VARIANT]` with `[VARIANT]` either `GCC` or `Intel` (add `DEBUG=1` and remove the FLAGS if debug wanted). Possibly also add `OBJ=$[COMP_DIR]` if on a cluster, with `[COMP_DIR]` the directory where to put the resulting library.
+                -# Run tests from \c README_Pspline.
 
     They should probably be installed in this order. On linux distributions such as Ubuntu, they may be available as packages.
     
     Furthermore, PB3D comes bundled with some other, smaller libraries:
         - <a href="http://www.netlib.org/fftpack/">fftpack</a>
             - to calculate the fast Fourier transform
-        - <a href="https://github.com/jacobwilliams/bspline-fortran">bspline-fortran</a>
-            - multidimensional b-spline interpolation of data on a regular grid
         - <a href="http://foul.sourceforge.net/">foul</a>
             - the Fortran Output Library
 
