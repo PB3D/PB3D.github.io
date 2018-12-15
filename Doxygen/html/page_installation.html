@@ -29,7 +29,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">PB3D
-   &#160;<span id="projectnumber">[2.41]</span>
+   &#160;<span id="projectnumber">[2.42]</span>
    </div>
    <div id="projectbrief">Ideal linear high-n MHD stability in 3-D</div>
   </td>
@@ -123,7 +123,24 @@ Introduction</h1>
 </li>
 <li><a href="http://portal.nersc.gov/project/sparse/strumpack/">StrumPack</a><ul>
 <li>for linear algebra of structured matrices <a class="el" href="citelist.html#CITEREF_Ambikasaran2013">[1]</a></li>
+<li>the vacuum potential energy perturbation calculations use such matrices as they are generated with a \(1/r\) kernel.</li>
 <li>can reach \(\sim \mathcal{O} (n \log(n))\) complexity</li>
+<li>we use the dense version of the package, which for Fortran is 1.1.1.</li>
+<li>Minimal installation instructions:<ol type="1">
+<li><a href="http://portal.nersc.gov/project/sparse/strumpack/STRUMPACK-Dense-1.1.1.tar.gz">Download</a>, untar and go to root folder.</li>
+<li>Go to examples, copy <code>Makefile.gnu</code> to <code>Makefile.inc</code> and adapt:<ol type="a">
+<li>for example, it might be necessary to add <code>-lblacs</code> before <code>-lscalapack</code></li>
+<li>if you use intel, have a look at the <a href="https://software.intel.com/en-us/articles/intel-mkl-link-line-advisor">link line advisor</a>, and update the <code>LIB</code></li>
+<li>possibly, you might have to set the <code>CC</code> and <code>FC</code> compiler commands to, for example, <code>mpicc</code> respectively <code>mpiifort</code></li>
+</ol>
+</li>
+<li>Create directories <code>lib</code> and <code>inc</code>.</li>
+<li>Run <code>make f90_example</code></li>
+<li>Make a library of <code>StrumpackDensePackage.o</code> using <code>ar -rcs libstrumpack.a *.o</code> in src.</li>
+<li>In inc, create a symlink <code>libstrumpack.a</code> to <code>libstrumpack.a</code> in src.</li>
+<li>In lib, create a symlink <code>strumpackdensepackage.mod</code> to <code>strumpackdensepackage.mod</code> in examples.</li>
+</ol>
+</li>
 </ul>
 </li>
 <li><a href="http://vmecwiki.pppl.wikispaces.net/STELLOPT+Compilation">libstell</a><ul>

@@ -45,7 +45,24 @@ P\+B3D is written in Fortran, and makes use of multiple numerical libraries\+:
 \item \href{http://portal.nersc.gov/project/sparse/strumpack/}{\tt Strum\+Pack}
 \begin{DoxyItemize}
 \item for linear algebra of structured matrices \cite{Ambikasaran2013}
+\item the vacuum potential energy perturbation calculations use such matrices as they are generated with a $1/r$ kernel.
 \item can reach $\sim \mathcal{O} (n \log(n))$ complexity
+\item we use the dense version of the package, which for Fortran is 1.\+1.\+1.
+\item Minimal installation instructions\+:
+\begin{DoxyEnumerate}
+\item \href{http://portal.nersc.gov/project/sparse/strumpack/STRUMPACK-Dense-1.1.1.tar.gz}{\tt Download}, untar and go to root folder.
+\item Go to examples, copy {\ttfamily Makefile.\+gnu} to {\ttfamily Makefile.\+inc} and adapt\+:
+\begin{DoxyEnumerate}
+\item for example, it might be necessary to add {\ttfamily -\/lblacs} before {\ttfamily -\/lscalapack}
+\item if you use intel, have a look at the \href{https://software.intel.com/en-us/articles/intel-mkl-link-line-advisor}{\tt link line advisor}, and update the {\ttfamily L\+IB}
+\item possibly, you might have to set the {\ttfamily CC} and {\ttfamily FC} compiler commands to, for example, {\ttfamily mpicc} respectively {\ttfamily mpiifort}
+\end{DoxyEnumerate}
+\item Create directories {\ttfamily lib} and {\ttfamily inc}.
+\item Run {\ttfamily make f90\+\_\+example}
+\item Make a library of {\ttfamily Strumpack\+Dense\+Package.\+o} using {\ttfamily ar -\/rcs libstrumpack.\+a $\ast$.o} in src.
+\item In inc, create a symlink {\ttfamily libstrumpack.\+a} to {\ttfamily libstrumpack.\+a} in src.
+\item In lib, create a symlink {\ttfamily strumpackdensepackage.\+mod} to {\ttfamily strumpackdensepackage.\+mod} in examples.
+\end{DoxyEnumerate}
 \end{DoxyItemize}
 \item \href{http://vmecwiki.pppl.wikispaces.net/STELLOPT+Compilation}{\tt libstell}
 \begin{DoxyItemize}

@@ -37,7 +37,20 @@
                 -# follow instructions to do makes and tests
         - <a href="http://portal.nersc.gov/project/sparse/strumpack/">StrumPack</a>
             - for linear algebra of structured matrices \cite Ambikasaran2013
+            - the vacuum potential energy perturbation calculations use such matrices as they are generated with a \f$1/r\f$ kernel.
             - can reach \f$\sim \mathcal{O} (n \log(n))\f$ complexity
+            - we use the dense version of the package, which for Fortran is 1.1.1.
+            - Minimal installation instructions:
+                -# [Download](http://portal.nersc.gov/project/sparse/strumpack/STRUMPACK-Dense-1.1.1.tar.gz), untar and go to root folder.
+                -# Go to examples, copy `Makefile.gnu` to `Makefile.inc` and adapt:
+                    -# for example, it might be necessary to add `-lblacs` before `-lscalapack`
+                    -# if you use intel, have a look at the [link line advisor](https://software.intel.com/en-us/articles/intel-mkl-link-line-advisor), and update the `LIB`
+                    -# possibly, you might have to set the `CC` and `FC` compiler commands to, for example, `mpicc` respectively `mpiifort`
+                -# Create directories `lib` and `inc`.
+                -# Run `make f90_example`
+                -# Make a library of `StrumpackDensePackage.o` using `ar -rcs libstrumpack.a  *.o` in src.
+                -# In inc, create a symlink `libstrumpack.a` to `libstrumpack.a` in src.
+                -# In lib, create a symlink `strumpackdensepackage.mod` to `strumpackdensepackage.mod` in examples.
         - <a href="http://vmecwiki.pppl.wikispaces.net/STELLOPT+Compilation">libstell</a>
             - part of Stellopt suite, which contains VMEC
             - provides routines to read VMEC output data
