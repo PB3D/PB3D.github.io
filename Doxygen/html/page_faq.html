@@ -29,7 +29,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">PB3D
-   &#160;<span id="projectnumber">[2.42]</span>
+   &#160;<span id="projectnumber">[2.43]</span>
    </div>
    <div id="projectbrief">Ideal linear high-n MHD stability in 3-D</div>
   </td>
@@ -85,6 +85,8 @@ runtime errors</h1>
 <th>error </th><th>solution   </th></tr>
 <tr>
 <td>"need at least N points in grid"  </td><td>grid_utilities.setup_deriv_data() needs a minimum number of points in a grid to setup data with which the derivatives can be calculated later in grid_utilities.apply_disc(). If the grid does not have enough points, and the order of the derivative is too high, the procedure gives this error message. The solution is to either increase the number of points, or to lower the order. It might be that the number of points in the grid is lower than you expect because the grid is divided. In this case, you need more memory (see <code>max_tot_mem</code> in <a class="el" href="page_inputs.html">Input variables</a>).   </td></tr>
+<tr>
+<td>"Aument number of modes or choose finer grid"  </td><td>The range of secondary mode numbers at every flux surface is either user-specified, for <code>X_style</code> 1, or chosen automatically around the most resonant values for <code>X_style</code> 2 (see <a class="el" href="page_inputs.html">Input variables</a>). This implies that, on the other hand, every secondary mode should have a normal range in which it is present, possibly multiple ranges for reversed-shear configurations. The code automatically checks whether this is indeed the case. It could, for example, be that a certain mode number is not present anywhere, when the normal grid in which it is tabulated is too coarse. A solution is therefore to choose a finer grid. Alternatively, for <code>X_style</code> 1, the range can be adapted, and for <code>X_style</code> 2 the number of modes <code>n_mod_X</code>. Note that the particular grid that this discussion is about, can be found out by the trace of the error message. If it results from the solution driver, it concerns the solution grid, and if it concerns the perturbation driver, it concerns the perturbation grid. The solution grid is specified by its range through <code>min_r_sol</code> and <code>max_r_sol</code> and the number of points <code>n_r_sol</code>, and the perturbation grid by the <code>X_grid_style</code>. See <a class="el" href="page_inputs.html">Input variables</a>.   </td></tr>
 <tr>
 <td>"Zero pivot in LU factorization"  </td><td>There exist cases in which the eigenvalue solver fails when <code>n_mod_X = 1</code>, for unkown reasons. Increase <code>n_mod_X</code> or play with other parameters, such as the <code>norm_disc_prec_sol</code>.   </td></tr>
 <tr>
