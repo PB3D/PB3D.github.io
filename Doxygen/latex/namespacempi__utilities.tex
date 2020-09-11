@@ -1,56 +1,56 @@
-\hypertarget{namespacempi__utilities}{}\section{mpi\+\_\+utilities Module Reference}
-\label{namespacempi__utilities}\index{mpi\+\_\+utilities@{mpi\+\_\+utilities}}
+\hypertarget{namespacempi__utilities}{}\doxysection{mpi\+\_\+utilities Module Reference}
+\label{namespacempi__utilities}\index{mpi\_utilities@{mpi\_utilities}}
 
 
 Numerical utilities related to M\+PI.  
 
 
-\subsection*{Interfaces and Types}
+\doxysubsection*{Interfaces and Types}
 \begin{DoxyCompactItemize}
 \item 
-interface \hyperlink{interfacempi__utilities_1_1broadcast__var}{broadcast\+\_\+var}
+interface \mbox{\hyperlink{interfacempi__utilities_1_1broadcast__var}{broadcast\+\_\+var}}
 \begin{DoxyCompactList}\small\item\em Wrapper function to broadcast a single variable using M\+PI. \end{DoxyCompactList}\item 
-interface \hyperlink{interfacempi__utilities_1_1get__ghost__arr}{get\+\_\+ghost\+\_\+arr}
+interface \mbox{\hyperlink{interfacempi__utilities_1_1get__ghost__arr}{get\+\_\+ghost\+\_\+arr}}
 \begin{DoxyCompactList}\small\item\em Fill the ghost regions in an array. \end{DoxyCompactList}\item 
-interface \hyperlink{interfacempi__utilities_1_1get__ser__var}{get\+\_\+ser\+\_\+var}
+interface \mbox{\hyperlink{interfacempi__utilities_1_1get__ser__var}{get\+\_\+ser\+\_\+var}}
 \begin{DoxyCompactList}\small\item\em Gather parallel variable in serial version on group master. \end{DoxyCompactList}\end{DoxyCompactItemize}
-\subsection*{Functions/\+Subroutines}
+\doxysubsection*{Functions/\+Subroutines}
 \begin{DoxyCompactItemize}
 \item 
-integer function, public \hyperlink{namespacempi__utilities_a128702990bd5fddc582e8fabcffc82b2}{redistribute\+\_\+var} (var, dis\+\_\+var, lims, lims\+\_\+dis)
+integer function, public \mbox{\hyperlink{namespacempi__utilities_a128702990bd5fddc582e8fabcffc82b2}{redistribute\+\_\+var}} (var, dis\+\_\+var, lims, lims\+\_\+dis)
 \begin{DoxyCompactList}\small\item\em Redistribute variables according to new limits. \end{DoxyCompactList}\item 
-integer function, public \hyperlink{namespacempi__utilities_a790ea24d32dd0e249541c1e57cd85536}{wait\+\_\+mpi} ()
+integer function, public \mbox{\hyperlink{namespacempi__utilities_a790ea24d32dd0e249541c1e57cd85536}{wait\+\_\+mpi}} ()
 \begin{DoxyCompactList}\small\item\em Wait for all processes, wrapper to M\+PI barrier. \end{DoxyCompactList}\item 
-integer function, public \hyperlink{namespacempi__utilities_a5a789d05be41d6109c01f46cc98620c8}{lock\+\_\+req\+\_\+acc} (lock, blocking)
+integer function, public \mbox{\hyperlink{namespacempi__utilities_a5a789d05be41d6109c01f46cc98620c8}{lock\+\_\+req\+\_\+acc}} (lock, blocking)
 \begin{DoxyCompactList}\small\item\em Request access to lock of a BL (blocking) or optionally a NB (non-\/blocking) type. \end{DoxyCompactList}\item 
-integer function, public \hyperlink{namespacempi__utilities_a86f9982a0f92b51a916f832d9a3d8ba9}{lock\+\_\+return\+\_\+acc} (lock)
+integer function, public \mbox{\hyperlink{namespacempi__utilities_a86f9982a0f92b51a916f832d9a3d8ba9}{lock\+\_\+return\+\_\+acc}} (lock)
 \begin{DoxyCompactList}\small\item\em Returns access to a lock. \end{DoxyCompactList}\item 
-logical function \hyperlink{namespacempi__utilities_a74e2e82b561f403ca8087c3925f76e29}{wl\+\_\+empty} (wl, proc\+\_\+type, next\+\_\+procs)
+logical function \mbox{\hyperlink{namespacempi__utilities_a74e2e82b561f403ca8087c3925f76e29}{wl\+\_\+empty}} (wl, proc\+\_\+type, next\+\_\+procs)
 \begin{DoxyCompactList}\small\item\em Decides whether a waiting list is empty. \end{DoxyCompactList}\item 
-integer function \hyperlink{namespacempi__utilities_a263a30c79639d97f5faffdb566b5a811}{lock\+\_\+notify} (lock\+\_\+loc, rec\+\_\+rank)
+integer function \mbox{\hyperlink{namespacempi__utilities_a263a30c79639d97f5faffdb566b5a811}{lock\+\_\+notify}} (lock\+\_\+loc, rec\+\_\+rank)
 \begin{DoxyCompactList}\small\item\em Notifies a rank that they can get the lock. \end{DoxyCompactList}\item 
-integer function \hyperlink{namespacempi__utilities_a17c39b0498528e2532c8347b0b7dec86}{lock\+\_\+get\+\_\+notified} (lock\+\_\+loc)
+integer function \mbox{\hyperlink{namespacempi__utilities_a17c39b0498528e2532c8347b0b7dec86}{lock\+\_\+get\+\_\+notified}} (lock\+\_\+loc)
 \begin{DoxyCompactList}\small\item\em Get notified that the rank can get the lock. \end{DoxyCompactList}\item 
-integer function, public \hyperlink{namespacempi__utilities_a3b0349e5ec825e14083e3126c3e7ba65}{lock\+\_\+wl\+\_\+change} (wl\+\_\+action, blocking, lock\+\_\+loc, wl, ranks)
+integer function, public \mbox{\hyperlink{namespacempi__utilities_a3b0349e5ec825e14083e3126c3e7ba65}{lock\+\_\+wl\+\_\+change}} (wl\+\_\+action, blocking, lock\+\_\+loc, wl, ranks)
 \begin{DoxyCompactList}\small\item\em Adds, removes or sets to active a rank from the waiting list for a lock and returns the lock waiting list\+: \end{DoxyCompactList}\item 
-character(len=max\+\_\+str\+\_\+ln) function, public \hyperlink{namespacempi__utilities_abe5bf3ae3b6a06eda18c2f4d62ac09c5}{lock\+\_\+header} (lock\+\_\+loc)
+character(len=max\+\_\+str\+\_\+ln) function, public \mbox{\hyperlink{namespacempi__utilities_abe5bf3ae3b6a06eda18c2f4d62ac09c5}{lock\+\_\+header}} (lock\+\_\+loc)
 \begin{DoxyCompactList}\small\item\em Returns the header for lock debug messages. \end{DoxyCompactList}\end{DoxyCompactItemize}
-\subsection*{Variables}
+\doxysubsection*{Variables}
 \begin{DoxyCompactItemize}
 \item 
-logical, public \hyperlink{namespacempi__utilities_a98291c400747762ea4e3f0d751c5d5f5}{debug\+\_\+lock} = .false.
+logical, public \mbox{\hyperlink{namespacempi__utilities_a98291c400747762ea4e3f0d751c5d5f5}{debug\+\_\+lock}} = .false.
 \begin{DoxyCompactList}\small\item\em print debug information about lock operations \end{DoxyCompactList}\item 
-integer, public \hyperlink{namespacempi__utilities_a38a87fa6a7efbd985592bbef4750f02b}{n\+\_\+waits} = 0
+integer, public \mbox{\hyperlink{namespacempi__utilities_a38a87fa6a7efbd985592bbef4750f02b}{n\+\_\+waits}} = 0
 \begin{DoxyCompactList}\small\item\em number of waits \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
-\subsection{Detailed Description}
+\doxysubsection{Detailed Description}
 Numerical utilities related to M\+PI. 
 
 This includes a lock system, which can be both BL (blocking) or NB (non-\/blocking). It is based on the implementation of an M\+P\+I-\/\+IO atomic mode without file support, described in \cite{RossAtomicIO}.
 
 \begin{DoxySeeAlso}{See also}
-See \hyperlink{namespacempi__vars}{mpi\+\_\+vars}.
+See \mbox{\hyperlink{namespacempi__vars}{mpi\+\_\+vars}}.
 \end{DoxySeeAlso}
 The reason for this was the fact that using a simple lock file can lead to crashes.
 
@@ -59,11 +59,11 @@ A downside of this method is that in some rare cases a deadlock may occur as the
 \end{DoxyNote}
 
 
-\subsection{Function/\+Subroutine Documentation}
+\doxysubsection{Function/\+Subroutine Documentation}
 \mbox{\Hypertarget{namespacempi__utilities_a17c39b0498528e2532c8347b0b7dec86}\label{namespacempi__utilities_a17c39b0498528e2532c8347b0b7dec86}} 
-\index{mpi\+\_\+utilities@{mpi\+\_\+utilities}!lock\+\_\+get\+\_\+notified@{lock\+\_\+get\+\_\+notified}}
-\index{lock\+\_\+get\+\_\+notified@{lock\+\_\+get\+\_\+notified}!mpi\+\_\+utilities@{mpi\+\_\+utilities}}
-\subsubsection{\texorpdfstring{lock\+\_\+get\+\_\+notified()}{lock\_get\_notified()}}
+\index{mpi\_utilities@{mpi\_utilities}!lock\_get\_notified@{lock\_get\_notified}}
+\index{lock\_get\_notified@{lock\_get\_notified}!mpi\_utilities@{mpi\_utilities}}
+\doxysubsubsection{\texorpdfstring{lock\_get\_notified()}{lock\_get\_notified()}}
 {\footnotesize\ttfamily integer function mpi\+\_\+utilities\+::lock\+\_\+get\+\_\+notified (\begin{DoxyParamCaption}\item[{type(lock\+\_\+type), intent(in)}]{lock\+\_\+loc }\end{DoxyParamCaption})}
 
 
@@ -74,11 +74,11 @@ Get notified that the rank can get the lock.
 Based on \cite{RossAtomicIO}.
 \end{DoxyNote}
 \begin{DoxyReturn}{Returns}
-ierr
+ierr 
 \end{DoxyReturn}
 
 \begin{DoxyParams}[1]{Parameters}
-\mbox{\tt in}  & {\em lock\+\_\+loc} & lock \\
+\mbox{\texttt{ in}}  & {\em lock\+\_\+loc} & lock \\
 \hline
 \end{DoxyParams}
 
@@ -100,9 +100,9 @@ Here is the caller graph for this function\+:\nopagebreak
 \end{center}
 \end{figure}
 \mbox{\Hypertarget{namespacempi__utilities_abe5bf3ae3b6a06eda18c2f4d62ac09c5}\label{namespacempi__utilities_abe5bf3ae3b6a06eda18c2f4d62ac09c5}} 
-\index{mpi\+\_\+utilities@{mpi\+\_\+utilities}!lock\+\_\+header@{lock\+\_\+header}}
-\index{lock\+\_\+header@{lock\+\_\+header}!mpi\+\_\+utilities@{mpi\+\_\+utilities}}
-\subsubsection{\texorpdfstring{lock\+\_\+header()}{lock\_header()}}
+\index{mpi\_utilities@{mpi\_utilities}!lock\_header@{lock\_header}}
+\index{lock\_header@{lock\_header}!mpi\_utilities@{mpi\_utilities}}
+\doxysubsubsection{\texorpdfstring{lock\_header()}{lock\_header()}}
 {\footnotesize\ttfamily character(len=max\+\_\+str\+\_\+ln) function, public mpi\+\_\+utilities\+::lock\+\_\+header (\begin{DoxyParamCaption}\item[{type(lock\+\_\+type), intent(in)}]{lock\+\_\+loc }\end{DoxyParamCaption})}
 
 
@@ -110,11 +110,11 @@ Here is the caller graph for this function\+:\nopagebreak
 Returns the header for lock debug messages. 
 
 \begin{DoxyNote}{Note}
-Debug version only
+Debug version only 
 \end{DoxyNote}
 
 \begin{DoxyParams}[1]{Parameters}
-\mbox{\tt in}  & {\em lock\+\_\+loc} & lock \\
+\mbox{\texttt{ in}}  & {\em lock\+\_\+loc} & lock \\
 \hline
 \end{DoxyParams}
 
@@ -136,9 +136,9 @@ Here is the caller graph for this function\+:\nopagebreak
 \end{center}
 \end{figure}
 \mbox{\Hypertarget{namespacempi__utilities_a263a30c79639d97f5faffdb566b5a811}\label{namespacempi__utilities_a263a30c79639d97f5faffdb566b5a811}} 
-\index{mpi\+\_\+utilities@{mpi\+\_\+utilities}!lock\+\_\+notify@{lock\+\_\+notify}}
-\index{lock\+\_\+notify@{lock\+\_\+notify}!mpi\+\_\+utilities@{mpi\+\_\+utilities}}
-\subsubsection{\texorpdfstring{lock\+\_\+notify()}{lock\_notify()}}
+\index{mpi\_utilities@{mpi\_utilities}!lock\_notify@{lock\_notify}}
+\index{lock\_notify@{lock\_notify}!mpi\_utilities@{mpi\_utilities}}
+\doxysubsubsection{\texorpdfstring{lock\_notify()}{lock\_notify()}}
 {\footnotesize\ttfamily integer function mpi\+\_\+utilities\+::lock\+\_\+notify (\begin{DoxyParamCaption}\item[{type(lock\+\_\+type), intent(in)}]{lock\+\_\+loc,  }\item[{integer, intent(in)}]{rec\+\_\+rank }\end{DoxyParamCaption})}
 
 
@@ -151,13 +151,13 @@ The signal sent is the rank + 1.
 Based on \cite{RossAtomicIO}.
 \end{DoxyNote}
 \begin{DoxyReturn}{Returns}
-ierr
+ierr 
 \end{DoxyReturn}
 
 \begin{DoxyParams}[1]{Parameters}
-\mbox{\tt in}  & {\em lock\+\_\+loc} & lock\\
+\mbox{\texttt{ in}}  & {\em lock\+\_\+loc} & lock \\
 \hline
-\mbox{\tt in}  & {\em rec\+\_\+rank} & receiving rank \\
+\mbox{\texttt{ in}}  & {\em rec\+\_\+rank} & receiving rank \\
 \hline
 \end{DoxyParams}
 
@@ -179,9 +179,9 @@ Here is the caller graph for this function\+:\nopagebreak
 \end{center}
 \end{figure}
 \mbox{\Hypertarget{namespacempi__utilities_a5a789d05be41d6109c01f46cc98620c8}\label{namespacempi__utilities_a5a789d05be41d6109c01f46cc98620c8}} 
-\index{mpi\+\_\+utilities@{mpi\+\_\+utilities}!lock\+\_\+req\+\_\+acc@{lock\+\_\+req\+\_\+acc}}
-\index{lock\+\_\+req\+\_\+acc@{lock\+\_\+req\+\_\+acc}!mpi\+\_\+utilities@{mpi\+\_\+utilities}}
-\subsubsection{\texorpdfstring{lock\+\_\+req\+\_\+acc()}{lock\_req\_acc()}}
+\index{mpi\_utilities@{mpi\_utilities}!lock\_req\_acc@{lock\_req\_acc}}
+\index{lock\_req\_acc@{lock\_req\_acc}!mpi\_utilities@{mpi\_utilities}}
+\doxysubsubsection{\texorpdfstring{lock\_req\_acc()}{lock\_req\_acc()}}
 {\footnotesize\ttfamily integer function, public mpi\+\_\+utilities\+::lock\+\_\+req\+\_\+acc (\begin{DoxyParamCaption}\item[{type(lock\+\_\+type), intent(inout)}]{lock,  }\item[{logical, intent(in), optional}]{blocking }\end{DoxyParamCaption})}
 
 
@@ -213,9 +213,9 @@ Here is the caller graph for this function\+:\nopagebreak
 \end{center}
 \end{figure}
 \mbox{\Hypertarget{namespacempi__utilities_a86f9982a0f92b51a916f832d9a3d8ba9}\label{namespacempi__utilities_a86f9982a0f92b51a916f832d9a3d8ba9}} 
-\index{mpi\+\_\+utilities@{mpi\+\_\+utilities}!lock\+\_\+return\+\_\+acc@{lock\+\_\+return\+\_\+acc}}
-\index{lock\+\_\+return\+\_\+acc@{lock\+\_\+return\+\_\+acc}!mpi\+\_\+utilities@{mpi\+\_\+utilities}}
-\subsubsection{\texorpdfstring{lock\+\_\+return\+\_\+acc()}{lock\_return\_acc()}}
+\index{mpi\_utilities@{mpi\_utilities}!lock\_return\_acc@{lock\_return\_acc}}
+\index{lock\_return\_acc@{lock\_return\_acc}!mpi\_utilities@{mpi\_utilities}}
+\doxysubsubsection{\texorpdfstring{lock\_return\_acc()}{lock\_return\_acc()}}
 {\footnotesize\ttfamily integer function, public mpi\+\_\+utilities\+::lock\+\_\+return\+\_\+acc (\begin{DoxyParamCaption}\item[{type(lock\+\_\+type), intent(inout)}]{lock }\end{DoxyParamCaption})}
 
 
@@ -249,9 +249,9 @@ Here is the caller graph for this function\+:\nopagebreak
 \end{center}
 \end{figure}
 \mbox{\Hypertarget{namespacempi__utilities_a3b0349e5ec825e14083e3126c3e7ba65}\label{namespacempi__utilities_a3b0349e5ec825e14083e3126c3e7ba65}} 
-\index{mpi\+\_\+utilities@{mpi\+\_\+utilities}!lock\+\_\+wl\+\_\+change@{lock\+\_\+wl\+\_\+change}}
-\index{lock\+\_\+wl\+\_\+change@{lock\+\_\+wl\+\_\+change}!mpi\+\_\+utilities@{mpi\+\_\+utilities}}
-\subsubsection{\texorpdfstring{lock\+\_\+wl\+\_\+change()}{lock\_wl\_change()}}
+\index{mpi\_utilities@{mpi\_utilities}!lock\_wl\_change@{lock\_wl\_change}}
+\index{lock\_wl\_change@{lock\_wl\_change}!mpi\_utilities@{mpi\_utilities}}
+\doxysubsubsection{\texorpdfstring{lock\_wl\_change()}{lock\_wl\_change()}}
 {\footnotesize\ttfamily integer function, public mpi\+\_\+utilities\+::lock\+\_\+wl\+\_\+change (\begin{DoxyParamCaption}\item[{integer, intent(in)}]{wl\+\_\+action,  }\item[{logical, intent(in)}]{blocking,  }\item[{type(lock\+\_\+type), intent(inout)}]{lock\+\_\+loc,  }\item[{integer, dimension(\+:), intent(inout), allocatable}]{wl,  }\item[{integer, dimension(\+:), intent(in), optional}]{ranks }\end{DoxyParamCaption})}
 
 
@@ -275,19 +275,19 @@ Based on \cite{RossAtomicIO}.
 Debug version only
 \end{DoxyNote}
 \begin{DoxyReturn}{Returns}
-ierr
+ierr 
 \end{DoxyReturn}
 
 \begin{DoxyParams}[1]{Parameters}
-\mbox{\tt in}  & {\em wl\+\_\+action} & action to perform\\
+\mbox{\texttt{ in}}  & {\em wl\+\_\+action} & action to perform \\
 \hline
-\mbox{\tt in}  & {\em blocking} & the ranks to be changed are blocking\\
+\mbox{\texttt{ in}}  & {\em blocking} & the ranks to be changed are blocking \\
 \hline
-\mbox{\tt in,out}  & {\em lock\+\_\+loc} & lock\\
+\mbox{\texttt{ in,out}}  & {\em lock\+\_\+loc} & lock \\
 \hline
-\mbox{\tt in,out}  & {\em wl} & waiting list\\
+\mbox{\texttt{ in,out}}  & {\em wl} & waiting list \\
 \hline
-\mbox{\tt in}  & {\em ranks} & rank(s) for which to perform option \\
+\mbox{\texttt{ in}}  & {\em ranks} & rank(s) for which to perform option \\
 \hline
 \end{DoxyParams}
 
@@ -309,9 +309,9 @@ Here is the caller graph for this function\+:\nopagebreak
 \end{center}
 \end{figure}
 \mbox{\Hypertarget{namespacempi__utilities_a128702990bd5fddc582e8fabcffc82b2}\label{namespacempi__utilities_a128702990bd5fddc582e8fabcffc82b2}} 
-\index{mpi\+\_\+utilities@{mpi\+\_\+utilities}!redistribute\+\_\+var@{redistribute\+\_\+var}}
-\index{redistribute\+\_\+var@{redistribute\+\_\+var}!mpi\+\_\+utilities@{mpi\+\_\+utilities}}
-\subsubsection{\texorpdfstring{redistribute\+\_\+var()}{redistribute\_var()}}
+\index{mpi\_utilities@{mpi\_utilities}!redistribute\_var@{redistribute\_var}}
+\index{redistribute\_var@{redistribute\_var}!mpi\_utilities@{mpi\_utilities}}
+\doxysubsubsection{\texorpdfstring{redistribute\_var()}{redistribute\_var()}}
 {\footnotesize\ttfamily integer function, public mpi\+\_\+utilities\+::redistribute\+\_\+var (\begin{DoxyParamCaption}\item[{real(dp), dimension(\+:), intent(in)}]{var,  }\item[{real(dp), dimension(\+:), intent(inout)}]{dis\+\_\+var,  }\item[{integer, dimension(2), intent(in)}]{lims,  }\item[{integer, dimension(2), intent(in)}]{lims\+\_\+dis }\end{DoxyParamCaption})}
 
 
@@ -320,13 +320,13 @@ Redistribute variables according to new limits.
 
 
 \begin{DoxyParams}[1]{Parameters}
-\mbox{\tt in}  & {\em var} & parallel vector\\
+\mbox{\texttt{ in}}  & {\em var} & parallel vector \\
 \hline
-\mbox{\tt in,out}  & {\em dis\+\_\+var} & redistributed vector\\
+\mbox{\texttt{ in,out}}  & {\em dis\+\_\+var} & redistributed vector \\
 \hline
-\mbox{\tt in}  & {\em lims} & indices of parallel vector\\
+\mbox{\texttt{ in}}  & {\em lims} & indices of parallel vector \\
 \hline
-\mbox{\tt in}  & {\em lims\+\_\+dis} & indices of redistributed parallel vector \\
+\mbox{\texttt{ in}}  & {\em lims\+\_\+dis} & indices of redistributed parallel vector \\
 \hline
 \end{DoxyParams}
 
@@ -341,10 +341,10 @@ Here is the caller graph for this function\+:\nopagebreak
 \end{center}
 \end{figure}
 \mbox{\Hypertarget{namespacempi__utilities_a790ea24d32dd0e249541c1e57cd85536}\label{namespacempi__utilities_a790ea24d32dd0e249541c1e57cd85536}} 
-\index{mpi\+\_\+utilities@{mpi\+\_\+utilities}!wait\+\_\+mpi@{wait\+\_\+mpi}}
-\index{wait\+\_\+mpi@{wait\+\_\+mpi}!mpi\+\_\+utilities@{mpi\+\_\+utilities}}
-\subsubsection{\texorpdfstring{wait\+\_\+mpi()}{wait\_mpi()}}
-{\footnotesize\ttfamily integer function, public mpi\+\_\+utilities\+::wait\+\_\+mpi (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+\index{mpi\_utilities@{mpi\_utilities}!wait\_mpi@{wait\_mpi}}
+\index{wait\_mpi@{wait\_mpi}!mpi\_utilities@{mpi\_utilities}}
+\doxysubsubsection{\texorpdfstring{wait\_mpi()}{wait\_mpi()}}
+{\footnotesize\ttfamily integer function, public mpi\+\_\+utilities\+::wait\+\_\+mpi}
 
 
 
@@ -365,9 +365,9 @@ Here is the caller graph for this function\+:\nopagebreak
 \end{center}
 \end{figure}
 \mbox{\Hypertarget{namespacempi__utilities_a74e2e82b561f403ca8087c3925f76e29}\label{namespacempi__utilities_a74e2e82b561f403ca8087c3925f76e29}} 
-\index{mpi\+\_\+utilities@{mpi\+\_\+utilities}!wl\+\_\+empty@{wl\+\_\+empty}}
-\index{wl\+\_\+empty@{wl\+\_\+empty}!mpi\+\_\+utilities@{mpi\+\_\+utilities}}
-\subsubsection{\texorpdfstring{wl\+\_\+empty()}{wl\_empty()}}
+\index{mpi\_utilities@{mpi\_utilities}!wl\_empty@{wl\_empty}}
+\index{wl\_empty@{wl\_empty}!mpi\_utilities@{mpi\_utilities}}
+\doxysubsubsection{\texorpdfstring{wl\_empty()}{wl\_empty()}}
 {\footnotesize\ttfamily logical function mpi\+\_\+utilities\+::wl\+\_\+empty (\begin{DoxyParamCaption}\item[{integer, dimension(\+:), intent(in)}]{wl,  }\item[{integer, dimension(\+:), intent(in)}]{proc\+\_\+type,  }\item[{integer, dimension(\+:), intent(inout), optional, allocatable}]{next\+\_\+procs }\end{DoxyParamCaption})}
 
 
@@ -377,7 +377,7 @@ Decides whether a waiting list is empty.
 The type of process to find is indicated by an array of possible values.
 
 \begin{DoxySeeAlso}{See also}
-See \hyperlink{namespacempi__utilities_a3b0349e5ec825e14083e3126c3e7ba65}{lock\+\_\+wl\+\_\+change()} for an explanation of the process type.
+See \mbox{\hyperlink{namespacempi__utilities_a3b0349e5ec825e14083e3126c3e7ba65}{lock\+\_\+wl\+\_\+change()}} for an explanation of the process type.
 \end{DoxySeeAlso}
 Additionally, for NB processes, the negative inverse of these values are used.
 
@@ -387,15 +387,15 @@ If the waiting list is not empty, the next process(es) can optionally be returne
 Based on \cite{RossAtomicIO}.
 \end{DoxyNote}
 \begin{DoxyReturn}{Returns}
-ierr
+ierr 
 \end{DoxyReturn}
 
 \begin{DoxyParams}[1]{Parameters}
-\mbox{\tt in}  & {\em wl} & waiting list\\
+\mbox{\texttt{ in}}  & {\em wl} & waiting list \\
 \hline
-\mbox{\tt in}  & {\em proc\+\_\+type} & types of processes accepted\\
+\mbox{\texttt{ in}}  & {\em proc\+\_\+type} & types of processes accepted \\
 \hline
-\mbox{\tt in,out}  & {\em next\+\_\+procs} & next process(es) if not empty \\
+\mbox{\texttt{ in,out}}  & {\em next\+\_\+procs} & next process(es) if not empty \\
 \hline
 \end{DoxyParams}
 
@@ -411,11 +411,11 @@ Here is the caller graph for this function\+:\nopagebreak
 \end{figure}
 
 
-\subsection{Variable Documentation}
+\doxysubsection{Variable Documentation}
 \mbox{\Hypertarget{namespacempi__utilities_a98291c400747762ea4e3f0d751c5d5f5}\label{namespacempi__utilities_a98291c400747762ea4e3f0d751c5d5f5}} 
-\index{mpi\+\_\+utilities@{mpi\+\_\+utilities}!debug\+\_\+lock@{debug\+\_\+lock}}
-\index{debug\+\_\+lock@{debug\+\_\+lock}!mpi\+\_\+utilities@{mpi\+\_\+utilities}}
-\subsubsection{\texorpdfstring{debug\+\_\+lock}{debug\_lock}}
+\index{mpi\_utilities@{mpi\_utilities}!debug\_lock@{debug\_lock}}
+\index{debug\_lock@{debug\_lock}!mpi\_utilities@{mpi\_utilities}}
+\doxysubsubsection{\texorpdfstring{debug\_lock}{debug\_lock}}
 {\footnotesize\ttfamily logical, public mpi\+\_\+utilities\+::debug\+\_\+lock = .false.}
 
 
@@ -430,9 +430,9 @@ Debug version only
 Definition at line 40 of file M\+P\+I\+\_\+utilities.\+f90.
 
 \mbox{\Hypertarget{namespacempi__utilities_a38a87fa6a7efbd985592bbef4750f02b}\label{namespacempi__utilities_a38a87fa6a7efbd985592bbef4750f02b}} 
-\index{mpi\+\_\+utilities@{mpi\+\_\+utilities}!n\+\_\+waits@{n\+\_\+waits}}
-\index{n\+\_\+waits@{n\+\_\+waits}!mpi\+\_\+utilities@{mpi\+\_\+utilities}}
-\subsubsection{\texorpdfstring{n\+\_\+waits}{n\_waits}}
+\index{mpi\_utilities@{mpi\_utilities}!n\_waits@{n\_waits}}
+\index{n\_waits@{n\_waits}!mpi\_utilities@{mpi\_utilities}}
+\doxysubsubsection{\texorpdfstring{n\_waits}{n\_waits}}
 {\footnotesize\ttfamily integer, public mpi\+\_\+utilities\+::n\+\_\+waits = 0}
 
 

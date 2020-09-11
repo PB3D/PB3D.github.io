@@ -1,40 +1,40 @@
-\hypertarget{namespacedriver__post}{}\section{driver\+\_\+post Module Reference}
-\label{namespacedriver__post}\index{driver\+\_\+post@{driver\+\_\+post}}
+\hypertarget{namespacedriver__post}{}\doxysection{driver\+\_\+post Module Reference}
+\label{namespacedriver__post}\index{driver\_post@{driver\_post}}
 
 
 Main driver of Post\+Processing of program Peeling Ballooning in 3D.  
 
 
-\subsection*{Functions/\+Subroutines}
+\doxysubsection*{Functions/\+Subroutines}
 \begin{DoxyCompactItemize}
 \item 
-integer function, public \hyperlink{namespacedriver__post_af527706d4e696d4e507443d2f74194ef}{init\+\_\+post} ()
+integer function, public \mbox{\hyperlink{namespacedriver__post_af527706d4e696d4e507443d2f74194ef}{init\+\_\+post}} ()
 \begin{DoxyCompactList}\small\item\em Initializes the P\+O\+ST driver. \end{DoxyCompactList}\item 
-integer function, public \hyperlink{namespacedriver__post_a33b3c6f9018a0ddc92dce77394b8ab37}{run\+\_\+driver\+\_\+post} ()
+integer function, public \mbox{\hyperlink{namespacedriver__post_a33b3c6f9018a0ddc92dce77394b8ab37}{run\+\_\+driver\+\_\+post}} ()
 \begin{DoxyCompactList}\small\item\em The main driver routine for postprocessing. \end{DoxyCompactList}\item 
-subroutine, public \hyperlink{namespacedriver__post_a71f9fb1935222111e1c7cfc15c5d0269}{stop\+\_\+post} ()
+subroutine, public \mbox{\hyperlink{namespacedriver__post_a71f9fb1935222111e1c7cfc15c5d0269}{stop\+\_\+post}} ()
 \begin{DoxyCompactList}\small\item\em Cleans up main driver for postprocessing. \end{DoxyCompactList}\item 
-integer function \hyperlink{namespacedriver__post_a5d76f87f131e21b4d74fd5f4a7bbbd6b}{open\+\_\+decomp\+\_\+log} ()
+integer function \mbox{\hyperlink{namespacedriver__post_a5d76f87f131e21b4d74fd5f4a7bbbd6b}{open\+\_\+decomp\+\_\+log}} ()
 \begin{DoxyCompactList}\small\item\em Opens the decomposition log file. \end{DoxyCompactList}\item 
-integer function \hyperlink{namespacedriver__post_a4981c6c0e63b862c92ba240f43e22e77}{write\+\_\+decomp\+\_\+log} (X\+\_\+id, E\+\_\+pot\+\_\+int, E\+\_\+kin\+\_\+int)
+integer function \mbox{\hyperlink{namespacedriver__post_a4981c6c0e63b862c92ba240f43e22e77}{write\+\_\+decomp\+\_\+log}} (X\+\_\+id, E\+\_\+pot\+\_\+int, E\+\_\+kin\+\_\+int)
 \begin{DoxyCompactList}\small\item\em Write to decomposition log file. \end{DoxyCompactList}\item 
-subroutine \hyperlink{namespacedriver__post_a51ecad1032e415d2a8e6e5b97d2c7e09}{find\+\_\+stab\+\_\+ranges} (sol, min\+\_\+id, max\+\_\+id, last\+\_\+unstable\+\_\+id)
+subroutine \mbox{\hyperlink{namespacedriver__post_a51ecad1032e415d2a8e6e5b97d2c7e09}{find\+\_\+stab\+\_\+ranges}} (sol, min\+\_\+id, max\+\_\+id, last\+\_\+unstable\+\_\+id)
 \begin{DoxyCompactList}\small\item\em finds the plot ranges {\ttfamily min\+\_\+id} and {\ttfamily max\+\_\+id}. \end{DoxyCompactList}\item 
-subroutine \hyperlink{namespacedriver__post_af9ce961d2d6825b767a93fdbe8806a1c}{plot\+\_\+sol\+\_\+val\+\_\+comp} (sol\+\_\+val\+\_\+comp)
+subroutine \mbox{\hyperlink{namespacedriver__post_af9ce961d2d6825b767a93fdbe8806a1c}{plot\+\_\+sol\+\_\+val\+\_\+comp}} (sol\+\_\+val\+\_\+comp)
 \begin{DoxyCompactList}\small\item\em Plots difference between Eigenvalues and energy fraction. \end{DoxyCompactList}\item 
-integer function \hyperlink{namespacedriver__post_a3438685c5fb7302f756c368fb5f940ee}{setup\+\_\+out\+\_\+grids} (grids\+\_\+out, X\+Y\+Z\+\_\+eq, X\+Y\+Z\+\_\+sol)
+integer function \mbox{\hyperlink{namespacedriver__post_a3438685c5fb7302f756c368fb5f940ee}{setup\+\_\+out\+\_\+grids}} (grids\+\_\+out, X\+Y\+Z\+\_\+eq, X\+Y\+Z\+\_\+sol)
 \begin{DoxyCompactList}\small\item\em Sets up the output grids for a particular parallel job. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
-\subsection{Detailed Description}
+\doxysubsection{Detailed Description}
 Main driver of Post\+Processing of program Peeling Ballooning in 3D. 
 
-\subsection{Function/\+Subroutine Documentation}
+\doxysubsection{Function/\+Subroutine Documentation}
 \mbox{\Hypertarget{namespacedriver__post_a51ecad1032e415d2a8e6e5b97d2c7e09}\label{namespacedriver__post_a51ecad1032e415d2a8e6e5b97d2c7e09}} 
-\index{driver\+\_\+post@{driver\+\_\+post}!find\+\_\+stab\+\_\+ranges@{find\+\_\+stab\+\_\+ranges}}
-\index{find\+\_\+stab\+\_\+ranges@{find\+\_\+stab\+\_\+ranges}!driver\+\_\+post@{driver\+\_\+post}}
-\subsubsection{\texorpdfstring{find\+\_\+stab\+\_\+ranges()}{find\_stab\_ranges()}}
-{\footnotesize\ttfamily subroutine driver\+\_\+post\+::find\+\_\+stab\+\_\+ranges (\begin{DoxyParamCaption}\item[{type(\hyperlink{structsol__vars_1_1sol__type}{sol\+\_\+type}), intent(in)}]{sol,  }\item[{integer, dimension(3), intent(inout)}]{min\+\_\+id,  }\item[{integer, dimension(3), intent(inout)}]{max\+\_\+id,  }\item[{integer, intent(inout)}]{last\+\_\+unstable\+\_\+id }\end{DoxyParamCaption})}
+\index{driver\_post@{driver\_post}!find\_stab\_ranges@{find\_stab\_ranges}}
+\index{find\_stab\_ranges@{find\_stab\_ranges}!driver\_post@{driver\_post}}
+\doxysubsubsection{\texorpdfstring{find\_stab\_ranges()}{find\_stab\_ranges()}}
+{\footnotesize\ttfamily subroutine driver\+\_\+post\+::find\+\_\+stab\+\_\+ranges (\begin{DoxyParamCaption}\item[{type(\mbox{\hyperlink{structsol__vars_1_1sol__type}{sol\+\_\+type}}), intent(in)}]{sol,  }\item[{integer, dimension(3), intent(inout)}]{min\+\_\+id,  }\item[{integer, dimension(3), intent(inout)}]{max\+\_\+id,  }\item[{integer, intent(inout)}]{last\+\_\+unstable\+\_\+id }\end{DoxyParamCaption})}
 
 
 
@@ -58,18 +58,18 @@ A negative value for the elements in n\+\_\+sol\+\_\+plotted means \char`\"{}all
  values in range\char`\"{}\+:
 \begin{DoxyEnumerate}
 \item or 2. full unstable range
-\item or 4. full stable range
+\item or 4. full stable range 
 \end{DoxyEnumerate}
 \end{DoxyNote}
 
 \begin{DoxyParams}[1]{Parameters}
-\mbox{\tt in}  & {\em sol} & solution variables\\
+\mbox{\texttt{ in}}  & {\em sol} & solution variables \\
 \hline
-\mbox{\tt in,out}  & {\em min\+\_\+id} & min. index of range 1, 2 and 3\\
+\mbox{\texttt{ in,out}}  & {\em min\+\_\+id} & min. index of range 1, 2 and 3 \\
 \hline
-\mbox{\tt in,out}  & {\em max\+\_\+id} & max. index of range 1, 2 and 3\\
+\mbox{\texttt{ in,out}}  & {\em max\+\_\+id} & max. index of range 1, 2 and 3 \\
 \hline
-\mbox{\tt in,out}  & {\em last\+\_\+unstable\+\_\+id} & index of last unstable EV \\
+\mbox{\texttt{ in,out}}  & {\em last\+\_\+unstable\+\_\+id} & index of last unstable EV \\
 \hline
 \end{DoxyParams}
 
@@ -84,10 +84,10 @@ Here is the caller graph for this function\+:\nopagebreak
 \end{center}
 \end{figure}
 \mbox{\Hypertarget{namespacedriver__post_af527706d4e696d4e507443d2f74194ef}\label{namespacedriver__post_af527706d4e696d4e507443d2f74194ef}} 
-\index{driver\+\_\+post@{driver\+\_\+post}!init\+\_\+post@{init\+\_\+post}}
-\index{init\+\_\+post@{init\+\_\+post}!driver\+\_\+post@{driver\+\_\+post}}
-\subsubsection{\texorpdfstring{init\+\_\+post()}{init\_post()}}
-{\footnotesize\ttfamily integer function, public driver\+\_\+post\+::init\+\_\+post (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+\index{driver\_post@{driver\_post}!init\_post@{init\_post}}
+\index{init\_post@{init\_post}!driver\_post@{driver\_post}}
+\doxysubsubsection{\texorpdfstring{init\_post()}{init\_post()}}
+{\footnotesize\ttfamily integer function, public driver\+\_\+post\+::init\+\_\+post}
 
 
 
@@ -149,14 +149,14 @@ Here is the caller graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=306pt]{namespacedriver__post_af527706d4e696d4e507443d2f74194ef_icgraph}
+\includegraphics[width=298pt]{namespacedriver__post_af527706d4e696d4e507443d2f74194ef_icgraph}
 \end{center}
 \end{figure}
 \mbox{\Hypertarget{namespacedriver__post_a5d76f87f131e21b4d74fd5f4a7bbbd6b}\label{namespacedriver__post_a5d76f87f131e21b4d74fd5f4a7bbbd6b}} 
-\index{driver\+\_\+post@{driver\+\_\+post}!open\+\_\+decomp\+\_\+log@{open\+\_\+decomp\+\_\+log}}
-\index{open\+\_\+decomp\+\_\+log@{open\+\_\+decomp\+\_\+log}!driver\+\_\+post@{driver\+\_\+post}}
-\subsubsection{\texorpdfstring{open\+\_\+decomp\+\_\+log()}{open\_decomp\_log()}}
-{\footnotesize\ttfamily integer function driver\+\_\+post\+::open\+\_\+decomp\+\_\+log (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+\index{driver\_post@{driver\_post}!open\_decomp\_log@{open\_decomp\_log}}
+\index{open\_decomp\_log@{open\_decomp\_log}!driver\_post@{driver\_post}}
+\doxysubsubsection{\texorpdfstring{open\_decomp\_log()}{open\_decomp\_log()}}
+{\footnotesize\ttfamily integer function driver\+\_\+post\+::open\+\_\+decomp\+\_\+log}
 
 
 
@@ -184,9 +184,9 @@ Here is the caller graph for this function\+:\nopagebreak
 \end{center}
 \end{figure}
 \mbox{\Hypertarget{namespacedriver__post_af9ce961d2d6825b767a93fdbe8806a1c}\label{namespacedriver__post_af9ce961d2d6825b767a93fdbe8806a1c}} 
-\index{driver\+\_\+post@{driver\+\_\+post}!plot\+\_\+sol\+\_\+val\+\_\+comp@{plot\+\_\+sol\+\_\+val\+\_\+comp}}
-\index{plot\+\_\+sol\+\_\+val\+\_\+comp@{plot\+\_\+sol\+\_\+val\+\_\+comp}!driver\+\_\+post@{driver\+\_\+post}}
-\subsubsection{\texorpdfstring{plot\+\_\+sol\+\_\+val\+\_\+comp()}{plot\_sol\_val\_comp()}}
+\index{driver\_post@{driver\_post}!plot\_sol\_val\_comp@{plot\_sol\_val\_comp}}
+\index{plot\_sol\_val\_comp@{plot\_sol\_val\_comp}!driver\_post@{driver\_post}}
+\doxysubsubsection{\texorpdfstring{plot\_sol\_val\_comp()}{plot\_sol\_val\_comp()}}
 {\footnotesize\ttfamily subroutine driver\+\_\+post\+::plot\+\_\+sol\+\_\+val\+\_\+comp (\begin{DoxyParamCaption}\item[{complex(dp), dimension(\+:,\+:,\+:), intent(inout)}]{sol\+\_\+val\+\_\+comp }\end{DoxyParamCaption})}
 
 
@@ -195,7 +195,7 @@ Plots difference between Eigenvalues and energy fraction.
 
 
 \begin{DoxyParams}[1]{Parameters}
-\mbox{\tt in,out}  & {\em sol\+\_\+val\+\_\+comp} & fraction between total $E_{\text{pot}}$ and $E_{\text{kin}}$, compared with EV \\
+\mbox{\texttt{ in,out}}  & {\em sol\+\_\+val\+\_\+comp} & fraction between total $E_{\text{pot}}$ and $E_{\text{kin}}$, compared with EV \\
 \hline
 \end{DoxyParams}
 
@@ -217,10 +217,10 @@ Here is the caller graph for this function\+:\nopagebreak
 \end{center}
 \end{figure}
 \mbox{\Hypertarget{namespacedriver__post_a33b3c6f9018a0ddc92dce77394b8ab37}\label{namespacedriver__post_a33b3c6f9018a0ddc92dce77394b8ab37}} 
-\index{driver\+\_\+post@{driver\+\_\+post}!run\+\_\+driver\+\_\+post@{run\+\_\+driver\+\_\+post}}
-\index{run\+\_\+driver\+\_\+post@{run\+\_\+driver\+\_\+post}!driver\+\_\+post@{driver\+\_\+post}}
-\subsubsection{\texorpdfstring{run\+\_\+driver\+\_\+post()}{run\_driver\_post()}}
-{\footnotesize\ttfamily integer function, public driver\+\_\+post\+::run\+\_\+driver\+\_\+post (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+\index{driver\_post@{driver\_post}!run\_driver\_post@{run\_driver\_post}}
+\index{run\_driver\_post@{run\_driver\_post}!driver\_post@{driver\_post}}
+\doxysubsubsection{\texorpdfstring{run\_driver\_post()}{run\_driver\_post()}}
+{\footnotesize\ttfamily integer function, public driver\+\_\+post\+::run\+\_\+driver\+\_\+post}
 
 
 
@@ -273,10 +273,10 @@ Here is the caller graph for this function\+:\nopagebreak
 \end{center}
 \end{figure}
 \mbox{\Hypertarget{namespacedriver__post_a3438685c5fb7302f756c368fb5f940ee}\label{namespacedriver__post_a3438685c5fb7302f756c368fb5f940ee}} 
-\index{driver\+\_\+post@{driver\+\_\+post}!setup\+\_\+out\+\_\+grids@{setup\+\_\+out\+\_\+grids}}
-\index{setup\+\_\+out\+\_\+grids@{setup\+\_\+out\+\_\+grids}!driver\+\_\+post@{driver\+\_\+post}}
-\subsubsection{\texorpdfstring{setup\+\_\+out\+\_\+grids()}{setup\_out\_grids()}}
-{\footnotesize\ttfamily integer function driver\+\_\+post\+::setup\+\_\+out\+\_\+grids (\begin{DoxyParamCaption}\item[{type(\hyperlink{structgrid__vars_1_1grid__type}{grid\+\_\+type}), dimension(3), intent(inout)}]{grids\+\_\+out,  }\item[{real(dp), dimension(\+:,\+:,\+:,\+:), intent(inout), allocatable}]{X\+Y\+Z\+\_\+eq,  }\item[{real(dp), dimension(\+:,\+:,\+:,\+:), intent(inout), allocatable}]{X\+Y\+Z\+\_\+sol }\end{DoxyParamCaption})}
+\index{driver\_post@{driver\_post}!setup\_out\_grids@{setup\_out\_grids}}
+\index{setup\_out\_grids@{setup\_out\_grids}!driver\_post@{driver\_post}}
+\doxysubsubsection{\texorpdfstring{setup\_out\_grids()}{setup\_out\_grids()}}
+{\footnotesize\ttfamily integer function driver\+\_\+post\+::setup\+\_\+out\+\_\+grids (\begin{DoxyParamCaption}\item[{type(\mbox{\hyperlink{structgrid__vars_1_1grid__type}{grid\+\_\+type}}), dimension(3), intent(inout)}]{grids\+\_\+out,  }\item[{real(dp), dimension(\+:,\+:,\+:,\+:), intent(inout), allocatable}]{X\+Y\+Z\+\_\+eq,  }\item[{real(dp), dimension(\+:,\+:,\+:,\+:), intent(inout), allocatable}]{X\+Y\+Z\+\_\+sol }\end{DoxyParamCaption})}
 
 
 
@@ -298,15 +298,15 @@ The angular components of the eq and X grids is determined by {\ttfamily post\+\
 \end{DoxyItemize}
 
 \begin{DoxyReturn}{Returns}
-ierr
+ierr 
 \end{DoxyReturn}
 
 \begin{DoxyParams}[1]{Parameters}
-\mbox{\tt in,out}  & {\em grids\+\_\+out} & eq, X and sol output grids (full parallel and normal range)\\
+\mbox{\texttt{ in,out}}  & {\em grids\+\_\+out} & eq, X and sol output grids (full parallel and normal range) \\
 \hline
-\mbox{\tt in,out}  & {\em xyz\+\_\+eq} & {\ttfamily X}, {\ttfamily Y} and {\ttfamily Z} on output equilibrium grid\\
+\mbox{\texttt{ in,out}}  & {\em xyz\+\_\+eq} & {\ttfamily X}, {\ttfamily Y} and {\ttfamily Z} on output equilibrium grid \\
 \hline
-\mbox{\tt in,out}  & {\em xyz\+\_\+sol} & {\ttfamily X}, {\ttfamily Y} and {\ttfamily Z} on output solution grid \\
+\mbox{\texttt{ in,out}}  & {\em xyz\+\_\+sol} & {\ttfamily X}, {\ttfamily Y} and {\ttfamily Z} on output solution grid \\
 \hline
 \end{DoxyParams}
 
@@ -328,10 +328,10 @@ Here is the caller graph for this function\+:\nopagebreak
 \end{center}
 \end{figure}
 \mbox{\Hypertarget{namespacedriver__post_a71f9fb1935222111e1c7cfc15c5d0269}\label{namespacedriver__post_a71f9fb1935222111e1c7cfc15c5d0269}} 
-\index{driver\+\_\+post@{driver\+\_\+post}!stop\+\_\+post@{stop\+\_\+post}}
-\index{stop\+\_\+post@{stop\+\_\+post}!driver\+\_\+post@{driver\+\_\+post}}
-\subsubsection{\texorpdfstring{stop\+\_\+post()}{stop\_post()}}
-{\footnotesize\ttfamily subroutine, public driver\+\_\+post\+::stop\+\_\+post (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+\index{driver\_post@{driver\_post}!stop\_post@{stop\_post}}
+\index{stop\_post@{stop\_post}!driver\_post@{driver\_post}}
+\doxysubsubsection{\texorpdfstring{stop\_post()}{stop\_post()}}
+{\footnotesize\ttfamily subroutine, public driver\+\_\+post\+::stop\+\_\+post}
 
 
 
@@ -356,9 +356,9 @@ Here is the caller graph for this function\+:\nopagebreak
 \end{center}
 \end{figure}
 \mbox{\Hypertarget{namespacedriver__post_a4981c6c0e63b862c92ba240f43e22e77}\label{namespacedriver__post_a4981c6c0e63b862c92ba240f43e22e77}} 
-\index{driver\+\_\+post@{driver\+\_\+post}!write\+\_\+decomp\+\_\+log@{write\+\_\+decomp\+\_\+log}}
-\index{write\+\_\+decomp\+\_\+log@{write\+\_\+decomp\+\_\+log}!driver\+\_\+post@{driver\+\_\+post}}
-\subsubsection{\texorpdfstring{write\+\_\+decomp\+\_\+log()}{write\_decomp\_log()}}
+\index{driver\_post@{driver\_post}!write\_decomp\_log@{write\_decomp\_log}}
+\index{write\_decomp\_log@{write\_decomp\_log}!driver\_post@{driver\_post}}
+\doxysubsubsection{\texorpdfstring{write\_decomp\_log()}{write\_decomp\_log()}}
 {\footnotesize\ttfamily integer function driver\+\_\+post\+::write\+\_\+decomp\+\_\+log (\begin{DoxyParamCaption}\item[{integer, intent(in)}]{X\+\_\+id,  }\item[{complex(dp), dimension(7), intent(in)}]{E\+\_\+pot\+\_\+int,  }\item[{complex(dp), dimension(2), intent(in)}]{E\+\_\+kin\+\_\+int }\end{DoxyParamCaption})}
 
 
@@ -366,15 +366,15 @@ Here is the caller graph for this function\+:\nopagebreak
 Write to decomposition log file. 
 
 \begin{DoxyReturn}{Returns}
-ierr
+ierr 
 \end{DoxyReturn}
 
 \begin{DoxyParams}[1]{Parameters}
-\mbox{\tt in}  & {\em x\+\_\+id} & nr. of Eigenvalue\\
+\mbox{\texttt{ in}}  & {\em x\+\_\+id} & nr. of Eigenvalue \\
 \hline
-\mbox{\tt in}  & {\em e\+\_\+pot\+\_\+int} & E\+\_\+pot integrated for requested solutions\\
+\mbox{\texttt{ in}}  & {\em e\+\_\+pot\+\_\+int} & E\+\_\+pot integrated for requested solutions \\
 \hline
-\mbox{\tt in}  & {\em e\+\_\+kin\+\_\+int} & E\+\_\+kin integrated for requested solutions \\
+\mbox{\texttt{ in}}  & {\em e\+\_\+kin\+\_\+int} & E\+\_\+kin integrated for requested solutions \\
 \hline
 \end{DoxyParams}
 

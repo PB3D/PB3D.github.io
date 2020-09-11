@@ -1,31 +1,31 @@
-\hypertarget{page_installation_installation_introduction}{}\section{Introduction}\label{page_installation_installation_introduction}
+\hypertarget{page_installation_installation_introduction}{}\doxysection{Introduction}\label{page_installation_installation_introduction}
 P\+B3D is written in Fortran, and makes use of multiple numerical libraries\+:
 \begin{DoxyItemize}
-\item \href{http://www.netlib.org/lapack/}{\tt blas / lapack}
+\item \href{http://www.netlib.org/lapack/}{\texttt{ blas / lapack}}
 \begin{DoxyItemize}
 \item for basic linear algebra
 \end{DoxyItemize}
-\item \href{http://www.netlib.org/scalapack/}{\tt pblas / blacs / scalapack}
+\item \href{http://www.netlib.org/scalapack/}{\texttt{ pblas / blacs / scalapack}}
 \begin{DoxyItemize}
 \item for parallelized basic linear algebra
 \end{DoxyItemize}
-\item \href{https://www.hdfgroup.org/HDF5/}{\tt H\+D\+F5}
+\item \href{https://www.hdfgroup.org/HDF5/}{\texttt{ H\+D\+F5}}
 \begin{DoxyItemize}
 \item for storage files
 \item works in parallel
 \end{DoxyItemize}
-\item \href{https://www.unidata.ucar.edu/software/netcdf/}{\tt Net\+C\+DF}
+\item \href{https://www.unidata.ucar.edu/software/netcdf/}{\texttt{ Net\+C\+DF}}
 \begin{DoxyItemize}
 \item to read input of V\+M\+EC
 \item sequential
 \end{DoxyItemize}
-\item \href{https://www.mcs.anl.gov/petsc/}{\tt P\+E\+T\+Sc} / \href{http://slepc.upv.es/}{\tt S\+L\+E\+Pc}
+\item \href{https://www.mcs.anl.gov/petsc/}{\texttt{ P\+E\+T\+Sc}} / \href{http://slepc.upv.es/}{\texttt{ S\+L\+E\+Pc}}
 \begin{DoxyItemize}
 \item for linear algebra of large, sparse matrices
 \item can reach $\sim \mathcal{O} (n)$ complexity
 \item Minimal installation instructions\+:
 \begin{DoxyEnumerate}
-\item Configure P\+E\+T\+Sc using {\ttfamily ./configure P\+E\+T\+S\+C\+\_\+\+A\+R\+CH=complex C\+O\+P\+T\+F\+L\+A\+GS=-\/\+O3 C\+X\+X\+O\+P\+T\+F\+L\+A\+GS=-\/\+O3 F\+O\+P\+T\+F\+L\+A\+GS=-\/\+O3 \textbackslash{}}~\newline
+\item Configure P\+E\+T\+Sc using {\ttfamily ./configure P\+E\+T\+S\+C\+\_\+\+A\+R\+CH=complex C\+O\+P\+T\+F\+L\+A\+GS=-\/O3 C\+X\+X\+O\+P\+T\+F\+L\+A\+GS=-\/O3 F\+O\+P\+T\+F\+L\+A\+GS=-\/O3 \textbackslash{}}~\newline
  {\ttfamily -\/-\/with-\/scalar-\/type=complex \textbackslash{}}~\newline
  {\ttfamily -\/-\/download-\/metis \textbackslash{}}~\newline
  {\ttfamily -\/-\/download-\/mumps \textbackslash{}}~\newline
@@ -42,7 +42,7 @@ P\+B3D is written in Fortran, and makes use of multiple numerical libraries\+:
 \item follow instructions to do makes and tests
 \end{DoxyEnumerate}
 \end{DoxyItemize}
-\item \href{http://portal.nersc.gov/project/sparse/strumpack/}{\tt Strum\+Pack}
+\item \href{http://portal.nersc.gov/project/sparse/strumpack/}{\texttt{ Strum\+Pack}}
 \begin{DoxyItemize}
 \item for linear algebra of structured matrices \cite{Ambikasaran2013}
 \item the vacuum potential energy perturbation calculations use such matrices as they are generated with a $1/r$ kernel.
@@ -50,11 +50,11 @@ P\+B3D is written in Fortran, and makes use of multiple numerical libraries\+:
 \item we use the dense version of the package, which for Fortran is 1.\+1.\+1.
 \item Minimal installation instructions\+:
 \begin{DoxyEnumerate}
-\item \href{http://portal.nersc.gov/project/sparse/strumpack/STRUMPACK-Dense-1.1.1.tar.gz}{\tt Download}, untar and go to root folder.
+\item \href{http://portal.nersc.gov/project/sparse/strumpack/STRUMPACK-Dense-1.1.1.tar.gz}{\texttt{ Download}}, untar and go to root folder.
 \item Go to examples, copy {\ttfamily Makefile.\+gnu} to {\ttfamily Makefile.\+inc} and adapt\+:
 \begin{DoxyEnumerate}
 \item for example, it might be necessary to add {\ttfamily -\/lblacs} before {\ttfamily -\/lscalapack}
-\item if you use intel, have a look at the \href{https://software.intel.com/en-us/articles/intel-mkl-link-line-advisor}{\tt link line advisor}, and update the {\ttfamily L\+IB}
+\item if you use intel, have a look at the \href{https://software.intel.com/en-us/articles/intel-mkl-link-line-advisor}{\texttt{ link line advisor}}, and update the {\ttfamily L\+IB}
 \item possibly, you might have to set the {\ttfamily CC} and {\ttfamily FC} compiler commands to, for example, {\ttfamily mpicc} respectively {\ttfamily mpiifort}
 \end{DoxyEnumerate}
 \item Create directories {\ttfamily lib} and {\ttfamily inc}.
@@ -64,12 +64,12 @@ P\+B3D is written in Fortran, and makes use of multiple numerical libraries\+:
 \item In lib, create a symlink {\ttfamily strumpackdensepackage.\+mod} to {\ttfamily strumpackdensepackage.\+mod} in examples.
 \end{DoxyEnumerate}
 \end{DoxyItemize}
-\item \href{https://bitbucket.org/lazerson_princeton/stellopt/wiki/Home}{\tt libstell}
+\item \href{https://bitbucket.org/lazerson_princeton/stellopt/wiki/Home}{\texttt{ libstell}}
 \begin{DoxyItemize}
 \item part of Stellopt suite, which contains V\+M\+EC
 \item provides routines to read V\+M\+EC output data
 \end{DoxyItemize}
-\item \href{https://w3.pppl.gov/ntcc/PSPLINE/}{\tt pspline}
+\item \href{https://w3.pppl.gov/ntcc/PSPLINE/}{\texttt{ pspline}}
 \begin{DoxyItemize}
 \item Princeton Spline and Hermite Cubic Interpolation Routines
 \item Minimal installation instructions\+:
@@ -80,14 +80,14 @@ P\+B3D is written in Fortran, and makes use of multiple numerical libraries\+:
 \item Run the gmake below and note the flags, then edit these and put them in {\ttfamily share/\+Make.\+overwrite}
 \item if G\+CC\+:
 \begin{DoxyItemize}
-\item {\ttfamily F\+F\+L\+A\+GS = -\/c -\/\+O3 -\/m64 -\/fno-\/range-\/check -\/fdollar-\/ok -\/cpp ; export F\+F\+L\+A\+GS}
-\item {\ttfamily C\+F\+L\+A\+GS = -\/c -\/\+O3 -\/m64 ; export C\+F\+L\+A\+GS}
-\item {\ttfamily C\+X\+X\+F\+L\+A\+GS = -\/c -\/\+O3 -\/m64 ; export C\+X\+X\+F\+L\+A\+GS}
+\item {\ttfamily F\+F\+L\+A\+GS = -\/c -\/O3 -\/m64 -\/fno-\/range-\/check -\/fdollar-\/ok -\/cpp ; export F\+F\+L\+A\+GS}
+\item {\ttfamily C\+F\+L\+A\+GS = -\/c -\/O3 -\/m64 ; export C\+F\+L\+A\+GS}
+\item {\ttfamily C\+X\+X\+F\+L\+A\+GS = -\/c -\/O3 -\/m64 ; export C\+X\+X\+F\+L\+A\+GS}
 \end{DoxyItemize}
 \item if Intel\+:
 \begin{DoxyItemize}
-\item {\ttfamily F\+F\+L\+A\+GS = -\/c -\/\+O3 -\/nowarn -\/ftz -\/auto-\/scalar -\/traceback -\/align dcommons}
-\item {\ttfamily M\+P\+I\+\_\+\+F\+F\+L\+A\+GS = -\/c -\/\+O3 -\/nowarn -\/ftz -\/traceback -\/align dcommons -\/auto-\/scalar} (possibly add FC=mpiifort, {\ttfamily C\+XX=mpicpc}, {\ttfamily CC=mpiicc} if on a cluster)
+\item {\ttfamily F\+F\+L\+A\+GS = -\/c -\/O3 -\/nowarn -\/ftz -\/auto-\/scalar -\/traceback -\/align dcommons}
+\item {\ttfamily M\+P\+I\+\_\+\+F\+F\+L\+A\+GS = -\/c -\/O3 -\/nowarn -\/ftz -\/traceback -\/align dcommons -\/auto-\/scalar} (possibly add FC=mpiifort, {\ttfamily C\+XX=mpicpc}, {\ttfamily CC=mpiicc} if on a cluster)
 \end{DoxyItemize}
 \end{DoxyItemize}
 \item Compile with {\ttfamily gmake N\+E\+T\+C\+D\+F\+\_\+\+D\+IR= F\+O\+R\+T\+R\+A\+N\+\_\+\+V\+A\+R\+I\+A\+NT=\mbox{[}V\+A\+R\+I\+A\+NT\mbox{]}} with {\ttfamily \mbox{[}V\+A\+R\+I\+A\+NT\mbox{]}} either {\ttfamily G\+CC} or {\ttfamily Intel} (add {\ttfamily D\+E\+B\+UG=1} and remove the F\+L\+A\+GS if debug wanted). Possibly also add {\ttfamily O\+BJ=\$\mbox{[}C\+O\+M\+P\+\_\+\+D\+IR\mbox{]}} if on a cluster, with {\ttfamily \mbox{[}C\+O\+M\+P\+\_\+\+D\+IR\mbox{]}} the directory where to put the resulting library.
@@ -100,17 +100,17 @@ They should probably be installed in this order. On linux distributions such as 
 
 Furthermore, P\+B3D comes bundled with some other, smaller libraries\+:
 \begin{DoxyItemize}
-\item \href{http://www.netlib.org/fftpack/}{\tt fftpack}
+\item \href{http://www.netlib.org/fftpack/}{\texttt{ fftpack}}
 \begin{DoxyItemize}
 \item to calculate the fast Fourier transform
 \end{DoxyItemize}
-\item \href{http://foul.sourceforge.net/}{\tt foul}
+\item \href{http://foul.sourceforge.net/}{\texttt{ foul}}
 \begin{DoxyItemize}
 \item the Fortran Output Library
 \end{DoxyItemize}
 \end{DoxyItemize}
 
-These do not have to be installed separately.\hypertarget{page_installation_installation_compilation}{}\section{Compilation}\label{page_installation_installation_compilation}
+These do not have to be installed separately.\hypertarget{page_installation_installation_compilation}{}\doxysection{Compilation}\label{page_installation_installation_compilation}
 When all dependencies are satisfied, the program is then compiled in the standard way\+:
 \begin{DoxyItemize}
 \item Including the headers of all the libraries in the compilation of the object files\+:
@@ -122,169 +122,169 @@ When all dependencies are satisfied, the program is then compiled in the standar
 \begin{DoxyItemize}
 \item This is done using {\ttfamily -\/L\mbox{[}path\+\_\+to\+\_\+library\mbox{]} -\/l\mbox{[}library\+\_\+name\mbox{]}}.
 \end{DoxyItemize}
-\end{DoxyItemize}\hypertarget{page_installation_installation_makefile}{}\section{Makefile Example}\label{page_installation_installation_makefile}
+\end{DoxyItemize}\hypertarget{page_installation_installation_makefile}{}\doxysection{Makefile Example}\label{page_installation_installation_makefile}
 
-\begin{DoxyCodeInclude}
-1 ##############################################################################
-2 #
-3 #   Example makefile for the program PB3D (Peeling Ballooning in 3D)
-4 #   \(\backslash\)author Author: Toon Weyens
-5 #
-6 #   Don't forget to set the directories:
-7 #       - LIBSTELL\_DIR
-8 #       - HDF5\_DIR
-9 #       - NETCDFF\_DIR (note: Fortran library)
-10 #       - PETSC\_DIR
-11 #       - SLEPC\_DIR
-12 #       - STRUMPACK\_DIR
-13 ##############################################################################
-14 
-15 ##############################################################################
-16 #   Include
-17 ##############################################################################
-18 ## [PETSc and SLEPc trick]
-19 include  $(PETSC\_DIR)/lib/petsc/conf/variables
-20 include  $(SLEPC\_DIR)/lib/slepc/conf/slepc\_variables
-21 ## [PETSc and SLEPc trick]
-22 
-23 ## [PETSc and SLEPc trick inc]
-24 INCLUDE = $(PETSC\_FC\_INCLUDES) $(SLEPC\_INCLUDE)
-25 ## [PETSc and SLEPc trick inc]
-26 ## [Libstell special]
-27 INCLUDE += -I$(LIBSTELL\_DIR)/libstell\_dir
-28 ## [Libstell special]
-29 INCLUDE += -I$(STRUMPACK\_DIR)/include
-30 ## [PB3D include]
-31 INCLUDE += -I$(PB3D\_DIR)/include
-32 ## [PB3D include]
-33 INCLUDE += -I/usr/include/hdf5/openmpi
-34 
-35 ##############################################################################
-36 #   Link
-37 ##############################################################################
-38 ## [PB3D libraries]
-39 LIB\_INTERNAL = libdfftpack.a libfoul.a libbspline.a
-40 ## [PB3D libraries]
-41 
-42 LINK := $(LIB\_INTERNAL)
-43 
-44 ## [PETSc and SLEPc trick lib]
-45 LINK += $(PETSC\_LIB)
-46 LINK += $(SLEPC\_LIB)
-47 ## [PETSc and SLEPc trick lib]
-48 LINK += $(LIBSTELL\_DIR)/libstell.a
-49 LINK += -L$(STRUMPACK\_DIR)/lib -lstrumpack
-50 LINK += -L$(HDF5\_DIR) -lhdf5\_fortran -lhdf5
-51 LINK += -L$(NETCDFF\_DIR)/lib -lnetcdff
-52 LINK += -Wl,-R$(NETCDFF\_DIR)/lib
-53 LINK += -lscalapack -lblacs -lblas -lm
-54 LINK += -lstdc++ -lmpi\_cxx
-55 
-56 
-57 ##############################################################################
-58 #   Compiler
-59 ##############################################################################
-60 COMPILER=mpifort
-61 
-62 
-63 ##############################################################################
-64 #   Linker
-65 ##############################################################################
-66 LINKER=mpifort
-67 
-68 
-69 ##############################################################################
-70 #   Compiler flags
-71 #   options (used with -D[name]):
-72 #       ldebug: debug
-73 #       lIB: infiniband
-74 #       lwith\_gnu: use GNU compiler [default]
-75 #       lwith\_intel: use INTEL compiler, (checked for version 12.0.2)
-76 #   note: INTEL warning 6536 is suppressed, which informs about extra "USE".
-77 #   note: INTEL warning 6843 is suppressed, which informs about empty
-78 #       intent(out) variables
-79 ##############################################################################
-80 COMP\_FLAGS = -finit-real=snan -g -Og -Wall -Wextra -pedantic \(\backslash\)
-81     -fimplicit-none -fbacktrace -fno-omit-frame-pointer \(\backslash\)
-82     -fcheck=all -cpp -Dldebug# debug, profiling with gprof2dot, GCC
-83 #COMP\_FLAGS = -O3 -fbacktrace -g -fimplicit-none -fno-omit-frame-pointer \(\backslash\)
-84     #-cpp# optimized, GCC
-85 
-86 #COMP\_FLAGS = -O0 -DlIB -Dldebug -g -heap-arrays 100 -recursive \(\backslash\)
-87     #-ftrapuv -check bounds -check uninit -traceback -implicitnone \(\backslash\)
-88     #-fno-omit-frame-pointer -cpp -Dlwith\_intel -diag-disable 6536 \(\backslash\)
-89     #-diag-disable 6843# debug, profiling with gprof2dot, INTEL
-90 #COMP\_FLAGS = -O3 -DlIB -traceback -g -heap-arrays 100 -recursive \(\backslash\)
-91     #-implicitnone -fno-omit-frame-pointer -cpp -Dlwith\_intel \(\backslash\)
-92     #-diag-disable 6536 -diag-disable 6843# optimized, INTEL
-93 
-94 COMP\_FLAGS\_EX= -O2 -w
-95 
-96 COMP\_FLAGS\_F= -O2 -funroll-loops -fexpensive-optimizations
-97 
-98 
-99 ##############################################################################
-100 #   Link flags
-101 ##############################################################################
-102 LINK\_FLAGS = -fPIC -finit-real=snan# debug
-103 #LINK\_FLAGS = -fPIC# optimized
-104 
-105 
-106 ##############################################################################
-107 #   Prepare
-108 ##############################################################################
-109 # Add "Modules" and "Libraries" to the search path for the prerequisites
-110 VPATH = Modules:Libraries
-111 
-112 # Contains list of source files (.o) and dependencies
-113 DEPLIST = PB3D.dep
-114 OBJLIST = ObjectList# defines "ObjectFiles"
-115 
-116 # Includes source files and dependency list
-117 include $(DEPLIST)# Dependencies of all the objects
-118 include $(OBJLIST)# Names of all the objects
-119 
-120 
-121 ##############################################################################
-122 #   Rules
-123 ##############################################################################
-124 all:    PB3D POST
-125 
-126 PB3D:   $(ObjectFiles) $(LIB\_INTERNAL) PB3D.o
-127     $(LINKER) -o $@ $(ObjectFiles) PB3D.o $(LINK) $(LINK\_FLAGS)
-128 
-129 POST:   $(ObjectFiles) $(LIB\_INTERNAL) POST.o
-130     $(LINKER) -o $@ $(ObjectFiles) POST.o $(LINK) $(LINK\_FLAGS)
-131 
-132 libdfftpack.a:  dfft.o
-133     ar -rcs libdfftpack.a dfft.o
-134 
-135 libfoul.a:  foul.o
-136     ar -rcs libfoul.a foul.o
-137 
-138 libbspline.a:   bspline\_sub\_module.o
-139     ar -rcs libbspline.a bspline\_sub\_module.o
-140 
-141 %.o: %.f90
-142     $(COMPILER) $(INCLUDE) $(COMP\_FLAGS) -c $<
-143 
-144 %.o: %.f
-145     $(COMPILER) $(COMP\_FLAGS\_F) -c $<
-146 
-147 dfft.o: dfft.f
-148     $(COMPILER) $(COMP\_FLAGS\_EX) -c $<
-149 
-150 foul.o: foul.f90
-151     $(COMPILER) $(COMP\_FLAGS\_EX) -c $<
-152 
-153 bspline\_sub\_module.o: bspline\_sub\_module.f90
-154     $(COMPILER) $(COMP\_FLAGS\_EX) -c $<
-155 
-156 clean:
-157     @rm -f *.o *.a *.mod *~ fort.* 
-158 
-159 clean\_all:
-160     @rm -f *.o *.mod *~ fort.* PB3D POST
+\begin{DoxyCodeInclude}{0}
+\DoxyCodeLine{1 \#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#}
+\DoxyCodeLine{2 \#}
+\DoxyCodeLine{3 \#   Example makefile for the program PB3D (Peeling Ballooning in 3D)}
+\DoxyCodeLine{4 \#   \(\backslash\)author Author: Toon Weyens}
+\DoxyCodeLine{5 \#}
+\DoxyCodeLine{6 \#   Don't forget to set the directories:}
+\DoxyCodeLine{7 \#       -\/ LIBSTELL\_DIR}
+\DoxyCodeLine{8 \#       -\/ HDF5\_DIR}
+\DoxyCodeLine{9 \#       -\/ NETCDFF\_DIR (note: Fortran library)}
+\DoxyCodeLine{10 \#       -\/ PETSC\_DIR}
+\DoxyCodeLine{11 \#       -\/ SLEPC\_DIR}
+\DoxyCodeLine{12 \#       -\/ STRUMPACK\_DIR}
+\DoxyCodeLine{13 \#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#}
+\DoxyCodeLine{14 }
+\DoxyCodeLine{15 \#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#}
+\DoxyCodeLine{16 \#   Include}
+\DoxyCodeLine{17 \#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#}
+\DoxyCodeLine{18 \#\# [PETSc and SLEPc trick]}
+\DoxyCodeLine{19 include  \$(PETSC\_DIR)/lib/petsc/conf/variables}
+\DoxyCodeLine{20 include  \$(SLEPC\_DIR)/lib/slepc/conf/slepc\_variables}
+\DoxyCodeLine{21 \#\# [PETSc and SLEPc trick]}
+\DoxyCodeLine{22 }
+\DoxyCodeLine{23 \#\# [PETSc and SLEPc trick inc]}
+\DoxyCodeLine{24 INCLUDE = \$(PETSC\_FC\_INCLUDES) \$(SLEPC\_INCLUDE)}
+\DoxyCodeLine{25 \#\# [PETSc and SLEPc trick inc]}
+\DoxyCodeLine{26 \#\# [Libstell special]}
+\DoxyCodeLine{27 INCLUDE += -\/I\$(LIBSTELL\_DIR)/libstell\_dir}
+\DoxyCodeLine{28 \#\# [Libstell special]}
+\DoxyCodeLine{29 INCLUDE += -\/I\$(STRUMPACK\_DIR)/include}
+\DoxyCodeLine{30 \#\# [PB3D include]}
+\DoxyCodeLine{31 INCLUDE += -\/I\$(PB3D\_DIR)/include}
+\DoxyCodeLine{32 \#\# [PB3D include]}
+\DoxyCodeLine{33 INCLUDE += -\/I/usr/include/hdf5/openmpi}
+\DoxyCodeLine{34 }
+\DoxyCodeLine{35 \#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#}
+\DoxyCodeLine{36 \#   Link}
+\DoxyCodeLine{37 \#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#}
+\DoxyCodeLine{38 \#\# [PB3D libraries]}
+\DoxyCodeLine{39 LIB\_INTERNAL = libdfftpack.a libfoul.a libbspline.a}
+\DoxyCodeLine{40 \#\# [PB3D libraries]}
+\DoxyCodeLine{41 }
+\DoxyCodeLine{42 LINK := \$(LIB\_INTERNAL)}
+\DoxyCodeLine{43 }
+\DoxyCodeLine{44 \#\# [PETSc and SLEPc trick lib]}
+\DoxyCodeLine{45 LINK += \$(PETSC\_LIB)}
+\DoxyCodeLine{46 LINK += \$(SLEPC\_LIB)}
+\DoxyCodeLine{47 \#\# [PETSc and SLEPc trick lib]}
+\DoxyCodeLine{48 LINK += \$(LIBSTELL\_DIR)/libstell.a}
+\DoxyCodeLine{49 LINK += -\/L\$(STRUMPACK\_DIR)/lib -\/lstrumpack}
+\DoxyCodeLine{50 LINK += -\/L\$(HDF5\_DIR) -\/lhdf5\_fortran -\/lhdf5}
+\DoxyCodeLine{51 LINK += -\/L\$(NETCDFF\_DIR)/lib -\/lnetcdff}
+\DoxyCodeLine{52 LINK += -\/Wl,-\/R\$(NETCDFF\_DIR)/lib}
+\DoxyCodeLine{53 LINK += -\/lscalapack -\/lblacs -\/lblas -\/lm}
+\DoxyCodeLine{54 LINK += -\/lstdc++ -\/lmpi\_cxx}
+\DoxyCodeLine{55 }
+\DoxyCodeLine{56 }
+\DoxyCodeLine{57 \#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#}
+\DoxyCodeLine{58 \#   Compiler}
+\DoxyCodeLine{59 \#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#}
+\DoxyCodeLine{60 COMPILER=mpifort}
+\DoxyCodeLine{61 }
+\DoxyCodeLine{62 }
+\DoxyCodeLine{63 \#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#}
+\DoxyCodeLine{64 \#   Linker}
+\DoxyCodeLine{65 \#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#}
+\DoxyCodeLine{66 LINKER=mpifort}
+\DoxyCodeLine{67 }
+\DoxyCodeLine{68 }
+\DoxyCodeLine{69 \#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#}
+\DoxyCodeLine{70 \#   Compiler flags}
+\DoxyCodeLine{71 \#   options (used with -\/D[name]):}
+\DoxyCodeLine{72 \#       ldebug: debug}
+\DoxyCodeLine{73 \#       lIB: infiniband}
+\DoxyCodeLine{74 \#       lwith\_gnu: use GNU compiler [default]}
+\DoxyCodeLine{75 \#       lwith\_intel: use INTEL compiler, (checked for version 12.0.2)}
+\DoxyCodeLine{76 \#   note: INTEL warning 6536 is suppressed, which informs about extra "USE".}
+\DoxyCodeLine{77 \#   note: INTEL warning 6843 is suppressed, which informs about empty}
+\DoxyCodeLine{78 \#       intent(out) variables}
+\DoxyCodeLine{79 \#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#}
+\DoxyCodeLine{80 COMP\_FLAGS = -\/finit-\/real=snan -\/g -\/Og -\/Wall -\/Wextra -\/pedantic \(\backslash\)}
+\DoxyCodeLine{81     -\/fimplicit-\/none -\/fbacktrace -\/fno-\/omit-\/frame-\/pointer \(\backslash\)}
+\DoxyCodeLine{82     -\/fcheck=all -\/cpp -\/Dldebug\# debug, profiling with gprof2dot, GCC}
+\DoxyCodeLine{83 \#COMP\_FLAGS = -\/O3 -\/fbacktrace -\/g -\/fimplicit-\/none -\/fno-\/omit-\/frame-\/pointer \(\backslash\)}
+\DoxyCodeLine{84     \#-\/cpp\# optimized, GCC}
+\DoxyCodeLine{85 }
+\DoxyCodeLine{86 \#COMP\_FLAGS = -\/O0 -\/DlIB -\/Dldebug -\/g -\/heap-\/arrays 100 -\/recursive \(\backslash\)}
+\DoxyCodeLine{87     \#-\/ftrapuv -\/check bounds -\/check uninit -\/traceback -\/implicitnone \(\backslash\)}
+\DoxyCodeLine{88     \#-\/fno-\/omit-\/frame-\/pointer -\/cpp -\/Dlwith\_intel -\/diag-\/disable 6536 \(\backslash\)}
+\DoxyCodeLine{89     \#-\/diag-\/disable 6843\# debug, profiling with gprof2dot, INTEL}
+\DoxyCodeLine{90 \#COMP\_FLAGS = -\/O3 -\/DlIB -\/traceback -\/g -\/heap-\/arrays 100 -\/recursive \(\backslash\)}
+\DoxyCodeLine{91     \#-\/implicitnone -\/fno-\/omit-\/frame-\/pointer -\/cpp -\/Dlwith\_intel \(\backslash\)}
+\DoxyCodeLine{92     \#-\/diag-\/disable 6536 -\/diag-\/disable 6843\# optimized, INTEL}
+\DoxyCodeLine{93 }
+\DoxyCodeLine{94 COMP\_FLAGS\_EX= -\/O2 -\/w}
+\DoxyCodeLine{95 }
+\DoxyCodeLine{96 COMP\_FLAGS\_F= -\/O2 -\/funroll-\/loops -\/fexpensive-\/optimizations}
+\DoxyCodeLine{97 }
+\DoxyCodeLine{98 }
+\DoxyCodeLine{99 \#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#}
+\DoxyCodeLine{100 \#   Link flags}
+\DoxyCodeLine{101 \#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#}
+\DoxyCodeLine{102 LINK\_FLAGS = -\/fPIC -\/finit-\/real=snan\# debug}
+\DoxyCodeLine{103 \#LINK\_FLAGS = -\/fPIC\# optimized}
+\DoxyCodeLine{104 }
+\DoxyCodeLine{105 }
+\DoxyCodeLine{106 \#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#}
+\DoxyCodeLine{107 \#   Prepare}
+\DoxyCodeLine{108 \#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#}
+\DoxyCodeLine{109 \# Add "Modules" and "Libraries" to the search path for the prerequisites}
+\DoxyCodeLine{110 VPATH = Modules:Libraries}
+\DoxyCodeLine{111 }
+\DoxyCodeLine{112 \# Contains list of source files (.o) and dependencies}
+\DoxyCodeLine{113 DEPLIST = PB3D.dep}
+\DoxyCodeLine{114 OBJLIST = ObjectList\# defines "ObjectFiles"}
+\DoxyCodeLine{115 }
+\DoxyCodeLine{116 \# Includes source files and dependency list}
+\DoxyCodeLine{117 include \$(DEPLIST)\# Dependencies of all the objects}
+\DoxyCodeLine{118 include \$(OBJLIST)\# Names of all the objects}
+\DoxyCodeLine{119 }
+\DoxyCodeLine{120 }
+\DoxyCodeLine{121 \#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#}
+\DoxyCodeLine{122 \#   Rules}
+\DoxyCodeLine{123 \#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#}
+\DoxyCodeLine{124 all:    PB3D POST}
+\DoxyCodeLine{125 }
+\DoxyCodeLine{126 PB3D:   \$(ObjectFiles) \$(LIB\_INTERNAL) PB3D.o}
+\DoxyCodeLine{127     \$(LINKER) -\/o \$@ \$(ObjectFiles) PB3D.o \$(LINK) \$(LINK\_FLAGS)}
+\DoxyCodeLine{128 }
+\DoxyCodeLine{129 POST:   \$(ObjectFiles) \$(LIB\_INTERNAL) POST.o}
+\DoxyCodeLine{130     \$(LINKER) -\/o \$@ \$(ObjectFiles) POST.o \$(LINK) \$(LINK\_FLAGS)}
+\DoxyCodeLine{131 }
+\DoxyCodeLine{132 libdfftpack.a:  dfft.o}
+\DoxyCodeLine{133     ar -\/rcs libdfftpack.a dfft.o}
+\DoxyCodeLine{134 }
+\DoxyCodeLine{135 libfoul.a:  foul.o}
+\DoxyCodeLine{136     ar -\/rcs libfoul.a foul.o}
+\DoxyCodeLine{137 }
+\DoxyCodeLine{138 libbspline.a:   bspline\_sub\_module.o}
+\DoxyCodeLine{139     ar -\/rcs libbspline.a bspline\_sub\_module.o}
+\DoxyCodeLine{140 }
+\DoxyCodeLine{141 \%.o: \%.f90}
+\DoxyCodeLine{142     \$(COMPILER) \$(INCLUDE) \$(COMP\_FLAGS) -\/c \$<}
+\DoxyCodeLine{143 }
+\DoxyCodeLine{144 \%.o: \%.f}
+\DoxyCodeLine{145     \$(COMPILER) \$(COMP\_FLAGS\_F) -\/c \$<}
+\DoxyCodeLine{146 }
+\DoxyCodeLine{147 dfft.o: dfft.f}
+\DoxyCodeLine{148     \$(COMPILER) \$(COMP\_FLAGS\_EX) -\/c \$<}
+\DoxyCodeLine{149 }
+\DoxyCodeLine{150 foul.o: foul.f90}
+\DoxyCodeLine{151     \$(COMPILER) \$(COMP\_FLAGS\_EX) -\/c \$<}
+\DoxyCodeLine{152 }
+\DoxyCodeLine{153 bspline\_sub\_module.o: bspline\_sub\_module.f90}
+\DoxyCodeLine{154     \$(COMPILER) \$(COMP\_FLAGS\_EX) -\/c \$<}
+\DoxyCodeLine{155 }
+\DoxyCodeLine{156 clean:}
+\DoxyCodeLine{157     @rm -\/f *.o *.a *.mod *\string~ fort.* }
+\DoxyCodeLine{158 }
+\DoxyCodeLine{159 clean\_all:}
+\DoxyCodeLine{160     @rm -\/f *.o *.mod *\string~ fort.* PB3D POST}
 \end{DoxyCodeInclude}
 
 
@@ -292,33 +292,33 @@ When all dependencies are satisfied, the program is then compiled in the standar
 
 \begin{DoxyEnumerate}
 \item P\+E\+T\+Sc and S\+L\+E\+Pc don\textquotesingle{}t like to be included in another makefile. The trick is to include two files\+: 
-\begin{DoxyCodeInclude}
-19 include  $(PETSC\_DIR)/lib/petsc/conf/variables
-20 include  $(SLEPC\_DIR)/lib/slepc/conf/slepc\_variables
+\begin{DoxyCodeInclude}{0}
+\DoxyCodeLine{19 include  \$(PETSC\_DIR)/lib/petsc/conf/variables}
+\DoxyCodeLine{20 include  \$(SLEPC\_DIR)/lib/slepc/conf/slepc\_variables}
 \end{DoxyCodeInclude}
  which will load the variables {\ttfamily P\+E\+T\+S\+C\+\_\+\+F\+C\+\_\+\+I\+N\+C\+L\+U\+D\+ES} and {\ttfamily S\+L\+E\+P\+C\+\_\+\+I\+N\+C\+L\+U\+DE}, used in 
-\begin{DoxyCodeInclude}
-24 INCLUDE = $(PETSC\_FC\_INCLUDES) $(SLEPC\_INCLUDE)
+\begin{DoxyCodeInclude}{0}
+\DoxyCodeLine{24 INCLUDE = \$(PETSC\_FC\_INCLUDES) \$(SLEPC\_INCLUDE)}
 \end{DoxyCodeInclude}
  as well as the variables {\ttfamily P\+E\+T\+S\+C\+\_\+\+L\+IB} and {\ttfamily S\+L\+E\+P\+C\+\_\+\+L\+IB}, used in 
-\begin{DoxyCodeInclude}
-45 LINK += $(PETSC\_LIB)
-46 LINK += $(SLEPC\_LIB)
+\begin{DoxyCodeInclude}{0}
+\DoxyCodeLine{45 LINK += \$(PETSC\_LIB)}
+\DoxyCodeLine{46 LINK += \$(SLEPC\_LIB)}
 \end{DoxyCodeInclude}
 
 \item There are versions of libstell that do not use the standard convention. In this case you have to look for the {\ttfamily $\ast$.mod} files. In the example makefile this is done with 
-\begin{DoxyCodeInclude}
-27 INCLUDE += -I$(LIBSTELL\_DIR)/libstell\_dir
+\begin{DoxyCodeInclude}{0}
+\DoxyCodeLine{27 INCLUDE += -\/I\$(LIBSTELL\_DIR)/libstell\_dir}
 \end{DoxyCodeInclude}
  instead of the standard {\ttfamily inc} directory.
 \item In 
-\begin{DoxyCodeInclude}
-31 INCLUDE += -I$(PB3D\_DIR)/include
+\begin{DoxyCodeInclude}{0}
+\DoxyCodeLine{31 INCLUDE += -\/I\$(PB3D\_DIR)/include}
 \end{DoxyCodeInclude}
  there are includefiles that contain macros and wrappers specifically for P\+B3D.
 \item In 
-\begin{DoxyCodeInclude}
-39 LIB\_INTERNAL = libdfftpack.a libfoul.a libbspline.a
+\begin{DoxyCodeInclude}{0}
+\DoxyCodeLine{39 LIB\_INTERNAL = libdfftpack.a libfoul.a libbspline.a}
 \end{DoxyCodeInclude}
  linking is done with external libraries that are bundled with P\+B3D. 
 \end{DoxyEnumerate}

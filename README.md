@@ -2,7 +2,7 @@
 
 * **To set up**:
     * set the correct PB3D directory in `makefile`
-    * if you don't have the correct fonts installed for the latex file, do so
+    * if you don't have the correct fonts installed for the latex file, do so by copying the contents of "fonts/" to /usr/local/share/fonts/
 * **To use**:
     * run `make all`
     * commit

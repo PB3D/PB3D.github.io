@@ -4,22 +4,22 @@
 
 This page contains a hands-\/on tutorial to get you used to running P\+B3D to calculate 3-\/D ideal linear high-\/n M\+HD stability, and P\+O\+ST to post-\/process the results.
 
-Be sure to check out the \hyperlink{page_installation}{Installation} instruction first.
+Be sure to check out the \mbox{\hyperlink{page_installation}{Installation}} instruction first.
 
   
 If at any point a routine is not clear, don't hesitate to consult the appendices.
-\hypertarget{page_tutorial_tutorial_eq}{}\section{Getting the Equilibrium}\label{page_tutorial_tutorial_eq}
+\hypertarget{page_tutorial_tutorial_eq}{}\doxysection{Getting the Equilibrium}\label{page_tutorial_tutorial_eq}
 P\+B3D calculates stability of an equilibrium magnetic toroidal configuration. It is written in a modular way to isolate this main task from the actual code that was used to obtain the equilibrium configuration, and the format that this code may use. Currently, two formats are possible\+:
 \begin{DoxyItemize}
 \item 3-\/D V\+M\+EC \cite{hirshman1983vmec}.
 \item Axisymmetric H\+E\+L\+E\+NA \cite{mikhailovskii1997optimization}.
 \end{DoxyItemize}
 
-V\+M\+EC is a general 3-\/D code built on an interesting idea\+: The poloidal coordinate $\theta$ is deformed in such as a way to make the Fourier basis that is used to describe the cylindrical coordinates $R(s,\theta,\varphi)$ and $Z(s,\theta,\varphi)$ as narrow as possible, where $s$ is the flux label ( $s=\sqrt{\Psi_\text{tor}/\Psi_{\text{tor,edge}}})$ and $\varphi$ is the regular cylindrical angle (\hyperlink{page_tutorial_fnt1}{1}). This is done by introducing a deformation factor $\lambda(s,\theta,\varphi)$ defined so that the straight-\/field line coordinate $\theta_\text{F}$ is given by $\theta_\text{F} = \theta + \lambda $.
+V\+M\+EC is a general 3-\/D code built on an interesting idea\+: The poloidal coordinate $\theta$ is deformed in such as a way to make the Fourier basis that is used to describe the cylindrical coordinates $R(s,\theta,\varphi)$ and $Z(s,\theta,\varphi)$ as narrow as possible, where $s$ is the flux label ( $s=\sqrt{\Psi_\text{tor}/\Psi_{\text{tor,edge}}})$ and $\varphi$ is the regular cylindrical angle (\mbox{\hyperlink{page_tutorial_fnt1}{1}}). This is done by introducing a deformation factor $\lambda(s,\theta,\varphi)$ defined so that the straight-\/field line coordinate $\theta_\text{F}$ is given by $\theta_\text{F} = \theta + \lambda $.
 
 The fact that $R$, $Z$ and $\lambda$ are given as a double Fourier series in $\theta$ and $\zeta$ ensures that the angular derivatives can be done analytically. This property is used in P\+B3D. Apart from that, the flux functions that describe the profiles on the flux surfaces, the rotational transform $\iota(s)$ and pressure $p(s)$, are also returned.
 
-For H\+E\+L\+E\+NA, the situation is different, as this code considers axisymmetric equilibria only. Its output consists, aside from flux functions safety factor $q(\psi)$, presure $p(\psi)$ and toroidal covariant magnetic field $F(\psi)$, where $\psi=\Psi_\text{pol}/\Psi_{\text{pol,edge}}$ is the normalized poloidal angle, of a 2-\/D table for the upper metric factors $h^{\psi\psi}$ and $h^{\psi\theta}$ and the lower metric factor $g_{\zeta\zeta}$. H\+E\+L\+E\+NA uses the same angular coordinates $\theta$ and $\zeta = -\varphi$ as P\+B3D (see \hyperlink{page_tutorial_fnt1}{1}).
+For H\+E\+L\+E\+NA, the situation is different, as this code considers axisymmetric equilibria only. Its output consists, aside from flux functions safety factor $q(\psi)$, presure $p(\psi)$ and toroidal covariant magnetic field $F(\psi)$, where $\psi=\Psi_\text{pol}/\Psi_{\text{pol,edge}}$ is the normalized poloidal angle, of a 2-\/D table for the upper metric factors $h^{\psi\psi}$ and $h^{\psi\theta}$ and the lower metric factor $g_{\zeta\zeta}$. H\+E\+L\+E\+NA uses the same angular coordinates $\theta$ and $\zeta = -\varphi$ as P\+B3D (see \mbox{\hyperlink{page_tutorial_fnt1}{1}}).
 
 \begin{DoxyNote}{Note}
 The modular nature of P\+B3D enables easy integration of other equilibrium codes, if necessary.
@@ -30,46 +30,46 @@ To get the appropriate equilibrium code results into P\+B3D, it suffices to plac
 \item for V\+M\+EC, it is the so-\/called {\ttfamily wout} file,
 \end{DoxyItemize}
 
-and to specify their names as the second input argument, the first one being the file with user inputs (see \hyperlink{page_tutorial_tutorial_inputs}{Setting Up the Input File}).
+and to specify their names as the second input argument, the first one being the file with user inputs (see \mbox{\hyperlink{page_tutorial_tutorial_inputs}{Setting Up the Input File}}).
 
 \begin{DoxyNote}{Note}
 For V\+M\+EC, the {\ttfamily wout} file has to be in Netcdf\textquotesingle{}s {\ttfamily .nc} format. The old {\ttfamily .txt} format is no longer supported.
 \end{DoxyNote}
 In any case, if you forget how to run the P\+B3D (or P\+O\+ST) programs, you can always just type 
-\begin{DoxyCode}
-./PB3D --help 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{./PB3D -\/-\/help }
 \end{DoxyCode}
  or even just 
-\begin{DoxyCode}
-./PB3D 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{./PB3D }
 \end{DoxyCode}
 
 
 \begin{DoxyNote}{Note}
 The H\+E\+L\+E\+NA version used here outputs the variables {\ttfamily I\+AS} and {\ttfamily B0} to the mapping file, after the variable {\ttfamily J\+S0} and after the variable {\ttfamily R\+A\+X\+IS}. Some versions do not write these by default. If yours is one of the above, the solution is to change 
-\begin{DoxyCode}
-write(nmap,8) JS0 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{write(nmap,8) JS0 }
 \end{DoxyCode}
  to 
-\begin{DoxyCode}
-write(nmap,8) JS0, IAS 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{write(nmap,8) JS0, IAS }
 \end{DoxyCode}
  and 
-\begin{DoxyCode}
-write(nmap,8) RAXIS 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{write(nmap,8) RAXIS }
 \end{DoxyCode}
  to 
-\begin{DoxyCode}
-write(nmap,8) RAXIS, B0 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{write(nmap,8) RAXIS, B0 }
 \end{DoxyCode}
  in the subroutine {\ttfamily mapping} and recompile and re-\/run H\+E\+L\+E\+NA.
 \end{DoxyNote}
-\hypertarget{page_tutorial_tutorial_test_eq}{}\section{Checking the equilibrium (optional)}\label{page_tutorial_tutorial_test_eq}
+\hypertarget{page_tutorial_tutorial_test_eq}{}\doxysection{Checking the equilibrium (optional)}\label{page_tutorial_tutorial_test_eq}
 It is always important that the equilibrium has been properly calculated, well-\/converged, etc.
 
 It is possible to use P\+B3D to check this. This will be quickly described in this optional section.
 
-The checks described below are only possible with the code compiled with the debug flag on (see \hyperlink{page_installation}{Installation}). Using the debug version, the tests can be triggered using the {\ttfamily --test} option when running P\+B3D (or P\+O\+ST), and using the interactive user interface.
+The checks described below are only possible with the code compiled with the debug flag on (see \mbox{\hyperlink{page_installation}{Installation}}). Using the debug version, the tests can be triggered using the {\ttfamily --test} option when running P\+B3D (or P\+O\+ST), and using the interactive user interface.
 
 They generally output H\+D\+F5 files that can be read with Para\+View or Vis\+It to check the difference between two plots. After having a look in the code (search for {\ttfamily ltest}), this should be self-\/explanatory.
 
@@ -78,15 +78,15 @@ Most of the checks are only useful for developers. However, the tests on {\ttfam
 \end{DoxyNote}
 \hypertarget{page_tutorial_tutorial_test_eq_tab}{}
 \tabulinesep=1mm
-\begin{longtabu} spread 0pt [c]{*{2}{|X[-1]}|}
+\begin{longtabu}spread 0pt [c]{*{2}{|X[-1]}|}
 \caption{Table 1. the most important tests}\label{page_tutorial_tutorial_test_eq_tab}\\
 \hline
-\rowcolor{\tableheadbgcolor}\textbf{ tests }&\textbf{ purpose   }\\\cline{1-2}
+\cellcolor{\tableheadbgcolor}\textbf{ tests }&\cellcolor{\tableheadbgcolor}\textbf{ purpose   }\\\cline{1-2}
 \endfirsthead
 \hline
 \endfoot
 \hline
-\rowcolor{\tableheadbgcolor}\textbf{ tests }&\textbf{ purpose   }\\\cline{1-2}
+\cellcolor{\tableheadbgcolor}\textbf{ tests }&\cellcolor{\tableheadbgcolor}\textbf{ purpose   }\\\cline{1-2}
 \endhead
 calculation of {\ttfamily g\+\_\+V} &Check whether equilibrium metric coefficients calculated for V\+M\+EC equilibria through application of transformation matrices match with a direct implementation of the V\+M\+EC metric coefficients. Note that the reason why the transformation matrices are used, is that derivatives can be easily calculated as well, with high precision.   \\\cline{1-2}
 calculation of {\ttfamily jac\+\_\+V} &Similar to the test on the calculation of {\ttfamily g\+\_\+V}, but this time for the Jacobian of V\+M\+EC coordinates.   \\\cline{1-2}
@@ -103,32 +103,32 @@ calculation of {\ttfamily DU} &Check how well the poloidal derivative of the geo
 
 For the specific case of V\+M\+EC equilibria, finally, there is the additional {\ttfamily --plot\+\_\+\+V\+M\+E\+C\+\_\+modes} option that produces outputs of the harmonics of the different quantities\+: $R$, $Z$, $\lambda$, $\mathcal{J}$ and $\vec{B}$.
 
-It is very important that these are well-\/converged, as the internal consistency depends strongly on this. Therefore, if this is not the case, be prepared to receive unaccurate stability results.\hypertarget{page_tutorial_tutorial_inputs}{}\section{Setting Up the Input File}\label{page_tutorial_tutorial_inputs}
+It is very important that these are well-\/converged, as the internal consistency depends strongly on this. Therefore, if this is not the case, be prepared to receive unaccurate stability results.\hypertarget{page_tutorial_tutorial_inputs}{}\doxysection{Setting Up the Input File}\label{page_tutorial_tutorial_inputs}
 Now that we have the equilibrium files, it is time to have a look at the input file.
 
 
-\begin{DoxyCodeInclude}
-1 &inputdata\_PB3D
-2     min\_n\_par\_X             = 500
-3     min\_par\_X               = 0.0
-4     max\_par\_X               = 2.0
-5     alpha                   = 0.0
-6     min\_r\_sol               = 0.1
-7     max\_r\_sol               = 1.0
-8     n\_r\_sol                 = 500
-9     prim\_X                  = 10
-10     n\_mod\_X                 = 20
-11     BC\_style                = 1 1
-12     U\_style                 = 3
-13     max\_tot\_mem             = 8000
-14     max\_it\_rich             = 2
-15     use\_normalization       = .true.
-16 /
-17 //! [some extra options for PB3D]
-18     rich\_restart\_lvl        = 1
-19     tol\_rich                = 1.0E-4
-20     tol\_SLEPC               = 1.0E-8 1.0E-8
-21 //! [some extra options for PB3D]
+\begin{DoxyCodeInclude}{0}
+\DoxyCodeLine{1 \&inputdata\_PB3D}
+\DoxyCodeLine{2     min\_n\_par\_X             = 500}
+\DoxyCodeLine{3     min\_par\_X               = 0.0}
+\DoxyCodeLine{4     max\_par\_X               = 2.0}
+\DoxyCodeLine{5     alpha                   = 0.0}
+\DoxyCodeLine{6     min\_r\_sol               = 0.1}
+\DoxyCodeLine{7     max\_r\_sol               = 1.0}
+\DoxyCodeLine{8     n\_r\_sol                 = 500}
+\DoxyCodeLine{9     prim\_X                  = 10}
+\DoxyCodeLine{10     n\_mod\_X                 = 20}
+\DoxyCodeLine{11     BC\_style                = 1 1}
+\DoxyCodeLine{12     U\_style                 = 3}
+\DoxyCodeLine{13     max\_tot\_mem             = 8000}
+\DoxyCodeLine{14     max\_it\_rich             = 2}
+\DoxyCodeLine{15     use\_normalization       = .true.}
+\DoxyCodeLine{16 /}
+\DoxyCodeLine{17 //! [some extra options for PB3D]}
+\DoxyCodeLine{18     rich\_restart\_lvl        = 1}
+\DoxyCodeLine{19     tol\_rich                = 1.0E-\/4}
+\DoxyCodeLine{20     tol\_SLEPC               = 1.0E-\/8 1.0E-\/8}
+\DoxyCodeLine{21 //! [some extra options for PB3D]}
 \end{DoxyCodeInclude}
 
 
@@ -137,7 +137,7 @@ Have a look\+:
 \item {\ttfamily min\+\_\+n\+\_\+par\+\_\+X} is the number of points in the parallel grid.
 \item They range from {\ttfamily min\+\_\+par\+\_\+X} to {\ttfamily max\+\_\+par\+\_\+X}. As this is an axisymmetric example, they can simply be chosen to be a fundamental period of $ 2\pi $. For 3-\/D equilibria, this number has to be increased until convergence is reached \cite{Weyens2017PB3D}.
 \item {\ttfamily alpha} indicates the field line at which the perturbations are situated.
-\item {\ttfamily n\+\_\+r\+\_\+sol} is the number of points in the solution grid, that ranges from {\ttfamily min\+\_\+r\+\_\+sol} to {\ttfamily max\+\_\+r\+\_\+sol} in the P\+B3D normal coordinate (see \hyperlink{namespacenum__vars_ae21ec57b791e369c3558c0eb3da1555b}{num\+\_\+vars.\+use\+\_\+pol\+\_\+flux\+\_\+f}).
+\item {\ttfamily n\+\_\+r\+\_\+sol} is the number of points in the solution grid, that ranges from {\ttfamily min\+\_\+r\+\_\+sol} to {\ttfamily max\+\_\+r\+\_\+sol} in the P\+B3D normal coordinate (see \mbox{\hyperlink{namespacenum__vars_ae21ec57b791e369c3558c0eb3da1555b}{num\+\_\+vars.\+use\+\_\+pol\+\_\+flux\+\_\+f}}).
 \item {\ttfamily n\+\_\+mod\+\_\+X} is the number of resonating Harmonics with {\ttfamily prim\+\_\+X} the primary mode number.
 \item {\ttfamily B\+C\+\_\+style(1\+:2)} indicates the style with which the boundary conditions are implemented deep in the plasma and on the plasma edge.
 \item {\ttfamily max\+\_\+tot\+\_\+mem} is the total virtual memory that P\+B3D may consume.
@@ -148,22 +148,22 @@ Have a look\+:
 {\ttfamily B\+C\+\_\+style(2)} is currently set to 1, indicating that the mode amplitude is zero at the edge. In the upcoming version of P\+B3D, the vacuum perturbation on the potential energy will be taken into account, which enables other boundary condition styles at the plasma edge.
 \end{DoxyNote}
 There are also some extra options listed (but not loaded in P\+B3D as they com after the end of the {\ttfamily inputdata\+\_\+\+P\+B3D} block of the Fortran namelist) below\+: 
-\begin{DoxyCodeInclude}
-18     rich\_restart\_lvl        = 1
-19     tol\_rich                = 1.0E-4
-20     tol\_SLEPC               = 1.0E-8 1.0E-8
+\begin{DoxyCodeInclude}{0}
+\DoxyCodeLine{18     rich\_restart\_lvl        = 1}
+\DoxyCodeLine{19     tol\_rich                = 1.0E-\/4}
+\DoxyCodeLine{20     tol\_SLEPC               = 1.0E-\/8 1.0E-\/8}
 \end{DoxyCodeInclude}
 They include\+:
 \begin{DoxyItemize}
-\item {\ttfamily rich\+\_\+restart\+\_\+lvl} is used to restart a simulation at a certain Richardson level. The Richardson level 1 refers to the first simulation, with the number of parallel points used in the calculation of line integrals along the magnetic field set by {\ttfamily min\+\_\+n\+\_\+par\+\_\+X} (see \doxytablelink{page_inputs_inputs_PB3D_file_tab}{inputs\+\_\+\+P\+B3\+D\+\_\+file\+\_\+tab}). For every subsequent Richardson level, this number is approximately doubled in order to gain a grid size that is twice as fine. The results from these different levels are extrapolated to a theoretically infinitely fine grid. These operations are done in module \hyperlink{namespacerich__ops}{rich\+\_\+ops}.
+\item {\ttfamily rich\+\_\+restart\+\_\+lvl} is used to restart a simulation at a certain Richardson level. The Richardson level 1 refers to the first simulation, with the number of parallel points used in the calculation of line integrals along the magnetic field set by {\ttfamily min\+\_\+n\+\_\+par\+\_\+X} (see \doxytablelink{page_inputs_inputs_PB3D_file_tab}{inputs\+\_\+\+P\+B3\+D\+\_\+file\+\_\+tab}). For every subsequent Richardson level, this number is approximately doubled in order to gain a grid size that is twice as fine. The results from these different levels are extrapolated to a theoretically infinitely fine grid. These operations are done in module \mbox{\hyperlink{namespacerich__ops}{rich\+\_\+ops}}.
 \item {\ttfamily tol\+\_\+rich} is the tolerance at which Richardson extrapolation is considered to have converged.
 \item {\ttfamily tol\+\_\+\+S\+L\+E\+PC} is an array of tolerances used for the different S\+L\+E\+Pc eigenvalue solutions.
 \end{DoxyItemize}
 
-There are many, many more input parameters. A short description of these can be found in \hyperlink{page_inputs}{Input variables}.\hypertarget{page_tutorial_tutorial_PB3D}{}\section{Running P\+B3D}\label{page_tutorial_tutorial_PB3D}
+There are many, many more input parameters. A short description of these can be found in \mbox{\hyperlink{page_inputs}{Input variables}}.\hypertarget{page_tutorial_tutorial_PB3D}{}\doxysection{Running P\+B3D}\label{page_tutorial_tutorial_PB3D}
 This tutorial provides a basic V\+M\+EC equilibrium file to experiment with, called {\ttfamily cbm18}, which represents a simple circular test case designed to be ballooning unstable. \cite{ferraro2010ELMbenchmark} Some properties are given in table \doxytablelink{page_tutorial_tutorial_PB3D_tab}{1}. \hypertarget{page_tutorial_tutorial_PB3D_tab}{}
 \tabulinesep=1mm
-\begin{longtabu} spread 0pt [c]{*{2}{|X[-1]}|}
+\begin{longtabu}spread 0pt [c]{*{2}{|X[-1]}|}
 \caption{Table 1. equilibrium parameters}\label{page_tutorial_tutorial_PB3D_tab}\\
 \hline
 toroidal current $I_\text{tot}$  &$1.614MA$   \\\cline{1-2}
@@ -178,37 +178,37 @@ In order to produce outputs, P\+B3D needs three sub-\/directories in the run dir
 \begin{DoxyItemize}
 \item In {\ttfamily Data/}, datafiles are stored that are used for plots.
 \item In {\ttfamily Scripts/}, scripts are generated that use the datafiles from {\ttfamily Data}.
-\item The {\ttfamily Plots/}, the resulting plots are located, both for external plots, and for H\+D\+F5 plots that can be read later in visualization software such as Vis\+It or Para\+View. In \hyperlink{page_outputs_output_plots}{Output Plots}, this is explained in more detail.
+\item The {\ttfamily Plots/}, the resulting plots are located, both for external plots, and for H\+D\+F5 plots that can be read later in visualization software such as Vis\+It or Para\+View. In \mbox{\hyperlink{page_outputs_output_plots}{Output Plots}}, this is explained in more detail.
 \end{DoxyItemize}
 
 If these directories are not present, you will receive error message, so go ahead and create them.
 
 We can now run the code using {\ttfamily mpirun}. For example, with 
-\begin{DoxyCode}
-mpirun -np 4 ./PB3D PB3D.input wout.nc 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{mpirun -\/np 4 ./PB3D PB3D.input wout.nc }
 \end{DoxyCode}
- 4 processes are used. You can find the V\+M\+EC file \href{https://pb3d.github.io/Examples/wout.nc}{\tt here}.
+ 4 processes are used. You can find the V\+M\+EC file \href{https://pb3d.github.io/Examples/wout.nc}{\texttt{ here}}.
 
-There are optional run-\/time options that can be triggered, such as {\ttfamily --jump\+\_\+to\+\_\+sol}, which can be used to easily change solution preferences, such as discretization order, etc. For an overview, see \hyperlink{page_inputs_inputs_POST_cmd}{Command-\/line inputs}; they are not treated here.
+There are optional run-\/time options that can be triggered, such as {\ttfamily --jump\+\_\+to\+\_\+sol}, which can be used to easily change solution preferences, such as discretization order, etc. For an overview, see \mbox{\hyperlink{page_inputs_inputs_POST_cmd}{Command-\/line inputs}}; they are not treated here.
 
-You will see formatted output on the screen, with indentation that consistent indentation according to the depth of a routine in the program. The same output is also written to an output file, unformatted but still indented (see \hyperlink{page_outputs_output_file_log}{Log file}).
+You will see formatted output on the screen, with indentation that consistent indentation according to the depth of a routine in the program. The same output is also written to an output file, unformatted but still indented (see \mbox{\hyperlink{page_outputs_output_file_log}{Log file}}).
 
-The resulting eigenvalues can also be read in a separate output file (see \hyperlink{page_outputs_output_file_EV}{Eigenvalue summary file}).
+The resulting eigenvalues can also be read in a separate output file (see \mbox{\hyperlink{page_outputs_output_file_EV}{Eigenvalue summary file}}).
 
 Take a look at these output files and shuffle a bit with the input parameters if you want. For example, change {\ttfamily n\+\_\+mod\+\_\+X} to another value in order to get a different number Fourier harmonics, or {\ttfamily n\+\_\+r\+\_\+sol} to change the number of normal grid points in the solution. The solution should not change a lot if you have enough harmonics and normal grid poins.
 
 \begin{DoxyNote}{Note}
 For V\+M\+EC, the magnetic axis is a bit problematic. It is necessary, therefore, to choose {\ttfamily min\+\_\+r\+\_\+sol} to be slightly larger than 0; 0.\+01 for example.
 \end{DoxyNote}
-\hypertarget{page_tutorial_tutorial_scripts}{}\section{Run Script Tools}\label{page_tutorial_tutorial_scripts}
+\hypertarget{page_tutorial_tutorial_scripts}{}\doxysection{Run Script Tools}\label{page_tutorial_tutorial_scripts}
 P\+B3D comes with a bunch of extra run tools, which can greatly improve user experience.
 
 \begin{DoxyNote}{Note}
-These tools now come in a separate git repository, {\ttfamily } \href{https://github.com/ToonWeyens/PB3D_tools}{\tt P\+B3\+D\+\_\+tools}.
+These tools now come in a separate git repository, {\ttfamily } \href{https://github.com/ToonWeyens/PB3D_tools}{\texttt{ P\+B3\+D\+\_\+tools}}.
 \end{DoxyNote}
 In table \doxytablelink{page_tutorial_tutorial_scripts_tab}{2}, an overview is given\+: \hypertarget{page_tutorial_tutorial_scripts_tab}{}
 \tabulinesep=1mm
-\begin{longtabu} spread 0pt [c]{*{2}{|X[-1]}|}
+\begin{longtabu}spread 0pt [c]{*{2}{|X[-1]}|}
 \caption{Table 2. extra tools}\label{page_tutorial_tutorial_scripts_tab}\\
 \hline
 {\ttfamily run}  &Run script that can be used for P\+B3D and P\+O\+ST with an extensive range of features including
@@ -226,38 +226,38 @@ Use of this runscript is recommended, as it will make your life {\itshape much} 
 {\ttfamily extract\+\_\+jobs\+\_\+info}  &Extracts the eigenvalues from the results of a parameter scan produced by {\ttfamily run} with input variable modifications.   \\\cline{1-2}
 {\ttfamily inspect\+\_\+\+S\+L\+U\+R\+M\+\_\+jobs}  &Finds the directories of all the jobs currently running in S\+L\+U\+RM and in every directory, it gives the tail of {\ttfamily P\+B3\+D.\+out}. The user can decide to cancel the job.   \\\cline{1-2}
 \end{longtabu}
-\hypertarget{page_tutorial_tutorial_POST}{}\section{Post-\/processing With P\+O\+ST}\label{page_tutorial_tutorial_POST}
-P\+O\+ST provides a way to visualize the results from P\+B3D. Many options are possible, and they can be activated using {\ttfamily plot\+\_\+} flags (see \hyperlink{page_inputs_inputs_POST_file}{Input file}).
+\hypertarget{page_tutorial_tutorial_POST}{}\doxysection{Post-\/processing With P\+O\+ST}\label{page_tutorial_tutorial_POST}
+P\+O\+ST provides a way to visualize the results from P\+B3D. Many options are possible, and they can be activated using {\ttfamily plot\+\_\+} flags (see \mbox{\hyperlink{page_inputs_inputs_POST_file}{Input file}}).
 
 An example is given in {\ttfamily P\+O\+S\+T.\+input} 
-\begin{DoxyCodeInclude}
-1 &INPUTDATA\_POST
-2     plot\_resonance          = .true.
-3     plot\_magn\_grid          = .true.
-4     plot\_flux\_q             = .true.
-5     plot\_sol\_xi             = .true.
-6     plot\_sol\_Q              = .true.
-7     plot\_E\_rec              = .true.
-8     plot\_B                  = .true.
-9     plot\_J                  = .true.
-10     plot\_kappa              = .true.
-11     min\_r\_plot              = 0.0
-12     max\_r\_plot              = 1.0
-13     n\_theta\_plot            = 101
-14     min\_theta\_plot          = 0.00
-15     max\_theta\_plot          = 2.00
-16     n\_zeta\_plot             = 1
-17     min\_zeta\_plot           = 0.00
-18     max\_zeta\_plot           = 0.00
-19     POST\_style              = 1
-20     plot\_grid\_style         = 0
-21     pert\_mult\_factor\_POST   = 0.0000
-22     max\_tot\_mem             = 8000
-23 /
-24 //! [some extra options for POST]
-25     ex\_plot\_style           = 2
-26     PB3D\_rich\_lvl           = 1
-27 //! [some extra options for POST]
+\begin{DoxyCodeInclude}{0}
+\DoxyCodeLine{1 \&INPUTDATA\_POST}
+\DoxyCodeLine{2     plot\_resonance          = .true.}
+\DoxyCodeLine{3     plot\_magn\_grid          = .true.}
+\DoxyCodeLine{4     plot\_flux\_q             = .true.}
+\DoxyCodeLine{5     plot\_sol\_xi             = .true.}
+\DoxyCodeLine{6     plot\_sol\_Q              = .true.}
+\DoxyCodeLine{7     plot\_E\_rec              = .true.}
+\DoxyCodeLine{8     plot\_B                  = .true.}
+\DoxyCodeLine{9     plot\_J                  = .true.}
+\DoxyCodeLine{10     plot\_kappa              = .true.}
+\DoxyCodeLine{11     min\_r\_plot              = 0.0}
+\DoxyCodeLine{12     max\_r\_plot              = 1.0}
+\DoxyCodeLine{13     n\_theta\_plot            = 101}
+\DoxyCodeLine{14     min\_theta\_plot          = 0.00}
+\DoxyCodeLine{15     max\_theta\_plot          = 2.00}
+\DoxyCodeLine{16     n\_zeta\_plot             = 1}
+\DoxyCodeLine{17     min\_zeta\_plot           = 0.00}
+\DoxyCodeLine{18     max\_zeta\_plot           = 0.00}
+\DoxyCodeLine{19     POST\_style              = 1}
+\DoxyCodeLine{20     plot\_grid\_style         = 0}
+\DoxyCodeLine{21     pert\_mult\_factor\_POST   = 0.0000}
+\DoxyCodeLine{22     max\_tot\_mem             = 8000}
+\DoxyCodeLine{23 /}
+\DoxyCodeLine{24 //! [some extra options for POST]}
+\DoxyCodeLine{25     ex\_plot\_style           = 2}
+\DoxyCodeLine{26     PB3D\_rich\_lvl           = 1}
+\DoxyCodeLine{27 //! [some extra options for POST]}
 \end{DoxyCodeInclude}
  It can be seen that apart from the {\ttfamily plot\+\_\+} flags, there are also
 \begin{DoxyItemize}
@@ -269,9 +269,9 @@ An example is given in {\ttfamily P\+O\+S\+T.\+input}
 \end{DoxyItemize}
 
 Also here, there are also some extra options listed below\+: 
-\begin{DoxyCodeInclude}
-25     ex\_plot\_style           = 2
-26     PB3D\_rich\_lvl           = 1
+\begin{DoxyCodeInclude}{0}
+\DoxyCodeLine{25     ex\_plot\_style           = 2}
+\DoxyCodeLine{26     PB3D\_rich\_lvl           = 1}
 \end{DoxyCodeInclude}
 They include\+:
 \begin{DoxyItemize}
@@ -279,19 +279,19 @@ They include\+:
 \item {\ttfamily P\+B3\+D\+\_\+rich\+\_\+lvl} can be optionally employed to specify explicitely which Richardson level to use for the post-\/processing.
 \end{DoxyItemize}
 
-All of these options are explained in \hyperlink{page_inputs_inputs_POST_file}{Input file}. Again, there are also run-\/time options that can be found in \hyperlink{page_inputs_inputs_POST_cmd}{Command-\/line inputs}.
+All of these options are explained in \mbox{\hyperlink{page_inputs_inputs_POST_file}{Input file}}. Again, there are also run-\/time options that can be found in \mbox{\hyperlink{page_inputs_inputs_POST_cmd}{Command-\/line inputs}}.
 
 Now, run the P\+O\+ST program, for example using 4 M\+PI processes\+: 
-\begin{DoxyCode}
-mpirun -np 4 ./POST POST.input PB3D\_out.h5 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{mpirun -\/np 4 ./POST POST.input PB3D\_out.h5 }
 \end{DoxyCode}
 
 
-An interesting output is the energy reconstruction, which is activated with {\ttfamily plot\+\_\+\+E\+\_\+rec}. This calculation reinserts the solution normal mode into the perturbed plasma potential terms, in order to check whether the Rayleigh quotient still holds, and to see which terms are dominant and which ones are less important. The results are stored in a separate files as well (see \hyperlink{page_outputs_output_file_E_rec}{Energy reconstruction file}).
+An interesting output is the energy reconstruction, which is activated with {\ttfamily plot\+\_\+\+E\+\_\+rec}. This calculation reinserts the solution normal mode into the perturbed plasma potential terms, in order to check whether the Rayleigh quotient still holds, and to see which terms are dominant and which ones are less important. The results are stored in a separate files as well (see \mbox{\hyperlink{page_outputs_output_file_E_rec}{Energy reconstruction file}}).
 
-If {\ttfamily --do\+\_\+execute\+\_\+command\+\_\+line} was not explicitely used, the actual external plot programs are not used yet, but their usage is given in a shell commands script file (see \hyperlink{page_outputs_output_file_shell}{Shell commands file}). Run this shell with 
-\begin{DoxyCode}
-./POST\_shell\_commands.sh 
+If {\ttfamily --do\+\_\+execute\+\_\+command\+\_\+line} was not explicitely used, the actual external plot programs are not used yet, but their usage is given in a shell commands script file (see \mbox{\hyperlink{page_outputs_output_file_shell}{Shell commands file}}). Run this shell with 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{./POST\_shell\_commands.sh }
 \end{DoxyCode}
 
 

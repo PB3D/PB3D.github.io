@@ -1,34 +1,34 @@
-\hypertarget{namespaceinput__utilities}{}\section{input\+\_\+utilities Module Reference}
-\label{namespaceinput__utilities}\index{input\+\_\+utilities@{input\+\_\+utilities}}
+\hypertarget{namespaceinput__utilities}{}\doxysection{input\+\_\+utilities Module Reference}
+\label{namespaceinput__utilities}\index{input\_utilities@{input\_utilities}}
 
 
 Numerical utilities related to input.  
 
 
-\subsection*{Functions/\+Subroutines}
+\doxysubsection*{Functions/\+Subroutines}
 \begin{DoxyCompactItemize}
 \item 
-logical function, public \hyperlink{namespaceinput__utilities_ad9ce824c30b32041ab70f3fb191f06db}{get\+\_\+log} (yes, ind)
+logical function, public \mbox{\hyperlink{namespaceinput__utilities_ad9ce824c30b32041ab70f3fb191f06db}{get\+\_\+log}} (yes, ind)
 \begin{DoxyCompactList}\small\item\em Queries for a logical value yes or no, where the default answer is also to be provided. \end{DoxyCompactList}\item 
-real(dp) function, public \hyperlink{namespaceinput__utilities_a41fc0c806e12bc722771210cfa1edbd3}{get\+\_\+real} (lim\+\_\+lo, lim\+\_\+hi, ind)
+real(dp) function, public \mbox{\hyperlink{namespaceinput__utilities_a41fc0c806e12bc722771210cfa1edbd3}{get\+\_\+real}} (lim\+\_\+lo, lim\+\_\+hi, ind)
 \begin{DoxyCompactList}\small\item\em Queries for user input for a real value, where allowable range can be provided as well. \end{DoxyCompactList}\item 
-integer function, public \hyperlink{namespaceinput__utilities_a03e09af96ba6f7e187ea4a1d9b743148}{get\+\_\+int} (lim\+\_\+lo, lim\+\_\+hi, ind)
+integer function, public \mbox{\hyperlink{namespaceinput__utilities_a03e09af96ba6f7e187ea4a1d9b743148}{get\+\_\+int}} (lim\+\_\+lo, lim\+\_\+hi, ind)
 \begin{DoxyCompactList}\small\item\em Queries for user input for an integer value, where allowable range can be provided as well. \end{DoxyCompactList}\item 
-subroutine, public \hyperlink{namespaceinput__utilities_a71bd36f063d55ab62c7a37864aef1185}{pause\+\_\+prog} (ind)
+subroutine, public \mbox{\hyperlink{namespaceinput__utilities_a71bd36f063d55ab62c7a37864aef1185}{pause\+\_\+prog}} (ind)
 \begin{DoxyCompactList}\small\item\em Pauses the running of the program. \end{DoxyCompactList}\item 
-subroutine, public \hyperlink{namespaceinput__utilities_aa0cf7578f9c9ab6470f8bb8d025f1daf}{dealloc\+\_\+in} ()
+subroutine, public \mbox{\hyperlink{namespaceinput__utilities_aa0cf7578f9c9ab6470f8bb8d025f1daf}{dealloc\+\_\+in}} ()
 \begin{DoxyCompactList}\small\item\em Cleans up input from equilibrium codes. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
-\subsection{Detailed Description}
+\doxysubsection{Detailed Description}
 Numerical utilities related to input. 
 
-\subsection{Function/\+Subroutine Documentation}
+\doxysubsection{Function/\+Subroutine Documentation}
 \mbox{\Hypertarget{namespaceinput__utilities_aa0cf7578f9c9ab6470f8bb8d025f1daf}\label{namespaceinput__utilities_aa0cf7578f9c9ab6470f8bb8d025f1daf}} 
-\index{input\+\_\+utilities@{input\+\_\+utilities}!dealloc\+\_\+in@{dealloc\+\_\+in}}
-\index{dealloc\+\_\+in@{dealloc\+\_\+in}!input\+\_\+utilities@{input\+\_\+utilities}}
-\subsubsection{\texorpdfstring{dealloc\+\_\+in()}{dealloc\_in()}}
-{\footnotesize\ttfamily subroutine, public input\+\_\+utilities\+::dealloc\+\_\+in (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+\index{input\_utilities@{input\_utilities}!dealloc\_in@{dealloc\_in}}
+\index{dealloc\_in@{dealloc\_in}!input\_utilities@{input\_utilities}}
+\doxysubsubsection{\texorpdfstring{dealloc\_in()}{dealloc\_in()}}
+{\footnotesize\ttfamily subroutine, public input\+\_\+utilities\+::dealloc\+\_\+in}
 
 
 
@@ -53,27 +53,25 @@ Here is the caller graph for this function\+:\nopagebreak
 \end{center}
 \end{figure}
 \mbox{\Hypertarget{namespaceinput__utilities_a03e09af96ba6f7e187ea4a1d9b743148}\label{namespaceinput__utilities_a03e09af96ba6f7e187ea4a1d9b743148}} 
-\index{input\+\_\+utilities@{input\+\_\+utilities}!get\+\_\+int@{get\+\_\+int}}
-\index{get\+\_\+int@{get\+\_\+int}!input\+\_\+utilities@{input\+\_\+utilities}}
-\subsubsection{\texorpdfstring{get\+\_\+int()}{get\_int()}}
+\index{input\_utilities@{input\_utilities}!get\_int@{get\_int}}
+\index{get\_int@{get\_int}!input\_utilities@{input\_utilities}}
+\doxysubsubsection{\texorpdfstring{get\_int()}{get\_int()}}
 {\footnotesize\ttfamily integer function, public input\+\_\+utilities\+::get\+\_\+int (\begin{DoxyParamCaption}\item[{integer, intent(in), optional}]{lim\+\_\+lo,  }\item[{integer, intent(in), optional}]{lim\+\_\+hi,  }\item[{logical, intent(in), optional}]{ind }\end{DoxyParamCaption})}
 
 
 
 Queries for user input for an integer value, where allowable range can be provided as well. 
 
-If not called by all processes at the same time, {\ttfamily ind} should be set to indicate an individual operation.
-
-\begin{DoxyReturn}{Returns}
-output value
+If not called by all processes at the same time, {\ttfamily ind} should be set to indicate an individual operation. \begin{DoxyReturn}{Returns}
+output value 
 \end{DoxyReturn}
 
 \begin{DoxyParams}[1]{Parameters}
-\mbox{\tt in}  & {\em lim\+\_\+lo} & upper and lower limit\\
+\mbox{\texttt{ in}}  & {\em lim\+\_\+lo} & upper and lower limit \\
 \hline
-\mbox{\tt in}  & {\em lim\+\_\+hi} & upper and lower limit\\
+\mbox{\texttt{ in}}  & {\em lim\+\_\+hi} & upper and lower limit \\
 \hline
-\mbox{\tt in}  & {\em ind} & individual pause or not \\
+\mbox{\texttt{ in}}  & {\em ind} & individual pause or not \\
 \hline
 \end{DoxyParams}
 
@@ -95,25 +93,23 @@ Here is the caller graph for this function\+:\nopagebreak
 \end{center}
 \end{figure}
 \mbox{\Hypertarget{namespaceinput__utilities_ad9ce824c30b32041ab70f3fb191f06db}\label{namespaceinput__utilities_ad9ce824c30b32041ab70f3fb191f06db}} 
-\index{input\+\_\+utilities@{input\+\_\+utilities}!get\+\_\+log@{get\+\_\+log}}
-\index{get\+\_\+log@{get\+\_\+log}!input\+\_\+utilities@{input\+\_\+utilities}}
-\subsubsection{\texorpdfstring{get\+\_\+log()}{get\_log()}}
+\index{input\_utilities@{input\_utilities}!get\_log@{get\_log}}
+\index{get\_log@{get\_log}!input\_utilities@{input\_utilities}}
+\doxysubsubsection{\texorpdfstring{get\_log()}{get\_log()}}
 {\footnotesize\ttfamily logical function, public input\+\_\+utilities\+::get\+\_\+log (\begin{DoxyParamCaption}\item[{logical}]{yes,  }\item[{logical, intent(in), optional}]{ind }\end{DoxyParamCaption})}
 
 
 
 Queries for a logical value yes or no, where the default answer is also to be provided. 
 
-If not called by all processes at the same time, {\ttfamily ind} should be set to indicate an individual operation.
-
-\begin{DoxyReturn}{Returns}
-output value
+If not called by all processes at the same time, {\ttfamily ind} should be set to indicate an individual operation. \begin{DoxyReturn}{Returns}
+output value 
 \end{DoxyReturn}
 
 \begin{DoxyParams}[1]{Parameters}
- & {\em yes} & default answer\\
+ & {\em yes} & default answer \\
 \hline
-\mbox{\tt in}  & {\em ind} & individual pause or not \\
+\mbox{\texttt{ in}}  & {\em ind} & individual pause or not \\
 \hline
 \end{DoxyParams}
 
@@ -135,27 +131,25 @@ Here is the caller graph for this function\+:\nopagebreak
 \end{center}
 \end{figure}
 \mbox{\Hypertarget{namespaceinput__utilities_a41fc0c806e12bc722771210cfa1edbd3}\label{namespaceinput__utilities_a41fc0c806e12bc722771210cfa1edbd3}} 
-\index{input\+\_\+utilities@{input\+\_\+utilities}!get\+\_\+real@{get\+\_\+real}}
-\index{get\+\_\+real@{get\+\_\+real}!input\+\_\+utilities@{input\+\_\+utilities}}
-\subsubsection{\texorpdfstring{get\+\_\+real()}{get\_real()}}
+\index{input\_utilities@{input\_utilities}!get\_real@{get\_real}}
+\index{get\_real@{get\_real}!input\_utilities@{input\_utilities}}
+\doxysubsubsection{\texorpdfstring{get\_real()}{get\_real()}}
 {\footnotesize\ttfamily real(dp) function, public input\+\_\+utilities\+::get\+\_\+real (\begin{DoxyParamCaption}\item[{real(dp), intent(in), optional}]{lim\+\_\+lo,  }\item[{real(dp), intent(in), optional}]{lim\+\_\+hi,  }\item[{logical, intent(in), optional}]{ind }\end{DoxyParamCaption})}
 
 
 
 Queries for user input for a real value, where allowable range can be provided as well. 
 
-If not called by all processes at the same time, {\ttfamily ind} should be set to indicate an individual operation.
-
-\begin{DoxyReturn}{Returns}
-output value
+If not called by all processes at the same time, {\ttfamily ind} should be set to indicate an individual operation. \begin{DoxyReturn}{Returns}
+output value 
 \end{DoxyReturn}
 
 \begin{DoxyParams}[1]{Parameters}
-\mbox{\tt in}  & {\em lim\+\_\+lo} & upper and lower limit\\
+\mbox{\texttt{ in}}  & {\em lim\+\_\+lo} & upper and lower limit \\
 \hline
-\mbox{\tt in}  & {\em lim\+\_\+hi} & upper and lower limit\\
+\mbox{\texttt{ in}}  & {\em lim\+\_\+hi} & upper and lower limit \\
 \hline
-\mbox{\tt in}  & {\em ind} & individual pause or not \\
+\mbox{\texttt{ in}}  & {\em ind} & individual pause or not \\
 \hline
 \end{DoxyParams}
 
@@ -177,9 +171,9 @@ Here is the caller graph for this function\+:\nopagebreak
 \end{center}
 \end{figure}
 \mbox{\Hypertarget{namespaceinput__utilities_a71bd36f063d55ab62c7a37864aef1185}\label{namespaceinput__utilities_a71bd36f063d55ab62c7a37864aef1185}} 
-\index{input\+\_\+utilities@{input\+\_\+utilities}!pause\+\_\+prog@{pause\+\_\+prog}}
-\index{pause\+\_\+prog@{pause\+\_\+prog}!input\+\_\+utilities@{input\+\_\+utilities}}
-\subsubsection{\texorpdfstring{pause\+\_\+prog()}{pause\_prog()}}
+\index{input\_utilities@{input\_utilities}!pause\_prog@{pause\_prog}}
+\index{pause\_prog@{pause\_prog}!input\_utilities@{input\_utilities}}
+\doxysubsubsection{\texorpdfstring{pause\_prog()}{pause\_prog()}}
 {\footnotesize\ttfamily subroutine, public input\+\_\+utilities\+::pause\+\_\+prog (\begin{DoxyParamCaption}\item[{logical, intent(in), optional}]{ind }\end{DoxyParamCaption})}
 
 

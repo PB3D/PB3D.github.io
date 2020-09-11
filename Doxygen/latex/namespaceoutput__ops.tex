@@ -1,38 +1,38 @@
-\hypertarget{namespaceoutput__ops}{}\section{output\+\_\+ops Module Reference}
-\label{namespaceoutput__ops}\index{output\+\_\+ops@{output\+\_\+ops}}
+\hypertarget{namespaceoutput__ops}{}\doxysection{output\+\_\+ops Module Reference}
+\label{namespaceoutput__ops}\index{output\_ops@{output\_ops}}
 
 
 Operations concerning giving output, on the screen as well as in output files.  
 
 
-\subsection*{Interfaces and Types}
+\doxysubsection*{Interfaces and Types}
 \begin{DoxyCompactItemize}
 \item 
-interface \hyperlink{interfaceoutput__ops_1_1plot__hdf5}{plot\+\_\+hdf5}
+interface \mbox{\hyperlink{interfaceoutput__ops_1_1plot__hdf5}{plot\+\_\+hdf5}}
 \begin{DoxyCompactList}\small\item\em Prints variables {\ttfamily vars} with names {\ttfamily var\+\_\+names} in an H\+D\+F5 file with name c file\+\_\+name and accompanying X\+D\+MF file. \end{DoxyCompactList}\item 
-interface \hyperlink{interfaceoutput__ops_1_1print__ex__2d}{print\+\_\+ex\+\_\+2d}
+interface \mbox{\hyperlink{interfaceoutput__ops_1_1print__ex__2d}{print\+\_\+ex\+\_\+2d}}
 \begin{DoxyCompactList}\small\item\em Print 2-\/D output on a file. \end{DoxyCompactList}\item 
-interface \hyperlink{interfaceoutput__ops_1_1print__ex__3d}{print\+\_\+ex\+\_\+3d}
+interface \mbox{\hyperlink{interfaceoutput__ops_1_1print__ex__3d}{print\+\_\+ex\+\_\+3d}}
 \begin{DoxyCompactList}\small\item\em Print 3-\/D output on a file. \end{DoxyCompactList}\end{DoxyCompactItemize}
-\subsection*{Functions/\+Subroutines}
+\doxysubsection*{Functions/\+Subroutines}
 \begin{DoxyCompactItemize}
 \item 
-subroutine, public \hyperlink{namespaceoutput__ops_a50bfbb88cc91805469353c3ff47b3e2e}{draw\+\_\+ex} (var\+\_\+names, draw\+\_\+name, nplt, draw\+\_\+dim, plot\+\_\+on\+\_\+screen, ex\+\_\+plot\+\_\+style, data\+\_\+name, draw\+\_\+ops, extra\+\_\+ops, is\+\_\+animated, ranges, delay, persistent)
+subroutine, public \mbox{\hyperlink{namespaceoutput__ops_a50bfbb88cc91805469353c3ff47b3e2e}{draw\+\_\+ex}} (var\+\_\+names, draw\+\_\+name, nplt, draw\+\_\+dim, plot\+\_\+on\+\_\+screen, ex\+\_\+plot\+\_\+style, data\+\_\+name, draw\+\_\+ops, extra\+\_\+ops, is\+\_\+animated, ranges, delay, persistent)
 \begin{DoxyCompactList}\small\item\em Use external program to draw a plot. \end{DoxyCompactList}\item 
-subroutine, public \hyperlink{namespaceoutput__ops_ab0d14194d01ab0534562eab50b37a57a}{plot\+\_\+diff\+\_\+hdf5} (A, B, file\+\_\+name, tot\+\_\+dim, loc\+\_\+offset, descr, output\+\_\+message)
+subroutine, public \mbox{\hyperlink{namespaceoutput__ops_ab0d14194d01ab0534562eab50b37a57a}{plot\+\_\+diff\+\_\+hdf5}} (A, B, file\+\_\+name, tot\+\_\+dim, loc\+\_\+offset, descr, output\+\_\+message)
 \begin{DoxyCompactList}\small\item\em Takes two input vectors and plots these as well as the relative and absolute difference in a H\+D\+F5 file. \end{DoxyCompactList}\item 
-subroutine \hyperlink{namespaceoutput__ops_aa9e4855511b6ea16a08b3efb587bec51}{use\+\_\+execute\+\_\+command\+\_\+line} (command, exitstat, cmdstat, cmdmsg)
+subroutine \mbox{\hyperlink{namespaceoutput__ops_aa9e4855511b6ea16a08b3efb587bec51}{use\+\_\+execute\+\_\+command\+\_\+line}} (command, exitstat, cmdstat, cmdmsg)
 \begin{DoxyCompactList}\small\item\em Executes command line, or displays a message if disabled. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
-\subsection{Detailed Description}
+\doxysubsection{Detailed Description}
 Operations concerning giving output, on the screen as well as in output files. 
 
-\subsection{Function/\+Subroutine Documentation}
+\doxysubsection{Function/\+Subroutine Documentation}
 \mbox{\Hypertarget{namespaceoutput__ops_a50bfbb88cc91805469353c3ff47b3e2e}\label{namespaceoutput__ops_a50bfbb88cc91805469353c3ff47b3e2e}} 
-\index{output\+\_\+ops@{output\+\_\+ops}!draw\+\_\+ex@{draw\+\_\+ex}}
-\index{draw\+\_\+ex@{draw\+\_\+ex}!output\+\_\+ops@{output\+\_\+ops}}
-\subsubsection{\texorpdfstring{draw\+\_\+ex()}{draw\_ex()}}
+\index{output\_ops@{output\_ops}!draw\_ex@{draw\_ex}}
+\index{draw\_ex@{draw\_ex}!output\_ops@{output\_ops}}
+\doxysubsubsection{\texorpdfstring{draw\_ex()}{draw\_ex()}}
 {\footnotesize\ttfamily subroutine, public output\+\_\+ops\+::draw\+\_\+ex (\begin{DoxyParamCaption}\item[{character(len=$\ast$), dimension(\+:), intent(in)}]{var\+\_\+names,  }\item[{character(len=$\ast$), intent(in)}]{draw\+\_\+name,  }\item[{integer, intent(in)}]{nplt,  }\item[{integer, intent(in)}]{draw\+\_\+dim,  }\item[{logical, intent(in)}]{plot\+\_\+on\+\_\+screen,  }\item[{integer, intent(in), optional}]{ex\+\_\+plot\+\_\+style,  }\item[{character(len=$\ast$), intent(in), optional}]{data\+\_\+name,  }\item[{character(len=$\ast$), dimension(\+:), intent(in), optional}]{draw\+\_\+ops,  }\item[{character(len=$\ast$), intent(in), optional}]{extra\+\_\+ops,  }\item[{logical, intent(in), optional}]{is\+\_\+animated,  }\item[{real(dp), dimension(\+:,\+:), intent(in), optional}]{ranges,  }\item[{integer, intent(in), optional}]{delay,  }\item[{logical, intent(in), optional}]{persistent }\end{DoxyParamCaption})}
 
 
@@ -58,38 +58,38 @@ Also, an optional command {\ttfamily extra\+\_\+ops} can be provided, to provide
 Finally, there is an option to provide animated plots, but is only available in 2-\/D. Also, for external plot style 1, no on-\/screen view is possible. Animations can take optional ranges arguments as well as delay. \begin{DoxyNote}{Note}
 {\ttfamily About} draw\+\_\+dim\+:
 \begin{DoxyItemize}
-\item {\ttfamily draw\+\_\+dim} = 1\+: 2-\/D plot; should be called with the output of \hyperlink{interfaceoutput__ops_1_1print__ex__2d}{output\+\_\+ops.\+print\+\_\+ex\+\_\+2d()}, {\ttfamily nplt} should be correctly set.
+\item {\ttfamily draw\+\_\+dim} = 1\+: 2-\/D plot; should be called with the output of \mbox{\hyperlink{interfaceoutput__ops_1_1print__ex__2d}{output\+\_\+ops.\+print\+\_\+ex\+\_\+2d()}}, {\ttfamily nplt} should be correctly set.
 \item {\ttfamily draw\+\_\+dim} = 2\+: 3-\/D plot; should be called with the output of print\+\_\+ex\+\_\+3D. For G\+N\+U\+Plot, {\ttfamily nplt} is ignored, but not for Mayavi, as it needs this information to be able to reconstruct 2D arrays for X, Y and Z.
-\item {\ttfamily draw\+\_\+dim} = 3\+: 2-\/D plot in 3-\/D slices; should be called with the output of \hyperlink{interfaceoutput__ops_1_1print__ex__2d}{output\+\_\+ops.\+print\+\_\+ex\+\_\+2d()}, {\ttfamily nplt} should be correctly set.
+\item {\ttfamily draw\+\_\+dim} = 3\+: 2-\/D plot in 3-\/D slices; should be called with the output of \mbox{\hyperlink{interfaceoutput__ops_1_1print__ex__2d}{output\+\_\+ops.\+print\+\_\+ex\+\_\+2d()}}, {\ttfamily nplt} should be correctly set. 
 \end{DoxyItemize}
 \end{DoxyNote}
 
 \begin{DoxyParams}[1]{Parameters}
-\mbox{\tt in}  & {\em var\+\_\+names} & name of variables\\
+\mbox{\texttt{ in}}  & {\em var\+\_\+names} & name of variables \\
 \hline
-\mbox{\tt in}  & {\em draw\+\_\+name} & name of drawing\\
+\mbox{\texttt{ in}}  & {\em draw\+\_\+name} & name of drawing \\
 \hline
-\mbox{\tt in}  & {\em nplt} & number of plots\\
+\mbox{\texttt{ in}}  & {\em nplt} & number of plots \\
 \hline
-\mbox{\tt in}  & {\em draw\+\_\+dim} & 1\+: 2-\/D, 2\+: 3-\/D, 3\+: decoupled 3-\/D\\
+\mbox{\texttt{ in}}  & {\em draw\+\_\+dim} & 1\+: 2-\/D, 2\+: 3-\/D, 3\+: decoupled 3-\/D \\
 \hline
-\mbox{\tt in}  & {\em plot\+\_\+on\+\_\+screen} & True if on screen, false if in file\\
+\mbox{\texttt{ in}}  & {\em plot\+\_\+on\+\_\+screen} & True if on screen, false if in file \\
 \hline
-\mbox{\tt in}  & {\em ex\+\_\+plot\+\_\+style} & alternative external plot style\\
+\mbox{\texttt{ in}}  & {\em ex\+\_\+plot\+\_\+style} & alternative external plot style \\
 \hline
-\mbox{\tt in}  & {\em data\+\_\+name} & name of data file\\
+\mbox{\texttt{ in}}  & {\em data\+\_\+name} & name of data file \\
 \hline
-\mbox{\tt in}  & {\em draw\+\_\+ops} & drawing options\\
+\mbox{\texttt{ in}}  & {\em draw\+\_\+ops} & drawing options \\
 \hline
-\mbox{\tt in}  & {\em extra\+\_\+ops} & extra options\\
+\mbox{\texttt{ in}}  & {\em extra\+\_\+ops} & extra options \\
 \hline
-\mbox{\tt in}  & {\em is\+\_\+animated} & plot is animated\\
+\mbox{\texttt{ in}}  & {\em is\+\_\+animated} & plot is animated \\
 \hline
-\mbox{\tt in}  & {\em ranges} & x and y range of animated plot\\
+\mbox{\texttt{ in}}  & {\em ranges} & x and y range of animated plot \\
 \hline
-\mbox{\tt in}  & {\em delay} & time delay between animated plot frames\\
+\mbox{\texttt{ in}}  & {\em delay} & time delay between animated plot frames \\
 \hline
-\mbox{\tt in}  & {\em persistent} & keep on-\/screen plot open \\
+\mbox{\texttt{ in}}  & {\em persistent} & keep on-\/screen plot open \\
 \hline
 \end{DoxyParams}
 
@@ -111,47 +111,38 @@ Here is the caller graph for this function\+:\nopagebreak
 \end{center}
 \end{figure}
 \mbox{\Hypertarget{namespaceoutput__ops_ab0d14194d01ab0534562eab50b37a57a}\label{namespaceoutput__ops_ab0d14194d01ab0534562eab50b37a57a}} 
-\index{output\+\_\+ops@{output\+\_\+ops}!plot\+\_\+diff\+\_\+hdf5@{plot\+\_\+diff\+\_\+hdf5}}
-\index{plot\+\_\+diff\+\_\+hdf5@{plot\+\_\+diff\+\_\+hdf5}!output\+\_\+ops@{output\+\_\+ops}}
-\subsubsection{\texorpdfstring{plot\+\_\+diff\+\_\+hdf5()}{plot\_diff\_hdf5()}}
+\index{output\_ops@{output\_ops}!plot\_diff\_hdf5@{plot\_diff\_hdf5}}
+\index{plot\_diff\_hdf5@{plot\_diff\_hdf5}!output\_ops@{output\_ops}}
+\doxysubsubsection{\texorpdfstring{plot\_diff\_hdf5()}{plot\_diff\_hdf5()}}
 {\footnotesize\ttfamily subroutine, public output\+\_\+ops\+::plot\+\_\+diff\+\_\+hdf5 (\begin{DoxyParamCaption}\item[{real(dp), dimension(\+:,\+:,\+:), intent(in)}]{A,  }\item[{real(dp), dimension(\+:,\+:,\+:), intent(in)}]{B,  }\item[{character(len=$\ast$), intent(in)}]{file\+\_\+name,  }\item[{integer, dimension(3), intent(in), optional}]{tot\+\_\+dim,  }\item[{integer, dimension(3), intent(in), optional}]{loc\+\_\+offset,  }\item[{character(len=$\ast$), intent(in), optional}]{descr,  }\item[{logical, intent(in), optional}]{output\+\_\+message }\end{DoxyParamCaption})}
 
 
 
 Takes two input vectors and plots these as well as the relative and absolute difference in a H\+D\+F5 file. 
 
-This is similar to a basic version of \hyperlink{interfaceoutput__ops_1_1plot__hdf5}{output\+\_\+ops.\+plot\+\_\+hdf5()}.
+This is similar to a basic version of \mbox{\hyperlink{interfaceoutput__ops_1_1plot__hdf5}{output\+\_\+ops.\+plot\+\_\+hdf5()}}.
 
-Optionally, an output message can be displayed on screen with the maximum relative and absolute error.
-
-
+Optionally, an output message can be displayed on screen with the maximum relative and absolute error. 
 \begin{DoxyParams}[1]{Parameters}
-\mbox{\tt in}  & {\em a} & vector A\\
+\mbox{\texttt{ in}}  & {\em a} & vector A \\
 \hline
-\mbox{\tt in}  & {\em b} & vector B\\
+\mbox{\texttt{ in}}  & {\em b} & vector B \\
 \hline
-\mbox{\tt in}  & {\em file\+\_\+name} & name of plot\\
+\mbox{\texttt{ in}}  & {\em file\+\_\+name} & name of plot \\
 \hline
-\mbox{\tt in}  & {\em tot\+\_\+dim} & total dimensions of the arrays\\
+\mbox{\texttt{ in}}  & {\em tot\+\_\+dim} & total dimensions of the arrays \\
 \hline
-\mbox{\tt in}  & {\em loc\+\_\+offset} & offset of local dimensions\\
+\mbox{\texttt{ in}}  & {\em loc\+\_\+offset} & offset of local dimensions \\
 \hline
-\mbox{\tt in}  & {\em descr} & description\\
+\mbox{\texttt{ in}}  & {\em descr} & description \\
 \hline
-\mbox{\tt in}  & {\em output\+\_\+message} & whether to display a message or not \\
+\mbox{\texttt{ in}}  & {\em output\+\_\+message} & whether to display a message or not \\
 \hline
 \end{DoxyParams}
 
 
 Definition at line 1765 of file output\+\_\+ops.\+f90.
 
-Here is the call graph for this function\+:\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=350pt]{namespaceoutput__ops_ab0d14194d01ab0534562eab50b37a57a_cgraph}
-\end{center}
-\end{figure}
 Here is the caller graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
@@ -160,39 +151,30 @@ Here is the caller graph for this function\+:\nopagebreak
 \end{center}
 \end{figure}
 \mbox{\Hypertarget{namespaceoutput__ops_aa9e4855511b6ea16a08b3efb587bec51}\label{namespaceoutput__ops_aa9e4855511b6ea16a08b3efb587bec51}} 
-\index{output\+\_\+ops@{output\+\_\+ops}!use\+\_\+execute\+\_\+command\+\_\+line@{use\+\_\+execute\+\_\+command\+\_\+line}}
-\index{use\+\_\+execute\+\_\+command\+\_\+line@{use\+\_\+execute\+\_\+command\+\_\+line}!output\+\_\+ops@{output\+\_\+ops}}
-\subsubsection{\texorpdfstring{use\+\_\+execute\+\_\+command\+\_\+line()}{use\_execute\_command\_line()}}
+\index{output\_ops@{output\_ops}!use\_execute\_command\_line@{use\_execute\_command\_line}}
+\index{use\_execute\_command\_line@{use\_execute\_command\_line}!output\_ops@{output\_ops}}
+\doxysubsubsection{\texorpdfstring{use\_execute\_command\_line()}{use\_execute\_command\_line()}}
 {\footnotesize\ttfamily subroutine output\+\_\+ops\+::use\+\_\+execute\+\_\+command\+\_\+line (\begin{DoxyParamCaption}\item[{character(len=$\ast$), intent(in)}]{command,  }\item[{integer, intent(inout), optional}]{exitstat,  }\item[{integer, intent(inout), optional}]{cmdstat,  }\item[{character(len=$\ast$), intent(inout), optional}]{cmdmsg }\end{DoxyParamCaption})}
 
 
 
 Executes command line, or displays a message if disabled. 
 
-It also keeps a log of all shell commands executed.
-
-
+It also keeps a log of all shell commands executed. 
 \begin{DoxyParams}[1]{Parameters}
-\mbox{\tt in}  & {\em command} & command to execute\\
+\mbox{\texttt{ in}}  & {\em command} & command to execute \\
 \hline
-\mbox{\tt in,out}  & {\em exitstat} & exit status\\
+\mbox{\texttt{ in,out}}  & {\em exitstat} & exit status \\
 \hline
-\mbox{\tt in,out}  & {\em cmdstat} & command status\\
+\mbox{\texttt{ in,out}}  & {\em cmdstat} & command status \\
 \hline
-\mbox{\tt in,out}  & {\em cmdmsg} & command message \\
+\mbox{\texttt{ in,out}}  & {\em cmdmsg} & command message \\
 \hline
 \end{DoxyParams}
 
 
 Definition at line 1914 of file output\+\_\+ops.\+f90.
 
-Here is the call graph for this function\+:\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=350pt]{namespaceoutput__ops_aa9e4855511b6ea16a08b3efb587bec51_cgraph}
-\end{center}
-\end{figure}
 Here is the caller graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}

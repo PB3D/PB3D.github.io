@@ -1,34 +1,34 @@
-\hypertarget{namespacehelena__ops}{}\section{helena\+\_\+ops Module Reference}
-\label{namespacehelena__ops}\index{helena\+\_\+ops@{helena\+\_\+ops}}
+\hypertarget{namespacehelena__ops}{}\doxysection{helena\+\_\+ops Module Reference}
+\label{namespacehelena__ops}\index{helena\_ops@{helena\_ops}}
 
 
 Operations on H\+E\+L\+E\+NA variables.  
 
 
-\subsection*{Functions/\+Subroutines}
+\doxysubsection*{Functions/\+Subroutines}
 \begin{DoxyCompactItemize}
 \item 
-integer function, public \hyperlink{namespacehelena__ops_ae05ba1182eb002d93c27ca4ff7ab8cf2}{read\+\_\+hel} (n\+\_\+r\+\_\+in, use\+\_\+pol\+\_\+flux\+\_\+H)
+integer function, public \mbox{\hyperlink{namespacehelena__ops_ae05ba1182eb002d93c27ca4ff7ab8cf2}{read\+\_\+hel}} (n\+\_\+r\+\_\+in, use\+\_\+pol\+\_\+flux\+\_\+H)
 \begin{DoxyCompactList}\small\item\em Reads the H\+E\+L\+E\+NA equilibrium data. \end{DoxyCompactList}\item 
-integer function \hyperlink{namespacehelena__ops_ab1329afe5af2ff92d96f4be15a096b38}{get\+\_\+ang\+\_\+interp\+\_\+data\+\_\+hel} (grid\+\_\+in, grid\+\_\+out, theta\+\_\+i, fund\+\_\+theta\+\_\+int\+\_\+displ, tb\+\_\+sym, use\+\_\+E)
+integer function \mbox{\hyperlink{namespacehelena__ops_ab1329afe5af2ff92d96f4be15a096b38}{get\+\_\+ang\+\_\+interp\+\_\+data\+\_\+hel}} (grid\+\_\+in, grid\+\_\+out, theta\+\_\+i, fund\+\_\+theta\+\_\+int\+\_\+displ, tb\+\_\+sym, use\+\_\+E)
 \begin{DoxyCompactList}\small\item\em Calculate interpolation factors for angular interpolation in {\ttfamily grid\+\_\+out} of quantities defined on {\ttfamily grid\+\_\+in}. \end{DoxyCompactList}\item 
-integer function, public \hyperlink{namespacehelena__ops_a7796861de18ae7ac9c3aa07a8628be38}{interp\+\_\+hel\+\_\+on\+\_\+grid} (grid\+\_\+in, grid\+\_\+out, eq\+\_\+2, X\+\_\+1, X\+\_\+2, eq\+\_\+2\+\_\+out, X\+\_\+1\+\_\+out, X\+\_\+2\+\_\+out, eq\+\_\+1, grid\+\_\+name)
+integer function, public \mbox{\hyperlink{namespacehelena__ops_a7796861de18ae7ac9c3aa07a8628be38}{interp\+\_\+hel\+\_\+on\+\_\+grid}} (grid\+\_\+in, grid\+\_\+out, eq\+\_\+2, X\+\_\+1, X\+\_\+2, eq\+\_\+2\+\_\+out, X\+\_\+1\+\_\+out, X\+\_\+2\+\_\+out, eq\+\_\+1, grid\+\_\+name)
 \begin{DoxyCompactList}\small\item\em Interpolate variables resulting from H\+E\+L\+E\+NA equilibria to another grid (angularly). \end{DoxyCompactList}\item 
-integer function, public \hyperlink{namespacehelena__ops_a0f156b3653264fb016d6d311eb59114c}{test\+\_\+metrics\+\_\+h} ()
+integer function, public \mbox{\hyperlink{namespacehelena__ops_a0f156b3653264fb016d6d311eb59114c}{test\+\_\+metrics\+\_\+h}} ()
 \begin{DoxyCompactList}\small\item\em Checks whether the metric elements provided by H\+E\+L\+E\+NA are consistent with a direct calculation using the coordinate transformations \cite{Weyens3D}. \end{DoxyCompactList}\item 
-integer function, public \hyperlink{namespacehelena__ops_a83f2ad5dc967c7bae287b60fddb8eb0a}{test\+\_\+harm\+\_\+cont\+\_\+h} ()
+integer function, public \mbox{\hyperlink{namespacehelena__ops_a83f2ad5dc967c7bae287b60fddb8eb0a}{test\+\_\+harm\+\_\+cont\+\_\+h}} ()
 \begin{DoxyCompactList}\small\item\em Investaige harmonic content of the H\+E\+L\+E\+NA variables. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
-\subsection{Detailed Description}
+\doxysubsection{Detailed Description}
 Operations on H\+E\+L\+E\+NA variables. 
 
-\subsection{Function/\+Subroutine Documentation}
+\doxysubsection{Function/\+Subroutine Documentation}
 \mbox{\Hypertarget{namespacehelena__ops_ab1329afe5af2ff92d96f4be15a096b38}\label{namespacehelena__ops_ab1329afe5af2ff92d96f4be15a096b38}} 
-\index{helena\+\_\+ops@{helena\+\_\+ops}!get\+\_\+ang\+\_\+interp\+\_\+data\+\_\+hel@{get\+\_\+ang\+\_\+interp\+\_\+data\+\_\+hel}}
-\index{get\+\_\+ang\+\_\+interp\+\_\+data\+\_\+hel@{get\+\_\+ang\+\_\+interp\+\_\+data\+\_\+hel}!helena\+\_\+ops@{helena\+\_\+ops}}
-\subsubsection{\texorpdfstring{get\+\_\+ang\+\_\+interp\+\_\+data\+\_\+hel()}{get\_ang\_interp\_data\_hel()}}
-{\footnotesize\ttfamily integer function helena\+\_\+ops\+::get\+\_\+ang\+\_\+interp\+\_\+data\+\_\+hel (\begin{DoxyParamCaption}\item[{type(\hyperlink{structgrid__vars_1_1grid__type}{grid\+\_\+type}), intent(in)}]{grid\+\_\+in,  }\item[{type(\hyperlink{structgrid__vars_1_1grid__type}{grid\+\_\+type}), intent(in)}]{grid\+\_\+out,  }\item[{real(dp), dimension(\+:,\+:,\+:), intent(inout), allocatable}]{theta\+\_\+i,  }\item[{integer, dimension(\+:,\+:,\+:), intent(inout), allocatable}]{fund\+\_\+theta\+\_\+int\+\_\+displ,  }\item[{logical, intent(in), optional}]{tb\+\_\+sym,  }\item[{logical, intent(in), optional}]{use\+\_\+E }\end{DoxyParamCaption})}
+\index{helena\_ops@{helena\_ops}!get\_ang\_interp\_data\_hel@{get\_ang\_interp\_data\_hel}}
+\index{get\_ang\_interp\_data\_hel@{get\_ang\_interp\_data\_hel}!helena\_ops@{helena\_ops}}
+\doxysubsubsection{\texorpdfstring{get\_ang\_interp\_data\_hel()}{get\_ang\_interp\_data\_hel()}}
+{\footnotesize\ttfamily integer function helena\+\_\+ops\+::get\+\_\+ang\+\_\+interp\+\_\+data\+\_\+hel (\begin{DoxyParamCaption}\item[{type(\mbox{\hyperlink{structgrid__vars_1_1grid__type}{grid\+\_\+type}}), intent(in)}]{grid\+\_\+in,  }\item[{type(\mbox{\hyperlink{structgrid__vars_1_1grid__type}{grid\+\_\+type}}), intent(in)}]{grid\+\_\+out,  }\item[{real(dp), dimension(\+:,\+:,\+:), intent(inout), allocatable}]{theta\+\_\+i,  }\item[{integer, dimension(\+:,\+:,\+:), intent(inout), allocatable}]{fund\+\_\+theta\+\_\+int\+\_\+displ,  }\item[{logical, intent(in), optional}]{tb\+\_\+sym,  }\item[{logical, intent(in), optional}]{use\+\_\+E }\end{DoxyParamCaption})}
 
 
 
@@ -62,21 +62,21 @@ For symmetric variables, this is for example\+:
 By default, the variables in the Flux coord. system are used, but this can be changed optionally with the flag {\ttfamily "use\+\_\+E}.
 
 \begin{DoxyReturn}{Returns}
-ierr
+ierr 
 \end{DoxyReturn}
 
 \begin{DoxyParams}[1]{Parameters}
-\mbox{\tt in}  & {\em grid\+\_\+in} & input grid\\
+\mbox{\texttt{ in}}  & {\em grid\+\_\+in} & input grid \\
 \hline
-\mbox{\tt in}  & {\em grid\+\_\+out} & output grid\\
+\mbox{\texttt{ in}}  & {\em grid\+\_\+out} & output grid \\
 \hline
-\mbox{\tt in,out}  & {\em theta\+\_\+i} & interpolation index\\
+\mbox{\texttt{ in,out}}  & {\em theta\+\_\+i} & interpolation index \\
 \hline
-\mbox{\tt in,out}  & {\em fund\+\_\+theta\+\_\+int\+\_\+displ} & displacement of fundamental theta interval\\
+\mbox{\texttt{ in,out}}  & {\em fund\+\_\+theta\+\_\+int\+\_\+displ} & displacement of fundamental theta interval \\
 \hline
-\mbox{\tt in}  & {\em tb\+\_\+sym} & top-\/bottom symmetry\\
+\mbox{\texttt{ in}}  & {\em tb\+\_\+sym} & top-\/bottom symmetry \\
 \hline
-\mbox{\tt in}  & {\em use\+\_\+e} & whether E is used instead of F \\
+\mbox{\texttt{ in}}  & {\em use\+\_\+e} & whether E is used instead of F \\
 \hline
 \end{DoxyParams}
 
@@ -91,10 +91,10 @@ Here is the caller graph for this function\+:\nopagebreak
 \end{center}
 \end{figure}
 \mbox{\Hypertarget{namespacehelena__ops_a7796861de18ae7ac9c3aa07a8628be38}\label{namespacehelena__ops_a7796861de18ae7ac9c3aa07a8628be38}} 
-\index{helena\+\_\+ops@{helena\+\_\+ops}!interp\+\_\+hel\+\_\+on\+\_\+grid@{interp\+\_\+hel\+\_\+on\+\_\+grid}}
-\index{interp\+\_\+hel\+\_\+on\+\_\+grid@{interp\+\_\+hel\+\_\+on\+\_\+grid}!helena\+\_\+ops@{helena\+\_\+ops}}
-\subsubsection{\texorpdfstring{interp\+\_\+hel\+\_\+on\+\_\+grid()}{interp\_hel\_on\_grid()}}
-{\footnotesize\ttfamily integer function, public helena\+\_\+ops\+::interp\+\_\+hel\+\_\+on\+\_\+grid (\begin{DoxyParamCaption}\item[{type(\hyperlink{structgrid__vars_1_1grid__type}{grid\+\_\+type}), intent(in)}]{grid\+\_\+in,  }\item[{type(\hyperlink{structgrid__vars_1_1grid__type}{grid\+\_\+type}), intent(in)}]{grid\+\_\+out,  }\item[{type(\hyperlink{structeq__vars_1_1eq__2__type}{eq\+\_\+2\+\_\+type}), intent(inout), optional}]{eq\+\_\+2,  }\item[{type(x\+\_\+1\+\_\+type), intent(inout), optional}]{X\+\_\+1,  }\item[{type(x\+\_\+2\+\_\+type), intent(inout), optional}]{X\+\_\+2,  }\item[{type(\hyperlink{structeq__vars_1_1eq__2__type}{eq\+\_\+2\+\_\+type}), intent(inout), optional}]{eq\+\_\+2\+\_\+out,  }\item[{type(x\+\_\+1\+\_\+type), intent(inout), optional}]{X\+\_\+1\+\_\+out,  }\item[{type(x\+\_\+2\+\_\+type), intent(inout), optional}]{X\+\_\+2\+\_\+out,  }\item[{type(\hyperlink{structeq__vars_1_1eq__1__type}{eq\+\_\+1\+\_\+type}), intent(in), optional}]{eq\+\_\+1,  }\item[{character(len=$\ast$), intent(in), optional}]{grid\+\_\+name }\end{DoxyParamCaption})}
+\index{helena\_ops@{helena\_ops}!interp\_hel\_on\_grid@{interp\_hel\_on\_grid}}
+\index{interp\_hel\_on\_grid@{interp\_hel\_on\_grid}!helena\_ops@{helena\_ops}}
+\doxysubsubsection{\texorpdfstring{interp\_hel\_on\_grid()}{interp\_hel\_on\_grid()}}
+{\footnotesize\ttfamily integer function, public helena\+\_\+ops\+::interp\+\_\+hel\+\_\+on\+\_\+grid (\begin{DoxyParamCaption}\item[{type(\mbox{\hyperlink{structgrid__vars_1_1grid__type}{grid\+\_\+type}}), intent(in)}]{grid\+\_\+in,  }\item[{type(\mbox{\hyperlink{structgrid__vars_1_1grid__type}{grid\+\_\+type}}), intent(in)}]{grid\+\_\+out,  }\item[{type(\mbox{\hyperlink{structeq__vars_1_1eq__2__type}{eq\+\_\+2\+\_\+type}}), intent(inout), optional}]{eq\+\_\+2,  }\item[{type(x\+\_\+1\+\_\+type), intent(inout), optional}]{X\+\_\+1,  }\item[{type(x\+\_\+2\+\_\+type), intent(inout), optional}]{X\+\_\+2,  }\item[{type(\mbox{\hyperlink{structeq__vars_1_1eq__2__type}{eq\+\_\+2\+\_\+type}}), intent(inout), optional}]{eq\+\_\+2\+\_\+out,  }\item[{type(x\+\_\+1\+\_\+type), intent(inout), optional}]{X\+\_\+1\+\_\+out,  }\item[{type(x\+\_\+2\+\_\+type), intent(inout), optional}]{X\+\_\+2\+\_\+out,  }\item[{type(\mbox{\hyperlink{structeq__vars_1_1eq__1__type}{eq\+\_\+1\+\_\+type}}), intent(in), optional}]{eq\+\_\+1,  }\item[{character(len=$\ast$), intent(in), optional}]{grid\+\_\+name }\end{DoxyParamCaption})}
 
 
 
@@ -119,29 +119,29 @@ Also, a message can be printed if a grid name is passed.
 \end{DoxyEnumerate}
 \end{DoxyNote}
 \begin{DoxyReturn}{Returns}
-ierr
+ierr 
 \end{DoxyReturn}
 
 \begin{DoxyParams}[1]{Parameters}
-\mbox{\tt in}  & {\em grid\+\_\+in} & input grid\\
+\mbox{\texttt{ in}}  & {\em grid\+\_\+in} & input grid \\
 \hline
-\mbox{\tt in}  & {\em grid\+\_\+out} & output grid\\
+\mbox{\texttt{ in}}  & {\em grid\+\_\+out} & output grid \\
 \hline
-\mbox{\tt in,out}  & {\em eq\+\_\+2} & general metric equilibrium variables\\
+\mbox{\texttt{ in,out}}  & {\em eq\+\_\+2} & general metric equilibrium variables \\
 \hline
-\mbox{\tt in,out}  & {\em x\+\_\+1} & general vectorial perturbation variables\\
+\mbox{\texttt{ in,out}}  & {\em x\+\_\+1} & general vectorial perturbation variables \\
 \hline
-\mbox{\tt in,out}  & {\em x\+\_\+2} & general tensorial perturbation variables\\
+\mbox{\texttt{ in,out}}  & {\em x\+\_\+2} & general tensorial perturbation variables \\
 \hline
-\mbox{\tt in,out}  & {\em eq\+\_\+2\+\_\+out} & field-\/aligned metric equilibrium variables\\
+\mbox{\texttt{ in,out}}  & {\em eq\+\_\+2\+\_\+out} & field-\/aligned metric equilibrium variables \\
 \hline
-\mbox{\tt in,out}  & {\em x\+\_\+1\+\_\+out} & field-\/aligned vectorial perturbation variables\\
+\mbox{\texttt{ in,out}}  & {\em x\+\_\+1\+\_\+out} & field-\/aligned vectorial perturbation variables \\
 \hline
-\mbox{\tt in,out}  & {\em x\+\_\+2\+\_\+out} & field-\/aligned tensorial perturbation variables\\
+\mbox{\texttt{ in,out}}  & {\em x\+\_\+2\+\_\+out} & field-\/aligned tensorial perturbation variables \\
 \hline
-\mbox{\tt in}  & {\em eq\+\_\+1} & general flux equilibrium variables for metric interpolation\\
+\mbox{\texttt{ in}}  & {\em eq\+\_\+1} & general flux equilibrium variables for metric interpolation \\
 \hline
-\mbox{\tt in}  & {\em grid\+\_\+name} & name of grid to which to adapt quantities \\
+\mbox{\texttt{ in}}  & {\em grid\+\_\+name} & name of grid to which to adapt quantities \\
 \hline
 \end{DoxyParams}
 
@@ -163,9 +163,9 @@ Here is the caller graph for this function\+:\nopagebreak
 \end{center}
 \end{figure}
 \mbox{\Hypertarget{namespacehelena__ops_ae05ba1182eb002d93c27ca4ff7ab8cf2}\label{namespacehelena__ops_ae05ba1182eb002d93c27ca4ff7ab8cf2}} 
-\index{helena\+\_\+ops@{helena\+\_\+ops}!read\+\_\+hel@{read\+\_\+hel}}
-\index{read\+\_\+hel@{read\+\_\+hel}!helena\+\_\+ops@{helena\+\_\+ops}}
-\subsubsection{\texorpdfstring{read\+\_\+hel()}{read\_hel()}}
+\index{helena\_ops@{helena\_ops}!read\_hel@{read\_hel}}
+\index{read\_hel@{read\_hel}!helena\_ops@{helena\_ops}}
+\doxysubsubsection{\texorpdfstring{read\_hel()}{read\_hel()}}
 {\footnotesize\ttfamily integer function, public helena\+\_\+ops\+::read\+\_\+hel (\begin{DoxyParamCaption}\item[{integer, intent(inout)}]{n\+\_\+r\+\_\+in,  }\item[{logical, intent(inout)}]{use\+\_\+pol\+\_\+flux\+\_\+H }\end{DoxyParamCaption})}
 
 
@@ -227,16 +227,16 @@ where
 Furthermore, the density on axis can be specified as {\ttfamily Z\+N0} from H\+E\+L\+E\+NA input (10). ~\newline
  The other variables should probably not be touched for consistency. 
 
-Finally, the variables I\+AS and B0 are in the mapping file (12) only in patched versions. See \hyperlink{page_tutorial_tutorial_eq}{Getting the Equilibrium}.
+Finally, the variables I\+AS and B0 are in the mapping file (12) only in patched versions. See \mbox{\hyperlink{page_tutorial_tutorial_eq}{Getting the Equilibrium}}.
 \end{DoxyNote}
 \begin{DoxyReturn}{Returns}
-ierr
+ierr 
 \end{DoxyReturn}
 
 \begin{DoxyParams}[1]{Parameters}
-\mbox{\tt in,out}  & {\em n\+\_\+r\+\_\+in} & nr. of normal points in input grid\\
+\mbox{\texttt{ in,out}}  & {\em n\+\_\+r\+\_\+in} & nr. of normal points in input grid \\
 \hline
-\mbox{\tt in,out}  & {\em use\+\_\+pol\+\_\+flux\+\_\+h} & .true. if H\+E\+L\+E\+NA equilibrium is based on pol. flux \\
+\mbox{\texttt{ in,out}}  & {\em use\+\_\+pol\+\_\+flux\+\_\+h} & .true. if H\+E\+L\+E\+NA equilibrium is based on pol. flux \\
 \hline
 \end{DoxyParams}
 
@@ -258,10 +258,10 @@ Here is the caller graph for this function\+:\nopagebreak
 \end{center}
 \end{figure}
 \mbox{\Hypertarget{namespacehelena__ops_a83f2ad5dc967c7bae287b60fddb8eb0a}\label{namespacehelena__ops_a83f2ad5dc967c7bae287b60fddb8eb0a}} 
-\index{helena\+\_\+ops@{helena\+\_\+ops}!test\+\_\+harm\+\_\+cont\+\_\+h@{test\+\_\+harm\+\_\+cont\+\_\+h}}
-\index{test\+\_\+harm\+\_\+cont\+\_\+h@{test\+\_\+harm\+\_\+cont\+\_\+h}!helena\+\_\+ops@{helena\+\_\+ops}}
-\subsubsection{\texorpdfstring{test\+\_\+harm\+\_\+cont\+\_\+h()}{test\_harm\_cont\_h()}}
-{\footnotesize\ttfamily integer function, public helena\+\_\+ops\+::test\+\_\+harm\+\_\+cont\+\_\+h (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+\index{helena\_ops@{helena\_ops}!test\_harm\_cont\_h@{test\_harm\_cont\_h}}
+\index{test\_harm\_cont\_h@{test\_harm\_cont\_h}!helena\_ops@{helena\_ops}}
+\doxysubsubsection{\texorpdfstring{test\_harm\_cont\_h()}{test\_harm\_cont\_h()}}
+{\footnotesize\ttfamily integer function, public helena\+\_\+ops\+::test\+\_\+harm\+\_\+cont\+\_\+h}
 
 
 
@@ -289,10 +289,10 @@ Here is the caller graph for this function\+:\nopagebreak
 \end{center}
 \end{figure}
 \mbox{\Hypertarget{namespacehelena__ops_a0f156b3653264fb016d6d311eb59114c}\label{namespacehelena__ops_a0f156b3653264fb016d6d311eb59114c}} 
-\index{helena\+\_\+ops@{helena\+\_\+ops}!test\+\_\+metrics\+\_\+h@{test\+\_\+metrics\+\_\+h}}
-\index{test\+\_\+metrics\+\_\+h@{test\+\_\+metrics\+\_\+h}!helena\+\_\+ops@{helena\+\_\+ops}}
-\subsubsection{\texorpdfstring{test\+\_\+metrics\+\_\+h()}{test\_metrics\_h()}}
-{\footnotesize\ttfamily integer function, public helena\+\_\+ops\+::test\+\_\+metrics\+\_\+h (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+\index{helena\_ops@{helena\_ops}!test\_metrics\_h@{test\_metrics\_h}}
+\index{test\_metrics\_h@{test\_metrics\_h}!helena\_ops@{helena\_ops}}
+\doxysubsubsection{\texorpdfstring{test\_metrics\_h()}{test\_metrics\_h()}}
+{\footnotesize\ttfamily integer function, public helena\+\_\+ops\+::test\+\_\+metrics\+\_\+h}
 
 
 

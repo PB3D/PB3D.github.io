@@ -1,10 +1,17 @@
-\documentclass[twoside]{book}
+\let\mypdfximage\pdfximage\def\pdfximage{\immediate\mypdfximage}\documentclass[twoside]{book}
 
+%% moved from doxygen.sty due to workaround for LaTex 2019 version and unmaintained tabu package
+\usepackage{ifthen}
+\ifx\requestedLaTeXdate\undefined
+\usepackage{array}
+\else
+\usepackage{array}[=2016-10-06]
+\fi
+%%
 % Packages required by doxygen
 \usepackage{fixltx2e}
 \usepackage{calc}
 \usepackage{doxygen}
-\usepackage[export]{adjustbox} % also loads graphicx
 \usepackage{customdoxygen}
 \usepackage{graphicx}
 \usepackage{makeidx}
@@ -14,6 +21,7 @@
 \usepackage{textcomp}
 \usepackage[nointegrals]{wasysym}
 \usepackage[table]{xcolor}
+\usepackage{ifpdf,ifxetex}
 
 % Font selection
 \renewcommand{\DoxyLabelFont}{%
@@ -22,6 +30,13 @@
 }
 \newcommand{\+}{\discretionary{\mbox{\scriptsize$\hookleftarrow$}}{}{}}
 
+% Arguments of doxygenemoji:
+% 1) ':<text>:' form of the emoji, already "LaTeX"-escaped
+% 2) file with the name of the emoji without the .png extension
+% in case image exist use this otherwise use the ':<text>:' form
+\newcommand{\doxygenemoji}[2]{%
+  \IfFileExists{./#2.png}{\raisebox{-0.1em}{\includegraphics[height=0.9em]{./#2.png}}}{#1}%
+}
 % Page & text layout
 \usepackage{geometry}
 \geometry{%
@@ -36,7 +51,9 @@
 \hbadness=750
 \setlength{\emergencystretch}{15pt}
 \setlength{\parindent}{0cm}
-\setlength{\parskip}{3ex plus 2ex minus 2ex}
+\newcommand{\doxynormalparskip}{\setlength{\parskip}{3ex plus 2ex minus 2ex}}
+\newcommand{\doxytocparskip}{\setlength{\parskip}{1ex plus 0ex minus 0ex}}
+\doxynormalparskip
 \makeatletter
 \renewcommand{\paragraph}{%
   \@startsection{paragraph}{4}{0ex}{-1.0ex}{1.0ex}{%
@@ -48,6 +65,10 @@
     \normalfont\normalsize\bfseries\SS@subparafont%
   }%
 }
+\makeatother
+
+\makeatletter
+\newcommand\hrulefilll{\leavevmode\leaders\hrule\hskip 0pt plus 1filll\kern\z@}
 \makeatother
 
 % Headers & footers
@@ -83,13 +104,22 @@
 \usepackage{mathtools}
 \usepackage{change_doxygen_defaults}
 
+\usepackage{newunicodechar}
+  \newunicodechar{⁻}{${}^{-}$}% Superscript minus
+  \newunicodechar{²}{${}^{2}$}% Superscript two
+  \newunicodechar{³}{${}^{3}$}% Superscript three
+
 % Hyperlinks (required, but should be loaded last)
-\usepackage{ifpdf}
 \ifpdf
   \usepackage[pdftex,pagebackref=true]{hyperref}
 \else
-  \usepackage[ps2pdf,pagebackref=true]{hyperref}
+  \ifxetex
+    \usepackage[pagebackref=true]{hyperref}
+  \else
+    \usepackage[ps2pdf,pagebackref=true]{hyperref}
+  \fi
 \fi
+
 \hypersetup{%
 pdfsubject={code manual},%
 pdftitle={Peeling-Ballooning in 3-D},%
@@ -113,6 +143,9 @@ pdfduplex=DuplexFlipLongEdge,%
 \usepackage{caption}
 \captionsetup{labelsep=space,justification=centering,font={bf},singlelinecheck=off,skip=4pt,position=top}
 
+\usepackage{etoc}
+\etocsettocstyle{\doxytocparskip}{\doxynormalparskip}
+\renewcommand{\numberline}[1]{#1~}
 %===== C O N T E N T S =====
 
 \begin{document}
@@ -128,7 +161,7 @@ pdfduplex=DuplexFlipLongEdge,%
 \begin{center}%
 {\color{stylecolor} \TitleFont\fontsize{72}{80} \selectfont P\+B3D \\}
 \vspace*{1cm}
-{\large \mbox{[}2.\+43\mbox{]} }\\
+{\large \mbox{[}2.\+42\mbox{]} }\\
 \vspace*{1cm}
 \end{center}
 \end{titlepage}
@@ -310,7 +343,7 @@ pdfduplex=DuplexFlipLongEdge,%
 \newpage
 \phantomsection
 \clearemptydoublepage
-\addcontentsline{toc}{chapter}{Index}
+\addcontentsline{toc}{chapter}{\indexname}
 \printindex
 
 \end{document}

@@ -4,18 +4,18 @@
 
 This page describes the various outputs that P\+B3D and P\+O\+ST can produce.
 
-On the one hand, there are various text output files, which are discussed in section \hyperlink{page_outputs_output_files}{Output Files}.
+On the one hand, there are various text output files, which are discussed in section \mbox{\hyperlink{page_outputs_output_files}{Output Files}}.
 
-Furthermore, a multitude of plots can be produced. This is the topic of section \hyperlink{page_outputs_output_plots}{Output Plots}.\hypertarget{page_outputs_output_files}{}\section{Output Files}\label{page_outputs_output_files}
-Some of these files are opened in \hyperlink{namespacefiles__ops_ad681a9e8083a6f664cf0f9d17ebe279c}{open\+\_\+output()}, but others are opened afterwards.\hypertarget{page_outputs_output_file_log}{}\subsection{Log file}\label{page_outputs_output_file_log}
+Furthermore, a multitude of plots can be produced. This is the topic of section \mbox{\hyperlink{page_outputs_output_plots}{Output Plots}}.\hypertarget{page_outputs_output_files}{}\doxysection{Output Files}\label{page_outputs_output_files}
+Some of these files are opened in \mbox{\hyperlink{namespacefiles__ops_ad681a9e8083a6f664cf0f9d17ebe279c}{open\+\_\+output()}}, but others are opened afterwards.\hypertarget{page_outputs_output_file_log}{}\doxysubsection{Log file}\label{page_outputs_output_file_log}
 Both P\+B3D and P\+O\+ST produce a log file, in addition to what is produced on the screen.
 
-These log files are called {\ttfamily P\+B3\+D\+\_\+out.\+txt} and {\ttfamily P\+O\+S\+T\+\_\+out.\+txt} and they contain the same information as the output on the screen, but without the special formatting provided by the foul library (see \hyperlink{page_installation_installation_introduction}{Introduction}).\hypertarget{page_outputs_output_file_shell}{}\subsection{Shell commands file}\label{page_outputs_output_file_shell}
-Some output routines make use of \hyperlink{namespaceoutput__ops_aa9e4855511b6ea16a08b3efb587bec51}{use\+\_\+execute\+\_\+command\+\_\+line()} in order to execute shell commands. This can be, for example, the creation of a plot by calling Gnu\+Plot, among other things.
+These log files are called {\ttfamily P\+B3\+D\+\_\+out.\+txt} and {\ttfamily P\+O\+S\+T\+\_\+out.\+txt} and they contain the same information as the output on the screen, but without the special formatting provided by the foul library (see \mbox{\hyperlink{page_installation_installation_introduction}{Introduction}}).\hypertarget{page_outputs_output_file_shell}{}\doxysubsection{Shell commands file}\label{page_outputs_output_file_shell}
+Some output routines make use of \mbox{\hyperlink{namespaceoutput__ops_aa9e4855511b6ea16a08b3efb587bec51}{use\+\_\+execute\+\_\+command\+\_\+line()}} in order to execute shell commands. This can be, for example, the creation of a plot by calling Gnu\+Plot, among other things.
 
-However, this often does not work well by default (see \hyperlink{page_inputs_fni30}{30} in \hyperlink{page_inputs}{Input variables}). In P\+B3D and P\+O\+ST, therefore, by default, these commands are not executed, but written to an output file. After execution of P\+B3D and P\+O\+ST has finished, this file can be made executed.
+However, this often does not work well by default (see \mbox{\hyperlink{page_inputs_fni30}{30}} in \mbox{\hyperlink{page_inputs}{Input variables}}). In P\+B3D and P\+O\+ST, therefore, by default, these commands are not executed, but written to an output file. After execution of P\+B3D and P\+O\+ST has finished, this file can be made executed.
 
-This behavior can be changed using the {\ttfamily --do\+\_\+execute\+\_\+command\+\_\+line} flag (see \hyperlink{page_inputs}{Input variables}).\hypertarget{page_outputs_output_file_HDF5}{}\subsection{H\+D\+F5 output file}\label{page_outputs_output_file_HDF5}
+This behavior can be changed using the {\ttfamily --do\+\_\+execute\+\_\+command\+\_\+line} flag (see \mbox{\hyperlink{page_inputs}{Input variables}}).\hypertarget{page_outputs_output_file_HDF5}{}\doxysubsection{H\+D\+F5 output file}\label{page_outputs_output_file_HDF5}
 P\+B3D writes variables to an H\+D\+F5 output file during execution, as shown in table \doxytablelink{page_outputs_output_file_HDF5_tab}{1}. Note that there is a difference between the equilibrium styles because of the way how the equilibrium codes provide output\+:
 \begin{DoxyItemize}
 \item V\+M\+EC ({\ttfamily eq\+\_\+style = 1}) produces double Fourier series\+:
@@ -33,69 +33,69 @@ P\+B3D writes variables to an H\+D\+F5 output file during execution, as shown in
 
 \hypertarget{page_outputs_output_file_HDF5_tab}{}
 \tabulinesep=1mm
-\begin{longtabu} spread 0pt [c]{*{3}{|X[-1]}|}
+\begin{longtabu}spread 0pt [c]{*{3}{|X[-1]}|}
 \caption{Table 1. H\+D\+F5 output file}\label{page_outputs_output_file_HDF5_tab}\\
 \hline
-\rowcolor{\tableheadbgcolor}\textbf{ variable type }&\textbf{ V\+M\+EC ({\ttfamily eq\+\_\+style = 1}) }&\textbf{ H\+E\+L\+E\+NA ({\ttfamily eq\+\_\+style = 2})   }\\\cline{1-3}
+\cellcolor{\tableheadbgcolor}\textbf{ variable type }&\cellcolor{\tableheadbgcolor}\textbf{ V\+M\+EC ({\ttfamily eq\+\_\+style = 1}) }&\cellcolor{\tableheadbgcolor}\textbf{ H\+E\+L\+E\+NA ({\ttfamily eq\+\_\+style = 2})   }\\\cline{1-3}
 \endfirsthead
 \hline
 \endfoot
 \hline
-\rowcolor{\tableheadbgcolor}\textbf{ variable type }&\textbf{ V\+M\+EC ({\ttfamily eq\+\_\+style = 1}) }&\textbf{ H\+E\+L\+E\+NA ({\ttfamily eq\+\_\+style = 2})   }\\\cline{1-3}
+\cellcolor{\tableheadbgcolor}\textbf{ variable type }&\cellcolor{\tableheadbgcolor}\textbf{ V\+M\+EC ({\ttfamily eq\+\_\+style = 1}) }&\cellcolor{\tableheadbgcolor}\textbf{ H\+E\+L\+E\+NA ({\ttfamily eq\+\_\+style = 2})   }\\\cline{1-3}
 \endhead
-\multirow{1}{\linewidth}{inputs }&\multicolumn{2}{p{(\linewidth-\tabcolsep*3-\arrayrulewidth*2)*2/3}|}{in preliminary phase   }\\\cline{1-3}
-\multirow{10}{\linewidth}{grids of \hyperlink{structgrid__vars_1_1grid__type}{grid\+\_\+vars.\+grid\+\_\+type} }&\multicolumn{2}{p{(\linewidth-\tabcolsep*3-\arrayrulewidth*2)*2/3}|}{\PBS\centering {\bfseries equilibrium}   }\\\cline{2-3}
-&\multicolumn{2}{p{(\linewidth-\tabcolsep*3-\arrayrulewidth*2)*2/3}|}{field-\/aligned-\/grid at every Richardson level  }\\\cline{2-3}
+\multirow{1}{*}{inputs }&\multicolumn{2}{l|}{in preliminary phase   }\\\cline{1-3}
+\multirow{10}{*}{grids of \mbox{\hyperlink{structgrid__vars_1_1grid__type}{grid\+\_\+vars.\+grid\+\_\+type}} }&\multicolumn{2}{c|}{\PBS\centering {\bfseries{equilibrium}}   }\\\cline{2-3}
+&\multicolumn{2}{l|}{field-\/aligned-\/grid at every Richardson level  }\\\cline{2-3}
 &&also output H\+E\+L\+E\+NA grid at first Richardson level  \\\cline{2-3}
 &&used later for interpolation to field-\/aligned grid  \\\cline{2-3}
-&\multicolumn{2}{p{(\linewidth-\tabcolsep*3-\arrayrulewidth*2)*2/3}|}{\PBS\centering {\bfseries perturbation}   }\\\cline{2-3}
-&\multicolumn{2}{p{(\linewidth-\tabcolsep*3-\arrayrulewidth*2)*2/3}|}{field-\/aligned-\/grid at every Richardson level  }\\\cline{2-3}
+&\multicolumn{2}{c|}{\PBS\centering {\bfseries{perturbation}}   }\\\cline{2-3}
+&\multicolumn{2}{l|}{field-\/aligned-\/grid at every Richardson level  }\\\cline{2-3}
 &&also output H\+E\+L\+E\+NA grid at first Richardson level  \\\cline{2-3}
 &&used later for interpolation to field-\/aligned grid  \\\cline{2-3}
-&\multicolumn{2}{p{(\linewidth-\tabcolsep*3-\arrayrulewidth*2)*2/3}|}{\PBS\centering {\bfseries solution}   }\\\cline{2-3}
-&\multicolumn{2}{p{(\linewidth-\tabcolsep*3-\arrayrulewidth*2)*2/3}|}{only at first Richardson level  }\\\cline{1-3}
-\multirow{1}{\linewidth}{flux equilibria of \hyperlink{structeq__vars_1_1eq__1__type}{eq\+\_\+vars.\+eq\+\_\+1\+\_\+type} }&\multicolumn{2}{p{(\linewidth-\tabcolsep*3-\arrayrulewidth*2)*2/3}|}{only at first Richardson level   }\\\cline{1-3}
-\multirow{3}{\linewidth}{metric equilibria of \hyperlink{structeq__vars_1_1eq__2__type}{eq\+\_\+vars.\+eq\+\_\+2\+\_\+type} }&\multicolumn{2}{p{(\linewidth-\tabcolsep*3-\arrayrulewidth*2)*2/3}|}{only at first Richardson level   }\\\cline{2-3}
+&\multicolumn{2}{c|}{\PBS\centering {\bfseries{solution}}   }\\\cline{2-3}
+&\multicolumn{2}{l|}{only at first Richardson level  }\\\cline{1-3}
+\multirow{1}{*}{flux equilibria of \mbox{\hyperlink{structeq__vars_1_1eq__1__type}{eq\+\_\+vars.\+eq\+\_\+1\+\_\+type}} }&\multicolumn{2}{l|}{only at first Richardson level   }\\\cline{1-3}
+\multirow{3}{*}{metric equilibria of \mbox{\hyperlink{structeq__vars_1_1eq__2__type}{eq\+\_\+vars.\+eq\+\_\+2\+\_\+type}} }&\multicolumn{2}{l|}{only at first Richardson level   }\\\cline{2-3}
 &&also output H\+E\+L\+E\+NA grid at first Richardson level  \\\cline{2-3}
 &&used later for interpolation to field-\/aligned grid  \\\cline{1-3}
-\multirow{1}{\linewidth}{vacuums of \hyperlink{structvac__vars_1_1vac__type}{vac\+\_\+vars.\+vac\+\_\+type} }&at every Richardson level  &only at first Richardson level   \\\cline{1-3}
-\multirow{1}{\linewidth}{solutions of \hyperlink{structsol__vars_1_1sol__type}{sol\+\_\+vars.\+sol\+\_\+type} }&\multicolumn{2}{p{(\linewidth-\tabcolsep*3-\arrayrulewidth*2)*2/3}|}{at every Richardson level   }\\\cline{1-3}
+\multirow{1}{*}{vacuums of \mbox{\hyperlink{structvac__vars_1_1vac__type}{vac\+\_\+vars.\+vac\+\_\+type}} }&at every Richardson level  &only at first Richardson level   \\\cline{1-3}
+\multirow{1}{*}{solutions of \mbox{\hyperlink{structsol__vars_1_1sol__type}{sol\+\_\+vars.\+sol\+\_\+type}} }&\multicolumn{2}{l|}{at every Richardson level   }\\\cline{1-3}
 \end{longtabu}
 
 
-This data is used for Richardson restart (see variable {\ttfamily rich\+\_\+restart\+\_\+lvl} in \hyperlink{page_inputs}{Input variables}).
+This data is used for Richardson restart (see variable {\ttfamily rich\+\_\+restart\+\_\+lvl} in \mbox{\hyperlink{page_inputs}{Input variables}}).
 
-In the post-\/processing phase, P\+O\+ST reads this data as well.\hypertarget{page_outputs_output_file_EV}{}\subsection{Eigenvalue summary file}\label{page_outputs_output_file_EV}
+In the post-\/processing phase, P\+O\+ST reads this data as well.\hypertarget{page_outputs_output_file_EV}{}\doxysubsection{Eigenvalue summary file}\label{page_outputs_output_file_EV}
 In each Richardson extrapolation level, after the solution of the eigenvalue system of equations, eigenvalues are stored in P\+B3D.
 \begin{DoxyItemize}
-\item For S\+L\+E\+PC, the results are saved in the procedure \hyperlink{namespaceslepc__ops_a24d97496000ed55f1d11e4d436e084a6}{store\+\_\+results()}\+:
+\item For S\+L\+E\+PC, the results are saved in the procedure \mbox{\hyperlink{namespaceslepc__ops_a24d97496000ed55f1d11e4d436e084a6}{store\+\_\+results()}}\+:
 \begin{DoxyItemize}
 \item If normalization is used, the normalization time scale is also stored.
-\item If an unphysical complex eigenvalue is detected, this is indicated. See {\ttfamily option} retain\+\_\+all\+\_\+sol in \hyperlink{page_inputs_inputs_PB3D_file}{Input file}.
+\item If an unphysical complex eigenvalue is detected, this is indicated. See {\ttfamily option} retain\+\_\+all\+\_\+sol in \mbox{\hyperlink{page_inputs_inputs_PB3D_file}{Input file}}.
 \end{DoxyItemize}
-\end{DoxyItemize}\hypertarget{page_outputs_output_file_E_rec}{}\subsection{Energy reconstruction file}\label{page_outputs_output_file_E_rec}
-If energy reconstruction is performed by P\+O\+ST (see {\ttfamily plot\+\_\+\+E\+\_\+rec} in \hyperlink{page_inputs}{Input variables}), the individual terms that make up the perturbed potential energy as well as the kinetic energy of the perturbation are calculated and plot. (\hyperlink{page_outputs_fno3}{3}) Furthermore, the integration of these quantities over the whole volume, is returned in an output file.
+\end{DoxyItemize}\hypertarget{page_outputs_output_file_E_rec}{}\doxysubsection{Energy reconstruction file}\label{page_outputs_output_file_E_rec}
+If energy reconstruction is performed by P\+O\+ST (see {\ttfamily plot\+\_\+\+E\+\_\+rec} in \mbox{\hyperlink{page_inputs}{Input variables}}), the individual terms that make up the perturbed potential energy as well as the kinetic energy of the perturbation are calculated and plot. (\mbox{\hyperlink{page_outputs_fno3}{3}}) Furthermore, the integration of these quantities over the whole volume, is returned in an output file.
 
-In table \doxytablelink{page_outputs_e_rec_tab}{2}, an overview is given of the different terms. Here, $\rho$ is the density, $\sigma = \frac{\vec{B}\cdot\vec{J}}{B^2}$ is the parallel current and $\kappa = \frac{\vec{B}}{B} \cdot \nabla \frac{\vec{B}}{B}$ is the magnetic curvature. See \hyperlink{namespacesol__ops_ae094c2a5235324b4aadb53623978d191}{calc\+\_\+e()}.
+In table \doxytablelink{page_outputs_e_rec_tab}{2}, an overview is given of the different terms. Here, $\rho$ is the density, $\sigma = \frac{\vec{B}\cdot\vec{J}}{B^2}$ is the parallel current and $\kappa = \frac{\vec{B}}{B} \cdot \nabla \frac{\vec{B}}{B}$ is the magnetic curvature. See \mbox{\hyperlink{namespacesol__ops_ae094c2a5235324b4aadb53623978d191}{calc\+\_\+e()}}.
 
 \hypertarget{page_outputs_e_rec_tab}{}
 \tabulinesep=1mm
-\begin{longtabu} spread 0pt [c]{*{2}{|X[-1]}|}
+\begin{longtabu}spread 0pt [c]{*{2}{|X[-1]}|}
 \caption{Table 2. energy reconstruction}\label{page_outputs_e_rec_tab}\\
 \hline
-\rowcolor{\tableheadbgcolor}\textbf{ potential energy $E_\text{pot}$ }&\textbf{ kinetic energy $E_\text{kin}$  }\\\cline{1-2}
+\cellcolor{\tableheadbgcolor}\textbf{ potential energy $E_\text{pot}$ }&\cellcolor{\tableheadbgcolor}\textbf{ kinetic energy $E_\text{kin}$  }\\\cline{1-2}
 \endfirsthead
 \hline
 \endfoot
 \hline
-\rowcolor{\tableheadbgcolor}\textbf{ potential energy $E_\text{pot}$ }&\textbf{ kinetic energy $E_\text{kin}$  }\\\cline{1-2}
+\cellcolor{\tableheadbgcolor}\textbf{ potential energy $E_\text{pot}$ }&\cellcolor{\tableheadbgcolor}\textbf{ kinetic energy $E_\text{kin}$  }\\\cline{1-2}
 \endhead
 
 \begin{DoxyItemize}
 \item normal line bending term $\frac{1}{\left|\nabla\psi\right|^2 }\left(\frac{\nabla \psi}{\left|\nabla \psi\right|^2}\cdot \vec{Q}\right)^2$  
 \item gedesic line bending term $\mathcal{J}^2\frac{\left|\nabla \psi\right|^2}{B^2} \left( \frac{\nabla \psi \times \vec{B}}{B^2}\cdot \vec{Q} \right)^2$  
-\item normal ballooning term $-2 p' \left(\nabla \psi \cdot \vec{\xi}\right)^2 \left(\nabla \psi \cdot \vec{\kappa}\right)$  
-\item geodesic ballooning term $-2 p' \left( \nabla \psi \cdot \vec{\xi} \right) \left( \frac{\nabla \psi \times \vec{B}}{\left|\nabla \psi \right|^2} \cdot \vec{\xi}\right)^* \left(\frac{\nabla \psi \times \vec{B}}{\left|\nabla \psi \right|^2} \cdot \vec{\kappa}\right)$  
+\item normal ballooning term $-2 p\textnormal{\textquotesingle} \left(\nabla \psi \cdot \vec{\xi}\right)^2 \left(\nabla \psi \cdot \vec{\kappa}\right)$  
+\item geodesic ballooning term $-2 p\textnormal{\textquotesingle} \left( \nabla \psi \cdot \vec{\xi} \right) \left( \frac{\nabla \psi \times \vec{B}}{\left|\nabla \psi \right|^2} \cdot \vec{\xi}\right)^* \left(\frac{\nabla \psi \times \vec{B}}{\left|\nabla \psi \right|^2} \cdot \vec{\kappa}\right)$  
 \item normal kink term $-2 \sigma \left(\nabla \psi \cdot \vec{\xi}\right)^* \left(\frac{\nabla \psi \times \vec{B}}{B^2}\cdot \vec{Q} \right)$  
 \item geodesic kink term $ 2 \sigma \left(\frac{\nabla \psi \times \vec{B}}{B^2} \cdot \vec{\xi}\right)^* \left(\nabla \psi\cdot \vec{Q} \right)$  
 \end{DoxyItemize}&
@@ -104,15 +104,15 @@ In table \doxytablelink{page_outputs_e_rec_tab}{2}, an overview is given of the 
 \item gedesic kinetic term $\mathcal{J}^2\frac{\left|\nabla \psi\right|^2}{B^2} \left( \frac{\nabla \psi \times \vec{B}}{B^2}\cdot \vec{\xi} \right)^2$  
 \end{DoxyItemize}\\\cline{1-2}
 \end{longtabu}
-\hypertarget{page_outputs_output_file_mem}{}\subsection{Memory usage file}\label{page_outputs_output_file_mem}
-The memory usage of P\+B3D and P\+O\+ST can be monitored using the optional input argument {\ttfamily --mem\+\_\+info} (see \hyperlink{page_inputs_inputs_PB3D_cmd}{Command-\/line inputs}).
+\hypertarget{page_outputs_output_file_mem}{}\doxysubsection{Memory usage file}\label{page_outputs_output_file_mem}
+The memory usage of P\+B3D and P\+O\+ST can be monitored using the optional input argument {\ttfamily --mem\+\_\+info} (see \mbox{\hyperlink{page_inputs_inputs_PB3D_cmd}{Command-\/line inputs}}).
 
-This is a rather crude implementation and more advance profiling methods should be used, such as \href{http://www.scalasca.org/}{\tt Scalasca} on top of \href{http://www.vi-hps.org/projects/score-p/}{\tt Score-\/P}.
+This is a rather crude implementation and more advance profiling methods should be used, such as \href{http://www.scalasca.org/}{\texttt{ Scalasca}} on top of \href{http://www.vi-hps.org/projects/score-p/}{\texttt{ Score-\/P}}.
 
 \begin{DoxyNote}{Note}
 Debug version only
 \end{DoxyNote}
-\hypertarget{page_outputs_output_plots}{}\section{Output Plots}\label{page_outputs_output_plots}
+\hypertarget{page_outputs_output_plots}{}\doxysection{Output Plots}\label{page_outputs_output_plots}
 A multitude of plots can be produced by P\+B3D and P\+O\+ST.
 
 P\+O\+ST can produce all the plots that P\+B3D can, and some more.
@@ -121,37 +121,37 @@ The plots themselves fall in two categories\+:
 \begin{DoxyItemize}
 \item Plots using an external program.
 \begin{DoxyItemize}
-\item Produced by \hyperlink{interfaceoutput__ops_1_1print__ex__2d}{output\+\_\+ops.\+print\+\_\+ex\+\_\+2d()} or \hyperlink{interfaceoutput__ops_1_1print__ex__3d}{output\+\_\+ops.\+print\+\_\+ex\+\_\+3d()} combined with \hyperlink{namespaceoutput__ops_a50bfbb88cc91805469353c3ff47b3e2e}{draw\+\_\+ex()}.
-\item A list of external programs is given in \hyperlink{namespaceoutput__ops_a50bfbb88cc91805469353c3ff47b3e2e}{draw\+\_\+ex()}.
-\item These plots require a shell command to be run, which is disabled by default and the commands are stored in a \hyperlink{page_outputs_output_file_shell}{Shell commands file}.
-\item The produced plots can be 2-\/D or 3-\/D, and they can be interactive or not, depending on the {\ttfamily ex\+\_\+plot\+\_\+style} (see \hyperlink{page_inputs}{Input variables}).
+\item Produced by \mbox{\hyperlink{interfaceoutput__ops_1_1print__ex__2d}{output\+\_\+ops.\+print\+\_\+ex\+\_\+2d()}} or \mbox{\hyperlink{interfaceoutput__ops_1_1print__ex__3d}{output\+\_\+ops.\+print\+\_\+ex\+\_\+3d()}} combined with \mbox{\hyperlink{namespaceoutput__ops_a50bfbb88cc91805469353c3ff47b3e2e}{draw\+\_\+ex()}}.
+\item A list of external programs is given in \mbox{\hyperlink{namespaceoutput__ops_a50bfbb88cc91805469353c3ff47b3e2e}{draw\+\_\+ex()}}.
+\item These plots require a shell command to be run, which is disabled by default and the commands are stored in a \mbox{\hyperlink{page_outputs_output_file_shell}{Shell commands file}}.
+\item The produced plots can be 2-\/D or 3-\/D, and they can be interactive or not, depending on the {\ttfamily ex\+\_\+plot\+\_\+style} (see \mbox{\hyperlink{page_inputs}{Input variables}}).
 \end{DoxyItemize}
 \item Data files that can be used to produce plots with visualization software\+:
 \begin{DoxyItemize}
-\item The software used here was \href{https://visit.llnl.gov/}{\tt Vis\+It}, based on personal preference, but \href{https://www.paraview.org/}{\tt Para\+View} or other V\+T\+K-\/based solutions should work equally well.
-\item Every plot creates two output files\+: one heavy-\/data H\+D\+F5 file and one \href{www.xdmf.org/}{\tt X\+D\+MF} file that contains specifics about the H\+D\+F5 file.
+\item The software used here was \href{https://visit.llnl.gov/}{\texttt{ Vis\+It}}, based on personal preference, but \href{https://www.paraview.org/}{\texttt{ Para\+View}} or other V\+T\+K-\/based solutions should work equally well.
+\item Every plot creates two output files\+: one heavy-\/data H\+D\+F5 file and one \href{www.xdmf.org/}{\texttt{ X\+D\+MF}} file that contains specifics about the H\+D\+F5 file.
 \item This is necessary, as H\+D\+F5 itself is too general a format for general visualization tools to interpret easily.
 \item The X\+D\+MF file that accompanies each H\+D\+F5 file basically contains information about the saved variables, such as whether they are vectors or scalars, and on which grid type they are defined.
 \item This is the file that should be opened by the visualzation software.
-\item The dimensions of these plots can be 2-\/D or 3-\/D, depending on {\ttfamily eq\+\_\+style}. See \hyperlink{page_inputs_fni19}{19} and \hyperlink{page_inputs_fni20}{20} in \hyperlink{page_inputs}{Input variables}.
+\item The dimensions of these plots can be 2-\/D or 3-\/D, depending on {\ttfamily eq\+\_\+style}. See \mbox{\hyperlink{page_inputs_fni19}{19}} and \mbox{\hyperlink{page_inputs_fni20}{20}} in \mbox{\hyperlink{page_inputs}{Input variables}}.
 \end{DoxyItemize}
 \end{DoxyItemize}
 
-An overview of possible plots is now given in table \doxytablelink{page_outputs_output_plots_tab}{3}. The name of the respective input parameter is provided as well. See \hyperlink{page_inputs}{Input variables}.
+An overview of possible plots is now given in table \doxytablelink{page_outputs_output_plots_tab}{3}. The name of the respective input parameter is provided as well. See \mbox{\hyperlink{page_inputs}{Input variables}}.
 
 \hypertarget{page_outputs_output_plots_tab}{}
 \tabulinesep=1mm
-\begin{longtabu} spread 0pt [c]{*{3}{|X[-1]}|}
+\begin{longtabu}spread 0pt [c]{*{3}{|X[-1]}|}
 \caption{Table 3. possible plots}\label{page_outputs_output_plots_tab}\\
 \hline
-\rowcolor{\tableheadbgcolor}\textbf{ plot type }&\textbf{ external plot }&\textbf{ H\+D\+F5 plot   }\\\cline{1-3}
+\cellcolor{\tableheadbgcolor}\textbf{ plot type }&\cellcolor{\tableheadbgcolor}\textbf{ external plot }&\cellcolor{\tableheadbgcolor}\textbf{ H\+D\+F5 plot   }\\\cline{1-3}
 \endfirsthead
 \hline
 \endfoot
 \hline
-\rowcolor{\tableheadbgcolor}\textbf{ plot type }&\textbf{ external plot }&\textbf{ H\+D\+F5 plot   }\\\cline{1-3}
+\cellcolor{\tableheadbgcolor}\textbf{ plot type }&\cellcolor{\tableheadbgcolor}\textbf{ external plot }&\cellcolor{\tableheadbgcolor}\textbf{ H\+D\+F5 plot   }\\\cline{1-3}
 \endhead
-\multirow{1}{\linewidth}{flux quantities ({\ttfamily plot\+\_\+flux\+\_\+q})  }&
+\multirow{1}{*}{flux quantities ({\ttfamily plot\+\_\+flux\+\_\+q})  }&
 \begin{DoxyItemize}
 \item pressure $p$
 \item poloidal flux $\Psi_\text{pol}$
@@ -164,14 +164,14 @@ An overview of possible plots is now given in table \doxytablelink{page_outputs_
 \item poloidal flux $\Psi_\text{pol}$
 \item toroidal flux $\Psi_\text{tor}$
 \end{DoxyItemize}\\\cline{1-3}
-\multirow{1}{\linewidth}{resonance ({\ttfamily plot\+\_\+resonance})  }&safety factor $q$ (poloidal flux) or rotational transform $\iota$ (toroidal flux) with the indication of the resonant flux surfaces (\hyperlink{page_outputs_fno1}{1})  &surfaces of resonant values for safety factor $q$ (poloidal flux) or rotational transform $\iota$ (toroidal flux) (\hyperlink{page_outputs_fno1}{1})   \\\cline{1-3}
-\multirow{1}{\linewidth}{magnetic grid ({\ttfamily plot\+\_\+magn\+\_\+grid})  }&&magnetic grid lines in the magnetic flux surfaces, as a time collection   \\\cline{1-3}
-\multirow{1}{\linewidth}{magnetic field $\vec{B}$ ({\ttfamily plot\+\_\+B})  }&&co-\/ and contravariant components of magnetic field, as well as magnitude and vector plot   \\\cline{1-3}
-\multirow{1}{\linewidth}{current density $\vec{J}$ ({\ttfamily plot\+\_\+J})  }&&co-\/ and contravariant components of current density, as well as magnitude and vector plot   \\\cline{1-3}
-\multirow{1}{\linewidth}{magnetic curvature $\vec{\kappa}$ ({\ttfamily plot\+\_\+kappa})  }&&co-\/ and contravariant components of magnetic curvature, as well as magnitude and vector plot   \\\cline{1-3}
-\multirow{1}{\linewidth}{solution normal mode $\vec{\xi}$ ({\ttfamily plot\+\_\+sol\+\_\+xi})  }&&real and imaginary part and phase of perturbation of position, as well as vector plot   \\\cline{1-3}
-\multirow{1}{\linewidth}{perturbated magnetic field due to solution normal mode $\vec{Q}$ ({\ttfamily plot\+\_\+sol\+\_\+Q})  }&&real and imaginary part and phase of perturbation of magnetic field, as well as vector plot   \\\cline{1-3}
-\multirow{1}{\linewidth}{energy reconstruction ({\ttfamily plot\+\_\+\+E\+\_\+rec})  }&&different components of energy reconstruction, integrated as well as profiles (\hyperlink{page_outputs_fno2}{2})  \\\cline{1-3}
+\multirow{1}{*}{resonance ({\ttfamily plot\+\_\+resonance})  }&safety factor $q$ (poloidal flux) or rotational transform $\iota$ (toroidal flux) with the indication of the resonant flux surfaces (\mbox{\hyperlink{page_outputs_fno1}{1}})  &surfaces of resonant values for safety factor $q$ (poloidal flux) or rotational transform $\iota$ (toroidal flux) (\mbox{\hyperlink{page_outputs_fno1}{1}})   \\\cline{1-3}
+\multirow{1}{*}{magnetic grid ({\ttfamily plot\+\_\+magn\+\_\+grid})  }&&magnetic grid lines in the magnetic flux surfaces, as a time collection   \\\cline{1-3}
+\multirow{1}{*}{magnetic field $\vec{B}$ ({\ttfamily plot\+\_\+B})  }&&co-\/ and contravariant components of magnetic field, as well as magnitude and vector plot   \\\cline{1-3}
+\multirow{1}{*}{current density $\vec{J}$ ({\ttfamily plot\+\_\+J})  }&&co-\/ and contravariant components of current density, as well as magnitude and vector plot   \\\cline{1-3}
+\multirow{1}{*}{magnetic curvature $\vec{\kappa}$ ({\ttfamily plot\+\_\+kappa})  }&&co-\/ and contravariant components of magnetic curvature, as well as magnitude and vector plot   \\\cline{1-3}
+\multirow{1}{*}{solution normal mode $\vec{\xi}$ ({\ttfamily plot\+\_\+sol\+\_\+xi})  }&&real and imaginary part and phase of perturbation of position, as well as vector plot   \\\cline{1-3}
+\multirow{1}{*}{perturbated magnetic field due to solution normal mode $\vec{Q}$ ({\ttfamily plot\+\_\+sol\+\_\+Q})  }&&real and imaginary part and phase of perturbation of magnetic field, as well as vector plot   \\\cline{1-3}
+\multirow{1}{*}{energy reconstruction ({\ttfamily plot\+\_\+\+E\+\_\+rec})  }&&different components of energy reconstruction, integrated as well as profiles (\mbox{\hyperlink{page_outputs_fno2}{2}})  \\\cline{1-3}
 \end{longtabu}
 
 
@@ -180,10 +180,10 @@ An overview of possible plots is now given in table \doxytablelink{page_outputs_
 \begin{DoxyEnumerate}
 \item \label{page_outputs_fno1}%
 \Hypertarget{page_outputs_fno1}%
-See {\ttfamily use\+\_\+pol\+\_\+flux\+\_\+F} in \hyperlink{page_inputs}{Input variables}.
+See {\ttfamily use\+\_\+pol\+\_\+flux\+\_\+F} in \mbox{\hyperlink{page_inputs}{Input variables}}.
 \item \label{page_outputs_fno2}%
 \Hypertarget{page_outputs_fno2}%
-The integrated energy reconstruction terms are also output to a file. See \hyperlink{page_outputs_output_file_E_rec}{Energy reconstruction file}.
+The integrated energy reconstruction terms are also output to a file. See \mbox{\hyperlink{page_outputs_output_file_E_rec}{Energy reconstruction file}}.
 \item \label{page_outputs_fno3}%
 \Hypertarget{page_outputs_fno3}%
 Energy reconstruction only works well when {\ttfamily  P\+O\+S\+T\+\_\+style = 2 } is used, i.\+e. when the same grid is used as for P\+B3D. 
