@@ -8,7 +8,7 @@
 ##############################################################################
 #   Variables
 ##############################################################################
-export PB3D_dir = /home/tweyens/Simulations/PB3D
+export PB3D_dir = /opt/PB3D
 PB3D_version := $(shell grep 'prog_version =' $(PB3D_dir)/Modules/num_vars.f90 | cut --complement -d = -f 1 | sed -e 's/^ *//g' | cut -d'_' -f1)
 MIN_NM_X := $(shell grep 'min_nm_X =' $(PB3D_dir)/Modules/X_vars.f90 | cut --complement -d = -f 1 | sed -e 's/^ *//g' | cut -d' ' -f1)
 DOXY_version := $(shell doxygen --version)

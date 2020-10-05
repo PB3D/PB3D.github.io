@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.17"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>PB3D: /home/tweyens/Simulations/PB3D/Modules/files_ops.f90 Source File</title>
+<title>PB3D: /opt/PB3D/Modules/files_ops.f90 Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -30,7 +30,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">PB3D
-   &#160;<span id="projectnumber">[2.42]</span>
+   &#160;<span id="projectnumber">[2.43]</span>
    </div>
    <div id="projectbrief">Ideal linear high-n MHD stability in 3-D</div>
   </td>
@@ -71,7 +71,7 @@ $(function() {
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><a class="el" href="dir_abd866f922fda2a610a7ae3b578a9cb5.html">PB3D</a></li><li class="navelem"><a class="el" href="dir_c08747878f0308ef1ee4ad272e6068b4.html">Modules</a></li>  </ul>
+<li class="navelem"><a class="el" href="dir_a5c23e4d4d2f2652fc21caa9afd4c5c7.html">opt</a></li><li class="navelem"><a class="el" href="dir_d524c0bc10de76b0e63a2a912e99f792.html">PB3D</a></li><li class="navelem"><a class="el" href="dir_a6212aa2ece7660db55217e650817bb1.html">Modules</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
@@ -256,7 +256,7 @@ $(function() {
 <div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160;        <span class="comment">! local variables</span></div>
 <div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160;        <span class="keywordtype">integer</span> :: id                                                           <span class="comment">! counter</span></div>
 <div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160;        <span class="keywordtype">character(len=max_str_ln)</span> :: err_msg                                    <span class="comment">! error message</span></div>
-<div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160;        <span class="keywordtype">integer</span> :: first_ints(2)                                                <span class="comment">! first two input integers of input file (HELENA)</span></div>
+<div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160;        <span class="keywordtype">integer</span> :: first_int                                                    <span class="comment">! first input integer of input file (HELENA)</span></div>
 <div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160;        <span class="keywordtype">integer</span> :: istat                                                        <span class="comment">! status</span></div>
 <div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160;        <span class="keywordtype">character(len=max_str_ln)</span> :: file_ext                                   <span class="comment">! file extension</span></div>
 <div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;        </div>
@@ -309,7 +309,7 @@ $(function() {
 <div class="line"><a name="l00243"></a><span class="lineno">  243</span>&#160;<span class="keywordflow">                    end if</span></div>
 <div class="line"><a name="l00244"></a><span class="lineno">  244</span>&#160;                    </div>
 <div class="line"><a name="l00245"></a><span class="lineno">  245</span>&#160;                    <span class="comment">! Check for HELENA</span></div>
-<div class="line"><a name="l00246"></a><span class="lineno">  246</span>&#160;                    <span class="keyword">read</span>(eq_i,*,iostat=istat) first_ints</div>
+<div class="line"><a name="l00246"></a><span class="lineno">  246</span>&#160;                    <span class="keyword">read</span>(eq_i,*,iostat=istat) first_int </div>
 <div class="line"><a name="l00247"></a><span class="lineno">  247</span>&#160;                    backspace(unit=eq_i)                                        <span class="comment">! go back one line in the equilibrium file</span></div>
 <div class="line"><a name="l00248"></a><span class="lineno">  248</span>&#160;                    <span class="keywordflow">if</span> (istat.eq.0) <span class="keywordflow">then</span></div>
 <div class="line"><a name="l00249"></a><span class="lineno">  249</span>&#160;                        eq_style = 2</div>

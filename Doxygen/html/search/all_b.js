@@ -4,7 +4,7 @@ var searchData=
   ['l_5fv_5fc_444',['l_v_c',['../namespacevmec__vars.html#acf90dcedfaae39a8a6778fbf75a90a40',1,'vmec_vars']]],
   ['l_5fv_5fs_445',['l_v_s',['../namespacevmec__vars.html#a5d1de7879021fa8c1d8c10bbef01f9c7',1,'vmec_vars']]],
   ['lcm_446',['lcm',['../namespacenum__utilities.html#a33fc1483c840d5d3f9b12acfce21cad1',1,'num_utilities']]],
-  ['lim_5fsec_5fx_447',['lim_sec_x',['../structsol__vars_1_1sol__type.html#a2192f30619609d910a999dc6a8934934',1,'sol_vars::sol_type::lim_sec_x()'],['../structvac__vars_1_1vac__type.html#a838017f000d61fd3c40edba18b57e558',1,'vac_vars::vac_type::lim_sec_x()'],['../structx__vars_1_1x__1__type.html#a13c0f5a062916cf55e6bbaa906d0245b',1,'x_vars::x_1_type::lim_sec_x()'],['../structx__vars_1_1x__2__type.html#aac1744d056531f6fe7f7426dd4fcd92b',1,'x_vars::x_2_type::lim_sec_x()']]],
+  ['lim_5fsec_5fx_447',['lim_sec_x',['../structsol__vars_1_1sol__type.html#a2192f30619609d910a999dc6a8934934',1,'sol_vars::sol_type::lim_sec_x()'],['../structx__vars_1_1x__1__type.html#a13c0f5a062916cf55e6bbaa906d0245b',1,'x_vars::x_1_type::lim_sec_x()'],['../structx__vars_1_1x__2__type.html#aac1744d056531f6fe7f7426dd4fcd92b',1,'x_vars::x_2_type::lim_sec_x()']]],
   ['lims_5fc_448',['lims_c',['../structvac__vars_1_1vac__type.html#ad4aa76e0d91f32808465d15ac04528ec',1,'vac_vars::vac_type']]],
   ['lims_5fr_449',['lims_r',['../structvac__vars_1_1vac__type.html#aac146dc17760b97ff3cb7966cd1b41f9',1,'vac_vars::vac_type']]],
   ['list_5fall_5fvars_5fin_5fgroup_450',['list_all_vars_in_group',['../namespacehdf5__utilities.html#aa9d76166f970a7052cd0d96c8f3ee0be',1,'hdf5_utilities']]],

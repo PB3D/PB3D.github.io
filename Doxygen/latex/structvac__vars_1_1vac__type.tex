@@ -39,8 +39,8 @@ integer, dimension(2) \mbox{\hyperlink{structvac__vars_1_1vac__type_ae875caaff6d
 \begin{DoxyCompactList}\small\item\em index of local process in grid \end{DoxyCompactList}\item 
 integer, dimension(2) \mbox{\hyperlink{structvac__vars_1_1vac__type_ad773e9aa724066256c3955a1a98a1d63}{n\+\_\+loc}}
 \begin{DoxyCompactList}\small\item\em local number of rows and columns \end{DoxyCompactList}\item 
-integer, dimension(2) \mbox{\hyperlink{structvac__vars_1_1vac__type_a838017f000d61fd3c40edba18b57e558}{lim\+\_\+sec\+\_\+x}}
-\begin{DoxyCompactList}\small\item\em limits on secondary mode numbers \end{DoxyCompactList}\item 
+integer, dimension(\+:), allocatable \mbox{\hyperlink{structvac__vars_1_1vac__type_aeb4618332068796eb12784a5b5582416}{sec\+\_\+x}}
+\begin{DoxyCompactList}\small\item\em secondary mode numbers \end{DoxyCompactList}\item 
 integer, dimension(\+:,\+:), allocatable \mbox{\hyperlink{structvac__vars_1_1vac__type_ad4aa76e0d91f32808465d15ac04528ec}{lims\+\_\+c}}
 \begin{DoxyCompactList}\small\item\em column limits for different subrows of G and H \end{DoxyCompactList}\item 
 integer, dimension(\+:,\+:), allocatable \mbox{\hyperlink{structvac__vars_1_1vac__type_aac146dc17760b97ff3cb7966cd1b41f9}{lims\+\_\+r}}
@@ -289,20 +289,6 @@ iota (tor. flux) or q (pol. flux) at edge
 
 Definition at line 62 of file vac\+\_\+vars.\+f90.
 
-\mbox{\Hypertarget{structvac__vars_1_1vac__type_a838017f000d61fd3c40edba18b57e558}\label{structvac__vars_1_1vac__type_a838017f000d61fd3c40edba18b57e558}} 
-\index{vac\_vars::vac\_type@{vac\_vars::vac\_type}!lim\_sec\_x@{lim\_sec\_x}}
-\index{lim\_sec\_x@{lim\_sec\_x}!vac\_vars::vac\_type@{vac\_vars::vac\_type}}
-\doxysubsubsection{\texorpdfstring{lim\_sec\_x}{lim\_sec\_x}}
-{\footnotesize\ttfamily integer, dimension(2) vac\+\_\+vars\+::vac\+\_\+type\+::lim\+\_\+sec\+\_\+x}
-
-
-
-limits on secondary mode numbers 
-
-
-
-Definition at line 59 of file vac\+\_\+vars.\+f90.
-
 \mbox{\Hypertarget{structvac__vars_1_1vac__type_ad4aa76e0d91f32808465d15ac04528ec}\label{structvac__vars_1_1vac__type_ad4aa76e0d91f32808465d15ac04528ec}} 
 \index{vac\_vars::vac\_type@{vac\_vars::vac\_type}!lims\_c@{lims\_c}}
 \index{lims\_c@{lims\_c}!vac\_vars::vac\_type@{vac\_vars::vac\_type}}
@@ -442,6 +428,20 @@ vacuum response
 
 
 Definition at line 70 of file vac\+\_\+vars.\+f90.
+
+\mbox{\Hypertarget{structvac__vars_1_1vac__type_aeb4618332068796eb12784a5b5582416}\label{structvac__vars_1_1vac__type_aeb4618332068796eb12784a5b5582416}} 
+\index{vac\_vars::vac\_type@{vac\_vars::vac\_type}!sec\_x@{sec\_x}}
+\index{sec\_x@{sec\_x}!vac\_vars::vac\_type@{vac\_vars::vac\_type}}
+\doxysubsubsection{\texorpdfstring{sec\_x}{sec\_x}}
+{\footnotesize\ttfamily integer, dimension(\+:), allocatable vac\+\_\+vars\+::vac\+\_\+type\+::sec\+\_\+x}
+
+
+
+secondary mode numbers 
+
+
+
+Definition at line 59 of file vac\+\_\+vars.\+f90.
 
 \mbox{\Hypertarget{structvac__vars_1_1vac__type_afbd856ce1a362b252a9d8195b83546cd}\label{structvac__vars_1_1vac__type_afbd856ce1a362b252a9d8195b83546cd}} 
 \index{vac\_vars::vac\_type@{vac\_vars::vac\_type}!style@{style}}

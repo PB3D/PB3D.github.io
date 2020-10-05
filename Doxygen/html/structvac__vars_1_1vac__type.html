@@ -30,7 +30,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">PB3D
-   &#160;<span id="projectnumber">[2.42]</span>
+   &#160;<span id="projectnumber">[2.43]</span>
    </div>
    <div id="projectbrief">Ideal linear high-n MHD stability in 3-D</div>
   </td>
@@ -134,9 +134,9 @@ Public Attributes</h2></td></tr>
 <tr class="memitem:ad773e9aa724066256c3955a1a98a1d63"><td class="memItemLeft" align="right" valign="top">integer, dimension(2)&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structvac__vars_1_1vac__type.html#ad773e9aa724066256c3955a1a98a1d63">n_loc</a></td></tr>
 <tr class="memdesc:ad773e9aa724066256c3955a1a98a1d63"><td class="mdescLeft">&#160;</td><td class="mdescRight">local number of rows and columns  <a href="structvac__vars_1_1vac__type.html#ad773e9aa724066256c3955a1a98a1d63">More...</a><br /></td></tr>
 <tr class="separator:ad773e9aa724066256c3955a1a98a1d63"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a838017f000d61fd3c40edba18b57e558"><td class="memItemLeft" align="right" valign="top">integer, dimension(2)&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structvac__vars_1_1vac__type.html#a838017f000d61fd3c40edba18b57e558">lim_sec_x</a></td></tr>
-<tr class="memdesc:a838017f000d61fd3c40edba18b57e558"><td class="mdescLeft">&#160;</td><td class="mdescRight">limits on secondary mode numbers  <a href="structvac__vars_1_1vac__type.html#a838017f000d61fd3c40edba18b57e558">More...</a><br /></td></tr>
-<tr class="separator:a838017f000d61fd3c40edba18b57e558"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aeb4618332068796eb12784a5b5582416"><td class="memItemLeft" align="right" valign="top">integer, dimension(:), allocatable&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structvac__vars_1_1vac__type.html#aeb4618332068796eb12784a5b5582416">sec_x</a></td></tr>
+<tr class="memdesc:aeb4618332068796eb12784a5b5582416"><td class="mdescLeft">&#160;</td><td class="mdescRight">secondary mode numbers  <a href="structvac__vars_1_1vac__type.html#aeb4618332068796eb12784a5b5582416">More...</a><br /></td></tr>
+<tr class="separator:aeb4618332068796eb12784a5b5582416"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad4aa76e0d91f32808465d15ac04528ec"><td class="memItemLeft" align="right" valign="top">integer, dimension(:,:), allocatable&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structvac__vars_1_1vac__type.html#ad4aa76e0d91f32808465d15ac04528ec">lims_c</a></td></tr>
 <tr class="memdesc:ad4aa76e0d91f32808465d15ac04528ec"><td class="mdescLeft">&#160;</td><td class="mdescRight">column limits for different subrows of G and H  <a href="structvac__vars_1_1vac__type.html#ad4aa76e0d91f32808465d15ac04528ec">More...</a><br /></td></tr>
 <tr class="separator:ad4aa76e0d91f32808465d15ac04528ec"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -440,24 +440,6 @@ Public Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="a838017f000d61fd3c40edba18b57e558"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a838017f000d61fd3c40edba18b57e558">&#9670;&nbsp;</a></span>lim_sec_x</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">integer, dimension(2) vac_vars::vac_type::lim_sec_x</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>limits on secondary mode numbers </p>
-
-<p class="definition">Definition at line <a class="el" href="vac__vars_8f90_source.html#l00059">59</a> of file <a class="el" href="vac__vars_8f90_source.html">vac_vars.f90</a>.</p>
-
-</div>
-</div>
 <a id="ad4aa76e0d91f32808465d15ac04528ec"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ad4aa76e0d91f32808465d15ac04528ec">&#9670;&nbsp;</a></span>lims_c</h2>
 
@@ -638,6 +620,24 @@ Public Attributes</h2></td></tr>
 
 </div>
 </div>
+<a id="aeb4618332068796eb12784a5b5582416"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aeb4618332068796eb12784a5b5582416">&#9670;&nbsp;</a></span>sec_x</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">integer, dimension(:), allocatable vac_vars::vac_type::sec_x</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>secondary mode numbers </p>
+
+<p class="definition">Definition at line <a class="el" href="vac__vars_8f90_source.html#l00059">59</a> of file <a class="el" href="vac__vars_8f90_source.html">vac_vars.f90</a>.</p>
+
+</div>
+</div>
 <a id="afbd856ce1a362b252a9d8195b83546cd"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#afbd856ce1a362b252a9d8195b83546cd">&#9670;&nbsp;</a></span>style</h2>
 
@@ -675,7 +675,7 @@ Public Attributes</h2></td></tr>
 </div>
 </div>
 <hr/>The documentation for this type was generated from the following file:<ul>
-<li>/home/tweyens/Simulations/PB3D/Modules/<a class="el" href="vac__vars_8f90_source.html">vac_vars.f90</a></li>
+<li>/opt/PB3D/Modules/<a class="el" href="vac__vars_8f90_source.html">vac_vars.f90</a></li>
 </ul>
 </div><!-- contents -->
 <!-- HTML footer for doxygen 1.8.13-->

@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.17"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>PB3D: /home/tweyens/Simulations/PB3D/Modules/SLEPC_ops.f90 Source File</title>
+<title>PB3D: /opt/PB3D/Modules/SLEPC_ops.f90 Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -30,7 +30,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">PB3D
-   &#160;<span id="projectnumber">[2.42]</span>
+   &#160;<span id="projectnumber">[2.43]</span>
    </div>
    <div id="projectbrief">Ideal linear high-n MHD stability in 3-D</div>
   </td>
@@ -71,7 +71,7 @@ $(function() {
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><a class="el" href="dir_abd866f922fda2a610a7ae3b578a9cb5.html">PB3D</a></li><li class="navelem"><a class="el" href="dir_c08747878f0308ef1ee4ad272e6068b4.html">Modules</a></li>  </ul>
+<li class="navelem"><a class="el" href="dir_a5c23e4d4d2f2652fc21caa9afd4c5c7.html">opt</a></li><li class="navelem"><a class="el" href="dir_d524c0bc10de76b0e63a2a912e99f792.html">PB3D</a></li><li class="navelem"><a class="el" href="dir_a6212aa2ece7660db55217e650817bb1.html">Modules</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
@@ -1194,10 +1194,10 @@ $(function() {
 <div class="line"><a name="l01181"></a><span class="lineno"> 1181</span>&#160;            <span class="comment">! BLOCKS ~ vac !</span></div>
 <div class="line"><a name="l01182"></a><span class="lineno"> 1182</span>&#160;            <span class="comment">! -------------!</span></div>
 <div class="line"><a name="l01183"></a><span class="lineno"> 1183</span>&#160;            <span class="comment">! add block to r_id + (0,0)</span></div>
-<div class="line"><a name="l01184"></a><span class="lineno"> 1184</span>&#160;            <span class="keyword">write</span>(*,*) <span class="stringliteral">&#39;¡¡¡¡¡ NO VACUUM !!!!!&#39;</span></div>
-<div class="line"><a name="l01185"></a><span class="lineno"> 1185</span>&#160;            <span class="comment">!!!ierr = insert_block_mat(mds,vac%res,A,r_id,[0,0],n_r,&amp;</span></div>
-<div class="line"><a name="l01186"></a><span class="lineno"> 1186</span>&#160;                <span class="comment">!!!&amp;ind_insert=.true.)</span></div>
-<div class="line"><a name="l01187"></a><span class="lineno"> 1187</span>&#160;            <span class="comment">!!!CHCKERR(&#39;&#39;)</span></div>
+<div class="line"><a name="l01184"></a><span class="lineno"> 1184</span>&#160;            <span class="comment">!write(*,*) &#39;¡¡¡¡¡ NO VACUUM !!!!!&#39;</span></div>
+<div class="line"><a name="l01185"></a><span class="lineno"> 1185</span>&#160;            ierr = <a class="code" href="namespaceslepc__utilities.html#aa34aa361f0bfff9621ecba179f9ed0c6">insert_block_mat</a>(mds,vac%res,a,r_id,[0,0],n_r,&amp;</div>
+<div class="line"><a name="l01186"></a><span class="lineno"> 1186</span>&#160;                &amp;ind_insert=.true.)</div>
+<div class="line"><a name="l01187"></a><span class="lineno"> 1187</span>&#160;            chckerr(<span class="stringliteral">&#39;&#39;</span>)</div>
 <div class="line"><a name="l01188"></a><span class="lineno"> 1188</span>&#160;        <span class="keyword">end function </span>set_bc_2</div>
 <div class="line"><a name="l01189"></a><span class="lineno"> 1189</span>&#160;        </div>
 <div class="line"><a name="l01190"></a><span class="lineno"> 1190</span>&#160;        <span class="comment">! set BC style 3:</span></div>
