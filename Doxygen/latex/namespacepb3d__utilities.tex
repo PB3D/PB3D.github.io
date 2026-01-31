@@ -1,66 +1,80 @@
-\hypertarget{namespacepb3d__utilities}{}\doxysection{pb3d\+\_\+utilities Module Reference}
-\label{namespacepb3d__utilities}\index{pb3d\_utilities@{pb3d\_utilities}}
+\doxysection{pb3d\+\_\+utilities Module Reference}
+\hypertarget{namespacepb3d__utilities}{}\label{namespacepb3d__utilities}\index{pb3d\_utilities@{pb3d\_utilities}}
 
 
-Numerical utilities related to P\+B3D operations.  
+Numerical utilities related to PB3D operations.  
 
 
-\doxysubsection*{Interfaces and Types}
+\doxysubsubsection*{Interfaces and Types}
 \begin{DoxyCompactItemize}
 \item 
-interface \mbox{\hyperlink{interfacepb3d__utilities_1_1conv__1d2nd}{conv\+\_\+1d2nd}}
+interface \doxymbox{\hyperlink{interfacepb3d__utilities_1_1conv__1d2nd}{conv\+\_\+1d2nd}}
 \begin{DoxyCompactList}\small\item\em Converts 1-\/D to n-\/D variables. \end{DoxyCompactList}\end{DoxyCompactItemize}
-\doxysubsection*{Functions/\+Subroutines}
+\doxysubsubsection*{Functions/\+\+Subroutines}
 \begin{DoxyCompactItemize}
 \item 
-integer function, dimension(3), public \mbox{\hyperlink{namespacepb3d__utilities_ad047cd7b197aae821e2565933faccfa3}{setup\+\_\+par\+\_\+id}} (grid, rich\+\_\+lvl\+\_\+max, rich\+\_\+lvl\+\_\+loc, tot\+\_\+rich, par\+\_\+lim, par\+\_\+id\+\_\+mem)
+integer function, dimension(3), public \doxymbox{\hyperlink{namespacepb3d__utilities_ad047cd7b197aae821e2565933faccfa3}{setup\+\_\+par\+\_\+id}} (grid, rich\+\_\+lvl\+\_\+max, rich\+\_\+lvl\+\_\+loc, tot\+\_\+rich, par\+\_\+lim, par\+\_\+id\+\_\+mem)
 \begin{DoxyCompactList}\small\item\em Setup parallel id. \end{DoxyCompactList}\item 
-integer function, dimension(2), public \mbox{\hyperlink{namespacepb3d__utilities_ab461e756a85b3c6e8fa1ccaa6556c5b0}{setup\+\_\+rich\+\_\+id}} (rich\+\_\+lvl\+\_\+max, tot\+\_\+rich)
+integer function, dimension(2), public \doxymbox{\hyperlink{namespacepb3d__utilities_ab461e756a85b3c6e8fa1ccaa6556c5b0}{setup\+\_\+rich\+\_\+id}} (rich\+\_\+lvl\+\_\+max, tot\+\_\+rich)
 \begin{DoxyCompactList}\small\item\em Returns richardson id. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
-Numerical utilities related to P\+B3D operations. 
+Numerical utilities related to PB3D operations. 
 
-\doxysubsection{Function/\+Subroutine Documentation}
-\mbox{\Hypertarget{namespacepb3d__utilities_ad047cd7b197aae821e2565933faccfa3}\label{namespacepb3d__utilities_ad047cd7b197aae821e2565933faccfa3}} 
-\index{pb3d\_utilities@{pb3d\_utilities}!setup\_par\_id@{setup\_par\_id}}
+\label{doc-func-members}
+\Hypertarget{namespacepb3d__utilities_doc-func-members}
+\doxysubsection{Function/\+\+Subroutine Documentation}
+\Hypertarget{namespacepb3d__utilities_ad047cd7b197aae821e2565933faccfa3}\index{pb3d\_utilities@{pb3d\_utilities}!setup\_par\_id@{setup\_par\_id}}
 \index{setup\_par\_id@{setup\_par\_id}!pb3d\_utilities@{pb3d\_utilities}}
 \doxysubsubsection{\texorpdfstring{setup\_par\_id()}{setup\_par\_id()}}
-{\footnotesize\ttfamily integer function, dimension(3), public pb3d\+\_\+utilities\+::setup\+\_\+par\+\_\+id (\begin{DoxyParamCaption}\item[{type(\mbox{\hyperlink{structgrid__vars_1_1grid__type}{grid\+\_\+type}}), intent(in)}]{grid,  }\item[{integer, intent(in)}]{rich\+\_\+lvl\+\_\+max,  }\item[{integer, intent(in)}]{rich\+\_\+lvl\+\_\+loc,  }\item[{logical, intent(in), optional}]{tot\+\_\+rich,  }\item[{integer, dimension(2), intent(in), optional}]{par\+\_\+lim,  }\item[{integer, dimension(2), intent(inout), optional}]{par\+\_\+id\+\_\+mem }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \label{namespacepb3d__utilities_ad047cd7b197aae821e2565933faccfa3} 
+integer function, dimension(3), public pb3d\+\_\+utilities::\+setup\+\_\+par\+\_\+id (\begin{DoxyParamCaption}\item[{type(\doxymbox{\hyperlink{structgrid__vars_1_1grid__type}{grid\+\_\+type}}), intent(in)}]{grid}{, }\item[{integer, intent(in)}]{rich\+\_\+lvl\+\_\+max}{, }\item[{integer, intent(in)}]{rich\+\_\+lvl\+\_\+loc}{, }\item[{logical, intent(in), optional}]{tot\+\_\+rich}{, }\item[{integer, dimension(2), intent(in), optional}]{par\+\_\+lim}{, }\item[{integer, dimension(2), intent(inout), optional}]{par\+\_\+id\+\_\+mem}{}\end{DoxyParamCaption})}
 
 
 
 Setup parallel id. 
 
-The parallel id consists of\+:
+The parallel id consists of:\+
 \begin{DoxyItemize}
-\item {\ttfamily par\+\_\+id(1)}\+: start index
-\item {\ttfamily par\+\_\+id(2)}\+: end index
-\item {\ttfamily par\+\_\+id(3)}\+: stride
+\item {\ttfamily par\+\_\+id(1)}:\+ start index
+\item {\ttfamily par\+\_\+id(2)}:\+ end index
+\item {\ttfamily par\+\_\+id(3)}:\+ stride
 \end{DoxyItemize}
 
-These are set up by considering the transformation between a point $r \in (1\ldots n)$ in the local variable, with corresponding indices $(a\ldots b)$ indicated by {\ttfamily par\+\_\+lim} in the H\+D\+F5 variable in memory, so that $n = b-a+1$\+: \[p + k s = a + r - 1,\] where $k$ is an integer, $s$ is the stride for Richardson level $i$ (with max. level $I$)\+: \[\begin{aligned} s &= 2^{I-1} \ \text{for} \ i = 1 \\ &= 2^{I-i+1} \ \text{for} \ i > 1 \end{aligned}\] and where $p$ is the starting point in the H\+D\+F5 variables\+: \[\begin{aligned} p &= 1 \ \text{for} \ i = 1 \\ &= 1 + s/2 \ \text{for} \ i > 1 \end{aligned}\]
+These are set up by considering the transformation between a point  $r
+        \in  (1\ldots n)$ in the local variable, with corresponding indices $(a\ldots b)$ indicated by {\ttfamily par\+\_\+lim} in the HDF5 variable in memory, so that $n = b-a+1$:\+ \[p + k s = a + r - 1,\] where $k$ is an integer, $s$ is the stride for Richardson level $i$ (with max. level $I$):\+    \[\begin{aligned}
+          s &= 2^{I-1}   \  \text{for} \ i = 1 \\
+            &= 2^{I-i+1} \  \text{for} \ i > 1
+         \end{aligned}\] and where $p$ is the starting point in the HDF5 variables:\+    \[\begin{aligned}
+          p &= 1         \  \text{for} \ i = 1 \\
+            &= 1 + s/2   \  \text{for} \ i > 1
+         \end{aligned}\]
 
-Therefore, the minimum possible $r$ lies in $(0..s-1)$\+: \[\mod(r-1,s) = r_\text{min}-1, \] which leads to \[r_\text{min} = 1 + \mod(p-a,s). \]
+Therefore, the minimum possible $r$ lies in $(0..s-1)$:\+ \[\mod(r-1,s) = r_\text{min}-1, \] which leads to \[r_\text{min} = 1 + \mod(p-a,s). \]
 
-The maximum possible $r$, then, lies in $(n-s+1..n)$, which leads to\+: \[ r_\text{max} = n - s + 1 + \mod(p-b-1,s). \]
+The maximum possible $r$, then, lies in $(n-s+1..n)$, which leads to:\+ \[ r_\text{max} = n - s + 1 + \mod(p-b-1,s). \]
 
-These limits and the strides are saved in {\ttfamily par\+\_\+id} = $\vec{r} = \begin{pmatrix}r_\text{min}\\ r_\text{max}\end{pmatrix}$.
+These limits and the strides are saved in {\ttfamily par\+\_\+id} =  $\vec{r} =
+        \begin{pmatrix}r_\text{min}\\ r_\text{max}\end{pmatrix}$.
 
-If the optional indices $a$ and $b$ are not given they are assumed to be 1 and $n$, with $n = 1+ks$, which simplifies the equations to\+: \[\begin{aligned} r_\text{min} &= p \\ r_\text{max} &= n-p+1 . \end{aligned}\]
+If the optional indices $a$ and $b$ are not given they are assumed to be 1 and $n$, with $n = 1+ks$, which simplifies the equations to:\+    \[\begin{aligned}
+          r_\text{min} &= p \\
+          r_\text{max} &= n-p+1 .
+         \end{aligned}\]
 
-Optionally, the indices in the H\+D\+F5 arrays can also be returned in {\ttfamily par\+\_\+id\+\_\+mem} = $\begin{pmatrix}R_\text{min}\\ R_\text{max}\end{pmatrix}$. These are equal to $k-1$, where $k$ is the integer refered to above\+: \[\vec{R} = 1 + \frac{a-1-p+\vec{r}}{s}, \] where the addition between a vector and a scalar should be seen as the element-\/wise operation. 
+Optionally, the indices in the HDF5 arrays can also be returned in {\ttfamily par\+\_\+id\+\_\+mem} =  $\begin{pmatrix}R_\text{min}\\
+        R_\text{max}\end{pmatrix}$. These are equal to $k-1$, where $k$ is the integer refered to above:\+ \[\vec{R} = 1 + \frac{a-1-p+\vec{r}}{s}, \] where the addition between a vector and a scalar should be seen as the element-\/wise operation. 
 \begin{DoxyParams}[1]{Parameters}
-\mbox{\texttt{ in}}  & {\em rich\+\_\+lvl\+\_\+max} & maximum Richardson level \\
+\doxymbox{\texttt{in}}  & {\em rich\+\_\+lvl\+\_\+max} & maximum Richardson level \\
 \hline
-\mbox{\texttt{ in}}  & {\em rich\+\_\+lvl\+\_\+loc} & local Richardson level \\
+\doxymbox{\texttt{in}}  & {\em rich\+\_\+lvl\+\_\+loc} & local Richardson level \\
 \hline
-\mbox{\texttt{ in}}  & {\em tot\+\_\+rich} & whether to combine with previous Richardson levels \\
+\doxymbox{\texttt{in}}  & {\em tot\+\_\+rich} & whether to combine with previous Richardson levels \\
 \hline
-\mbox{\texttt{ in}}  & {\em par\+\_\+lim} & limits (a..b) of variable requested \\
+\doxymbox{\texttt{in}}  & {\em par\+\_\+lim} & limits (a..b) of variable requested \\
 \hline
-\mbox{\texttt{ in,out}}  & {\em par\+\_\+id\+\_\+mem} & parallel id in memory \\
+\doxymbox{\texttt{in,out}}  & {\em par\+\_\+id\+\_\+mem} & parallel id in memory \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
@@ -68,26 +82,33 @@ parallel id
 \end{DoxyReturn}
 
 
-Definition at line 181 of file P\+B3\+D\+\_\+utilities.\+f90.
+Definition at line \doxymbox{\hyperlink{PB3D__utilities_8f90_source_l00179}{179}} of file \doxymbox{\hyperlink{PB3D__utilities_8f90_source}{PB3\+D\+\_\+utilities.\+f90}}.
 
-\mbox{\Hypertarget{namespacepb3d__utilities_ab461e756a85b3c6e8fa1ccaa6556c5b0}\label{namespacepb3d__utilities_ab461e756a85b3c6e8fa1ccaa6556c5b0}} 
-\index{pb3d\_utilities@{pb3d\_utilities}!setup\_rich\_id@{setup\_rich\_id}}
+Here is the caller graph for this function:\+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespacepb3d__utilities_ad047cd7b197aae821e2565933faccfa3_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{namespacepb3d__utilities_ab461e756a85b3c6e8fa1ccaa6556c5b0}\index{pb3d\_utilities@{pb3d\_utilities}!setup\_rich\_id@{setup\_rich\_id}}
 \index{setup\_rich\_id@{setup\_rich\_id}!pb3d\_utilities@{pb3d\_utilities}}
 \doxysubsubsection{\texorpdfstring{setup\_rich\_id()}{setup\_rich\_id()}}
-{\footnotesize\ttfamily integer function, dimension(2), public pb3d\+\_\+utilities\+::setup\+\_\+rich\+\_\+id (\begin{DoxyParamCaption}\item[{integer, intent(in)}]{rich\+\_\+lvl\+\_\+max,  }\item[{logical, intent(in), optional}]{tot\+\_\+rich }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \label{namespacepb3d__utilities_ab461e756a85b3c6e8fa1ccaa6556c5b0} 
+integer function, dimension(2), public pb3d\+\_\+utilities::\+setup\+\_\+rich\+\_\+id (\begin{DoxyParamCaption}\item[{integer, intent(in)}]{rich\+\_\+lvl\+\_\+max}{, }\item[{logical, intent(in), optional}]{tot\+\_\+rich}{}\end{DoxyParamCaption})}
 
 
 
 Returns richardson id. 
 
-{\ttfamily rich\+\_\+id} has the following structure\+:
+{\ttfamily rich\+\_\+id} has the following structure:\+
 \begin{DoxyItemize}
-\item {\ttfamily rich\+\_\+id(1)}\+: start Richardson level
-\item {\ttfamily rich\+\_\+id(2)}\+: end Richardson level 
+\item {\ttfamily rich\+\_\+id(1)}:\+ start Richardson level
+\item {\ttfamily rich\+\_\+id(2)}:\+ end Richardson level 
 \begin{DoxyParams}[1]{Parameters}
-\mbox{\texttt{ in}}  & {\em rich\+\_\+lvl\+\_\+max} & maximum Richardson level \\
+\doxymbox{\texttt{in}}  & {\em rich\+\_\+lvl\+\_\+max} & maximum Richardson level \\
 \hline
-\mbox{\texttt{ in}}  & {\em tot\+\_\+rich} & whether to combine with previous Richardson levels \\
+\doxymbox{\texttt{in}}  & {\em tot\+\_\+rich} & whether to combine with previous Richardson levels \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
@@ -96,5 +117,12 @@ Richardson id
 
 \end{DoxyItemize}
 
-Definition at line 234 of file P\+B3\+D\+\_\+utilities.\+f90.
+Definition at line \doxymbox{\hyperlink{PB3D__utilities_8f90_source_l00233}{233}} of file \doxymbox{\hyperlink{PB3D__utilities_8f90_source}{PB3\+D\+\_\+utilities.\+f90}}.
 
+Here is the caller graph for this function:\+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespacepb3d__utilities_ab461e756a85b3c6e8fa1ccaa6556c5b0_icgraph}
+\end{center}
+\end{figure}

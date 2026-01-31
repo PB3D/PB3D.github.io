@@ -1,0 +1,251 @@
+\doxysection{PB3\+D\+\_\+utilities.\+f90}
+\hypertarget{PB3D__utilities_8f90_source}{}\label{PB3D__utilities_8f90_source}\index{/Users/toonweyens/Code/PB3D/Modules/PB3D\_utilities.f90@{/Users/toonweyens/Code/PB3D/Modules/PB3D\_utilities.f90}}
+\doxymbox{\hyperlink{PB3D__utilities_8f90}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{PB3D__utilities_8f90_source_l00001}00001\ \textcolor{comment}{!-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/!}\textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{PB3D__utilities_8f90_source_l00002}00002\ \textcolor{comment}{!>\ Numerical\ utilities\ related\ to\ PB3D\ operations.}}
+\DoxyCodeLine{\Hypertarget{PB3D__utilities_8f90_source_l00003}00003\ \textcolor{comment}{!-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/!}}
+\DoxyCodeLine{\Hypertarget{PB3D__utilities_8f90_source_l00004}\doxymbox{\hyperlink{namespacepb3d__utilities}{00004}}\ \textcolor{keyword}{module}\ \doxymbox{\hyperlink{namespacepb3d__utilities}{pb3d\_utilities}}}
+\DoxyCodeLine{\Hypertarget{PB3D__utilities_8f90_source_l00005}00005\ \textcolor{preprocessor}{\#include\ <PB3D\_macros.h>}}
+\DoxyCodeLine{\Hypertarget{PB3D__utilities_8f90_source_l00006}00006\ \textcolor{preprocessor}{}\ \ \ \ \textcolor{keywordtype}{use\ }\doxymbox{\hyperlink{namespacestr__utilities}{str\_utilities}}}
+\DoxyCodeLine{\Hypertarget{PB3D__utilities_8f90_source_l00007}00007\ \ \ \ \ \textcolor{keywordtype}{use\ }\doxymbox{\hyperlink{namespacemessages}{messages}}}
+\DoxyCodeLine{\Hypertarget{PB3D__utilities_8f90_source_l00008}00008\ \ \ \ \ \textcolor{keywordtype}{use\ }\doxymbox{\hyperlink{namespacenum__vars}{num\_vars}},\ \textcolor{keywordtype}{only}:\ \doxymbox{\hyperlink{namespacenum__vars_a03802aa2bd86439d7a9370836fabf3f2}{dp}},\ \doxymbox{\hyperlink{namespacenum__vars_a26f47310576a3414135b3d3fcc079709}{pi}},\ \doxymbox{\hyperlink{namespacenum__vars_a3ff2bb983ee80a6735277d6789e6ce7c}{max\_str\_ln}},\ \doxymbox{\hyperlink{namespacenum__vars_a1b79c43315241705b429443dfe798837}{max\_name\_ln}}}
+\DoxyCodeLine{\Hypertarget{PB3D__utilities_8f90_source_l00009}00009\ \ \ \ \ \textcolor{keywordtype}{use\ }\doxymbox{\hyperlink{namespacehdf5__vars}{hdf5\_vars}},\ \textcolor{keywordtype}{only}:\ \doxymbox{\hyperlink{structhdf5__vars_1_1var__1d__type}{var\_1d\_type}}}
+\DoxyCodeLine{\Hypertarget{PB3D__utilities_8f90_source_l00010}00010\ }
+\DoxyCodeLine{\Hypertarget{PB3D__utilities_8f90_source_l00011}00011\ \ \ \ \ \textcolor{keywordtype}{implicit\ none}}
+\DoxyCodeLine{\Hypertarget{PB3D__utilities_8f90_source_l00012}00012\ \ \ \ \ \textcolor{keywordtype}{private}}
+\DoxyCodeLine{\Hypertarget{PB3D__utilities_8f90_source_l00013}00013\ \ \ \ \ \textcolor{keywordtype}{public}\ \doxymbox{\hyperlink{interfacepb3d__utilities_1_1conv__1d2nd}{conv\_1d2nd}},\ \doxymbox{\hyperlink{namespacepb3d__utilities_ab461e756a85b3c6e8fa1ccaa6556c5b0}{setup\_rich\_id}},\ \doxymbox{\hyperlink{namespacepb3d__utilities_ad047cd7b197aae821e2565933faccfa3}{setup\_par\_id}}}
+\DoxyCodeLine{\Hypertarget{PB3D__utilities_8f90_source_l00014}00014\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{PB3D__utilities_8f90_source_l00015}00015\ \ \ \ \ \textcolor{comment}{!\ interfaces}}
+\DoxyCodeLine{\Hypertarget{PB3D__utilities_8f90_source_l00016}00016\ \ \ \ \ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{PB3D__utilities_8f90_source_l00017}00017\ \textcolor{comment}{\ \ \ \ !>\ \(\backslash\)public\ Converts\ 1-\/D\ to\ n-\/D\ variables.}}
+\DoxyCodeLine{\Hypertarget{PB3D__utilities_8f90_source_l00018}00018\ \textcolor{comment}{\ \ \ \ !!}}
+\DoxyCodeLine{\Hypertarget{PB3D__utilities_8f90_source_l00019}00019\ \textcolor{comment}{\ \ \ \ !!\ The\ 1-\/D\ variables\ are\ used\ for\ \ internal\ storage\ in\ HDF5,\ whereas\ the\ n\_D}}
+\DoxyCodeLine{\Hypertarget{PB3D__utilities_8f90_source_l00020}00020\ \textcolor{comment}{\ \ \ \ !!\ variables\ correspond\ to\ the\ ones\ in\ PB3D.}}
+\DoxyCodeLine{\Hypertarget{PB3D__utilities_8f90_source_l00021}\doxymbox{\hyperlink{interfacepb3d__utilities_1_1conv__1d2nd}{00021}}\ \ \ \ \ \textcolor{keyword}{interface}\ \doxymbox{\hyperlink{interfacepb3d__utilities_1_1conv__1d2nd}{conv\_1d2nd}}\textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{PB3D__utilities_8f90_source_l00022}00022\ \textcolor{comment}{\ \ \ \ \ \ \ \ !>\ \(\backslash\)public}}
+\DoxyCodeLine{\Hypertarget{PB3D__utilities_8f90_source_l00023}00023\ \ \ \ \ \ \ \ \ \textcolor{keyword}{module\ procedure}\ conv\_1d2nd\_1d\textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{PB3D__utilities_8f90_source_l00024}00024\ \textcolor{comment}{\ \ \ \ \ \ \ \ !>\ \(\backslash\)public}}
+\DoxyCodeLine{\Hypertarget{PB3D__utilities_8f90_source_l00025}00025\ \ \ \ \ \ \ \ \ \textcolor{keyword}{module\ procedure}\ conv\_1d2nd\_2d\textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{PB3D__utilities_8f90_source_l00026}00026\ \textcolor{comment}{\ \ \ \ \ \ \ \ !>\ \(\backslash\)public}}
+\DoxyCodeLine{\Hypertarget{PB3D__utilities_8f90_source_l00027}00027\ \ \ \ \ \ \ \ \ \textcolor{keyword}{module\ procedure}\ conv\_1d2nd\_3d\textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{PB3D__utilities_8f90_source_l00028}00028\ \textcolor{comment}{\ \ \ \ \ \ \ \ !>\ \(\backslash\)public}}
+\DoxyCodeLine{\Hypertarget{PB3D__utilities_8f90_source_l00029}00029\ \ \ \ \ \ \ \ \ \textcolor{keyword}{module\ procedure}\ conv\_1d2nd\_4d\textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{PB3D__utilities_8f90_source_l00030}00030\ \textcolor{comment}{\ \ \ \ \ \ \ \ !>\ \(\backslash\)public}}
+\DoxyCodeLine{\Hypertarget{PB3D__utilities_8f90_source_l00031}00031\ \ \ \ \ \ \ \ \ \textcolor{keyword}{module\ procedure}\ conv\_1d2nd\_6d\textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{PB3D__utilities_8f90_source_l00032}00032\ \textcolor{comment}{\ \ \ \ \ \ \ \ !>\ \(\backslash\)public}}
+\DoxyCodeLine{\Hypertarget{PB3D__utilities_8f90_source_l00033}00033\ \ \ \ \ \ \ \ \ \textcolor{keyword}{module\ procedure}\ conv\_1d2nd\_7d}
+\DoxyCodeLine{\Hypertarget{PB3D__utilities_8f90_source_l00034}00034\ \ \ \ \ \textcolor{keyword}{end\ interface}}
+\DoxyCodeLine{\Hypertarget{PB3D__utilities_8f90_source_l00035}00035\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{PB3D__utilities_8f90_source_l00036}00036\ \textcolor{keyword}{contains}\textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{PB3D__utilities_8f90_source_l00037}00037\ \textcolor{comment}{\ \ \ \ !>\ \(\backslash\)private\ 1-\/D\ version}}
+\DoxyCodeLine{\Hypertarget{PB3D__utilities_8f90_source_l00038}\doxymbox{\hyperlink{interfacepb3d__utilities_1_1conv__1d2nd_af88c191f205d216cee363ac99956ccdd}{00038}}\ \ \ \ \ \textcolor{keyword}{subroutine\ }conv\_1d2nd\_1d(var\_in,var\_out)}
+\DoxyCodeLine{\Hypertarget{PB3D__utilities_8f90_source_l00039}00039\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ input\ /\ output}}
+\DoxyCodeLine{\Hypertarget{PB3D__utilities_8f90_source_l00040}00040\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{type}(\doxymbox{\hyperlink{structhdf5__vars_1_1var__1d__type}{var\_1d\_type}}),\ \textcolor{keywordtype}{intent(in)}\ ::\ var\_in\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !<\ 1D\ variable}}
+\DoxyCodeLine{\Hypertarget{PB3D__utilities_8f90_source_l00041}00041\ \textcolor{keywordtype}{\ \ \ \ \ \ \ \ real}(dp),\ \textcolor{keywordtype}{intent(inout)},\ \textcolor{keywordtype}{allocatable}\ ::\ var\_out(:)\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !<\ output\ variable}}
+\DoxyCodeLine{\Hypertarget{PB3D__utilities_8f90_source_l00042}00042\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{PB3D__utilities_8f90_source_l00043}00043\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ allocate\ and\ copy\ variable}}
+\DoxyCodeLine{\Hypertarget{PB3D__utilities_8f90_source_l00044}00044\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\textcolor{keyword}{allocated}(var\_out))\ \textcolor{keyword}{deallocate}(var\_out)}
+\DoxyCodeLine{\Hypertarget{PB3D__utilities_8f90_source_l00045}00045\ \ \ \ \ \ \ \ \ \textcolor{keyword}{allocate}(var\_out(var\_in\%tot\_i\_min(1):var\_in\%tot\_i\_max(1)))}
+\DoxyCodeLine{\Hypertarget{PB3D__utilities_8f90_source_l00046}00046\ \ \ \ \ \ \ \ \ var\_out\ =\ reshape(var\_in\%p,shape(var\_out))}
+\DoxyCodeLine{\Hypertarget{PB3D__utilities_8f90_source_l00047}00047\ \ \ \ \ \textcolor{keyword}{end\ subroutine\ }conv\_1d2nd\_1d\textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{PB3D__utilities_8f90_source_l00048}00048\ \textcolor{comment}{\ \ \ \ !>\ \(\backslash\)private\ 2-\/D\ version}}
+\DoxyCodeLine{\Hypertarget{PB3D__utilities_8f90_source_l00049}\doxymbox{\hyperlink{interfacepb3d__utilities_1_1conv__1d2nd_ab1ca2d31ce16957592d92074fb9cd06e}{00049}}\ \ \ \ \ \textcolor{keyword}{subroutine\ }conv\_1d2nd\_2d(var\_in,var\_out)}
+\DoxyCodeLine{\Hypertarget{PB3D__utilities_8f90_source_l00050}00050\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ input\ /\ output}}
+\DoxyCodeLine{\Hypertarget{PB3D__utilities_8f90_source_l00051}00051\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{type}(\doxymbox{\hyperlink{structhdf5__vars_1_1var__1d__type}{var\_1d\_type}}),\ \textcolor{keywordtype}{intent(in)}\ ::\ var\_in\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !<\ 1D\ variable}}
+\DoxyCodeLine{\Hypertarget{PB3D__utilities_8f90_source_l00052}00052\ \textcolor{keywordtype}{\ \ \ \ \ \ \ \ real}(dp),\ \textcolor{keywordtype}{intent(inout)},\ \textcolor{keywordtype}{allocatable}\ ::\ var\_out(:,:)\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !<\ output\ variable}}
+\DoxyCodeLine{\Hypertarget{PB3D__utilities_8f90_source_l00053}00053\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{PB3D__utilities_8f90_source_l00054}00054\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ allocate\ and\ copy\ variable}}
+\DoxyCodeLine{\Hypertarget{PB3D__utilities_8f90_source_l00055}00055\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\textcolor{keyword}{allocated}(var\_out))\ \textcolor{keyword}{deallocate}(var\_out)}
+\DoxyCodeLine{\Hypertarget{PB3D__utilities_8f90_source_l00056}00056\ \ \ \ \ \ \ \ \ \textcolor{keyword}{allocate}(var\_out(\&}
+\DoxyCodeLine{\Hypertarget{PB3D__utilities_8f90_source_l00057}00057\ \ \ \ \ \ \ \ \ \ \ \ \ \&var\_in\%tot\_i\_min(1):var\_in\%tot\_i\_max(1),\&}
+\DoxyCodeLine{\Hypertarget{PB3D__utilities_8f90_source_l00058}00058\ \ \ \ \ \ \ \ \ \ \ \ \ \&var\_in\%tot\_i\_min(2):var\_in\%tot\_i\_max(2)))}
+\DoxyCodeLine{\Hypertarget{PB3D__utilities_8f90_source_l00059}00059\ \ \ \ \ \ \ \ \ var\_out\ =\ reshape(var\_in\%p,[\&}
+\DoxyCodeLine{\Hypertarget{PB3D__utilities_8f90_source_l00060}00060\ \ \ \ \ \ \ \ \ \ \ \ \ \&var\_in\%tot\_i\_max(1)-\/var\_in\%tot\_i\_min(1)+1,\&}
+\DoxyCodeLine{\Hypertarget{PB3D__utilities_8f90_source_l00061}00061\ \ \ \ \ \ \ \ \ \ \ \ \ \&var\_in\%tot\_i\_max(2)-\/var\_in\%tot\_i\_min(2)+1])}
+\DoxyCodeLine{\Hypertarget{PB3D__utilities_8f90_source_l00062}00062\ \ \ \ \ \textcolor{keyword}{end\ subroutine\ }conv\_1d2nd\_2d\textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{PB3D__utilities_8f90_source_l00063}00063\ \textcolor{comment}{\ \ \ \ !>\ \(\backslash\)private\ 3-\/D\ version}}
+\DoxyCodeLine{\Hypertarget{PB3D__utilities_8f90_source_l00064}\doxymbox{\hyperlink{interfacepb3d__utilities_1_1conv__1d2nd_afe23e96a8bfccd4911e460ffec0c9666}{00064}}\ \ \ \ \ \textcolor{keyword}{subroutine\ }conv\_1d2nd\_3d(var\_in,var\_out)}
+\DoxyCodeLine{\Hypertarget{PB3D__utilities_8f90_source_l00065}00065\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ input\ /\ output}}
+\DoxyCodeLine{\Hypertarget{PB3D__utilities_8f90_source_l00066}00066\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{type}(\doxymbox{\hyperlink{structhdf5__vars_1_1var__1d__type}{var\_1d\_type}}),\ \textcolor{keywordtype}{intent(in)}\ ::\ var\_in\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !<\ 1D\ variable}}
+\DoxyCodeLine{\Hypertarget{PB3D__utilities_8f90_source_l00067}00067\ \textcolor{keywordtype}{\ \ \ \ \ \ \ \ real}(dp),\ \textcolor{keywordtype}{intent(inout)},\ \textcolor{keywordtype}{allocatable}\ ::\ var\_out(:,:,:)\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !<\ output\ variable}}
+\DoxyCodeLine{\Hypertarget{PB3D__utilities_8f90_source_l00068}00068\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{PB3D__utilities_8f90_source_l00069}00069\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ allocate\ and\ copy\ variable}}
+\DoxyCodeLine{\Hypertarget{PB3D__utilities_8f90_source_l00070}00070\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\textcolor{keyword}{allocated}(var\_out))\ \textcolor{keyword}{deallocate}(var\_out)}
+\DoxyCodeLine{\Hypertarget{PB3D__utilities_8f90_source_l00071}00071\ \ \ \ \ \ \ \ \ \textcolor{keyword}{allocate}(var\_out(\&}
+\DoxyCodeLine{\Hypertarget{PB3D__utilities_8f90_source_l00072}00072\ \ \ \ \ \ \ \ \ \ \ \ \ \&var\_in\%tot\_i\_min(1):var\_in\%tot\_i\_max(1),\&}
+\DoxyCodeLine{\Hypertarget{PB3D__utilities_8f90_source_l00073}00073\ \ \ \ \ \ \ \ \ \ \ \ \ \&var\_in\%tot\_i\_min(2):var\_in\%tot\_i\_max(2),\&}
+\DoxyCodeLine{\Hypertarget{PB3D__utilities_8f90_source_l00074}00074\ \ \ \ \ \ \ \ \ \ \ \ \ \&var\_in\%tot\_i\_min(3):var\_in\%tot\_i\_max(3)))}
+\DoxyCodeLine{\Hypertarget{PB3D__utilities_8f90_source_l00075}00075\ \ \ \ \ \ \ \ \ var\_out\ =\ reshape(var\_in\%p,shape(var\_out))}
+\DoxyCodeLine{\Hypertarget{PB3D__utilities_8f90_source_l00076}00076\ \ \ \ \ \textcolor{keyword}{end\ subroutine\ }conv\_1d2nd\_3d\textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{PB3D__utilities_8f90_source_l00077}00077\ \textcolor{comment}{\ \ \ \ !>\ \(\backslash\)private\ 4-\/D\ version}}
+\DoxyCodeLine{\Hypertarget{PB3D__utilities_8f90_source_l00078}\doxymbox{\hyperlink{interfacepb3d__utilities_1_1conv__1d2nd_a9e12d3c7ecb5a3df4d2126f32fb41721}{00078}}\ \ \ \ \ \textcolor{keyword}{subroutine\ }conv\_1d2nd\_4d(var\_in,var\_out)}
+\DoxyCodeLine{\Hypertarget{PB3D__utilities_8f90_source_l00079}00079\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ input\ /\ output}}
+\DoxyCodeLine{\Hypertarget{PB3D__utilities_8f90_source_l00080}00080\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{type}(\doxymbox{\hyperlink{structhdf5__vars_1_1var__1d__type}{var\_1d\_type}}),\ \textcolor{keywordtype}{intent(in)}\ ::\ var\_in\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !<\ 1D\ variable}}
+\DoxyCodeLine{\Hypertarget{PB3D__utilities_8f90_source_l00081}00081\ \textcolor{keywordtype}{\ \ \ \ \ \ \ \ real}(dp),\ \textcolor{keywordtype}{intent(inout)},\ \textcolor{keywordtype}{allocatable}\ ::\ var\_out(:,:,:,:)\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !<\ output\ variable}}
+\DoxyCodeLine{\Hypertarget{PB3D__utilities_8f90_source_l00082}00082\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{PB3D__utilities_8f90_source_l00083}00083\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ allocate\ and\ copy\ variable}}
+\DoxyCodeLine{\Hypertarget{PB3D__utilities_8f90_source_l00084}00084\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\textcolor{keyword}{allocated}(var\_out))\ \textcolor{keyword}{deallocate}(var\_out)}
+\DoxyCodeLine{\Hypertarget{PB3D__utilities_8f90_source_l00085}00085\ \ \ \ \ \ \ \ \ \textcolor{keyword}{allocate}(var\_out(\&}
+\DoxyCodeLine{\Hypertarget{PB3D__utilities_8f90_source_l00086}00086\ \ \ \ \ \ \ \ \ \ \ \ \ \&var\_in\%tot\_i\_min(1):var\_in\%tot\_i\_max(1),\&}
+\DoxyCodeLine{\Hypertarget{PB3D__utilities_8f90_source_l00087}00087\ \ \ \ \ \ \ \ \ \ \ \ \ \&var\_in\%tot\_i\_min(2):var\_in\%tot\_i\_max(2),\&}
+\DoxyCodeLine{\Hypertarget{PB3D__utilities_8f90_source_l00088}00088\ \ \ \ \ \ \ \ \ \ \ \ \ \&var\_in\%tot\_i\_min(3):var\_in\%tot\_i\_max(3),\&}
+\DoxyCodeLine{\Hypertarget{PB3D__utilities_8f90_source_l00089}00089\ \ \ \ \ \ \ \ \ \ \ \ \ \&var\_in\%tot\_i\_min(4):var\_in\%tot\_i\_max(4)))}
+\DoxyCodeLine{\Hypertarget{PB3D__utilities_8f90_source_l00090}00090\ \ \ \ \ \ \ \ \ var\_out\ =\ reshape(var\_in\%p,shape(var\_out))}
+\DoxyCodeLine{\Hypertarget{PB3D__utilities_8f90_source_l00091}00091\ \ \ \ \ \textcolor{keyword}{end\ subroutine\ }conv\_1d2nd\_4d\textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{PB3D__utilities_8f90_source_l00092}00092\ \textcolor{comment}{\ \ \ \ !>\ \(\backslash\)private\ 6-\/D\ version}}
+\DoxyCodeLine{\Hypertarget{PB3D__utilities_8f90_source_l00093}\doxymbox{\hyperlink{interfacepb3d__utilities_1_1conv__1d2nd_a26b4bd002ccd9eb3babda612fc6c7e60}{00093}}\ \ \ \ \ \textcolor{keyword}{subroutine\ }conv\_1d2nd\_6d(var\_in,var\_out)}
+\DoxyCodeLine{\Hypertarget{PB3D__utilities_8f90_source_l00094}00094\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ input\ /\ output}}
+\DoxyCodeLine{\Hypertarget{PB3D__utilities_8f90_source_l00095}00095\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{type}(\doxymbox{\hyperlink{structhdf5__vars_1_1var__1d__type}{var\_1d\_type}}),\ \textcolor{keywordtype}{intent(in)}\ ::\ var\_in\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !<\ 1D\ variable}}
+\DoxyCodeLine{\Hypertarget{PB3D__utilities_8f90_source_l00096}00096\ \textcolor{keywordtype}{\ \ \ \ \ \ \ \ real}(dp),\ \textcolor{keywordtype}{intent(inout)},\ \textcolor{keywordtype}{allocatable}\ ::\ var\_out(:,:,:,:,:,:)\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ !<\ output\ variable}}
+\DoxyCodeLine{\Hypertarget{PB3D__utilities_8f90_source_l00097}00097\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{PB3D__utilities_8f90_source_l00098}00098\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ allocate\ and\ copy\ variable}}
+\DoxyCodeLine{\Hypertarget{PB3D__utilities_8f90_source_l00099}00099\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\textcolor{keyword}{allocated}(var\_out))\ \textcolor{keyword}{deallocate}(var\_out)}
+\DoxyCodeLine{\Hypertarget{PB3D__utilities_8f90_source_l00100}00100\ \ \ \ \ \ \ \ \ \textcolor{keyword}{allocate}(var\_out(\&}
+\DoxyCodeLine{\Hypertarget{PB3D__utilities_8f90_source_l00101}00101\ \ \ \ \ \ \ \ \ \ \ \ \ \&var\_in\%tot\_i\_min(1):var\_in\%tot\_i\_max(1),\&}
+\DoxyCodeLine{\Hypertarget{PB3D__utilities_8f90_source_l00102}00102\ \ \ \ \ \ \ \ \ \ \ \ \ \&var\_in\%tot\_i\_min(2):var\_in\%tot\_i\_max(2),\&}
+\DoxyCodeLine{\Hypertarget{PB3D__utilities_8f90_source_l00103}00103\ \ \ \ \ \ \ \ \ \ \ \ \ \&var\_in\%tot\_i\_min(3):var\_in\%tot\_i\_max(3),\&}
+\DoxyCodeLine{\Hypertarget{PB3D__utilities_8f90_source_l00104}00104\ \ \ \ \ \ \ \ \ \ \ \ \ \&var\_in\%tot\_i\_min(4):var\_in\%tot\_i\_max(4),\&}
+\DoxyCodeLine{\Hypertarget{PB3D__utilities_8f90_source_l00105}00105\ \ \ \ \ \ \ \ \ \ \ \ \ \&var\_in\%tot\_i\_min(5):var\_in\%tot\_i\_max(5),\&}
+\DoxyCodeLine{\Hypertarget{PB3D__utilities_8f90_source_l00106}00106\ \ \ \ \ \ \ \ \ \ \ \ \ \&var\_in\%tot\_i\_min(6):var\_in\%tot\_i\_max(6)))}
+\DoxyCodeLine{\Hypertarget{PB3D__utilities_8f90_source_l00107}00107\ \ \ \ \ \ \ \ \ var\_out\ =\ reshape(var\_in\%p,shape(var\_out))}
+\DoxyCodeLine{\Hypertarget{PB3D__utilities_8f90_source_l00108}00108\ \ \ \ \ \textcolor{keyword}{end\ subroutine\ }conv\_1d2nd\_6d\textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{PB3D__utilities_8f90_source_l00109}00109\ \textcolor{comment}{\ \ \ \ !>\ \(\backslash\)private\ 7-\/D\ version}}
+\DoxyCodeLine{\Hypertarget{PB3D__utilities_8f90_source_l00110}\doxymbox{\hyperlink{interfacepb3d__utilities_1_1conv__1d2nd_a4a8dc98820f4502e373657b494533655}{00110}}\ \ \ \ \ \textcolor{keyword}{subroutine\ }conv\_1d2nd\_7d(var\_in,var\_out)}
+\DoxyCodeLine{\Hypertarget{PB3D__utilities_8f90_source_l00111}00111\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ input\ /\ output}}
+\DoxyCodeLine{\Hypertarget{PB3D__utilities_8f90_source_l00112}00112\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{type}(\doxymbox{\hyperlink{structhdf5__vars_1_1var__1d__type}{var\_1d\_type}}),\ \textcolor{keywordtype}{intent(in)}\ ::\ var\_in\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !<\ 1D\ variable}}
+\DoxyCodeLine{\Hypertarget{PB3D__utilities_8f90_source_l00113}00113\ \textcolor{keywordtype}{\ \ \ \ \ \ \ \ real}(dp),\ \textcolor{keywordtype}{intent(inout)},\ \textcolor{keywordtype}{allocatable}\ ::\ var\_out(:,:,:,:,:,:,:)\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ !<\ output\ variable}}
+\DoxyCodeLine{\Hypertarget{PB3D__utilities_8f90_source_l00114}00114\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{PB3D__utilities_8f90_source_l00115}00115\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ allocate\ and\ copy\ variable}}
+\DoxyCodeLine{\Hypertarget{PB3D__utilities_8f90_source_l00116}00116\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\textcolor{keyword}{allocated}(var\_out))\ \textcolor{keyword}{deallocate}(var\_out)}
+\DoxyCodeLine{\Hypertarget{PB3D__utilities_8f90_source_l00117}00117\ \ \ \ \ \ \ \ \ \textcolor{keyword}{allocate}(var\_out(\&}
+\DoxyCodeLine{\Hypertarget{PB3D__utilities_8f90_source_l00118}00118\ \ \ \ \ \ \ \ \ \ \ \ \ \&var\_in\%tot\_i\_min(1):var\_in\%tot\_i\_max(1),\&}
+\DoxyCodeLine{\Hypertarget{PB3D__utilities_8f90_source_l00119}00119\ \ \ \ \ \ \ \ \ \ \ \ \ \&var\_in\%tot\_i\_min(2):var\_in\%tot\_i\_max(2),\&}
+\DoxyCodeLine{\Hypertarget{PB3D__utilities_8f90_source_l00120}00120\ \ \ \ \ \ \ \ \ \ \ \ \ \&var\_in\%tot\_i\_min(3):var\_in\%tot\_i\_max(3),\&}
+\DoxyCodeLine{\Hypertarget{PB3D__utilities_8f90_source_l00121}00121\ \ \ \ \ \ \ \ \ \ \ \ \ \&var\_in\%tot\_i\_min(4):var\_in\%tot\_i\_max(4),\&}
+\DoxyCodeLine{\Hypertarget{PB3D__utilities_8f90_source_l00122}00122\ \ \ \ \ \ \ \ \ \ \ \ \ \&var\_in\%tot\_i\_min(5):var\_in\%tot\_i\_max(5),\&}
+\DoxyCodeLine{\Hypertarget{PB3D__utilities_8f90_source_l00123}00123\ \ \ \ \ \ \ \ \ \ \ \ \ \&var\_in\%tot\_i\_min(6):var\_in\%tot\_i\_max(6),\&}
+\DoxyCodeLine{\Hypertarget{PB3D__utilities_8f90_source_l00124}00124\ \ \ \ \ \ \ \ \ \ \ \ \ \&var\_in\%tot\_i\_min(7):var\_in\%tot\_i\_max(7)))}
+\DoxyCodeLine{\Hypertarget{PB3D__utilities_8f90_source_l00125}00125\ \ \ \ \ \ \ \ \ var\_out\ =\ reshape(var\_in\%p,shape(var\_out))}
+\DoxyCodeLine{\Hypertarget{PB3D__utilities_8f90_source_l00126}00126\ \ \ \ \ \textcolor{keyword}{end\ subroutine\ }conv\_1d2nd\_7d}
+\DoxyCodeLine{\Hypertarget{PB3D__utilities_8f90_source_l00127}00127\ \ \ \ \ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{PB3D__utilities_8f90_source_l00128}00128\ \textcolor{comment}{\ \ \ \ !>\ Setup\ parallel\ id.}}
+\DoxyCodeLine{\Hypertarget{PB3D__utilities_8f90_source_l00129}00129\ \textcolor{comment}{\ \ \ \ !!}}
+\DoxyCodeLine{\Hypertarget{PB3D__utilities_8f90_source_l00130}00130\ \textcolor{comment}{\ \ \ \ !!\ The\ parallel\ id\ consists\ of:}}
+\DoxyCodeLine{\Hypertarget{PB3D__utilities_8f90_source_l00131}00131\ \textcolor{comment}{\ \ \ \ !!\ \ -\/\ \(\backslash\)c\ par\_id(1):\ start\ index}}
+\DoxyCodeLine{\Hypertarget{PB3D__utilities_8f90_source_l00132}00132\ \textcolor{comment}{\ \ \ \ !!\ \ -\/\ \(\backslash\)c\ par\_id(2):\ end\ index}}
+\DoxyCodeLine{\Hypertarget{PB3D__utilities_8f90_source_l00133}00133\ \textcolor{comment}{\ \ \ \ !!\ \ -\/\ \(\backslash\)c\ par\_id(3):\ stride}}
+\DoxyCodeLine{\Hypertarget{PB3D__utilities_8f90_source_l00134}00134\ \textcolor{comment}{\ \ \ \ !!}}
+\DoxyCodeLine{\Hypertarget{PB3D__utilities_8f90_source_l00135}00135\ \textcolor{comment}{\ \ \ \ !!\ These\ are\ set\ \ up\ by\ considering\ the\ transformation\ between\ \ a\ point\ \(\backslash\)f\$r}}
+\DoxyCodeLine{\Hypertarget{PB3D__utilities_8f90_source_l00136}00136\ \textcolor{comment}{\ \ \ \ !!\ \(\backslash\)in\ \ (1\(\backslash\)ldots\ n)\(\backslash\)f\$\ \ in\ the\ \ local\ variable,\ \ with\ corresponding\ \ indices}}
+\DoxyCodeLine{\Hypertarget{PB3D__utilities_8f90_source_l00137}00137\ \textcolor{comment}{\ \ \ \ !!\ \(\backslash\)f\$(a\(\backslash\)ldots\ b)\(\backslash\)f\$\ indicated\ by\ \(\backslash\)c\ par\_lim\ in\ the\ HDF5\ variable\ in\ memory,}}
+\DoxyCodeLine{\Hypertarget{PB3D__utilities_8f90_source_l00138}00138\ \textcolor{comment}{\ \ \ \ !!\ so\ that\ \(\backslash\)f\$n\ =\ b-\/a+1\(\backslash\)f\$:}}
+\DoxyCodeLine{\Hypertarget{PB3D__utilities_8f90_source_l00139}00139\ \textcolor{comment}{\ \ \ \ !!\ \ \ \(\backslash\)f[p\ +\ k\ s\ =\ a\ +\ r\ -\/\ 1,\(\backslash\)f]}}
+\DoxyCodeLine{\Hypertarget{PB3D__utilities_8f90_source_l00140}00140\ \textcolor{comment}{\ \ \ \ !!\ where\ \(\backslash\)f\$k\(\backslash\)f\$\ is\ \ an\ integer,\ \(\backslash\)f\$s\(\backslash\)f\$\ is\ the\ stride\ \ for\ Richardson\ level}}
+\DoxyCodeLine{\Hypertarget{PB3D__utilities_8f90_source_l00141}00141\ \textcolor{comment}{\ \ \ \ !!\ \(\backslash\)f\$i\(\backslash\)f\$\ (with\ max.\ level\ \(\backslash\)f\$I\(\backslash\)f\$):}}
+\DoxyCodeLine{\Hypertarget{PB3D__utilities_8f90_source_l00142}00142\ \textcolor{comment}{\ \ \ \ !!\ \ \(\backslash\)f[\(\backslash\)begin\{aligned\}}}
+\DoxyCodeLine{\Hypertarget{PB3D__utilities_8f90_source_l00143}00143\ \textcolor{comment}{\ \ \ \ !!\ \ \ s\ \&=\ 2\string^\{I-\/1\}\ \ \ \(\backslash\)\ \ \(\backslash\)text\{for\}\ \(\backslash\)\ i\ =\ 1\ \(\backslash\)\(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{PB3D__utilities_8f90_source_l00144}00144\ \textcolor{comment}{\ \ \ \ !!\ \ \ \ \ \&=\ 2\string^\{I-\/i+1\}\ \(\backslash\)\ \ \(\backslash\)text\{for\}\ \(\backslash\)\ i\ >\ 1}}
+\DoxyCodeLine{\Hypertarget{PB3D__utilities_8f90_source_l00145}00145\ \textcolor{comment}{\ \ \ \ !!\ \ \(\backslash\)end\{aligned\}\(\backslash\)f]}}
+\DoxyCodeLine{\Hypertarget{PB3D__utilities_8f90_source_l00146}00146\ \textcolor{comment}{\ \ \ \ !!\ and\ where\ \(\backslash\)f\$p\(\backslash\)f\$\ is\ the\ starting\ point\ in\ the\ HDF5\ variables:}}
+\DoxyCodeLine{\Hypertarget{PB3D__utilities_8f90_source_l00147}00147\ \textcolor{comment}{\ \ \ \ !!\ \ \(\backslash\)f[\(\backslash\)begin\{aligned\}}}
+\DoxyCodeLine{\Hypertarget{PB3D__utilities_8f90_source_l00148}00148\ \textcolor{comment}{\ \ \ \ !!\ \ \ p\ \&=\ 1\ \ \ \ \ \ \ \ \ \(\backslash\)\ \ \(\backslash\)text\{for\}\ \(\backslash\)\ i\ =\ 1\ \(\backslash\)\(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{PB3D__utilities_8f90_source_l00149}00149\ \textcolor{comment}{\ \ \ \ !!\ \ \ \ \ \&=\ 1\ +\ s/2\ \ \ \(\backslash\)\ \ \(\backslash\)text\{for\}\ \(\backslash\)\ i\ >\ 1}}
+\DoxyCodeLine{\Hypertarget{PB3D__utilities_8f90_source_l00150}00150\ \textcolor{comment}{\ \ \ \ !!\ \ \(\backslash\)end\{aligned\}\(\backslash\)f]}}
+\DoxyCodeLine{\Hypertarget{PB3D__utilities_8f90_source_l00151}00151\ \textcolor{comment}{\ \ \ \ !!}}
+\DoxyCodeLine{\Hypertarget{PB3D__utilities_8f90_source_l00152}00152\ \textcolor{comment}{\ \ \ \ !!\ Therefore,\ the\ minimum\ possible\ \(\backslash\)f\$r\(\backslash\)f\$\ lies\ in\ \(\backslash\)f\$(0..s-\/1)\(\backslash\)f\$:}}
+\DoxyCodeLine{\Hypertarget{PB3D__utilities_8f90_source_l00153}00153\ \textcolor{comment}{\ \ \ \ !!\ \ \(\backslash\)f[\(\backslash\)mod(r-\/1,s)\ =\ r\_\(\backslash\)text\{min\}-\/1,\ \(\backslash\)f]}}
+\DoxyCodeLine{\Hypertarget{PB3D__utilities_8f90_source_l00154}00154\ \textcolor{comment}{\ \ \ \ !!\ which\ leads\ to}}
+\DoxyCodeLine{\Hypertarget{PB3D__utilities_8f90_source_l00155}00155\ \textcolor{comment}{\ \ \ \ !!\ \ \(\backslash\)f[r\_\(\backslash\)text\{min\}\ =\ 1\ +\ \(\backslash\)mod(p-\/a,s).\ \(\backslash\)f]}}
+\DoxyCodeLine{\Hypertarget{PB3D__utilities_8f90_source_l00156}00156\ \textcolor{comment}{\ \ \ \ !!}}
+\DoxyCodeLine{\Hypertarget{PB3D__utilities_8f90_source_l00157}00157\ \textcolor{comment}{\ \ \ \ !!\ The\ maximum\ possible\ \(\backslash\)f\$r\(\backslash\)f\$,\ then,\ lies\ in\ \(\backslash\)f\$(n-\/s+1..n)\(\backslash\)f\$,\ which\ leads}}
+\DoxyCodeLine{\Hypertarget{PB3D__utilities_8f90_source_l00158}00158\ \textcolor{comment}{\ \ \ \ !!\ to:}}
+\DoxyCodeLine{\Hypertarget{PB3D__utilities_8f90_source_l00159}00159\ \textcolor{comment}{\ \ \ \ !!\ \ \(\backslash\)f[\ r\_\(\backslash\)text\{max\}\ =\ n\ -\/\ s\ +\ 1\ +\ \(\backslash\)mod(p-\/b-\/1,s).\ \(\backslash\)f]}}
+\DoxyCodeLine{\Hypertarget{PB3D__utilities_8f90_source_l00160}00160\ \textcolor{comment}{\ \ \ \ !!}}
+\DoxyCodeLine{\Hypertarget{PB3D__utilities_8f90_source_l00161}00161\ \textcolor{comment}{\ \ \ \ !!\ These\ limits\ \ and\ the\ \ strides\ are\ \ saved\ in\ \(\backslash\)c\ \ par\_id\ =\ \ \(\backslash\)f\$\(\backslash\)vec\{r\}\ =}}
+\DoxyCodeLine{\Hypertarget{PB3D__utilities_8f90_source_l00162}00162\ \textcolor{comment}{\ \ \ \ !!\ \(\backslash\)begin\{pmatrix\}r\_\(\backslash\)text\{min\}\(\backslash\)\(\backslash\)\ r\_\(\backslash\)text\{max\}\(\backslash\)end\{pmatrix\}\(\backslash\)f\$.}}
+\DoxyCodeLine{\Hypertarget{PB3D__utilities_8f90_source_l00163}00163\ \textcolor{comment}{\ \ \ \ !!}}
+\DoxyCodeLine{\Hypertarget{PB3D__utilities_8f90_source_l00164}00164\ \textcolor{comment}{\ \ \ \ !!\ If\ \ the\ optional\ \ indices\ \ \(\backslash\)f\$a\(\backslash\)f\$\ and\ \ \(\backslash\)f\$b\(\backslash\)f\$\ are\ \ not\ \ given\ they\ \ are}}
+\DoxyCodeLine{\Hypertarget{PB3D__utilities_8f90_source_l00165}00165\ \textcolor{comment}{\ \ \ \ !!\ assumed\ to\ \ be\ 1\ and\ \(\backslash\)f\$n\(\backslash\)f\$,\ \ with\ \(\backslash\)f\$n\ =\ 1+ks\(\backslash\)f\$,\ \ which\ simplifies\ the}}
+\DoxyCodeLine{\Hypertarget{PB3D__utilities_8f90_source_l00166}00166\ \textcolor{comment}{\ \ \ \ !!\ equations\ to:}}
+\DoxyCodeLine{\Hypertarget{PB3D__utilities_8f90_source_l00167}00167\ \textcolor{comment}{\ \ \ \ !!\ \ \(\backslash\)f[\(\backslash\)begin\{aligned\}}}
+\DoxyCodeLine{\Hypertarget{PB3D__utilities_8f90_source_l00168}00168\ \textcolor{comment}{\ \ \ \ !!\ \ \ r\_\(\backslash\)text\{min\}\ \&=\ p\ \(\backslash\)\(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{PB3D__utilities_8f90_source_l00169}00169\ \textcolor{comment}{\ \ \ \ !!\ \ \ r\_\(\backslash\)text\{max\}\ \&=\ n-\/p+1\ .}}
+\DoxyCodeLine{\Hypertarget{PB3D__utilities_8f90_source_l00170}00170\ \textcolor{comment}{\ \ \ \ !!\ \ \(\backslash\)end\{aligned\}\(\backslash\)f]}}
+\DoxyCodeLine{\Hypertarget{PB3D__utilities_8f90_source_l00171}00171\ \textcolor{comment}{\ \ \ \ !!}}
+\DoxyCodeLine{\Hypertarget{PB3D__utilities_8f90_source_l00172}00172\ \textcolor{comment}{\ \ \ \ !!\ Optionally,\ \ \ the\ \ \ indices\ \ \ in\ \ \ the\ \ \ \ HDF5\ \ \ arrays\ \ \ can\ \ \ also\ \ \ be}}
+\DoxyCodeLine{\Hypertarget{PB3D__utilities_8f90_source_l00173}00173\ \textcolor{comment}{\ \ \ \ !!\ returned\ \ \ \ in\ \ \ \(\backslash\)c\ \ \ \ par\_id\_mem\ \ \ =\ \ \ \ \(\backslash\)f\$\(\backslash\)begin\{pmatrix\}R\_\(\backslash\)text\{min\}\(\backslash\)\(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{PB3D__utilities_8f90_source_l00174}00174\ \textcolor{comment}{\ \ \ \ !!\ R\_\(\backslash\)text\{max\}\(\backslash\)end\{pmatrix\}\(\backslash\)f\$.\ These\ are\ equal\ to\ \(\backslash\)f\$k-\/1\(\backslash\)f\$,\ where\ \(\backslash\)f\$k\(\backslash\)f\$}}
+\DoxyCodeLine{\Hypertarget{PB3D__utilities_8f90_source_l00175}00175\ \textcolor{comment}{\ \ \ \ !!\ is\ the\ integer\ refered\ to\ above:}}
+\DoxyCodeLine{\Hypertarget{PB3D__utilities_8f90_source_l00176}00176\ \textcolor{comment}{\ \ \ \ !!\ \ \(\backslash\)f[\(\backslash\)vec\{R\}\ =\ 1\ +\ \(\backslash\)frac\{a-\/1-\/p+\(\backslash\)vec\{r\}\}\{s\},\ \(\backslash\)f]}}
+\DoxyCodeLine{\Hypertarget{PB3D__utilities_8f90_source_l00177}00177\ \textcolor{comment}{\ \ \ \ !!\ where\ the\ addition\ \ between\ a\ vector\ and\ \ a\ scalar\ should\ be\ \ seen\ as\ the}}
+\DoxyCodeLine{\Hypertarget{PB3D__utilities_8f90_source_l00178}00178\ \textcolor{comment}{\ \ \ \ !!\ element-\/wise\ operation.}}
+\DoxyCodeLine{\Hypertarget{PB3D__utilities_8f90_source_l00179}\doxymbox{\hyperlink{namespacepb3d__utilities_ad047cd7b197aae821e2565933faccfa3}{00179}}\ \ \ \ \ \textcolor{keyword}{function\ }\doxymbox{\hyperlink{namespacepb3d__utilities_ad047cd7b197aae821e2565933faccfa3}{setup\_par\_id}}(grid,rich\_lvl\_max,rich\_lvl\_loc,tot\_rich,par\_lim,\&}
+\DoxyCodeLine{\Hypertarget{PB3D__utilities_8f90_source_l00180}00180\ \ \ \ \ \ \ \ \ \&par\_id\_mem)\ \textcolor{keyword}{result}(par\_id)}
+\DoxyCodeLine{\Hypertarget{PB3D__utilities_8f90_source_l00181}00181\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{use\ }\doxymbox{\hyperlink{namespacegrid__vars}{grid\_vars}},\ \textcolor{keywordtype}{only}:\ \doxymbox{\hyperlink{structgrid__vars_1_1grid__type}{grid\_type}}}
+\DoxyCodeLine{\Hypertarget{PB3D__utilities_8f90_source_l00182}00182\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{PB3D__utilities_8f90_source_l00183}00183\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ input\ /\ output}}
+\DoxyCodeLine{\Hypertarget{PB3D__utilities_8f90_source_l00184}00184\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{type}(\doxymbox{\hyperlink{structgrid__vars_1_1grid__type}{grid\_type}}),\ \textcolor{keywordtype}{intent(in)}\ ::\ grid\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !<\ grid}}
+\DoxyCodeLine{\Hypertarget{PB3D__utilities_8f90_source_l00185}00185\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer},\ \textcolor{keywordtype}{intent(in)}\ ::\ rich\_lvl\_max\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !<\ maximum\ Richardson\ level}}
+\DoxyCodeLine{\Hypertarget{PB3D__utilities_8f90_source_l00186}00186\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer},\ \textcolor{keywordtype}{intent(in)}\ ::\ rich\_lvl\_loc\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !<\ local\ Richardson\ level}}
+\DoxyCodeLine{\Hypertarget{PB3D__utilities_8f90_source_l00187}00187\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{logical},\ \textcolor{keywordtype}{intent(in)},\ \textcolor{keywordtype}{optional}\ ::\ tot\_rich\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !<\ whether\ to\ combine\ with\ previous\ Richardson\ levels}}
+\DoxyCodeLine{\Hypertarget{PB3D__utilities_8f90_source_l00188}00188\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer},\ \textcolor{keywordtype}{intent(in)},\ \textcolor{keywordtype}{optional}\ ::\ par\_lim(2)\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !<\ limits\ (a..b)\ of\ variable\ requested}}
+\DoxyCodeLine{\Hypertarget{PB3D__utilities_8f90_source_l00189}00189\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer},\ \textcolor{keywordtype}{intent(inout)},\ \textcolor{keywordtype}{optional}\ ::\ par\_id\_mem(2)\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !<\ parallel\ id\ in\ memory}}
+\DoxyCodeLine{\Hypertarget{PB3D__utilities_8f90_source_l00190}00190\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer}\ ::\ par\_id(3)\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !<\ parallel\ id}}
+\DoxyCodeLine{\Hypertarget{PB3D__utilities_8f90_source_l00191}00191\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{PB3D__utilities_8f90_source_l00192}00192\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ local\ variables}}
+\DoxyCodeLine{\Hypertarget{PB3D__utilities_8f90_source_l00193}00193\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer}\ ::\ s\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ stride}}
+\DoxyCodeLine{\Hypertarget{PB3D__utilities_8f90_source_l00194}00194\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer}\ ::\ p\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ lower\ limit\ in\ memory}}
+\DoxyCodeLine{\Hypertarget{PB3D__utilities_8f90_source_l00195}00195\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer}\ ::\ n\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ b-\/a+1}}
+\DoxyCodeLine{\Hypertarget{PB3D__utilities_8f90_source_l00196}00196\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{logical}\ ::\ tot\_rich\_loc\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ local\ tot\_rich}}
+\DoxyCodeLine{\Hypertarget{PB3D__utilities_8f90_source_l00197}00197\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer}\ ::\ par\_lim\_loc(2)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ local\ par\_lim}}
+\DoxyCodeLine{\Hypertarget{PB3D__utilities_8f90_source_l00198}00198\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{PB3D__utilities_8f90_source_l00199}00199\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ set\ up\ local\ tot\_rich\ and\ par\_lim}}
+\DoxyCodeLine{\Hypertarget{PB3D__utilities_8f90_source_l00200}00200\ \ \ \ \ \ \ \ \ tot\_rich\_loc\ =\ .false.}
+\DoxyCodeLine{\Hypertarget{PB3D__utilities_8f90_source_l00201}00201\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\textcolor{keyword}{present}(tot\_rich)\ .and.\ rich\_lvl\_max.gt.1)\ tot\_rich\_loc\ =\ tot\_rich\ \ \textcolor{comment}{!\ only\ for\ higher\ Richardson\ levels}}
+\DoxyCodeLine{\Hypertarget{PB3D__utilities_8f90_source_l00202}00202\ \ \ \ \ \ \ \ \ par\_lim\_loc\ =\ [1,grid\%n(1)]}
+\DoxyCodeLine{\Hypertarget{PB3D__utilities_8f90_source_l00203}00203\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\textcolor{keyword}{present}(par\_lim))\ par\_lim\_loc\ =\ par\_lim}
+\DoxyCodeLine{\Hypertarget{PB3D__utilities_8f90_source_l00204}00204\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{PB3D__utilities_8f90_source_l00205}00205\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ set\ up\ parallel\ indices}}
+\DoxyCodeLine{\Hypertarget{PB3D__utilities_8f90_source_l00206}00206\ \ \ \ \ \ \ \ \ n\ =\ par\_lim\_loc(2)-\/par\_lim\_loc(1)+1}
+\DoxyCodeLine{\Hypertarget{PB3D__utilities_8f90_source_l00207}00207\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (tot\_rich\_loc)\ \textcolor{keywordflow}{then}}
+\DoxyCodeLine{\Hypertarget{PB3D__utilities_8f90_source_l00208}00208\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (rich\_lvl\_loc.eq.1)\ \textcolor{keywordflow}{then}}
+\DoxyCodeLine{\Hypertarget{PB3D__utilities_8f90_source_l00209}00209\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ s\ =\ 2**(rich\_lvl\_max-\/1)}
+\DoxyCodeLine{\Hypertarget{PB3D__utilities_8f90_source_l00210}00210\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ p\ =\ 1}
+\DoxyCodeLine{\Hypertarget{PB3D__utilities_8f90_source_l00211}00211\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{PB3D__utilities_8f90_source_l00212}00212\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ s\ =\ 2**(rich\_lvl\_max+1-\/rich\_lvl\_loc)}
+\DoxyCodeLine{\Hypertarget{PB3D__utilities_8f90_source_l00213}00213\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ p\ =\ 1\ +\ s/2}
+\DoxyCodeLine{\Hypertarget{PB3D__utilities_8f90_source_l00214}00214\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ \ \ \ \ end\ if}}
+\DoxyCodeLine{\Hypertarget{PB3D__utilities_8f90_source_l00215}00215\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{PB3D__utilities_8f90_source_l00216}00216\ \ \ \ \ \ \ \ \ \ \ \ \ s\ =\ 1}
+\DoxyCodeLine{\Hypertarget{PB3D__utilities_8f90_source_l00217}00217\ \ \ \ \ \ \ \ \ \ \ \ \ p\ =\ 1}
+\DoxyCodeLine{\Hypertarget{PB3D__utilities_8f90_source_l00218}00218\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ end\ if}}
+\DoxyCodeLine{\Hypertarget{PB3D__utilities_8f90_source_l00219}00219\ \ \ \ \ \ \ \ \ par\_id(1)\ =\ 1\ +\ modulo(p-\/par\_lim\_loc(1),s)}
+\DoxyCodeLine{\Hypertarget{PB3D__utilities_8f90_source_l00220}00220\ \ \ \ \ \ \ \ \ par\_id(2)\ =\ n\ -\/\ s\ +\ 1\ +\ modulo(p-\/par\_lim\_loc(2)-\/1,s)}
+\DoxyCodeLine{\Hypertarget{PB3D__utilities_8f90_source_l00221}00221\ \ \ \ \ \ \ \ \ par\_id(3)\ =\ s}
+\DoxyCodeLine{\Hypertarget{PB3D__utilities_8f90_source_l00222}00222\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{PB3D__utilities_8f90_source_l00223}00223\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ set\ par\_id\ in\ memory\ if\ requested}}
+\DoxyCodeLine{\Hypertarget{PB3D__utilities_8f90_source_l00224}00224\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\textcolor{keyword}{present}(par\_id\_mem))\ par\_id\_mem\ =\ \&}
+\DoxyCodeLine{\Hypertarget{PB3D__utilities_8f90_source_l00225}00225\ \ \ \ \ \ \ \ \ \ \ \ \ \&1\ +\ (par\_lim\_loc(1)-\/1-\/p+par\_id(1:2))/s}
+\DoxyCodeLine{\Hypertarget{PB3D__utilities_8f90_source_l00226}00226\ \ \ \ \ \textcolor{keyword}{end\ function\ }\doxymbox{\hyperlink{namespacepb3d__utilities_ad047cd7b197aae821e2565933faccfa3}{setup\_par\_id}}}
+\DoxyCodeLine{\Hypertarget{PB3D__utilities_8f90_source_l00227}00227\ \ \ \ \ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{PB3D__utilities_8f90_source_l00228}00228\ \textcolor{comment}{\ \ \ \ !>\ Returns\ richardson\ id.}}
+\DoxyCodeLine{\Hypertarget{PB3D__utilities_8f90_source_l00229}00229\ \textcolor{comment}{\ \ \ \ !!}}
+\DoxyCodeLine{\Hypertarget{PB3D__utilities_8f90_source_l00230}00230\ \textcolor{comment}{\ \ \ \ !!\ \(\backslash\)c\ rich\_id\ has\ the\ following\ structure:}}
+\DoxyCodeLine{\Hypertarget{PB3D__utilities_8f90_source_l00231}00231\ \textcolor{comment}{\ \ \ \ !!\ \ -\/\ \(\backslash\)c\ rich\_id(1):\ start\ Richardson\ level}}
+\DoxyCodeLine{\Hypertarget{PB3D__utilities_8f90_source_l00232}00232\ \textcolor{comment}{\ \ \ \ !!\ \ -\/\ \(\backslash\)c\ rich\_id(2):\ end\ Richardson\ level}}
+\DoxyCodeLine{\Hypertarget{PB3D__utilities_8f90_source_l00233}\doxymbox{\hyperlink{namespacepb3d__utilities_ab461e756a85b3c6e8fa1ccaa6556c5b0}{00233}}\ \ \ \ \ \textcolor{keyword}{function\ }\doxymbox{\hyperlink{namespacepb3d__utilities_ab461e756a85b3c6e8fa1ccaa6556c5b0}{setup\_rich\_id}}(rich\_lvl\_max,tot\_rich)\ \textcolor{keyword}{result}(rich\_id)}
+\DoxyCodeLine{\Hypertarget{PB3D__utilities_8f90_source_l00234}00234\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ input\ /\ output}}
+\DoxyCodeLine{\Hypertarget{PB3D__utilities_8f90_source_l00235}00235\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer},\ \textcolor{keywordtype}{intent(in)}\ ::\ rich\_lvl\_max\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !<\ maximum\ Richardson\ level}}
+\DoxyCodeLine{\Hypertarget{PB3D__utilities_8f90_source_l00236}00236\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{logical},\ \textcolor{keywordtype}{intent(in)},\ \textcolor{keywordtype}{optional}\ ::\ tot\_rich\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !<\ whether\ to\ combine\ with\ previous\ Richardson\ levels}}
+\DoxyCodeLine{\Hypertarget{PB3D__utilities_8f90_source_l00237}00237\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer}\ ::\ rich\_id(2)\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !<\ Richardson\ id}}
+\DoxyCodeLine{\Hypertarget{PB3D__utilities_8f90_source_l00238}00238\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{PB3D__utilities_8f90_source_l00239}00239\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ set\ up\ rich\_id}}
+\DoxyCodeLine{\Hypertarget{PB3D__utilities_8f90_source_l00240}00240\ \ \ \ \ \ \ \ \ rich\_id\ =\ [rich\_lvl\_max,rich\_lvl\_max]}
+\DoxyCodeLine{\Hypertarget{PB3D__utilities_8f90_source_l00241}00241\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\textcolor{keyword}{present}(tot\_rich)\ .and.\ rich\_lvl\_max.gt.1)\ \textcolor{keywordflow}{then}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ only\ for\ higher\ Richardson\ levels}}
+\DoxyCodeLine{\Hypertarget{PB3D__utilities_8f90_source_l00242}00242\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (tot\_rich)\ rich\_id\ =\ [1,rich\_lvl\_max]}
+\DoxyCodeLine{\Hypertarget{PB3D__utilities_8f90_source_l00243}00243\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ end\ if}}
+\DoxyCodeLine{\Hypertarget{PB3D__utilities_8f90_source_l00244}00244\ \ \ \ \ \textcolor{keyword}{end\ function\ }\doxymbox{\hyperlink{namespacepb3d__utilities_ab461e756a85b3c6e8fa1ccaa6556c5b0}{setup\_rich\_id}}}
+\DoxyCodeLine{\Hypertarget{PB3D__utilities_8f90_source_l00245}00245\ \textcolor{keyword}{end\ module\ }\doxymbox{\hyperlink{namespacepb3d__utilities}{pb3d\_utilities}}}
+
+\end{DoxyCode}

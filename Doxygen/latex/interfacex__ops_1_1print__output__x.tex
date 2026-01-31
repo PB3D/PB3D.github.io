@@ -1,16 +1,16 @@
-\hypertarget{interfacex__ops_1_1print__output__x}{}\doxysection{x\+\_\+ops\+::print\+\_\+output\+\_\+x Interface Reference}
-\label{interfacex__ops_1_1print__output__x}\index{x\_ops::print\_output\_x@{x\_ops::print\_output\_x}}
+\doxysection{x\+\_\+ops::\+print\+\_\+output\+\_\+x Interface Reference}
+\hypertarget{interfacex__ops_1_1print__output__x}{}\label{interfacex__ops_1_1print__output__x}\index{x\_ops::print\_output\_x@{x\_ops::print\_output\_x}}
 
 
 Print either vectorial or tensorial perturbation quantities of a certain order to an output file.  
 
 
-\doxysubsection*{Public Member Functions}
+\doxysubsubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-integer function \mbox{\hyperlink{interfacex__ops_1_1print__output__x_af66cca1a3bd819c6eefe69974af7166d}{print\+\_\+output\+\_\+x\+\_\+1}} (grid\+\_\+X, X, data\+\_\+name, rich\+\_\+lvl, par\+\_\+div, lim\+\_\+sec\+\_\+X)
+integer function \doxymbox{\hyperlink{interfacex__ops_1_1print__output__x_a311d3ffe82a8a999d44ee6ef42cdafac}{print\+\_\+output\+\_\+x\+\_\+1}} (grid\+\_\+x, x, data\+\_\+name, rich\+\_\+lvl, par\+\_\+div, lim\+\_\+sec\+\_\+x)
 \begin{DoxyCompactList}\small\item\em vectorial version. \end{DoxyCompactList}\item 
-integer function \mbox{\hyperlink{interfacex__ops_1_1print__output__x_a0600bd1f9ed6ec2ba0c748d52a932bc6}{print\+\_\+output\+\_\+x\+\_\+2}} (grid\+\_\+X, X, data\+\_\+name, rich\+\_\+lvl, par\+\_\+div, lim\+\_\+sec\+\_\+X, is\+\_\+field\+\_\+averaged)
+integer function \doxymbox{\hyperlink{interfacex__ops_1_1print__output__x_a9d7ecf5aa2a87d64bfeaa69660115adf}{print\+\_\+output\+\_\+x\+\_\+2}} (grid\+\_\+x, x, data\+\_\+name, rich\+\_\+lvl, par\+\_\+div, lim\+\_\+sec\+\_\+x, is\+\_\+field\+\_\+averaged)
 \begin{DoxyCompactList}\small\item\em tensorial version \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
@@ -19,21 +19,21 @@ Print either vectorial or tensorial perturbation quantities of a certain order t
 
 
 \begin{DoxyItemize}
-\item vectorial\+:
+\item vectorial:\+
 \begin{DoxyItemize}
 \item U
 \item DU
 \end{DoxyItemize}
-\item tensorial\+:
+\item tensorial:\+
 \begin{DoxyItemize}
-\item P\+V\+\_\+int
-\item K\+V\+\_\+int
+\item PV\+\_\+int
+\item KV\+\_\+int
 \end{DoxyItemize}
 \end{DoxyItemize}
 
 (The non-\/integrated variables are not saved because they are heavy and not requested.)
 
-If {\ttfamily rich\+\_\+lvl} is provided, {\ttfamily \char`\"{}\+\_\+\+R\+\_\+\mbox{[}rich\+\_\+lvl\mbox{]}\char`\"{}} is appended to the data name if it is {\ttfamily $>$0}.
+If {\ttfamily rich\+\_\+lvl} is provided, {\ttfamily "{}\+\_\+\+R\+\_\+\+[rich\+\_\+lvl]\+"{}} is appended to the data name if it is {\ttfamily \texorpdfstring{$>$}{>}0}.
 
 Optionally, it can be specified that this is a divided parallel grid, corresponding to the variable {\ttfamily eq\+\_\+jobs\+\_\+lims} with index {\ttfamily eq\+\_\+job\+\_\+nr}. In this case, the total grid size is adjusted to the one specified by {\ttfamily eq\+\_\+jobs\+\_\+lims} and the grid is written as a subset. \begin{DoxyNote}{Note}
 
@@ -47,16 +47,18 @@ ierr
 \end{DoxyReturn}
 
 
-Definition at line 85 of file X\+\_\+ops.\+f90.
+Definition at line \doxymbox{\hyperlink{X__ops_8f90_source_l00085}{85}} of file \doxymbox{\hyperlink{X__ops_8f90_source}{X\+\_\+ops.\+f90}}.
 
 
 
-\doxysubsection{Member Function/\+Subroutine Documentation}
-\mbox{\Hypertarget{interfacex__ops_1_1print__output__x_af66cca1a3bd819c6eefe69974af7166d}\label{interfacex__ops_1_1print__output__x_af66cca1a3bd819c6eefe69974af7166d}} 
-\index{x\_ops::print\_output\_x@{x\_ops::print\_output\_x}!print\_output\_x\_1@{print\_output\_x\_1}}
+\label{doc-func-members}
+\Hypertarget{interfacex__ops_1_1print__output__x_doc-func-members}
+\doxysubsection{Member Function/\+\+Subroutine Documentation}
+\Hypertarget{interfacex__ops_1_1print__output__x_a311d3ffe82a8a999d44ee6ef42cdafac}\index{x\_ops::print\_output\_x@{x\_ops::print\_output\_x}!print\_output\_x\_1@{print\_output\_x\_1}}
 \index{print\_output\_x\_1@{print\_output\_x\_1}!x\_ops::print\_output\_x@{x\_ops::print\_output\_x}}
 \doxysubsubsection{\texorpdfstring{print\_output\_x\_1()}{print\_output\_x\_1()}}
-{\footnotesize\ttfamily integer function x\+\_\+ops\+::print\+\_\+output\+\_\+x\+::print\+\_\+output\+\_\+x\+\_\+1 (\begin{DoxyParamCaption}\item[{type(\mbox{\hyperlink{structgrid__vars_1_1grid__type}{grid\+\_\+type}}), intent(in)}]{grid\+\_\+X,  }\item[{type(x\+\_\+1\+\_\+type), intent(in)}]{X,  }\item[{character(len=$\ast$), intent(in)}]{data\+\_\+name,  }\item[{integer, intent(in), optional}]{rich\+\_\+lvl,  }\item[{logical, intent(in), optional}]{par\+\_\+div,  }\item[{integer, dimension(2), intent(in), optional}]{lim\+\_\+sec\+\_\+X }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \label{interfacex__ops_1_1print__output__x_a311d3ffe82a8a999d44ee6ef42cdafac} 
+integer function x\+\_\+ops::\+print\+\_\+output\+\_\+x::\+print\+\_\+output\+\_\+x\+\_\+1 (\begin{DoxyParamCaption}\item[{type(\doxymbox{\hyperlink{structgrid__vars_1_1grid__type}{grid\+\_\+type}}), intent(in)}]{grid\+\_\+x}{, }\item[{type(\doxymbox{\hyperlink{structx__vars_1_1x__1__type}{x\+\_\+1\+\_\+type}}), intent(in)}]{x}{, }\item[{character(len=\texorpdfstring{$\ast$}{*}), intent(in)}]{data\+\_\+name}{, }\item[{integer, intent(in), optional}]{rich\+\_\+lvl}{, }\item[{logical, intent(in), optional}]{par\+\_\+div}{, }\item[{integer, dimension(2), intent(in), optional}]{lim\+\_\+sec\+\_\+x}{}\end{DoxyParamCaption})}
 
 
 
@@ -64,35 +66,35 @@ vectorial version.
 
 
 \begin{DoxyParams}[1]{Parameters}
-\mbox{\texttt{ in}}  & {\em grid\+\_\+x} & perturbation grid variables \\
+\doxymbox{\texttt{in}}  & {\em grid\+\_\+x} & perturbation grid variables \\
 \hline
-\mbox{\texttt{ in}}  & {\em x} & vectorial perturbation variables \\
+\doxymbox{\texttt{in}}  & {\em x} & vectorial perturbation variables \\
 \hline
-\mbox{\texttt{ in}}  & {\em data\+\_\+name} & name under which to store \\
+\doxymbox{\texttt{in}}  & {\em data\+\_\+name} & name under which to store \\
 \hline
-\mbox{\texttt{ in}}  & {\em rich\+\_\+lvl} & Richardson level to print \\
+\doxymbox{\texttt{in}}  & {\em rich\+\_\+lvl} & Richardson level to print \\
 \hline
-\mbox{\texttt{ in}}  & {\em par\+\_\+div} & is a parallely divided grid \\
+\doxymbox{\texttt{in}}  & {\em par\+\_\+div} & is a parallely divided grid \\
 \hline
-\mbox{\texttt{ in}}  & {\em lim\+\_\+sec\+\_\+x} & limits of {\ttfamily m\+\_\+X} (pol. flux) or {\ttfamily n\+\_\+X} (tor. flux) \\
+\doxymbox{\texttt{in}}  & {\em lim\+\_\+sec\+\_\+x} & limits of {\ttfamily m\+\_\+X} (pol. flux) or {\ttfamily n\+\_\+X} (tor. flux) \\
 \hline
 \end{DoxyParams}
 
 
-Definition at line 411 of file X\+\_\+ops.\+f90.
+Definition at line \doxymbox{\hyperlink{X__ops_8f90_source_l00409}{409}} of file \doxymbox{\hyperlink{X__ops_8f90_source}{X\+\_\+ops.\+f90}}.
 
-Here is the call graph for this function\+:\nopagebreak
+Here is the call graph for this function:\+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=350pt]{interfacex__ops_1_1print__output__x_af66cca1a3bd819c6eefe69974af7166d_cgraph}
+\includegraphics[width=350pt]{interfacex__ops_1_1print__output__x_a311d3ffe82a8a999d44ee6ef42cdafac_cgraph}
 \end{center}
 \end{figure}
-\mbox{\Hypertarget{interfacex__ops_1_1print__output__x_a0600bd1f9ed6ec2ba0c748d52a932bc6}\label{interfacex__ops_1_1print__output__x_a0600bd1f9ed6ec2ba0c748d52a932bc6}} 
-\index{x\_ops::print\_output\_x@{x\_ops::print\_output\_x}!print\_output\_x\_2@{print\_output\_x\_2}}
+\Hypertarget{interfacex__ops_1_1print__output__x_a9d7ecf5aa2a87d64bfeaa69660115adf}\index{x\_ops::print\_output\_x@{x\_ops::print\_output\_x}!print\_output\_x\_2@{print\_output\_x\_2}}
 \index{print\_output\_x\_2@{print\_output\_x\_2}!x\_ops::print\_output\_x@{x\_ops::print\_output\_x}}
 \doxysubsubsection{\texorpdfstring{print\_output\_x\_2()}{print\_output\_x\_2()}}
-{\footnotesize\ttfamily integer function x\+\_\+ops\+::print\+\_\+output\+\_\+x\+::print\+\_\+output\+\_\+x\+\_\+2 (\begin{DoxyParamCaption}\item[{type(\mbox{\hyperlink{structgrid__vars_1_1grid__type}{grid\+\_\+type}}), intent(in)}]{grid\+\_\+X,  }\item[{type(x\+\_\+2\+\_\+type), intent(in)}]{X,  }\item[{character(len=$\ast$), intent(in)}]{data\+\_\+name,  }\item[{integer, intent(in), optional}]{rich\+\_\+lvl,  }\item[{logical, intent(in), optional}]{par\+\_\+div,  }\item[{integer, dimension(2,2), intent(in), optional}]{lim\+\_\+sec\+\_\+X,  }\item[{logical, intent(in), optional}]{is\+\_\+field\+\_\+averaged }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \label{interfacex__ops_1_1print__output__x_a9d7ecf5aa2a87d64bfeaa69660115adf} 
+integer function x\+\_\+ops::\+print\+\_\+output\+\_\+x::\+print\+\_\+output\+\_\+x\+\_\+2 (\begin{DoxyParamCaption}\item[{type(\doxymbox{\hyperlink{structgrid__vars_1_1grid__type}{grid\+\_\+type}}), intent(in)}]{grid\+\_\+x}{, }\item[{type(\doxymbox{\hyperlink{structx__vars_1_1x__2__type}{x\+\_\+2\+\_\+type}}), intent(in)}]{x}{, }\item[{character(len=\texorpdfstring{$\ast$}{*}), intent(in)}]{data\+\_\+name}{, }\item[{integer, intent(in), optional}]{rich\+\_\+lvl}{, }\item[{logical, intent(in), optional}]{par\+\_\+div}{, }\item[{integer, dimension(2,2), intent(in), optional}]{lim\+\_\+sec\+\_\+x}{, }\item[{logical, intent(in), optional}]{is\+\_\+field\+\_\+averaged}{}\end{DoxyParamCaption})}
 
 
 
@@ -100,30 +102,30 @@ tensorial version
 
 
 \begin{DoxyParams}[1]{Parameters}
-\mbox{\texttt{ in}}  & {\em grid\+\_\+x} & perturbation grid variables \\
+\doxymbox{\texttt{in}}  & {\em grid\+\_\+x} & perturbation grid variables \\
 \hline
-\mbox{\texttt{ in}}  & {\em x} & tensorial perturbation variables \\
+\doxymbox{\texttt{in}}  & {\em x} & tensorial perturbation variables \\
 \hline
-\mbox{\texttt{ in}}  & {\em data\+\_\+name} & name under which to store \\
+\doxymbox{\texttt{in}}  & {\em data\+\_\+name} & name under which to store \\
 \hline
-\mbox{\texttt{ in}}  & {\em rich\+\_\+lvl} & Richardson level to print \\
+\doxymbox{\texttt{in}}  & {\em rich\+\_\+lvl} & Richardson level to print \\
 \hline
-\mbox{\texttt{ in}}  & {\em par\+\_\+div} & is a parallely divided grid \\
+\doxymbox{\texttt{in}}  & {\em par\+\_\+div} & is a parallely divided grid \\
 \hline
-\mbox{\texttt{ in}}  & {\em lim\+\_\+sec\+\_\+x} & limits of {\ttfamily m\+\_\+X} (pol. flux) or {\ttfamily n\+\_\+X} (tor. flux) \\
+\doxymbox{\texttt{in}}  & {\em lim\+\_\+sec\+\_\+x} & limits of {\ttfamily m\+\_\+X} (pol. flux) or {\ttfamily n\+\_\+X} (tor. flux) \\
 \hline
-\mbox{\texttt{ in}}  & {\em is\+\_\+field\+\_\+averaged} & whether field-\/averaged, so only one dimension for first index \\
+\doxymbox{\texttt{in}}  & {\em is\+\_\+field\+\_\+averaged} & whether field-\/averaged, so only one dimension for first index \\
 \hline
 \end{DoxyParams}
 
 
-Definition at line 603 of file X\+\_\+ops.\+f90.
+Definition at line \doxymbox{\hyperlink{X__ops_8f90_source_l00601}{601}} of file \doxymbox{\hyperlink{X__ops_8f90_source}{X\+\_\+ops.\+f90}}.
 
-Here is the call graph for this function\+:\nopagebreak
+Here is the call graph for this function:\+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=350pt]{interfacex__ops_1_1print__output__x_a0600bd1f9ed6ec2ba0c748d52a932bc6_cgraph}
+\includegraphics[width=350pt]{interfacex__ops_1_1print__output__x_a9d7ecf5aa2a87d64bfeaa69660115adf_cgraph}
 \end{center}
 \end{figure}
 

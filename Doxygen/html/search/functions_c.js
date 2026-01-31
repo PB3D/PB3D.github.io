@@ -1,7 +1,7 @@
 var searchData=
 [
-  ['nextunit_1361',['nextunit',['../namespacefiles__utilities.html#ac6066df405564ba2f5e3c4bba726c1f8',1,'files_utilities']]],
-  ['normalize_5finput_1362',['normalize_input',['../namespaceeq__ops.html#a1b4c764da73624722d7e76498a2b80a9',1,'eq_ops']]],
-  ['normalize_5fvmec_1363',['normalize_vmec',['../namespacevmec__ops.html#a95f04a642fd732a538aef30052a12863',1,'vmec_ops']]],
-  ['nufft_1364',['nufft',['../namespacegrid__utilities.html#a0854b2d6cc61a31f68b4afe7304077a9',1,'grid_utilities']]]
+  ['magn_5fgrid_5fplot_0',['magn_grid_plot',['../namespacegrid__ops.html#addd76b7b3be0b51e0863ae0cdfef41e6',1,'grid_ops']]],
+  ['mat_5fdis2loc_1',['mat_dis2loc',['../namespacevac__utilities.html#ae70e8a1fc132ba79a9a4f49f4944a352',1,'vac_utilities']]],
+  ['merge_5fhdf5_5f3d_5fdata_5fitems_2',['merge_hdf5_3d_data_items',['../namespacehdf5__ops.html#a7b18b66402089eef2288b2d532f6af5d',1,'hdf5_ops']]],
+  ['merge_5fstrings_3',['merge_strings',['../namespacestr__utilities.html#a6ab16f33c155db79844279c6a56a494c',1,'str_utilities']]]
 ];

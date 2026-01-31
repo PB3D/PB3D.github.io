@@ -1,4 +1,29 @@
 var searchData=
 [
-  ['j_5fplot_1346',['j_plot',['../namespaceeq__ops.html#afabdf28e5c26ceb87e6eb8cf3809919d',1,'eq_ops']]]
+  ['i2str_0',['i2str',['../namespacestr__utilities.html#a0b97e51770725a3e98ed393d26681414',1,'str_utilities']]],
+  ['ii2str_1',['ii2str',['../namespacestr__utilities.html#acb8c4e66aead51f178e47fdea8d7a7db',1,'str_utilities']]],
+  ['in_5fcontext_2',['in_context',['../namespacevac__vars.html#af0fd2f819434bf7adc494753df4af19c',1,'vac_vars']]],
+  ['init_3',['init',['../structeq__vars_1_1eq__1__type.html#a04b9d300bee641d80805817952bcb1aa',1,'eq_vars::eq_1_type::init()'],['../structeq__vars_1_1eq__2__type.html#ac237e18f0224379c2d2cc188ae0d4dcd',1,'eq_vars::eq_2_type::init()'],['../structgrid__vars_1_1grid__type.html#af354f19ccb41d04bd5dedc816a19ae33',1,'grid_vars::grid_type::init()'],['../structmpi__vars_1_1lock__type.html#a6227b4a9250ac98f66bb365d0f86cf5b',1,'mpi_vars::lock_type::init()'],['../structsol__vars_1_1sol__type.html#a9d90b80e3844031b0a30fc99ea439aa0',1,'sol_vars::sol_type::init()'],['../structvac__vars_1_1vac__type.html#afa967069239b8a72212e3a5cbe57721b',1,'vac_vars::vac_type::init()'],['../structx__vars_1_1x__1__type.html#af4103d5b7a1b4b4df2f40915196ef69e',1,'x_vars::x_1_type::init()'],['../structx__vars_1_1x__2__type.html#a724f2f34bba83ee4c9ffe9b6277324d7',1,'x_vars::x_2_type::init()']]],
+  ['init_5feq_5f1_4',['init_eq_1',['../namespaceeq__vars.html#a0cfa7e8469f492469e61806587d7a208',1,'eq_vars']]],
+  ['init_5feq_5f2_5',['init_eq_2',['../namespaceeq__vars.html#ae720cb675847d9cd5d297693b4a7d98f',1,'eq_vars']]],
+  ['init_5ffiles_6',['init_files',['../namespacefiles__ops.html#a1e219b1147f109f758d03bef89d540e8',1,'files_ops']]],
+  ['init_5fgrid_7',['init_grid',['../namespacegrid__vars.html#aa0d888796fd875e9024443e46eeb11f8',1,'grid_vars']]],
+  ['init_5fhdf5_8',['init_hdf5',['../namespacehdf5__vars.html#ab644703bcb67ce423732e39ab56a4b63',1,'hdf5_vars']]],
+  ['init_5flock_9',['init_lock',['../namespacempi__vars.html#ab38aeec20e567cf6f272587890ead066',1,'mpi_vars']]],
+  ['init_5fmodes_10',['init_modes',['../namespacex__ops.html#a73a80c582379669f8e07b09dd7456878',1,'x_ops']]],
+  ['init_5foutput_11',['init_output',['../namespacemessages.html#a5e45296f088e9f31115a3b8d869f3177',1,'messages']]],
+  ['init_5fpost_12',['init_post',['../namespacedriver__post.html#af527706d4e696d4e507443d2f74194ef',1,'driver_post']]],
+  ['init_5frich_13',['init_rich',['../namespacerich__ops.html#a9fbbda93eab8973d33063e277c489e7b',1,'rich_ops']]],
+  ['init_5fsol_14',['init_sol',['../namespacesol__vars.html#ab1395fe16eca4dccaf7dbb60056fbccf',1,'sol_vars']]],
+  ['init_5ftime_15',['init_time',['../namespacemessages.html#a8ed785522aec7ac549263cdd54a8619a',1,'messages']]],
+  ['init_5fvac_16',['init_vac',['../namespacevac__vars.html#a62f1cdc62a18ca5389f8c5efbc25fa16',1,'vac_vars']]],
+  ['init_5fx_5f1_17',['init_x_1',['../namespacex__vars.html#a91e410366d77a4fda4ee8f623b8d44a6',1,'x_vars']]],
+  ['init_5fx_5f2_18',['init_x_2',['../namespacex__vars.html#a0013a4beab50ab9e8589fffd43625194',1,'x_vars']]],
+  ['insert_5fblock_5fmat_19',['insert_block_mat',['../namespaceslepc__utilities.html#aa34aa361f0bfff9621ecba179f9ed0c6',1,'slepc_utilities']]],
+  ['interlaced_5fvac_5fcopy_20',['interlaced_vac_copy',['../namespacevac__utilities.html#a8e7889688701f6ac2fd2c60cdee2b96a',1,'vac_utilities']]],
+  ['interp_5fhel_5fon_5fgrid_21',['interp_hel_on_grid',['../namespacehelena__ops.html#a11defc7f58c96da44f6ac492cb8e4a31',1,'helena_ops']]],
+  ['interp_5fv_22',['interp_v',['../namespacedriver__sol.html#a7e8f77792cb6ec5bc854ae07b4b44d9a',1,'driver_sol']]],
+  ['interp_5fv_5fspline_23',['interp_v_spline',['../namespacesol__utilities.html#a6bc8c29a0b3fc64f7f9b80635e95ec58',1,'sol_utilities']]],
+  ['is_5fnecessary_5fx_24',['is_necessary_x',['../namespacex__utilities.html#a6bb9570c66954d37a27f04f12fa65cc9',1,'x_utilities']]],
+  ['is_5fsym_25',['is_sym',['../namespacenum__utilities.html#a4e6994b5c92b3d16c8538b54db0beadd',1,'num_utilities']]]
 ];

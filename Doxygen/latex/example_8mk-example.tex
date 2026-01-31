@@ -1,167 +1,168 @@
-\hypertarget{example_8mk-example}{}\doxysection{example.\+mk}
-An example makefile\+:
+\doxysection{example.\+mk}
+\hypertarget{example_8mk-example}{}\label{example_8mk-example}An example makefile:\+
 
 
 \begin{DoxyCodeInclude}{0}
 \DoxyCodeLine{\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#}
 \DoxyCodeLine{\#}
-\DoxyCodeLine{\#   Example makefile for the program PB3D (Peeling Ballooning in 3D)}
-\DoxyCodeLine{\#   \(\backslash\)author Author: Toon Weyens}
+\DoxyCodeLine{\#\ \ \ Example\ makefile\ for\ the\ program\ PB3D\ (Peeling\ Ballooning\ in\ 3D)}
+\DoxyCodeLine{\#\ \ \ \(\backslash\)author\ Author:\ Toon\ Weyens}
 \DoxyCodeLine{\#}
-\DoxyCodeLine{\#   Don't forget to set the directories:}
-\DoxyCodeLine{\#       -\/ LIBSTELL\_DIR}
-\DoxyCodeLine{\#       -\/ HDF5\_DIR}
-\DoxyCodeLine{\#       -\/ NETCDFF\_DIR (note: Fortran library)}
-\DoxyCodeLine{\#       -\/ PETSC\_DIR}
-\DoxyCodeLine{\#       -\/ SLEPC\_DIR}
-\DoxyCodeLine{\#       -\/ STRUMPACK\_DIR}
+\DoxyCodeLine{\#\ \ \ Don't\ forget\ to\ set\ the\ directories:}
+\DoxyCodeLine{\#\ \ \ \ \ \ \ -\/\ LIBSTELL\_DIR}
+\DoxyCodeLine{\#\ \ \ \ \ \ \ -\/\ HDF5\_DIR}
+\DoxyCodeLine{\#\ \ \ \ \ \ \ -\/\ NETCDFF\_DIR\ (note:\ Fortran\ library)}
+\DoxyCodeLine{\#\ \ \ \ \ \ \ -\/\ PETSC\_DIR}
+\DoxyCodeLine{\#\ \ \ \ \ \ \ -\/\ SLEPC\_DIR}
+\DoxyCodeLine{\#\ \ \ \ \ \ \ -\/\ STRUMPACK\_DIR}
 \DoxyCodeLine{\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#}
 \DoxyCodeLine{}
 \DoxyCodeLine{\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#}
-\DoxyCodeLine{\#   Include}
+\DoxyCodeLine{\#\ \ \ Include}
 \DoxyCodeLine{\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#}
-\DoxyCodeLine{\#\# [PETSc and SLEPc trick]}
-\DoxyCodeLine{include  \$(PETSC\_DIR)/lib/petsc/conf/variables}
-\DoxyCodeLine{include  \$(SLEPC\_DIR)/lib/slepc/conf/slepc\_variables}
-\DoxyCodeLine{\#\# [PETSc and SLEPc trick]}
+\DoxyCodeLine{\#\#\ [PETSc\ and\ SLEPc\ trick]}
+\DoxyCodeLine{include\ \ \$(PETSC\_DIR)/lib/petsc/conf/variables}
+\DoxyCodeLine{include\ \ \$(SLEPC\_DIR)/lib/slepc/conf/slepc\_variables}
+\DoxyCodeLine{\#\#\ [PETSc\ and\ SLEPc\ trick]}
 \DoxyCodeLine{}
-\DoxyCodeLine{\#\# [PETSc and SLEPc trick inc]}
-\DoxyCodeLine{INCLUDE = \$(PETSC\_FC\_INCLUDES) \$(SLEPC\_INCLUDE)}
-\DoxyCodeLine{\#\# [PETSc and SLEPc trick inc]}
-\DoxyCodeLine{\#\# [Libstell special]}
-\DoxyCodeLine{INCLUDE += -\/I\$(LIBSTELL\_DIR)/libstell\_dir}
-\DoxyCodeLine{\#\# [Libstell special]}
-\DoxyCodeLine{INCLUDE += -\/I\$(STRUMPACK\_DIR)/include}
-\DoxyCodeLine{\#\# [PB3D include]}
-\DoxyCodeLine{INCLUDE += -\/I\$(PB3D\_DIR)/include}
-\DoxyCodeLine{\#\# [PB3D include]}
-\DoxyCodeLine{INCLUDE += -\/I/usr/include/hdf5/openmpi}
-\DoxyCodeLine{}
-\DoxyCodeLine{\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#}
-\DoxyCodeLine{\#   Link}
-\DoxyCodeLine{\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#}
-\DoxyCodeLine{\#\# [PB3D libraries]}
-\DoxyCodeLine{LIB\_INTERNAL = libdfftpack.a libfoul.a libbspline.a}
-\DoxyCodeLine{\#\# [PB3D libraries]}
-\DoxyCodeLine{}
-\DoxyCodeLine{LINK := \$(LIB\_INTERNAL)}
-\DoxyCodeLine{}
-\DoxyCodeLine{\#\# [PETSc and SLEPc trick lib]}
-\DoxyCodeLine{LINK += \$(PETSC\_LIB)}
-\DoxyCodeLine{LINK += \$(SLEPC\_LIB)}
-\DoxyCodeLine{\#\# [PETSc and SLEPc trick lib]}
-\DoxyCodeLine{LINK += \$(LIBSTELL\_DIR)/libstell.a}
-\DoxyCodeLine{LINK += -\/L\$(STRUMPACK\_DIR)/lib -\/lstrumpack}
-\DoxyCodeLine{LINK += -\/L\$(HDF5\_DIR) -\/lhdf5\_fortran -\/lhdf5}
-\DoxyCodeLine{LINK += -\/L\$(NETCDFF\_DIR)/lib -\/lnetcdff}
-\DoxyCodeLine{LINK += -\/Wl,-\/R\$(NETCDFF\_DIR)/lib}
-\DoxyCodeLine{LINK += -\/lscalapack -\/lblacs -\/lblas -\/lm}
-\DoxyCodeLine{LINK += -\/lstdc++ -\/lmpi\_cxx}
-\DoxyCodeLine{}
+\DoxyCodeLine{\#\#\ [PETSc\ and\ SLEPc\ trick\ inc]}
+\DoxyCodeLine{INCLUDE\ =\ \$(PETSC\_FC\_INCLUDES)\ \$(SLEPC\_INCLUDE)}
+\DoxyCodeLine{\#\#\ [PETSc\ and\ SLEPc\ trick\ inc]}
+\DoxyCodeLine{\#\#\ [Libstell\ special]}
+\DoxyCodeLine{INCLUDE\ +=\ -\/I\$(LIBSTELL\_DIR)/libstell\_dir}
+\DoxyCodeLine{\#\#\ [Libstell\ special]}
+\DoxyCodeLine{INCLUDE\ +=\ -\/I\$(STRUMPACK\_DIR)/include}
+\DoxyCodeLine{\#\#\ [PB3D\ include]}
+\DoxyCodeLine{INCLUDE\ +=\ -\/I\$(PB3D\_DIR)/include}
+\DoxyCodeLine{\#\#\ [PB3D\ include]}
+\DoxyCodeLine{INCLUDE\ +=\ -\/I/usr/include/hdf5/openmpi}
 \DoxyCodeLine{}
 \DoxyCodeLine{\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#}
-\DoxyCodeLine{\#   Compiler}
+\DoxyCodeLine{\#\ \ \ Link}
+\DoxyCodeLine{\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#}
+\DoxyCodeLine{\#\#\ [PB3D\ libraries]}
+\DoxyCodeLine{LIB\_INTERNAL\ =\ libdfftpack.a\ libfoul.a\ libbspline.a}
+\DoxyCodeLine{\#\#\ [PB3D\ libraries]}
+\DoxyCodeLine{}
+\DoxyCodeLine{LINK\ :=\ \$(LIB\_INTERNAL)}
+\DoxyCodeLine{}
+\DoxyCodeLine{\#\#\ [PETSc\ and\ SLEPc\ trick\ lib]}
+\DoxyCodeLine{LINK\ +=\ \$(PETSC\_LIB)}
+\DoxyCodeLine{LINK\ +=\ \$(SLEPC\_LIB)}
+\DoxyCodeLine{\#\#\ [PETSc\ and\ SLEPc\ trick\ lib]}
+\DoxyCodeLine{LINK\ +=\ \$(LIBSTELL\_DIR)/libstell.a}
+\DoxyCodeLine{LINK\ +=\ -\/L\$(STRUMPACK\_DIR)/lib\ -\/lstrumpack}
+\DoxyCodeLine{LINK\ +=\ -\/L\$(HDF5\_DIR)\ -\/lhdf5\_fortran\ -\/lhdf5}
+\DoxyCodeLine{LINK\ +=\ -\/L\$(NETCDFF\_DIR)/lib\ -\/lnetcdff}
+\DoxyCodeLine{LINK\ +=\ -\/Wl,-\/R\$(NETCDFF\_DIR)/lib}
+\DoxyCodeLine{LINK\ +=\ -\/lscalapack\ -\/lblacs\ -\/lblas\ -\/lm}
+\DoxyCodeLine{LINK\ +=\ -\/lstdc++\ -\/lmpi\_cxx}
+\DoxyCodeLine{}
+\DoxyCodeLine{}
+\DoxyCodeLine{\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#}
+\DoxyCodeLine{\#\ \ \ Compiler}
 \DoxyCodeLine{\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#}
 \DoxyCodeLine{COMPILER=mpifort}
 \DoxyCodeLine{}
 \DoxyCodeLine{}
 \DoxyCodeLine{\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#}
-\DoxyCodeLine{\#   Linker}
+\DoxyCodeLine{\#\ \ \ Linker}
 \DoxyCodeLine{\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#}
 \DoxyCodeLine{LINKER=mpifort}
 \DoxyCodeLine{}
 \DoxyCodeLine{}
 \DoxyCodeLine{\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#}
-\DoxyCodeLine{\#   Compiler flags}
-\DoxyCodeLine{\#   options (used with -\/D[name]):}
-\DoxyCodeLine{\#       ldebug: debug}
-\DoxyCodeLine{\#       lIB: infiniband}
-\DoxyCodeLine{\#       lwith\_gnu: use GNU compiler [default]}
-\DoxyCodeLine{\#       lwith\_intel: use INTEL compiler, (checked for version 12.0.2)}
-\DoxyCodeLine{\#   note: INTEL warning 6536 is suppressed, which informs about extra "USE".}
-\DoxyCodeLine{\#   note: INTEL warning 6843 is suppressed, which informs about empty}
-\DoxyCodeLine{\#       intent(out) variables}
+\DoxyCodeLine{\#\ \ \ Compiler\ flags}
+\DoxyCodeLine{\#\ \ \ options\ (used\ with\ -\/D[name]):}
+\DoxyCodeLine{\#\ \ \ \ \ \ \ ldebug:\ debug}
+\DoxyCodeLine{\#\ \ \ \ \ \ \ lIB:\ infiniband}
+\DoxyCodeLine{\#\ \ \ \ \ \ \ lwith\_gnu:\ use\ GNU\ compiler\ [default]}
+\DoxyCodeLine{\#\ \ \ \ \ \ \ lwith\_intel:\ use\ INTEL\ compiler,\ (checked\ for\ version\ 12.0.2)}
+\DoxyCodeLine{\#\ \ \ note:\ INTEL\ warning\ 6536\ is\ suppressed,\ which\ informs\ about\ extra\ "{}USE"{}.}
+\DoxyCodeLine{\#\ \ \ note:\ INTEL\ warning\ 6843\ is\ suppressed,\ which\ informs\ about\ empty}
+\DoxyCodeLine{\#\ \ \ \ \ \ \ intent(out)\ variables}
 \DoxyCodeLine{\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#}
-\DoxyCodeLine{COMP\_FLAGS = -\/finit-\/real=snan -\/g -\/Og -\/Wall -\/Wextra -\/pedantic \(\backslash\)}
-\DoxyCodeLine{    -\/fimplicit-\/none -\/fbacktrace -\/fno-\/omit-\/frame-\/pointer \(\backslash\)}
-\DoxyCodeLine{    -\/fcheck=all -\/cpp -\/Dldebug\# debug, profiling with gprof2dot, GCC}
-\DoxyCodeLine{\#COMP\_FLAGS = -\/O3 -\/fbacktrace -\/g -\/fimplicit-\/none -\/fno-\/omit-\/frame-\/pointer \(\backslash\)}
-\DoxyCodeLine{    \#-\/cpp\# optimized, GCC}
+\DoxyCodeLine{COMP\_FLAGS\ =\ -\/finit-\/real=snan\ -\/g\ -\/Og\ -\/Wall\ -\/Wextra\ -\/pedantic\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ -\/fimplicit-\/none\ -\/fbacktrace\ -\/fno-\/omit-\/frame-\/pointer\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ -\/fcheck=all\ -\/cpp\ -\/Dldebug\#\ debug,\ profiling\ with\ gprof2dot,\ GCC}
+\DoxyCodeLine{\#COMP\_FLAGS\ =\ -\/O3\ -\/fbacktrace\ -\/g\ -\/fimplicit-\/none\ -\/fno-\/omit-\/frame-\/pointer\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \#-\/cpp\#\ optimized,\ GCC}
 \DoxyCodeLine{}
-\DoxyCodeLine{\#COMP\_FLAGS = -\/O0 -\/DlIB -\/Dldebug -\/g -\/heap-\/arrays 100 -\/recursive \(\backslash\)}
-\DoxyCodeLine{    \#-\/ftrapuv -\/check bounds -\/check uninit -\/traceback -\/implicitnone \(\backslash\)}
-\DoxyCodeLine{    \#-\/fno-\/omit-\/frame-\/pointer -\/cpp -\/Dlwith\_intel -\/diag-\/disable 6536 \(\backslash\)}
-\DoxyCodeLine{    \#-\/diag-\/disable 6843\# debug, profiling with gprof2dot, INTEL}
-\DoxyCodeLine{\#COMP\_FLAGS = -\/O3 -\/DlIB -\/traceback -\/g -\/heap-\/arrays 100 -\/recursive \(\backslash\)}
-\DoxyCodeLine{    \#-\/implicitnone -\/fno-\/omit-\/frame-\/pointer -\/cpp -\/Dlwith\_intel \(\backslash\)}
-\DoxyCodeLine{    \#-\/diag-\/disable 6536 -\/diag-\/disable 6843\# optimized, INTEL}
+\DoxyCodeLine{\#COMP\_FLAGS\ =\ -\/O0\ -\/DlIB\ -\/Dldebug\ -\/g\ -\/heap-\/arrays\ 100\ -\/recursive\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \#-\/ftrapuv\ -\/check\ bounds\ -\/check\ uninit\ -\/traceback\ -\/implicitnone\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \#-\/fno-\/omit-\/frame-\/pointer\ -\/cpp\ -\/Dlwith\_intel\ -\/diag-\/disable\ 6536\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \#-\/diag-\/disable\ 6843\#\ debug,\ profiling\ with\ gprof2dot,\ INTEL}
+\DoxyCodeLine{\#COMP\_FLAGS\ =\ -\/O3\ -\/DlIB\ -\/traceback\ -\/g\ -\/heap-\/arrays\ 100\ -\/recursive\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \#-\/implicitnone\ -\/fno-\/omit-\/frame-\/pointer\ -\/cpp\ -\/Dlwith\_intel\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \#-\/diag-\/disable\ 6536\ -\/diag-\/disable\ 6843\#\ optimized,\ INTEL}
 \DoxyCodeLine{}
-\DoxyCodeLine{COMP\_FLAGS\_EX= -\/O2 -\/w}
+\DoxyCodeLine{COMP\_FLAGS\_EX=\ -\/O2\ -\/w}
 \DoxyCodeLine{}
-\DoxyCodeLine{COMP\_FLAGS\_F= -\/O2 -\/funroll-\/loops -\/fexpensive-\/optimizations}
-\DoxyCodeLine{}
-\DoxyCodeLine{}
-\DoxyCodeLine{\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#}
-\DoxyCodeLine{\#   Link flags}
-\DoxyCodeLine{\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#}
-\DoxyCodeLine{LINK\_FLAGS = -\/fPIC -\/finit-\/real=snan\# debug}
-\DoxyCodeLine{\#LINK\_FLAGS = -\/fPIC\# optimized}
+\DoxyCodeLine{COMP\_FLAGS\_F=\ -\/O2\ -\/funroll-\/loops\ -\/fexpensive-\/optimizations}
 \DoxyCodeLine{}
 \DoxyCodeLine{}
 \DoxyCodeLine{\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#}
-\DoxyCodeLine{\#   Prepare}
+\DoxyCodeLine{\#\ \ \ Link\ flags}
 \DoxyCodeLine{\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#}
-\DoxyCodeLine{\# Add "Modules" and "Libraries" to the search path for the prerequisites}
-\DoxyCodeLine{VPATH = Modules:Libraries}
-\DoxyCodeLine{}
-\DoxyCodeLine{\# Contains list of source files (.o) and dependencies}
-\DoxyCodeLine{DEPLIST = PB3D.dep}
-\DoxyCodeLine{OBJLIST = ObjectList\# defines "ObjectFiles"}
-\DoxyCodeLine{}
-\DoxyCodeLine{\# Includes source files and dependency list}
-\DoxyCodeLine{include \$(DEPLIST)\# Dependencies of all the objects}
-\DoxyCodeLine{include \$(OBJLIST)\# Names of all the objects}
+\DoxyCodeLine{LINK\_FLAGS\ =\ -\/fPIC\ -\/finit-\/real=snan\#\ debug}
+\DoxyCodeLine{\#LINK\_FLAGS\ =\ -\/fPIC\#\ optimized}
 \DoxyCodeLine{}
 \DoxyCodeLine{}
 \DoxyCodeLine{\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#}
-\DoxyCodeLine{\#   Rules}
+\DoxyCodeLine{\#\ \ \ Prepare}
 \DoxyCodeLine{\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#}
-\DoxyCodeLine{all:    PB3D POST}
+\DoxyCodeLine{\#\ Add\ "{}Modules"{}\ and\ "{}Libraries"{}\ to\ the\ search\ path\ for\ the\ prerequisites}
+\DoxyCodeLine{VPATH\ =\ Modules:Libraries}
 \DoxyCodeLine{}
-\DoxyCodeLine{PB3D:   \$(ObjectFiles) \$(LIB\_INTERNAL) PB3D.o}
-\DoxyCodeLine{    \$(LINKER) -\/o \$@ \$(ObjectFiles) PB3D.o \$(LINK) \$(LINK\_FLAGS)}
+\DoxyCodeLine{\#\ Contains\ list\ of\ source\ files\ (.o)\ and\ dependencies}
+\DoxyCodeLine{DEPLIST\ =\ PB3D.dep}
+\DoxyCodeLine{OBJLIST\ =\ ObjectList\#\ defines\ "{}ObjectFiles"{}}
 \DoxyCodeLine{}
-\DoxyCodeLine{POST:   \$(ObjectFiles) \$(LIB\_INTERNAL) POST.o}
-\DoxyCodeLine{    \$(LINKER) -\/o \$@ \$(ObjectFiles) POST.o \$(LINK) \$(LINK\_FLAGS)}
+\DoxyCodeLine{\#\ Includes\ source\ files\ and\ dependency\ list}
+\DoxyCodeLine{include\ \$(DEPLIST)\#\ Dependencies\ of\ all\ the\ objects}
+\DoxyCodeLine{include\ \$(OBJLIST)\#\ Names\ of\ all\ the\ objects}
 \DoxyCodeLine{}
-\DoxyCodeLine{libdfftpack.a:  dfft.o}
-\DoxyCodeLine{    ar -\/rcs libdfftpack.a dfft.o}
 \DoxyCodeLine{}
-\DoxyCodeLine{libfoul.a:  foul.o}
-\DoxyCodeLine{    ar -\/rcs libfoul.a foul.o}
+\DoxyCodeLine{\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#}
+\DoxyCodeLine{\#\ \ \ Rules}
+\DoxyCodeLine{\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#}
+\DoxyCodeLine{all:\ \ \ \ PB3D\ POST}
 \DoxyCodeLine{}
-\DoxyCodeLine{libbspline.a:   bspline\_sub\_module.o}
-\DoxyCodeLine{    ar -\/rcs libbspline.a bspline\_sub\_module.o}
+\DoxyCodeLine{PB3D:\ \ \ \$(ObjectFiles)\ \$(LIB\_INTERNAL)\ PB3D.o}
+\DoxyCodeLine{\ \ \ \ \$(LINKER)\ -\/o\ \$@\ \$(ObjectFiles)\ PB3D.o\ \$(LINK)\ \$(LINK\_FLAGS)}
 \DoxyCodeLine{}
-\DoxyCodeLine{\%.o: \%.f90}
-\DoxyCodeLine{    \$(COMPILER) \$(INCLUDE) \$(COMP\_FLAGS) -\/c \$<}
+\DoxyCodeLine{POST:\ \ \ \$(ObjectFiles)\ \$(LIB\_INTERNAL)\ POST.o}
+\DoxyCodeLine{\ \ \ \ \$(LINKER)\ -\/o\ \$@\ \$(ObjectFiles)\ POST.o\ \$(LINK)\ \$(LINK\_FLAGS)}
 \DoxyCodeLine{}
-\DoxyCodeLine{\%.o: \%.f}
-\DoxyCodeLine{    \$(COMPILER) \$(COMP\_FLAGS\_F) -\/c \$<}
+\DoxyCodeLine{libdfftpack.a:\ \ dfft.o}
+\DoxyCodeLine{\ \ \ \ ar\ -\/rcs\ libdfftpack.a\ dfft.o}
 \DoxyCodeLine{}
-\DoxyCodeLine{dfft.o: dfft.f}
-\DoxyCodeLine{    \$(COMPILER) \$(COMP\_FLAGS\_EX) -\/c \$<}
+\DoxyCodeLine{libfoul.a:\ \ foul.o}
+\DoxyCodeLine{\ \ \ \ ar\ -\/rcs\ libfoul.a\ foul.o}
 \DoxyCodeLine{}
-\DoxyCodeLine{foul.o: foul.f90}
-\DoxyCodeLine{    \$(COMPILER) \$(COMP\_FLAGS\_EX) -\/c \$<}
+\DoxyCodeLine{libbspline.a:\ \ \ bspline\_sub\_module.o}
+\DoxyCodeLine{\ \ \ \ ar\ -\/rcs\ libbspline.a\ bspline\_sub\_module.o}
 \DoxyCodeLine{}
-\DoxyCodeLine{bspline\_sub\_module.o: bspline\_sub\_module.f90}
-\DoxyCodeLine{    \$(COMPILER) \$(COMP\_FLAGS\_EX) -\/c \$<}
+\DoxyCodeLine{\%.o:\ \%.f90}
+\DoxyCodeLine{\ \ \ \ \$(COMPILER)\ \$(INCLUDE)\ \$(COMP\_FLAGS)\ -\/c\ \$<}
+\DoxyCodeLine{}
+\DoxyCodeLine{\%.o:\ \%.f}
+\DoxyCodeLine{\ \ \ \ \$(COMPILER)\ \$(COMP\_FLAGS\_F)\ -\/c\ \$<}
+\DoxyCodeLine{}
+\DoxyCodeLine{dfft.o:\ dfft.f}
+\DoxyCodeLine{\ \ \ \ \$(COMPILER)\ \$(COMP\_FLAGS\_EX)\ -\/c\ \$<}
+\DoxyCodeLine{}
+\DoxyCodeLine{foul.o:\ foul.f90}
+\DoxyCodeLine{\ \ \ \ \$(COMPILER)\ \$(COMP\_FLAGS\_EX)\ -\/c\ \$<}
+\DoxyCodeLine{}
+\DoxyCodeLine{bspline\_sub\_module.o:\ bspline\_sub\_module.f90}
+\DoxyCodeLine{\ \ \ \ \$(COMPILER)\ \$(COMP\_FLAGS\_EX)\ -\/c\ \$<}
 \DoxyCodeLine{}
 \DoxyCodeLine{clean:}
-\DoxyCodeLine{    @rm -\/f *.o *.a *.mod *\string~ fort.* }
+\DoxyCodeLine{\ \ \ \ @rm\ -\/f\ *.o\ *.a\ *.mod\ *\string~\ fort.*\ }
 \DoxyCodeLine{}
 \DoxyCodeLine{clean\_all:}
-\DoxyCodeLine{    @rm -\/f *.o *.mod *\string~ fort.* PB3D POST}
+\DoxyCodeLine{\ \ \ \ @rm\ -\/f\ *.o\ *.mod\ *\string~\ fort.*\ PB3D\ POST}
+
 \end{DoxyCodeInclude}
  

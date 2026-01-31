@@ -1,7 +1,5 @@
 var searchData=
 [
-  ['wait_5fmpi_1516',['wait_mpi',['../namespacempi__utilities.html#a790ea24d32dd0e249541c1e57cd85536',1,'mpi_utilities']]],
-  ['wl_5fempty_1517',['wl_empty',['../namespacempi__utilities.html#a74e2e82b561f403ca8087c3925f76e29',1,'mpi_utilities']]],
-  ['write_5fdecomp_5flog_1518',['write_decomp_log',['../namespacedriver__post.html#a4981c6c0e63b862c92ba240f43e22e77',1,'driver_post']]],
-  ['writo_1519',['writo',['../namespacemessages.html#aa4a8d01563e92558e8a0875b075ec54c',1,'messages']]]
+  ['vac_5fpot_5fplot_0',['vac_pot_plot',['../namespacevac__ops.html#a76c87e7676f6ea8d72fabbbf6a631c6a',1,'vac_ops']]],
+  ['vec_5fdis2loc_1',['vec_dis2loc',['../namespacevac__utilities.html#a05e8e1f24569b4bff05e61a867268fc3',1,'vac_utilities']]]
 ];

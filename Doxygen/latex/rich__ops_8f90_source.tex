@@ -1,0 +1,574 @@
+\doxysection{rich\+\_\+ops.\+f90}
+\hypertarget{rich__ops_8f90_source}{}\label{rich__ops_8f90_source}\index{/Users/toonweyens/Code/PB3D/Modules/rich\_ops.f90@{/Users/toonweyens/Code/PB3D/Modules/rich\_ops.f90}}
+\doxymbox{\hyperlink{rich__ops_8f90}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00001}00001\ \textcolor{comment}{!-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/!}\textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00002}00002\ \textcolor{comment}{!>\ Operations\ concerning\ Richardson\ extrapolation.}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00003}00003\ \textcolor{comment}{!-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/!}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00004}\doxymbox{\hyperlink{namespacerich__ops}{00004}}\ \textcolor{keyword}{module}\ \doxymbox{\hyperlink{namespacerich__ops}{rich\_ops}}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00005}00005\ \textcolor{preprocessor}{\#include\ <PB3D\_macros.h>}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00006}00006\ \textcolor{preprocessor}{}\textcolor{preprocessor}{\#include\ <wrappers.h>}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00007}00007\ \textcolor{preprocessor}{}\ \ \ \ \textcolor{keywordtype}{use\ }\doxymbox{\hyperlink{namespacestr__utilities}{str\_utilities}}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00008}00008\ \ \ \ \ \textcolor{keywordtype}{use\ }\doxymbox{\hyperlink{namespaceoutput__ops}{output\_ops}}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00009}00009\ \ \ \ \ \textcolor{keywordtype}{use\ }\doxymbox{\hyperlink{namespacemessages}{messages}}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00010}00010\ \ \ \ \ \textcolor{keywordtype}{use\ }\doxymbox{\hyperlink{namespacenum__vars}{num\_vars}},\ \textcolor{keywordtype}{only}:\ \doxymbox{\hyperlink{namespacenum__vars_a03802aa2bd86439d7a9370836fabf3f2}{dp}},\ \doxymbox{\hyperlink{namespacenum__vars_a26f47310576a3414135b3d3fcc079709}{pi}},\ \doxymbox{\hyperlink{namespacenum__vars_a3ff2bb983ee80a6735277d6789e6ce7c}{max\_str\_ln}},\ \doxymbox{\hyperlink{namespacenum__vars_afbd4cb9a4ef9e8a277aecfc41b09aa1d}{max\_it\_rich}},\ \doxymbox{\hyperlink{namespacenum__vars_aa0091a935b9502afef09a87c0f590e9d}{tol\_rich}}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00011}00011\ \ \ \ \ \textcolor{keywordtype}{use\ }\doxymbox{\hyperlink{namespacegrid__vars}{grid\_vars}},\ \textcolor{keywordtype}{only}:\ \doxymbox{\hyperlink{structgrid__vars_1_1grid__type}{grid\_type}}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00012}00012\ \ \ \ \ \textcolor{keywordtype}{use\ }\doxymbox{\hyperlink{namespaceeq__vars}{eq\_vars}},\ \textcolor{keywordtype}{only}:\ \doxymbox{\hyperlink{structeq__vars_1_1eq__1__type}{eq\_1\_type}}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00013}00013\ \ \ \ \ \textcolor{keywordtype}{use\ }\doxymbox{\hyperlink{namespacesol__vars}{sol\_vars}},\ \textcolor{keywordtype}{only}:\ \doxymbox{\hyperlink{structsol__vars_1_1sol__type}{sol\_type}}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00014}00014\ \ \ \ \ \textcolor{keywordtype}{use\ }\doxymbox{\hyperlink{namespacerich__vars}{rich\_vars}}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00015}00015\ }
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00016}00016\ \ \ \ \ \textcolor{keywordtype}{implicit\ none}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00017}00017\ \ \ \ \ \textcolor{keywordtype}{private}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00018}00018\ \ \ \ \ \textcolor{keywordtype}{public}\ \doxymbox{\hyperlink{namespacerich__ops_a9fbbda93eab8973d33063e277c489e7b}{init\_rich}},\ \doxymbox{\hyperlink{namespacerich__ops_a3cf72a3ed0806ac9ddff262a00b2e33d}{term\_rich}},\ \doxymbox{\hyperlink{namespacerich__ops_a97206a15127960366fcb41d6889cb3b5}{start\_rich\_lvl}},\ \doxymbox{\hyperlink{namespacerich__ops_a0cce16b835e18b025d366a038b22efe1}{stop\_rich\_lvl}},\ \doxymbox{\hyperlink{namespacerich__ops_a50f4088b9ddd59597987fb4112f2a73e}{do\_rich}},\ \&}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00019}00019\ \ \ \ \ \ \ \ \ \&\doxymbox{\hyperlink{namespacerich__ops_ad2717df0206a397d0d7845a96aa5da23}{calc\_rich\_ex}},\ \doxymbox{\hyperlink{namespacerich__ops_a58e1bed1bed5c2d0b91cc7dc5e3099d9}{find\_max\_rich\_lvl}}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00020}00020\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00021}00021\ \textcolor{keyword}{contains}\textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00022}00022\ \textcolor{comment}{\ \ \ \ !>\ Initialize\ Richardson\ extrapolation\ system.}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00023}00023\ \textcolor{comment}{\ \ \ \ !!}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00024}00024\ \textcolor{comment}{\ \ \ \ !!\ Needs\ to\ be\ called\ only\ once.}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00025}00025\ \textcolor{comment}{\ \ \ \ !!}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00026}00026\ \textcolor{comment}{\ \ \ \ !!\ \(\backslash\)return\ ierr}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00027}\doxymbox{\hyperlink{namespacerich__ops_a9fbbda93eab8973d33063e277c489e7b}{00027}}\ \ \ \ \ \textcolor{keyword}{integer\ }\textcolor{keyword}{function\ }\doxymbox{\hyperlink{namespacerich__ops_a9fbbda93eab8973d33063e277c489e7b}{init\_rich}}()\ \textcolor{keyword}{result}(ierr)}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00028}00028\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{use\ }\doxymbox{\hyperlink{namespacenum__vars}{num\_vars}},\ \textcolor{keywordtype}{only}:\ \doxymbox{\hyperlink{namespacenum__vars_a3deb68d5c9cd3a99c9dd779e18c4d129}{n\_sol\_requested}},\ \doxymbox{\hyperlink{namespacenum__vars_ac4bc885e8034c285bf0a9b76a832a738}{rich\_restart\_lvl}},\ \doxymbox{\hyperlink{namespacenum__vars_a7d8763402037dbb80db19e2534ddf595}{eq\_style}},\ \doxymbox{\hyperlink{namespacenum__vars_ab47aa91445feaedb05ac9d1a584664fe}{rank}}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00029}00029\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{use\ }\doxymbox{\hyperlink{namespacepb3d__ops}{pb3d\_ops}},\ \textcolor{keywordtype}{only}:\ \doxymbox{\hyperlink{namespacepb3d__ops_ad1481747b9b9832f816d4bf1dd2d6737}{reconstruct\_pb3d\_in}},\ \doxymbox{\hyperlink{namespacepb3d__ops_a4218b582c5029ff05893265fa329877b}{reconstruct\_pb3d\_grid}},\ \&}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00030}00030\ \ \ \ \ \ \ \ \ \ \ \ \ \&\doxymbox{\hyperlink{namespacepb3d__ops_a3142ca9965fa01b2777db762ed1a6eba}{reconstruct\_pb3d\_eq\_1}},\ \doxymbox{\hyperlink{namespacepb3d__ops_ae7afc544227f34f2877eb5a14d620823}{reconstruct\_pb3d\_sol}}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00031}00031\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{use\ }\doxymbox{\hyperlink{namespacex__ops}{x\_ops}},\ \textcolor{keywordtype}{only}:\ \doxymbox{\hyperlink{namespacex__ops_a73a80c582379669f8e07b09dd7456878}{init\_modes}},\ \doxymbox{\hyperlink{namespacex__ops_a640d64aeae8a574eb05f164c1bdad3bd}{setup\_modes}}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00032}00032\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{use\ }\doxymbox{\hyperlink{namespacex__vars}{x\_vars}},\ \textcolor{keywordtype}{only}:\ \doxymbox{\hyperlink{namespacex__vars_ac74f59668de6caca7038decc7191c6a1}{mds\_sol}}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00033}00033\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{use\ }\doxymbox{\hyperlink{namespacegrid__vars}{grid\_vars}},\ \textcolor{keywordtype}{only}:\ \doxymbox{\hyperlink{namespacegrid__vars_a83a6486b23c4a218822540da15904426}{n\_alpha}},\ \doxymbox{\hyperlink{namespacegrid__vars_ad6f74227054278479670c68d8950e0e2}{min\_alpha}},\ \doxymbox{\hyperlink{namespacegrid__vars_ad3cab5cd1037b6956ccf74cde4539298}{max\_alpha}},\ \doxymbox{\hyperlink{namespacegrid__vars_a07bf4730be1d5ab8b42f85be63e11797}{alpha}}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00034}00034\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{use\ }\doxymbox{\hyperlink{namespacegrid__utilities}{grid\_utilities}},\ \textcolor{keywordtype}{only}:\ \doxymbox{\hyperlink{interfacegrid__utilities_1_1calc__eqd__grid}{calc\_eqd\_grid}}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00035}00035\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00036}00036\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{character(*)},\ \textcolor{keywordtype}{parameter}\ ::\ rout\_name\ =\ \textcolor{stringliteral}{'init\_rich'}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00037}00037\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00038}00038\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ local\ variables}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00039}00039\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{type}(\doxymbox{\hyperlink{structgrid__vars_1_1grid__type}{grid\_type}})\ ::\ grid\_eq\_b\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !<\ equilibrium\ grid}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00040}00040\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{type}(\doxymbox{\hyperlink{structgrid__vars_1_1grid__type}{grid\_type}})\ ::\ grid\_x\_b\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !<\ field-\/aligned\ perturbation\ grid}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00041}00041\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{type}(\doxymbox{\hyperlink{structgrid__vars_1_1grid__type}{grid\_type}})\ ::\ grid\_sol\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !<\ solution\ grid}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00042}00042\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{type}(\doxymbox{\hyperlink{structeq__vars_1_1eq__1__type}{eq\_1\_type}})\ ::\ eq\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !<\ flux\ equilibrium\ variables}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00043}00043\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{type}(\doxymbox{\hyperlink{structsol__vars_1_1sol__type}{sol\_type}})\ ::\ sol\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !<\ solution\ variables}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00044}00044\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{character(len=4)}\ ::\ grid\_eq\_name\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !<\ name\ of\ equilibrium\ grid}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00045}00045\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{character(len=4)}\ ::\ grid\_x\_name\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !<\ name\ of\ perturbation\ grid}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00046}00046\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{character(len=max\_str\_ln)}\ ::\ err\_msg\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !<\ error\ message}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00047}00047\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00048}00048\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ set\ variables}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00049}00049\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{namespacerich__vars_a1b7734ba9ce6cc153b22387e638093c0}{rich\_lvl}}\ =\ 1}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00050}00050\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{namespacerich__vars_adf63efd509bbcda4f77fd7e88c766081}{rich\_conv}}\ =\ .false.}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00051}00051\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{namespacerich__vars_aedc7171560db899c515d1610d99582c9}{use\_guess}}\ =\ .false.}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00052}00052\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00053}00053\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ initialize\ ierr}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00054}00054\ \ \ \ \ \ \ \ \ ierr\ =\ 0}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00055}00055\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00056}00056\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ user\ output\ (only\ master\ has\ variables\ set\ up)}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00057}00057\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\doxymbox{\hyperlink{namespacenum__vars_ab47aa91445feaedb05ac9d1a584664fe}{rank}}.eq.0\ .and.\ \doxymbox{\hyperlink{namespacenum__vars_afbd4cb9a4ef9e8a277aecfc41b09aa1d}{max\_it\_rich}}.gt.1)\ \textcolor{keywordflow}{then}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ only\ when\ more\ than\ one\ level}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00058}00058\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\doxymbox{\hyperlink{namespacenum__vars_ac4bc885e8034c285bf0a9b76a832a738}{rich\_restart\_lvl}}.eq.1)\ \textcolor{keywordflow}{then}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00059}00059\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ user\ output}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00060}00060\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_aa4a8d01563e92558e8a0875b075ec54c}{writo}}(\textcolor{stringliteral}{'Richardson\ extrapolation\ loop\ initialization'})}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00061}00061\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00062}00062\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ user\ output}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00063}00063\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_aa4a8d01563e92558e8a0875b075ec54c}{writo}}(\textcolor{stringliteral}{'Richardson\ extrapolation\ loop\ continuation\ at\ \&}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00064}00064\ \textcolor{stringliteral}{}\textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&level\ '}//trim(\doxymbox{\hyperlink{namespacestr__utilities_a0b97e51770725a3e98ed393d26681414}{i2str}}(\doxymbox{\hyperlink{namespacenum__vars_ac4bc885e8034c285bf0a9b76a832a738}{rich\_restart\_lvl}})))}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00065}00065\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ \ \ \ \ end\ if}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00066}00066\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ end\ if}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00067}00067\ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_a6e6bfb084063e4cc91ee86e542043302}{lvl\_ud}}(1)}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00068}00068\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00069}00069\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ some\ preliminary\ things}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00070}00070\ \ \ \ \ \ \ \ \ ierr\ =\ \doxymbox{\hyperlink{namespacepb3d__ops_ad1481747b9b9832f816d4bf1dd2d6737}{reconstruct\_pb3d\_in}}(\textcolor{stringliteral}{'in'})\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ reconstruct\ miscellaneous\ PB3D\ output\ variables}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00071}00071\ \ \ \ \ \ \ \ \ chckerr(\textcolor{stringliteral}{''})}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00072}00072\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00073}00073\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ allocate\ variables}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00074}00074\ \ \ \ \ \ \ \ \ \textcolor{keyword}{allocate}(\doxymbox{\hyperlink{namespacerich__vars_ae1d3c7deb4c8becd036a63367fca5e20}{sol\_val\_rich}}(\doxymbox{\hyperlink{namespacenum__vars_afbd4cb9a4ef9e8a277aecfc41b09aa1d}{max\_it\_rich}},\doxymbox{\hyperlink{namespacenum__vars_afbd4cb9a4ef9e8a277aecfc41b09aa1d}{max\_it\_rich}},\doxymbox{\hyperlink{namespacenum__vars_a3deb68d5c9cd3a99c9dd779e18c4d129}{n\_sol\_requested}}))}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00075}00075\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{namespacerich__vars_ae1d3c7deb4c8becd036a63367fca5e20}{sol\_val\_rich}}\ =\ 0.0\_dp}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00076}00076\ \ \ \ \ \ \ \ \ \textcolor{keyword}{allocate}(\doxymbox{\hyperlink{namespacerich__vars_a7f584d9b84f3e3e230b45ce4b8e0e9b1}{x\_axis\_rich}}(\doxymbox{\hyperlink{namespacenum__vars_afbd4cb9a4ef9e8a277aecfc41b09aa1d}{max\_it\_rich}},\doxymbox{\hyperlink{namespacenum__vars_a3deb68d5c9cd3a99c9dd779e18c4d129}{n\_sol\_requested}}))}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00077}00077\ \ \ \ \ \ \ \ \ \textcolor{keyword}{allocate}(\doxymbox{\hyperlink{namespacerich__vars_afac4d06d60829484cfb7d4964964945b}{max\_rel\_err}}(\doxymbox{\hyperlink{namespacenum__vars_afbd4cb9a4ef9e8a277aecfc41b09aa1d}{max\_it\_rich}}-\/1))}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00078}00078\ \ \ \ \ \ \ \ \ \textcolor{keyword}{allocate}(\doxymbox{\hyperlink{namespacerich__vars_af3df7361e33058bc83fe43a803173d89}{loc\_max\_rel\_err}}(\doxymbox{\hyperlink{namespacenum__vars_afbd4cb9a4ef9e8a277aecfc41b09aa1d}{max\_it\_rich}}-\/1,1))}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00079}00079\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00080}00080\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ set\ up\ alpha}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00081}00081\ \ \ \ \ \ \ \ \ \textcolor{keyword}{allocate}(\doxymbox{\hyperlink{namespacegrid__vars_a07bf4730be1d5ab8b42f85be63e11797}{alpha}}(\doxymbox{\hyperlink{namespacegrid__vars_a83a6486b23c4a218822540da15904426}{n\_alpha}}))}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00082}00082\ \ \ \ \ \ \ \ \ ierr\ =\ \doxymbox{\hyperlink{interfacegrid__utilities_1_1calc__eqd__grid}{calc\_eqd\_grid}}(\doxymbox{\hyperlink{namespacegrid__vars_a07bf4730be1d5ab8b42f85be63e11797}{alpha}},\doxymbox{\hyperlink{namespacegrid__vars_ad6f74227054278479670c68d8950e0e2}{min\_alpha}}*\doxymbox{\hyperlink{namespacenum__vars_a26f47310576a3414135b3d3fcc079709}{pi}},\doxymbox{\hyperlink{namespacegrid__vars_ad3cab5cd1037b6956ccf74cde4539298}{max\_alpha}}*\doxymbox{\hyperlink{namespacenum__vars_a26f47310576a3414135b3d3fcc079709}{pi}},excl\_last=.true.)}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00083}00083\ \ \ \ \ \ \ \ \ chckerr(\textcolor{stringliteral}{''})}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00084}00084\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00085}00085\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ Richardson\ restart}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00086}00086\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\doxymbox{\hyperlink{namespacenum__vars_ac4bc885e8034c285bf0a9b76a832a738}{rich\_restart\_lvl}}.gt.1)\ \textcolor{keywordflow}{then}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00087}00087\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ user\ output}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00088}00088\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_aa4a8d01563e92558e8a0875b075ec54c}{writo}}(\textcolor{stringliteral}{'reconstructing\ Richardson\ extrapolation\ variables'})}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00089}00089\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_a6e6bfb084063e4cc91ee86e542043302}{lvl\_ud}}(1)}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00090}00090\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00091}00091\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_aa4a8d01563e92558e8a0875b075ec54c}{writo}}(\textcolor{stringliteral}{'Prepare\ general\ variables'})}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00092}00092\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_a6e6bfb084063e4cc91ee86e542043302}{lvl\_ud}}(1)}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00093}00093\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00094}00094\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ use\ guess}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00095}00095\ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{namespacerich__vars_aedc7171560db899c515d1610d99582c9}{use\_guess}}\ =\ .true.}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00096}00096\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00097}00097\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ set\ up\ grid\ names}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00098}00098\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{select\ case}\ (\doxymbox{\hyperlink{namespacenum__vars_a7d8763402037dbb80db19e2534ddf595}{eq\_style}})}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00099}00099\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ (1)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ VMEC}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00100}00100\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ grid\_x\_name\ =\ \textcolor{stringliteral}{'X'}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ grids\ are\ already\ field-\/aligned}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00101}00101\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ grid\_eq\_name\ =\ \textcolor{stringliteral}{'eq'}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ grids\ are\ already\ field-\/aligned}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00102}00102\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ (2)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ HELENA}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00103}00103\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ grid\_x\_name\ =\ \textcolor{stringliteral}{'X\_B'}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ field-\/aligned\ grid\ is\ separate}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00104}00104\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ grid\_eq\_name\ =\ \textcolor{stringliteral}{'eq\_B'}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ field-\/aligned\ grid\ is\ separate}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00105}00105\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ \ \ \ \ end\ select}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00106}00106\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00107}00107\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ reconstruct\ field-\/aligned\ equilibrium\ grid\ (for\ level\ 1)}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00108}00108\ \ \ \ \ \ \ \ \ \ \ \ \ ierr\ =\ \doxymbox{\hyperlink{namespacepb3d__ops_a4218b582c5029ff05893265fa329877b}{reconstruct\_pb3d\_grid}}(grid\_eq\_b,trim(grid\_eq\_name),\&}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00109}00109\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&\doxymbox{\hyperlink{namespacerich__vars_a1b7734ba9ce6cc153b22387e638093c0}{rich\_lvl}}=1)}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00110}00110\ \ \ \ \ \ \ \ \ \ \ \ \ chckerr(\textcolor{stringliteral}{''})}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00111}00111\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00112}00112\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ reconstruct\ solution\ grid}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00113}00113\ \ \ \ \ \ \ \ \ \ \ \ \ ierr\ =\ \doxymbox{\hyperlink{namespacepb3d__ops_a4218b582c5029ff05893265fa329877b}{reconstruct\_pb3d\_grid}}(grid\_sol,\textcolor{stringliteral}{'sol'})}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00114}00114\ \ \ \ \ \ \ \ \ \ \ \ \ chckerr(\textcolor{stringliteral}{''})}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00115}00115\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00116}00116\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ reconstruct\ flux\ equilibrium\ variables}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00117}00117\ \ \ \ \ \ \ \ \ \ \ \ \ ierr\ =\ \doxymbox{\hyperlink{namespacepb3d__ops_a3142ca9965fa01b2777db762ed1a6eba}{reconstruct\_pb3d\_eq\_1}}(grid\_eq\_b,eq,\textcolor{stringliteral}{'eq\_1'})}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00118}00118\ \ \ \ \ \ \ \ \ \ \ \ \ chckerr(\textcolor{stringliteral}{''})}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00119}00119\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00120}00120\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_a6e6bfb084063e4cc91ee86e542043302}{lvl\_ud}}(-\/1)}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00121}00121\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00122}00122\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ loop\ \ over\ all\ \ previous\ Richardson\ \ levels\ using\ \ rich\_lvl\ as}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00123}00123\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ counter}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00124}00124\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{do}\ \doxymbox{\hyperlink{namespacerich__vars_a1b7734ba9ce6cc153b22387e638093c0}{rich\_lvl}}\ =\ 1,\doxymbox{\hyperlink{namespacenum__vars_ac4bc885e8034c285bf0a9b76a832a738}{rich\_restart\_lvl}}-\/1}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00125}00125\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_aa4a8d01563e92558e8a0875b075ec54c}{writo}}(\textcolor{stringliteral}{'Prepare\ variables\ for\ Richardson\ level\ '}//\&}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00126}00126\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&trim(\doxymbox{\hyperlink{namespacestr__utilities_a0b97e51770725a3e98ed393d26681414}{i2str}}(\doxymbox{\hyperlink{namespacerich__vars_a1b7734ba9ce6cc153b22387e638093c0}{rich\_lvl}})))}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00127}00127\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_a6e6bfb084063e4cc91ee86e542043302}{lvl\_ud}}(1)}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00128}00128\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00129}00129\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ reconstruct\ field-\/aligned\ perturbation\ grid}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00130}00130\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ierr\ =\ \doxymbox{\hyperlink{namespacepb3d__ops_a4218b582c5029ff05893265fa329877b}{reconstruct\_pb3d\_grid}}(grid\_x\_b,trim(grid\_x\_name),\&}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00131}00131\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&\doxymbox{\hyperlink{namespacerich__vars_a1b7734ba9ce6cc153b22387e638093c0}{rich\_lvl}}=\doxymbox{\hyperlink{namespacerich__vars_a1b7734ba9ce6cc153b22387e638093c0}{rich\_lvl}})}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00132}00132\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ chckerr(\textcolor{stringliteral}{''})}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00133}00133\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00134}00134\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\doxymbox{\hyperlink{namespacerich__vars_a1b7734ba9ce6cc153b22387e638093c0}{rich\_lvl}}.eq.1)\ \textcolor{keywordflow}{then}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00135}00135\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ initialize\ global\ n\ and\ m\ variables}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00136}00136\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ierr\ =\ \doxymbox{\hyperlink{namespacex__ops_a73a80c582379669f8e07b09dd7456878}{init\_modes}}(grid\_eq\_b,eq)}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00137}00137\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ chckerr(\textcolor{stringliteral}{''})}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00138}00138\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00139}00139\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ set\ up\ n\ and\ m\ variables\ for\ sol\ grid}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00140}00140\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ierr\ =\ \doxymbox{\hyperlink{namespacex__ops_a640d64aeae8a574eb05f164c1bdad3bd}{setup\_modes}}(\doxymbox{\hyperlink{namespacex__vars_ac74f59668de6caca7038decc7191c6a1}{mds\_sol}},grid\_eq\_b,grid\_sol)}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00141}00141\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ chckerr(\textcolor{stringliteral}{''})}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00142}00142\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ end\ if}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00143}00143\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00144}00144\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ reconstruct\ solution}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00145}00145\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ierr\ =\ \doxymbox{\hyperlink{namespacepb3d__ops_ae7afc544227f34f2877eb5a14d620823}{reconstruct\_pb3d\_sol}}(\doxymbox{\hyperlink{namespacex__vars_ac74f59668de6caca7038decc7191c6a1}{mds\_sol}},grid\_sol,sol,\textcolor{stringliteral}{'sol'},\&}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00146}00146\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&\doxymbox{\hyperlink{namespacerich__vars_a1b7734ba9ce6cc153b22387e638093c0}{rich\_lvl}}=\doxymbox{\hyperlink{namespacerich__vars_a1b7734ba9ce6cc153b22387e638093c0}{rich\_lvl}})}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00147}00147\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ chckerr(\textcolor{stringliteral}{''})}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00148}00148\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00149}00149\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_a6e6bfb084063e4cc91ee86e542043302}{lvl\_ud}}(-\/1)}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00150}00150\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00151}00151\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_aa4a8d01563e92558e8a0875b075ec54c}{writo}}(\textcolor{stringliteral}{'Recreate\ Richardson\ variables'})}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00152}00152\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_a6e6bfb084063e4cc91ee86e542043302}{lvl\_ud}}(1)}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00153}00153\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00154}00154\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ set\ x\_axis\_rich}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00155}00155\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\doxymbox{\hyperlink{namespacerich__vars_a1b7734ba9ce6cc153b22387e638093c0}{rich\_lvl}}.eq.1)\ \textcolor{keywordflow}{then}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00156}00156\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ set\ up\ n\_par\_X\ for\ first\ rich\_lvl}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00157}00157\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{namespacerich__vars_a7a32b8d53450cf925042cd5ddc7e23e6}{n\_par\_x}}\ =\ grid\_x\_b\%n(1)}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00158}00158\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00159}00159\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ check\ it}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00160}00160\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\doxymbox{\hyperlink{namespacerich__vars_a7a32b8d53450cf925042cd5ddc7e23e6}{n\_par\_x}}.eq.\doxymbox{\hyperlink{namespacerich__vars_a07841cccca6e6ee59aeb4e0661558eda}{min\_n\_par\_x}})\ \textcolor{keywordflow}{then}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00161}00161\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ set\ x\_axis\_rich}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00162}00162\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{namespacerich__vars_a7f584d9b84f3e3e230b45ce4b8e0e9b1}{x\_axis\_rich}}(1,:)\ =\ \doxymbox{\hyperlink{namespacerich__vars_a07841cccca6e6ee59aeb4e0661558eda}{min\_n\_par\_x}}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00163}00163\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00164}00164\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ierr\ =\ 1}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00165}00165\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ err\_msg\ =\ \textcolor{stringliteral}{'Saved\ variables\ started\ with\ \&}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00166}00166\ \textcolor{stringliteral}{}\textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&min\_n\_par\_X\ =\ '}//trim(\doxymbox{\hyperlink{namespacestr__utilities_a0b97e51770725a3e98ed393d26681414}{i2str}}(\doxymbox{\hyperlink{namespacerich__vars_a7a32b8d53450cf925042cd5ddc7e23e6}{n\_par\_x}}))//\&}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00167}00167\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&\textcolor{stringliteral}{'\ whereas\ here\ '}//trim(\doxymbox{\hyperlink{namespacestr__utilities_a0b97e51770725a3e98ed393d26681414}{i2str}}(\doxymbox{\hyperlink{namespacerich__vars_a07841cccca6e6ee59aeb4e0661558eda}{min\_n\_par\_x}}))//\&}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00168}00168\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&\textcolor{stringliteral}{'\ is\ specified'}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00169}00169\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ chckerr(err\_msg)}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00170}00170\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ end\ if}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00171}00171\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00172}00172\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ update\ n\_par\_X}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00173}00173\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{namespacerich__vars_a7a32b8d53450cf925042cd5ddc7e23e6}{n\_par\_x}}\ =\ \doxymbox{\hyperlink{namespacerich__vars_a7a32b8d53450cf925042cd5ddc7e23e6}{n\_par\_x}}*2-\/1}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00174}00174\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00175}00175\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ set\ x\_axis\_rich}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00176}00176\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{namespacerich__vars_a7f584d9b84f3e3e230b45ce4b8e0e9b1}{x\_axis\_rich}}(\doxymbox{\hyperlink{namespacerich__vars_a1b7734ba9ce6cc153b22387e638093c0}{rich\_lvl}},:)\ =\ \doxymbox{\hyperlink{namespacerich__vars_a7f584d9b84f3e3e230b45ce4b8e0e9b1}{x\_axis\_rich}}(\doxymbox{\hyperlink{namespacerich__vars_a1b7734ba9ce6cc153b22387e638093c0}{rich\_lvl}}-\/1,:)*2-\/1}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00177}00177\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ end\ if}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00178}00178\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00179}00179\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ calculate\ Richardson\ extrapolation}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00180}00180\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacerich__ops_ad2717df0206a397d0d7845a96aa5da23}{calc\_rich\_ex}}(sol\%val)}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00181}00181\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00182}00182\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ update\ error\ variables}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00183}00183\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }check\_conv()}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00184}00184\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00185}00185\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ clean\ up}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00186}00186\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }grid\_x\_b\%dealloc()}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00187}00187\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }sol\%dealloc()}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00188}00188\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00189}00189\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_a6e6bfb084063e4cc91ee86e542043302}{lvl\_ud}}(-\/1)}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00190}00190\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ \ \ \ \ end\ do}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00191}00191\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00192}00192\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ clean\ up}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00193}00193\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacex__vars_ac74f59668de6caca7038decc7191c6a1}{mds\_sol}}\%dealloc()}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00194}00194\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }grid\_eq\_b\%dealloc()}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00195}00195\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }grid\_sol\%dealloc()}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00196}00196\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }eq\%dealloc()}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00197}00197\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00198}00198\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ set\ rich\_lvl}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00199}00199\ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{namespacerich__vars_a1b7734ba9ce6cc153b22387e638093c0}{rich\_lvl}}\ =\ \doxymbox{\hyperlink{namespacenum__vars_ac4bc885e8034c285bf0a9b76a832a738}{rich\_restart\_lvl}}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00200}00200\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00201}00201\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_a6e6bfb084063e4cc91ee86e542043302}{lvl\_ud}}(-\/1)}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00202}00202\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_aa4a8d01563e92558e8a0875b075ec54c}{writo}}(\textcolor{stringliteral}{'Richardson\ extrapolation\ variables\ reconstructed'})}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00203}00203\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ end\ if}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00204}00204\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00205}00205\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\doxymbox{\hyperlink{namespacenum__vars_afbd4cb9a4ef9e8a277aecfc41b09aa1d}{max\_it\_rich}}.gt.1)\ \textcolor{keywordflow}{then}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ only\ when\ more\ than\ one\ level}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00206}00206\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_aa4a8d01563e92558e8a0875b075ec54c}{writo}}(\textcolor{stringliteral}{'Maximum\ number\ of\ iterations:\ '}//\&}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00207}00207\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&trim(\doxymbox{\hyperlink{namespacestr__utilities_a0b97e51770725a3e98ed393d26681414}{i2str}}(\doxymbox{\hyperlink{namespacenum__vars_afbd4cb9a4ef9e8a277aecfc41b09aa1d}{max\_it\_rich}})))}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00208}00208\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_aa4a8d01563e92558e8a0875b075ec54c}{writo}}(\textcolor{stringliteral}{'Tolerance\ requested:\ '}//trim(\doxymbox{\hyperlink{namespacestr__utilities_ac778d706b2e021672618939ab58fdd32}{r2strt}}(\doxymbox{\hyperlink{namespacenum__vars_aa0091a935b9502afef09a87c0f590e9d}{tol\_rich}})))}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00209}00209\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00210}00210\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_aa4a8d01563e92558e8a0875b075ec54c}{writo}}(\textcolor{stringliteral}{''})}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00211}00211\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ end\ if}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00212}00212\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00213}00213\ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_a6e6bfb084063e4cc91ee86e542043302}{lvl\_ud}}(-\/1)}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00214}00214\ \ \ \ \ \textcolor{keyword}{end\ function\ }\doxymbox{\hyperlink{namespacerich__ops_a9fbbda93eab8973d33063e277c489e7b}{init\_rich}}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00215}00215\ \ \ \ \ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00216}00216\ \textcolor{comment}{\ \ \ \ !>\ Terminate\ the\ Richardson\ extrapolation\ system.}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00217}00217\ \textcolor{comment}{\ \ \ \ !!}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00218}00218\ \textcolor{comment}{\ \ \ \ !!\ Needs\ to\ be\ called\ only\ once.}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00219}\doxymbox{\hyperlink{namespacerich__ops_a3cf72a3ed0806ac9ddff262a00b2e33d}{00219}}\ \ \ \ \ \textcolor{keyword}{subroutine\ }\doxymbox{\hyperlink{namespacerich__ops_a3cf72a3ed0806ac9ddff262a00b2e33d}{term\_rich}}()}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00220}00220\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{use\ }\doxymbox{\hyperlink{namespacenum__vars}{num\_vars}},\ \textcolor{keywordtype}{only}:\ \doxymbox{\hyperlink{namespacenum__vars_ab47aa91445feaedb05ac9d1a584664fe}{rank}},\ \doxymbox{\hyperlink{namespacenum__vars_a125bbc64ad3fac6752bc64e4222c6f50}{norm\_disc\_prec\_sol}}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00221}00221\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{use\ }\doxymbox{\hyperlink{namespaceinput__utilities}{input\_utilities}},\ \textcolor{keywordtype}{only}:\ \doxymbox{\hyperlink{namespaceinput__utilities_aa0cf7578f9c9ab6470f8bb8d025f1daf}{dealloc\_in}}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00222}00222\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00223}00223\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ local\ variables}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00224}00224\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer}\ ::\ id\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ counter}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00225}00225\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00226}00226\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ user\ output}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00227}00227\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\doxymbox{\hyperlink{namespacenum__vars_afbd4cb9a4ef9e8a277aecfc41b09aa1d}{max\_it\_rich}}.gt.1)\ \textcolor{keywordflow}{then}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00228}00228\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ user\ output}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00229}00229\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_aa4a8d01563e92558e8a0875b075ec54c}{writo}}(\textcolor{stringliteral}{'Finishing\ Richardson\ extrapolation\ loop'})}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00230}00230\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_a6e6bfb084063e4cc91ee86e542043302}{lvl\_ud}}(1)}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00231}00231\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00232}00232\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\doxymbox{\hyperlink{namespacerich__vars_adf63efd509bbcda4f77fd7e88c766081}{rich\_conv}})\ \textcolor{keywordflow}{then}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00233}00233\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_aa4a8d01563e92558e8a0875b075ec54c}{writo}}(\textcolor{stringliteral}{'Convergence\ reached\ in\ '}//trim(\doxymbox{\hyperlink{namespacestr__utilities_a0b97e51770725a3e98ed393d26681414}{i2str}}(\doxymbox{\hyperlink{namespacerich__vars_a1b7734ba9ce6cc153b22387e638093c0}{rich\_lvl}}-\/1))//\&}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00234}00234\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&\textcolor{stringliteral}{'\ steps:'})}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00235}00235\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00236}00236\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_aa4a8d01563e92558e8a0875b075ec54c}{writo}}(\textcolor{stringliteral}{'After\ '}//trim(\doxymbox{\hyperlink{namespacestr__utilities_a0b97e51770725a3e98ed393d26681414}{i2str}}(\doxymbox{\hyperlink{namespacerich__vars_a1b7734ba9ce6cc153b22387e638093c0}{rich\_lvl}}-\/1))//\&}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00237}00237\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&\textcolor{stringliteral}{'\ steps,\ no\ convergence\ reached:'})}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00238}00238\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ \ \ \ \ end\ if}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00239}00239\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00240}00240\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_a6e6bfb084063e4cc91ee86e542043302}{lvl\_ud}}(1)}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00241}00241\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00242}00242\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_aa4a8d01563e92558e8a0875b075ec54c}{writo}}(\textcolor{stringliteral}{'Maximum\ relative\ error\ '}//\&}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00243}00243\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&trim(\doxymbox{\hyperlink{namespacestr__utilities_a92ac6c0af1979df094de1caddd28ade0}{r2str}}(\doxymbox{\hyperlink{namespacerich__vars_afac4d06d60829484cfb7d4964964945b}{max\_rel\_err}}(\doxymbox{\hyperlink{namespacerich__vars_a1b7734ba9ce6cc153b22387e638093c0}{rich\_lvl}}-\/2)))//\&}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00244}00244\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&\textcolor{stringliteral}{'\ for\ Eigenvalue\ '}//trim(\doxymbox{\hyperlink{namespacestr__utilities_a0b97e51770725a3e98ed393d26681414}{i2str}}(\doxymbox{\hyperlink{namespacerich__vars_af3df7361e33058bc83fe43a803173d89}{loc\_max\_rel\_err}}(\doxymbox{\hyperlink{namespacerich__vars_a1b7734ba9ce6cc153b22387e638093c0}{rich\_lvl}}-\/2,1))))}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00245}00245\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_aa4a8d01563e92558e8a0875b075ec54c}{writo}}(\textcolor{stringliteral}{'Tolerance\ requested:\ '}//trim(\doxymbox{\hyperlink{namespacestr__utilities_ac778d706b2e021672618939ab58fdd32}{r2strt}}(\doxymbox{\hyperlink{namespacenum__vars_aa0091a935b9502afef09a87c0f590e9d}{tol\_rich}})))}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00246}00246\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_aa4a8d01563e92558e8a0875b075ec54c}{writo}}(\textcolor{stringliteral}{'Resulting\ best\ guesses\ for\ Eigenvalues:'})}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00247}00247\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_a6e6bfb084063e4cc91ee86e542043302}{lvl\_ud}}(1)}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00248}00248\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{do}\ id\ =\ 1,\textcolor{keyword}{size}(\doxymbox{\hyperlink{namespacerich__vars_ae1d3c7deb4c8becd036a63367fca5e20}{sol\_val\_rich}},3)}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00249}00249\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_aa4a8d01563e92558e8a0875b075ec54c}{writo}}(\textcolor{stringliteral}{'For\ Eigenvalue\ '}//trim(\doxymbox{\hyperlink{namespacestr__utilities_a0b97e51770725a3e98ed393d26681414}{i2str}}(id))//\textcolor{stringliteral}{':'})}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00250}00250\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_a6e6bfb084063e4cc91ee86e542043302}{lvl\_ud}}(1)}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00251}00251\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_aa4a8d01563e92558e8a0875b075ec54c}{writo}}(trim(\doxymbox{\hyperlink{namespacestr__utilities_a308e943e5e244e3e0f852f2ecb3e3183}{c2str}}(\doxymbox{\hyperlink{namespacerich__vars_ae1d3c7deb4c8becd036a63367fca5e20}{sol\_val\_rich}}(\doxymbox{\hyperlink{namespacerich__vars_a1b7734ba9ce6cc153b22387e638093c0}{rich\_lvl}}-\/1,\doxymbox{\hyperlink{namespacerich__vars_a1b7734ba9ce6cc153b22387e638093c0}{rich\_lvl}}-\/1,id))),\&}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00252}00252\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&alert=.true.)}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00253}00253\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_a6e6bfb084063e4cc91ee86e542043302}{lvl\_ud}}(-\/1)}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00254}00254\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ \ \ \ \ end\ do}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00255}00255\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_a6e6bfb084063e4cc91ee86e542043302}{lvl\_ud}}(-\/1)}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00256}00256\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_aa4a8d01563e92558e8a0875b075ec54c}{writo}}(\textcolor{stringliteral}{'with,\ theoretically,\ an\ error\ of\ the\ order\ O(Δ\string^'}//\&}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00257}00257\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&trim(\doxymbox{\hyperlink{namespacestr__utilities_a0b97e51770725a3e98ed393d26681414}{i2str}}(2*\doxymbox{\hyperlink{namespacenum__vars_a125bbc64ad3fac6752bc64e4222c6f50}{norm\_disc\_prec\_sol}}*\doxymbox{\hyperlink{namespacerich__vars_a1b7734ba9ce6cc153b22387e638093c0}{rich\_lvl}}))//\textcolor{stringliteral}{'),'})}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00258}00258\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_aa4a8d01563e92558e8a0875b075ec54c}{writo}}(\textcolor{stringliteral}{'compared\ to\ O(Δ\string^'}//trim(\doxymbox{\hyperlink{namespacestr__utilities_a0b97e51770725a3e98ed393d26681414}{i2str}}(2*\doxymbox{\hyperlink{namespacenum__vars_a125bbc64ad3fac6752bc64e4222c6f50}{norm\_disc\_prec\_sol}}))//\&}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00259}00259\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&\textcolor{stringliteral}{')\ without\ Richardson\ extrapolation'})}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00260}00260\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_aa4a8d01563e92558e8a0875b075ec54c}{writo}}(\textcolor{stringliteral}{'Notice\ that\ this\ is\ ONLY\ valid\ if\ the\ problem\ in\ the\ \&}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00261}00261\ \textcolor{stringliteral}{}\textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&different\ Richardson\ stages\ is\ similar:'})}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00262}00262\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_a6e6bfb084063e4cc91ee86e542043302}{lvl\_ud}}(1)}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00263}00263\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_aa4a8d01563e92558e8a0875b075ec54c}{writo}}(\textcolor{stringliteral}{'-\/\ It\ has\ to\ be\ part\ of\ the\ point\ spectrum'})}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00264}00264\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_aa4a8d01563e92558e8a0875b075ec54c}{writo}}(\textcolor{stringliteral}{'-\/\ The\ Eigenvectors\ should\ look\ similar'})}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00265}00265\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_a6e6bfb084063e4cc91ee86e542043302}{lvl\_ud}}(-\/1)}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00266}00266\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00267}00267\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_a6e6bfb084063e4cc91ee86e542043302}{lvl\_ud}}(-\/1)}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00268}00268\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00269}00269\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ draw\ X\ values}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00270}00270\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\doxymbox{\hyperlink{namespacenum__vars_ab47aa91445feaedb05ac9d1a584664fe}{rank}}.eq.0)\ \textcolor{keyword}{call\ }draw\_sol\_val\_rich()}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00271}00271\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00272}00272\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_aa4a8d01563e92558e8a0875b075ec54c}{writo}}(\textcolor{stringliteral}{''})}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00273}00273\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00274}00274\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_a6e6bfb084063e4cc91ee86e542043302}{lvl\_ud}}(-\/1)}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00275}00275\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ end\ if}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00276}00276\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00277}00277\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ clean\ up}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00278}00278\ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespaceinput__utilities_aa0cf7578f9c9ab6470f8bb8d025f1daf}{dealloc\_in}}()}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00279}00279\ \ \ \ \ \textcolor{keyword}{contains}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00280}00280\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ Draws\ \ the\ \ \ Eigenvalues\ \ for\ \ the\ \ different\ \ \ levels\ \ of\ \ Richardson}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00281}00281\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ extrapolation\ as\ a\ function\ of\ the\ number\ of\ parallel\ points.}\textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00282}00282\ \textcolor{comment}{\ \ \ \ \ \ \ \ !>\ \(\backslash\)private}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00283}00283\ \ \ \ \ \ \ \ \ \textcolor{keyword}{subroutine\ }draw\_sol\_val\_rich()}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00284}00284\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{use\ }\doxymbox{\hyperlink{namespacenum__vars}{num\_vars}},\ \textcolor{keywordtype}{only}:\ \doxymbox{\hyperlink{namespacenum__vars_a3deb68d5c9cd3a99c9dd779e18c4d129}{n\_sol\_requested}}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00285}00285\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00286}00286\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ local\ variables}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00287}00287\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{character(len=max\_str\_ln)}\ ::\ plot\_title\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ title\ for\ plots}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00288}00288\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{character(len=max\_str\_ln)}\ ::\ plot\_name\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ name\ of\ plot}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00289}00289\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00290}00290\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ user\ output}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00291}00291\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_aa4a8d01563e92558e8a0875b075ec54c}{writo}}(\textcolor{stringliteral}{'Plotting\ Eigenvalues\ as\ function\ of\ nr.\ of\ parallel\ \&}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00292}00292\ \textcolor{stringliteral}{}\textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&points'})}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00293}00293\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_a6e6bfb084063e4cc91ee86e542043302}{lvl\_ud}}(1)}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00294}00294\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00295}00295\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ print,\ using\ rich\_lvl-\/1\ as\ it\ has\ been\ aumented}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00296}00296\ \ \ \ \ \ \ \ \ \ \ \ \ plot\_title\ =\ \textcolor{stringliteral}{'Eigenvalues\ as\ function\ of\ nr.\ of\ parallel\ points'}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00297}00297\ \ \ \ \ \ \ \ \ \ \ \ \ plot\_name\ =\ \textcolor{stringliteral}{'Eigenvalues\_richardson'}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00298}00298\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{interfaceoutput__ops_1_1print__ex__2d}{print\_ex\_2d}}([plot\_title],plot\_name,\&}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00299}00299\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&rp(\doxymbox{\hyperlink{namespacerich__vars_ae1d3c7deb4c8becd036a63367fca5e20}{sol\_val\_rich}}(1:\doxymbox{\hyperlink{namespacerich__vars_a1b7734ba9ce6cc153b22387e638093c0}{rich\_lvl}}-\/1,1,:)),\&}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00300}00300\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&x=\doxymbox{\hyperlink{namespacerich__vars_a7f584d9b84f3e3e230b45ce4b8e0e9b1}{x\_axis\_rich}}(1:\doxymbox{\hyperlink{namespacerich__vars_a1b7734ba9ce6cc153b22387e638093c0}{rich\_lvl}}-\/1,:),draw=.false.)}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00301}00301\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00302}00302\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ output\ in\ file}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00303}00303\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespaceoutput__ops_a50bfbb88cc91805469353c3ff47b3e2e}{draw\_ex}}([plot\_title],plot\_name,\doxymbox{\hyperlink{namespacenum__vars_a3deb68d5c9cd3a99c9dd779e18c4d129}{n\_sol\_requested}},1,.false.)}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00304}00304\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00305}00305\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ user\ output}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00306}00306\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_a6e6bfb084063e4cc91ee86e542043302}{lvl\_ud}}(-\/1)}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00307}00307\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_aa4a8d01563e92558e8a0875b075ec54c}{writo}}(\textcolor{stringliteral}{'Done\ plotting\ Eigenvalues'})}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00308}00308\ \ \ \ \ \ \ \ \ \textcolor{keyword}{end\ subroutine\ }draw\_sol\_val\_rich}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00309}00309\ \ \ \ \ \textcolor{keyword}{end\ subroutine\ }\doxymbox{\hyperlink{namespacerich__ops_a3cf72a3ed0806ac9ddff262a00b2e33d}{term\_rich}}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00310}00310\ \ \ \ \ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00311}00311\ \textcolor{comment}{\ \ \ \ !>\ Tests\ whether\ this\ Richardson\ level\ should\ be\ done.}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00312}\doxymbox{\hyperlink{namespacerich__ops_a50f4088b9ddd59597987fb4112f2a73e}{00312}}\ \ \ \ \ \textcolor{keyword}{logical\ }\textcolor{keyword}{function\ }\doxymbox{\hyperlink{namespacerich__ops_a50f4088b9ddd59597987fb4112f2a73e}{do\_rich}}()}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00313}00313\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\doxymbox{\hyperlink{namespacerich__vars_a1b7734ba9ce6cc153b22387e638093c0}{rich\_lvl}}.gt.max\_it\_rich\ .or.\ \doxymbox{\hyperlink{namespacerich__vars_adf63efd509bbcda4f77fd7e88c766081}{rich\_conv}})\ \textcolor{keywordflow}{then}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00314}00314\ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{namespacerich__ops_a50f4088b9ddd59597987fb4112f2a73e}{do\_rich}}\ =\ .false.}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00315}00315\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00316}00316\ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{namespacerich__ops_a50f4088b9ddd59597987fb4112f2a73e}{do\_rich}}\ =\ .true.}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00317}00317\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ end\ if}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00318}00318\ \ \ \ \ \textcolor{keyword}{end\ function\ }\doxymbox{\hyperlink{namespacerich__ops_a50f4088b9ddd59597987fb4112f2a73e}{do\_rich}}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00319}00319\ \ \ \ \ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00320}00320\ \textcolor{comment}{\ \ \ \ !>\ Start\ a\ Richardson\ level.}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00321}00321\ \textcolor{comment}{\ \ \ \ !!}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00322}00322\ \textcolor{comment}{\ \ \ \ !!\ Calculates\ \(\backslash\)c\ n\_par\_X\ for\ this\ level.\ \ Then\ uses\ this\ to\ divide\ the\ jobs.}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00323}00323\ \textcolor{comment}{\ \ \ \ !!\ equilibrium\ Finally,\ the\ limits\ are\ set\ up\ for\ these\ jobs.}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00324}00324\ \textcolor{comment}{\ \ \ \ !!}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00325}00325\ \textcolor{comment}{\ \ \ \ !!\ \(\backslash\)return\ ierr}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00326}\doxymbox{\hyperlink{namespacerich__ops_a97206a15127960366fcb41d6889cb3b5}{00326}}\ \ \ \ \ \textcolor{keyword}{integer\ }\textcolor{keyword}{function\ }\doxymbox{\hyperlink{namespacerich__ops_a97206a15127960366fcb41d6889cb3b5}{start\_rich\_lvl}}()\ \textcolor{keyword}{result}(ierr)}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00327}00327\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{use\ }\doxymbox{\hyperlink{namespacegrid__utilities}{grid\_utilities}},\ \textcolor{keywordtype}{only}:\ \doxymbox{\hyperlink{namespacegrid__utilities_a8b3114d164cbf016c0c6bb1232e6314e}{calc\_n\_par\_x\_rich}}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00328}00328\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{use\ }\doxymbox{\hyperlink{namespacegrid__vars}{grid\_vars}},\ \textcolor{keywordtype}{only}:\ \doxymbox{\hyperlink{namespacegrid__vars_aa3785d71892d3d7db81aca0b6aa880b0}{n\_r\_eq}},\ \doxymbox{\hyperlink{namespacegrid__vars_ad998db12a656afb94d2d54a7d0eca642}{n\_r\_sol}},\ \doxymbox{\hyperlink{namespacegrid__vars_a83a6486b23c4a218822540da15904426}{n\_alpha}}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00329}00329\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{use\ }\doxymbox{\hyperlink{namespaceeq__ops}{eq\_ops}},\ \textcolor{keywordtype}{only}:\ \doxymbox{\hyperlink{namespaceeq__ops_a6811942aeb421cf1495a65e639199975}{divide\_eq\_jobs}},\ \doxymbox{\hyperlink{namespaceeq__ops_a6f509d7becf29b4f201a871bf4441d49}{calc\_eq\_jobs\_lims}}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00330}00330\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{use\ }\doxymbox{\hyperlink{namespacehelena__vars}{helena\_vars}},\ \textcolor{keywordtype}{only}:\ \doxymbox{\hyperlink{namespacehelena__vars_a0489f36c6549c35a745ec6d540940d93}{nchi}}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00331}00331\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{use\ }\doxymbox{\hyperlink{namespacenum__vars}{num\_vars}},\ \textcolor{keywordtype}{only}:\ \doxymbox{\hyperlink{namespacenum__vars_a7d8763402037dbb80db19e2534ddf595}{eq\_style}},\ \doxymbox{\hyperlink{namespacenum__vars_acd9fb4b84728c986d5ecde709dcac940}{jump\_to\_sol}},\ \doxymbox{\hyperlink{namespacenum__vars_ac4bc885e8034c285bf0a9b76a832a738}{rich\_restart\_lvl}}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00332}00332\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{use\ }\doxymbox{\hyperlink{namespacempi__utilities}{mpi\_utilities}},\ \textcolor{keywordtype}{only}:\ \doxymbox{\hyperlink{interfacempi__utilities_1_1get__ser__var}{get\_ser\_var}}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00333}00333\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00334}00334\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{character(*)},\ \textcolor{keywordtype}{parameter}\ ::\ rout\_name\ =\ \textcolor{stringliteral}{'start\_rich\_lvl'}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00335}00335\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00336}00336\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ local\ variables}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00337}00337\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer}\ ::\ n\_div\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !<\ number\ of\ divisions\ in\ equilibrium\ jobs}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00338}00338\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{logical}\ ::\ only\_half\_grid\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !<\ calculate\ only\ half\ grid\ with\ even\ points}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00339}00339\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer}\ ::\ n\_par\_x\_loc\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !<\ local\ n\_par\_X}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00340}00340\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer}\ ::\ var\_size\_without\_par(2)\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !<\ size\ without\ parallel\ dimension\ for\ eq\_2\ and\ X\_1\ variables}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00341}00341\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00342}00342\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ initialize\ ierr}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00343}00343\ \ \ \ \ \ \ \ \ ierr\ =\ 0}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00344}00344\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00345}00345\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ set\ use\_guess\ to\ .false.\ if\ user\ sets\ no\_guess}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00346}00346\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\doxymbox{\hyperlink{namespacerich__vars_a167fe55b5d9c1a4566729da683466947}{no\_guess}})\ \doxymbox{\hyperlink{namespacerich__vars_aedc7171560db899c515d1610d99582c9}{use\_guess}}\ =\ .false.}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00347}00347\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00348}00348\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ Calculate\ \ total\ \ number\ \ of\ \ parallel\ \ points\ \ for\ \ the\ \ solution\ \ in}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00349}00349\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ Richardson\ loops}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00350}00350\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\doxymbox{\hyperlink{namespacerich__vars_a1b7734ba9ce6cc153b22387e638093c0}{rich\_lvl}}.eq.1)\ \textcolor{keywordflow}{then}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00351}00351\ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{namespacerich__vars_a7a32b8d53450cf925042cd5ddc7e23e6}{n\_par\_x}}\ =\ \doxymbox{\hyperlink{namespacerich__vars_a07841cccca6e6ee59aeb4e0661558eda}{min\_n\_par\_x}}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00352}00352\ \ \ \ \ \ \ \ \ \ \ \ \ only\_half\_grid\ =\ .false.}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00353}00353\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00354}00354\ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{namespacerich__vars_a7a32b8d53450cf925042cd5ddc7e23e6}{n\_par\_x}}\ =\ 2\ *\ \doxymbox{\hyperlink{namespacerich__vars_a7a32b8d53450cf925042cd5ddc7e23e6}{n\_par\_x}}\ -\/\ 1}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00355}00355\ \ \ \ \ \ \ \ \ \ \ \ \ only\_half\_grid\ =\ .true.}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00356}00356\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ end\ if}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00357}00357\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00358}00358\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ use\ calc\_n\_par\_X\_rich,\ taking\ into\ account\ possible\ half\ grid}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00359}00359\ \ \ \ \ \ \ \ \ ierr\ =\ \doxymbox{\hyperlink{namespacegrid__utilities_a8b3114d164cbf016c0c6bb1232e6314e}{calc\_n\_par\_x\_rich}}(n\_par\_x\_loc,only\_half\_grid)}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00360}00360\ \ \ \ \ \ \ \ \ chckerr(\textcolor{stringliteral}{''})}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00361}00361\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00362}00362\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\doxymbox{\hyperlink{namespacerich__vars_a1b7734ba9ce6cc153b22387e638093c0}{rich\_lvl}}.eq.\doxymbox{\hyperlink{namespacenum__vars_ac4bc885e8034c285bf0a9b76a832a738}{rich\_restart\_lvl}}\ .and.\ \doxymbox{\hyperlink{namespacenum__vars_acd9fb4b84728c986d5ecde709dcac940}{jump\_to\_sol}})\ \textcolor{keywordflow}{then}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00363}00363\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_aa4a8d01563e92558e8a0875b075ec54c}{writo}}(\textcolor{stringliteral}{'Jumping\ straight\ to\ solution,\ no\ need\ to\ divide\ into\ \&}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00364}00364\ \textcolor{stringliteral}{}\textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&equilibrium\ jobs'})}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00365}00365\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00366}00366\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00367}00367\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ end\ if}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00368}00368\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00369}00369\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ Get\ \ local\ n\_par\_X\ \ to\ \ divide\ \ the\ equilibrium\ \ jobs.\ \ Note\ that\ \ the}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00370}00370\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ average\ size\ of\ \ eq\_2\ variables\ for\ all\ processes\ \ together\ is\ n\_r\_eq,}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00371}00371\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ times\ \ the\ number\ \ of\ \ field\ lines,\ \ the\ size\ \ due\ \ to\ the\ \ dimensions}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00372}00372\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ corresponding\ to\ \ the\ derivatives,\ \ and\ the\ \ number\ of\ \ variables\ (see}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00373}00373\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ subroutine\ 'calc\_memory\_eq'\ and\ 'calc\_memory\_X'),\ \ while\ it\ is\ n\_r\_sol}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00374}00374\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ for\ the\ X\_1\ variables.}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00375}00375\ \ \ \ \ \ \ \ \ var\_size\_without\_par(1)\ =\ \doxymbox{\hyperlink{namespacegrid__vars_aa3785d71892d3d7db81aca0b6aa880b0}{n\_r\_eq}}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00376}00376\ \ \ \ \ \ \ \ \ var\_size\_without\_par(2)\ =\ \doxymbox{\hyperlink{namespacegrid__vars_ad998db12a656afb94d2d54a7d0eca642}{n\_r\_sol}}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00377}00377\ \ \ \ \ \ \ \ \ var\_size\_without\_par\ =\ var\_size\_without\_par\ *\ \doxymbox{\hyperlink{namespacegrid__vars_a83a6486b23c4a218822540da15904426}{n\_alpha}}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00378}00378\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{select\ case}\ (\doxymbox{\hyperlink{namespacenum__vars_a7d8763402037dbb80db19e2534ddf595}{eq\_style}})}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00379}00379\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ (1)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ VMEC}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00380}00380\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ divide\ equilibrium\ jobs}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00381}00381\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ierr\ =\ \doxymbox{\hyperlink{namespaceeq__ops_a6811942aeb421cf1495a65e639199975}{divide\_eq\_jobs}}(n\_par\_x\_loc,var\_size\_without\_par,\&}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00382}00382\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&n\_div)}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00383}00383\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ chckerr(\textcolor{stringliteral}{''})}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00384}00384\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ (2)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ HELENA}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00385}00385\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ divide\ equilibrium\ jobs}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00386}00386\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ Note:\ calculations\ for\ first\ Richardson\ \ level\ have\ to\ be\ done}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00387}00387\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ with\ \ a\ single\ \ job,\ \ as\ \ this\ is\ \ the\ \ calculation\ where\ \ the}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00388}00388\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ variables\ are\ calculated\ that\ are\ interpolated\ in\ all\ levels.}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00389}00389\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ierr\ =\ \doxymbox{\hyperlink{namespaceeq__ops_a6811942aeb421cf1495a65e639199975}{divide\_eq\_jobs}}(\doxymbox{\hyperlink{namespacehelena__vars_a0489f36c6549c35a745ec6d540940d93}{nchi}},var\_size\_without\_par,n\_div,\&}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00390}00390\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&n\_div\_max=1,range\_name=\textcolor{stringliteral}{'poloidal\ points\ in\ the\ \&}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00391}00391\ \textcolor{stringliteral}{}\textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&axisymmetric\ HELENA\ cross-\/section'})\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ everything\ is\ tabulated\ on\ nchi\ poloidal\ points}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00392}00392\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ chckerr(\textcolor{stringliteral}{''})}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00393}00393\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ end\ select}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00394}00394\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00395}00395\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ calculate\ equilibrium\ job\ limits}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00396}00396\ \ \ \ \ \ \ \ \ ierr\ =\ \doxymbox{\hyperlink{namespaceeq__ops_a6f509d7becf29b4f201a871bf4441d49}{calc\_eq\_jobs\_lims}}(n\_par\_x\_loc,n\_div)}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00397}00397\ \ \ \ \ \ \ \ \ chckerr(\textcolor{stringliteral}{''})}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00398}00398\ \ \ \ \ \textcolor{keyword}{end\ function\ }\doxymbox{\hyperlink{namespacerich__ops_a97206a15127960366fcb41d6889cb3b5}{start\_rich\_lvl}}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00399}00399\ \ \ \ \ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00400}00400\ \textcolor{comment}{\ \ \ \ !>\ Stop\ a\ Richardson\ level.}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00401}00401\ \textcolor{comment}{\ \ \ \ !!}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00402}00402\ \textcolor{comment}{\ \ \ \ !!\ It\ \ decides\ whether\ \ convergence\ has\ \ been\ reached,\ \ and\ possibly\ \ sets\ a}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00403}00403\ \textcolor{comment}{\ \ \ \ !!\ guess\ for\ the\ next\ level.}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00404}\doxymbox{\hyperlink{namespacerich__ops_a0cce16b835e18b025d366a038b22efe1}{00404}}\ \ \ \ \ \textcolor{keyword}{subroutine\ }\doxymbox{\hyperlink{namespacerich__ops_a0cce16b835e18b025d366a038b22efe1}{stop\_rich\_lvl}}()}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00405}00405\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ update\ the\ x\ axis\ of\ the\ Eigenvalue\ plot}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00406}00406\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{namespacerich__vars_a7f584d9b84f3e3e230b45ce4b8e0e9b1}{x\_axis\_rich}}(\doxymbox{\hyperlink{namespacerich__vars_a1b7734ba9ce6cc153b22387e638093c0}{rich\_lvl}},:)\ =\ 1.\_dp*\doxymbox{\hyperlink{namespacerich__vars_a7a32b8d53450cf925042cd5ddc7e23e6}{n\_par\_x}}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00407}00407\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00408}00408\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ Richardson\ extrapolation}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00409}00409\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (max\_it\_rich.gt.1)\ \textcolor{keywordflow}{then}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ only\ do\ this\ if\ more\ than\ 1\ Richardson\ level}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00410}00410\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ user\ output}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00411}00411\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\doxymbox{\hyperlink{namespacerich__vars_a1b7734ba9ce6cc153b22387e638093c0}{rich\_lvl}}.gt.1)\ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_aa4a8d01563e92558e8a0875b075ec54c}{writo}}(\textcolor{stringliteral}{'Richardson\ level\ '}//\&}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00412}00412\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&trim(\doxymbox{\hyperlink{namespacestr__utilities_a0b97e51770725a3e98ed393d26681414}{i2str}}(\doxymbox{\hyperlink{namespacerich__vars_a1b7734ba9ce6cc153b22387e638093c0}{rich\_lvl}}))//\textcolor{stringliteral}{'\ summary'})}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00413}00413\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_a6e6bfb084063e4cc91ee86e542043302}{lvl\_ud}}(1)}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00414}00414\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00415}00415\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ decide\ whether\ converged\ or\ not}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00416}00416\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }check\_conv()}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00417}00417\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00418}00418\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ setup\ possible\ guess\ for\ next\ Richardson\ level}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00419}00419\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }set\_guess()}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00420}00420\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00421}00421\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\doxymbox{\hyperlink{namespacerich__vars_a1b7734ba9ce6cc153b22387e638093c0}{rich\_lvl}}.gt.1)\ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_aa4a8d01563e92558e8a0875b075ec54c}{writo}}(\textcolor{stringliteral}{''})}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00422}00422\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_a6e6bfb084063e4cc91ee86e542043302}{lvl\_ud}}(-\/1)}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00423}00423\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ if\ not,\ Richardson\ is\ done}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00424}00424\ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{namespacerich__vars_adf63efd509bbcda4f77fd7e88c766081}{rich\_conv}}\ =\ .true.}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00425}00425\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ end\ if}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00426}00426\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00427}00427\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ increase\ level}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00428}00428\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{namespacerich__vars_a1b7734ba9ce6cc153b22387e638093c0}{rich\_lvl}}\ =\ \doxymbox{\hyperlink{namespacerich__vars_a1b7734ba9ce6cc153b22387e638093c0}{rich\_lvl}}\ +\ 1}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00429}00429\ \ \ \ \ \textcolor{keyword}{contains}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00430}00430\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ Decides\ whether\ \ a\ guess\ should\ be\ used\ in\ \ a\ possible\ next\ Richardson}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00431}00431\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ level.}\textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00432}00432\ \textcolor{comment}{\ \ \ \ \ \ \ \ !>\ \(\backslash\)private}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00433}00433\ \ \ \ \ \ \ \ \ \textcolor{keyword}{subroutine\ }set\_guess()}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00434}00434\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ local\ variables}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00435}00435\ \textcolor{keywordtype}{\ \ \ \ \ \ \ \ \ \ \ \ real}(dp),\ \textcolor{keywordtype}{parameter}\ ::\ tol\ =\ 5.\_dp\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ tolerance\ for\ increase\ of\ error}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00436}00436\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00437}00437\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ decide\ on\ guess}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00438}00438\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\doxymbox{\hyperlink{namespacerich__vars_a1b7734ba9ce6cc153b22387e638093c0}{rich\_lvl}}.ge.3)\ \textcolor{keywordflow}{then}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ start\ from\ level\ 3}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00439}00439\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{namespacerich__vars_aedc7171560db899c515d1610d99582c9}{use\_guess}}\ =\ \doxymbox{\hyperlink{namespacerich__vars_afac4d06d60829484cfb7d4964964945b}{max\_rel\_err}}(\doxymbox{\hyperlink{namespacerich__vars_a1b7734ba9ce6cc153b22387e638093c0}{rich\_lvl}}-\/1).lt.\&}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00440}00440\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&tol*\doxymbox{\hyperlink{namespacerich__vars_afac4d06d60829484cfb7d4964964945b}{max\_rel\_err}}(\doxymbox{\hyperlink{namespacerich__vars_a1b7734ba9ce6cc153b22387e638093c0}{rich\_lvl}}-\/2)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ set\ guess\ for\ next\ level\ to\ true\ if\ max\_rel\_err\ is\ decreasing}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00441}00441\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00442}00442\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{namespacerich__vars_aedc7171560db899c515d1610d99582c9}{use\_guess}}\ =\ .true.\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ for\ first\ Richardson\ level,\ set\ guess\ for\ next\ level\ to\ true}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00443}00443\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ \ \ \ \ end\ if}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00444}00444\ \ \ \ \ \ \ \ \ \textcolor{keyword}{end\ subroutine\ }set\_guess}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00445}00445\ \ \ \ \ \textcolor{keyword}{end\ subroutine\ }\doxymbox{\hyperlink{namespacerich__ops_a0cce16b835e18b025d366a038b22efe1}{stop\_rich\_lvl}}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00446}00446\ \ \ \ \ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00447}00447\ \textcolor{comment}{\ \ \ \ !>\ Calculates\ \ the\ \ coefficients\ \ of\ \ \ the\ \ Eigenvalues\ \ in\ \ the\ \ Richardson}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00448}00448\ \textcolor{comment}{\ \ \ \ !!\ extrapolation.}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00449}00449\ \textcolor{comment}{\ \ \ \ !!}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00450}00450\ \textcolor{comment}{\ \ \ \ !!\ This\ is\ done\ using\ the\ recursive\ formula:}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00451}00451\ \textcolor{comment}{\ \ \ \ !!\ \ \(\backslash\)f[\ s(l,i,:)\ =\ s(l,i-\/1,:)\ +\ \ \(\backslash\)frac\{1\}\{2\string^\{2\ \(\backslash\)\ p\ \(\backslash\)\ i\}\ -\/\ 1\}}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00452}00452\ \textcolor{comment}{\ \ \ \ !!\ \ \ \ \ \ \ (s(l,i-\/1,:)\ -\/\ s(l-\/1,i-\/1,:)),}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00453}00453\ \textcolor{comment}{\ \ \ \ !!\ \ \(\backslash\)f]}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00454}00454\ \textcolor{comment}{\ \ \ \ !!\ where\ \ \(\backslash\)f\$s\(\backslash\)f\$\ \ =\ \ \(\backslash\)c\ \ sol\_val\_rich,\ \ \(\backslash\)f\$i\(\backslash\)f\$\ \ =\ \ \(\backslash\)c\ \ ir,\ \ \(\backslash\)f\$l\(\backslash\)f\$\ \ =\ \ \(\backslash\)c}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00455}00455\ \textcolor{comment}{\ \ \ \ !!\ lvl\ \ and\ \(\backslash\)f\$p\(\backslash\)f\$\ \ =\ \(\backslash\)c\ \ norm\_disc\_prec\_sol,\ \ the\ order\ \ of\ the\ \ numerical}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00456}00456\ \textcolor{comment}{\ \ \ \ !!\ discretization.\ as\ \ described\ in\ \(\backslash\)cite\ \ dahlquist2003numerical,\ algorithm}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00457}00457\ \textcolor{comment}{\ \ \ \ !!\ 3.2,\ p.\ 306.}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00458}\doxymbox{\hyperlink{namespacerich__ops_ad2717df0206a397d0d7845a96aa5da23}{00458}}\ \ \ \ \ \textcolor{keyword}{subroutine\ }\doxymbox{\hyperlink{namespacerich__ops_ad2717df0206a397d0d7845a96aa5da23}{calc\_rich\_ex}}(sol\_val)}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00459}00459\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{use\ }\doxymbox{\hyperlink{namespacenum__vars}{num\_vars}},\ \textcolor{keywordtype}{only}:\ \doxymbox{\hyperlink{namespacenum__vars_a125bbc64ad3fac6752bc64e4222c6f50}{norm\_disc\_prec\_sol}}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00460}00460\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00461}00461\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ input\ /\ output}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00462}00462\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{complex(dp)},\ \textcolor{keywordtype}{intent(in)}\ ::\ sol\_val(:)\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !<\ EV\ for\ this\ Richardson\ level}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00463}00463\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00464}00464\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ local\ variables}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00465}00465\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer}\ ::\ ir\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ counter}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00466}00466\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00467}00467\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ do\ calculations\ if\ rich\_lvl\ >\ 1}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00468}00468\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{namespacerich__vars_ae1d3c7deb4c8becd036a63367fca5e20}{sol\_val\_rich}}(\doxymbox{\hyperlink{namespacerich__vars_a1b7734ba9ce6cc153b22387e638093c0}{rich\_lvl}},1,1:\textcolor{keyword}{size}(sol\_val))\ =\ sol\_val\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ size(sol\_val)\ can\ be\ less\ than\ n\_sol\_requested}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00469}00469\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{do}\ ir\ =\ 2,\doxymbox{\hyperlink{namespacerich__vars_a1b7734ba9ce6cc153b22387e638093c0}{rich\_lvl}}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00470}00470\ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{namespacerich__vars_ae1d3c7deb4c8becd036a63367fca5e20}{sol\_val\_rich}}(\doxymbox{\hyperlink{namespacerich__vars_a1b7734ba9ce6cc153b22387e638093c0}{rich\_lvl}},ir,1:\textcolor{keyword}{size}(sol\_val))\ =\ \&}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00471}00471\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&\doxymbox{\hyperlink{namespacerich__vars_ae1d3c7deb4c8becd036a63367fca5e20}{sol\_val\_rich}}(\doxymbox{\hyperlink{namespacerich__vars_a1b7734ba9ce6cc153b22387e638093c0}{rich\_lvl}},ir-\/1,1:\textcolor{keyword}{size}(sol\_val))\ +\ \&}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00472}00472\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&1.\_dp/(2**(2*(ir-\/1)*\doxymbox{\hyperlink{namespacenum__vars_a125bbc64ad3fac6752bc64e4222c6f50}{norm\_disc\_prec\_sol}})-\/1.\_dp)\ *\ \&}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00473}00473\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&(\doxymbox{\hyperlink{namespacerich__vars_ae1d3c7deb4c8becd036a63367fca5e20}{sol\_val\_rich}}(\doxymbox{\hyperlink{namespacerich__vars_a1b7734ba9ce6cc153b22387e638093c0}{rich\_lvl}},ir-\/1,1:\textcolor{keyword}{size}(sol\_val))\ -\/\ \&}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00474}00474\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&\doxymbox{\hyperlink{namespacerich__vars_ae1d3c7deb4c8becd036a63367fca5e20}{sol\_val\_rich}}(\doxymbox{\hyperlink{namespacerich__vars_a1b7734ba9ce6cc153b22387e638093c0}{rich\_lvl}}-\/1,ir-\/1,1:\textcolor{keyword}{size}(sol\_val)))}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00475}00475\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ end\ do}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00476}00476\ \ \ \ \ \textcolor{keyword}{end\ subroutine\ }\doxymbox{\hyperlink{namespacerich__ops_ad2717df0206a397d0d7845a96aa5da23}{calc\_rich\_ex}}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00477}00477\ \ \ \ \ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00478}00478\ \textcolor{comment}{\ \ \ \ !>\ Decides\ \ whether\ \ \ convergence\ \ has\ \ been\ \ reached\ \ \ for\ \ the\ \ Richardson}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00479}00479\ \textcolor{comment}{\ \ \ \ !!\ extrapolation.}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00480}00480\ \textcolor{comment}{\ \ \ \ !!}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00481}00481\ \textcolor{comment}{\ \ \ \ !!\ This\ is\ done\ by\ checking\ whether\ the\ difference\ between\ the\ approximation}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00482}00482\ \textcolor{comment}{\ \ \ \ !!\ of\ the\ Eigenvalues\ \ in\ this\ Richardson\ level\ and\ \ the\ previous\ Richardson}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00483}00483\ \textcolor{comment}{\ \ \ \ !!\ level,\ with\ the\ same\ order\ of\ the\ error,\ falls\ below\ a\ threshold.}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00484}00484\ \textcolor{comment}{\ \ \ \ !!}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00485}00485\ \textcolor{comment}{\ \ \ \ !!\ Also\ increases\ the\ next\ tol\_SLEPC\ if\ it\ is\ too\ low.}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00486}00486\ \textcolor{comment}{\ \ \ \ !!}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00487}00487\ \textcolor{comment}{\ \ \ \ !!\ \(\backslash\)see\ calc\_rich\_ex()}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00488}00488\ \ \ \ \ \textcolor{keyword}{subroutine\ }check\_conv()}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00489}00489\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{use\ }\doxymbox{\hyperlink{namespacenum__vars}{num\_vars}},\ \textcolor{keywordtype}{only}:\ \doxymbox{\hyperlink{namespacenum__vars_acbfccf15a8af9fce37f9cb3f2c85be76}{tol\_slepc}}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00490}00490\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00491}00491\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ local\ variables}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00492}00492\ \textcolor{keywordtype}{\ \ \ \ \ \ \ \ real}(\doxymbox{\hyperlink{namespacenum__vars_a03802aa2bd86439d7a9370836fabf3f2}{dp}}),\ \textcolor{keywordtype}{allocatable}\ ::\ corr(:)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ correction\ for\ order\ (rich\_lvl-\/1)\ of\ error}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00493}00493\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer}\ ::\ ir\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ counter}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00494}00494\ \textcolor{keywordtype}{\ \ \ \ \ \ \ \ real}(\doxymbox{\hyperlink{namespacenum__vars_a03802aa2bd86439d7a9370836fabf3f2}{dp}})\ ::\ tol\_slepc\_adapt\_factor\ =\ 0.01\_dp\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ factor\ to\ relate\ tol\_SLEPC\ to\ maximum\ relative\ error}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00495}00495\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00496}00496\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\doxymbox{\hyperlink{namespacerich__vars_a1b7734ba9ce6cc153b22387e638093c0}{rich\_lvl}}.gt.1)\ \textcolor{keywordflow}{then}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ only\ do\ this\ if\ in\ Richardson\ level\ higher\ than\ 1}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00497}00497\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ set\ relative\ correction}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00498}00498\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{allocate}(corr(\textcolor{keyword}{size}(\doxymbox{\hyperlink{namespacerich__vars_ae1d3c7deb4c8becd036a63367fca5e20}{sol\_val\_rich}},3)))}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00499}00499\ \ \ \ \ \ \ \ \ \ \ \ \ corr\ =\ abs(2*(\doxymbox{\hyperlink{namespacerich__vars_ae1d3c7deb4c8becd036a63367fca5e20}{sol\_val\_rich}}(\doxymbox{\hyperlink{namespacerich__vars_a1b7734ba9ce6cc153b22387e638093c0}{rich\_lvl}},\doxymbox{\hyperlink{namespacerich__vars_a1b7734ba9ce6cc153b22387e638093c0}{rich\_lvl}}-\/1,:)-\/\&}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00500}00500\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&\doxymbox{\hyperlink{namespacerich__vars_ae1d3c7deb4c8becd036a63367fca5e20}{sol\_val\_rich}}(\doxymbox{\hyperlink{namespacerich__vars_a1b7734ba9ce6cc153b22387e638093c0}{rich\_lvl}}-\/1,\doxymbox{\hyperlink{namespacerich__vars_a1b7734ba9ce6cc153b22387e638093c0}{rich\_lvl}}-\/1,:))/\&}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00501}00501\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&(\doxymbox{\hyperlink{namespacerich__vars_ae1d3c7deb4c8becd036a63367fca5e20}{sol\_val\_rich}}(\doxymbox{\hyperlink{namespacerich__vars_a1b7734ba9ce6cc153b22387e638093c0}{rich\_lvl}},\doxymbox{\hyperlink{namespacerich__vars_a1b7734ba9ce6cc153b22387e638093c0}{rich\_lvl}}-\/1,:)+\&}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00502}00502\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&\doxymbox{\hyperlink{namespacerich__vars_ae1d3c7deb4c8becd036a63367fca5e20}{sol\_val\_rich}}(\doxymbox{\hyperlink{namespacerich__vars_a1b7734ba9ce6cc153b22387e638093c0}{rich\_lvl}}-\/1,\doxymbox{\hyperlink{namespacerich__vars_a1b7734ba9ce6cc153b22387e638093c0}{rich\_lvl}}-\/1,:)))}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00503}00503\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00504}00504\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ get\ maximum\ and\ location\ of\ maximum\ for\ relative\ correction}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00505}00505\ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{namespacerich__vars_afac4d06d60829484cfb7d4964964945b}{max\_rel\_err}}(\doxymbox{\hyperlink{namespacerich__vars_a1b7734ba9ce6cc153b22387e638093c0}{rich\_lvl}}-\/1)\ =\ maxval(corr)}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00506}00506\ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{namespacerich__vars_af3df7361e33058bc83fe43a803173d89}{loc\_max\_rel\_err}}(\doxymbox{\hyperlink{namespacerich__vars_a1b7734ba9ce6cc153b22387e638093c0}{rich\_lvl}}-\/1,:)\ =\ maxloc(corr)}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00507}00507\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00508}00508\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ user\ output}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00509}00509\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{do}\ ir\ =\ 1,\doxymbox{\hyperlink{namespacerich__vars_a1b7734ba9ce6cc153b22387e638093c0}{rich\_lvl}}-\/1}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00510}00510\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_aa4a8d01563e92558e8a0875b075ec54c}{writo}}(\textcolor{stringliteral}{'Richardson\ level\ '}//trim(\doxymbox{\hyperlink{namespacestr__utilities_a0b97e51770725a3e98ed393d26681414}{i2str}}(ir))//\textcolor{stringliteral}{'\ -\/>\ '}//\&}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00511}00511\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&trim(\doxymbox{\hyperlink{namespacestr__utilities_a0b97e51770725a3e98ed393d26681414}{i2str}}(ir+1))//\textcolor{stringliteral}{':\ maximum\ relative\ error\ '}//\&}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00512}00512\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&trim(\doxymbox{\hyperlink{namespacestr__utilities_ac778d706b2e021672618939ab58fdd32}{r2strt}}(\doxymbox{\hyperlink{namespacerich__vars_afac4d06d60829484cfb7d4964964945b}{max\_rel\_err}}(ir)))//\textcolor{stringliteral}{'\ for\ Eigenvalue\ '}//\&}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00513}00513\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&trim(\doxymbox{\hyperlink{namespacestr__utilities_a0b97e51770725a3e98ed393d26681414}{i2str}}(\doxymbox{\hyperlink{namespacerich__vars_af3df7361e33058bc83fe43a803173d89}{loc\_max\_rel\_err}}(ir,1))))}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00514}00514\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ \ \ \ \ end\ do}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00515}00515\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00516}00516\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ check\ whether\ tolerance\ has\ been\ reached}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00517}00517\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\doxymbox{\hyperlink{namespacerich__vars_afac4d06d60829484cfb7d4964964945b}{max\_rel\_err}}(\doxymbox{\hyperlink{namespacerich__vars_a1b7734ba9ce6cc153b22387e638093c0}{rich\_lvl}}-\/1).lt.\doxymbox{\hyperlink{namespacenum__vars_aa0091a935b9502afef09a87c0f590e9d}{tol\_rich}})\ \textcolor{keywordflow}{then}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00518}00518\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{namespacerich__vars_adf63efd509bbcda4f77fd7e88c766081}{rich\_conv}}\ =\ .true.}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00519}00519\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_aa4a8d01563e92558e8a0875b075ec54c}{writo}}(\textcolor{stringliteral}{'tolerance\ '}//trim(\doxymbox{\hyperlink{namespacestr__utilities_ac778d706b2e021672618939ab58fdd32}{r2strt}}(\doxymbox{\hyperlink{namespacenum__vars_aa0091a935b9502afef09a87c0f590e9d}{tol\_rich}}))//\&}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00520}00520\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&\textcolor{stringliteral}{'\ reached\ after\ '}//trim(\doxymbox{\hyperlink{namespacestr__utilities_a0b97e51770725a3e98ed393d26681414}{i2str}}(\doxymbox{\hyperlink{namespacerich__vars_a1b7734ba9ce6cc153b22387e638093c0}{rich\_lvl}}))//\&}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00521}00521\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&\textcolor{stringliteral}{'\ iterations'})}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00522}00522\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00523}00523\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_aa4a8d01563e92558e8a0875b075ec54c}{writo}}(\textcolor{stringliteral}{'tolerance\ '}//trim(\doxymbox{\hyperlink{namespacestr__utilities_ac778d706b2e021672618939ab58fdd32}{r2strt}}(\doxymbox{\hyperlink{namespacenum__vars_aa0091a935b9502afef09a87c0f590e9d}{tol\_rich}}))//\textcolor{stringliteral}{'\ not\ yet\ \&}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00524}00524\ \textcolor{stringliteral}{}\textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&reached'})}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00525}00525\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ \ \ \ \ end\ if}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00526}00526\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00527}00527\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ check\ whether\ to\ decrease\ next\ tol\_SLEPC}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00528}00528\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\doxymbox{\hyperlink{namespacerich__vars_a1b7734ba9ce6cc153b22387e638093c0}{rich\_lvl}}.lt.\doxymbox{\hyperlink{namespacenum__vars_afbd4cb9a4ef9e8a277aecfc41b09aa1d}{max\_it\_rich}})\ \doxymbox{\hyperlink{namespacenum__vars_acbfccf15a8af9fce37f9cb3f2c85be76}{tol\_slepc}}(\doxymbox{\hyperlink{namespacerich__vars_a1b7734ba9ce6cc153b22387e638093c0}{rich\_lvl}}+1)\ =\ min(\&}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00529}00529\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&\doxymbox{\hyperlink{namespacenum__vars_acbfccf15a8af9fce37f9cb3f2c85be76}{tol\_slepc}}(\doxymbox{\hyperlink{namespacerich__vars_a1b7734ba9ce6cc153b22387e638093c0}{rich\_lvl}}+1),\&}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00530}00530\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&tol\_slepc\_adapt\_factor*\doxymbox{\hyperlink{namespacerich__vars_afac4d06d60829484cfb7d4964964945b}{max\_rel\_err}}(\doxymbox{\hyperlink{namespacerich__vars_a1b7734ba9ce6cc153b22387e638093c0}{rich\_lvl}}-\/1))}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00531}00531\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ end\ if}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00532}00532\ \ \ \ \ \textcolor{keyword}{end\ subroutine\ }check\_conv}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00533}00533\ \ \ \ \ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00534}00534\ \textcolor{comment}{\ \ \ \ !>\ Probe\ to\ find\ out\ which\ Richardson\ levels\ are\ available.}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00535}00535\ \textcolor{comment}{\ \ \ \ !!}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00536}00536\ \textcolor{comment}{\ \ \ \ !!\ \(\backslash\)return\ ierr}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00537}\doxymbox{\hyperlink{namespacerich__ops_a58e1bed1bed5c2d0b91cc7dc5e3099d9}{00537}}\ \ \ \ \ \textcolor{keyword}{integer\ }\textcolor{keyword}{function\ }\doxymbox{\hyperlink{namespacerich__ops_a58e1bed1bed5c2d0b91cc7dc5e3099d9}{find\_max\_rich\_lvl}}(lvl\_rich\_req,max\_lvl\_rich\_file)\ \&}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00538}00538\ \ \ \ \ \ \ \ \ \&result(ierr)}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00539}00539\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{use\ }\doxymbox{\hyperlink{namespacenum__vars}{num\_vars}},\ \textcolor{keywordtype}{only}:\ \doxymbox{\hyperlink{namespacenum__vars_a8b3ab3b12cddc0c3e60c3430912b5f3c}{pb3d\_name}}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00540}00540\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{use\ }\doxymbox{\hyperlink{namespacehdf5__utilities}{hdf5\_utilities}},\ \textcolor{keywordtype}{only}:\ \doxymbox{\hyperlink{namespacehdf5__utilities_ac0c7e6c4047b37031ac8ff7fdc271cf6}{probe\_hdf5\_group}}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00541}00541\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00542}00542\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{character(*)},\ \textcolor{keywordtype}{parameter}\ ::\ rout\_name\ =\ \textcolor{stringliteral}{'find\_max\_rich\_lvl'}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00543}00543\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00544}00544\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ input\ /\ output}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00545}00545\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer},\ \textcolor{keywordtype}{intent(inout)}\ ::\ lvl\_rich\_req\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !<\ requested\ Richardson\ level}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00546}00546\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer},\ \textcolor{keywordtype}{intent(inout)}\ ::\ max\_lvl\_rich\_file\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !<\ max.\ Richardson\ level\ found\ in\ file}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00547}00547\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00548}00548\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ local\ variables}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00549}00549\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer}\ ::\ ir\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ counter}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00550}00550\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{character(len=max\_str\_ln)}\ ::\ group\_name\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ name\ of\ group\ to\ probe\ for}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00551}00551\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{logical}\ ::\ group\_exists\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ whether\ probed\ group\ exists}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00552}00552\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00553}00553\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ initialize\ ierr}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00554}00554\ \ \ \ \ \ \ \ \ ierr\ =\ 0}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00555}00555\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00556}00556\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ try\ openining\ solution\ for\ different\ Richardson\ extrapolation\ levels}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00557}00557\ \ \ \ \ \ \ \ \ group\_exists\ =\ .true.\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ group\_exists\ becomes\ stopping\ criterion}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00558}00558\ \ \ \ \ \ \ \ \ ir\ =\ 1\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ initialize\ counter}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00559}00559\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (lvl\_rich\_req.gt.0\ .and.\ lvl\_rich\_req.lt.huge(1))\ ir\ =\ lvl\_rich\_req\ \ \textcolor{comment}{!\ move\ to\ requested}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00560}00560\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{do}\ \textcolor{keywordflow}{while}\ (group\_exists)}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00561}00561\ \ \ \ \ \ \ \ \ \ \ \ \ group\_name\ =\ \textcolor{stringliteral}{'sol\_R\_'}//trim(\doxymbox{\hyperlink{namespacestr__utilities_a0b97e51770725a3e98ed393d26681414}{i2str}}(ir))}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00562}00562\ \ \ \ \ \ \ \ \ \ \ \ \ ierr\ =\ \doxymbox{\hyperlink{namespacehdf5__utilities_ac0c7e6c4047b37031ac8ff7fdc271cf6}{probe\_hdf5\_group}}(\doxymbox{\hyperlink{namespacenum__vars_a8b3ab3b12cddc0c3e60c3430912b5f3c}{pb3d\_name}},group\_name,group\_exists)}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00563}00563\ \ \ \ \ \ \ \ \ \ \ \ \ chckerr(\textcolor{stringliteral}{''})}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00564}00564\ \ \ \ \ \ \ \ \ \ \ \ \ ir\ =\ ir\ +\ 1\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ increment\ counter}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00565}00565\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ end\ do}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00566}00566\ \ \ \ \ \ \ \ \ max\_lvl\_rich\_file\ =\ ir-\/2\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ -\/2\ because\ there\ will\ be\ one\ additional\ iteration}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00567}00567\ \ \ \ \ \textcolor{keyword}{end\ function\ }\doxymbox{\hyperlink{namespacerich__ops_a58e1bed1bed5c2d0b91cc7dc5e3099d9}{find\_max\_rich\_lvl}}}
+\DoxyCodeLine{\Hypertarget{rich__ops_8f90_source_l00568}00568\ \textcolor{keyword}{end\ module\ }\doxymbox{\hyperlink{namespacerich__ops}{rich\_ops}}}
+
+\end{DoxyCode}

@@ -1,42 +1,44 @@
-\hypertarget{namespacenum__ops}{}\doxysection{num\+\_\+ops Module Reference}
-\label{namespacenum__ops}\index{num\_ops@{num\_ops}}
+\doxysection{num\+\_\+ops Module Reference}
+\hypertarget{namespacenum__ops}{}\label{namespacenum__ops}\index{num\_ops@{num\_ops}}
 
 
 Numerical operations.  
 
 
-\doxysubsection*{Interfaces and Types}
+\doxysubsubsection*{Interfaces and Types}
 \begin{DoxyCompactItemize}
 \item 
-interface \mbox{\hyperlink{interfacenum__ops_1_1calc__zero__hh}{calc\+\_\+zero\+\_\+hh}}
+interface \doxymbox{\hyperlink{interfacenum__ops_1_1calc__zero__hh}{calc\+\_\+zero\+\_\+hh}}
 \begin{DoxyCompactList}\small\item\em Finds the zero of a function using Householder iteration. \end{DoxyCompactList}\end{DoxyCompactItemize}
-\doxysubsection*{Functions/\+Subroutines}
+\doxysubsubsection*{Functions/\+\+Subroutines}
 \begin{DoxyCompactItemize}
 \item 
-character(len=max\+\_\+str\+\_\+ln) function, public \mbox{\hyperlink{namespacenum__ops_adcc4eacf15c931744316a004f4448b90}{calc\+\_\+zero\+\_\+zhang}} (zero, fun, x\+\_\+int\+\_\+in)
+character(len=max\+\_\+str\+\_\+ln) function, public \doxymbox{\hyperlink{namespacenum__ops_adcc4eacf15c931744316a004f4448b90}{calc\+\_\+zero\+\_\+zhang}} (zero, fun, x\+\_\+int\+\_\+in)
 \begin{DoxyCompactList}\small\item\em Finds the zero of a function using Zhang\textquotesingle{}s method, which is simpler than Brent\textquotesingle{}s method. \end{DoxyCompactList}\end{DoxyCompactItemize}
-\doxysubsection*{Variables}
+\doxysubsubsection*{Variables}
 \begin{DoxyCompactItemize}
 \item 
-logical, public \mbox{\hyperlink{namespacenum__ops_aca06cb91f215c46429e23fbaf8611e5a}{debug\+\_\+calc\+\_\+zero}} = .false.
+logical, public \doxymbox{\hyperlink{namespacenum__ops_aca06cb91f215c46429e23fbaf8611e5a}{debug\+\_\+calc\+\_\+zero}} = .false.
 \begin{DoxyCompactList}\small\item\em plot debug information for calc\+\_\+zero \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
 Numerical operations. 
 
-\doxysubsection{Function/\+Subroutine Documentation}
-\mbox{\Hypertarget{namespacenum__ops_adcc4eacf15c931744316a004f4448b90}\label{namespacenum__ops_adcc4eacf15c931744316a004f4448b90}} 
-\index{num\_ops@{num\_ops}!calc\_zero\_zhang@{calc\_zero\_zhang}}
+\label{doc-func-members}
+\Hypertarget{namespacenum__ops_doc-func-members}
+\doxysubsection{Function/\+\+Subroutine Documentation}
+\Hypertarget{namespacenum__ops_adcc4eacf15c931744316a004f4448b90}\index{num\_ops@{num\_ops}!calc\_zero\_zhang@{calc\_zero\_zhang}}
 \index{calc\_zero\_zhang@{calc\_zero\_zhang}!num\_ops@{num\_ops}}
 \doxysubsubsection{\texorpdfstring{calc\_zero\_zhang()}{calc\_zero\_zhang()}}
-{\footnotesize\ttfamily character(len=max\+\_\+str\+\_\+ln) function, public num\+\_\+ops\+::calc\+\_\+zero\+\_\+zhang (\begin{DoxyParamCaption}\item[{real(dp), intent(inout)}]{zero,  }\item[{}]{fun,  }\item[{real(dp), dimension(2), intent(in)}]{x\+\_\+int\+\_\+in }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \label{namespacenum__ops_adcc4eacf15c931744316a004f4448b90} 
+character(len=max\+\_\+str\+\_\+ln) function, public num\+\_\+ops::\+calc\+\_\+zero\+\_\+zhang (\begin{DoxyParamCaption}\item[{real(dp), intent(inout)}]{zero}{, }\item[{external real(dp) function(real(dp), intent(in) x)}]{fun}{, }\item[{real(dp), dimension(2), intent(in)}]{x\+\_\+int\+\_\+in}{}\end{DoxyParamCaption})}
 
 
 
 Finds the zero of a function using Zhang\textquotesingle{}s method, which is simpler than Brent\textquotesingle{}s method. 
 
-Taken from from Steven Stage\textquotesingle{}s correction of Zhang\textquotesingle{}s paper \cite{zhang2011improvement}.
+Taken from from Steven Stage\textquotesingle{}s correction of Zhang\textquotesingle{}s paper \DoxyCite{zhang2011improvement}{number}{1}.
 
 Unlike Householder, Zhang\textquotesingle{}s method needs an interval {\ttfamily x\+\_\+int\+\_\+in} to work in, not a guess. Also, it does not require the derivative of the function.
 
@@ -47,15 +49,15 @@ The interval {\ttfamily x\+\_\+int\+\_\+in} needs to be so that the function val
 \end{DoxyNote}
 
 \begin{DoxyParams}[1]{Parameters}
-\mbox{\texttt{ in,out}}  & {\em fun} & {\ttfamily fun(x)} with
+\doxymbox{\texttt{in,out}}  & {\em fun} & {\ttfamily fun(x)} with
 \begin{DoxyItemize}
 \item {\ttfamily x} abscissa
 \item {\ttfamily fun} ordinate 
 \end{DoxyItemize}\\
 \hline
-\mbox{\texttt{ in,out}}  & {\em zero} & output \\
+\doxymbox{\texttt{in,out}}  & {\em zero} & output \\
 \hline
-\mbox{\texttt{ in}}  & {\em x\+\_\+int\+\_\+in} & interval \\
+\doxymbox{\texttt{in}}  & {\em x\+\_\+int\+\_\+in} & interval \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
@@ -63,16 +65,16 @@ possible error message
 \end{DoxyReturn}
 
 
-Definition at line 462 of file num\+\_\+ops.\+f90.
+Definition at line \doxymbox{\hyperlink{num__ops_8f90_source_l00461}{461}} of file \doxymbox{\hyperlink{num__ops_8f90_source}{num\+\_\+ops.\+f90}}.
 
-Here is the call graph for this function\+:\nopagebreak
+Here is the call graph for this function:\+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{namespacenum__ops_adcc4eacf15c931744316a004f4448b90_cgraph}
 \end{center}
 \end{figure}
-Here is the caller graph for this function\+:\nopagebreak
+Here is the caller graph for this function:\+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -81,12 +83,14 @@ Here is the caller graph for this function\+:\nopagebreak
 \end{figure}
 
 
+\label{doc-var-members}
+\Hypertarget{namespacenum__ops_doc-var-members}
 \doxysubsection{Variable Documentation}
-\mbox{\Hypertarget{namespacenum__ops_aca06cb91f215c46429e23fbaf8611e5a}\label{namespacenum__ops_aca06cb91f215c46429e23fbaf8611e5a}} 
-\index{num\_ops@{num\_ops}!debug\_calc\_zero@{debug\_calc\_zero}}
+\Hypertarget{namespacenum__ops_aca06cb91f215c46429e23fbaf8611e5a}\index{num\_ops@{num\_ops}!debug\_calc\_zero@{debug\_calc\_zero}}
 \index{debug\_calc\_zero@{debug\_calc\_zero}!num\_ops@{num\_ops}}
 \doxysubsubsection{\texorpdfstring{debug\_calc\_zero}{debug\_calc\_zero}}
-{\footnotesize\ttfamily logical, public num\+\_\+ops\+::debug\+\_\+calc\+\_\+zero = .false.}
+{\footnotesize\ttfamily \label{namespacenum__ops_aca06cb91f215c46429e23fbaf8611e5a} 
+logical, public num\+\_\+ops::\+debug\+\_\+calc\+\_\+zero = .false.}
 
 
 
@@ -97,5 +101,5 @@ Debug version only
 \end{DoxyNote}
 
 
-Definition at line 22 of file num\+\_\+ops.\+f90.
+Definition at line \doxymbox{\hyperlink{num__ops_8f90_source_l00022}{22}} of file \doxymbox{\hyperlink{num__ops_8f90_source}{num\+\_\+ops.\+f90}}.
 

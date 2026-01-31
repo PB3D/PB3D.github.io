@@ -1,101 +1,75 @@
-\hypertarget{namespacerich__ops}{}\doxysection{rich\+\_\+ops Module Reference}
-\label{namespacerich__ops}\index{rich\_ops@{rich\_ops}}
+\doxysection{rich\+\_\+ops Module Reference}
+\hypertarget{namespacerich__ops}{}\label{namespacerich__ops}\index{rich\_ops@{rich\_ops}}
 
 
 Operations concerning Richardson extrapolation.  
 
 
-\doxysubsection*{Functions/\+Subroutines}
+\doxysubsubsection*{Functions/\+\+Subroutines}
 \begin{DoxyCompactItemize}
 \item 
-integer function, public \mbox{\hyperlink{namespacerich__ops_a9fbbda93eab8973d33063e277c489e7b}{init\+\_\+rich}} ()
+integer function, public \doxymbox{\hyperlink{namespacerich__ops_a9fbbda93eab8973d33063e277c489e7b}{init\+\_\+rich}} ()
 \begin{DoxyCompactList}\small\item\em Initialize Richardson extrapolation system. \end{DoxyCompactList}\item 
-subroutine, public \mbox{\hyperlink{namespacerich__ops_a3cf72a3ed0806ac9ddff262a00b2e33d}{term\+\_\+rich}} ()
+subroutine, public \doxymbox{\hyperlink{namespacerich__ops_a3cf72a3ed0806ac9ddff262a00b2e33d}{term\+\_\+rich}} ()
 \begin{DoxyCompactList}\small\item\em Terminate the Richardson extrapolation system. \end{DoxyCompactList}\item 
-logical function, public \mbox{\hyperlink{namespacerich__ops_a50f4088b9ddd59597987fb4112f2a73e}{do\+\_\+rich}} ()
+logical function, public \doxymbox{\hyperlink{namespacerich__ops_a50f4088b9ddd59597987fb4112f2a73e}{do\+\_\+rich}} ()
 \begin{DoxyCompactList}\small\item\em Tests whether this Richardson level should be done. \end{DoxyCompactList}\item 
-integer function, public \mbox{\hyperlink{namespacerich__ops_a97206a15127960366fcb41d6889cb3b5}{start\+\_\+rich\+\_\+lvl}} ()
+integer function, public \doxymbox{\hyperlink{namespacerich__ops_a97206a15127960366fcb41d6889cb3b5}{start\+\_\+rich\+\_\+lvl}} ()
 \begin{DoxyCompactList}\small\item\em Start a Richardson level. \end{DoxyCompactList}\item 
-subroutine, public \mbox{\hyperlink{namespacerich__ops_a0cce16b835e18b025d366a038b22efe1}{stop\+\_\+rich\+\_\+lvl}} ()
+subroutine, public \doxymbox{\hyperlink{namespacerich__ops_a0cce16b835e18b025d366a038b22efe1}{stop\+\_\+rich\+\_\+lvl}} ()
 \begin{DoxyCompactList}\small\item\em Stop a Richardson level. \end{DoxyCompactList}\item 
-subroutine, public \mbox{\hyperlink{namespacerich__ops_ad2717df0206a397d0d7845a96aa5da23}{calc\+\_\+rich\+\_\+ex}} (sol\+\_\+val)
+subroutine, public \doxymbox{\hyperlink{namespacerich__ops_ad2717df0206a397d0d7845a96aa5da23}{calc\+\_\+rich\+\_\+ex}} (sol\+\_\+val)
 \begin{DoxyCompactList}\small\item\em Calculates the coefficients of the Eigenvalues in the Richardson extrapolation. \end{DoxyCompactList}\item 
-subroutine \mbox{\hyperlink{namespacerich__ops_ac00cce686d45540b238b3b6e39c9bdeb}{check\+\_\+conv}} ()
-\begin{DoxyCompactList}\small\item\em Decides whether convergence has been reached for the Richardson extrapolation. \end{DoxyCompactList}\item 
-integer function, public \mbox{\hyperlink{namespacerich__ops_a58e1bed1bed5c2d0b91cc7dc5e3099d9}{find\+\_\+max\+\_\+rich\+\_\+lvl}} (lvl\+\_\+rich\+\_\+req, max\+\_\+lvl\+\_\+rich\+\_\+file)
+integer function, public \doxymbox{\hyperlink{namespacerich__ops_a58e1bed1bed5c2d0b91cc7dc5e3099d9}{find\+\_\+max\+\_\+rich\+\_\+lvl}} (lvl\+\_\+rich\+\_\+req, max\+\_\+lvl\+\_\+rich\+\_\+file)
 \begin{DoxyCompactList}\small\item\em Probe to find out which Richardson levels are available. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
 Operations concerning Richardson extrapolation. 
 
-\doxysubsection{Function/\+Subroutine Documentation}
-\mbox{\Hypertarget{namespacerich__ops_ad2717df0206a397d0d7845a96aa5da23}\label{namespacerich__ops_ad2717df0206a397d0d7845a96aa5da23}} 
-\index{rich\_ops@{rich\_ops}!calc\_rich\_ex@{calc\_rich\_ex}}
+\label{doc-func-members}
+\Hypertarget{namespacerich__ops_doc-func-members}
+\doxysubsection{Function/\+\+Subroutine Documentation}
+\Hypertarget{namespacerich__ops_ad2717df0206a397d0d7845a96aa5da23}\index{rich\_ops@{rich\_ops}!calc\_rich\_ex@{calc\_rich\_ex}}
 \index{calc\_rich\_ex@{calc\_rich\_ex}!rich\_ops@{rich\_ops}}
 \doxysubsubsection{\texorpdfstring{calc\_rich\_ex()}{calc\_rich\_ex()}}
-{\footnotesize\ttfamily subroutine, public rich\+\_\+ops\+::calc\+\_\+rich\+\_\+ex (\begin{DoxyParamCaption}\item[{complex(dp), dimension(\+:), intent(in)}]{sol\+\_\+val }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \label{namespacerich__ops_ad2717df0206a397d0d7845a96aa5da23} 
+subroutine, public rich\+\_\+ops::\+calc\+\_\+rich\+\_\+ex (\begin{DoxyParamCaption}\item[{complex(dp), dimension(:\+), intent(in)}]{sol\+\_\+val}{}\end{DoxyParamCaption})}
 
 
 
 Calculates the coefficients of the Eigenvalues in the Richardson extrapolation. 
 
-This is done using the recursive formula\+: \[ s(l,i,:) = s(l,i-1,:) + \frac{1}{2^{2 \ p \ i} - 1} (s(l,i-1,:) - s(l-1,i-1,:)), \] where $s$ = {\ttfamily sol\+\_\+val\+\_\+rich}, $i$ = {\ttfamily ir}, $l$ = {\ttfamily lvl} and $p$ = {\ttfamily norm\+\_\+disc\+\_\+prec\+\_\+sol}, the order of the numerical discretization. as described in \cite{dahlquist2003numerical}, algorithm 3.\+2, p. 306. 
+This is done using the recursive formula:\+   \[ s(l,i,:) = s(l,i-1,:) +  \frac{1}{2^{2 \ p \ i} - 1}
+              (s(l,i-1,:) - s(l-1,i-1,:)),
+\] where $s$ = {\ttfamily sol\+\_\+val\+\_\+rich}, $i$ = {\ttfamily ir}, $l$ = {\ttfamily lvl} and $p$ = {\ttfamily norm\+\_\+disc\+\_\+prec\+\_\+sol}, the order of the numerical discretization. as described in \DoxyCite{dahlquist2003numerical}{number}{1}, algorithm 3.\+2, p. 306. 
 \begin{DoxyParams}[1]{Parameters}
-\mbox{\texttt{ in}}  & {\em sol\+\_\+val} & EV for this Richardson level \\
+\doxymbox{\texttt{in}}  & {\em sol\+\_\+val} & EV for this Richardson level \\
 \hline
 \end{DoxyParams}
 
 
-Definition at line 459 of file rich\+\_\+ops.\+f90.
+Definition at line \doxymbox{\hyperlink{rich__ops_8f90_source_l00458}{458}} of file \doxymbox{\hyperlink{rich__ops_8f90_source}{rich\+\_\+ops.\+f90}}.
 
-Here is the caller graph for this function\+:\nopagebreak
+Here is the call graph for this function:\+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespacerich__ops_ad2717df0206a397d0d7845a96aa5da23_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function:\+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{namespacerich__ops_ad2717df0206a397d0d7845a96aa5da23_icgraph}
 \end{center}
 \end{figure}
-\mbox{\Hypertarget{namespacerich__ops_ac00cce686d45540b238b3b6e39c9bdeb}\label{namespacerich__ops_ac00cce686d45540b238b3b6e39c9bdeb}} 
-\index{rich\_ops@{rich\_ops}!check\_conv@{check\_conv}}
-\index{check\_conv@{check\_conv}!rich\_ops@{rich\_ops}}
-\doxysubsubsection{\texorpdfstring{check\_conv()}{check\_conv()}}
-{\footnotesize\ttfamily subroutine rich\+\_\+ops\+::check\+\_\+conv}
-
-
-
-Decides whether convergence has been reached for the Richardson extrapolation. 
-
-This is done by checking whether the difference between the approximation of the Eigenvalues in this Richardson level and the previous Richardson level, with the same order of the error, falls below a threshold.
-
-Also increases the next tol\+\_\+\+S\+L\+E\+PC if it is too low.
-
-\begin{DoxySeeAlso}{See also}
-\mbox{\hyperlink{namespacerich__ops_ad2717df0206a397d0d7845a96aa5da23}{calc\+\_\+rich\+\_\+ex()}} 
-\end{DoxySeeAlso}
-
-
-Definition at line 489 of file rich\+\_\+ops.\+f90.
-
-Here is the call graph for this function\+:\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=350pt]{namespacerich__ops_ac00cce686d45540b238b3b6e39c9bdeb_cgraph}
-\end{center}
-\end{figure}
-Here is the caller graph for this function\+:\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=350pt]{namespacerich__ops_ac00cce686d45540b238b3b6e39c9bdeb_icgraph}
-\end{center}
-\end{figure}
-\mbox{\Hypertarget{namespacerich__ops_a50f4088b9ddd59597987fb4112f2a73e}\label{namespacerich__ops_a50f4088b9ddd59597987fb4112f2a73e}} 
-\index{rich\_ops@{rich\_ops}!do\_rich@{do\_rich}}
+\Hypertarget{namespacerich__ops_a50f4088b9ddd59597987fb4112f2a73e}\index{rich\_ops@{rich\_ops}!do\_rich@{do\_rich}}
 \index{do\_rich@{do\_rich}!rich\_ops@{rich\_ops}}
 \doxysubsubsection{\texorpdfstring{do\_rich()}{do\_rich()}}
-{\footnotesize\ttfamily logical function, public rich\+\_\+ops\+::do\+\_\+rich}
+{\footnotesize\ttfamily \label{namespacerich__ops_a50f4088b9ddd59597987fb4112f2a73e} 
+logical function, public rich\+\_\+ops::\+do\+\_\+rich}
 
 
 
@@ -103,20 +77,27 @@ Tests whether this Richardson level should be done.
 
 
 
-Definition at line 313 of file rich\+\_\+ops.\+f90.
+Definition at line \doxymbox{\hyperlink{rich__ops_8f90_source_l00312}{312}} of file \doxymbox{\hyperlink{rich__ops_8f90_source}{rich\+\_\+ops.\+f90}}.
 
-Here is the caller graph for this function\+:\nopagebreak
+Here is the call graph for this function:\+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=280pt]{namespacerich__ops_a50f4088b9ddd59597987fb4112f2a73e_icgraph}
+\includegraphics[width=198pt]{namespacerich__ops_a50f4088b9ddd59597987fb4112f2a73e_cgraph}
 \end{center}
 \end{figure}
-\mbox{\Hypertarget{namespacerich__ops_a58e1bed1bed5c2d0b91cc7dc5e3099d9}\label{namespacerich__ops_a58e1bed1bed5c2d0b91cc7dc5e3099d9}} 
-\index{rich\_ops@{rich\_ops}!find\_max\_rich\_lvl@{find\_max\_rich\_lvl}}
+Here is the caller graph for this function:\+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=322pt]{namespacerich__ops_a50f4088b9ddd59597987fb4112f2a73e_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{namespacerich__ops_a58e1bed1bed5c2d0b91cc7dc5e3099d9}\index{rich\_ops@{rich\_ops}!find\_max\_rich\_lvl@{find\_max\_rich\_lvl}}
 \index{find\_max\_rich\_lvl@{find\_max\_rich\_lvl}!rich\_ops@{rich\_ops}}
 \doxysubsubsection{\texorpdfstring{find\_max\_rich\_lvl()}{find\_max\_rich\_lvl()}}
-{\footnotesize\ttfamily integer function, public rich\+\_\+ops\+::find\+\_\+max\+\_\+rich\+\_\+lvl (\begin{DoxyParamCaption}\item[{integer, intent(inout)}]{lvl\+\_\+rich\+\_\+req,  }\item[{integer, intent(inout)}]{max\+\_\+lvl\+\_\+rich\+\_\+file }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \label{namespacerich__ops_a58e1bed1bed5c2d0b91cc7dc5e3099d9} 
+integer function, public rich\+\_\+ops::\+find\+\_\+max\+\_\+rich\+\_\+lvl (\begin{DoxyParamCaption}\item[{integer, intent(inout)}]{lvl\+\_\+rich\+\_\+req}{, }\item[{integer, intent(inout)}]{max\+\_\+lvl\+\_\+rich\+\_\+file}{}\end{DoxyParamCaption})}
 
 
 
@@ -127,34 +108,34 @@ ierr
 \end{DoxyReturn}
 
 \begin{DoxyParams}[1]{Parameters}
-\mbox{\texttt{ in,out}}  & {\em lvl\+\_\+rich\+\_\+req} & requested Richardson level \\
+\doxymbox{\texttt{in,out}}  & {\em lvl\+\_\+rich\+\_\+req} & requested Richardson level \\
 \hline
-\mbox{\texttt{ in,out}}  & {\em max\+\_\+lvl\+\_\+rich\+\_\+file} & max. Richardson level found in file \\
+\doxymbox{\texttt{in,out}}  & {\em max\+\_\+lvl\+\_\+rich\+\_\+file} & max. Richardson level found in file \\
 \hline
 \end{DoxyParams}
 
 
-Definition at line 539 of file rich\+\_\+ops.\+f90.
+Definition at line \doxymbox{\hyperlink{rich__ops_8f90_source_l00537}{537}} of file \doxymbox{\hyperlink{rich__ops_8f90_source}{rich\+\_\+ops.\+f90}}.
 
-Here is the call graph for this function\+:\nopagebreak
+Here is the call graph for this function:\+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{namespacerich__ops_a58e1bed1bed5c2d0b91cc7dc5e3099d9_cgraph}
 \end{center}
 \end{figure}
-Here is the caller graph for this function\+:\nopagebreak
+Here is the caller graph for this function:\+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{namespacerich__ops_a58e1bed1bed5c2d0b91cc7dc5e3099d9_icgraph}
 \end{center}
 \end{figure}
-\mbox{\Hypertarget{namespacerich__ops_a9fbbda93eab8973d33063e277c489e7b}\label{namespacerich__ops_a9fbbda93eab8973d33063e277c489e7b}} 
-\index{rich\_ops@{rich\_ops}!init\_rich@{init\_rich}}
+\Hypertarget{namespacerich__ops_a9fbbda93eab8973d33063e277c489e7b}\index{rich\_ops@{rich\_ops}!init\_rich@{init\_rich}}
 \index{init\_rich@{init\_rich}!rich\_ops@{rich\_ops}}
 \doxysubsubsection{\texorpdfstring{init\_rich()}{init\_rich()}}
-{\footnotesize\ttfamily integer function, public rich\+\_\+ops\+::init\+\_\+rich}
+{\footnotesize\ttfamily \label{namespacerich__ops_a9fbbda93eab8973d33063e277c489e7b} 
+integer function, public rich\+\_\+ops::\+init\+\_\+rich}
 
 
 
@@ -167,27 +148,27 @@ ierr
 \end{DoxyReturn}
 
 
-Definition at line 28 of file rich\+\_\+ops.\+f90.
+Definition at line \doxymbox{\hyperlink{rich__ops_8f90_source_l00027}{27}} of file \doxymbox{\hyperlink{rich__ops_8f90_source}{rich\+\_\+ops.\+f90}}.
 
-Here is the call graph for this function\+:\nopagebreak
+Here is the call graph for this function:\+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{namespacerich__ops_a9fbbda93eab8973d33063e277c489e7b_cgraph}
 \end{center}
 \end{figure}
-Here is the caller graph for this function\+:\nopagebreak
+Here is the caller graph for this function:\+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=283pt]{namespacerich__ops_a9fbbda93eab8973d33063e277c489e7b_icgraph}
+\includegraphics[width=334pt]{namespacerich__ops_a9fbbda93eab8973d33063e277c489e7b_icgraph}
 \end{center}
 \end{figure}
-\mbox{\Hypertarget{namespacerich__ops_a97206a15127960366fcb41d6889cb3b5}\label{namespacerich__ops_a97206a15127960366fcb41d6889cb3b5}} 
-\index{rich\_ops@{rich\_ops}!start\_rich\_lvl@{start\_rich\_lvl}}
+\Hypertarget{namespacerich__ops_a97206a15127960366fcb41d6889cb3b5}\index{rich\_ops@{rich\_ops}!start\_rich\_lvl@{start\_rich\_lvl}}
 \index{start\_rich\_lvl@{start\_rich\_lvl}!rich\_ops@{rich\_ops}}
 \doxysubsubsection{\texorpdfstring{start\_rich\_lvl()}{start\_rich\_lvl()}}
-{\footnotesize\ttfamily integer function, public rich\+\_\+ops\+::start\+\_\+rich\+\_\+lvl}
+{\footnotesize\ttfamily \label{namespacerich__ops_a97206a15127960366fcb41d6889cb3b5} 
+integer function, public rich\+\_\+ops::\+start\+\_\+rich\+\_\+lvl}
 
 
 
@@ -200,27 +181,27 @@ ierr
 \end{DoxyReturn}
 
 
-Definition at line 327 of file rich\+\_\+ops.\+f90.
+Definition at line \doxymbox{\hyperlink{rich__ops_8f90_source_l00326}{326}} of file \doxymbox{\hyperlink{rich__ops_8f90_source}{rich\+\_\+ops.\+f90}}.
 
-Here is the call graph for this function\+:\nopagebreak
+Here is the call graph for this function:\+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{namespacerich__ops_a97206a15127960366fcb41d6889cb3b5_cgraph}
 \end{center}
 \end{figure}
-Here is the caller graph for this function\+:\nopagebreak
+Here is the caller graph for this function:\+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=312pt]{namespacerich__ops_a97206a15127960366fcb41d6889cb3b5_icgraph}
+\includegraphics[width=350pt]{namespacerich__ops_a97206a15127960366fcb41d6889cb3b5_icgraph}
 \end{center}
 \end{figure}
-\mbox{\Hypertarget{namespacerich__ops_a0cce16b835e18b025d366a038b22efe1}\label{namespacerich__ops_a0cce16b835e18b025d366a038b22efe1}} 
-\index{rich\_ops@{rich\_ops}!stop\_rich\_lvl@{stop\_rich\_lvl}}
+\Hypertarget{namespacerich__ops_a0cce16b835e18b025d366a038b22efe1}\index{rich\_ops@{rich\_ops}!stop\_rich\_lvl@{stop\_rich\_lvl}}
 \index{stop\_rich\_lvl@{stop\_rich\_lvl}!rich\_ops@{rich\_ops}}
 \doxysubsubsection{\texorpdfstring{stop\_rich\_lvl()}{stop\_rich\_lvl()}}
-{\footnotesize\ttfamily subroutine, public rich\+\_\+ops\+::stop\+\_\+rich\+\_\+lvl}
+{\footnotesize\ttfamily \label{namespacerich__ops_a0cce16b835e18b025d366a038b22efe1} 
+subroutine, public rich\+\_\+ops::\+stop\+\_\+rich\+\_\+lvl}
 
 
 
@@ -228,27 +209,27 @@ Stop a Richardson level.
 
 It decides whether convergence has been reached, and possibly sets a guess for the next level. 
 
-Definition at line 405 of file rich\+\_\+ops.\+f90.
+Definition at line \doxymbox{\hyperlink{rich__ops_8f90_source_l00404}{404}} of file \doxymbox{\hyperlink{rich__ops_8f90_source}{rich\+\_\+ops.\+f90}}.
 
-Here is the call graph for this function\+:\nopagebreak
+Here is the call graph for this function:\+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{namespacerich__ops_a0cce16b835e18b025d366a038b22efe1_cgraph}
 \end{center}
 \end{figure}
-Here is the caller graph for this function\+:\nopagebreak
+Here is the caller graph for this function:\+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=309pt]{namespacerich__ops_a0cce16b835e18b025d366a038b22efe1_icgraph}
+\includegraphics[width=350pt]{namespacerich__ops_a0cce16b835e18b025d366a038b22efe1_icgraph}
 \end{center}
 \end{figure}
-\mbox{\Hypertarget{namespacerich__ops_a3cf72a3ed0806ac9ddff262a00b2e33d}\label{namespacerich__ops_a3cf72a3ed0806ac9ddff262a00b2e33d}} 
-\index{rich\_ops@{rich\_ops}!term\_rich@{term\_rich}}
+\Hypertarget{namespacerich__ops_a3cf72a3ed0806ac9ddff262a00b2e33d}\index{rich\_ops@{rich\_ops}!term\_rich@{term\_rich}}
 \index{term\_rich@{term\_rich}!rich\_ops@{rich\_ops}}
 \doxysubsubsection{\texorpdfstring{term\_rich()}{term\_rich()}}
-{\footnotesize\ttfamily subroutine, public rich\+\_\+ops\+::term\+\_\+rich}
+{\footnotesize\ttfamily \label{namespacerich__ops_a3cf72a3ed0806ac9ddff262a00b2e33d} 
+subroutine, public rich\+\_\+ops::\+term\+\_\+rich}
 
 
 
@@ -256,19 +237,19 @@ Terminate the Richardson extrapolation system.
 
 Needs to be called only once. 
 
-Definition at line 220 of file rich\+\_\+ops.\+f90.
+Definition at line \doxymbox{\hyperlink{rich__ops_8f90_source_l00219}{219}} of file \doxymbox{\hyperlink{rich__ops_8f90_source}{rich\+\_\+ops.\+f90}}.
 
-Here is the call graph for this function\+:\nopagebreak
+Here is the call graph for this function:\+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{namespacerich__ops_a3cf72a3ed0806ac9ddff262a00b2e33d_cgraph}
 \end{center}
 \end{figure}
-Here is the caller graph for this function\+:\nopagebreak
+Here is the caller graph for this function:\+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=294pt]{namespacerich__ops_a3cf72a3ed0806ac9ddff262a00b2e33d_icgraph}
+\includegraphics[width=334pt]{namespacerich__ops_a3cf72a3ed0806ac9ddff262a00b2e33d_icgraph}
 \end{center}
 \end{figure}

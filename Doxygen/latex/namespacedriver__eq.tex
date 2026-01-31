@@ -1,54 +1,56 @@
-\hypertarget{namespacedriver__eq}{}\doxysection{driver\+\_\+eq Module Reference}
-\label{namespacedriver__eq}\index{driver\_eq@{driver\_eq}}
+\doxysection{driver\+\_\+eq Module Reference}
+\hypertarget{namespacedriver__eq}{}\label{namespacedriver__eq}\index{driver\_eq@{driver\_eq}}
 
 
-Driver of the equilibrium part of P\+B3D.  
+Driver of the equilibrium part of PB3D.  
 
 
-\doxysubsection*{Functions/\+Subroutines}
+\doxysubsubsection*{Functions/\+\+Subroutines}
 \begin{DoxyCompactItemize}
 \item 
-integer function, public \mbox{\hyperlink{namespacedriver__eq_adc9d5dff288fa512e5ef885627d940cc}{run\+\_\+driver\+\_\+eq}} (grid\+\_\+eq\+\_\+out, grid\+\_\+eq\+\_\+\+B\+\_\+out, eq\+\_\+1\+\_\+out, eq\+\_\+2\+\_\+out, vac)
-\begin{DoxyCompactList}\small\item\em Main driver of P\+B3D equilibrium part. \end{DoxyCompactList}\end{DoxyCompactItemize}
+integer function, public \doxymbox{\hyperlink{namespacedriver__eq_a40d652e15887ad4f788a3945e6253571}{run\+\_\+driver\+\_\+eq}} (grid\+\_\+eq\+\_\+out, grid\+\_\+eq\+\_\+b\+\_\+out, eq\+\_\+1\+\_\+out, eq\+\_\+2\+\_\+out, vac)
+\begin{DoxyCompactList}\small\item\em Main driver of PB3D equilibrium part. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
-Driver of the equilibrium part of P\+B3D. 
+Driver of the equilibrium part of PB3D. 
 
-\doxysubsection{Function/\+Subroutine Documentation}
-\mbox{\Hypertarget{namespacedriver__eq_adc9d5dff288fa512e5ef885627d940cc}\label{namespacedriver__eq_adc9d5dff288fa512e5ef885627d940cc}} 
-\index{driver\_eq@{driver\_eq}!run\_driver\_eq@{run\_driver\_eq}}
+\label{doc-func-members}
+\Hypertarget{namespacedriver__eq_doc-func-members}
+\doxysubsection{Function/\+\+Subroutine Documentation}
+\Hypertarget{namespacedriver__eq_a40d652e15887ad4f788a3945e6253571}\index{driver\_eq@{driver\_eq}!run\_driver\_eq@{run\_driver\_eq}}
 \index{run\_driver\_eq@{run\_driver\_eq}!driver\_eq@{driver\_eq}}
 \doxysubsubsection{\texorpdfstring{run\_driver\_eq()}{run\_driver\_eq()}}
-{\footnotesize\ttfamily integer function, public driver\+\_\+eq\+::run\+\_\+driver\+\_\+eq (\begin{DoxyParamCaption}\item[{type(\mbox{\hyperlink{structgrid__vars_1_1grid__type}{grid\+\_\+type}}), intent(inout), target}]{grid\+\_\+eq\+\_\+out,  }\item[{type(\mbox{\hyperlink{structgrid__vars_1_1grid__type}{grid\+\_\+type}}), intent(inout), pointer}]{grid\+\_\+eq\+\_\+\+B\+\_\+out,  }\item[{type(\mbox{\hyperlink{structeq__vars_1_1eq__1__type}{eq\+\_\+1\+\_\+type}}), intent(inout)}]{eq\+\_\+1\+\_\+out,  }\item[{type(\mbox{\hyperlink{structeq__vars_1_1eq__2__type}{eq\+\_\+2\+\_\+type}}), intent(inout)}]{eq\+\_\+2\+\_\+out,  }\item[{type(\mbox{\hyperlink{structvac__vars_1_1vac__type}{vac\+\_\+type}}), intent(inout)}]{vac }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \label{namespacedriver__eq_a40d652e15887ad4f788a3945e6253571} 
+integer function, public driver\+\_\+eq::\+run\+\_\+driver\+\_\+eq (\begin{DoxyParamCaption}\item[{type(\doxymbox{\hyperlink{structgrid__vars_1_1grid__type}{grid\+\_\+type}}), intent(inout), target}]{grid\+\_\+eq\+\_\+out}{, }\item[{type(\doxymbox{\hyperlink{structgrid__vars_1_1grid__type}{grid\+\_\+type}}), intent(inout), pointer}]{grid\+\_\+eq\+\_\+b\+\_\+out}{, }\item[{type(\doxymbox{\hyperlink{structeq__vars_1_1eq__1__type}{eq\+\_\+1\+\_\+type}}), intent(inout)}]{eq\+\_\+1\+\_\+out}{, }\item[{type(\doxymbox{\hyperlink{structeq__vars_1_1eq__2__type}{eq\+\_\+2\+\_\+type}}), intent(inout)}]{eq\+\_\+2\+\_\+out}{, }\item[{type(\doxymbox{\hyperlink{structvac__vars_1_1vac__type}{vac\+\_\+type}}), intent(inout)}]{vac}{}\end{DoxyParamCaption})}
 
 
 
-Main driver of P\+B3D equilibrium part. 
+Main driver of PB3D equilibrium part. 
 
 
 \begin{DoxyItemize}
-\item sets up (\mbox{[}out\mbox{]} means for output)\+:
+\item sets up (\+[out]\+ means for output):\+
 \begin{DoxyItemize}
-\item {\ttfamily grid\+\_\+eq} \mbox{[}out\mbox{]} (for H\+E\+L\+E\+NA, only first Richardson level)
-\item {\ttfamily grid\+\_\+eq\+\_\+B} \mbox{[}out\mbox{]} (for V\+M\+EC, equal to grid\+\_\+eq\+\_\+out)
-\item {\ttfamily eq\+\_\+1} \mbox{[}out\mbox{]} (only first Richardson level)
-\item {\ttfamily eq\+\_\+2} \mbox{[}out\mbox{]} (for H\+E\+L\+E\+NA, only first Richardson level) where output means
+\item {\ttfamily grid\+\_\+eq} \+[out]\+ (for HELENA, only first Richardson level)
+\item {\ttfamily grid\+\_\+eq\+\_\+B} \+[out]\+ (for VMEC, equal to grid\+\_\+eq\+\_\+out)
+\item {\ttfamily eq\+\_\+1} \+[out]\+ (only first Richardson level)
+\item {\ttfamily eq\+\_\+2} \+[out]\+ (for HELENA, only first Richardson level) where output means
 \item on the equilibrium grid if {\ttfamily X\+\_\+grid} style is 1,3 (no change).
 \item on a redistributed grid if {\ttfamily X\+\_\+grid\+\_\+style} is 2
 \end{DoxyItemize}
-\item writes to H\+D\+F5\+:
+\item writes to HDF5:\+
 \begin{DoxyItemize}
-\item {\ttfamily grid\+\_\+eq} (for H\+E\+L\+E\+NA, only first Richardson level)
-\item {\ttfamily grid\+\_\+eq\+\_\+B} (for V\+M\+EC, equal to grid\+\_\+eq)
+\item {\ttfamily grid\+\_\+eq} (for HELENA, only first Richardson level)
+\item {\ttfamily grid\+\_\+eq\+\_\+B} (for VMEC, equal to grid\+\_\+eq)
 \item {\ttfamily eq\+\_\+1} (only first Richardson level)
-\item {\ttfamily eq\+\_\+2} (only for H\+E\+L\+E\+NA)
+\item {\ttfamily eq\+\_\+2} (only for HELENA)
 \end{DoxyItemize}
-\item deallocates\+:
+\item deallocates:\+
 \begin{DoxyItemize}
-\item {\ttfamily grid\+\_\+eq} \mbox{[}out\mbox{]} before setting up
-\item {\ttfamily grid\+\_\+\+B\+\_\+eq} \mbox{[}out\mbox{]} before setting up
-\item {\ttfamily eq\+\_\+2} \mbox{[}out\mbox{]} before setting up
+\item {\ttfamily grid\+\_\+eq} \+[out]\+ before setting up
+\item {\ttfamily grid\+\_\+\+B\+\_\+eq} \+[out]\+ before setting up
+\item {\ttfamily eq\+\_\+2} \+[out]\+ before setting up
 \end{DoxyItemize}
 \end{DoxyItemize}
 
@@ -57,32 +59,32 @@ ierr
 \end{DoxyReturn}
 
 \begin{DoxyParams}[1]{Parameters}
-\mbox{\texttt{ in,out}}  & {\em grid\+\_\+eq\+\_\+out} & output equilibrium grid \\
+\doxymbox{\texttt{in,out}}  & {\em grid\+\_\+eq\+\_\+out} & output equilibrium grid \\
 \hline
-\mbox{\texttt{ in,out}}  & {\em grid\+\_\+eq\+\_\+b\+\_\+out} & output field-\/aligned equilibrium grid \\
+\doxymbox{\texttt{in,out}}  & {\em grid\+\_\+eq\+\_\+b\+\_\+out} & output field-\/aligned equilibrium grid \\
 \hline
-\mbox{\texttt{ in,out}}  & {\em eq\+\_\+1\+\_\+out} & flux equilibrium variables in output grid \\
+\doxymbox{\texttt{in,out}}  & {\em eq\+\_\+1\+\_\+out} & flux equilibrium variables in output grid \\
 \hline
-\mbox{\texttt{ in,out}}  & {\em eq\+\_\+2\+\_\+out} & metric equilibrium variables in output grid \\
+\doxymbox{\texttt{in,out}}  & {\em eq\+\_\+2\+\_\+out} & metric equilibrium variables in output grid \\
 \hline
-\mbox{\texttt{ in,out}}  & {\em vac} & vacuum variables \\
+\doxymbox{\texttt{in,out}}  & {\em vac} & vacuum variables \\
 \hline
 \end{DoxyParams}
 
 
-Definition at line 49 of file driver\+\_\+eq.\+f90.
+Definition at line \doxymbox{\hyperlink{driver__eq_8f90_source_l00047}{47}} of file \doxymbox{\hyperlink{driver__eq_8f90_source}{driver\+\_\+eq.\+f90}}.
 
-Here is the call graph for this function\+:\nopagebreak
+Here is the call graph for this function:\+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=350pt]{namespacedriver__eq_adc9d5dff288fa512e5ef885627d940cc_cgraph}
+\includegraphics[width=350pt]{namespacedriver__eq_a40d652e15887ad4f788a3945e6253571_cgraph}
 \end{center}
 \end{figure}
-Here is the caller graph for this function\+:\nopagebreak
+Here is the caller graph for this function:\+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=326pt]{namespacedriver__eq_adc9d5dff288fa512e5ef885627d940cc_icgraph}
+\includegraphics[width=350pt]{namespacedriver__eq_a40d652e15887ad4f788a3945e6253571_icgraph}
 \end{center}
 \end{figure}

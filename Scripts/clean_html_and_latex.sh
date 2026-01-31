@@ -1,5 +1,44 @@
 #!/bin/bash
 echo 'STARTING'
+
+# Cross-platform sed -i (macOS vs Linux)
+sedi() {
+  if [[ "$OSTYPE" == "darwin"* ]]; then
+    sed -i '' "$@"
+  else
+    sed -i "$@"
+  fi
+}
+
+# Insert a line before a given line number (portable across macOS/Linux).
+insert_before_line() {
+  local line="$1"
+  local file="$2"
+  local text="$3"
+  if [[ -z "$line" ]]; then
+    return 0
+  fi
+  python3 - "$file" "$line" "$text" <<'PY'
+import sys
+
+path = sys.argv[1]
+try:
+    line = int(sys.argv[2])
+except ValueError:
+    sys.exit(0)
+text = sys.argv[3]
+
+with open(path, "r", encoding="utf-8") as f:
+    lines = f.readlines()
+
+line = max(1, min(line, len(lines) + 1))
+lines.insert(line - 1, text + "\n")
+
+with open(path, "w", encoding="utf-8") as f:
+    f.writelines(lines)
+PY
+}
+
 cd ./Doxygen
 prog_names[0]='PB3D'
 prog_names[1]='POST'
@@ -10,11 +49,17 @@ cd html
 
 echo 'removing double "this documentation was created by" from index'
 doc_line=$(grep -n -m 1 'this documentation was created with' index.html | cut -f1 -d":")
-sed -i -e ${doc_line}'d' index.html
+if [[ -n "$doc_line" ]]; then
+  sedi -e ${doc_line}'d' index.html
+fi
 
 for prog_name in ${prog_names[@]}; do
-    echo "removing file reference from ${prog_name}"
-    sed -i 's/.f90 File/ Program/g' ${prog_name}_8f90.html
+    if [[ -f "${prog_name}_8f90.html" ]]; then
+        echo "removing file reference from ${prog_name}"
+        sedi 's/.f90 File/ Program/g' ${prog_name}_8f90.html
+    else
+        echo "    ${prog_name}_8f90.html not found (Doxygen 1.16+ format)"
+    fi
 done
 
 echo ''
@@ -31,94 +76,144 @@ for search_string in ${search_strings[@]}; do
     echo "        '${search_string}'"
     files=($(grep -l "${search_string}"  *.tex))
     for file in ${files[@]}; do
-        line=$(grep -n "${search_string}" ${file} | cut -f1 -d":")
-        sed -i $((line-1))q ${file}
+        line=$(grep -n -m 1 "${search_string}" ${file} | cut -f1 -d":")
+        if [[ -n "$line" ]]; then
+          sedi $((line-1))q ${file}
+        fi
     done
 done
 
 echo 'Moving PB3D and POST documentation to before Modules'
-echo "    Adding chapter title"
-mod_doc_line=$(grep -n "Module Documentation" refman.tex | cut -f1 -d":")
-sed -i ${mod_doc_line}'i\\chapter{Programs}\' refman.tex
+# Check if any program files exist (Doxygen 1.16+ may not generate them)
+has_prog_files=false
 for prog_name in ${prog_names[@]}; do
-    chap_line=$(grep -n '\chapter{Programs}' refman.tex | cut -f1 -d":")
-    prog_line=$(grep -n '\input{'${prog_name}'_8f90}' refman.tex | cut -f1 -d":")
-    echo "    move line ${prog_line} to $((chap_line))"
-    ex -s -c ${prog_line}m${chap_line} -c w! -c q refman.tex
+    if [[ -f "${prog_name}_8f90.tex" ]]; then
+        has_prog_files=true
+        break
+    fi
 done
+
+if [[ "$has_prog_files" == "true" ]]; then
+    echo "    Adding chapter title"
+    mod_doc_line=$(grep -n -m 1 "Module Documentation" refman.tex | cut -f1 -d":")
+    insert_before_line "${mod_doc_line}" refman.tex '\chapter{Programs}'
+    for prog_name in ${prog_names[@]}; do
+        chap_line=$(grep -n -m 1 '\chapter{Programs}' refman.tex | cut -f1 -d":")
+        prog_line=$(grep -n -m 1 '\input{'${prog_name}'_8f90}' refman.tex | cut -f1 -d":")
+        if [[ -n "$chap_line" && -n "$prog_line" ]]; then
+          echo "    move line ${prog_line} to $((chap_line))"
+          ex -s -c ${prog_line}m${chap_line} -c w! -c q refman.tex
+        fi
+    done
+else
+    echo "    No program files found (Doxygen 1.16+ format - skipping)"
+fi
 
 
 echo 'removing File documentation'
-files_line=$(grep -n '\\chapter{File Documentation}'  refman.tex | cut -f1 -d":")
-example_line=$(grep -n '\chapter{Example Documentation}'   refman.tex | cut -f1 -d":")
-if ((files_line+1 < example_line-1))
+files_line=$(grep -n -m 1 '\\chapter{File Documentation}'  refman.tex | cut -f1 -d":")
+example_line=$(grep -n -m 1 '\chapter{Example Documentation}'   refman.tex | cut -f1 -d":")
+if [[ -n "$files_line" && -n "$example_line" ]] && ((files_line+1 < example_line-1))
 then
     echo "    remove line numbers between $((files_line)) and $((example_line-1))"
-    sed -i.bak -e "$((files_line)),$((example_line-1))d" refman.tex
+    sedi -e "$((files_line)),$((example_line-1))d" refman.tex
 else
     echo "    not found"
 fi
 
 echo 'renaming chapters'
-sed -i 's/Module Documentation/Modules/g' refman.tex
-sed -i 's/Data Type Documentation/Interfaces and Types/g' refman.tex
-sed -i 's/Example Documentation/Examples/g' refman.tex
+sedi 's/Module Documentation/Modules/g' refman.tex
+sedi 's/Data Type Documentation/Interfaces and Types/g' refman.tex
+sedi 's/Example Documentation/Examples/g' refman.tex
 
 echo 'changing titlepage'
-sed -i 's/linkcolor=blue/linkcolor=stylecolor/g' refman.tex
-sed -i 's/citecolor=blue/citecolor=stylecolor/g' refman.tex
-version_line=$(grep -n '\\Large P\\+B3D \\\\\[1ex\]'  refman.tex | cut -f1 -d":")
-sed -i 's/\\Large P\\+B3D \\\\\[1ex\]//g' refman.tex
-sed -i ${version_line}'i\\vspace*{1cm}\' refman.tex
-sed -i ${version_line}'i\{\color{stylecolor} \TitleFont\fontsize{72}{80} \selectfont P\+B3D \\}\' refman.tex
-sed -i '/Generated by Doxygen/d' refman.tex
+sedi 's/linkcolor=blue/linkcolor=stylecolor/g' refman.tex
+sedi 's/citecolor=blue/citecolor=stylecolor/g' refman.tex
+version_line=$(grep -n -m 1 '\\Large P\\+B3D \\\\\[1ex\]'  refman.tex | cut -f1 -d":")
+sedi 's/\\Large P\\+B3D \\\\\[1ex\]//g' refman.tex
+insert_before_line "${version_line}" refman.tex '\vspace*{1cm}'
+insert_before_line "${version_line}" refman.tex '{\color{stylecolor} \TitleFont\fontsize{72}{80} \selectfont P\+B3D \\}'
+sedi '/Generated by Doxygen/d' refman.tex
 
 echo 'fixing pdf hypersetup'
 hyper_line=$(grep -n -m 1 '\\hypersetup'  refman.tex | cut -f1 -d":")
-sed -i $((hyper_line+1))'i\pdfduplex=DuplexFlipLongEdge,%\' refman.tex
-sed -i $((hyper_line+1))'i\pdfcreator={Toon Weyens},%\' refman.tex
-sed -i $((hyper_line+1))'i\pdfproducer={Toon Weyens},%\' refman.tex
-sed -i $((hyper_line+1))'i\pdfauthor={Toon Weyens},%\' refman.tex
-sed -i $((hyper_line+1))'i\pdfkeywords={PB3D, Magnetohydrodynamics, MHD, nuclear, fusion, plasma, stability, ideal, linear, peeling-ballooning, peeling, ballooning, 3D, 3-D, three-dimensional},%\' refman.tex
-sed -i $((hyper_line+1))'i\baseurl=https://PB3D.github.io,%\' refman.tex
-sed -i $((hyper_line+1))'i\pdftitle={Peeling-Ballooning in 3-D},%\' refman.tex
-sed -i $((hyper_line+1))'i\pdfsubject={code manual},%\' refman.tex
+insert_before_line "$((hyper_line+1))" refman.tex 'pdfduplex=DuplexFlipLongEdge,%'
+insert_before_line "$((hyper_line+1))" refman.tex 'pdfcreator={Toon Weyens},%'
+insert_before_line "$((hyper_line+1))" refman.tex 'pdfproducer={Toon Weyens},%'
+insert_before_line "$((hyper_line+1))" refman.tex 'pdfauthor={Toon Weyens},%'
+insert_before_line "$((hyper_line+1))" refman.tex 'pdfkeywords={PB3D, Magnetohydrodynamics, MHD, nuclear, fusion, plasma, stability, ideal, linear, peeling-ballooning, peeling, ballooning, 3D, 3-D, three-dimensional},%'
+insert_before_line "$((hyper_line+1))" refman.tex 'baseurl=https://PB3D.github.io,%'
+insert_before_line "$((hyper_line+1))" refman.tex 'pdftitle={Peeling-Ballooning in 3-D},%'
+insert_before_line "$((hyper_line+1))" refman.tex 'pdfsubject={code manual},%'
 
 for prog_name in ${prog_names[@]}; do
-    echo "removing f90 from ${prog_name}"
-    sed -i 's/\.\\+f90//g' ${prog_name}_8f90.tex
-    sed -i '1s/File Reference/Program Rerefence/' ${prog_name}_8f90.tex
-    start_cut=$(grep -n "subsection\*"  ${prog_name}_8f90.tex | cut -f1 -d":")
-    end_cut=$(grep -n "subsubsection"  ${prog_name}_8f90.tex | cut -f1 -d":")
-    if ((start_cut < end_cut+1))
-    then
-        echo "    remove line numbers between $((start_cut)) and $((end_cut+1))"
-        sed -i.bak -e "$((start_cut)),$((end_cut+1))d" ${prog_name}_8f90.tex
+    if [[ -f "${prog_name}_8f90.tex" ]]; then
+        echo "removing f90 from ${prog_name}"
+        sedi 's/\.\\+f90//g' ${prog_name}_8f90.tex
+        sedi '1s/File Reference/Program Rerefence/' ${prog_name}_8f90.tex
+
+        # Doxygen 1.16+ fix: remove malformed \item and \end{DoxyCompactItemize} without matching begin
+        # Find lines with standalone \item (not inside DoxyCompactList) and remove them along with the broken end
+        item_line=$(grep -n '^\\item $' ${prog_name}_8f90.tex | cut -f1 -d":")
+        if [[ -n "$item_line" ]]; then
+            echo "    fixing Doxygen 1.16+ malformed list (line $item_line)"
+            # Remove the standalone \item line
+            sedi -e "${item_line}d" ${prog_name}_8f90.tex
+            # Remove the orphaned \end{DoxyCompactItemize}
+            sedi 's/\\end{DoxyCompactItemize}//g' ${prog_name}_8f90.tex
+        fi
+
+        # Original cleanup for older Doxygen versions
+        start_cut=$(grep -n -m 1 "subsection\*"  ${prog_name}_8f90.tex | cut -f1 -d":")
+        end_cut=$(grep -n -m 1 "subsubsection"  ${prog_name}_8f90.tex | cut -f1 -d":")
+        if [[ -n "$start_cut" && -n "$end_cut" ]] && ((start_cut < end_cut+1))
+        then
+            echo "    remove line numbers between $((start_cut)) and $((end_cut+1))"
+            sedi -e "$((start_cut)),$((end_cut+1))d" ${prog_name}_8f90.tex
+        fi
+        #sedi 's/Here is the call graph for this function/\nHere is the call graph for this program/' ${prog_name}_8f90.tex
     else
-        echo "    not found"
+        echo "    ${prog_name}_8f90.tex not found (skipping)"
     fi
-    #sed -i 's/Here is the call graph for this function/\nHere is the call graph for this program/' ${prog_name}_8f90.tex
 done
 
 echo 'Adding appendix'
-chap_line=$(grep -n '\chapter{Programs}' refman.tex | cut -f1 -d":")
-sed -i $((chap_line))'i\\begin{appendices}\' refman.tex
-sed -i $((chap_line+1))'i\\appendixpage\' refman.tex
-sed -i $((chap_line+2))'i\\noappendicestocpagenum\' refman.tex
-sed -i $((chap_line+3))'i\\addappheadtotoc\' refman.tex
-app_line=$(grep -n '%--- End generated contents ---'  refman.tex | cut -f1 -d":")
-sed -i ${app_line}'i\\end{appendices}\' refman.tex
+chap_line=$(grep -n -m 1 '\chapter{Programs}' refman.tex | cut -f1 -d":")
+if [[ -n "$chap_line" ]]; then
+    insert_before_line "$((chap_line))" refman.tex '\begin{appendices}'
+    insert_before_line "$((chap_line+1))" refman.tex '\appendixpage'
+    insert_before_line "$((chap_line+2))" refman.tex '\noappendicestocpagenum'
+    insert_before_line "$((chap_line+3))" refman.tex '\addappheadtotoc'
+    app_line=$(grep -n -m 1 '%--- End generated contents ---'  refman.tex | cut -f1 -d":")
+    insert_before_line "${app_line}" refman.tex '\end{appendices}'
+else
+    echo "    No Programs chapter found (Doxygen 1.16+ format - skipping appendix)"
+fi
 
 
 echo 'removing font stuff'
-sed -i -e "$(grep -n 'fontenc' refman.tex | cut -f1 -d":")d" refman.tex
-sed -i -e "$(grep -n 'inputenc' refman.tex | cut -f1 -d":")d" refman.tex
-start_cut=$(grep -n '% Font selection' refman.tex | cut -f1 -d":")
-end_cut=$(grep -n '\\renewcommand{\\DoxyLabelFont}' refman.tex | cut -f1 -d":")
-if ((start_cut < end_cut+1))
+# Remove fontenc and inputenc (handled by XeTeX)
+fontenc_line=$(grep -n -m 1 'fontenc' refman.tex | cut -f1 -d":")
+inputenc_line=$(grep -n -m 1 'inputenc' refman.tex | cut -f1 -d":")
+if [[ -n "$fontenc_line" ]]; then
+  sedi -e "${fontenc_line}d" refman.tex
+fi
+if [[ -n "$inputenc_line" ]]; then
+  sedi -e "${inputenc_line}d" refman.tex
+fi
+
+# Remove default font packages that override our custom fonts
+echo "    removing helvet and courier packages"
+sedi '/\\usepackage\[scaled=.*\]{helvet}/d' refman.tex
+sedi '/\\usepackage{courier}/d' refman.tex
+
+# Remove font selection section between "% Font selection" and DoxyLabelFont
+start_cut=$(grep -n -m 1 '% Font selection' refman.tex | cut -f1 -d":")
+end_cut=$(grep -n -m 1 '\\renewcommand{\\DoxyLabelFont}' refman.tex | cut -f1 -d":")
+if [[ -n "$start_cut" && -n "$end_cut" ]] && ((start_cut < end_cut+1))
 then
     echo "    remove line numbers between $((start_cut+1)) and $((end_cut-1))"
-    sed -i.bak -e "$((start_cut+1)),$((end_cut-1))d" refman.tex
+    sedi -e "$((start_cut+1)),$((end_cut-1))d" refman.tex
 else
     echo "    not found"
 fi

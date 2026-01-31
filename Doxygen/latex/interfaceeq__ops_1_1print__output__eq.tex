@@ -1,25 +1,25 @@
-\hypertarget{interfaceeq__ops_1_1print__output__eq}{}\doxysection{eq\+\_\+ops\+::print\+\_\+output\+\_\+eq Interface Reference}
-\label{interfaceeq__ops_1_1print__output__eq}\index{eq\_ops::print\_output\_eq@{eq\_ops::print\_output\_eq}}
+\doxysection{eq\+\_\+ops::\+print\+\_\+output\+\_\+eq Interface Reference}
+\hypertarget{interfaceeq__ops_1_1print__output__eq}{}\label{interfaceeq__ops_1_1print__output__eq}\index{eq\_ops::print\_output\_eq@{eq\_ops::print\_output\_eq}}
 
 
-Print equilibrium quantities to an output file\+:  
+Print equilibrium quantities to an output file:\+  
 
 
-\doxysubsection*{Public Member Functions}
+\doxysubsubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-integer function \mbox{\hyperlink{interfaceeq__ops_1_1print__output__eq_a07fef57b633cc1b723405cb07d12ef24}{print\+\_\+output\+\_\+eq\+\_\+1}} (grid\+\_\+eq, eq, data\+\_\+name)
+integer function \doxymbox{\hyperlink{interfaceeq__ops_1_1print__output__eq_a07fef57b633cc1b723405cb07d12ef24}{print\+\_\+output\+\_\+eq\+\_\+1}} (grid\+\_\+eq, eq, data\+\_\+name)
 \begin{DoxyCompactList}\small\item\em flux version \end{DoxyCompactList}\item 
-integer function \mbox{\hyperlink{interfaceeq__ops_1_1print__output__eq_a7efa796c3c3e7cdbcb4fb51c9c6afcac}{print\+\_\+output\+\_\+eq\+\_\+2}} (grid\+\_\+eq, eq, data\+\_\+name, rich\+\_\+lvl, par\+\_\+div, dealloc\+\_\+vars)
+integer function \doxymbox{\hyperlink{interfaceeq__ops_1_1print__output__eq_a7efa796c3c3e7cdbcb4fb51c9c6afcac}{print\+\_\+output\+\_\+eq\+\_\+2}} (grid\+\_\+eq, eq, data\+\_\+name, rich\+\_\+lvl, par\+\_\+div, dealloc\+\_\+vars)
 \begin{DoxyCompactList}\small\item\em metric version \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
-Print equilibrium quantities to an output file\+: 
+Print equilibrium quantities to an output file:\+ 
 
 
 \begin{DoxyItemize}
-\item flux\+:
+\item flux:\+
 \begin{DoxyItemize}
 \item {\ttfamily pres\+\_\+\+FD},
 \item {\ttfamily q\+\_\+saf\+\_\+\+FD},
@@ -32,7 +32,7 @@ Print equilibrium quantities to an output file\+:
 \item {\ttfamily kappa\+\_\+g},
 \item {\ttfamily sigma} 
 \end{DoxyItemize}
-\item metric\+:
+\item metric:\+
 \begin{DoxyItemize}
 \item {\ttfamily g\+\_\+\+FD},
 \item {\ttfamily h\+\_\+\+FD},
@@ -40,14 +40,14 @@ Print equilibrium quantities to an output file\+:
 \end{DoxyItemize}
 \end{DoxyItemize}
 
-If {\ttfamily rich\+\_\+lvl} is provided, {\ttfamily \char`\"{}\+\_\+\+R\+\_\+\mbox{[}rich\+\_\+lvl\mbox{]}\char`\"{}} is appended to the data name if it is {\ttfamily $>$0} (only for {\ttfamily eq\+\_\+2}).
+If {\ttfamily rich\+\_\+lvl} is provided, {\ttfamily "{}\+\_\+\+R\+\_\+\+[rich\+\_\+lvl]\+"{}} is appended to the data name if it is {\ttfamily \texorpdfstring{$>$}{>}0} (only for {\ttfamily eq\+\_\+2}).
 
 Optionally, for {\ttfamily eq\+\_\+2}, it can be specified that this is a divided parallel grid, corresponding to the variable {\ttfamily eq\+\_\+jobs\+\_\+lims} with index {\ttfamily eq\+\_\+job\+\_\+nr}. In this case, the total grid size is adjusted to the one specified by {\ttfamily eq\+\_\+jobs\+\_\+lims} and the grid is written as a subset. \begin{DoxyNote}{Note}
 
 \begin{DoxyEnumerate}
 \item The equilibrium quantities are outputted in Flux coordinates.
 \item The metric equilibrium quantities can be deallocated on the fly, which is useful if this routine is followed by a deallocation any way, so that memory usage does not almost double.
-\item {\ttfamily print\+\_\+output\+\_\+eq\+\_\+2} is only used by H\+E\+L\+E\+NA now, as for V\+M\+EC it is too slow since there are often multiple V\+M\+EC equilibrium jobs, while for H\+E\+L\+E\+NA this is explicitely forbidden.
+\item {\ttfamily print\+\_\+output\+\_\+eq\+\_\+2} is only used by HELENA now, as for VMEC it is too slow since there are often multiple VMEC equilibrium jobs, while for HELENA this is explicitely forbidden.
 \end{DoxyEnumerate}
 \end{DoxyNote}
 \begin{DoxyReturn}{Returns}
@@ -55,16 +55,18 @@ ierr
 \end{DoxyReturn}
 
 
-Definition at line 90 of file eq\+\_\+ops.\+f90.
+Definition at line \doxymbox{\hyperlink{eq__ops_8f90_source_l00090}{90}} of file \doxymbox{\hyperlink{eq__ops_8f90_source}{eq\+\_\+ops.\+f90}}.
 
 
 
-\doxysubsection{Member Function/\+Subroutine Documentation}
-\mbox{\Hypertarget{interfaceeq__ops_1_1print__output__eq_a07fef57b633cc1b723405cb07d12ef24}\label{interfaceeq__ops_1_1print__output__eq_a07fef57b633cc1b723405cb07d12ef24}} 
-\index{eq\_ops::print\_output\_eq@{eq\_ops::print\_output\_eq}!print\_output\_eq\_1@{print\_output\_eq\_1}}
+\label{doc-func-members}
+\Hypertarget{interfaceeq__ops_1_1print__output__eq_doc-func-members}
+\doxysubsection{Member Function/\+\+Subroutine Documentation}
+\Hypertarget{interfaceeq__ops_1_1print__output__eq_a07fef57b633cc1b723405cb07d12ef24}\index{eq\_ops::print\_output\_eq@{eq\_ops::print\_output\_eq}!print\_output\_eq\_1@{print\_output\_eq\_1}}
 \index{print\_output\_eq\_1@{print\_output\_eq\_1}!eq\_ops::print\_output\_eq@{eq\_ops::print\_output\_eq}}
 \doxysubsubsection{\texorpdfstring{print\_output\_eq\_1()}{print\_output\_eq\_1()}}
-{\footnotesize\ttfamily integer function eq\+\_\+ops\+::print\+\_\+output\+\_\+eq\+::print\+\_\+output\+\_\+eq\+\_\+1 (\begin{DoxyParamCaption}\item[{type(\mbox{\hyperlink{structgrid__vars_1_1grid__type}{grid\+\_\+type}}), intent(in)}]{grid\+\_\+eq,  }\item[{type(\mbox{\hyperlink{structeq__vars_1_1eq__1__type}{eq\+\_\+1\+\_\+type}}), intent(in)}]{eq,  }\item[{character(len=$\ast$), intent(in)}]{data\+\_\+name }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \label{interfaceeq__ops_1_1print__output__eq_a07fef57b633cc1b723405cb07d12ef24} 
+integer function eq\+\_\+ops::\+print\+\_\+output\+\_\+eq::\+print\+\_\+output\+\_\+eq\+\_\+1 (\begin{DoxyParamCaption}\item[{type(\doxymbox{\hyperlink{structgrid__vars_1_1grid__type}{grid\+\_\+type}}), intent(in)}]{grid\+\_\+eq}{, }\item[{type(\doxymbox{\hyperlink{structeq__vars_1_1eq__1__type}{eq\+\_\+1\+\_\+type}}), intent(in)}]{eq}{, }\item[{character(len=\texorpdfstring{$\ast$}{*}), intent(in)}]{data\+\_\+name}{}\end{DoxyParamCaption})}
 
 
 
@@ -72,29 +74,29 @@ flux version
 
 
 \begin{DoxyParams}[1]{Parameters}
-\mbox{\texttt{ in}}  & {\em grid\+\_\+eq} & equilibrium grid variables \\
+\doxymbox{\texttt{in}}  & {\em grid\+\_\+eq} & equilibrium grid variables \\
 \hline
-\mbox{\texttt{ in}}  & {\em eq} & flux equilibrium variables \\
+\doxymbox{\texttt{in}}  & {\em eq} & flux equilibrium variables \\
 \hline
-\mbox{\texttt{ in}}  & {\em data\+\_\+name} & name under which to store \\
+\doxymbox{\texttt{in}}  & {\em data\+\_\+name} & name under which to store \\
 \hline
 \end{DoxyParams}
 
 
-Definition at line 2275 of file eq\+\_\+ops.\+f90.
+Definition at line \doxymbox{\hyperlink{eq__ops_8f90_source_l02274}{2274}} of file \doxymbox{\hyperlink{eq__ops_8f90_source}{eq\+\_\+ops.\+f90}}.
 
-Here is the call graph for this function\+:\nopagebreak
+Here is the call graph for this function:\+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{interfaceeq__ops_1_1print__output__eq_a07fef57b633cc1b723405cb07d12ef24_cgraph}
 \end{center}
 \end{figure}
-\mbox{\Hypertarget{interfaceeq__ops_1_1print__output__eq_a7efa796c3c3e7cdbcb4fb51c9c6afcac}\label{interfaceeq__ops_1_1print__output__eq_a7efa796c3c3e7cdbcb4fb51c9c6afcac}} 
-\index{eq\_ops::print\_output\_eq@{eq\_ops::print\_output\_eq}!print\_output\_eq\_2@{print\_output\_eq\_2}}
+\Hypertarget{interfaceeq__ops_1_1print__output__eq_a7efa796c3c3e7cdbcb4fb51c9c6afcac}\index{eq\_ops::print\_output\_eq@{eq\_ops::print\_output\_eq}!print\_output\_eq\_2@{print\_output\_eq\_2}}
 \index{print\_output\_eq\_2@{print\_output\_eq\_2}!eq\_ops::print\_output\_eq@{eq\_ops::print\_output\_eq}}
 \doxysubsubsection{\texorpdfstring{print\_output\_eq\_2()}{print\_output\_eq\_2()}}
-{\footnotesize\ttfamily integer function eq\+\_\+ops\+::print\+\_\+output\+\_\+eq\+::print\+\_\+output\+\_\+eq\+\_\+2 (\begin{DoxyParamCaption}\item[{type(\mbox{\hyperlink{structgrid__vars_1_1grid__type}{grid\+\_\+type}}), intent(in)}]{grid\+\_\+eq,  }\item[{type(\mbox{\hyperlink{structeq__vars_1_1eq__2__type}{eq\+\_\+2\+\_\+type}}), intent(inout)}]{eq,  }\item[{character(len=$\ast$), intent(in)}]{data\+\_\+name,  }\item[{integer, intent(in), optional}]{rich\+\_\+lvl,  }\item[{logical, intent(in), optional}]{par\+\_\+div,  }\item[{logical, intent(in), optional}]{dealloc\+\_\+vars }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \label{interfaceeq__ops_1_1print__output__eq_a7efa796c3c3e7cdbcb4fb51c9c6afcac} 
+integer function eq\+\_\+ops::\+print\+\_\+output\+\_\+eq::\+print\+\_\+output\+\_\+eq\+\_\+2 (\begin{DoxyParamCaption}\item[{type(\doxymbox{\hyperlink{structgrid__vars_1_1grid__type}{grid\+\_\+type}}), intent(in)}]{grid\+\_\+eq}{, }\item[{type(\doxymbox{\hyperlink{structeq__vars_1_1eq__2__type}{eq\+\_\+2\+\_\+type}}), intent(inout)}]{eq}{, }\item[{character(len=\texorpdfstring{$\ast$}{*}), intent(in)}]{data\+\_\+name}{, }\item[{integer, intent(in), optional}]{rich\+\_\+lvl}{, }\item[{logical, intent(in), optional}]{par\+\_\+div}{, }\item[{logical, intent(in), optional}]{dealloc\+\_\+vars}{}\end{DoxyParamCaption})}
 
 
 
@@ -102,24 +104,24 @@ metric version
 
 
 \begin{DoxyParams}[1]{Parameters}
-\mbox{\texttt{ in}}  & {\em grid\+\_\+eq} & equilibrium grid variables \\
+\doxymbox{\texttt{in}}  & {\em grid\+\_\+eq} & equilibrium grid variables \\
 \hline
-\mbox{\texttt{ in,out}}  & {\em eq} & metric equilibrium variables \\
+\doxymbox{\texttt{in,out}}  & {\em eq} & metric equilibrium variables \\
 \hline
-\mbox{\texttt{ in}}  & {\em data\+\_\+name} & name under which to store \\
+\doxymbox{\texttt{in}}  & {\em data\+\_\+name} & name under which to store \\
 \hline
-\mbox{\texttt{ in}}  & {\em rich\+\_\+lvl} & Richardson level to print \\
+\doxymbox{\texttt{in}}  & {\em rich\+\_\+lvl} & Richardson level to print \\
 \hline
-\mbox{\texttt{ in}}  & {\em par\+\_\+div} & is a parallely divided grid \\
+\doxymbox{\texttt{in}}  & {\em par\+\_\+div} & is a parallely divided grid \\
 \hline
-\mbox{\texttt{ in}}  & {\em dealloc\+\_\+vars} & deallocate variables on the fly after writing \\
+\doxymbox{\texttt{in}}  & {\em dealloc\+\_\+vars} & deallocate variables on the fly after writing \\
 \hline
 \end{DoxyParams}
 
 
-Definition at line 2408 of file eq\+\_\+ops.\+f90.
+Definition at line \doxymbox{\hyperlink{eq__ops_8f90_source_l02406}{2406}} of file \doxymbox{\hyperlink{eq__ops_8f90_source}{eq\+\_\+ops.\+f90}}.
 
-Here is the call graph for this function\+:\nopagebreak
+Here is the call graph for this function:\+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode

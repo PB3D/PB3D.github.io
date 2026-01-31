@@ -8,10 +8,14 @@
 ##############################################################################
 #   Variables
 ##############################################################################
-export PB3D_dir = /opt/PB3D
-PB3D_version := $(shell grep 'prog_version =' $(PB3D_dir)/Modules/num_vars.f90 | cut --complement -d = -f 1 | sed -e 's/^ *//g' | cut -d'_' -f1)
-MIN_NM_X := $(shell grep 'min_nm_X =' $(PB3D_dir)/Modules/X_vars.f90 | cut --complement -d = -f 1 | sed -e 's/^ *//g' | cut -d' ' -f1)
+export PB3D_dir = /Users/toonweyens/Code/PB3D
+PB3D_version := $(shell grep 'prog_version =' $(PB3D_dir)/Modules/num_vars.f90 | sed 's/.*= *//' | cut -d'_' -f1)
+MIN_NM_X := $(shell grep 'min_nm_X =' $(PB3D_dir)/Modules/X_vars.f90 | sed 's/.*= *//' | cut -d' ' -f1)
 DOXY_version := $(shell doxygen --version)
+LATEX ?= xelatex
+OSFONTDIRS ?= $(HOME)/Library/Fonts:$(HOME)/.local/share/fonts:$(HOME)/.fonts:/usr/share/fonts:/usr/local/share/fonts
+FONTCONFIG_DIR ?= $(CURDIR)/Documentation/fontconfig
+FONTCONFIG_FILE ?= $(FONTCONFIG_DIR)/fonts.conf
 
 ##############################################################################
 #   Rules
@@ -40,7 +44,8 @@ doc:
 	@./Scripts/clean_html_and_latex.sh
 
 doc_latex: doc
-	cd ./Doxygen/latex && lualatex refman.tex && bibtex refman && lualatex refman.tex && lualatex refman.tex && mv refman.pdf ../../PB3D_manual.pdf
+	@mkdir -p .texmf-var .texmf-cache .cache/fontconfig
+	cd ./Doxygen/latex && XDG_CACHE_HOME=$(CURDIR)/.cache FONTCONFIG_PATH=$(FONTCONFIG_DIR) FONTCONFIG_FILE=$(FONTCONFIG_FILE) TEXMFOSFONTDIR=$(OSFONTDIRS) TEXMFVAR=$(CURDIR)/.texmf-var TEXMFCACHE=$(CURDIR)/.texmf-cache $(LATEX) refman.tex && bibtex refman && XDG_CACHE_HOME=$(CURDIR)/.cache FONTCONFIG_PATH=$(FONTCONFIG_DIR) FONTCONFIG_FILE=$(FONTCONFIG_FILE) TEXMFOSFONTDIR=$(OSFONTDIRS) TEXMFVAR=$(CURDIR)/.texmf-var TEXMFCACHE=$(CURDIR)/.texmf-cache $(LATEX) refman.tex && XDG_CACHE_HOME=$(CURDIR)/.cache FONTCONFIG_PATH=$(FONTCONFIG_DIR) FONTCONFIG_FILE=$(FONTCONFIG_FILE) TEXMFOSFONTDIR=$(OSFONTDIRS) TEXMFVAR=$(CURDIR)/.texmf-var TEXMFCACHE=$(CURDIR)/.texmf-cache $(LATEX) refman.tex && mv refman.pdf ../../PB3D_manual.pdf
 	@echo "\n Created file 'PB3D_manual.pdf'."
 	@echo "\n Warnings in refman.log file in './Doxygen/latex':\n"
 	@echo "START OF WARNINGS"

@@ -1,84 +1,88 @@
-\hypertarget{namespacehdf5__vars}{}\doxysection{hdf5\+\_\+vars Module Reference}
-\label{namespacehdf5__vars}\index{hdf5\_vars@{hdf5\_vars}}
+\doxysection{hdf5\+\_\+vars Module Reference}
+\hypertarget{namespacehdf5__vars}{}\label{namespacehdf5__vars}\index{hdf5\_vars@{hdf5\_vars}}
 
 
-Variables pertaining to H\+D\+F5 and X\+D\+MF.  
+Variables pertaining to HDF5 and XDMF.  
 
 
-\doxysubsection*{Interfaces and Types}
+\doxysubsubsection*{Interfaces and Types}
 \begin{DoxyCompactItemize}
 \item 
-interface \mbox{\hyperlink{interfacehdf5__vars_1_1dealloc__var__1d}{dealloc\+\_\+var\+\_\+1d}}
-\begin{DoxyCompactList}\small\item\em Deallocates 1D variable. \end{DoxyCompactList}\item 
-interface \mbox{\hyperlink{interfacehdf5__vars_1_1dealloc__xml__str}{dealloc\+\_\+xml\+\_\+str}}
-\begin{DoxyCompactList}\small\item\em Deallocates X\+M\+L\+\_\+str\+\_\+type. \end{DoxyCompactList}\item 
-type \mbox{\hyperlink{structhdf5__vars_1_1hdf5__file__type}{hdf5\+\_\+file\+\_\+type}}
-\begin{DoxyCompactList}\small\item\em H\+D\+F5 data type, containing the information about H\+D\+F5 files. \end{DoxyCompactList}\item 
-type \mbox{\hyperlink{structhdf5__vars_1_1var__1d__type}{var\+\_\+1d\+\_\+type}}
-\begin{DoxyCompactList}\small\item\em 1D equivalent of multidimensional variables, used for internal H\+D\+F5 storage. \end{DoxyCompactList}\item 
-type \mbox{\hyperlink{structhdf5__vars_1_1xml__str__type}{xml\+\_\+str\+\_\+type}}
-\begin{DoxyCompactList}\small\item\em X\+ML strings used in X\+D\+MF. \end{DoxyCompactList}\end{DoxyCompactItemize}
-\doxysubsection*{Functions/\+Subroutines}
+type \doxymbox{\hyperlink{structhdf5__vars_1_1xml__str__type}{xml\+\_\+str\+\_\+type}}
+\begin{DoxyCompactList}\small\item\em XML strings used in XDMF. \end{DoxyCompactList}\item 
+type \doxymbox{\hyperlink{structhdf5__vars_1_1hdf5__file__type}{hdf5\+\_\+file\+\_\+type}}
+\begin{DoxyCompactList}\small\item\em HDF5 data type, containing the information about HDF5 files. \end{DoxyCompactList}\item 
+type \doxymbox{\hyperlink{structhdf5__vars_1_1var__1d__type}{var\+\_\+1d\+\_\+type}}
+\begin{DoxyCompactList}\small\item\em 1D equivalent of multidimensional variables, used for internal HDF5 storage. \end{DoxyCompactList}\item 
+interface \doxymbox{\hyperlink{interfacehdf5__vars_1_1dealloc__xml__str}{dealloc\+\_\+xml\+\_\+str}}
+\begin{DoxyCompactList}\small\item\em Deallocates XML\+\_\+str\+\_\+type. \end{DoxyCompactList}\item 
+interface \doxymbox{\hyperlink{interfacehdf5__vars_1_1dealloc__var__1d}{dealloc\+\_\+var\+\_\+1d}}
+\begin{DoxyCompactList}\small\item\em Deallocates 1D variable. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions/\+\+Subroutines}
 \begin{DoxyCompactItemize}
 \item 
-subroutine, public \mbox{\hyperlink{namespacehdf5__vars_ab644703bcb67ce423732e39ab56a4b63}{init\+\_\+hdf5}}
-\begin{DoxyCompactList}\small\item\em Initializes the H\+D\+F5 types. \end{DoxyCompactList}\end{DoxyCompactItemize}
-\doxysubsection*{Variables}
+subroutine, public \doxymbox{\hyperlink{namespacehdf5__vars_ab644703bcb67ce423732e39ab56a4b63}{init\+\_\+hdf5}}
+\begin{DoxyCompactList}\small\item\em Initializes the HDF5 types. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
 \begin{DoxyCompactItemize}
 \item 
-character(len=6), public \mbox{\hyperlink{namespacehdf5__vars_ad8665a0387dde737161d1162565aefa9}{xmf\+\_\+fmt}} = \textquotesingle{}(999A)\textquotesingle{}
+character(len=6), public \doxymbox{\hyperlink{namespacehdf5__vars_ad8665a0387dde737161d1162565aefa9}{xmf\+\_\+fmt}} = \textquotesingle{}(999A)\textquotesingle{}
 \begin{DoxyCompactList}\small\item\em format to write the xmf file \end{DoxyCompactList}\item 
-integer, parameter, public \mbox{\hyperlink{namespacehdf5__vars_a69c36b36ad7f55ff124ebc328d18adb7}{max\+\_\+dim\+\_\+var\+\_\+1d}} = 100000
+integer, parameter, public \doxymbox{\hyperlink{namespacehdf5__vars_a69c36b36ad7f55ff124ebc328d18adb7}{max\+\_\+dim\+\_\+var\+\_\+1d}} = 100000
 \begin{DoxyCompactList}\small\item\em maximum dimension of var\+\_\+1D \end{DoxyCompactList}\item 
-character(len=max\+\_\+str\+\_\+ln), dimension(2), public \mbox{\hyperlink{namespacehdf5__vars_ad8c38b66b3e9b402f05e7e7a36415fb3}{xdmf\+\_\+num\+\_\+types}}
-\begin{DoxyCompactList}\small\item\em possible X\+D\+MF number types \end{DoxyCompactList}\item 
-character(len=max\+\_\+str\+\_\+ln), dimension(2), public \mbox{\hyperlink{namespacehdf5__vars_ab9c0d2270239bf1963c6294ab7198f8c}{xdmf\+\_\+format\+\_\+types}}
-\begin{DoxyCompactList}\small\item\em possible X\+D\+MF format types \end{DoxyCompactList}\item 
-character(len=max\+\_\+str\+\_\+ln), dimension(2), public \mbox{\hyperlink{namespacehdf5__vars_acabe6ee64c1612c30ab37774678238e5}{xdmf\+\_\+geom\+\_\+types}}
-\begin{DoxyCompactList}\small\item\em possible X\+D\+MF geometry types \end{DoxyCompactList}\item 
-character(len=max\+\_\+str\+\_\+ln), dimension(2), public \mbox{\hyperlink{namespacehdf5__vars_ad25ea0a5a9a4bb3f9248a7fa61ea1363}{xdmf\+\_\+top\+\_\+types}}
-\begin{DoxyCompactList}\small\item\em possible X\+D\+MF topology types \end{DoxyCompactList}\item 
-character(len=max\+\_\+str\+\_\+ln), dimension(2), public \mbox{\hyperlink{namespacehdf5__vars_a43c511f4b84cd716387c39c78b2cfe54}{xdmf\+\_\+att\+\_\+types}}
-\begin{DoxyCompactList}\small\item\em possible X\+D\+MF attribute types \end{DoxyCompactList}\item 
-character(len=max\+\_\+str\+\_\+ln), dimension(2), public \mbox{\hyperlink{namespacehdf5__vars_a7f20d570d2304c8e953646599bf61d73}{xdmf\+\_\+center\+\_\+types}}
-\begin{DoxyCompactList}\small\item\em possible X\+D\+MF attribute center types \end{DoxyCompactList}\item 
-character(len=max\+\_\+str\+\_\+ln), dimension(3), public \mbox{\hyperlink{namespacehdf5__vars_ab7b59b4afbcaff92aa1c236c23a4bf58}{xdmf\+\_\+grid\+\_\+types}}
-\begin{DoxyCompactList}\small\item\em possible X\+D\+MF grid types \end{DoxyCompactList}\end{DoxyCompactItemize}
+character(len=max\+\_\+str\+\_\+ln), dimension(2), public \doxymbox{\hyperlink{namespacehdf5__vars_ad8c38b66b3e9b402f05e7e7a36415fb3}{xdmf\+\_\+num\+\_\+types}}
+\begin{DoxyCompactList}\small\item\em possible XDMF number types \end{DoxyCompactList}\item 
+character(len=max\+\_\+str\+\_\+ln), dimension(2), public \doxymbox{\hyperlink{namespacehdf5__vars_ab9c0d2270239bf1963c6294ab7198f8c}{xdmf\+\_\+format\+\_\+types}}
+\begin{DoxyCompactList}\small\item\em possible XDMF format types \end{DoxyCompactList}\item 
+character(len=max\+\_\+str\+\_\+ln), dimension(2), public \doxymbox{\hyperlink{namespacehdf5__vars_acabe6ee64c1612c30ab37774678238e5}{xdmf\+\_\+geom\+\_\+types}}
+\begin{DoxyCompactList}\small\item\em possible XDMF geometry types \end{DoxyCompactList}\item 
+character(len=max\+\_\+str\+\_\+ln), dimension(2), public \doxymbox{\hyperlink{namespacehdf5__vars_ad25ea0a5a9a4bb3f9248a7fa61ea1363}{xdmf\+\_\+top\+\_\+types}}
+\begin{DoxyCompactList}\small\item\em possible XDMF topology types \end{DoxyCompactList}\item 
+character(len=max\+\_\+str\+\_\+ln), dimension(2), public \doxymbox{\hyperlink{namespacehdf5__vars_a43c511f4b84cd716387c39c78b2cfe54}{xdmf\+\_\+att\+\_\+types}}
+\begin{DoxyCompactList}\small\item\em possible XDMF attribute types \end{DoxyCompactList}\item 
+character(len=max\+\_\+str\+\_\+ln), dimension(2), public \doxymbox{\hyperlink{namespacehdf5__vars_a7f20d570d2304c8e953646599bf61d73}{xdmf\+\_\+center\+\_\+types}}
+\begin{DoxyCompactList}\small\item\em possible XDMF attribute center types \end{DoxyCompactList}\item 
+character(len=max\+\_\+str\+\_\+ln), dimension(3), public \doxymbox{\hyperlink{namespacehdf5__vars_ab7b59b4afbcaff92aa1c236c23a4bf58}{xdmf\+\_\+grid\+\_\+types}}
+\begin{DoxyCompactList}\small\item\em possible XDMF grid types \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
-Variables pertaining to H\+D\+F5 and X\+D\+MF. 
+Variables pertaining to HDF5 and XDMF. 
 
-\doxysubsection{Function/\+Subroutine Documentation}
-\mbox{\Hypertarget{namespacehdf5__vars_ab644703bcb67ce423732e39ab56a4b63}\label{namespacehdf5__vars_ab644703bcb67ce423732e39ab56a4b63}} 
-\index{hdf5\_vars@{hdf5\_vars}!init\_hdf5@{init\_hdf5}}
+\label{doc-func-members}
+\Hypertarget{namespacehdf5__vars_doc-func-members}
+\doxysubsection{Function/\+\+Subroutine Documentation}
+\Hypertarget{namespacehdf5__vars_ab644703bcb67ce423732e39ab56a4b63}\index{hdf5\_vars@{hdf5\_vars}!init\_hdf5@{init\_hdf5}}
 \index{init\_hdf5@{init\_hdf5}!hdf5\_vars@{hdf5\_vars}}
 \doxysubsubsection{\texorpdfstring{init\_hdf5()}{init\_hdf5()}}
-{\footnotesize\ttfamily subroutine, public hdf5\+\_\+vars\+::init\+\_\+hdf5}
+{\footnotesize\ttfamily \label{namespacehdf5__vars_ab644703bcb67ce423732e39ab56a4b63} 
+subroutine, public hdf5\+\_\+vars::\+init\+\_\+hdf5}
 
 
 
-Initializes the H\+D\+F5 types. 
+Initializes the HDF5 types. 
 
 Has to be called once. 
 
-Definition at line 82 of file H\+D\+F5\+\_\+vars.\+f90.
+Definition at line \doxymbox{\hyperlink{HDF5__vars_8f90_source_l00081}{81}} of file \doxymbox{\hyperlink{HDF5__vars_8f90_source}{HDF5\+\_\+vars.\+f90}}.
 
-Here is the caller graph for this function\+:\nopagebreak
+Here is the caller graph for this function:\+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=297pt]{namespacehdf5__vars_ab644703bcb67ce423732e39ab56a4b63_icgraph}
+\includegraphics[width=340pt]{namespacehdf5__vars_ab644703bcb67ce423732e39ab56a4b63_icgraph}
 \end{center}
 \end{figure}
 
 
+\label{doc-var-members}
+\Hypertarget{namespacehdf5__vars_doc-var-members}
 \doxysubsection{Variable Documentation}
-\mbox{\Hypertarget{namespacehdf5__vars_a69c36b36ad7f55ff124ebc328d18adb7}\label{namespacehdf5__vars_a69c36b36ad7f55ff124ebc328d18adb7}} 
-\index{hdf5\_vars@{hdf5\_vars}!max\_dim\_var\_1d@{max\_dim\_var\_1d}}
+\Hypertarget{namespacehdf5__vars_a69c36b36ad7f55ff124ebc328d18adb7}\index{hdf5\_vars@{hdf5\_vars}!max\_dim\_var\_1d@{max\_dim\_var\_1d}}
 \index{max\_dim\_var\_1d@{max\_dim\_var\_1d}!hdf5\_vars@{hdf5\_vars}}
 \doxysubsubsection{\texorpdfstring{max\_dim\_var\_1d}{max\_dim\_var\_1d}}
-{\footnotesize\ttfamily integer, parameter, public hdf5\+\_\+vars\+::max\+\_\+dim\+\_\+var\+\_\+1d = 100000}
+{\footnotesize\ttfamily \label{namespacehdf5__vars_a69c36b36ad7f55ff124ebc328d18adb7} 
+integer, parameter, public hdf5\+\_\+vars::\+max\+\_\+dim\+\_\+var\+\_\+1d = 100000}
 
 
 
@@ -86,111 +90,111 @@ maximum dimension of var\+\_\+1D
 
 
 
-Definition at line 21 of file H\+D\+F5\+\_\+vars.\+f90.
+Definition at line \doxymbox{\hyperlink{HDF5__vars_8f90_source_l00021}{21}} of file \doxymbox{\hyperlink{HDF5__vars_8f90_source}{HDF5\+\_\+vars.\+f90}}.
 
-\mbox{\Hypertarget{namespacehdf5__vars_a43c511f4b84cd716387c39c78b2cfe54}\label{namespacehdf5__vars_a43c511f4b84cd716387c39c78b2cfe54}} 
-\index{hdf5\_vars@{hdf5\_vars}!xdmf\_att\_types@{xdmf\_att\_types}}
+\Hypertarget{namespacehdf5__vars_a43c511f4b84cd716387c39c78b2cfe54}\index{hdf5\_vars@{hdf5\_vars}!xdmf\_att\_types@{xdmf\_att\_types}}
 \index{xdmf\_att\_types@{xdmf\_att\_types}!hdf5\_vars@{hdf5\_vars}}
 \doxysubsubsection{\texorpdfstring{xdmf\_att\_types}{xdmf\_att\_types}}
-{\footnotesize\ttfamily character(len=max\+\_\+str\+\_\+ln), dimension(2), public hdf5\+\_\+vars\+::xdmf\+\_\+att\+\_\+types}
+{\footnotesize\ttfamily \label{namespacehdf5__vars_a43c511f4b84cd716387c39c78b2cfe54} 
+character(len=max\+\_\+str\+\_\+ln), dimension(2), public hdf5\+\_\+vars::\+xdmf\+\_\+att\+\_\+types}
 
 
 
-possible X\+D\+MF attribute types 
+possible XDMF attribute types 
 
 
 
-Definition at line 28 of file H\+D\+F5\+\_\+vars.\+f90.
+Definition at line \doxymbox{\hyperlink{HDF5__vars_8f90_source_l00028}{28}} of file \doxymbox{\hyperlink{HDF5__vars_8f90_source}{HDF5\+\_\+vars.\+f90}}.
 
-\mbox{\Hypertarget{namespacehdf5__vars_a7f20d570d2304c8e953646599bf61d73}\label{namespacehdf5__vars_a7f20d570d2304c8e953646599bf61d73}} 
-\index{hdf5\_vars@{hdf5\_vars}!xdmf\_center\_types@{xdmf\_center\_types}}
+\Hypertarget{namespacehdf5__vars_a7f20d570d2304c8e953646599bf61d73}\index{hdf5\_vars@{hdf5\_vars}!xdmf\_center\_types@{xdmf\_center\_types}}
 \index{xdmf\_center\_types@{xdmf\_center\_types}!hdf5\_vars@{hdf5\_vars}}
 \doxysubsubsection{\texorpdfstring{xdmf\_center\_types}{xdmf\_center\_types}}
-{\footnotesize\ttfamily character(len=max\+\_\+str\+\_\+ln), dimension(2), public hdf5\+\_\+vars\+::xdmf\+\_\+center\+\_\+types}
+{\footnotesize\ttfamily \label{namespacehdf5__vars_a7f20d570d2304c8e953646599bf61d73} 
+character(len=max\+\_\+str\+\_\+ln), dimension(2), public hdf5\+\_\+vars::\+xdmf\+\_\+center\+\_\+types}
 
 
 
-possible X\+D\+MF attribute center types 
+possible XDMF attribute center types 
 
 
 
-Definition at line 29 of file H\+D\+F5\+\_\+vars.\+f90.
+Definition at line \doxymbox{\hyperlink{HDF5__vars_8f90_source_l00029}{29}} of file \doxymbox{\hyperlink{HDF5__vars_8f90_source}{HDF5\+\_\+vars.\+f90}}.
 
-\mbox{\Hypertarget{namespacehdf5__vars_ab9c0d2270239bf1963c6294ab7198f8c}\label{namespacehdf5__vars_ab9c0d2270239bf1963c6294ab7198f8c}} 
-\index{hdf5\_vars@{hdf5\_vars}!xdmf\_format\_types@{xdmf\_format\_types}}
+\Hypertarget{namespacehdf5__vars_ab9c0d2270239bf1963c6294ab7198f8c}\index{hdf5\_vars@{hdf5\_vars}!xdmf\_format\_types@{xdmf\_format\_types}}
 \index{xdmf\_format\_types@{xdmf\_format\_types}!hdf5\_vars@{hdf5\_vars}}
 \doxysubsubsection{\texorpdfstring{xdmf\_format\_types}{xdmf\_format\_types}}
-{\footnotesize\ttfamily character(len=max\+\_\+str\+\_\+ln), dimension(2), public hdf5\+\_\+vars\+::xdmf\+\_\+format\+\_\+types}
+{\footnotesize\ttfamily \label{namespacehdf5__vars_ab9c0d2270239bf1963c6294ab7198f8c} 
+character(len=max\+\_\+str\+\_\+ln), dimension(2), public hdf5\+\_\+vars::\+xdmf\+\_\+format\+\_\+types}
 
 
 
-possible X\+D\+MF format types 
+possible XDMF format types 
 
 
 
-Definition at line 25 of file H\+D\+F5\+\_\+vars.\+f90.
+Definition at line \doxymbox{\hyperlink{HDF5__vars_8f90_source_l00025}{25}} of file \doxymbox{\hyperlink{HDF5__vars_8f90_source}{HDF5\+\_\+vars.\+f90}}.
 
-\mbox{\Hypertarget{namespacehdf5__vars_acabe6ee64c1612c30ab37774678238e5}\label{namespacehdf5__vars_acabe6ee64c1612c30ab37774678238e5}} 
-\index{hdf5\_vars@{hdf5\_vars}!xdmf\_geom\_types@{xdmf\_geom\_types}}
+\Hypertarget{namespacehdf5__vars_acabe6ee64c1612c30ab37774678238e5}\index{hdf5\_vars@{hdf5\_vars}!xdmf\_geom\_types@{xdmf\_geom\_types}}
 \index{xdmf\_geom\_types@{xdmf\_geom\_types}!hdf5\_vars@{hdf5\_vars}}
 \doxysubsubsection{\texorpdfstring{xdmf\_geom\_types}{xdmf\_geom\_types}}
-{\footnotesize\ttfamily character(len=max\+\_\+str\+\_\+ln), dimension(2), public hdf5\+\_\+vars\+::xdmf\+\_\+geom\+\_\+types}
+{\footnotesize\ttfamily \label{namespacehdf5__vars_acabe6ee64c1612c30ab37774678238e5} 
+character(len=max\+\_\+str\+\_\+ln), dimension(2), public hdf5\+\_\+vars::\+xdmf\+\_\+geom\+\_\+types}
 
 
 
-possible X\+D\+MF geometry types 
+possible XDMF geometry types 
 
 
 
-Definition at line 26 of file H\+D\+F5\+\_\+vars.\+f90.
+Definition at line \doxymbox{\hyperlink{HDF5__vars_8f90_source_l00026}{26}} of file \doxymbox{\hyperlink{HDF5__vars_8f90_source}{HDF5\+\_\+vars.\+f90}}.
 
-\mbox{\Hypertarget{namespacehdf5__vars_ab7b59b4afbcaff92aa1c236c23a4bf58}\label{namespacehdf5__vars_ab7b59b4afbcaff92aa1c236c23a4bf58}} 
-\index{hdf5\_vars@{hdf5\_vars}!xdmf\_grid\_types@{xdmf\_grid\_types}}
+\Hypertarget{namespacehdf5__vars_ab7b59b4afbcaff92aa1c236c23a4bf58}\index{hdf5\_vars@{hdf5\_vars}!xdmf\_grid\_types@{xdmf\_grid\_types}}
 \index{xdmf\_grid\_types@{xdmf\_grid\_types}!hdf5\_vars@{hdf5\_vars}}
 \doxysubsubsection{\texorpdfstring{xdmf\_grid\_types}{xdmf\_grid\_types}}
-{\footnotesize\ttfamily character(len=max\+\_\+str\+\_\+ln), dimension(3), public hdf5\+\_\+vars\+::xdmf\+\_\+grid\+\_\+types}
+{\footnotesize\ttfamily \label{namespacehdf5__vars_ab7b59b4afbcaff92aa1c236c23a4bf58} 
+character(len=max\+\_\+str\+\_\+ln), dimension(3), public hdf5\+\_\+vars::\+xdmf\+\_\+grid\+\_\+types}
 
 
 
-possible X\+D\+MF grid types 
+possible XDMF grid types 
 
 
 
-Definition at line 30 of file H\+D\+F5\+\_\+vars.\+f90.
+Definition at line \doxymbox{\hyperlink{HDF5__vars_8f90_source_l00030}{30}} of file \doxymbox{\hyperlink{HDF5__vars_8f90_source}{HDF5\+\_\+vars.\+f90}}.
 
-\mbox{\Hypertarget{namespacehdf5__vars_ad8c38b66b3e9b402f05e7e7a36415fb3}\label{namespacehdf5__vars_ad8c38b66b3e9b402f05e7e7a36415fb3}} 
-\index{hdf5\_vars@{hdf5\_vars}!xdmf\_num\_types@{xdmf\_num\_types}}
+\Hypertarget{namespacehdf5__vars_ad8c38b66b3e9b402f05e7e7a36415fb3}\index{hdf5\_vars@{hdf5\_vars}!xdmf\_num\_types@{xdmf\_num\_types}}
 \index{xdmf\_num\_types@{xdmf\_num\_types}!hdf5\_vars@{hdf5\_vars}}
 \doxysubsubsection{\texorpdfstring{xdmf\_num\_types}{xdmf\_num\_types}}
-{\footnotesize\ttfamily character(len=max\+\_\+str\+\_\+ln), dimension(2), public hdf5\+\_\+vars\+::xdmf\+\_\+num\+\_\+types}
+{\footnotesize\ttfamily \label{namespacehdf5__vars_ad8c38b66b3e9b402f05e7e7a36415fb3} 
+character(len=max\+\_\+str\+\_\+ln), dimension(2), public hdf5\+\_\+vars::\+xdmf\+\_\+num\+\_\+types}
 
 
 
-possible X\+D\+MF number types 
+possible XDMF number types 
 
 
 
-Definition at line 24 of file H\+D\+F5\+\_\+vars.\+f90.
+Definition at line \doxymbox{\hyperlink{HDF5__vars_8f90_source_l00024}{24}} of file \doxymbox{\hyperlink{HDF5__vars_8f90_source}{HDF5\+\_\+vars.\+f90}}.
 
-\mbox{\Hypertarget{namespacehdf5__vars_ad25ea0a5a9a4bb3f9248a7fa61ea1363}\label{namespacehdf5__vars_ad25ea0a5a9a4bb3f9248a7fa61ea1363}} 
-\index{hdf5\_vars@{hdf5\_vars}!xdmf\_top\_types@{xdmf\_top\_types}}
+\Hypertarget{namespacehdf5__vars_ad25ea0a5a9a4bb3f9248a7fa61ea1363}\index{hdf5\_vars@{hdf5\_vars}!xdmf\_top\_types@{xdmf\_top\_types}}
 \index{xdmf\_top\_types@{xdmf\_top\_types}!hdf5\_vars@{hdf5\_vars}}
 \doxysubsubsection{\texorpdfstring{xdmf\_top\_types}{xdmf\_top\_types}}
-{\footnotesize\ttfamily character(len=max\+\_\+str\+\_\+ln), dimension(2), public hdf5\+\_\+vars\+::xdmf\+\_\+top\+\_\+types}
+{\footnotesize\ttfamily \label{namespacehdf5__vars_ad25ea0a5a9a4bb3f9248a7fa61ea1363} 
+character(len=max\+\_\+str\+\_\+ln), dimension(2), public hdf5\+\_\+vars::\+xdmf\+\_\+top\+\_\+types}
 
 
 
-possible X\+D\+MF topology types 
+possible XDMF topology types 
 
 
 
-Definition at line 27 of file H\+D\+F5\+\_\+vars.\+f90.
+Definition at line \doxymbox{\hyperlink{HDF5__vars_8f90_source_l00027}{27}} of file \doxymbox{\hyperlink{HDF5__vars_8f90_source}{HDF5\+\_\+vars.\+f90}}.
 
-\mbox{\Hypertarget{namespacehdf5__vars_ad8665a0387dde737161d1162565aefa9}\label{namespacehdf5__vars_ad8665a0387dde737161d1162565aefa9}} 
-\index{hdf5\_vars@{hdf5\_vars}!xmf\_fmt@{xmf\_fmt}}
+\Hypertarget{namespacehdf5__vars_ad8665a0387dde737161d1162565aefa9}\index{hdf5\_vars@{hdf5\_vars}!xmf\_fmt@{xmf\_fmt}}
 \index{xmf\_fmt@{xmf\_fmt}!hdf5\_vars@{hdf5\_vars}}
 \doxysubsubsection{\texorpdfstring{xmf\_fmt}{xmf\_fmt}}
-{\footnotesize\ttfamily character(len=6), public hdf5\+\_\+vars\+::xmf\+\_\+fmt = \textquotesingle{}(999A)\textquotesingle{}}
+{\footnotesize\ttfamily \label{namespacehdf5__vars_ad8665a0387dde737161d1162565aefa9} 
+character(len=6), public hdf5\+\_\+vars::\+xmf\+\_\+fmt = \textquotesingle{}(999A)\textquotesingle{}}
 
 
 
@@ -198,5 +202,5 @@ format to write the xmf file
 
 
 
-Definition at line 20 of file H\+D\+F5\+\_\+vars.\+f90.
+Definition at line \doxymbox{\hyperlink{HDF5__vars_8f90_source_l00020}{20}} of file \doxymbox{\hyperlink{HDF5__vars_8f90_source}{HDF5\+\_\+vars.\+f90}}.
 

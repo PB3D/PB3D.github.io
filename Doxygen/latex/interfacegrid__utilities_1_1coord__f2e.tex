@@ -1,16 +1,16 @@
-\hypertarget{interfacegrid__utilities_1_1coord__f2e}{}\doxysection{grid\+\_\+utilities\+::coord\+\_\+f2e Interface Reference}
-\label{interfacegrid__utilities_1_1coord__f2e}\index{grid\_utilities::coord\_f2e@{grid\_utilities::coord\_f2e}}
+\doxysection{grid\+\_\+utilities::\+coord\+\_\+f2e Interface Reference}
+\hypertarget{interfacegrid__utilities_1_1coord__f2e}{}\label{interfacegrid__utilities_1_1coord__f2e}\index{grid\_utilities::coord\_f2e@{grid\_utilities::coord\_f2e}}
 
 
 Converts Flux coordinates $\left(r,\theta,\zeta\right)_\text{F}$ to Equilibrium coordinates $\left(r,\theta,\zeta\right)_\text{E}$.  
 
 
-\doxysubsection*{Public Member Functions}
+\doxysubsubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-integer function \mbox{\hyperlink{interfacegrid__utilities_1_1coord__f2e_a40c73347672152f144ccaa9cd024267d}{coord\+\_\+f2e\+\_\+r}} (grid\+\_\+eq, r\+\_\+F, r\+\_\+E, r\+\_\+\+F\+\_\+array, r\+\_\+\+E\+\_\+array)
+integer function \doxymbox{\hyperlink{interfacegrid__utilities_1_1coord__f2e_ad08898719c469f84b3c88ed483dc4f8e}{coord\+\_\+f2e\+\_\+r}} (grid\+\_\+eq, r\+\_\+f, r\+\_\+e, r\+\_\+f\+\_\+array, r\+\_\+e\+\_\+array)
 \begin{DoxyCompactList}\small\item\em version with only r \end{DoxyCompactList}\item 
-integer function \mbox{\hyperlink{interfacegrid__utilities_1_1coord__f2e_a3ab9822d623e86babe9eb47f99c9434e}{coord\+\_\+f2e\+\_\+rtz}} (grid\+\_\+eq, r\+\_\+F, theta\+\_\+F, zeta\+\_\+F, r\+\_\+E, theta\+\_\+E, zeta\+\_\+E, r\+\_\+\+F\+\_\+array, r\+\_\+\+E\+\_\+array, ord)
+integer function \doxymbox{\hyperlink{interfacegrid__utilities_1_1coord__f2e_a579350fe27f9fbe8236f916216f9dc21}{coord\+\_\+f2e\+\_\+rtz}} (grid\+\_\+eq, r\+\_\+f, theta\+\_\+f, zeta\+\_\+f, r\+\_\+e, theta\+\_\+e, zeta\+\_\+e, r\+\_\+f\+\_\+array, r\+\_\+e\+\_\+array, ord)
 \begin{DoxyCompactList}\small\item\em version withi r, theta and zeta \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
@@ -22,23 +22,25 @@ Optionally, two arrays {\ttfamily r\+\_\+\+F\+\_\+array} and {\ttfamily r\+\_\+\
 Standard, for E, the poloidal or toroidal normalized flux is used and for F, the poloidal or toroidal flux in F coordinates, divided by $2\pi$.
 
 \begin{DoxyNote}{Note}
-For V\+M\+EC, it can be slow, as the zero of a non-\/linear expression must be sought. This is done currently using \mbox{\hyperlink{interfacenum__ops_1_1calc__zero__hh}{num\+\_\+ops.\+calc\+\_\+zero\+\_\+hh()}}.
+For VMEC, it can be slow, as the zero of a non-\/linear expression must be sought. This is done currently using \doxylink{interfacenum__ops_1_1calc__zero__hh}{num\+\_\+ops.\+calc\+\_\+zero\+\_\+hh()}.
 \end{DoxyNote}
 \begin{DoxyReturn}{Returns}
 ierr 
 \end{DoxyReturn}
 
 
-Definition at line 47 of file grid\+\_\+utilities.\+f90.
+Definition at line \doxymbox{\hyperlink{grid__utilities_8f90_source_l00047}{47}} of file \doxymbox{\hyperlink{grid__utilities_8f90_source}{grid\+\_\+utilities.\+f90}}.
 
 
 
-\doxysubsection{Member Function/\+Subroutine Documentation}
-\mbox{\Hypertarget{interfacegrid__utilities_1_1coord__f2e_a40c73347672152f144ccaa9cd024267d}\label{interfacegrid__utilities_1_1coord__f2e_a40c73347672152f144ccaa9cd024267d}} 
-\index{grid\_utilities::coord\_f2e@{grid\_utilities::coord\_f2e}!coord\_f2e\_r@{coord\_f2e\_r}}
+\label{doc-func-members}
+\Hypertarget{interfacegrid__utilities_1_1coord__f2e_doc-func-members}
+\doxysubsection{Member Function/\+\+Subroutine Documentation}
+\Hypertarget{interfacegrid__utilities_1_1coord__f2e_ad08898719c469f84b3c88ed483dc4f8e}\index{grid\_utilities::coord\_f2e@{grid\_utilities::coord\_f2e}!coord\_f2e\_r@{coord\_f2e\_r}}
 \index{coord\_f2e\_r@{coord\_f2e\_r}!grid\_utilities::coord\_f2e@{grid\_utilities::coord\_f2e}}
 \doxysubsubsection{\texorpdfstring{coord\_f2e\_r()}{coord\_f2e\_r()}}
-{\footnotesize\ttfamily integer function grid\+\_\+utilities\+::coord\+\_\+f2e\+::coord\+\_\+f2e\+\_\+r (\begin{DoxyParamCaption}\item[{type(\mbox{\hyperlink{structgrid__vars_1_1grid__type}{grid\+\_\+type}}), intent(in)}]{grid\+\_\+eq,  }\item[{real(dp), dimension(\+:), intent(in)}]{r\+\_\+F,  }\item[{real(dp), dimension(\+:), intent(inout)}]{r\+\_\+E,  }\item[{real(dp), dimension(\+:), intent(in), optional, target}]{r\+\_\+\+F\+\_\+array,  }\item[{real(dp), dimension(\+:), intent(in), optional, target}]{r\+\_\+\+E\+\_\+array }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \label{interfacegrid__utilities_1_1coord__f2e_ad08898719c469f84b3c88ed483dc4f8e} 
+integer function grid\+\_\+utilities::\+coord\+\_\+f2e::\+coord\+\_\+f2e\+\_\+r (\begin{DoxyParamCaption}\item[{type(\doxymbox{\hyperlink{structgrid__vars_1_1grid__type}{grid\+\_\+type}}), intent(in)}]{grid\+\_\+eq}{, }\item[{real(dp), dimension(:\+), intent(in)}]{r\+\_\+f}{, }\item[{real(dp), dimension(:\+), intent(inout)}]{r\+\_\+e}{, }\item[{real(dp), dimension(:\+), intent(in), optional, target}]{r\+\_\+f\+\_\+array}{, }\item[{real(dp), dimension(:\+), intent(in), optional, target}]{r\+\_\+e\+\_\+array}{}\end{DoxyParamCaption})}
 
 
 
@@ -46,26 +48,26 @@ version with only r
 
 
 \begin{DoxyParams}[1]{Parameters}
-\mbox{\texttt{ in}}  & {\em grid\+\_\+eq} & equilibrium grid (for possibly loc\+\_\+r) \\
+\doxymbox{\texttt{in}}  & {\em grid\+\_\+eq} & equilibrium grid (for possibly loc\+\_\+r) \\
 \hline
-\mbox{\texttt{ in}}  & {\em r\+\_\+f} & (local) $r_\text{F}$ \\
+\doxymbox{\texttt{in}}  & {\em r\+\_\+f} & (local) $r_\text{F}$ \\
 \hline
-\mbox{\texttt{ in,out}}  & {\em r\+\_\+e} & (local) $r_\text{E}$ \\
+\doxymbox{\texttt{in,out}}  & {\em r\+\_\+e} & (local) $r_\text{E}$ \\
 \hline
-\mbox{\texttt{ in}}  & {\em r\+\_\+f\+\_\+array} & optional array that defines mapping between two coord. systems \\
+\doxymbox{\texttt{in}}  & {\em r\+\_\+f\+\_\+array} & optional array that defines mapping between two coord. systems \\
 \hline
-\mbox{\texttt{ in}}  & {\em r\+\_\+e\+\_\+array} & optional array that defines mapping between two coord. systems \\
+\doxymbox{\texttt{in}}  & {\em r\+\_\+e\+\_\+array} & optional array that defines mapping between two coord. systems \\
 \hline
 \end{DoxyParams}
 
 
-Definition at line 303 of file grid\+\_\+utilities.\+f90.
+Definition at line \doxymbox{\hyperlink{grid__utilities_8f90_source_l00301}{301}} of file \doxymbox{\hyperlink{grid__utilities_8f90_source}{grid\+\_\+utilities.\+f90}}.
 
-\mbox{\Hypertarget{interfacegrid__utilities_1_1coord__f2e_a3ab9822d623e86babe9eb47f99c9434e}\label{interfacegrid__utilities_1_1coord__f2e_a3ab9822d623e86babe9eb47f99c9434e}} 
-\index{grid\_utilities::coord\_f2e@{grid\_utilities::coord\_f2e}!coord\_f2e\_rtz@{coord\_f2e\_rtz}}
+\Hypertarget{interfacegrid__utilities_1_1coord__f2e_a579350fe27f9fbe8236f916216f9dc21}\index{grid\_utilities::coord\_f2e@{grid\_utilities::coord\_f2e}!coord\_f2e\_rtz@{coord\_f2e\_rtz}}
 \index{coord\_f2e\_rtz@{coord\_f2e\_rtz}!grid\_utilities::coord\_f2e@{grid\_utilities::coord\_f2e}}
 \doxysubsubsection{\texorpdfstring{coord\_f2e\_rtz()}{coord\_f2e\_rtz()}}
-{\footnotesize\ttfamily integer function grid\+\_\+utilities\+::coord\+\_\+f2e\+::coord\+\_\+f2e\+\_\+rtz (\begin{DoxyParamCaption}\item[{type(\mbox{\hyperlink{structgrid__vars_1_1grid__type}{grid\+\_\+type}}), intent(in)}]{grid\+\_\+eq,  }\item[{real(dp), dimension(\+:), intent(in)}]{r\+\_\+F,  }\item[{real(dp), dimension(\+:,\+:,\+:), intent(in)}]{theta\+\_\+F,  }\item[{real(dp), dimension(\+:,\+:,\+:), intent(in)}]{zeta\+\_\+F,  }\item[{real(dp), dimension(\+:), intent(inout)}]{r\+\_\+E,  }\item[{real(dp), dimension(\+:,\+:,\+:), intent(inout)}]{theta\+\_\+E,  }\item[{real(dp), dimension(\+:,\+:,\+:), intent(inout)}]{zeta\+\_\+E,  }\item[{real(dp), dimension(\+:), intent(in), optional, target}]{r\+\_\+\+F\+\_\+array,  }\item[{real(dp), dimension(\+:), intent(in), optional, target}]{r\+\_\+\+E\+\_\+array,  }\item[{integer, intent(in), optional}]{ord }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \label{interfacegrid__utilities_1_1coord__f2e_a579350fe27f9fbe8236f916216f9dc21} 
+integer function grid\+\_\+utilities::\+coord\+\_\+f2e::\+coord\+\_\+f2e\+\_\+rtz (\begin{DoxyParamCaption}\item[{type(\doxymbox{\hyperlink{structgrid__vars_1_1grid__type}{grid\+\_\+type}}), intent(in)}]{grid\+\_\+eq}{, }\item[{real(dp), dimension(:\+), intent(in)}]{r\+\_\+f}{, }\item[{real(dp), dimension(:\+,:\+,:\+), intent(in)}]{theta\+\_\+f}{, }\item[{real(dp), dimension(:\+,:\+,:\+), intent(in)}]{zeta\+\_\+f}{, }\item[{real(dp), dimension(:\+), intent(inout)}]{r\+\_\+e}{, }\item[{real(dp), dimension(:\+,:\+,:\+), intent(inout)}]{theta\+\_\+e}{, }\item[{real(dp), dimension(:\+,:\+,:\+), intent(inout)}]{zeta\+\_\+e}{, }\item[{real(dp), dimension(:\+), intent(in), optional, target}]{r\+\_\+f\+\_\+array}{, }\item[{real(dp), dimension(:\+), intent(in), optional, target}]{r\+\_\+e\+\_\+array}{, }\item[{integer, intent(in), optional}]{ord}{}\end{DoxyParamCaption})}
 
 
 
@@ -73,36 +75,36 @@ version withi r, theta and zeta
 
 
 \begin{DoxyParams}[1]{Parameters}
-\mbox{\texttt{ in}}  & {\em grid\+\_\+eq} & equilibrium grid (for normal local limits and possibly loc\+\_\+r) \\
+\doxymbox{\texttt{in}}  & {\em grid\+\_\+eq} & equilibrium grid (for normal local limits and possibly loc\+\_\+r) \\
 \hline
-\mbox{\texttt{ in}}  & {\em r\+\_\+f} & (local) $r_\text{F}$ \\
+\doxymbox{\texttt{in}}  & {\em r\+\_\+f} & (local) $r_\text{F}$ \\
 \hline
-\mbox{\texttt{ in}}  & {\em theta\+\_\+f} & $\theta_\text{F}$ \\
+\doxymbox{\texttt{in}}  & {\em theta\+\_\+f} & $\theta_\text{F}$ \\
 \hline
-\mbox{\texttt{ in}}  & {\em zeta\+\_\+f} & $\zeta_\text{F}$ \\
+\doxymbox{\texttt{in}}  & {\em zeta\+\_\+f} & $\zeta_\text{F}$ \\
 \hline
-\mbox{\texttt{ in,out}}  & {\em r\+\_\+e} & (local) $r_\text{E}$ \\
+\doxymbox{\texttt{in,out}}  & {\em r\+\_\+e} & (local) $r_\text{E}$ \\
 \hline
-\mbox{\texttt{ in,out}}  & {\em theta\+\_\+e} & $\theta_\text{E}$ \\
+\doxymbox{\texttt{in,out}}  & {\em theta\+\_\+e} & $\theta_\text{E}$ \\
 \hline
-\mbox{\texttt{ in,out}}  & {\em zeta\+\_\+e} & $\zeta_\text{E}$ \\
+\doxymbox{\texttt{in,out}}  & {\em zeta\+\_\+e} & $\zeta_\text{E}$ \\
 \hline
-\mbox{\texttt{ in}}  & {\em r\+\_\+f\+\_\+array} & optional array that defines mapping between two coord. systems \\
+\doxymbox{\texttt{in}}  & {\em r\+\_\+f\+\_\+array} & optional array that defines mapping between two coord. systems \\
 \hline
-\mbox{\texttt{ in}}  & {\em r\+\_\+e\+\_\+array} & optional array that defines mapping between two coord. systems \\
+\doxymbox{\texttt{in}}  & {\em r\+\_\+e\+\_\+array} & optional array that defines mapping between two coord. systems \\
 \hline
-\mbox{\texttt{ in}}  & {\em ord} & order (only used for eq\+\_\+style 1) \\
+\doxymbox{\texttt{in}}  & {\em ord} & order (only used for eq\+\_\+style 1) \\
 \hline
 \end{DoxyParams}
 
 
-Definition at line 120 of file grid\+\_\+utilities.\+f90.
+Definition at line \doxymbox{\hyperlink{grid__utilities_8f90_source_l00118}{118}} of file \doxymbox{\hyperlink{grid__utilities_8f90_source}{grid\+\_\+utilities.\+f90}}.
 
-Here is the call graph for this function\+:\nopagebreak
+Here is the call graph for this function:\+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=350pt]{interfacegrid__utilities_1_1coord__f2e_a3ab9822d623e86babe9eb47f99c9434e_cgraph}
+\includegraphics[width=350pt]{interfacegrid__utilities_1_1coord__f2e_a579350fe27f9fbe8236f916216f9dc21_cgraph}
 \end{center}
 \end{figure}
 

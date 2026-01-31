@@ -1,60 +1,74 @@
-\hypertarget{interfaceeq__utilities_1_1transf__deriv}{}\doxysection{eq\+\_\+utilities\+::transf\+\_\+deriv Interface Reference}
-\label{interfaceeq__utilities_1_1transf__deriv}\index{eq\_utilities::transf\_deriv@{eq\_utilities::transf\_deriv}}
+\doxysection{eq\+\_\+utilities::\+transf\+\_\+deriv Interface Reference}
+\hypertarget{interfaceeq__utilities_1_1transf__deriv}{}\label{interfaceeq__utilities_1_1transf__deriv}\index{eq\_utilities::transf\_deriv@{eq\_utilities::transf\_deriv}}
 
 
 Calculates derivatives in a coordinate system B from derivatives in a coordinates system A, making use of the transformation matrix $\overline{\text{T}}_\text{B}^\text{A}$.  
 
 
-\doxysubsection*{Public Member Functions}
+\doxysubsubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-integer recursive function \mbox{\hyperlink{interfaceeq__utilities_1_1transf__deriv_aeb378175eaa132caf243cbd197e2d2ac}{transf\+\_\+deriv\+\_\+3\+\_\+ind}} (X\+\_\+A, T\+\_\+\+BA, X\+\_\+B, max\+\_\+deriv, deriv\+\_\+B, deriv\+\_\+\+A\+\_\+input)
+integer recursive function \doxymbox{\hyperlink{interfaceeq__utilities_1_1transf__deriv_a025cbd71c00a1812008f0b8935b09f51}{transf\+\_\+deriv\+\_\+3\+\_\+ind}} (x\+\_\+a, t\+\_\+ba, x\+\_\+b, max\+\_\+deriv, deriv\+\_\+b, deriv\+\_\+a\+\_\+input)
 \begin{DoxyCompactList}\small\item\em 3-\/D scalar version with one derivative \end{DoxyCompactList}\item 
-integer function \mbox{\hyperlink{interfaceeq__utilities_1_1transf__deriv_abaad10d9fd6035720c2ef74be49e7493}{transf\+\_\+deriv\+\_\+3\+\_\+arr}} (X\+\_\+A, T\+\_\+\+BA, X\+\_\+B, max\+\_\+deriv, derivs)
+integer function \doxymbox{\hyperlink{interfaceeq__utilities_1_1transf__deriv_aa3fe48550de53fd46bbf8a58c9bc8f31}{transf\+\_\+deriv\+\_\+3\+\_\+arr}} (x\+\_\+a, t\+\_\+ba, x\+\_\+b, max\+\_\+deriv, derivs)
 \begin{DoxyCompactList}\small\item\em 3-\/D scalar version with multiple derivatives \end{DoxyCompactList}\item 
-integer function \mbox{\hyperlink{interfaceeq__utilities_1_1transf__deriv_a91c9dd37a0de40fa72441e9c88f94eb0}{transf\+\_\+deriv\+\_\+3\+\_\+arr\+\_\+2d}} (X\+\_\+A, T\+\_\+\+BA, X\+\_\+B, max\+\_\+deriv, derivs)
+integer function \doxymbox{\hyperlink{interfaceeq__utilities_1_1transf__deriv_a2a30913d967fc0816f4f8df6f62e32fd}{transf\+\_\+deriv\+\_\+3\+\_\+arr\+\_\+2d}} (x\+\_\+a, t\+\_\+ba, x\+\_\+b, max\+\_\+deriv, derivs)
 \begin{DoxyCompactList}\small\item\em 3-\/D matrix version with multiple derivatives \end{DoxyCompactList}\item 
-integer recursive function \mbox{\hyperlink{interfaceeq__utilities_1_1transf__deriv_ae0caaaa6fbd6d68f926921b7565ca727}{transf\+\_\+deriv\+\_\+1\+\_\+ind}} (X\+\_\+A, T\+\_\+\+BA, X\+\_\+B, max\+\_\+deriv, deriv\+\_\+B, deriv\+\_\+\+A\+\_\+input)
+integer recursive function \doxymbox{\hyperlink{interfaceeq__utilities_1_1transf__deriv_a73aab7905dbae219a2b920b03a08d60e}{transf\+\_\+deriv\+\_\+1\+\_\+ind}} (x\+\_\+a, t\+\_\+ba, x\+\_\+b, max\+\_\+deriv, deriv\+\_\+b, deriv\+\_\+a\+\_\+input)
 \begin{DoxyCompactList}\small\item\em 1-\/D scalar version with one derivative \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
 Calculates derivatives in a coordinate system B from derivatives in a coordinates system A, making use of the transformation matrix $\overline{\text{T}}_\text{B}^\text{A}$. 
 
-The routine works by exchanging the derivatives in the coordinates B for derivatives in coordinates A using the formula \[\mathbf{D}_\text{B}^m X = \overline{\text{T}}_\text{B}^\text{A} \mathbf{D}^1_\text{A} \left(\mathbf{D}^{m-1}_\text{B} X\right) , \] where $\mathbf{D}^m$ is a tensor of rank $m$ that contains all the derivatives of total rank $m$. For example, \[\mathbf{D}^1 = \vec{D} = \left(\begin{array}{c}\frac{\partial}{\partial u^1} \\ \frac{\partial}{\partial u^2} \\ \frac{\partial}{\partial u^3} \end{array}\right) \]
+The routine works by exchanging the derivatives in the coordinates B for derivatives in coordinates A using the formula  \[\mathbf{D}_\text{B}^m X = \overline{\text{T}}_\text{B}^\text{A}
+             \mathbf{D}^1_\text{A} \left(\mathbf{D}^{m-1}_\text{B} X\right) , \] where $\mathbf{D}^m$ is a tensor of rank $m$ that contains all the derivatives of total rank $m$. For example,    \[\mathbf{D}^1 = \vec{D} =
+             \left(\begin{array}{c}\frac{\partial}{\partial u^1} \\
+             \frac{\partial}{\partial u^2} \\ \frac{\partial}{\partial u^3}
+             \end{array}\right)  \]
 
 This is done for the derivatives in each of the coordinates B until degree 0 is reached.
 
-Furthermore, each of these degrees of derivatives in coordinates B can be be derived optionally in the original coordinate system A, which yields the formula\+: \[ \mathbf{D}^p_\text{A} \left(\mathbf{D}^m_\text{B} X \right) = \sum_q \left(\begin{array}{c}p\\q\end{array}\right) \mathbf{D}^q_\text{A} \left(\overline{\text{T}}_\text{B}^\text{A}\right) \left(\mathbf{D}^{p-q}_\text{A} \mathbf{D}^1_\text{A}\right) \left( \mathbf{D}^{m-1}_\text{B} X \right)\]
+Furthermore, each of these degrees of derivatives in coordinates B can be be derived optionally in the original coordinate system A, which yields the formula:\+      \[ \mathbf{D}^p_\text{A} \left(\mathbf{D}^m_\text{B} X \right) =
+             \sum_q \left(\begin{array}{c}p\\q\end{array}\right)
+             \mathbf{D}^q_\text{A}
+             \left(\overline{\text{T}}_\text{B}^\text{A}\right)
+             \left(\mathbf{D}^{p-q}_\text{A} \mathbf{D}^1_\text{A}\right)
+             \left( \mathbf{D}^{m-1}_\text{B} X \right)\]
 
 This way, ultimately the desired derivatives in the coordinates B can be obtained recursively from the lower orders in the coordinates B and higher orders in the coordinates A.
 
-For example\+:
+For example:\+
 \begin{DoxyItemize}
 \item For order $M$, the formula can be used with $p=0$.
-\item For this, it is necessary that $\mathbf{D}^1_\text{A} \mathbf{D}^{m-1}_\text{B} X$ be precalculated, which can be done using the formula with $p=1$ and $m=M-1$.
-\item For this, it is necessary that $\mathbf{D}^1_\text{A} \mathbf{D}^{M-1}_\text{B} X$ and $\mathbf{D}^2_\text{A} \mathbf{D}^{M-1}_\text{B} X$ are precalculated, which can be done with $p=1$ and $m=M-1$ as well as $p=2$ and $m=M-1$.
+\item For this, it is necessary that  $\mathbf{D}^1_\text{A}
+         \mathbf{D}^{m-1}_\text{B} X$ be precalculated, which can be done using the formula with $p=1$ and $m=M-1$.
+\item For this, it is necessary that  $\mathbf{D}^1_\text{A}
+         \mathbf{D}^{M-1}_\text{B}     X$ and  $\mathbf{D}^2_\text{A}
+         \mathbf{D}^{M-1}_\text{B} X$ are precalculated, which can be done with $p=1$ and $m=M-1$ as well as $p=2$ and $m=M-1$.
 \item etc.
 \end{DoxyItemize}
 
 \begin{DoxySeeAlso}{See also}
-\cite{Weyens3D} for more detailed information.
+\DoxyCite{weyens3d}{number}{1} for more detailed information.
 \end{DoxySeeAlso}
 \begin{DoxyReturn}{Returns}
 ierr 
 \end{DoxyReturn}
 
 
-Definition at line 118 of file eq\+\_\+utilities.\+f90.
+Definition at line \doxymbox{\hyperlink{eq__utilities_8f90_source_l00118}{118}} of file \doxymbox{\hyperlink{eq__utilities_8f90_source}{eq\+\_\+utilities.\+f90}}.
 
 
 
-\doxysubsection{Member Function/\+Subroutine Documentation}
-\mbox{\Hypertarget{interfaceeq__utilities_1_1transf__deriv_ae0caaaa6fbd6d68f926921b7565ca727}\label{interfaceeq__utilities_1_1transf__deriv_ae0caaaa6fbd6d68f926921b7565ca727}} 
-\index{eq\_utilities::transf\_deriv@{eq\_utilities::transf\_deriv}!transf\_deriv\_1\_ind@{transf\_deriv\_1\_ind}}
+\label{doc-func-members}
+\Hypertarget{interfaceeq__utilities_1_1transf__deriv_doc-func-members}
+\doxysubsection{Member Function/\+\+Subroutine Documentation}
+\Hypertarget{interfaceeq__utilities_1_1transf__deriv_a73aab7905dbae219a2b920b03a08d60e}\index{eq\_utilities::transf\_deriv@{eq\_utilities::transf\_deriv}!transf\_deriv\_1\_ind@{transf\_deriv\_1\_ind}}
 \index{transf\_deriv\_1\_ind@{transf\_deriv\_1\_ind}!eq\_utilities::transf\_deriv@{eq\_utilities::transf\_deriv}}
 \doxysubsubsection{\texorpdfstring{transf\_deriv\_1\_ind()}{transf\_deriv\_1\_ind()}}
-{\footnotesize\ttfamily integer recursive function eq\+\_\+utilities\+::transf\+\_\+deriv\+::transf\+\_\+deriv\+\_\+1\+\_\+ind (\begin{DoxyParamCaption}\item[{real(dp), dimension(1\+:,0\+:), intent(in)}]{X\+\_\+A,  }\item[{real(dp), dimension(1\+:,0\+:), intent(in)}]{T\+\_\+\+BA,  }\item[{real(dp), dimension(1\+:), intent(inout)}]{X\+\_\+B,  }\item[{integer, intent(in)}]{max\+\_\+deriv,  }\item[{integer, intent(in)}]{deriv\+\_\+B,  }\item[{integer, intent(in), optional}]{deriv\+\_\+\+A\+\_\+input }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \label{interfaceeq__utilities_1_1transf__deriv_a73aab7905dbae219a2b920b03a08d60e} 
+integer recursive function eq\+\_\+utilities::\+transf\+\_\+deriv::\+transf\+\_\+deriv\+\_\+1\+\_\+ind (\begin{DoxyParamCaption}\item[{real(dp), dimension(1:\+,0:\+), intent(in)}]{x\+\_\+a}{, }\item[{real(dp), dimension(1:\+,0:\+), intent(in)}]{t\+\_\+ba}{, }\item[{real(dp), dimension(1:\+), intent(inout)}]{x\+\_\+b}{, }\item[{integer, intent(in)}]{max\+\_\+deriv}{, }\item[{integer, intent(in)}]{deriv\+\_\+b}{, }\item[{integer, intent(in), optional}]{deriv\+\_\+a\+\_\+input}{}\end{DoxyParamCaption})}
 
 
 
@@ -62,28 +76,28 @@ Definition at line 118 of file eq\+\_\+utilities.\+f90.
 
 
 \begin{DoxyParams}[1]{Parameters}
-\mbox{\texttt{ in}}  & {\em x\+\_\+a} & variable and derivs. in coord. system A \\
+\doxymbox{\texttt{in}}  & {\em x\+\_\+a} & variable and derivs. in coord. system A \\
 \hline
-\mbox{\texttt{ in,out}}  & {\em x\+\_\+b} & requested derivs. of variable in coord. system B \\
+\doxymbox{\texttt{in,out}}  & {\em x\+\_\+b} & requested derivs. of variable in coord. system B \\
 \hline
-\mbox{\texttt{ in}}  & {\em t\+\_\+ba} & transf. mat. and derivs. between coord. systems A and B \\
+\doxymbox{\texttt{in}}  & {\em t\+\_\+ba} & transf. mat. and derivs. between coord. systems A and B \\
 \hline
-\mbox{\texttt{ in}}  & {\em deriv\+\_\+a\+\_\+input} & derivs. in coord. system A (optional) \\
+\doxymbox{\texttt{in}}  & {\em deriv\+\_\+a\+\_\+input} & derivs. in coord. system A (optional) \\
 \hline
-\mbox{\texttt{ in}}  & {\em deriv\+\_\+b} & derivs. in coord. system B \\
+\doxymbox{\texttt{in}}  & {\em deriv\+\_\+b} & derivs. in coord. system B \\
 \hline
-\mbox{\texttt{ in}}  & {\em max\+\_\+deriv} & maximum degrees of derivs. \\
+\doxymbox{\texttt{in}}  & {\em max\+\_\+deriv} & maximum degrees of derivs. \\
 \hline
 \end{DoxyParams}
 
 
-Definition at line 681 of file eq\+\_\+utilities.\+f90.
+Definition at line \doxymbox{\hyperlink{eq__utilities_8f90_source_l00679}{679}} of file \doxymbox{\hyperlink{eq__utilities_8f90_source}{eq\+\_\+utilities.\+f90}}.
 
-\mbox{\Hypertarget{interfaceeq__utilities_1_1transf__deriv_abaad10d9fd6035720c2ef74be49e7493}\label{interfaceeq__utilities_1_1transf__deriv_abaad10d9fd6035720c2ef74be49e7493}} 
-\index{eq\_utilities::transf\_deriv@{eq\_utilities::transf\_deriv}!transf\_deriv\_3\_arr@{transf\_deriv\_3\_arr}}
+\Hypertarget{interfaceeq__utilities_1_1transf__deriv_aa3fe48550de53fd46bbf8a58c9bc8f31}\index{eq\_utilities::transf\_deriv@{eq\_utilities::transf\_deriv}!transf\_deriv\_3\_arr@{transf\_deriv\_3\_arr}}
 \index{transf\_deriv\_3\_arr@{transf\_deriv\_3\_arr}!eq\_utilities::transf\_deriv@{eq\_utilities::transf\_deriv}}
 \doxysubsubsection{\texorpdfstring{transf\_deriv\_3\_arr()}{transf\_deriv\_3\_arr()}}
-{\footnotesize\ttfamily integer function eq\+\_\+utilities\+::transf\+\_\+deriv\+::transf\+\_\+deriv\+\_\+3\+\_\+arr (\begin{DoxyParamCaption}\item[{real(dp), dimension(1\+:,1\+:,1\+:,0\+:,0\+:,0\+:), intent(in)}]{X\+\_\+A,  }\item[{real(dp), dimension(1\+:,1\+:,1\+:,1\+:,0\+:,0\+:,0\+:), intent(in)}]{T\+\_\+\+BA,  }\item[{real(dp), dimension(1\+:,1\+:,1\+:,0\+:,0\+:,0\+:), intent(inout)}]{X\+\_\+B,  }\item[{integer, intent(in)}]{max\+\_\+deriv,  }\item[{integer, dimension(\+:,\+:), intent(in)}]{derivs }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \label{interfaceeq__utilities_1_1transf__deriv_aa3fe48550de53fd46bbf8a58c9bc8f31} 
+integer function eq\+\_\+utilities::\+transf\+\_\+deriv::\+transf\+\_\+deriv\+\_\+3\+\_\+arr (\begin{DoxyParamCaption}\item[{real(dp), dimension(1:\+,1:\+,1:\+,0:\+,0:\+,0:\+), intent(in)}]{x\+\_\+a}{, }\item[{real(dp), dimension(1:\+,1:\+,1:\+,1:\+,0:\+,0:\+,0:\+), intent(in)}]{t\+\_\+ba}{, }\item[{real(dp), dimension(1:\+,1:\+,1:\+,0:\+,0:\+,0:\+), intent(inout)}]{x\+\_\+b}{, }\item[{integer, intent(in)}]{max\+\_\+deriv}{, }\item[{integer, dimension(:\+,:\+), intent(in)}]{derivs}{}\end{DoxyParamCaption})}
 
 
 
@@ -91,26 +105,26 @@ Definition at line 681 of file eq\+\_\+utilities.\+f90.
 
 
 \begin{DoxyParams}[1]{Parameters}
-\mbox{\texttt{ in}}  & {\em x\+\_\+a} & variable and derivs. in coord. system A \\
+\doxymbox{\texttt{in}}  & {\em x\+\_\+a} & variable and derivs. in coord. system A \\
 \hline
-\mbox{\texttt{ in}}  & {\em t\+\_\+ba} & transf. mat. and derivs. between coord. systems A and B \\
+\doxymbox{\texttt{in}}  & {\em t\+\_\+ba} & transf. mat. and derivs. between coord. systems A and B \\
 \hline
-\mbox{\texttt{ in,out}}  & {\em x\+\_\+b} & requested derivs. of variable in coord. system B \\
+\doxymbox{\texttt{in,out}}  & {\em x\+\_\+b} & requested derivs. of variable in coord. system B \\
 \hline
-\mbox{\texttt{ in}}  & {\em max\+\_\+deriv} & maximum degrees of derivs. \\
+\doxymbox{\texttt{in}}  & {\em max\+\_\+deriv} & maximum degrees of derivs. \\
 \hline
-\mbox{\texttt{ in}}  & {\em derivs} & series of derivs. (in coordinate system B) \\
+\doxymbox{\texttt{in}}  & {\em derivs} & series of derivs. (in coordinate system B) \\
 \hline
 \end{DoxyParams}
 
 
-Definition at line 615 of file eq\+\_\+utilities.\+f90.
+Definition at line \doxymbox{\hyperlink{eq__utilities_8f90_source_l00613}{613}} of file \doxymbox{\hyperlink{eq__utilities_8f90_source}{eq\+\_\+utilities.\+f90}}.
 
-\mbox{\Hypertarget{interfaceeq__utilities_1_1transf__deriv_a91c9dd37a0de40fa72441e9c88f94eb0}\label{interfaceeq__utilities_1_1transf__deriv_a91c9dd37a0de40fa72441e9c88f94eb0}} 
-\index{eq\_utilities::transf\_deriv@{eq\_utilities::transf\_deriv}!transf\_deriv\_3\_arr\_2d@{transf\_deriv\_3\_arr\_2d}}
+\Hypertarget{interfaceeq__utilities_1_1transf__deriv_a2a30913d967fc0816f4f8df6f62e32fd}\index{eq\_utilities::transf\_deriv@{eq\_utilities::transf\_deriv}!transf\_deriv\_3\_arr\_2d@{transf\_deriv\_3\_arr\_2d}}
 \index{transf\_deriv\_3\_arr\_2d@{transf\_deriv\_3\_arr\_2d}!eq\_utilities::transf\_deriv@{eq\_utilities::transf\_deriv}}
 \doxysubsubsection{\texorpdfstring{transf\_deriv\_3\_arr\_2d()}{transf\_deriv\_3\_arr\_2d()}}
-{\footnotesize\ttfamily integer function eq\+\_\+utilities\+::transf\+\_\+deriv\+::transf\+\_\+deriv\+\_\+3\+\_\+arr\+\_\+2d (\begin{DoxyParamCaption}\item[{real(dp), dimension(1\+:,1\+:,1\+:,1\+:,0\+:,0\+:,0\+:), intent(in)}]{X\+\_\+A,  }\item[{real(dp), dimension(1\+:,1\+:,1\+:,1\+:,0\+:,0\+:,0\+:), intent(in)}]{T\+\_\+\+BA,  }\item[{real(dp), dimension(1\+:,1\+:,1\+:,1\+:,0\+:,0\+:,0\+:), intent(inout)}]{X\+\_\+B,  }\item[{integer, intent(in)}]{max\+\_\+deriv,  }\item[{integer, dimension(\+:,\+:), intent(in)}]{derivs }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \label{interfaceeq__utilities_1_1transf__deriv_a2a30913d967fc0816f4f8df6f62e32fd} 
+integer function eq\+\_\+utilities::\+transf\+\_\+deriv::\+transf\+\_\+deriv\+\_\+3\+\_\+arr\+\_\+2d (\begin{DoxyParamCaption}\item[{real(dp), dimension(1:\+,1:\+,1:\+,1:\+,0:\+,0:\+,0:\+), intent(in)}]{x\+\_\+a}{, }\item[{real(dp), dimension(1:\+,1:\+,1:\+,1:\+,0:\+,0:\+,0:\+), intent(in)}]{t\+\_\+ba}{, }\item[{real(dp), dimension(1:\+,1:\+,1:\+,1:\+,0:\+,0:\+,0:\+), intent(inout)}]{x\+\_\+b}{, }\item[{integer, intent(in)}]{max\+\_\+deriv}{, }\item[{integer, dimension(:\+,:\+), intent(in)}]{derivs}{}\end{DoxyParamCaption})}
 
 
 
@@ -118,33 +132,33 @@ Definition at line 615 of file eq\+\_\+utilities.\+f90.
 
 
 \begin{DoxyParams}[1]{Parameters}
-\mbox{\texttt{ in}}  & {\em x\+\_\+a} & variable and derivs. in coord. system A \\
+\doxymbox{\texttt{in}}  & {\em x\+\_\+a} & variable and derivs. in coord. system A \\
 \hline
-\mbox{\texttt{ in}}  & {\em t\+\_\+ba} & transf. mat. and derivs. between coord. systems A and B \\
+\doxymbox{\texttt{in}}  & {\em t\+\_\+ba} & transf. mat. and derivs. between coord. systems A and B \\
 \hline
-\mbox{\texttt{ in,out}}  & {\em x\+\_\+b} & requested derivs. of variable in coord. system B \\
+\doxymbox{\texttt{in,out}}  & {\em x\+\_\+b} & requested derivs. of variable in coord. system B \\
 \hline
-\mbox{\texttt{ in}}  & {\em max\+\_\+deriv} & maximum degrees of derivs. \\
+\doxymbox{\texttt{in}}  & {\em max\+\_\+deriv} & maximum degrees of derivs. \\
 \hline
-\mbox{\texttt{ in}}  & {\em derivs} & series of derivs. (in coordinate system B) \\
+\doxymbox{\texttt{in}}  & {\em derivs} & series of derivs. (in coordinate system B) \\
 \hline
 \end{DoxyParams}
 
 
-Definition at line 640 of file eq\+\_\+utilities.\+f90.
+Definition at line \doxymbox{\hyperlink{eq__utilities_8f90_source_l00638}{638}} of file \doxymbox{\hyperlink{eq__utilities_8f90_source}{eq\+\_\+utilities.\+f90}}.
 
-Here is the call graph for this function\+:\nopagebreak
+Here is the call graph for this function:\+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=350pt]{interfaceeq__utilities_1_1transf__deriv_a91c9dd37a0de40fa72441e9c88f94eb0_cgraph}
+\includegraphics[width=350pt]{interfaceeq__utilities_1_1transf__deriv_a2a30913d967fc0816f4f8df6f62e32fd_cgraph}
 \end{center}
 \end{figure}
-\mbox{\Hypertarget{interfaceeq__utilities_1_1transf__deriv_aeb378175eaa132caf243cbd197e2d2ac}\label{interfaceeq__utilities_1_1transf__deriv_aeb378175eaa132caf243cbd197e2d2ac}} 
-\index{eq\_utilities::transf\_deriv@{eq\_utilities::transf\_deriv}!transf\_deriv\_3\_ind@{transf\_deriv\_3\_ind}}
+\Hypertarget{interfaceeq__utilities_1_1transf__deriv_a025cbd71c00a1812008f0b8935b09f51}\index{eq\_utilities::transf\_deriv@{eq\_utilities::transf\_deriv}!transf\_deriv\_3\_ind@{transf\_deriv\_3\_ind}}
 \index{transf\_deriv\_3\_ind@{transf\_deriv\_3\_ind}!eq\_utilities::transf\_deriv@{eq\_utilities::transf\_deriv}}
 \doxysubsubsection{\texorpdfstring{transf\_deriv\_3\_ind()}{transf\_deriv\_3\_ind()}}
-{\footnotesize\ttfamily integer recursive function eq\+\_\+utilities\+::transf\+\_\+deriv\+::transf\+\_\+deriv\+\_\+3\+\_\+ind (\begin{DoxyParamCaption}\item[{real(dp), dimension(1\+:,1\+:,1\+:,0\+:,0\+:,0\+:), intent(in)}]{X\+\_\+A,  }\item[{real(dp), dimension(1\+:,1\+:,1\+:,1\+:,0\+:,0\+:,0\+:), intent(in)}]{T\+\_\+\+BA,  }\item[{real(dp), dimension(1\+:,1\+:,1\+:), intent(inout)}]{X\+\_\+B,  }\item[{integer, intent(in)}]{max\+\_\+deriv,  }\item[{integer, dimension(\+:), intent(in)}]{deriv\+\_\+B,  }\item[{integer, dimension(\+:), intent(in), optional}]{deriv\+\_\+\+A\+\_\+input }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \label{interfaceeq__utilities_1_1transf__deriv_a025cbd71c00a1812008f0b8935b09f51} 
+integer recursive function eq\+\_\+utilities::\+transf\+\_\+deriv::\+transf\+\_\+deriv\+\_\+3\+\_\+ind (\begin{DoxyParamCaption}\item[{real(dp), dimension(1:\+,1:\+,1:\+,0:\+,0:\+,0:\+), intent(in)}]{x\+\_\+a}{, }\item[{real(dp), dimension(1:\+,1:\+,1:\+,1:\+,0:\+,0:\+,0:\+), intent(in)}]{t\+\_\+ba}{, }\item[{real(dp), dimension(1:\+,1:\+,1:\+), intent(inout)}]{x\+\_\+b}{, }\item[{integer, intent(in)}]{max\+\_\+deriv}{, }\item[{integer, dimension(:\+), intent(in)}]{deriv\+\_\+b}{, }\item[{integer, dimension(:\+), intent(in), optional}]{deriv\+\_\+a\+\_\+input}{}\end{DoxyParamCaption})}
 
 
 
@@ -152,29 +166,22 @@ Here is the call graph for this function\+:\nopagebreak
 
 
 \begin{DoxyParams}[1]{Parameters}
-\mbox{\texttt{ in}}  & {\em x\+\_\+a} & variable and derivs. in coord. system A \\
+\doxymbox{\texttt{in}}  & {\em x\+\_\+a} & variable and derivs. in coord. system A \\
 \hline
-\mbox{\texttt{ in}}  & {\em t\+\_\+ba} & transf. mat. and derivs. between coord. systems A and B \\
+\doxymbox{\texttt{in}}  & {\em t\+\_\+ba} & transf. mat. and derivs. between coord. systems A and B \\
 \hline
-\mbox{\texttt{ in,out}}  & {\em x\+\_\+b} & requested derivs. of variable in coord. system B \\
+\doxymbox{\texttt{in,out}}  & {\em x\+\_\+b} & requested derivs. of variable in coord. system B \\
 \hline
-\mbox{\texttt{ in}}  & {\em max\+\_\+deriv} & maximum degrees of derivs. \\
+\doxymbox{\texttt{in}}  & {\em max\+\_\+deriv} & maximum degrees of derivs. \\
 \hline
-\mbox{\texttt{ in}}  & {\em deriv\+\_\+b} & derivs. in coord. system B \\
+\doxymbox{\texttt{in}}  & {\em deriv\+\_\+b} & derivs. in coord. system B \\
 \hline
-\mbox{\texttt{ in}}  & {\em deriv\+\_\+a\+\_\+input} & derivs. in coord. system A (optional) \\
+\doxymbox{\texttt{in}}  & {\em deriv\+\_\+a\+\_\+input} & derivs. in coord. system A (optional) \\
 \hline
 \end{DoxyParams}
 
 
-Definition at line 508 of file eq\+\_\+utilities.\+f90.
+Definition at line \doxymbox{\hyperlink{eq__utilities_8f90_source_l00506}{506}} of file \doxymbox{\hyperlink{eq__utilities_8f90_source}{eq\+\_\+utilities.\+f90}}.
 
-Here is the call graph for this function\+:\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=350pt]{interfaceeq__utilities_1_1transf__deriv_aeb378175eaa132caf243cbd197e2d2ac_cgraph}
-\end{center}
-\end{figure}
 
 

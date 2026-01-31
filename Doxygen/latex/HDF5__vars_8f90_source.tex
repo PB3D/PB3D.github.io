@@ -1,0 +1,179 @@
+\doxysection{HDF5\+\_\+vars.\+f90}
+\hypertarget{HDF5__vars_8f90_source}{}\label{HDF5__vars_8f90_source}\index{/Users/toonweyens/Code/PB3D/Modules/HDF5\_vars.f90@{/Users/toonweyens/Code/PB3D/Modules/HDF5\_vars.f90}}
+\doxymbox{\hyperlink{HDF5__vars_8f90}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{HDF5__vars_8f90_source_l00001}00001\ \textcolor{comment}{!-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/!}\textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{HDF5__vars_8f90_source_l00002}00002\ \textcolor{comment}{!>\ Variables\ pertaining\ to\ HDF5\ and\ XDMF.}}
+\DoxyCodeLine{\Hypertarget{HDF5__vars_8f90_source_l00003}00003\ \textcolor{comment}{!-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/!}}
+\DoxyCodeLine{\Hypertarget{HDF5__vars_8f90_source_l00004}\doxymbox{\hyperlink{namespacehdf5__vars}{00004}}\ \textcolor{keyword}{module}\ \doxymbox{\hyperlink{namespacehdf5__vars}{hdf5\_vars}}}
+\DoxyCodeLine{\Hypertarget{HDF5__vars_8f90_source_l00005}00005\ \textcolor{preprocessor}{\#include\ <PB3D\_macros.h>}}
+\DoxyCodeLine{\Hypertarget{HDF5__vars_8f90_source_l00006}00006\ \textcolor{preprocessor}{}\ \ \ \ \textcolor{keywordtype}{use\ }\doxymbox{\hyperlink{namespacenum__vars}{num\_vars}},\ \textcolor{keywordtype}{only}:\ \doxymbox{\hyperlink{namespacenum__vars_a3ff2bb983ee80a6735277d6789e6ce7c}{max\_str\_ln}},\ \doxymbox{\hyperlink{namespacenum__vars_a03802aa2bd86439d7a9370836fabf3f2}{dp}},\ \doxymbox{\hyperlink{namespacenum__vars_a63868c5912af08559dcdd2db31e68696}{plot\_dir}},\ \doxymbox{\hyperlink{namespacenum__vars_af48173a7062997585f7a7ca9363290b3}{data\_dir}},\ \doxymbox{\hyperlink{namespacenum__vars_a2b5f419579cb2d0ac2adda364be58fb5}{script\_dir}}}
+\DoxyCodeLine{\Hypertarget{HDF5__vars_8f90_source_l00007}00007\ \ \ \ \ \textcolor{keywordtype}{use\ }\doxymbox{\hyperlink{namespacemessages}{messages}}}
+\DoxyCodeLine{\Hypertarget{HDF5__vars_8f90_source_l00008}00008\ \ \ \ \ \textcolor{keywordtype}{use\ }\doxymbox{\hyperlink{namespacestr__utilities}{str\_utilities}},\ \textcolor{keywordtype}{only}:\ \doxymbox{\hyperlink{namespacestr__utilities_a0b97e51770725a3e98ed393d26681414}{i2str}},\ \doxymbox{\hyperlink{namespacestr__utilities_a92ac6c0af1979df094de1caddd28ade0}{r2str}},\ \doxymbox{\hyperlink{namespacestr__utilities_ac778d706b2e021672618939ab58fdd32}{r2strt}}}
+\DoxyCodeLine{\Hypertarget{HDF5__vars_8f90_source_l00009}00009\ \ \ \ \ \textcolor{keywordtype}{use\ }hdf5}
+\DoxyCodeLine{\Hypertarget{HDF5__vars_8f90_source_l00010}00010\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{HDF5__vars_8f90_source_l00011}00011\ \ \ \ \ \textcolor{keywordtype}{implicit\ none}}
+\DoxyCodeLine{\Hypertarget{HDF5__vars_8f90_source_l00012}00012\ \ \ \ \ \textcolor{keywordtype}{private}}
+\DoxyCodeLine{\Hypertarget{HDF5__vars_8f90_source_l00013}00013\ \ \ \ \ \textcolor{keywordtype}{public}\ \doxymbox{\hyperlink{namespacehdf5__vars_ab644703bcb67ce423732e39ab56a4b63}{init\_hdf5}},\ \doxymbox{\hyperlink{interfacehdf5__vars_1_1dealloc__xml__str}{dealloc\_xml\_str}},\ \doxymbox{\hyperlink{interfacehdf5__vars_1_1dealloc__var__1d}{dealloc\_var\_1d}},\ \&}
+\DoxyCodeLine{\Hypertarget{HDF5__vars_8f90_source_l00014}00014\ \ \ \ \ \ \ \ \ \&\doxymbox{\hyperlink{namespacehdf5__vars_ad8665a0387dde737161d1162565aefa9}{xmf\_fmt}},\ \doxymbox{\hyperlink{namespacehdf5__vars_ad8c38b66b3e9b402f05e7e7a36415fb3}{xdmf\_num\_types}},\ \doxymbox{\hyperlink{namespacehdf5__vars_ab9c0d2270239bf1963c6294ab7198f8c}{xdmf\_format\_types}},\ \doxymbox{\hyperlink{namespacehdf5__vars_acabe6ee64c1612c30ab37774678238e5}{xdmf\_geom\_types}},\ \&}
+\DoxyCodeLine{\Hypertarget{HDF5__vars_8f90_source_l00015}00015\ \ \ \ \ \ \ \ \ \&\doxymbox{\hyperlink{namespacehdf5__vars_ad25ea0a5a9a4bb3f9248a7fa61ea1363}{xdmf\_top\_types}},\ \doxymbox{\hyperlink{namespacehdf5__vars_a43c511f4b84cd716387c39c78b2cfe54}{xdmf\_att\_types}},\ \doxymbox{\hyperlink{namespacehdf5__vars_a7f20d570d2304c8e953646599bf61d73}{xdmf\_center\_types}},\ \doxymbox{\hyperlink{namespacehdf5__vars_ab7b59b4afbcaff92aa1c236c23a4bf58}{xdmf\_grid\_types}},\ \&}
+\DoxyCodeLine{\Hypertarget{HDF5__vars_8f90_source_l00016}00016\ \ \ \ \ \ \ \ \ \&\doxymbox{\hyperlink{namespacehdf5__vars_a69c36b36ad7f55ff124ebc328d18adb7}{max\_dim\_var\_1d}}}
+\DoxyCodeLine{\Hypertarget{HDF5__vars_8f90_source_l00017}00017\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{HDF5__vars_8f90_source_l00018}00018\ \ \ \ \ \textcolor{comment}{!\ global\ variables}}
+\DoxyCodeLine{\Hypertarget{HDF5__vars_8f90_source_l00019}00019\ \ \ \ \ \textcolor{keywordtype}{integer},\ \textcolor{keywordtype}{parameter}\ ::\ max\_xml\_ln\ =\ 300\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !<\ max.\ length\ of\ xml\ string}}
+\DoxyCodeLine{\Hypertarget{HDF5__vars_8f90_source_l00020}\doxymbox{\hyperlink{namespacehdf5__vars_ad8665a0387dde737161d1162565aefa9}{00020}}\ \ \ \ \ \textcolor{keywordtype}{character(len=6)}\ ::\ \doxymbox{\hyperlink{namespacehdf5__vars_ad8665a0387dde737161d1162565aefa9}{xmf\_fmt}}\ =\ \textcolor{stringliteral}{'(999A)'}\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !<\ format\ to\ write\ the\ xmf\ file}}
+\DoxyCodeLine{\Hypertarget{HDF5__vars_8f90_source_l00021}\doxymbox{\hyperlink{namespacehdf5__vars_a69c36b36ad7f55ff124ebc328d18adb7}{00021}}\ \ \ \ \ \textcolor{keywordtype}{integer},\ \textcolor{keywordtype}{parameter}\ ::\ \doxymbox{\hyperlink{namespacehdf5__vars_a69c36b36ad7f55ff124ebc328d18adb7}{max\_dim\_var\_1d}}\ =\ 100000\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !<\ maximum\ dimension\ of\ var\_1D}}
+\DoxyCodeLine{\Hypertarget{HDF5__vars_8f90_source_l00022}00022\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{HDF5__vars_8f90_source_l00023}00023\ \ \ \ \ \textcolor{comment}{!\ XDMF\ possibilities}}
+\DoxyCodeLine{\Hypertarget{HDF5__vars_8f90_source_l00024}\doxymbox{\hyperlink{namespacehdf5__vars_ad8c38b66b3e9b402f05e7e7a36415fb3}{00024}}\ \ \ \ \ \textcolor{keywordtype}{character(len=max\_str\_ln)}\ ::\ \doxymbox{\hyperlink{namespacehdf5__vars_ad8c38b66b3e9b402f05e7e7a36415fb3}{xdmf\_num\_types}}(2)\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !<\ possible\ XDMF\ number\ types}}
+\DoxyCodeLine{\Hypertarget{HDF5__vars_8f90_source_l00025}\doxymbox{\hyperlink{namespacehdf5__vars_ab9c0d2270239bf1963c6294ab7198f8c}{00025}}\ \ \ \ \ \textcolor{keywordtype}{character(len=max\_str\_ln)}\ ::\ \doxymbox{\hyperlink{namespacehdf5__vars_ab9c0d2270239bf1963c6294ab7198f8c}{xdmf\_format\_types}}(2)\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !<\ possible\ XDMF\ format\ types}}
+\DoxyCodeLine{\Hypertarget{HDF5__vars_8f90_source_l00026}\doxymbox{\hyperlink{namespacehdf5__vars_acabe6ee64c1612c30ab37774678238e5}{00026}}\ \ \ \ \ \textcolor{keywordtype}{character(len=max\_str\_ln)}\ ::\ \doxymbox{\hyperlink{namespacehdf5__vars_acabe6ee64c1612c30ab37774678238e5}{xdmf\_geom\_types}}(2)\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !<\ possible\ XDMF\ geometry\ types}}
+\DoxyCodeLine{\Hypertarget{HDF5__vars_8f90_source_l00027}\doxymbox{\hyperlink{namespacehdf5__vars_ad25ea0a5a9a4bb3f9248a7fa61ea1363}{00027}}\ \ \ \ \ \textcolor{keywordtype}{character(len=max\_str\_ln)}\ ::\ \doxymbox{\hyperlink{namespacehdf5__vars_ad25ea0a5a9a4bb3f9248a7fa61ea1363}{xdmf\_top\_types}}(2)\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !<\ possible\ XDMF\ topology\ types}}
+\DoxyCodeLine{\Hypertarget{HDF5__vars_8f90_source_l00028}\doxymbox{\hyperlink{namespacehdf5__vars_a43c511f4b84cd716387c39c78b2cfe54}{00028}}\ \ \ \ \ \textcolor{keywordtype}{character(len=max\_str\_ln)}\ ::\ \doxymbox{\hyperlink{namespacehdf5__vars_a43c511f4b84cd716387c39c78b2cfe54}{xdmf\_att\_types}}(2)\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !<\ possible\ XDMF\ attribute\ types}}
+\DoxyCodeLine{\Hypertarget{HDF5__vars_8f90_source_l00029}\doxymbox{\hyperlink{namespacehdf5__vars_a7f20d570d2304c8e953646599bf61d73}{00029}}\ \ \ \ \ \textcolor{keywordtype}{character(len=max\_str\_ln)}\ ::\ \doxymbox{\hyperlink{namespacehdf5__vars_a7f20d570d2304c8e953646599bf61d73}{xdmf\_center\_types}}(2)\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !<\ possible\ XDMF\ attribute\ center\ types}}
+\DoxyCodeLine{\Hypertarget{HDF5__vars_8f90_source_l00030}\doxymbox{\hyperlink{namespacehdf5__vars_ab7b59b4afbcaff92aa1c236c23a4bf58}{00030}}\ \ \ \ \ \textcolor{keywordtype}{character(len=max\_str\_ln)}\ ::\ \doxymbox{\hyperlink{namespacehdf5__vars_ab7b59b4afbcaff92aa1c236c23a4bf58}{xdmf\_grid\_types}}(3)\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !<\ possible\ XDMF\ grid\ types}}
+\DoxyCodeLine{\Hypertarget{HDF5__vars_8f90_source_l00031}00031\ \ \ \ \ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{HDF5__vars_8f90_source_l00032}00032\ \textcolor{comment}{\ \ \ \ !>\ XML\ strings\ used\ in\ XDMF}}
+\DoxyCodeLine{\Hypertarget{HDF5__vars_8f90_source_l00033}\doxymbox{\hyperlink{structhdf5__vars_1_1xml__str__type}{00033}}\ \ \ \ \ \textcolor{keyword}{type},\ \textcolor{keyword}{public}\ ::\ \doxymbox{\hyperlink{structhdf5__vars_1_1xml__str__type}{xml\_str\_type}}}
+\DoxyCodeLine{\Hypertarget{HDF5__vars_8f90_source_l00034}\doxymbox{\hyperlink{structhdf5__vars_1_1xml__str__type_abb896e4f55a807dee4d91c139b63f1c2}{00034}}\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{character(len=max\_str\_ln)}\ ::\ name\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !<\ name\ of\ this\ item}}
+\DoxyCodeLine{\Hypertarget{HDF5__vars_8f90_source_l00035}\doxymbox{\hyperlink{structhdf5__vars_1_1xml__str__type_aed78e13b1e4adc34c43797ebcea2c389}{00035}}\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer}\ ::\ max\_xml\_ln\ =\ 300\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !<\ max.\ length\ of\ xml\ string}}
+\DoxyCodeLine{\Hypertarget{HDF5__vars_8f90_source_l00036}\doxymbox{\hyperlink{structhdf5__vars_1_1xml__str__type_a2e13e1a8db0b6e15f7213ca3f376b07f}{00036}}\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{character(len=max\_xml\_ln)},\ \textcolor{keywordtype}{allocatable}\ ::\ xml\_str(:)\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !<\ XML\ string}}
+\DoxyCodeLine{\Hypertarget{HDF5__vars_8f90_source_l00037}00037\ \ \ \ \ \textcolor{keyword}{end\ type\ }\doxymbox{\hyperlink{structhdf5__vars_1_1xml__str__type}{xml\_str\_type}}}
+\DoxyCodeLine{\Hypertarget{HDF5__vars_8f90_source_l00038}00038\ \ \ \ \ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{HDF5__vars_8f90_source_l00039}00039\ \textcolor{comment}{\ \ \ \ !>\ HDF5\ data\ type,\ containing\ the\ information\ about\ HDF5\ files.}}
+\DoxyCodeLine{\Hypertarget{HDF5__vars_8f90_source_l00040}\doxymbox{\hyperlink{structhdf5__vars_1_1hdf5__file__type}{00040}}\ \ \ \ \ \textcolor{keyword}{type},\ \textcolor{keyword}{public}\ ::\ \doxymbox{\hyperlink{structhdf5__vars_1_1hdf5__file__type}{hdf5\_file\_type}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{HDF5__vars_8f90_source_l00041}\doxymbox{\hyperlink{structhdf5__vars_1_1hdf5__file__type_a41637d11bd3c0b05ddd33f19c2814443}{00041}}\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer(HID\_T)}\ ::\ hdf5\_i\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !<\ HDF5\ file\ handle}}
+\DoxyCodeLine{\Hypertarget{HDF5__vars_8f90_source_l00042}\doxymbox{\hyperlink{structhdf5__vars_1_1hdf5__file__type_aceb5b42fcc6d848f1b0faaa9042b1a95}{00042}}\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer}\ ::\ xdmf\_i\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !<\ XDMF\ file\ handle}}
+\DoxyCodeLine{\Hypertarget{HDF5__vars_8f90_source_l00043}\doxymbox{\hyperlink{structhdf5__vars_1_1hdf5__file__type_a1739de1996623e79605d5000ffe97156}{00043}}\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{character(len=max\_str\_ln)}\ ::\ name\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !<\ name\ of\ files\ (without\ extensions\ "{}.h5"{}\ and\ "{}.xmf"{})}}
+\DoxyCodeLine{\Hypertarget{HDF5__vars_8f90_source_l00044}00044\ \ \ \ \ \textcolor{keyword}{end\ type\ }\doxymbox{\hyperlink{structhdf5__vars_1_1hdf5__file__type}{hdf5\_file\_type}}}
+\DoxyCodeLine{\Hypertarget{HDF5__vars_8f90_source_l00045}00045\ \ \ \ \ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{HDF5__vars_8f90_source_l00046}00046\ \textcolor{comment}{\ \ \ \ !>\ 1D\ \ equivalent\ \ of\ multidimensional\ \ variables,\ \ used\ \ for\ internal\ \ HDF5}}
+\DoxyCodeLine{\Hypertarget{HDF5__vars_8f90_source_l00047}00047\ \textcolor{comment}{\ \ \ \ !!\ storage.}}
+\DoxyCodeLine{\Hypertarget{HDF5__vars_8f90_source_l00048}\doxymbox{\hyperlink{structhdf5__vars_1_1var__1d__type}{00048}}\ \ \ \ \ \textcolor{keyword}{type},\ \textcolor{keyword}{public}\ ::\ \doxymbox{\hyperlink{structhdf5__vars_1_1var__1d__type}{var\_1d\_type}}}
+\DoxyCodeLine{\Hypertarget{HDF5__vars_8f90_source_l00049}\doxymbox{\hyperlink{structhdf5__vars_1_1var__1d__type_aa354f66d1e3684ff1ba18bfbf5197f5f}{00049}}\ \textcolor{keywordtype}{\ \ \ \ \ \ \ \ real}(\doxymbox{\hyperlink{namespacenum__vars_a03802aa2bd86439d7a9370836fabf3f2}{dp}}),\ \textcolor{keywordtype}{allocatable}\ ::\ p(:)\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !<\ 1D\ equivalent\ of\ data\ of\ variable}}
+\DoxyCodeLine{\Hypertarget{HDF5__vars_8f90_source_l00050}\doxymbox{\hyperlink{structhdf5__vars_1_1var__1d__type_a7f18f0f538910233cf1a09d15a6322f1}{00050}}\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer},\ \textcolor{keywordtype}{allocatable}\ ::\ tot\_i\_min(:)\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !<\ total\ min.of\ indices\ of\ variable}}
+\DoxyCodeLine{\Hypertarget{HDF5__vars_8f90_source_l00051}\doxymbox{\hyperlink{structhdf5__vars_1_1var__1d__type_a9bd0a717bed83cef6e892111b55e5a1a}{00051}}\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer},\ \textcolor{keywordtype}{allocatable}\ ::\ tot\_i\_max(:)\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !<\ total\ max.of\ indices\ of\ variable}}
+\DoxyCodeLine{\Hypertarget{HDF5__vars_8f90_source_l00052}\doxymbox{\hyperlink{structhdf5__vars_1_1var__1d__type_af7e9da42aee3ad9ec599261f7855c8a9}{00052}}\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer},\ \textcolor{keywordtype}{allocatable}\ ::\ loc\_i\_min(:)\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !<\ group\ min.of\ indices\ of\ variable}}
+\DoxyCodeLine{\Hypertarget{HDF5__vars_8f90_source_l00053}\doxymbox{\hyperlink{structhdf5__vars_1_1var__1d__type_a18540fc95d6a5a271f99b26a4df0f798}{00053}}\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer},\ \textcolor{keywordtype}{allocatable}\ ::\ loc\_i\_max(:)\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !<\ group\ max.of\ indices\ of\ variable}}
+\DoxyCodeLine{\Hypertarget{HDF5__vars_8f90_source_l00054}\doxymbox{\hyperlink{structhdf5__vars_1_1var__1d__type_a009a09790edf48ec2176bd7fce3abed9}{00054}}\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{character(len=max\_str\_ln)}\ ::\ var\_name\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !<\ name\ of\ variable}}
+\DoxyCodeLine{\Hypertarget{HDF5__vars_8f90_source_l00055}00055\ \ \ \ \ \textcolor{keyword}{end\ type\ }\doxymbox{\hyperlink{structhdf5__vars_1_1var__1d__type}{var\_1d\_type}}}
+\DoxyCodeLine{\Hypertarget{HDF5__vars_8f90_source_l00056}00056\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{HDF5__vars_8f90_source_l00057}00057\ \ \ \ \ \textcolor{comment}{!\ interfaces}}
+\DoxyCodeLine{\Hypertarget{HDF5__vars_8f90_source_l00058}00058\ \ \ \ \ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{HDF5__vars_8f90_source_l00059}00059\ \textcolor{comment}{\ \ \ \ !>\ \(\backslash\)public\ Deallocates\ XML\_str\_type.}}
+\DoxyCodeLine{\Hypertarget{HDF5__vars_8f90_source_l00060}\doxymbox{\hyperlink{interfacehdf5__vars_1_1dealloc__xml__str}{00060}}\ \ \ \ \ \textcolor{keyword}{interface}\ \doxymbox{\hyperlink{interfacehdf5__vars_1_1dealloc__xml__str}{dealloc\_xml\_str}}\textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{HDF5__vars_8f90_source_l00061}00061\ \textcolor{comment}{\ \ \ \ \ \ \ \ !>\ \(\backslash\)public}}
+\DoxyCodeLine{\Hypertarget{HDF5__vars_8f90_source_l00062}00062\ \ \ \ \ \ \ \ \ \textcolor{keyword}{module\ procedure}\ dealloc\_xml\_str\_ind\textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{HDF5__vars_8f90_source_l00063}00063\ \textcolor{comment}{\ \ \ \ \ \ \ \ !>\ \(\backslash\)public}}
+\DoxyCodeLine{\Hypertarget{HDF5__vars_8f90_source_l00064}00064\ \ \ \ \ \ \ \ \ \textcolor{keyword}{module\ procedure}\ dealloc\_xml\_str\_arr}
+\DoxyCodeLine{\Hypertarget{HDF5__vars_8f90_source_l00065}00065\ \ \ \ \ \textcolor{keyword}{end\ interface}}
+\DoxyCodeLine{\Hypertarget{HDF5__vars_8f90_source_l00066}00066\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{HDF5__vars_8f90_source_l00067}00067\ \textcolor{comment}{\ \ \ \ !>\ \(\backslash\)public\ Deallocates\ 1D\ variable.}}
+\DoxyCodeLine{\Hypertarget{HDF5__vars_8f90_source_l00068}\doxymbox{\hyperlink{interfacehdf5__vars_1_1dealloc__var__1d}{00068}}\ \ \ \ \ \textcolor{keyword}{interface}\ \doxymbox{\hyperlink{interfacehdf5__vars_1_1dealloc__var__1d}{dealloc\_var\_1d}}\textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{HDF5__vars_8f90_source_l00069}00069\ \textcolor{comment}{\ \ \ \ \ \ \ \ !>\ \(\backslash\)public}}
+\DoxyCodeLine{\Hypertarget{HDF5__vars_8f90_source_l00070}00070\ \ \ \ \ \ \ \ \ \textcolor{keyword}{module\ procedure}\ dealloc\_var\_1d\_ind\textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{HDF5__vars_8f90_source_l00071}00071\ \textcolor{comment}{\ \ \ \ \ \ \ \ !>\ \(\backslash\)public}}
+\DoxyCodeLine{\Hypertarget{HDF5__vars_8f90_source_l00072}00072\ \ \ \ \ \ \ \ \ \textcolor{keyword}{module\ procedure}\ dealloc\_var\_1d\_arr\textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{HDF5__vars_8f90_source_l00073}00073\ \textcolor{comment}{\ \ \ \ \ \ \ \ !>\ \(\backslash\)public}}
+\DoxyCodeLine{\Hypertarget{HDF5__vars_8f90_source_l00074}00074\ \ \ \ \ \ \ \ \ \textcolor{keyword}{module\ procedure}\ dealloc\_var\_1d\_arr\_2}
+\DoxyCodeLine{\Hypertarget{HDF5__vars_8f90_source_l00075}00075\ \ \ \ \ \textcolor{keyword}{end\ interface}}
+\DoxyCodeLine{\Hypertarget{HDF5__vars_8f90_source_l00076}00076\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{HDF5__vars_8f90_source_l00077}00077\ \textcolor{keyword}{contains}\textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{HDF5__vars_8f90_source_l00078}00078\ \textcolor{comment}{\ \ \ \ !>\ Initializes\ the\ HDF5\ types.}}
+\DoxyCodeLine{\Hypertarget{HDF5__vars_8f90_source_l00079}00079\ \textcolor{comment}{\ \ \ \ !!}}
+\DoxyCodeLine{\Hypertarget{HDF5__vars_8f90_source_l00080}00080\ \textcolor{comment}{\ \ \ \ !!\ Has\ to\ be\ called\ once.}}
+\DoxyCodeLine{\Hypertarget{HDF5__vars_8f90_source_l00081}\doxymbox{\hyperlink{namespacehdf5__vars_ab644703bcb67ce423732e39ab56a4b63}{00081}}\ \ \ \ \ \textcolor{keyword}{subroutine\ }\doxymbox{\hyperlink{namespacehdf5__vars_ab644703bcb67ce423732e39ab56a4b63}{init\_hdf5}}}
+\DoxyCodeLine{\Hypertarget{HDF5__vars_8f90_source_l00082}00082\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ XDMF\_num\_types}}
+\DoxyCodeLine{\Hypertarget{HDF5__vars_8f90_source_l00083}00083\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{namespacehdf5__vars_ad8c38b66b3e9b402f05e7e7a36415fb3}{xdmf\_num\_types}}(1)\ =\ \textcolor{stringliteral}{"{}Int"{}}}
+\DoxyCodeLine{\Hypertarget{HDF5__vars_8f90_source_l00084}00084\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{namespacehdf5__vars_ad8c38b66b3e9b402f05e7e7a36415fb3}{xdmf\_num\_types}}(2)\ =\ \textcolor{stringliteral}{"{}Float"{}}}
+\DoxyCodeLine{\Hypertarget{HDF5__vars_8f90_source_l00085}00085\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{HDF5__vars_8f90_source_l00086}00086\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ XDMF\_format\_types}}
+\DoxyCodeLine{\Hypertarget{HDF5__vars_8f90_source_l00087}00087\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{namespacehdf5__vars_ab9c0d2270239bf1963c6294ab7198f8c}{xdmf\_format\_types}}(1)\ =\ \textcolor{stringliteral}{"{}XML"{}}}
+\DoxyCodeLine{\Hypertarget{HDF5__vars_8f90_source_l00088}00088\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{namespacehdf5__vars_ab9c0d2270239bf1963c6294ab7198f8c}{xdmf\_format\_types}}(2)\ =\ \textcolor{stringliteral}{"{}HD5"{}}}
+\DoxyCodeLine{\Hypertarget{HDF5__vars_8f90_source_l00089}00089\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{HDF5__vars_8f90_source_l00090}00090\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ XDMF\_geom\_types}}
+\DoxyCodeLine{\Hypertarget{HDF5__vars_8f90_source_l00091}00091\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{namespacehdf5__vars_acabe6ee64c1612c30ab37774678238e5}{xdmf\_geom\_types}}(1)\ =\ \textcolor{stringliteral}{"{}X\_Y"{}}}
+\DoxyCodeLine{\Hypertarget{HDF5__vars_8f90_source_l00092}00092\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{namespacehdf5__vars_acabe6ee64c1612c30ab37774678238e5}{xdmf\_geom\_types}}(2)\ =\ \textcolor{stringliteral}{"{}X\_Y\_Z"{}}}
+\DoxyCodeLine{\Hypertarget{HDF5__vars_8f90_source_l00093}00093\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{HDF5__vars_8f90_source_l00094}00094\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ XDMF\_top\_types}}
+\DoxyCodeLine{\Hypertarget{HDF5__vars_8f90_source_l00095}00095\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{namespacehdf5__vars_ad25ea0a5a9a4bb3f9248a7fa61ea1363}{xdmf\_top\_types}}(1)\ =\ \textcolor{stringliteral}{"{}2DSMesh"{}}}
+\DoxyCodeLine{\Hypertarget{HDF5__vars_8f90_source_l00096}00096\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{namespacehdf5__vars_ad25ea0a5a9a4bb3f9248a7fa61ea1363}{xdmf\_top\_types}}(2)\ =\ \textcolor{stringliteral}{"{}3DSMesh"{}}}
+\DoxyCodeLine{\Hypertarget{HDF5__vars_8f90_source_l00097}00097\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{HDF5__vars_8f90_source_l00098}00098\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ XDMF\_att\_types}}
+\DoxyCodeLine{\Hypertarget{HDF5__vars_8f90_source_l00099}00099\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{namespacehdf5__vars_a43c511f4b84cd716387c39c78b2cfe54}{xdmf\_att\_types}}(1)\ =\ \textcolor{stringliteral}{"{}Scalar"{}}}
+\DoxyCodeLine{\Hypertarget{HDF5__vars_8f90_source_l00100}00100\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{namespacehdf5__vars_a43c511f4b84cd716387c39c78b2cfe54}{xdmf\_att\_types}}(2)\ =\ \textcolor{stringliteral}{"{}Vector"{}}}
+\DoxyCodeLine{\Hypertarget{HDF5__vars_8f90_source_l00101}00101\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{HDF5__vars_8f90_source_l00102}00102\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ XDMF\_center\_types}}
+\DoxyCodeLine{\Hypertarget{HDF5__vars_8f90_source_l00103}00103\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{namespacehdf5__vars_a7f20d570d2304c8e953646599bf61d73}{xdmf\_center\_types}}(1)\ =\ \textcolor{stringliteral}{"{}Node"{}}}
+\DoxyCodeLine{\Hypertarget{HDF5__vars_8f90_source_l00104}00104\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{namespacehdf5__vars_a7f20d570d2304c8e953646599bf61d73}{xdmf\_center\_types}}(2)\ =\ \textcolor{stringliteral}{"{}Cell"{}}}
+\DoxyCodeLine{\Hypertarget{HDF5__vars_8f90_source_l00105}00105\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{HDF5__vars_8f90_source_l00106}00106\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ XDMF\_grid\_types}}
+\DoxyCodeLine{\Hypertarget{HDF5__vars_8f90_source_l00107}00107\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{namespacehdf5__vars_ab7b59b4afbcaff92aa1c236c23a4bf58}{xdmf\_grid\_types}}(1)\ =\ \textcolor{stringliteral}{"{}None"{}}}
+\DoxyCodeLine{\Hypertarget{HDF5__vars_8f90_source_l00108}00108\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{namespacehdf5__vars_ab7b59b4afbcaff92aa1c236c23a4bf58}{xdmf\_grid\_types}}(2)\ =\ \textcolor{stringliteral}{"{}Temporal"{}}}
+\DoxyCodeLine{\Hypertarget{HDF5__vars_8f90_source_l00109}00109\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{namespacehdf5__vars_ab7b59b4afbcaff92aa1c236c23a4bf58}{xdmf\_grid\_types}}(3)\ =\ \textcolor{stringliteral}{"{}Spatial"{}}}
+\DoxyCodeLine{\Hypertarget{HDF5__vars_8f90_source_l00110}00110\ \ \ \ \ \textcolor{keyword}{end\ subroutine\ }\doxymbox{\hyperlink{namespacehdf5__vars_ab644703bcb67ce423732e39ab56a4b63}{init\_hdf5}}}
+\DoxyCodeLine{\Hypertarget{HDF5__vars_8f90_source_l00111}00111\ \ \ \ \ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{HDF5__vars_8f90_source_l00112}00112\ \textcolor{comment}{\ \ \ \ !>\ \(\backslash\)private\ array\ version}}
+\DoxyCodeLine{\Hypertarget{HDF5__vars_8f90_source_l00113}\doxymbox{\hyperlink{interfacehdf5__vars_1_1dealloc__xml__str_a494ce2665201bc9ba333ee399538aba3}{00113}}\ \ \ \ \ \textcolor{keyword}{subroutine\ }dealloc\_xml\_str\_arr(XML\_str)}
+\DoxyCodeLine{\Hypertarget{HDF5__vars_8f90_source_l00114}00114\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ input\ /\ output}}
+\DoxyCodeLine{\Hypertarget{HDF5__vars_8f90_source_l00115}00115\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{type}(\doxymbox{\hyperlink{structhdf5__vars_1_1xml__str__type}{xml\_str\_type}}),\ \textcolor{keywordtype}{intent(inout)},\ \textcolor{keywordtype}{allocatable}\ ::\ XML\_str(:)\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ !>\ array\ of\ XML\ strings\ to\ be\ deallocated}}
+\DoxyCodeLine{\Hypertarget{HDF5__vars_8f90_source_l00116}00116\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{HDF5__vars_8f90_source_l00117}00117\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ local\ variables}}
+\DoxyCodeLine{\Hypertarget{HDF5__vars_8f90_source_l00118}00118\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer}\ ::\ id\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ counter}}
+\DoxyCodeLine{\Hypertarget{HDF5__vars_8f90_source_l00119}00119\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{HDF5__vars_8f90_source_l00120}00120\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ deallocate\ individual\ arrays}}
+\DoxyCodeLine{\Hypertarget{HDF5__vars_8f90_source_l00121}00121\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{do}\ id\ =\ 1,\textcolor{keyword}{size}(xml\_str)}
+\DoxyCodeLine{\Hypertarget{HDF5__vars_8f90_source_l00122}00122\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }dealloc\_xml\_str\_ind(xml\_str(id))}
+\DoxyCodeLine{\Hypertarget{HDF5__vars_8f90_source_l00123}00123\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ end\ do}}
+\DoxyCodeLine{\Hypertarget{HDF5__vars_8f90_source_l00124}00124\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{HDF5__vars_8f90_source_l00125}00125\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ deallocate\ the\ array}}
+\DoxyCodeLine{\Hypertarget{HDF5__vars_8f90_source_l00126}00126\ \ \ \ \ \ \ \ \ \textcolor{keyword}{deallocate}(xml\_str)}
+\DoxyCodeLine{\Hypertarget{HDF5__vars_8f90_source_l00127}00127\ \ \ \ \ \textcolor{keyword}{end\ subroutine\ }dealloc\_xml\_str\_arr\textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{HDF5__vars_8f90_source_l00128}00128\ \textcolor{comment}{\ \ \ \ !>\ \(\backslash\)private\ individual\ version}}
+\DoxyCodeLine{\Hypertarget{HDF5__vars_8f90_source_l00129}\doxymbox{\hyperlink{interfacehdf5__vars_1_1dealloc__xml__str_ae0656210eddc28ce4f8a19c7d887735e}{00129}}\ \ \ \ \ \textcolor{keyword}{subroutine\ }dealloc\_xml\_str\_ind(XML\_str)}
+\DoxyCodeLine{\Hypertarget{HDF5__vars_8f90_source_l00130}00130\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ input\ /\ output}}
+\DoxyCodeLine{\Hypertarget{HDF5__vars_8f90_source_l00131}00131\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{type}(\doxymbox{\hyperlink{structhdf5__vars_1_1xml__str__type}{xml\_str\_type}}),\ \textcolor{keywordtype}{intent(out)}\ ::\ XML\_str\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !<\ XML\ string\ to\ be\ deallocated}}
+\DoxyCodeLine{\Hypertarget{HDF5__vars_8f90_source_l00132}00132\ \ \ \ \ \textcolor{keyword}{end\ subroutine\ }dealloc\_xml\_str\_ind}
+\DoxyCodeLine{\Hypertarget{HDF5__vars_8f90_source_l00133}00133\ \ \ \ \ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{HDF5__vars_8f90_source_l00134}00134\ \textcolor{comment}{\ \ \ \ !>\ \(\backslash\)private\ rank\ 2\ array\ version}}
+\DoxyCodeLine{\Hypertarget{HDF5__vars_8f90_source_l00135}\doxymbox{\hyperlink{interfacehdf5__vars_1_1dealloc__var__1d_a8ad99cfa7c9639e64e32c26782b11723}{00135}}\ \ \ \ \ \textcolor{keyword}{subroutine\ }dealloc\_var\_1d\_arr\_2(var\_1D)}
+\DoxyCodeLine{\Hypertarget{HDF5__vars_8f90_source_l00136}00136\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ input\ /\ output}}
+\DoxyCodeLine{\Hypertarget{HDF5__vars_8f90_source_l00137}00137\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{type}(\doxymbox{\hyperlink{structhdf5__vars_1_1var__1d__type}{var\_1d\_type}}),\ \textcolor{keywordtype}{intent(inout)},\ \textcolor{keywordtype}{allocatable}\ ::\ var\_1D(:,:)\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ !<\ array\ of\ 1D\ variables\ to\ be\ deallocated}}
+\DoxyCodeLine{\Hypertarget{HDF5__vars_8f90_source_l00138}00138\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{HDF5__vars_8f90_source_l00139}00139\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ local\ variables}}
+\DoxyCodeLine{\Hypertarget{HDF5__vars_8f90_source_l00140}00140\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer}\ ::\ id,\ jd\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ counters}}
+\DoxyCodeLine{\Hypertarget{HDF5__vars_8f90_source_l00141}00141\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{HDF5__vars_8f90_source_l00142}00142\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ deallocate\ individual\ arrays}}
+\DoxyCodeLine{\Hypertarget{HDF5__vars_8f90_source_l00143}00143\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{do}\ jd\ =\ 1,\textcolor{keyword}{size}(var\_1d,2)}
+\DoxyCodeLine{\Hypertarget{HDF5__vars_8f90_source_l00144}00144\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{do}\ id\ =\ 1,\textcolor{keyword}{size}(var\_1d,1)}
+\DoxyCodeLine{\Hypertarget{HDF5__vars_8f90_source_l00145}00145\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }dealloc\_var\_1d\_ind(var\_1d(id,jd))}
+\DoxyCodeLine{\Hypertarget{HDF5__vars_8f90_source_l00146}00146\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ \ \ \ \ end\ do}}
+\DoxyCodeLine{\Hypertarget{HDF5__vars_8f90_source_l00147}00147\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ end\ do}}
+\DoxyCodeLine{\Hypertarget{HDF5__vars_8f90_source_l00148}00148\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{HDF5__vars_8f90_source_l00149}00149\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ deallocate\ the\ array}}
+\DoxyCodeLine{\Hypertarget{HDF5__vars_8f90_source_l00150}00150\ \ \ \ \ \ \ \ \ \textcolor{keyword}{deallocate}(var\_1d)}
+\DoxyCodeLine{\Hypertarget{HDF5__vars_8f90_source_l00151}00151\ \ \ \ \ \textcolor{keyword}{end\ subroutine\ }dealloc\_var\_1d\_arr\_2\textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{HDF5__vars_8f90_source_l00152}00152\ \textcolor{comment}{\ \ \ \ !>\ \(\backslash\)private\ array\ version}}
+\DoxyCodeLine{\Hypertarget{HDF5__vars_8f90_source_l00153}\doxymbox{\hyperlink{interfacehdf5__vars_1_1dealloc__var__1d_ae8a5782581a41252be7ab98c6ce05b58}{00153}}\ \ \ \ \ \textcolor{keyword}{subroutine\ }dealloc\_var\_1d\_arr(var\_1D)}
+\DoxyCodeLine{\Hypertarget{HDF5__vars_8f90_source_l00154}00154\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ input\ /\ output}}
+\DoxyCodeLine{\Hypertarget{HDF5__vars_8f90_source_l00155}00155\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{type}(\doxymbox{\hyperlink{structhdf5__vars_1_1var__1d__type}{var\_1d\_type}}),\ \textcolor{keywordtype}{intent(inout)},\ \textcolor{keywordtype}{allocatable}\ ::\ var\_1D(:)\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ !<\ array\ of\ 1D\ variables\ to\ be\ deallocated}}
+\DoxyCodeLine{\Hypertarget{HDF5__vars_8f90_source_l00156}00156\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{HDF5__vars_8f90_source_l00157}00157\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ local\ variables}}
+\DoxyCodeLine{\Hypertarget{HDF5__vars_8f90_source_l00158}00158\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer}\ ::\ id\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ counter}}
+\DoxyCodeLine{\Hypertarget{HDF5__vars_8f90_source_l00159}00159\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{HDF5__vars_8f90_source_l00160}00160\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ deallocate\ individual\ arrays}}
+\DoxyCodeLine{\Hypertarget{HDF5__vars_8f90_source_l00161}00161\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{do}\ id\ =\ 1,\textcolor{keyword}{size}(var\_1d)}
+\DoxyCodeLine{\Hypertarget{HDF5__vars_8f90_source_l00162}00162\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }dealloc\_var\_1d\_ind(var\_1d(id))}
+\DoxyCodeLine{\Hypertarget{HDF5__vars_8f90_source_l00163}00163\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ end\ do}}
+\DoxyCodeLine{\Hypertarget{HDF5__vars_8f90_source_l00164}00164\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{HDF5__vars_8f90_source_l00165}00165\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ deallocate\ the\ array}}
+\DoxyCodeLine{\Hypertarget{HDF5__vars_8f90_source_l00166}00166\ \ \ \ \ \ \ \ \ \textcolor{keyword}{deallocate}(var\_1d)}
+\DoxyCodeLine{\Hypertarget{HDF5__vars_8f90_source_l00167}00167\ \ \ \ \ \textcolor{keyword}{end\ subroutine\ }dealloc\_var\_1d\_arr\textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{HDF5__vars_8f90_source_l00168}00168\ \textcolor{comment}{\ \ \ \ !>\ \(\backslash\)private\ individual\ version}}
+\DoxyCodeLine{\Hypertarget{HDF5__vars_8f90_source_l00169}\doxymbox{\hyperlink{interfacehdf5__vars_1_1dealloc__var__1d_a141ea5f173269edc1e0eef051c836e84}{00169}}\ \ \ \ \ \textcolor{keyword}{subroutine\ }dealloc\_var\_1d\_ind(var\_1D)}
+\DoxyCodeLine{\Hypertarget{HDF5__vars_8f90_source_l00170}00170\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ input\ /\ output}}
+\DoxyCodeLine{\Hypertarget{HDF5__vars_8f90_source_l00171}00171\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{type}(\doxymbox{\hyperlink{structhdf5__vars_1_1var__1d__type}{var\_1d\_type}}),\ \textcolor{keywordtype}{intent(out)}\ ::\ var\_1D\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !<\ 1D\ variable\ to\ be\ deallocated}}
+\DoxyCodeLine{\Hypertarget{HDF5__vars_8f90_source_l00172}00172\ \ \ \ \ \textcolor{keyword}{end\ subroutine\ }dealloc\_var\_1d\_ind}
+\DoxyCodeLine{\Hypertarget{HDF5__vars_8f90_source_l00173}00173\ \textcolor{keyword}{end\ module\ }\doxymbox{\hyperlink{namespacehdf5__vars}{hdf5\_vars}}}
+
+\end{DoxyCode}

@@ -1,27 +1,29 @@
-\hypertarget{interfaceeq__utilities_1_1calc__inv__met}{}\doxysection{eq\+\_\+utilities\+::calc\+\_\+inv\+\_\+met Interface Reference}
-\label{interfaceeq__utilities_1_1calc__inv__met}\index{eq\_utilities::calc\_inv\_met@{eq\_utilities::calc\_inv\_met}}
+\doxysection{eq\+\_\+utilities::\+calc\+\_\+inv\+\_\+met Interface Reference}
+\hypertarget{interfaceeq__utilities_1_1calc__inv__met}{}\label{interfaceeq__utilities_1_1calc__inv__met}\index{eq\_utilities::calc\_inv\_met@{eq\_utilities::calc\_inv\_met}}
 
 
-Calculate $D_1^{m_1} D_2^{m_2} D_3^{m_3} X$ from $D_1^{i_1} D_2^{i_2} D_3^{i_3} X$ and $D_1^{j_1} D_2^{j_2} D_3^{j_3} Y$ where $XY=1$ and $i,j = 0\ldots m$, according to \cite{Weyens3D}.  
+Calculate $D_1^{m_1} D_2^{m_2} D_3^{m_3} X$ from $D_1^{i_1} D_2^{i_2} D_3^{i_3} X$ and $D_1^{j_1} D_2^{j_2} D_3^{j_3} Y$ where $XY=1$ and $i,j = 0\ldots m$, according to \DoxyCite{weyens3d}{number}{1}.  
 
 
-\doxysubsection*{Public Member Functions}
+\doxysubsubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-integer function \mbox{\hyperlink{interfaceeq__utilities_1_1calc__inv__met_a52032d5ed98c02aa25ec4ee8489d3452}{calc\+\_\+inv\+\_\+met\+\_\+ind}} (X, Y, deriv)
+integer function \doxymbox{\hyperlink{interfaceeq__utilities_1_1calc__inv__met_a00a3de25bb028923fed82f71a1f6e13f}{calc\+\_\+inv\+\_\+met\+\_\+ind}} (x, y, deriv)
 \begin{DoxyCompactList}\small\item\em individual matrix version \end{DoxyCompactList}\item 
-integer function \mbox{\hyperlink{interfaceeq__utilities_1_1calc__inv__met_a82b49d5a135cc6bdd47fd3e95af3ed38}{calc\+\_\+inv\+\_\+met\+\_\+arr}} (X, Y, deriv)
+integer function \doxymbox{\hyperlink{interfaceeq__utilities_1_1calc__inv__met_ab969d1f16c0132b85e406cfe6adb3223}{calc\+\_\+inv\+\_\+met\+\_\+arr}} (x, y, deriv)
 \item 
-integer function \mbox{\hyperlink{interfaceeq__utilities_1_1calc__inv__met_a6d60c210f6a6db200d329b2c5748ef9b}{calc\+\_\+inv\+\_\+met\+\_\+ind\+\_\+0d}} (X, Y, deriv)
+integer function \doxymbox{\hyperlink{interfaceeq__utilities_1_1calc__inv__met_a9eb015376a18c9c7ae3191a12035d995}{calc\+\_\+inv\+\_\+met\+\_\+ind\+\_\+0d}} (x, y, deriv)
 \begin{DoxyCompactList}\small\item\em individual scalar version \end{DoxyCompactList}\item 
-integer function \mbox{\hyperlink{interfaceeq__utilities_1_1calc__inv__met_aea4faf0a5944ca034e7db4b0c2f26043}{calc\+\_\+inv\+\_\+met\+\_\+arr\+\_\+0d}} (X, Y, deriv)
+integer function \doxymbox{\hyperlink{interfaceeq__utilities_1_1calc__inv__met_a5e8ddd0fb96e36c53f030cf428c79d53}{calc\+\_\+inv\+\_\+met\+\_\+arr\+\_\+0d}} (x, y, deriv)
 \end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
-Calculate $D_1^{m_1} D_2^{m_2} D_3^{m_3} X$ from $D_1^{i_1} D_2^{i_2} D_3^{i_3} X$ and $D_1^{j_1} D_2^{j_2} D_3^{j_3} Y$ where $XY=1$ and $i,j = 0\ldots m$, according to \cite{Weyens3D}. 
+Calculate $D_1^{m_1} D_2^{m_2} D_3^{m_3} X$ from $D_1^{i_1} D_2^{i_2} D_3^{i_3} X$ and $D_1^{j_1} D_2^{j_2} D_3^{j_3} Y$ where $XY=1$ and $i,j = 0\ldots m$, according to \DoxyCite{weyens3d}{number}{1}. 
 
-$D_1^{m_1} D_2^{m_2} D_3^{m_3} $ is defined as $\left(\frac{\partial}{\partial u^1}\right)^{m_1} \left(\frac{\partial}{\partial u^2}\right)^{m_2} \left(\frac{\partial}{\partial u^3}\right)^{m_3} $
+$D_1^{m_1} D_2^{m_2} D_3^{m_3} $ is defined as   $\left(\frac{\partial}{\partial u^1}\right)^{m_1}
+             \left(\frac{\partial}{\partial u^2}\right)^{m_2}
+             \left(\frac{\partial}{\partial u^3}\right)^{m_3} $
 
 \begin{DoxyNote}{Note}
 It is assumed that the lower order derivatives have been calculated already. If not, the results will be incorrect.
@@ -31,46 +33,48 @@ ierr
 \end{DoxyReturn}
 
 
-Definition at line 61 of file eq\+\_\+utilities.\+f90.
+Definition at line \doxymbox{\hyperlink{eq__utilities_8f90_source_l00061}{61}} of file \doxymbox{\hyperlink{eq__utilities_8f90_source}{eq\+\_\+utilities.\+f90}}.
 
 
 
-\doxysubsection{Member Function/\+Subroutine Documentation}
-\mbox{\Hypertarget{interfaceeq__utilities_1_1calc__inv__met_a82b49d5a135cc6bdd47fd3e95af3ed38}\label{interfaceeq__utilities_1_1calc__inv__met_a82b49d5a135cc6bdd47fd3e95af3ed38}} 
-\index{eq\_utilities::calc\_inv\_met@{eq\_utilities::calc\_inv\_met}!calc\_inv\_met\_arr@{calc\_inv\_met\_arr}}
+\label{doc-func-members}
+\Hypertarget{interfaceeq__utilities_1_1calc__inv__met_doc-func-members}
+\doxysubsection{Member Function/\+\+Subroutine Documentation}
+\Hypertarget{interfaceeq__utilities_1_1calc__inv__met_ab969d1f16c0132b85e406cfe6adb3223}\index{eq\_utilities::calc\_inv\_met@{eq\_utilities::calc\_inv\_met}!calc\_inv\_met\_arr@{calc\_inv\_met\_arr}}
 \index{calc\_inv\_met\_arr@{calc\_inv\_met\_arr}!eq\_utilities::calc\_inv\_met@{eq\_utilities::calc\_inv\_met}}
 \doxysubsubsection{\texorpdfstring{calc\_inv\_met\_arr()}{calc\_inv\_met\_arr()}}
-{\footnotesize\ttfamily integer function eq\+\_\+utilities\+::calc\+\_\+inv\+\_\+met\+::calc\+\_\+inv\+\_\+met\+\_\+arr (\begin{DoxyParamCaption}\item[{real(dp), dimension(1\+:,1\+:,1\+:,1\+:,0\+:,0\+:,0\+:), intent(inout)}]{X,  }\item[{real(dp), dimension(1\+:,1\+:,1\+:,1\+:,0\+:,0\+:,0\+:), intent(in)}]{Y,  }\item[{integer, dimension(\+:,\+:), intent(in)}]{deriv }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \label{interfaceeq__utilities_1_1calc__inv__met_ab969d1f16c0132b85e406cfe6adb3223} 
+integer function eq\+\_\+utilities::\+calc\+\_\+inv\+\_\+met::\+calc\+\_\+inv\+\_\+met\+\_\+arr (\begin{DoxyParamCaption}\item[{real(dp), dimension(1:\+,1:\+,1:\+,1:\+,0:\+,0:\+,0:\+), intent(inout)}]{x}{, }\item[{real(dp), dimension(1:\+,1:\+,1:\+,1:\+,0:\+,0:\+,0:\+), intent(in)}]{y}{, }\item[{integer, dimension(:\+,:\+), intent(in)}]{deriv}{}\end{DoxyParamCaption})}
 
 
 \begin{DoxyParams}[1]{Parameters}
-\mbox{\texttt{ in}}  & {\em deriv} & derivatives \\
+\doxymbox{\texttt{in}}  & {\em deriv} & derivatives \\
 \hline
 \end{DoxyParams}
 
 
-Definition at line 322 of file eq\+\_\+utilities.\+f90.
+Definition at line \doxymbox{\hyperlink{eq__utilities_8f90_source_l00321}{321}} of file \doxymbox{\hyperlink{eq__utilities_8f90_source}{eq\+\_\+utilities.\+f90}}.
 
-\mbox{\Hypertarget{interfaceeq__utilities_1_1calc__inv__met_aea4faf0a5944ca034e7db4b0c2f26043}\label{interfaceeq__utilities_1_1calc__inv__met_aea4faf0a5944ca034e7db4b0c2f26043}} 
-\index{eq\_utilities::calc\_inv\_met@{eq\_utilities::calc\_inv\_met}!calc\_inv\_met\_arr\_0d@{calc\_inv\_met\_arr\_0d}}
+\Hypertarget{interfaceeq__utilities_1_1calc__inv__met_a5e8ddd0fb96e36c53f030cf428c79d53}\index{eq\_utilities::calc\_inv\_met@{eq\_utilities::calc\_inv\_met}!calc\_inv\_met\_arr\_0d@{calc\_inv\_met\_arr\_0d}}
 \index{calc\_inv\_met\_arr\_0d@{calc\_inv\_met\_arr\_0d}!eq\_utilities::calc\_inv\_met@{eq\_utilities::calc\_inv\_met}}
 \doxysubsubsection{\texorpdfstring{calc\_inv\_met\_arr\_0d()}{calc\_inv\_met\_arr\_0d()}}
-{\footnotesize\ttfamily integer function eq\+\_\+utilities\+::calc\+\_\+inv\+\_\+met\+::calc\+\_\+inv\+\_\+met\+\_\+arr\+\_\+0d (\begin{DoxyParamCaption}\item[{real(dp), dimension(1\+:,1\+:,1\+:,0\+:,0\+:,0\+:), intent(inout)}]{X,  }\item[{real(dp), dimension(1\+:,1\+:,1\+:,0\+:,0\+:,0\+:), intent(in)}]{Y,  }\item[{integer, dimension(\+:,\+:), intent(in)}]{deriv }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \label{interfaceeq__utilities_1_1calc__inv__met_a5e8ddd0fb96e36c53f030cf428c79d53} 
+integer function eq\+\_\+utilities::\+calc\+\_\+inv\+\_\+met::\+calc\+\_\+inv\+\_\+met\+\_\+arr\+\_\+0d (\begin{DoxyParamCaption}\item[{real(dp), dimension(1:\+,1:\+,1:\+,0:\+,0:\+,0:\+), intent(inout)}]{x}{, }\item[{real(dp), dimension(1:\+,1:\+,1:\+,0:\+,0:\+,0:\+), intent(in)}]{y}{, }\item[{integer, dimension(:\+,:\+), intent(in)}]{deriv}{}\end{DoxyParamCaption})}
 
 
 \begin{DoxyParams}[1]{Parameters}
-\mbox{\texttt{ in}}  & {\em deriv} & derivatives \\
+\doxymbox{\texttt{in}}  & {\em deriv} & derivatives \\
 \hline
 \end{DoxyParams}
 
 
-Definition at line 342 of file eq\+\_\+utilities.\+f90.
+Definition at line \doxymbox{\hyperlink{eq__utilities_8f90_source_l00341}{341}} of file \doxymbox{\hyperlink{eq__utilities_8f90_source}{eq\+\_\+utilities.\+f90}}.
 
-\mbox{\Hypertarget{interfaceeq__utilities_1_1calc__inv__met_a52032d5ed98c02aa25ec4ee8489d3452}\label{interfaceeq__utilities_1_1calc__inv__met_a52032d5ed98c02aa25ec4ee8489d3452}} 
-\index{eq\_utilities::calc\_inv\_met@{eq\_utilities::calc\_inv\_met}!calc\_inv\_met\_ind@{calc\_inv\_met\_ind}}
+\Hypertarget{interfaceeq__utilities_1_1calc__inv__met_a00a3de25bb028923fed82f71a1f6e13f}\index{eq\_utilities::calc\_inv\_met@{eq\_utilities::calc\_inv\_met}!calc\_inv\_met\_ind@{calc\_inv\_met\_ind}}
 \index{calc\_inv\_met\_ind@{calc\_inv\_met\_ind}!eq\_utilities::calc\_inv\_met@{eq\_utilities::calc\_inv\_met}}
 \doxysubsubsection{\texorpdfstring{calc\_inv\_met\_ind()}{calc\_inv\_met\_ind()}}
-{\footnotesize\ttfamily integer function eq\+\_\+utilities\+::calc\+\_\+inv\+\_\+met\+::calc\+\_\+inv\+\_\+met\+\_\+ind (\begin{DoxyParamCaption}\item[{real(dp), dimension(1\+:,1\+:,1\+:,1\+:,0\+:,0\+:,0\+:), intent(inout)}]{X,  }\item[{real(dp), dimension(1\+:,1\+:,1\+:,1\+:,0\+:,0\+:,0\+:), intent(in)}]{Y,  }\item[{integer, dimension(\+:), intent(in)}]{deriv }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \label{interfaceeq__utilities_1_1calc__inv__met_a00a3de25bb028923fed82f71a1f6e13f} 
+integer function eq\+\_\+utilities::\+calc\+\_\+inv\+\_\+met::\+calc\+\_\+inv\+\_\+met\+\_\+ind (\begin{DoxyParamCaption}\item[{real(dp), dimension(1:\+,1:\+,1:\+,1:\+,0:\+,0:\+,0:\+), intent(inout)}]{x}{, }\item[{real(dp), dimension(1:\+,1:\+,1:\+,1:\+,0:\+,0:\+,0:\+), intent(in)}]{y}{, }\item[{integer, dimension(:\+), intent(in)}]{deriv}{}\end{DoxyParamCaption})}
 
 
 
@@ -78,25 +82,25 @@ individual matrix version
 
 
 \begin{DoxyParams}[1]{Parameters}
-\mbox{\texttt{ in}}  & {\em deriv} & derivatives \\
+\doxymbox{\texttt{in}}  & {\em deriv} & derivatives \\
 \hline
 \end{DoxyParams}
 
 
-Definition at line 132 of file eq\+\_\+utilities.\+f90.
+Definition at line \doxymbox{\hyperlink{eq__utilities_8f90_source_l00131}{131}} of file \doxymbox{\hyperlink{eq__utilities_8f90_source}{eq\+\_\+utilities.\+f90}}.
 
-Here is the call graph for this function\+:\nopagebreak
+Here is the call graph for this function:\+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=350pt]{interfaceeq__utilities_1_1calc__inv__met_a52032d5ed98c02aa25ec4ee8489d3452_cgraph}
+\includegraphics[width=350pt]{interfaceeq__utilities_1_1calc__inv__met_a00a3de25bb028923fed82f71a1f6e13f_cgraph}
 \end{center}
 \end{figure}
-\mbox{\Hypertarget{interfaceeq__utilities_1_1calc__inv__met_a6d60c210f6a6db200d329b2c5748ef9b}\label{interfaceeq__utilities_1_1calc__inv__met_a6d60c210f6a6db200d329b2c5748ef9b}} 
-\index{eq\_utilities::calc\_inv\_met@{eq\_utilities::calc\_inv\_met}!calc\_inv\_met\_ind\_0d@{calc\_inv\_met\_ind\_0d}}
+\Hypertarget{interfaceeq__utilities_1_1calc__inv__met_a9eb015376a18c9c7ae3191a12035d995}\index{eq\_utilities::calc\_inv\_met@{eq\_utilities::calc\_inv\_met}!calc\_inv\_met\_ind\_0d@{calc\_inv\_met\_ind\_0d}}
 \index{calc\_inv\_met\_ind\_0d@{calc\_inv\_met\_ind\_0d}!eq\_utilities::calc\_inv\_met@{eq\_utilities::calc\_inv\_met}}
 \doxysubsubsection{\texorpdfstring{calc\_inv\_met\_ind\_0d()}{calc\_inv\_met\_ind\_0d()}}
-{\footnotesize\ttfamily integer function eq\+\_\+utilities\+::calc\+\_\+inv\+\_\+met\+::calc\+\_\+inv\+\_\+met\+\_\+ind\+\_\+0d (\begin{DoxyParamCaption}\item[{real(dp), dimension(1\+:,1\+:,1\+:,0\+:,0\+:,0\+:), intent(inout)}]{X,  }\item[{real(dp), dimension(1\+:,1\+:,1\+:,0\+:,0\+:,0\+:), intent(in)}]{Y,  }\item[{integer, dimension(\+:), intent(in)}]{deriv }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \label{interfaceeq__utilities_1_1calc__inv__met_a9eb015376a18c9c7ae3191a12035d995} 
+integer function eq\+\_\+utilities::\+calc\+\_\+inv\+\_\+met::\+calc\+\_\+inv\+\_\+met\+\_\+ind\+\_\+0d (\begin{DoxyParamCaption}\item[{real(dp), dimension(1:\+,1:\+,1:\+,0:\+,0:\+,0:\+), intent(inout)}]{x}{, }\item[{real(dp), dimension(1:\+,1:\+,1:\+,0:\+,0:\+,0:\+), intent(in)}]{y}{, }\item[{integer, dimension(:\+), intent(in)}]{deriv}{}\end{DoxyParamCaption})}
 
 
 
@@ -104,12 +108,12 @@ individual scalar version
 
 
 \begin{DoxyParams}[1]{Parameters}
-\mbox{\texttt{ in}}  & {\em deriv} & derivatives \\
+\doxymbox{\texttt{in}}  & {\em deriv} & derivatives \\
 \hline
 \end{DoxyParams}
 
 
-Definition at line 261 of file eq\+\_\+utilities.\+f90.
+Definition at line \doxymbox{\hyperlink{eq__utilities_8f90_source_l00260}{260}} of file \doxymbox{\hyperlink{eq__utilities_8f90_source}{eq\+\_\+utilities.\+f90}}.
 
 
 

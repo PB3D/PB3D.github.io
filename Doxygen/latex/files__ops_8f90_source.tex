@@ -1,0 +1,724 @@
+\doxysection{files\+\_\+ops.\+f90}
+\hypertarget{files__ops_8f90_source}{}\label{files__ops_8f90_source}\index{/Users/toonweyens/Code/PB3D/Modules/files\_ops.f90@{/Users/toonweyens/Code/PB3D/Modules/files\_ops.f90}}
+\doxymbox{\hyperlink{files__ops_8f90}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00001}00001\ \textcolor{comment}{!-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/!}\textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00002}00002\ \textcolor{comment}{!>\ Operations\ related\ to\ files\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00003}00003\ \textcolor{comment}{!-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/!}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00004}\doxymbox{\hyperlink{namespacefiles__ops}{00004}}\ \textcolor{keyword}{module}\ \doxymbox{\hyperlink{namespacefiles__ops}{files\_ops}}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00005}00005\ \textcolor{preprocessor}{\#include\ <PB3D\_macros.h>}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00006}00006\ \textcolor{preprocessor}{}\ \ \ \ \textcolor{keywordtype}{use\ }\doxymbox{\hyperlink{namespacestr__utilities}{str\_utilities}}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00007}00007\ \ \ \ \ \textcolor{keywordtype}{use\ }\doxymbox{\hyperlink{namespacemessages}{messages}}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00008}00008\ \ \ \ \ \textcolor{keywordtype}{use\ }\doxymbox{\hyperlink{namespacenum__vars}{num\_vars}},\ \textcolor{keywordtype}{only}:\ \doxymbox{\hyperlink{namespacenum__vars_a03802aa2bd86439d7a9370836fabf3f2}{dp}},\ \doxymbox{\hyperlink{namespacenum__vars_a3ff2bb983ee80a6735277d6789e6ce7c}{max\_str\_ln}}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00009}00009\ \ \ \ \ \textcolor{keywordtype}{implicit\ none}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00010}00010\ \ \ \ \ \textcolor{keywordtype}{private}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00011}00011\ \ \ \ \ \textcolor{keywordtype}{public}\ \doxymbox{\hyperlink{namespacefiles__ops_a63a81a5a451f787025429878b2cec81b}{open\_input}},\ \doxymbox{\hyperlink{namespacefiles__ops_ad681a9e8083a6f664cf0f9d17ebe279c}{open\_output}},\ \doxymbox{\hyperlink{namespacefiles__ops_a051584112f6e4f6e60b0ef824dffbf5e}{parse\_args}},\ \doxymbox{\hyperlink{namespacefiles__ops_a1e219b1147f109f758d03bef89d540e8}{init\_files}},\ \doxymbox{\hyperlink{namespacefiles__ops_a239cc017150e54eda19a8ccb0ff191cd}{close\_output}},\ \&}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00012}00012\ \ \ \ \ \ \ \ \ \&\doxymbox{\hyperlink{namespacefiles__ops_a0666bcbf3aa6a9969e6dc563a40e7152}{opt\_args}}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00013}00013\ }
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00014}00014\ \ \ \ \ \textcolor{comment}{!\ user-\/specified\ arguments}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00015}00015\ \ \ \ \ \textcolor{keywordtype}{integer}\ ::\ numargs\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ control\ the\ user-\/specified\ arguments}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00016}00016\ \ \ \ \ \textcolor{keywordtype}{character(len=max\_str\_ln)},\ \textcolor{keywordtype}{allocatable}\ ::\ command\_arg(:)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ passeed\ command-\/line\ arguments}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00017}00017\ }
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00018}00018\ \ \ \ \ \textcolor{comment}{!\ options\ provided\ with\ command\ line}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00019}\doxymbox{\hyperlink{namespacefiles__ops_a0666bcbf3aa6a9969e6dc563a40e7152}{00019}}\ \ \ \ \ \textcolor{keywordtype}{character(len=max\_str\_ln)},\ \textcolor{keywordtype}{allocatable}\ ::\ \doxymbox{\hyperlink{namespacefiles__ops_a0666bcbf3aa6a9969e6dc563a40e7152}{opt\_args}}(:)\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !<\ optional\ arguments\ that\ can\ be\ passed\ using\ <tt>-\/-\/[name]</tt>}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00020}00020\ \ \ \ \ \textcolor{keywordtype}{integer},\ \textcolor{keywordtype}{allocatable}\ ::\ inc\_args(:)\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !<\ number\ of\ arguments\ for\ each\ optional\ argument}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00021}00021\ }
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00022}00022\ \textcolor{keyword}{contains}\textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00023}00023\ \textcolor{comment}{\ \ \ \ !>\ Initialize\ the\ variables\ for\ the\ module.}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00024}\doxymbox{\hyperlink{namespacefiles__ops_a1e219b1147f109f758d03bef89d540e8}{00024}}\ \ \ \ \ \textcolor{keyword}{subroutine\ }\doxymbox{\hyperlink{namespacefiles__ops_a1e219b1147f109f758d03bef89d540e8}{init\_files}}()}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00025}00025\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{use\ }\doxymbox{\hyperlink{namespacenum__vars}{num\_vars}},\ \textcolor{keywordtype}{only}:\ \doxymbox{\hyperlink{namespacenum__vars_a06597cae984d53aec80c150fc13d3e7f}{ltest}},\ \doxymbox{\hyperlink{namespacenum__vars_a50245a345efb453eda46b3fe98b702e8}{prog\_style}}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00026}00026\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00027}00027\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ select\ according\ to\ program\ style}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00028}00028\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{select\ case}\ (\doxymbox{\hyperlink{namespacenum__vars_a50245a345efb453eda46b3fe98b702e8}{prog\_style}})}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00029}00029\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}(1)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ PB3D}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00030}00030\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{allocate}(\doxymbox{\hyperlink{namespacefiles__ops_a0666bcbf3aa6a9969e6dc563a40e7152}{opt\_args}}(25),\ inc\_args(25))}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00031}00031\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{namespacefiles__ops_a0666bcbf3aa6a9969e6dc563a40e7152}{opt\_args}}\ =\ \textcolor{stringliteral}{''}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00032}00032\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ inc\_args\ =\ 0}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00033}00033\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{namespacefiles__ops_a0666bcbf3aa6a9969e6dc563a40e7152}{opt\_args}}(7)\ =\ \textcolor{stringliteral}{'-\/-\/no\_guess'}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00034}00034\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{namespacefiles__ops_a0666bcbf3aa6a9969e6dc563a40e7152}{opt\_args}}(8)\ =\ \textcolor{stringliteral}{'-\/-\/jump\_to\_sol'}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00035}00035\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{namespacefiles__ops_a0666bcbf3aa6a9969e6dc563a40e7152}{opt\_args}}(9)\ =\ \textcolor{stringliteral}{'-\/-\/export\_HEL'}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00036}00036\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{namespacefiles__ops_a0666bcbf3aa6a9969e6dc563a40e7152}{opt\_args}}(10)\ =\ \textcolor{stringliteral}{'-\/-\/plot\_VMEC\_modes'}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00037}00037\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{namespacefiles__ops_a0666bcbf3aa6a9969e6dc563a40e7152}{opt\_args}}(11)\ =\ \textcolor{stringliteral}{'-\/-\/invert\_top\_bottom\_H'}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00038}00038\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{namespacefiles__ops_a0666bcbf3aa6a9969e6dc563a40e7152}{opt\_args}}(12)\ =\ \textcolor{stringliteral}{'-\/st\_pc\_factor\_shift\_type'}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00039}00039\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{namespacefiles__ops_a0666bcbf3aa6a9969e6dc563a40e7152}{opt\_args}}(13)\ =\ \textcolor{stringliteral}{'-\/st\_pc\_type'}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00040}00040\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{namespacefiles__ops_a0666bcbf3aa6a9969e6dc563a40e7152}{opt\_args}}(14)\ =\ \textcolor{stringliteral}{'-\/st\_pc\_factor\_mat\_solver\_package'}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00041}00041\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{namespacefiles__ops_a0666bcbf3aa6a9969e6dc563a40e7152}{opt\_args}}(15)\ =\ \textcolor{stringliteral}{'-\/eps\_type'}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00042}00042\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{namespacefiles__ops_a0666bcbf3aa6a9969e6dc563a40e7152}{opt\_args}}(16)\ =\ \textcolor{stringliteral}{'-\/eps\_monitor'}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00043}00043\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{namespacefiles__ops_a0666bcbf3aa6a9969e6dc563a40e7152}{opt\_args}}(17)\ =\ \textcolor{stringliteral}{'-\/eps\_tol'}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00044}00044\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{namespacefiles__ops_a0666bcbf3aa6a9969e6dc563a40e7152}{opt\_args}}(18)\ =\ \textcolor{stringliteral}{'-\/eps\_ncv'}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00045}00045\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{namespacefiles__ops_a0666bcbf3aa6a9969e6dc563a40e7152}{opt\_args}}(19)\ =\ \textcolor{stringliteral}{'-\/eps\_mpd'}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00046}00046\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{namespacefiles__ops_a0666bcbf3aa6a9969e6dc563a40e7152}{opt\_args}}(20)\ =\ \textcolor{stringliteral}{'-\/eps\_view'}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00047}00047\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{namespacefiles__ops_a0666bcbf3aa6a9969e6dc563a40e7152}{opt\_args}}(21)\ =\ \textcolor{stringliteral}{'-\/st\_type'}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00048}00048\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{namespacefiles__ops_a0666bcbf3aa6a9969e6dc563a40e7152}{opt\_args}}(22)\ =\ \textcolor{stringliteral}{'-\/st\_pc\_type'}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00049}00049\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{namespacefiles__ops_a0666bcbf3aa6a9969e6dc563a40e7152}{opt\_args}}(23)\ =\ \textcolor{stringliteral}{'-\/st\_pc\_factor\_mat\_solver\_package'}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00050}00050\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{namespacefiles__ops_a0666bcbf3aa6a9969e6dc563a40e7152}{opt\_args}}(24)\ =\ \textcolor{stringliteral}{'-\/log\_view'}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00051}00051\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{namespacefiles__ops_a0666bcbf3aa6a9969e6dc563a40e7152}{opt\_args}}(25)\ =\ \textcolor{stringliteral}{'-\/st\_ksp\_type'}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00052}00052\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ inc\_args(7:25)\ =\ [0,0,0,0,0,1,1,1,1,0,1,1,1,0,1,1,1,0,1]}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00053}00053\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}(2)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ POST}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00054}00054\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{allocate}(\doxymbox{\hyperlink{namespacefiles__ops_a0666bcbf3aa6a9969e6dc563a40e7152}{opt\_args}}(8),\ inc\_args(8))}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00055}00055\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{namespacefiles__ops_a0666bcbf3aa6a9969e6dc563a40e7152}{opt\_args}}\ =\ \textcolor{stringliteral}{''}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00056}00056\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{namespacefiles__ops_a0666bcbf3aa6a9969e6dc563a40e7152}{opt\_args}}(7)\ =\ \textcolor{stringliteral}{'-\/-\/swap\_angles'}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00057}00057\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{namespacefiles__ops_a0666bcbf3aa6a9969e6dc563a40e7152}{opt\_args}}(8)\ =\ \textcolor{stringliteral}{'-\/-\/compare\_tor\_pos'}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00058}00058\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ inc\_args(7:8)\ =\ [0,2]}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00059}00059\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ end\ select}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00060}00060\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00061}00061\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ set\ common\ option\ arguments}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00062}00062\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{namespacenum__vars_a06597cae984d53aec80c150fc13d3e7f}{ltest}}\ =\ .false.\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ don't\ call\ the\ testing\ routines}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00063}00063\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{namespacemessages_a36521a46e57da1d3be83019abdff132e}{lvl}}\ =\ 1}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00064}00064\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{namespacefiles__ops_a0666bcbf3aa6a9969e6dc563a40e7152}{opt\_args}}(1)\ =\ \textcolor{stringliteral}{'-\/t'}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00065}00065\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{namespacefiles__ops_a0666bcbf3aa6a9969e6dc563a40e7152}{opt\_args}}(2)\ =\ \textcolor{stringliteral}{'-\/-\/test'}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00066}00066\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{namespacefiles__ops_a0666bcbf3aa6a9969e6dc563a40e7152}{opt\_args}}(3)\ =\ \textcolor{stringliteral}{'-\/-\/no\_plots'}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00067}00067\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{namespacefiles__ops_a0666bcbf3aa6a9969e6dc563a40e7152}{opt\_args}}(4)\ =\ \textcolor{stringliteral}{'-\/-\/no\_output'}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00068}00068\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{namespacefiles__ops_a0666bcbf3aa6a9969e6dc563a40e7152}{opt\_args}}(5)\ =\ \textcolor{stringliteral}{'-\/-\/do\_execute\_command\_line'}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00069}00069\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{namespacefiles__ops_a0666bcbf3aa6a9969e6dc563a40e7152}{opt\_args}}(6)\ =\ \textcolor{stringliteral}{'-\/-\/mem\_info'}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00070}00070\ \ \ \ \ \ \ \ \ inc\_args(1:6)\ =\ [0,0,0,0,0,0]}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00071}00071\ \ \ \ \ \textcolor{keyword}{end\ subroutine\ }\doxymbox{\hyperlink{namespacefiles__ops_a1e219b1147f109f758d03bef89d540e8}{init\_files}}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00072}00072\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00073}00073\ \textcolor{comment}{\ \ \ \ !>\ Parses\ the\ command\ line\ arguments.}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00074}00074\ \textcolor{comment}{\ \ \ \ !!}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00075}00075\ \textcolor{comment}{\ \ \ \ !!\ \(\backslash\)note\ The\ input\ arguments\ are\ saved\ in\ \(\backslash\)c\ command\_arg}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00076}00076\ \textcolor{comment}{\ \ \ \ !!}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00077}00077\ \textcolor{comment}{\ \ \ \ !!\ \(\backslash\)return\ ierr}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00078}\doxymbox{\hyperlink{namespacefiles__ops_a051584112f6e4f6e60b0ef824dffbf5e}{00078}}\ \ \ \ \ \textcolor{keyword}{integer\ }\textcolor{keyword}{function\ }\doxymbox{\hyperlink{namespacefiles__ops_a051584112f6e4f6e60b0ef824dffbf5e}{parse\_args}}()\ \textcolor{keyword}{result}(ierr)}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00079}00079\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{use\ }\doxymbox{\hyperlink{namespacenum__vars}{num\_vars}},\ \textcolor{keywordtype}{only}:\ \doxymbox{\hyperlink{namespacenum__vars_a50245a345efb453eda46b3fe98b702e8}{prog\_style}},\ \doxymbox{\hyperlink{namespacenum__vars_a7548fedc0d8f3102844aded2e6c11f82}{prog\_name}}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00080}00080\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00081}00081\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{character(*)},\ \textcolor{keywordtype}{parameter}\ ::\ rout\_name\ =\ \textcolor{stringliteral}{'parse\_args'}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00082}00082\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00083}00083\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ local\ variables}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00084}00084\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{character(len=max\_str\_ln)},\ \textcolor{keywordtype}{allocatable}\ ::\ open\_error(:)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ message\ for\ incorrect\ usage}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00085}00085\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{character(len=max\_str\_ln)},\ \textcolor{keywordtype}{allocatable}\ ::\ open\_help(:)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ message\ for\ help}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00086}00086\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer}\ ::\ iseq\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ control\ the\ user-\/specified\ arguments}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00087}00087\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer}\ ::\ id\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ dummy\ integer}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00088}00088\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{character(len=max\_str\_ln)}\ ::\ dum\_str\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ dummy\ string}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00089}00089\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer}\ ::\ min\_args\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ minimal\ nr.\ of\ arguments}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00090}00090\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00091}00091\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ initialize\ ierr}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00092}00092\ \ \ \ \ \ \ \ \ ierr\ =\ 0}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00093}00093\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00094}00094\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ Messages\ for\ the\ user}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00095}00095\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ select\ according\ to\ program\ style}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00096}00096\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{select\ case}\ (\doxymbox{\hyperlink{namespacenum__vars_a50245a345efb453eda46b3fe98b702e8}{prog\_style}})}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00097}00097\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}(1)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ PB3D}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00098}00098\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{allocate}(open\_error(3))}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00099}00099\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{allocate}(open\_help(6))}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00100}00100\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ open\_error(1)\ =\ \textcolor{stringliteral}{"{}"{}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ incorrect\ usage}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00101}00101\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ open\_error(2)\ =\ \textcolor{stringliteral}{"{}Usage:\ "{}}//\doxymbox{\hyperlink{namespacenum__vars_a7548fedc0d8f3102844aded2e6c11f82}{prog\_name}}//\&}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00102}00102\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&\textcolor{stringliteral}{"{}\ USER\_INPUT\ EQUILIBRIUM\_INPUT\ [OPTIONS]"{}}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00103}00103\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ open\_error(3)\ =\ \textcolor{stringliteral}{"{}Try\ './"{}}//\doxymbox{\hyperlink{namespacenum__vars_a7548fedc0d8f3102844aded2e6c11f82}{prog\_name}}//\textcolor{stringliteral}{"{}\ -\/-\/help'\ or\ './"{}}//\&}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00104}00104\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&\doxymbox{\hyperlink{namespacenum__vars_a7548fedc0d8f3102844aded2e6c11f82}{prog\_name}}//\textcolor{stringliteral}{"{}\ -\/h'\ for\ more\ information."{}}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00105}00105\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ open\_help(1)\ =\ open\_error(2)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ help\ with\ usage}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00106}00106\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ open\_help(2)\ =\ \textcolor{stringliteral}{"{}"{}}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00107}00107\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ open\_help(3)\ =\ \textcolor{stringliteral}{"{}\ \ \ \ USER\_INPUT\ \ \ \ \ \ \ \ \ \ input\ provided\ by\ the\ \&}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00108}00108\ \textcolor{stringliteral}{}\textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&user"{}}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00109}00109\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ open\_help(4)\ =\ \textcolor{stringliteral}{"{}\ \ \ \ EQUILIBRIUM\_INPUT\ \ \ output\ from\ VMEC\ or\ \&}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00110}00110\ \textcolor{stringliteral}{}\textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&HELENA,\ in\ .txt\ format"{}}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00111}00111\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ open\_help(5)\ =\ \textcolor{stringliteral}{"{}\ \ \ \ [OPTIONS]\ \ \ \ \ \ \ \ \ \ \ (optional)\ \&}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00112}00112\ \textcolor{stringliteral}{}\textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&command-\/line\ options"{}}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00113}00113\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ open\_help(6)\ =\ \textcolor{stringliteral}{"{}"{}}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00114}00114\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ min\_args\ =\ 2}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00115}00115\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}(2)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ POST}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00116}00116\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{allocate}(open\_error(3))}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00117}00117\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{allocate}(open\_help(6))}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00118}00118\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ open\_error(1)\ =\ \textcolor{stringliteral}{"{}"{}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ incorrect\ usage}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00119}00119\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ open\_error(2)\ =\ \textcolor{stringliteral}{"{}Usage:\ "{}}//\doxymbox{\hyperlink{namespacenum__vars_a7548fedc0d8f3102844aded2e6c11f82}{prog\_name}}//\&}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00120}00120\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&\textcolor{stringliteral}{"{}\ USER\_INPUT\ PB3D\_OUTPUT\ [OPTIONS]"{}}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00121}00121\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ open\_error(3)\ =\ \textcolor{stringliteral}{"{}Try\ './"{}}//\doxymbox{\hyperlink{namespacenum__vars_a7548fedc0d8f3102844aded2e6c11f82}{prog\_name}}//\textcolor{stringliteral}{"{}\ -\/-\/help'\ or\ './"{}}//\&}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00122}00122\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&\doxymbox{\hyperlink{namespacenum__vars_a7548fedc0d8f3102844aded2e6c11f82}{prog\_name}}//\textcolor{stringliteral}{"{}\ -\/h'\ for\ more\ information."{}}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00123}00123\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ open\_help(1)\ =\ open\_error(2)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ help\ with\ usage}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00124}00124\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ open\_help(2)\ =\ \textcolor{stringliteral}{"{}"{}}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00125}00125\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ open\_help(3)\ =\ \textcolor{stringliteral}{"{}\ \ \ \ USER\_INPUT\ \ \ \ \ \ \ \ \ \ input\ provided\ by\ the\ \&}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00126}00126\ \textcolor{stringliteral}{}\textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&user"{}}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00127}00127\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ open\_help(4)\ =\ \textcolor{stringliteral}{"{}\ \ \ \ PB3D\_OUTPUT\ \ \ \ output\ from\ PB3D\ code,\ \&}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00128}00128\ \textcolor{stringliteral}{}\textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&in\ .h5\ format"{}}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00129}00129\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ open\_help(5)\ =\ \textcolor{stringliteral}{"{}\ \ \ \ [OPTIONS]\ \ \ \ \ \ \ \ \ \ \ (optional)\ \&}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00130}00130\ \textcolor{stringliteral}{}\textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&command-\/line\ options"{}}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00131}00131\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ open\_help(6)\ =\ \textcolor{stringliteral}{"{}"{}}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00132}00132\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ min\_args\ =\ 2}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00133}00133\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ end\ select}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00134}00134\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00135}00135\ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_aa4a8d01563e92558e8a0875b075ec54c}{writo}}(\textcolor{stringliteral}{"{}Parsing\ command\ line\ arguments"{}})}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00136}00136\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00137}00137\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ Find\ number\ of\ arguments\ and\ first\ argument}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00138}00138\ \ \ \ \ \ \ \ \ numargs\ =\ command\_argument\_count()\ }
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00139}00139\ \ \ \ \ \ \ \ \ dum\_str\ =\ \textcolor{stringliteral}{''}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00140}00140\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (numargs.gt.0)\ \textcolor{keyword}{call\ }getarg(1,dum\_str)}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00141}00141\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00142}00142\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ print\ error\ if\ no\ arguments}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00143}00143\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (dum\_str.eq.\textcolor{stringliteral}{'-\/h'}\ .or.\ dum\_str.eq.\textcolor{stringliteral}{'-\/-\/help'})\ \textcolor{keywordflow}{then}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00144}00144\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{do}\ id\ =\ 1,\textcolor{keyword}{size}(open\_help)}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00145}00145\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_aa4a8d01563e92558e8a0875b075ec54c}{writo}}(open\_help(id))}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00146}00146\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ \ \ \ \ end\ do}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00147}00147\ \ \ \ \ \ \ \ \ \ \ \ \ ierr\ =\ 66\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ silent\ stop}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00148}00148\ \ \ \ \ \ \ \ \ \ \ \ \ chckerr(\textcolor{stringliteral}{''})}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00149}00149\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (numargs.lt.min\_args)\ \textcolor{keywordflow}{then}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00150}00150\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{do}\ id\ =\ 1,\textcolor{keyword}{size}(open\_error)}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00151}00151\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_aa4a8d01563e92558e8a0875b075ec54c}{writo}}(open\_error(id))}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00152}00152\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ \ \ \ \ end\ do}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00153}00153\ \ \ \ \ \ \ \ \ \ \ \ \ ierr\ =\ 66\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ silent\ stop}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00154}00154\ \ \ \ \ \ \ \ \ \ \ \ \ chckerr(\textcolor{stringliteral}{''})}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00155}00155\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00156}00156\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{allocate}(command\_arg(numargs))}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00157}00157\ \ \ \ \ \ \ \ \ \ \ \ \ command\_arg\ =\ \textcolor{stringliteral}{"{}"{}}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00158}00158\ \ \ \ \ \ \ \ \ \ \ \ \ command\_arg(1)\ =\ dum\_str}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00159}00159\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ end\ if}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00160}00160\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00161}00161\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ Get\ the\ rest\ of\ the\ arguments}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00162}00162\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{do}\ iseq\ =\ 2,\ numargs}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00163}00163\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }getarg(iseq,\ command\_arg(iseq))}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00164}00164\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ end\ do}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00165}00165\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00166}00166\ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_aa4a8d01563e92558e8a0875b075ec54c}{writo}}(\textcolor{stringliteral}{"{}Command\ line\ arguments\ parsed"{}})}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00167}00167\ \ \ \ \ \textcolor{keyword}{end\ function\ }\doxymbox{\hyperlink{namespacefiles__ops_a051584112f6e4f6e60b0ef824dffbf5e}{parse\_args}}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00168}00168\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00169}00169\ \textcolor{comment}{\ \ \ \ !>\ Open\ the\ input\ files.}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00170}00170\ \textcolor{comment}{\ \ \ \ !!}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00171}00171\ \textcolor{comment}{\ \ \ \ !!\ \ -\/\ input\ file\ with\ user\ options}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00172}00172\ \textcolor{comment}{\ \ \ \ !!\ \ -\/\ equilibrium\ file\ in}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00173}00173\ \textcolor{comment}{\ \ \ \ !!\ \ \ \ \ \ -\/\ NetCDF\ for\ VMEC}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00174}00174\ \textcolor{comment}{\ \ \ \ !!\ \ \ \ \ \ -\/\ plain\ for\ HELENA}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00175}00175\ \textcolor{comment}{\ \ \ \ !!}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00176}00176\ \textcolor{comment}{\ \ \ \ !!\ \(\backslash\)return\ ierr}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00177}\doxymbox{\hyperlink{namespacefiles__ops_a63a81a5a451f787025429878b2cec81b}{00177}}\ \ \ \ \ \textcolor{keyword}{integer\ }\textcolor{keyword}{function\ }\doxymbox{\hyperlink{namespacefiles__ops_a63a81a5a451f787025429878b2cec81b}{open\_input}}()\ \textcolor{keyword}{result}(ierr)}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00178}00178\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{use\ }\doxymbox{\hyperlink{namespacenum__vars}{num\_vars}},\ \textcolor{keywordtype}{only}:\ \doxymbox{\hyperlink{namespacenum__vars_a7b97a4fd25cbf874cbfe63417ba307ff}{eq\_i}},\ \doxymbox{\hyperlink{namespacenum__vars_aba3a56e056e4851ee31a33a448613863}{input\_i}},\ \doxymbox{\hyperlink{namespacenum__vars_ab47aa91445feaedb05ac9d1a584664fe}{rank}},\ \doxymbox{\hyperlink{namespacenum__vars_a50245a345efb453eda46b3fe98b702e8}{prog\_style}},\ \doxymbox{\hyperlink{namespacenum__vars_afe223f0c9580de8bf52d2cedc2ab2ee8}{no\_plots}},\ \&}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00179}00179\ \ \ \ \ \ \ \ \ \ \ \ \ \&\doxymbox{\hyperlink{namespacenum__vars_a7d8763402037dbb80db19e2534ddf595}{eq\_style}},\ \doxymbox{\hyperlink{namespacenum__vars_a3cc0fc4b1538f7203be1604cb4f7c9bc}{eq\_name}},\ \doxymbox{\hyperlink{namespacenum__vars_a324342d6240045750e38ef545801c49d}{no\_output}},\ \doxymbox{\hyperlink{namespacenum__vars_aa59942bdbb47a383030d0bcc21e1a3c0}{pb3d\_i}},\ \doxymbox{\hyperlink{namespacenum__vars_a8b3ab3b12cddc0c3e60c3430912b5f3c}{pb3d\_name}},\ \doxymbox{\hyperlink{namespacenum__vars_a1a16a5fdda7aaacdffd14f1ad29f5e8b}{input\_name}},\ \&}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00180}00180\ \ \ \ \ \ \ \ \ \ \ \ \ \&\doxymbox{\hyperlink{namespacenum__vars_ad5ba241cde0a99cdd5b3d6a6c0340e5c}{do\_execute\_command\_line}},\ \doxymbox{\hyperlink{namespacenum__vars_a0fbc4b8f8965e85d6cb1b1f7894ab698}{output\_name}},\ \doxymbox{\hyperlink{namespacenum__vars_a7548fedc0d8f3102844aded2e6c11f82}{prog\_name}},\ \doxymbox{\hyperlink{namespacenum__vars_a28bf4f706f43af630ecc697dec01654c}{print\_mem\_usage}},\ \&}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00181}00181\ \ \ \ \ \ \ \ \ \ \ \ \ \&\doxymbox{\hyperlink{namespacenum__vars_adaf8e128a1b232b8231305be41a55bdc}{swap\_angles}},\ \doxymbox{\hyperlink{namespacenum__vars_acd9fb4b84728c986d5ecde709dcac940}{jump\_to\_sol}},\ \doxymbox{\hyperlink{namespacenum__vars_aa1342b6b43268bd10bb254fa9bf754f0}{export\_hel}},\ \doxymbox{\hyperlink{namespacenum__vars_a89067eb4dc3fcdcc85d7cf185d3774ea}{plot\_vmec\_modes}},\ \&}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00182}00182\ \ \ \ \ \ \ \ \ \ \ \ \ \&\doxymbox{\hyperlink{namespacenum__vars_a2f303733b113f96fad56bb8ceb337c85}{compare\_tor\_pos}},\ \doxymbox{\hyperlink{namespacenum__vars_a9c579c39602d4a4761335866603aea5f}{invert\_top\_bottom\_h}}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00183}00183\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{use\ }\doxymbox{\hyperlink{namespacerich__vars}{rich\_vars}},\ \textcolor{keywordtype}{only}:\ \doxymbox{\hyperlink{namespacerich__vars_a167fe55b5d9c1a4566729da683466947}{no\_guess}}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00184}00184\ \textcolor{preprocessor}{\#if\ ldebug}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00185}00185\ \textcolor{preprocessor}{}\ \ \ \ \ \ \ \ \textcolor{keywordtype}{use\ }\doxymbox{\hyperlink{namespacenum__vars}{num\_vars}},\ \textcolor{keywordtype}{only}:\ \doxymbox{\hyperlink{namespacenum__vars_a06597cae984d53aec80c150fc13d3e7f}{ltest}}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00186}00186\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00187}00187\ \textcolor{preprocessor}{}\ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00188}00188\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{character(*)},\ \textcolor{keywordtype}{parameter}\ ::\ rout\_name\ =\ \textcolor{stringliteral}{'open\_input'}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00189}00189\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00190}00190\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ local\ variables}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00191}00191\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer}\ ::\ id\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ counter}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00192}00192\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{character(len=max\_str\_ln)}\ ::\ err\_msg\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ error\ message}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00193}00193\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer}\ ::\ first\_int\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ first\ input\ integer\ of\ input\ file\ (HELENA)}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00194}00194\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer}\ ::\ istat\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ status}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00195}00195\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{character(len=max\_str\_ln)}\ ::\ file\_ext\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ file\ extension}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00196}00196\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00197}00197\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ initialize\ ierr}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00198}00198\ \ \ \ \ \ \ \ \ ierr\ =\ 0}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00199}00199\ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00200}00200\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\doxymbox{\hyperlink{namespacenum__vars_ab47aa91445feaedb05ac9d1a584664fe}{rank}}.eq.0)\ \textcolor{keywordflow}{then}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ following\ only\ for\ master\ process}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00201}00201\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_aa4a8d01563e92558e8a0875b075ec54c}{writo}}(\textcolor{stringliteral}{"{}Opening\ files"{}})}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00202}00202\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_a6e6bfb084063e4cc91ee86e542043302}{lvl\_ud}}(1)}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00203}00203\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00204}00204\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ select\ depending\ on\ program\ style}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00205}00205\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{select\ case}\ (\doxymbox{\hyperlink{namespacenum__vars_a50245a345efb453eda46b3fe98b702e8}{prog\_style}})}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00206}00206\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}(1)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ PB3D}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00207}00207\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ check\ for\ correct\ input\ file\ and\ use\ default\ if\ needed}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00208}00208\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{namespacenum__vars_a1a16a5fdda7aaacdffd14f1ad29f5e8b}{input\_name}}\ =\ command\_arg(1)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ first\ argument\ is\ the\ name\ of\ the\ input\ file}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00209}00209\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{open}(unit=\doxymbox{\hyperlink{namespacenum__vars_aba3a56e056e4851ee31a33a448613863}{input\_i}},file=\doxymbox{\hyperlink{namespacenum__vars_a1a16a5fdda7aaacdffd14f1ad29f5e8b}{input\_name}},status=\textcolor{stringliteral}{'old'},iostat=istat)}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00210}00210\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (istat.eq.0)\ \textcolor{keywordflow}{then}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00211}00211\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_aa4a8d01563e92558e8a0875b075ec54c}{writo}}(\textcolor{stringliteral}{'Input\ file\ "{}'}\ //\ trim(\doxymbox{\hyperlink{namespacenum__vars_a1a16a5fdda7aaacdffd14f1ad29f5e8b}{input\_name}})\ \&}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00212}00212\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&//\ \textcolor{stringliteral}{'"{}\ opened'})}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00213}00213\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ }
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00214}00214\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_aa4a8d01563e92558e8a0875b075ec54c}{writo}}(\textcolor{stringliteral}{'No\ input\ file\ found.\ Default\ used'})}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00215}00215\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{namespacenum__vars_a1a16a5fdda7aaacdffd14f1ad29f5e8b}{input\_name}}\ =\ \textcolor{stringliteral}{''}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00216}00216\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ end\ if}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00217}00217\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00218}00218\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ check\ for\ \ equilibrium\ file\ and\ \ print\ error\ if\ \ not\ found}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00219}00219\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ (no\ default!)}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00220}00220\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{namespacenum__vars_a3cc0fc4b1538f7203be1604cb4f7c9bc}{eq\_name}}\ =\ command\_arg(2)}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00221}00221\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{open}(unit=\doxymbox{\hyperlink{namespacenum__vars_a7b97a4fd25cbf874cbfe63417ba307ff}{eq\_i}},file=\doxymbox{\hyperlink{namespacenum__vars_a3cc0fc4b1538f7203be1604cb4f7c9bc}{eq\_name}},status=\textcolor{stringliteral}{'old'},iostat=ierr)}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00222}00222\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ err\_msg\ =\ \textcolor{stringliteral}{'No\ equilibrium\ file\ found.'}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00223}00223\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ chckerr(err\_msg)}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00224}00224\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00225}00225\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ succeeded}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00226}00226\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_aa4a8d01563e92558e8a0875b075ec54c}{writo}}(\textcolor{stringliteral}{'equilibrium\ file\ "{}'}\ //\ trim(\doxymbox{\hyperlink{namespacenum__vars_a3cc0fc4b1538f7203be1604cb4f7c9bc}{eq\_name}})\ \&}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00227}00227\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&//\ \textcolor{stringliteral}{'"{}\ opened'})}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00228}00228\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00229}00229\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ Determine\ which\ equilibrium\ style\ (1:\ VMEC,\ 2:\ HELENA)}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00230}00230\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ set\ eq\_style\ to\ a\ nonsensical\ value}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00231}00231\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{namespacenum__vars_a7d8763402037dbb80db19e2534ddf595}{eq\_style}}\ =\ -\/1}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00232}00232\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00233}00233\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ Check\ for\ VMEC}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00234}00234\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ file\_ext\ =\ \textcolor{stringliteral}{''}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00235}00235\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{do}\ id\ =\ len(\doxymbox{\hyperlink{namespacenum__vars_a3cc0fc4b1538f7203be1604cb4f7c9bc}{eq\_name}})-\/1,1,-\/1}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00236}00236\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\doxymbox{\hyperlink{namespacenum__vars_a3cc0fc4b1538f7203be1604cb4f7c9bc}{eq\_name}}(id:id).eq.\textcolor{stringliteral}{'.'})\ \textcolor{keywordflow}{then}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00237}00237\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ file\_ext\ =\ \doxymbox{\hyperlink{namespacenum__vars_a3cc0fc4b1538f7203be1604cb4f7c9bc}{eq\_name}}(id+1:len(\doxymbox{\hyperlink{namespacenum__vars_a3cc0fc4b1538f7203be1604cb4f7c9bc}{eq\_name}}))}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00238}00238\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{exit}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00239}00239\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ end\ if}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00240}00240\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ end\ do}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00241}00241\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (trim(file\_ext).eq.\textcolor{stringliteral}{'nc'})\ \textcolor{keywordflow}{then}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00242}00242\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{namespacenum__vars_a7d8763402037dbb80db19e2534ddf595}{eq\_style}}\ =\ 1}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00243}00243\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ end\ if}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00244}00244\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00245}00245\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ Check\ for\ HELENA}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00246}00246\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{read}(\doxymbox{\hyperlink{namespacenum__vars_a7b97a4fd25cbf874cbfe63417ba307ff}{eq\_i}},*,iostat=istat)\ first\_int\ }
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00247}00247\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ backspace(unit=\doxymbox{\hyperlink{namespacenum__vars_a7b97a4fd25cbf874cbfe63417ba307ff}{eq\_i}})\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ go\ back\ one\ line\ in\ the\ equilibrium\ file}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00248}00248\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (istat.eq.0)\ \textcolor{keywordflow}{then}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00249}00249\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{namespacenum__vars_a7d8763402037dbb80db19e2534ddf595}{eq\_style}}\ =\ 2}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00250}00250\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ end\ if}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00251}00251\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00252}00252\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ Check\ if\ something\ was\ found}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00253}00253\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\doxymbox{\hyperlink{namespacenum__vars_a7d8763402037dbb80db19e2534ddf595}{eq\_style}}.lt.1\ .or.\ \doxymbox{\hyperlink{namespacenum__vars_a7d8763402037dbb80db19e2534ddf595}{eq\_style}}.gt.2)\ \textcolor{keywordflow}{then}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00254}00254\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ierr\ =\ 1}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00255}00255\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_aa4a8d01563e92558e8a0875b075ec54c}{writo}}(\textcolor{stringliteral}{'Unable\ to\ recognize\ type\ of\ input\ file'})}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00256}00256\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_aa4a8d01563e92558e8a0875b075ec54c}{writo}}(\textcolor{stringliteral}{'If\ you\ are\ trying\ to\ open\ HELENA\ files,\ \&}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00257}00257\ \textcolor{stringliteral}{}\textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&you\ need\ to\ have\ a\ version\ that\ outputs\ the\ \&}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00258}00258\ \textcolor{stringliteral}{}\textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&variable\ IAS.\ See\ tutorial!'})}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00259}00259\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ chckerr(\textcolor{stringliteral}{''})}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00260}00260\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ end\ if}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00261}00261\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00262}00262\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ set\ PB3D\ output\ name\ }}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00263}00263\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{namespacenum__vars_a8b3ab3b12cddc0c3e60c3430912b5f3c}{pb3d\_name}}\ =\ \doxymbox{\hyperlink{namespacenum__vars_a7548fedc0d8f3102844aded2e6c11f82}{prog\_name}}//\textcolor{stringliteral}{'\_'}//trim(\doxymbox{\hyperlink{namespacenum__vars_a0fbc4b8f8965e85d6cb1b1f7894ab698}{output\_name}})//\textcolor{stringliteral}{'.h5'}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00264}00264\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}(2)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ POST}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00265}00265\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ check\ for\ correct\ input\ file\ and\ use\ default\ if\ needed}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00266}00266\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{namespacenum__vars_a1a16a5fdda7aaacdffd14f1ad29f5e8b}{input\_name}}\ =\ command\_arg(1)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ first\ argument\ is\ the\ name\ of\ the\ input\ file}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00267}00267\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{open}(unit=\doxymbox{\hyperlink{namespacenum__vars_aba3a56e056e4851ee31a33a448613863}{input\_i}},file=\doxymbox{\hyperlink{namespacenum__vars_a1a16a5fdda7aaacdffd14f1ad29f5e8b}{input\_name}},status=\textcolor{stringliteral}{'old'},iostat=istat)}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00268}00268\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (istat.eq.0)\ \textcolor{keywordflow}{then}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00269}00269\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_aa4a8d01563e92558e8a0875b075ec54c}{writo}}(\textcolor{stringliteral}{'Input\ file\ "{}'}\ //\ trim(\doxymbox{\hyperlink{namespacenum__vars_a1a16a5fdda7aaacdffd14f1ad29f5e8b}{input\_name}})\ \&}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00270}00270\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&//\ \textcolor{stringliteral}{'"{}\ opened'})}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00271}00271\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ }
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00272}00272\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_aa4a8d01563e92558e8a0875b075ec54c}{writo}}(\textcolor{stringliteral}{'No\ input\ file\ found.\ Default\ used'})}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00273}00273\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{namespacenum__vars_a1a16a5fdda7aaacdffd14f1ad29f5e8b}{input\_name}}\ =\ \textcolor{stringliteral}{''}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00274}00274\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ end\ if}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00275}00275\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00276}00276\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ check\ for\ PB3D\_PB3D\ file\ and\ \ print\ error\ if\ not\ found\ (no}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00277}00277\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ default!)}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00278}00278\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{namespacenum__vars_a8b3ab3b12cddc0c3e60c3430912b5f3c}{pb3d\_name}}\ =\ command\_arg(2)}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00279}00279\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{open}(unit=\doxymbox{\hyperlink{namespacenum__vars_aa59942bdbb47a383030d0bcc21e1a3c0}{pb3d\_i}},file=\doxymbox{\hyperlink{namespacenum__vars_a8b3ab3b12cddc0c3e60c3430912b5f3c}{pb3d\_name}},status=\textcolor{stringliteral}{'old'},iostat=ierr)}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00280}00280\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ err\_msg\ =\ \textcolor{stringliteral}{'No\ PB3D\ file\ found.'}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00281}00281\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ chckerr(err\_msg)}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00282}00282\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00283}00283\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ succeeded}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00284}00284\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_aa4a8d01563e92558e8a0875b075ec54c}{writo}}(\textcolor{stringliteral}{'PB3D\ output\ file\ "{}'}\ //\ trim(\doxymbox{\hyperlink{namespacenum__vars_a8b3ab3b12cddc0c3e60c3430912b5f3c}{pb3d\_name}})\ \&}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00285}00285\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&//\ \textcolor{stringliteral}{'"{}\ opened'})}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00286}00286\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{close}(\doxymbox{\hyperlink{namespacenum__vars_aa59942bdbb47a383030d0bcc21e1a3c0}{pb3d\_i}})}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00287}00287\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ \ \ \ \ end\ select}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00288}00288\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00289}00289\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ set\ options}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00290}00290\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (numargs.gt.2)\ \textcolor{keywordflow}{then}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ options\ given}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00291}00291\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_aa4a8d01563e92558e8a0875b075ec54c}{writo}}(\textcolor{stringliteral}{'applying\ options'})}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00292}00292\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_a6e6bfb084063e4cc91ee86e542043302}{lvl\_ud}}(1)}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00293}00293\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }read\_opts}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00294}00294\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_a6e6bfb084063e4cc91ee86e542043302}{lvl\_ud}}(-\/1)}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00295}00295\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ \ \ \ \ end\ if}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00296}00296\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_a6e6bfb084063e4cc91ee86e542043302}{lvl\_ud}}(-\/1)}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00297}00297\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_aa4a8d01563e92558e8a0875b075ec54c}{writo}}(\textcolor{stringliteral}{'Files\ opened'})}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00298}00298\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ end\ if}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00299}00299\ \ \ \ \ \textcolor{keyword}{contains}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00300}00300\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ this\ subroutine\ scans\ for\ chosen\ options}\textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00301}00301\ \textcolor{comment}{\ \ \ \ \ \ \ \ !>\ \(\backslash\)private}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00302}00302\ \ \ \ \ \ \ \ \ \textcolor{keyword}{subroutine\ }read\_opts}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00303}00303\ \textcolor{preprocessor}{\#if\ (\ lwith\_intel\ \&\&\ !lwith\_gnu)}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00304}00304\ \textcolor{preprocessor}{}\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{use\ }ifport}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00305}00305\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00306}00306\ \textcolor{preprocessor}{}\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer}\ ::\ jd}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00307}00307\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer}\ ::\ numopts}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00308}00308\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{logical}\ ::\ opt\_taken(size(\doxymbox{\hyperlink{namespacefiles__ops_a0666bcbf3aa6a9969e6dc563a40e7152}{opt\_args}}))\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ which\ of\ the\ options\ has\ been\ taken}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00309}00309\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{logical}\ ::\ opt\_found}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00310}00310\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00311}00311\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ set\ number\ of\ options\ still\ to\ be\ processed,\ no\ option\ taken\ yet}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00312}00312\ \ \ \ \ \ \ \ \ \ \ \ \ numopts\ =\ \textcolor{keyword}{size}(\doxymbox{\hyperlink{namespacefiles__ops_a0666bcbf3aa6a9969e6dc563a40e7152}{opt\_args}})}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00313}00313\ \ \ \ \ \ \ \ \ \ \ \ \ opt\_taken\ =\ .false.\ }
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00314}00314\ \ \ \ \ \ \ \ \ \ \ \ \ opt\_found\ =\ .false.}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00315}00315\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00316}00316\ \ \ \ \ \ \ \ \ \ \ \ \ id\ =\ 3\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ start\ at\ third\ command\ argument}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00317}00317\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{do}\ \textcolor{keywordflow}{while}\ (id.le.numargs)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ try\ the\ remaining\ possible\ options}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00318}00318\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ jd\ =\ 1}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00319}00319\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{do}\ \textcolor{keywordflow}{while}\ (jd.le.numopts\ .and.\ .not.opt\_found)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ try\ all\ the\ options}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00320}00320\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (trim(command\_arg(id)).eq.trim(\doxymbox{\hyperlink{namespacefiles__ops_a0666bcbf3aa6a9969e6dc563a40e7152}{opt\_args}}(jd)))\ \textcolor{keywordflow}{then}\ \ \ \ \ \ \ \textcolor{comment}{!\ option\ found}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00321}00321\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ opt\_found\ =\ .true.}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00322}00322\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (opt\_taken(jd))\ \textcolor{keywordflow}{then}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ option\ already\ taken}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00323}00323\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_aa4a8d01563e92558e8a0875b075ec54c}{writo}}(\textcolor{stringliteral}{'Option\ "{}'}//trim(command\_arg(id))//\&}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00324}00324\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&\textcolor{stringliteral}{'"{}\ already\ set,\ ignoring...'},warning=.true.)}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00325}00325\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ option\ not\ yet\ taken}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00326}00326\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{select\ case}(jd)}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00327}00327\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ common\ options\ 1..6}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00328}00328\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ (1,2)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ option\ test}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00329}00329\ \textcolor{preprocessor}{\#if\ ldebug}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00330}00330\ \textcolor{preprocessor}{}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_aa4a8d01563e92558e8a0875b075ec54c}{writo}}(\textcolor{stringliteral}{'option\ test\ chosen'})}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00331}00331\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{namespacenum__vars_a06597cae984d53aec80c150fc13d3e7f}{ltest}}\ =\ .true.}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00332}00332\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00333}00333\ \textcolor{preprocessor}{}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_aa4a8d01563e92558e8a0875b075ec54c}{writo}}(\textcolor{stringliteral}{'option\ test\ not\ available.\ \&}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00334}00334\ \textcolor{stringliteral}{}\textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&Recompile\ with\ cpp\ flag\ \&}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00335}00335\ \textcolor{stringliteral}{}\textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&'}\textcolor{stringliteral}{'ldebug'}\textcolor{stringliteral}{'...'},warning=.true.)}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00336}00336\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00337}00337\ \textcolor{preprocessor}{}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ (3)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ disable\ plotting}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00338}00338\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_aa4a8d01563e92558e8a0875b075ec54c}{writo}}(\textcolor{stringliteral}{'option\ no\_plots\ chosen:\ \&}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00339}00339\ \textcolor{stringliteral}{}\textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&plotting\ disabled'})}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00340}00340\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{namespacenum__vars_afe223f0c9580de8bf52d2cedc2ab2ee8}{no\_plots}}\ =\ .true.}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00341}00341\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ (4)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ disable\ messages}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00342}00342\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_aa4a8d01563e92558e8a0875b075ec54c}{writo}}(\textcolor{stringliteral}{'option\ no\_output\ chosen:\ \&}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00343}00343\ \textcolor{stringliteral}{}\textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&messages\ disabled'})}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00344}00344\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{namespacenum__vars_a324342d6240045750e38ef545801c49d}{no\_output}}\ =\ .true.}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00345}00345\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ (5)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ disable\ execute\_command\_line}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00346}00346\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_aa4a8d01563e92558e8a0875b075ec54c}{writo}}(\textcolor{stringliteral}{'option\ do\_execute\_command\_line\ \&}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00347}00347\ \textcolor{stringliteral}{}\textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&chosen:\ execute\_command\_line\ enabled'})}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00348}00348\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{namespacenum__vars_ad5ba241cde0a99cdd5b3d6a6c0340e5c}{do\_execute\_command\_line}}\ =\ .true.}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00349}00349\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ (6)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ disable\ execute\_command\_line}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00350}00350\ \textcolor{preprocessor}{\#if\ ldebug}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00351}00351\ \textcolor{preprocessor}{}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_aa4a8d01563e92558e8a0875b075ec54c}{writo}}(\textcolor{stringliteral}{'option\ mem\_info\ chosen:\ \&}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00352}00352\ \textcolor{stringliteral}{}\textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&memory\ usage\ is\ printed'})}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00353}00353\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_a6e6bfb084063e4cc91ee86e542043302}{lvl\_ud}}(1)}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00354}00354\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_aa4a8d01563e92558e8a0875b075ec54c}{writo}}(\textcolor{stringliteral}{'The\ PID\ of\ this\ process\ is:\ '}//\&}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00355}00355\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&trim(\doxymbox{\hyperlink{namespacestr__utilities_a0b97e51770725a3e98ed393d26681414}{i2str}}(getpid())))}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00356}00356\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{namespacenum__vars_a28bf4f706f43af630ecc697dec01654c}{print\_mem\_usage}}\ =\ .true.}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00357}00357\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_a6e6bfb084063e4cc91ee86e542043302}{lvl\_ud}}(-\/1)}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00358}00358\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00359}00359\ \textcolor{preprocessor}{}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_aa4a8d01563e92558e8a0875b075ec54c}{writo}}(\textcolor{stringliteral}{'option\ mem\_info\ is\ only\ \&}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00360}00360\ \textcolor{stringliteral}{}\textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&available\ when\ compiled\ with\ \&}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00361}00361\ \textcolor{stringliteral}{}\textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&"{}ldebug"{}'},warning=.true.)}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00362}00362\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00363}00363\ \textcolor{preprocessor}{}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ specific\ options\ for\ each\ program\ style}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00364}00364\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ case\ default}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00365}00365\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{select\ case}\ (\doxymbox{\hyperlink{namespacenum__vars_a50245a345efb453eda46b3fe98b702e8}{prog\_style}})}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00366}00366\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}(1)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ PB3D}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00367}00367\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }apply\_opt\_pb3d(jd,id)}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00368}00368\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}(2)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ POST}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00369}00369\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }apply\_opt\_post(jd,id)}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00370}00370\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ end\ select}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00371}00371\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ end\ select}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00372}00372\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ opt\_taken(jd)\ =\ .true.}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00373}00373\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ end\ if}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00374}00374\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ id\ =\ id\ +\ inc\_args(jd)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ skip\ a\ number\ of\ next\ arguments}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00375}00375\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ end\ if}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00376}00376\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ jd\ =\ jd\ +\ 1}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00377}00377\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ FIND\ THE\ INCREMENT\ WITH\ BELOW\ FUNCTION}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00378}00378\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ end\ do}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00379}00379\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (.not.opt\_found)\ \textcolor{keywordflow}{then}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00380}00380\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_aa4a8d01563e92558e8a0875b075ec54c}{writo}}(\textcolor{stringliteral}{'Option\ "{}'}//trim(command\_arg(id))//\textcolor{stringliteral}{'"{}\ invalid'},\&}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00381}00381\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&warning=.true.)}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00382}00382\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ end\ if}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00383}00383\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ id\ =\ id\ +\ 1}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00384}00384\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ opt\_found\ =\ .false.}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00385}00385\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ \ \ \ \ end\ do}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00386}00386\ \ \ \ \ \ \ \ \ \textcolor{keyword}{end\ subroutine\ }read\_opts}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00387}00387\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00388}00388\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ apply\ chosen\ options\ for\ PB3D}\textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00389}00389\ \textcolor{comment}{\ \ \ \ \ \ \ \ !>\ \(\backslash\)private}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00390}00390\ \ \ \ \ \ \ \ \ \textcolor{keyword}{subroutine\ }apply\_opt\_pb3d(opt\_nr,arg\_nr)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ PB3D\ version}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00391}00391\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{use\ }\doxymbox{\hyperlink{namespacenum__vars}{num\_vars}},\ \textcolor{keywordtype}{only}:\ \doxymbox{\hyperlink{namespacenum__vars_a3a1f41c66c3d91fc749bcffd177b0662}{n\_procs}}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00392}00392\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00393}00393\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ input\ /\ output}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00394}00394\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer},\ \textcolor{keywordtype}{intent(in)}\ ::\ opt\_nr\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ option\ number}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00395}00395\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer},\ \textcolor{keywordtype}{intent(in)}\ ::\ arg\_nr\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ argument\ number}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00396}00396\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00397}00397\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ local\ variables}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00398}00398\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer}\ ::\ id\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ counter}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00399}00399\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{character(len=max\_str\_ln)}\ ::\ opt\_str\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ string\ with\ option\ information}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00400}00400\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00401}00401\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{select\ case}(opt\_nr)}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00402}00402\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ (7)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ disable\ guessing\ Eigenfunction\ from\ previous\ Richardson\ level}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00403}00403\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_aa4a8d01563e92558e8a0875b075ec54c}{writo}}(\textcolor{stringliteral}{'option\ no\_guess\ chosen:\ Eigenfunction\ not\ \&}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00404}00404\ \textcolor{stringliteral}{}\textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&guessed\ from\ previous\ Richardson\ level'})}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00405}00405\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{namespacerich__vars_a167fe55b5d9c1a4566729da683466947}{no\_guess}}\ =\ .true.}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00406}00406\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ (8)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ skip\ calculating\ perturbation\ variables}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00407}00407\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_aa4a8d01563e92558e8a0875b075ec54c}{writo}}(\textcolor{stringliteral}{'option\ jump\_to\_sol\ chosen:\ Skip\ all\ possible\ \&}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00408}00408\ \textcolor{stringliteral}{}\textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&equilibrium\ and\ perturbation\ drivers\ for\ first\ \&}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00409}00409\ \textcolor{stringliteral}{}\textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&Richardson\ level'})}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00410}00410\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{namespacenum__vars_acd9fb4b84728c986d5ecde709dcac940}{jump\_to\_sol}}\ =\ .true.}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00411}00411\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ (9)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ export\ HELENA}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00412}00412\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\doxymbox{\hyperlink{namespacenum__vars_a7d8763402037dbb80db19e2534ddf595}{eq\_style}}.eq.2)\ \textcolor{keywordflow}{then}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00413}00413\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\doxymbox{\hyperlink{namespacenum__vars_a3a1f41c66c3d91fc749bcffd177b0662}{n\_procs}}.eq.1)\ \textcolor{keywordflow}{then}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00414}00414\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_aa4a8d01563e92558e8a0875b075ec54c}{writo}}(\textcolor{stringliteral}{'option\ export\_HEL\ chosen:\ Exporting\ to\ \&}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00415}00415\ \textcolor{stringliteral}{}\textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&VMEC'})}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00416}00416\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{namespacenum__vars_aa1342b6b43268bd10bb254fa9bf754f0}{export\_hel}}\ =\ .true.}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00417}00417\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00418}00418\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_aa4a8d01563e92558e8a0875b075ec54c}{writo}}(\textcolor{stringliteral}{'Can\ only\ use\ export\_HEL\ with\ 1\ \&}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00419}00419\ \textcolor{stringliteral}{}\textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&process'},warning=.true.)}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00420}00420\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{namespacenum__vars_aa1342b6b43268bd10bb254fa9bf754f0}{export\_hel}}\ =\ .false.}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00421}00421\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ end\ if}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00422}00422\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00423}00423\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_aa4a8d01563e92558e8a0875b075ec54c}{writo}}(\textcolor{stringliteral}{'Can\ only\ use\ export\_HEL\ with\ HELENA'},\&}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00424}00424\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&warning=.true.)}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00425}00425\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{namespacenum__vars_aa1342b6b43268bd10bb254fa9bf754f0}{export\_hel}}\ =\ .false.}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00426}00426\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ end\ if}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00427}00427\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ (10)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ output\ VMEC\ modes}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00428}00428\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\doxymbox{\hyperlink{namespacenum__vars_a7d8763402037dbb80db19e2534ddf595}{eq\_style}}.eq.1)\ \textcolor{keywordflow}{then}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00429}00429\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_aa4a8d01563e92558e8a0875b075ec54c}{writo}}(\textcolor{stringliteral}{'option\ plot\_VMEC\_modes\ chosen:\ Plotting\ \&}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00430}00430\ \textcolor{stringliteral}{}\textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&(decay\ of)\ modes'})}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00431}00431\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{namespacenum__vars_a89067eb4dc3fcdcc85d7cf185d3774ea}{plot\_vmec\_modes}}\ =\ .true.}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00432}00432\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00433}00433\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_aa4a8d01563e92558e8a0875b075ec54c}{writo}}(\textcolor{stringliteral}{'Can\ only\ output\ VMEC\ modes\ with\ VMEC'},\&}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00434}00434\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&warning=.true.)}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00435}00435\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{namespacenum__vars_a89067eb4dc3fcdcc85d7cf185d3774ea}{plot\_vmec\_modes}}\ =\ .false.}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00436}00436\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ end\ if}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00437}00437\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ (11)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ invert\ top\ and\ bottom\ for\ HELENA}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00438}00438\ \textcolor{preprocessor}{\#if\ ldebug}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00439}00439\ \textcolor{preprocessor}{}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\doxymbox{\hyperlink{namespacenum__vars_a7d8763402037dbb80db19e2534ddf595}{eq\_style}}.eq.2)\ \textcolor{keywordflow}{then}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00440}00440\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_aa4a8d01563e92558e8a0875b075ec54c}{writo}}(\textcolor{stringliteral}{'option\ invert\_top\_bottom\_H\ chosen:\ \&}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00441}00441\ \textcolor{stringliteral}{}\textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&inverting\ top\ and\ bottom\ of\ equilibrium'})}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00442}00442\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{namespacenum__vars_a9c579c39602d4a4761335866603aea5f}{invert\_top\_bottom\_h}}\ =\ .true.}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00443}00443\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00444}00444\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_aa4a8d01563e92558e8a0875b075ec54c}{writo}}(\textcolor{stringliteral}{'Can\ only\ invert\ top\ and\ bottom\ for\ HELENA'},\&}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00445}00445\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&warning=.true.)}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00446}00446\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{namespacenum__vars_a9c579c39602d4a4761335866603aea5f}{invert\_top\_bottom\_h}}\ =\ .false.}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00447}00447\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ end\ if}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00448}00448\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00449}00449\ \textcolor{preprocessor}{}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_aa4a8d01563e92558e8a0875b075ec54c}{writo}}(\textcolor{stringliteral}{'Can\ only\ invert\ top\ and\ bottom\ for\ HELENA\ in\ \&}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00450}00450\ \textcolor{stringliteral}{}\textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&debug\ mode'},warning=.true.)}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00451}00451\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{namespacenum__vars_a9c579c39602d4a4761335866603aea5f}{invert\_top\_bottom\_h}}\ =\ .false.}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00452}00452\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00453}00453\ \textcolor{preprocessor}{}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ (12:25)}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00454}00454\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ opt\_str\ =\ \textcolor{stringliteral}{''}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00455}00455\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{do}\ id\ =\ 1,inc\_args(opt\_nr)}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00456}00456\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ opt\_str\ =\ trim(opt\_str)//\textcolor{stringliteral}{'\ '}//\&}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00457}00457\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&trim(command\_arg(arg\_nr+id))}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00458}00458\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ end\ do}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00459}00459\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_aa4a8d01563e92558e8a0875b075ec54c}{writo}}(\textcolor{stringliteral}{'option\ "{}'}//trim(\doxymbox{\hyperlink{namespacefiles__ops_a0666bcbf3aa6a9969e6dc563a40e7152}{opt\_args}}(opt\_nr))//\&}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00460}00460\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&trim(opt\_str)//\textcolor{stringliteral}{'"{}\ passed\ to\ SLEPC'})}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00461}00461\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ case\ default}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00462}00462\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_aa4a8d01563e92558e8a0875b075ec54c}{writo}}(\textcolor{stringliteral}{'Invalid\ option\ number'},warning=.true.)}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00463}00463\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ \ \ \ \ end\ select}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00464}00464\ \ \ \ \ \ \ \ \ \textcolor{keyword}{end\ subroutine\ }apply\_opt\_pb3d}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00465}00465\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00466}00466\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ apply\ chosen\ options\ for\ POST}\textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00467}00467\ \textcolor{comment}{\ \ \ \ \ \ \ \ !>\ \(\backslash\)private}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00468}00468\ \ \ \ \ \ \ \ \ \textcolor{keyword}{subroutine\ }apply\_opt\_post(opt\_nr,arg\_nr)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ POST\ version}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00469}00469\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{use\ }\doxymbox{\hyperlink{namespacenum__vars}{num\_vars}},\ \textcolor{keywordtype}{only}:\ \doxymbox{\hyperlink{namespacenum__vars_aac566d69891d40b90df6b90d18e16039}{rz\_0}}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00470}00470\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00471}00471\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ input\ /\ output}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00472}00472\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer},\ \textcolor{keywordtype}{intent(in)}\ ::\ opt\_nr\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ option\ number}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00473}00473\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer},\ \textcolor{keywordtype}{intent(in)}\ ::\ arg\_nr\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ argument\ number}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00474}00474\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00475}00475\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ local\ variables}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00476}00476\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer}\ ::\ id\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ counter}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00477}00477\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00478}00478\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{select\ case}(opt\_nr)}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00479}00479\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ (7)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ disable\ guessing\ Eigenfunction\ from\ previous\ Richardson\ level}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00480}00480\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_aa4a8d01563e92558e8a0875b075ec54c}{writo}}(\textcolor{stringliteral}{'option\ swap\_angles\ chosen:\ theta\ and\ zeta\ are\ \&}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00481}00481\ \textcolor{stringliteral}{}\textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&swapped\ in\ plots'})}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00482}00482\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{namespacenum__vars_adaf8e128a1b232b8231305be41a55bdc}{swap\_angles}}\ =\ .true.}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00483}00483\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ (8)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ disable\ guessing\ Eigenfunction\ from\ previous\ Richardson\ level}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00484}00484\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_aa4a8d01563e92558e8a0875b075ec54c}{writo}}(\textcolor{stringliteral}{'option\ compare\_tor\_pos\ chosen:\ Comparing\ \&}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00485}00485\ \textcolor{stringliteral}{}\textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&B,\ J\ and\ kappa\ at\ different\ toroidal\ positions'})}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00486}00486\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_a6e6bfb084063e4cc91ee86e542043302}{lvl\_ud}}(1)}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00487}00487\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{namespacenum__vars_a2f303733b113f96fad56bb8ceb337c85}{compare\_tor\_pos}}\ =\ .true.}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00488}00488\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{do}\ id\ =\ 1,inc\_args(opt\_nr)}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00489}00489\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (arg\_nr+id.gt.\textcolor{keyword}{size}(command\_arg))\ \textcolor{keywordflow}{then}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00490}00490\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ierr\ =\ 1}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00491}00491\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00492}00492\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{read}(command\_arg(arg\_nr+id),*,iostat=ierr)\ \doxymbox{\hyperlink{namespacenum__vars_aac566d69891d40b90df6b90d18e16039}{rz\_0}}(id)}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00493}00493\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ end\ if}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00494}00494\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (ierr.ne.0)\ \textcolor{keywordflow}{then}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00495}00495\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_aa4a8d01563e92558e8a0875b075ec54c}{writo}}(\textcolor{stringliteral}{'Did\ you\ provide\ an\ origin\ for\ the\ \&}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00496}00496\ \textcolor{stringliteral}{}\textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&geometrical\ poloidal\ angle\ in\ the\ form'})}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00497}00497\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_aa4a8d01563e92558e8a0875b075ec54c}{writo}}(\textcolor{stringliteral}{'"{}-\/-\/compare\_tor\_pos\ R\_0,\ Z\_0"{}?'})}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00498}00498\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ end\ if}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00499}00499\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ chckerr(\textcolor{stringliteral}{'failed\ to\ read\ RZ\_0'})}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00500}00500\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ end\ do}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00501}00501\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_aa4a8d01563e92558e8a0875b075ec54c}{writo}}(\textcolor{stringliteral}{'Origin\ for\ geometrical\ poloidal\ angle:\ ('}//\&}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00502}00502\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&trim(\doxymbox{\hyperlink{namespacestr__utilities_a92ac6c0af1979df094de1caddd28ade0}{r2str}}(\doxymbox{\hyperlink{namespacenum__vars_aac566d69891d40b90df6b90d18e16039}{rz\_0}}(1)))//\textcolor{stringliteral}{','}//trim(\doxymbox{\hyperlink{namespacestr__utilities_a92ac6c0af1979df094de1caddd28ade0}{r2str}}(\doxymbox{\hyperlink{namespacenum__vars_aac566d69891d40b90df6b90d18e16039}{rz\_0}}(2)))//\textcolor{stringliteral}{')'})}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00503}00503\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_a6e6bfb084063e4cc91ee86e542043302}{lvl\_ud}}(-\/1)}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00504}00504\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ case\ default}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00505}00505\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_aa4a8d01563e92558e8a0875b075ec54c}{writo}}(\textcolor{stringliteral}{'Invalid\ option\ number'},warning=.true.)}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00506}00506\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ \ \ \ \ end\ select}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00507}00507\ \ \ \ \ \ \ \ \ \textcolor{keyword}{end\ subroutine\ }apply\_opt\_post}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00508}00508\ \ \ \ \ \textcolor{keyword}{end\ function\ }\doxymbox{\hyperlink{namespacefiles__ops_a63a81a5a451f787025429878b2cec81b}{open\_input}}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00509}00509\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00510}00510\ \textcolor{comment}{\ \ \ \ !>\ Open\ the\ output\ files}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00511}00511\ \textcolor{comment}{\ \ \ \ !!\ }}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00512}00512\ \textcolor{comment}{\ \ \ \ !!\ \ -\/\ output\ file\ <tt>.txt</tt>}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00513}00513\ \textcolor{comment}{\ \ \ \ !!\ \ -\/\ shell\ commands\ file\ <tt>.sh</tt>}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00514}00514\ \textcolor{comment}{\ \ \ \ !!\ \ -\/\ HDF5\ file:\ only\ for\ PB3D,\ not\ for\ POST.}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00515}00515\ \textcolor{comment}{\ \ \ \ !!\ \ -\/\ memory\ usage\ file\ <tt>.dat</tt>}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00516}00516\ \textcolor{comment}{\ \ \ \ !!}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00517}00517\ \textcolor{comment}{\ \ \ \ !!\ Also\ sets\ some\ output\ variables.}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00518}00518\ \textcolor{comment}{\ \ \ \ !!}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00519}00519\ \textcolor{comment}{\ \ \ \ !!\ \(\backslash\)note}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00520}00520\ \textcolor{comment}{\ \ \ \ !!\ \ -\/\#\ memory\ usage\ file\ is\ only\ for\ debug\ version.}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00521}00521\ \textcolor{comment}{\ \ \ \ !!\ \ -\/\#\ There\ can\ be\ resart\ of\ a\ Richardson\ level\ for\ PB3D}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00522}00522\ \textcolor{comment}{\ \ \ \ !!\ \ -\/\#\ There\ \ can\ also\ be\ \ a\ direct\ \ jump\ to\ the\ \ solution\ for\ PB3D,\ \ if\ the}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00523}00523\ \textcolor{comment}{\ \ \ \ !!\ \ equilibrium\ \ and\ perturbation\ \ phases\ are\ \ already\ done\ \ and\ saved\ \ (see}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00524}00524\ \textcolor{comment}{\ \ \ \ !!\ \ init\_files()).}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00525}00525\ \textcolor{comment}{\ \ \ \ !!\ \ -\/\#\ In\ the\ case\ of\ a\ Richardson\ restart,\ PB3D\ reopens\ the\ HDF5\ file.}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00526}00526\ \textcolor{comment}{\ \ \ \ !!}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00527}00527\ \textcolor{comment}{\ \ \ \ !!\ \(\backslash\)return\ ierr}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00528}\doxymbox{\hyperlink{namespacefiles__ops_ad681a9e8083a6f664cf0f9d17ebe279c}{00528}}\ \ \ \ \ \textcolor{keyword}{integer\ }\textcolor{keyword}{function\ }\doxymbox{\hyperlink{namespacefiles__ops_ad681a9e8083a6f664cf0f9d17ebe279c}{open\_output}}()\ \textcolor{keyword}{result}(ierr)}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00529}00529\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{use\ }\doxymbox{\hyperlink{namespacenum__vars}{num\_vars}},\ \textcolor{keywordtype}{only}:\ \doxymbox{\hyperlink{namespacenum__vars_a50245a345efb453eda46b3fe98b702e8}{prog\_style}},\ \doxymbox{\hyperlink{namespacenum__vars_aec5ffb30114a8af11226208844d12998}{output\_i}},\ \doxymbox{\hyperlink{namespacenum__vars_a0fbc4b8f8965e85d6cb1b1f7894ab698}{output\_name}},\ \doxymbox{\hyperlink{namespacenum__vars_a7548fedc0d8f3102844aded2e6c11f82}{prog\_name}},\ \&}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00530}00530\ \ \ \ \ \ \ \ \ \ \ \ \ \&\doxymbox{\hyperlink{namespacenum__vars_ac4bc885e8034c285bf0a9b76a832a738}{rich\_restart\_lvl}},\ \doxymbox{\hyperlink{namespacenum__vars_af30710083de41ebf93a407412d3125e5}{shell\_commands\_name}},\ \doxymbox{\hyperlink{namespacenum__vars_a2e139da75c6bcec4376b38d3ea1c5aa7}{shell\_commands\_i}},\ \&}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00531}00531\ \ \ \ \ \ \ \ \ \ \ \ \ \&\doxymbox{\hyperlink{namespacenum__vars_a8b3ab3b12cddc0c3e60c3430912b5f3c}{pb3d\_name}},\ \doxymbox{\hyperlink{namespacenum__vars_acd9fb4b84728c986d5ecde709dcac940}{jump\_to\_sol}}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00532}00532\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{use\ }\doxymbox{\hyperlink{namespacehdf5__ops}{hdf5\_ops}},\ \textcolor{keywordtype}{only}:\ \doxymbox{\hyperlink{namespacehdf5__ops_a1c2e937415ceb9e749fa3dca3789d4e0}{create\_output\_hdf5}}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00533}00533\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{use\ }\doxymbox{\hyperlink{namespacehdf5__utilities}{hdf5\_utilities}},\ \textcolor{keywordtype}{only}:\ \doxymbox{\hyperlink{namespacehdf5__utilities_ac0c7e6c4047b37031ac8ff7fdc271cf6}{probe\_hdf5\_group}}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00534}00534\ \textcolor{preprocessor}{\#if\ ldebug}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00535}00535\ \textcolor{preprocessor}{}\ \ \ \ \ \ \ \ \textcolor{keywordtype}{use\ }\doxymbox{\hyperlink{namespacenum__vars}{num\_vars}},\ \textcolor{keywordtype}{only}:\ \doxymbox{\hyperlink{namespacenum__vars_a28bf4f706f43af630ecc697dec01654c}{print\_mem\_usage}},\ \doxymbox{\hyperlink{namespacenum__vars_a88d78503df095a1c19b851caf2d889ba}{mem\_usage\_name}},\ \doxymbox{\hyperlink{namespacenum__vars_a606c68d407ec135c105f0501c224ea1b}{mem\_usage\_i}}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00536}00536\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00537}00537\ \textcolor{preprocessor}{}\textcolor{preprocessor}{\#if\ (\ lwith\_intel\ \&\&\ !lwith\_gnu)}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00538}00538\ \textcolor{preprocessor}{}\ \ \ \ \ \ \ \ \textcolor{keywordtype}{use\ }ifport}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00539}00539\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00540}00540\ \textcolor{preprocessor}{}\ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00541}00541\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{character(*)},\ \textcolor{keywordtype}{parameter}\ ::\ rout\_name\ =\ \textcolor{stringliteral}{'open\_output'}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00542}00542\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00543}00543\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ local\ variables\ (also\ used\ in\ child\ functions)}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00544}00544\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer}\ ::\ id\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ counter}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00545}00545\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer}\ ::\ istat\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ status}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00546}00546\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{logical}\ ::\ file\_exists\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ whether\ file\ exists}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00547}00547\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{logical}\ ::\ group\_exists\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ whether\ probed\ group\ exists}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00548}00548\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{character(len=max\_str\_ln)}\ ::\ full\_output\_name\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ full\ name}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00549}00549\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{character(len=max\_str\_ln)}\ ::\ err\_msg\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ error\ message}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00550}00550\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00551}00551\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ initialize\ ierr}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00552}00552\ \ \ \ \ \ \ \ \ ierr\ =\ 0}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00553}00553\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00554}00554\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ user\ output}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00555}00555\ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_aa4a8d01563e92558e8a0875b075ec54c}{writo}}(\textcolor{stringliteral}{'Attempting\ to\ open\ output\ files'})}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00556}00556\ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_a6e6bfb084063e4cc91ee86e542043302}{lvl\_ud}}(1)}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00557}00557\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00558}00558\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ 1.\ LOG\ OUTPUT}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00559}00559\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00560}00560\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ append\ extension\ to\ output\ name}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00561}00561\ \ \ \ \ \ \ \ \ full\_output\_name\ =\ \doxymbox{\hyperlink{namespacenum__vars_a7548fedc0d8f3102844aded2e6c11f82}{prog\_name}}//\textcolor{stringliteral}{'\_'}//trim(\doxymbox{\hyperlink{namespacenum__vars_a0fbc4b8f8965e85d6cb1b1f7894ab698}{output\_name}})//\textcolor{stringliteral}{'.txt'}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00562}00562\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00563}00563\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ actions\ depending\ on\ Richardson\ restart\ level\ and\ program\ style}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00564}00564\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\doxymbox{\hyperlink{namespacenum__vars_ac4bc885e8034c285bf0a9b76a832a738}{rich\_restart\_lvl}}.gt.1\ .and.\ \doxymbox{\hyperlink{namespacenum__vars_a50245a345efb453eda46b3fe98b702e8}{prog\_style}}.eq.1)\ \textcolor{keywordflow}{then}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ PB3D\ restart}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00565}00565\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ append\ to\ existing\ file}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00566}00566\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{open}(\doxymbox{\hyperlink{namespacenum__vars_aec5ffb30114a8af11226208844d12998}{output\_i}},file=trim(full\_output\_name),status=\textcolor{stringliteral}{'old'},\&}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00567}00567\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&position=\textcolor{stringliteral}{'append'},iostat=ierr)}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00568}00568\ \ \ \ \ \ \ \ \ \ \ \ \ chckerr(\textcolor{stringliteral}{'Failed\ to\ open\ output\ file'})}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00569}00569\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00570}00570\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ print\ message}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00571}00571\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_aa4a8d01563e92558e8a0875b075ec54c}{writo}}(\textcolor{stringliteral}{'log\ output\ file\ "{}'}//trim(full\_output\_name)//\&}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00572}00572\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&\textcolor{stringliteral}{'"{}\ reopened\ at\ number\ '}//trim(\doxymbox{\hyperlink{namespacestr__utilities_a0b97e51770725a3e98ed393d26681414}{i2str}}(\doxymbox{\hyperlink{namespacenum__vars_aec5ffb30114a8af11226208844d12998}{output\_i}})))}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00573}00573\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ POST\ or\ PB3D\ no\ restart}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00574}00574\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ open\ file\ after\ wiping\ it}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00575}00575\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{open}(\doxymbox{\hyperlink{namespacenum__vars_aec5ffb30114a8af11226208844d12998}{output\_i}},file=trim(full\_output\_name),status=\textcolor{stringliteral}{'replace'},\&}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00576}00576\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&iostat=ierr)}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00577}00577\ \ \ \ \ \ \ \ \ \ \ \ \ chckerr(\textcolor{stringliteral}{'Failed\ to\ open\ output\ file'})}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00578}00578\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00579}00579\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ print\ message}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00580}00580\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_aa4a8d01563e92558e8a0875b075ec54c}{writo}}(\textcolor{stringliteral}{'log\ output\ file\ "{}'}//trim(full\_output\_name)//\&}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00581}00581\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&\textcolor{stringliteral}{'"{}\ opened\ at\ number\ '}//trim(\doxymbox{\hyperlink{namespacestr__utilities_a0b97e51770725a3e98ed393d26681414}{i2str}}(\doxymbox{\hyperlink{namespacenum__vars_aec5ffb30114a8af11226208844d12998}{output\_i}})))}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00582}00582\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ end\ if}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00583}00583\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00584}00584\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ if\ temporary\ output\ present,\ silently\ write\ it\ to\ log\ output\ file}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00585}00585\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{do}\ id\ =\ 1,\textcolor{keyword}{size}(\doxymbox{\hyperlink{namespacemessages_a07070e72f15146af24816c39eea17088}{temp\_output}})}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00586}00586\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{write}(\doxymbox{\hyperlink{namespacenum__vars_aec5ffb30114a8af11226208844d12998}{output\_i}},\textcolor{stringliteral}{'(A)'},iostat=istat)\ trim(\doxymbox{\hyperlink{namespacemessages_a07070e72f15146af24816c39eea17088}{temp\_output}}(id))}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00587}00587\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ end\ do}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00588}00588\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00589}00589\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ 2.\ SHELL\ COMMANDS}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00590}00590\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00591}00591\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ recycle\ full\_output\_name\ for\ shell\_commands\ file}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00592}00592\ \ \ \ \ \ \ \ \ full\_output\_name\ =\ \doxymbox{\hyperlink{namespacenum__vars_a7548fedc0d8f3102844aded2e6c11f82}{prog\_name}}//\textcolor{stringliteral}{'\_'}//trim(\doxymbox{\hyperlink{namespacenum__vars_af30710083de41ebf93a407412d3125e5}{shell\_commands\_name}})//\textcolor{stringliteral}{'.sh'}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00593}00593\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00594}00594\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ create\ output\ file\ for\ shell\ commands}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00595}00595\ \ \ \ \ \ \ \ \ \textcolor{keyword}{open}(unit=\doxymbox{\hyperlink{namespacenum__vars_a2e139da75c6bcec4376b38d3ea1c5aa7}{shell\_commands\_i}},file=trim(full\_output\_name),\&}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00596}00596\ \ \ \ \ \ \ \ \ \ \ \ \ \&status=\textcolor{stringliteral}{'replace'},iostat=ierr)}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00597}00597\ \ \ \ \ \ \ \ \ chckerr(\textcolor{stringliteral}{'Failed\ to\ create\ shell\ command\ file'})}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00598}00598\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00599}00599\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ write\ header,\ close\ and\ make\ executable}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00600}00600\ \ \ \ \ \ \ \ \ \textcolor{keyword}{write}(\doxymbox{\hyperlink{namespacenum__vars_a2e139da75c6bcec4376b38d3ea1c5aa7}{shell\_commands\_i}},\textcolor{stringliteral}{'(A)'},iostat=istat)\ \textcolor{stringliteral}{'\#!/bin/bash'}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00601}00601\ \ \ \ \ \ \ \ \ \textcolor{keyword}{write}(\doxymbox{\hyperlink{namespacenum__vars_a2e139da75c6bcec4376b38d3ea1c5aa7}{shell\_commands\_i}},\textcolor{stringliteral}{'(A)'},iostat=istat)\ \textcolor{stringliteral}{'\#\ This\ file\ contains\ all\ \&}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00602}00602\ \textcolor{stringliteral}{}\textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \&the\ shell\ commands\ from\ the\ '}//trim(\doxymbox{\hyperlink{namespacenum__vars_a7548fedc0d8f3102844aded2e6c11f82}{prog\_name}})//\textcolor{stringliteral}{'\ run'}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00603}00603\ \ \ \ \ \ \ \ \ \textcolor{keyword}{close}(\doxymbox{\hyperlink{namespacenum__vars_a2e139da75c6bcec4376b38d3ea1c5aa7}{shell\_commands\_i}})}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00604}00604\ \ \ \ \ \ \ \ \ istat\ =\ 0}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00605}00605\ \textcolor{preprocessor}{\#if\ (\ lwith\_intel\ \&\&\ !lwith\_gnu)}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00606}00606\ \textcolor{preprocessor}{}\ \ \ \ \ \ \ \ istat\ =\ system(\textcolor{stringliteral}{'chmod\ +x\ '}//trim(full\_output\_name))}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00607}00607\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00608}00608\ \textcolor{preprocessor}{}\ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }execute\_command\_line(\textcolor{stringliteral}{'chmod\ +x\ '}//trim(full\_output\_name),\&}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00609}00609\ \ \ \ \ \ \ \ \ \ \ \ \ \&exitstat=istat)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ not\ too\ terrible\ if\ execute\_command\_line\ fails}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00610}00610\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00611}00611\ \textcolor{preprocessor}{}\ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00612}00612\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ print\ message}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00613}00613\ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_aa4a8d01563e92558e8a0875b075ec54c}{writo}}(\textcolor{stringliteral}{'shell\ commands\ script\ file\ "{}'}//trim(full\_output\_name)//\&}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00614}00614\ \ \ \ \ \ \ \ \ \ \ \ \ \&\textcolor{stringliteral}{'"{}\ created'})}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00615}00615\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00616}00616\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ 3.\ PROGRAM\ SPECIFIC}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00617}00617\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00618}00618\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ specific\ actions\ for\ program\ styles}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00619}00619\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{select\ case}\ (\doxymbox{\hyperlink{namespacenum__vars_a50245a345efb453eda46b3fe98b702e8}{prog\_style}})}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00620}00620\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ (1)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ PB3D}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00621}00621\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ set\ up\ whether\ group\ exists}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00622}00622\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{inquire}(file=\doxymbox{\hyperlink{namespacenum__vars_a8b3ab3b12cddc0c3e60c3430912b5f3c}{pb3d\_name}},exist=file\_exists,iostat=ierr)}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00623}00623\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ chckerr(\textcolor{stringliteral}{'Failed\ to\ inquire\ about\ file'})}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00624}00624\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (file\_exists)\ \textcolor{keywordflow}{then}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00625}00625\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ierr\ =\ \doxymbox{\hyperlink{namespacehdf5__utilities_ac0c7e6c4047b37031ac8ff7fdc271cf6}{probe\_hdf5\_group}}(\doxymbox{\hyperlink{namespacenum__vars_a8b3ab3b12cddc0c3e60c3430912b5f3c}{pb3d\_name}},\textcolor{stringliteral}{'X\_2\_int\_R\_'}//\&}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00626}00626\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&trim(\doxymbox{\hyperlink{namespacestr__utilities_a0b97e51770725a3e98ed393d26681414}{i2str}}(\doxymbox{\hyperlink{namespacenum__vars_ac4bc885e8034c285bf0a9b76a832a738}{rich\_restart\_lvl}})),group\_exists)}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00627}00627\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ chckerr(\textcolor{stringliteral}{''})}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00628}00628\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00629}00629\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ group\_exists\ =\ .false.}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00630}00630\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ end\ if}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00631}00631\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00632}00632\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\doxymbox{\hyperlink{namespacenum__vars_acd9fb4b84728c986d5ecde709dcac940}{jump\_to\_sol}})\ \textcolor{keywordflow}{then}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00633}00633\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (.not.group\_exists)\ \textcolor{keywordflow}{then}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00634}00634\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ierr\ =\ 1}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00635}00635\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_aa4a8d01563e92558e8a0875b075ec54c}{writo}}(\textcolor{stringliteral}{'No\ integrated\ tensorial\ perturbation\ \&}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00636}00636\ \textcolor{stringliteral}{}\textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&quantitites\ found\ to\ jump\ over'},alert=.true.)}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00637}00637\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ err\_msg\ =\ \textcolor{stringliteral}{'These\ quantitites\ need\ to\ be\ set\ up'}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00638}00638\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ chckerr(err\_msg)}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00639}00639\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ end\ if}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00640}00640\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00641}00641\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ give\ warning}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00642}00642\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (group\_exists)\ \textcolor{keywordflow}{then}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00643}00643\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_aa4a8d01563e92558e8a0875b075ec54c}{writo}}(\textcolor{stringliteral}{'Integrated\ tensorial\ perturbation\ \&}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00644}00644\ \textcolor{stringliteral}{}\textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&quantitites\ were\ found\ for\ Richardson\ level\ '}\&}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00645}00645\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&//trim(\doxymbox{\hyperlink{namespacestr__utilities_a0b97e51770725a3e98ed393d26681414}{i2str}}(\doxymbox{\hyperlink{namespacenum__vars_ac4bc885e8034c285bf0a9b76a832a738}{rich\_restart\_lvl}}))//\textcolor{stringliteral}{'.'},\&}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00646}00646\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&alert=.true.)}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00647}00647\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_a6e6bfb084063e4cc91ee86e542043302}{lvl\_ud}}(1)}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00648}00648\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_aa4a8d01563e92558e8a0875b075ec54c}{writo}}(\textcolor{stringliteral}{'Have\ you\ already\ calculated\ them\ and\ \&}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00649}00649\ \textcolor{stringliteral}{}\textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&are\ you\ re-\/running\ these\ simulations'})}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00650}00650\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_aa4a8d01563e92558e8a0875b075ec54c}{writo}}(\textcolor{stringliteral}{'because\ you\ want\ to\ change\ the\ solution?'})}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00651}00651\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_aa4a8d01563e92558e8a0875b075ec54c}{writo}}(\textcolor{stringliteral}{'If\ the\ solution\ method\ is\ the\ only\ \&}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00652}00652\ \textcolor{stringliteral}{}\textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&thing\ you\ are\ changing,\ you\ should'})}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00653}00653\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_aa4a8d01563e92558e8a0875b075ec54c}{writo}}(\textcolor{stringliteral}{'consider\ using\ the\ command-\/line\ option\ \&}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00654}00654\ \textcolor{stringliteral}{}\textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&"{}-\/-\/jump\_to\_sol"{}'})}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00655}00655\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_a6e6bfb084063e4cc91ee86e542043302}{lvl\_ud}}(-\/1)}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00656}00656\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ end\ if}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00657}00657\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00658}00658\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ create\ HDF5\ file\ for\ output\ if\ no\ restart}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00659}00659\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\doxymbox{\hyperlink{namespacenum__vars_ac4bc885e8034c285bf0a9b76a832a738}{rich\_restart\_lvl}}.eq.1)\ \textcolor{keywordflow}{then}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00660}00660\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ierr\ =\ \doxymbox{\hyperlink{namespacehdf5__ops_a1c2e937415ceb9e749fa3dca3789d4e0}{create\_output\_hdf5}}(\doxymbox{\hyperlink{namespacenum__vars_a8b3ab3b12cddc0c3e60c3430912b5f3c}{pb3d\_name}})}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00661}00661\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ chckerr(\textcolor{stringliteral}{''})}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00662}00662\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ end\ if}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00663}00663\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ end\ if}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00664}00664\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ (2)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ POST}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00665}00665\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ do\ nothing}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00666}00666\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ end\ select}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00667}00667\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00668}00668\ \textcolor{preprocessor}{\#if\ ldebug}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00669}00669\ \textcolor{preprocessor}{}\ \ \ \ \ \ \ \ \textcolor{comment}{!\ 4.\ MEMORY\ USAGE}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00670}00670\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\doxymbox{\hyperlink{namespacenum__vars_a28bf4f706f43af630ecc697dec01654c}{print\_mem\_usage}})\ \textcolor{keywordflow}{then}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00671}00671\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ recycle\ full\_output\_name\ for\ mem\_usage\ file}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00672}00672\ \ \ \ \ \ \ \ \ \ \ \ \ full\_output\_name\ =\ \doxymbox{\hyperlink{namespacenum__vars_a7548fedc0d8f3102844aded2e6c11f82}{prog\_name}}//\textcolor{stringliteral}{'\_'}//trim(\doxymbox{\hyperlink{namespacenum__vars_a88d78503df095a1c19b851caf2d889ba}{mem\_usage\_name}})//\textcolor{stringliteral}{'.dat'}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00673}00673\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00674}00674\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ create\ output\ file\ for\ memory\ usage}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00675}00675\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{open}(\doxymbox{\hyperlink{namespacenum__vars_a606c68d407ec135c105f0501c224ea1b}{mem\_usage\_i}},file=trim(full\_output\_name),status=\textcolor{stringliteral}{'replace'},\&}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00676}00676\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&iostat=ierr)}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00677}00677\ \ \ \ \ \ \ \ \ \ \ \ \ chckerr(\textcolor{stringliteral}{'Failed\ to\ open\ memory\ file'})}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00678}00678\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00679}00679\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ write\ header\ and\ close}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00680}00680\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{write}(\doxymbox{\hyperlink{namespacenum__vars_a606c68d407ec135c105f0501c224ea1b}{mem\_usage\_i}},\textcolor{stringliteral}{'(A)'},iostat=istat)\ \textcolor{stringliteral}{'\#\ \ \ Rank\ []\ \ Count\ []\ \&}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00681}00681\ \textcolor{stringliteral}{}\textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&\ \ \ \ \ \ \ \ \ \ \ \ Time\ [s]\ Mem.\ [kB]\ \ Max.\ tot.\ Memory\ [kB]\ \&}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00682}00682\ \textcolor{stringliteral}{}\textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&Max.\ X.\ Memory\ [kB]'}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00683}00683\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{close}(\doxymbox{\hyperlink{namespacenum__vars_a606c68d407ec135c105f0501c224ea1b}{mem\_usage\_i}})}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00684}00684\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00685}00685\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ print\ message}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00686}00686\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_aa4a8d01563e92558e8a0875b075ec54c}{writo}}(\textcolor{stringliteral}{'memory\ usage\ data\ file\ "{}'}//trim(full\_output\_name)//\&}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00687}00687\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&\textcolor{stringliteral}{'"{}\ created'})}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00688}00688\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ end\ if}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00689}00689\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00690}00690\ \textcolor{preprocessor}{}\ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00691}00691\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ no\ more\ temporary\ output}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00692}00692\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{namespacemessages_ace8877914cfa5253cc002da0f387446a}{temp\_output\_active}}\ =\ .false.}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00693}00693\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00694}00694\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ deallocate\ temporary\ output\ if\ allocated}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00695}00695\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\textcolor{keyword}{allocated}(\doxymbox{\hyperlink{namespacemessages_a07070e72f15146af24816c39eea17088}{temp\_output}}))\ \textcolor{keyword}{deallocate}(\doxymbox{\hyperlink{namespacemessages_a07070e72f15146af24816c39eea17088}{temp\_output}})}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00696}00696\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00697}00697\ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_a6e6bfb084063e4cc91ee86e542043302}{lvl\_ud}}(-\/1)}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00698}00698\ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_aa4a8d01563e92558e8a0875b075ec54c}{writo}}(\textcolor{stringliteral}{'Output\ files\ opened'})}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00699}00699\ \ \ \ \ \textcolor{keyword}{end\ function\ }\doxymbox{\hyperlink{namespacefiles__ops_ad681a9e8083a6f664cf0f9d17ebe279c}{open\_output}}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00700}00700\ \ \ \ \ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00701}00701\ \textcolor{comment}{\ \ \ \ !>\ Closes\ the\ output\ file.}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00702}\doxymbox{\hyperlink{namespacefiles__ops_a239cc017150e54eda19a8ccb0ff191cd}{00702}}\ \ \ \ \ \textcolor{keyword}{subroutine\ }\doxymbox{\hyperlink{namespacefiles__ops_a239cc017150e54eda19a8ccb0ff191cd}{close\_output}}()}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00703}00703\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{use\ }\doxymbox{\hyperlink{namespacenum__vars}{num\_vars}},\ \textcolor{keywordtype}{only}:\ \doxymbox{\hyperlink{namespacenum__vars_ab47aa91445feaedb05ac9d1a584664fe}{rank}},\ \doxymbox{\hyperlink{namespacenum__vars_aec5ffb30114a8af11226208844d12998}{output\_i}},\ \doxymbox{\hyperlink{namespacenum__vars_a7548fedc0d8f3102844aded2e6c11f82}{prog\_name}},\ \doxymbox{\hyperlink{namespacenum__vars_af30710083de41ebf93a407412d3125e5}{shell\_commands\_name}},\ \&}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00704}00704\ \ \ \ \ \ \ \ \ \ \ \ \ \&\doxymbox{\hyperlink{namespacenum__vars_ad5ba241cde0a99cdd5b3d6a6c0340e5c}{do\_execute\_command\_line}}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00705}00705\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00706}00706\ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_aa4a8d01563e92558e8a0875b075ec54c}{writo}}(\textcolor{stringliteral}{'Closing\ output\ files'})}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00707}00707\ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_a6e6bfb084063e4cc91ee86e542043302}{lvl\_ud}}(1)}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00708}00708\ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_aa4a8d01563e92558e8a0875b075ec54c}{writo}}(\textcolor{stringliteral}{'A\ log\ of\ the\ shell\ command\ is\ kept\ in\ the\ log\ file\ "{}'}//\&}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00709}00709\ \ \ \ \ \ \ \ \ \ \ \ \ \&trim(\doxymbox{\hyperlink{namespacenum__vars_a7548fedc0d8f3102844aded2e6c11f82}{prog\_name}})//\textcolor{stringliteral}{'\_'}//trim(\doxymbox{\hyperlink{namespacenum__vars_af30710083de41ebf93a407412d3125e5}{shell\_commands\_name}})//\textcolor{stringliteral}{'.sh"{}'})}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00710}00710\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (.not.\doxymbox{\hyperlink{namespacenum__vars_ad5ba241cde0a99cdd5b3d6a6c0340e5c}{do\_execute\_command\_line}})\ \&}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00711}00711\ \ \ \ \ \ \ \ \ \ \ \ \ \&\textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_aa4a8d01563e92558e8a0875b075ec54c}{writo}}(\textcolor{stringliteral}{'Execute\ this\ script\ to\ do\ all\ the\ shell\ commands'})}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00712}00712\ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_a6e6bfb084063e4cc91ee86e542043302}{lvl\_ud}}(-\/1)}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00713}00713\ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_aa4a8d01563e92558e8a0875b075ec54c}{writo}}(\textcolor{stringliteral}{'Output\ files\ closed'})}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00714}00714\ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_aa4a8d01563e92558e8a0875b075ec54c}{writo}}(\textcolor{stringliteral}{''})}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00715}00715\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00716}00716\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\doxymbox{\hyperlink{namespacenum__vars_ab47aa91445feaedb05ac9d1a584664fe}{rank}}.eq.0)\ \textcolor{keyword}{close}(\doxymbox{\hyperlink{namespacenum__vars_aec5ffb30114a8af11226208844d12998}{output\_i}})}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00717}00717\ \ \ \ \ \textcolor{keyword}{end\ subroutine}}
+\DoxyCodeLine{\Hypertarget{files__ops_8f90_source_l00718}00718\ \textcolor{keyword}{end\ module\ }\doxymbox{\hyperlink{namespacefiles__ops}{files\_ops}}}
+
+\end{DoxyCode}

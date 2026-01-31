@@ -57,21 +57,22 @@ h3 {
     font-family: 'Architects Daughter', sans-serif;
     color: #fff;
     font-size: 350%;
-	margin: -4px 0px;
-	padding: 2px 20px;
+    margin: 0px 0px;
+    padding: 10px 20px;
 }
 
 #projectnumber {
     font-family: 'Lato', sans-serif;
-    font-size: 200%
-	margin: 0px;
-	padding: 0px;
+    font-size: 50% !important;  /* relative to parent projectname */
+    margin: 0px;
+    padding: 0px;
 }
 
 #projectbrief {
     font-family: 'Lato', sans-serif;
-	margin: 2px 2px;
-	padding: 0px;
+    font-size: 120%;
+    margin: 2px 2px 2px 25px;
+    padding: 0px;
     color: #9ddcff;
 }
 
@@ -161,8 +162,27 @@ address {
 	color: #000000;
 }
 
+/* Override Doxygen 1.16+ CSS variables for header */
+html {
+  --title-background-color: #3D578C !important;
+  --title-separator-color: #3D578C !important;
+}
+
 #titlearea {
-  background-color: #3D578C;
+  background-color: #3D578C !important;
+  padding: 15px 0px !important;
+  margin: 0px !important;
+  width: 100% !important;
+  border-bottom: 1px solid #5373B4 !important;
+}
+
+#projectlogo {
+  padding: 0px !important;
+  margin: 0px !important;
+}
+
+#projectalign {
+  padding: 0px !important;
 }
 /*background: #2e7bcf url(../../images/header-bg.jpg) 0 0 repeat-x;*/
 /*background: linear-gradient(#3D578C,#5DBCD2);*/

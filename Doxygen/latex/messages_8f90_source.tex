@@ -1,0 +1,603 @@
+\doxysection{messages.\+f90}
+\hypertarget{messages_8f90_source}{}\label{messages_8f90_source}\index{/Users/toonweyens/Code/PB3D/Modules/messages.f90@{/Users/toonweyens/Code/PB3D/Modules/messages.f90}}
+\doxymbox{\hyperlink{messages_8f90}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00001}00001\ \textcolor{comment}{!-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/!}\textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00002}00002\ \textcolor{comment}{!>\ Numerical\ utilities\ related\ to\ giving\ output.}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00003}00003\ \textcolor{comment}{!-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/!}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00004}\doxymbox{\hyperlink{namespacemessages}{00004}}\ \textcolor{keyword}{module}\ \doxymbox{\hyperlink{namespacemessages}{messages}}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00005}00005\ \ \ \ \ \textcolor{keywordtype}{use\ }\doxymbox{\hyperlink{namespacestr__utilities}{str\_utilities}}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00006}00006\ \ \ \ \ \textcolor{keywordtype}{use\ }\doxymbox{\hyperlink{namespacenum__vars}{num\_vars}},\ \textcolor{keywordtype}{only}:\ \doxymbox{\hyperlink{namespacenum__vars_a03802aa2bd86439d7a9370836fabf3f2}{dp}},\ \doxymbox{\hyperlink{namespacenum__vars_a3ff2bb983ee80a6735277d6789e6ce7c}{max\_str\_ln}}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00007}00007\ \ \ \ \ \textcolor{keywordtype}{use\ }foul}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00008}00008\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00009}00009\ \ \ \ \ \textcolor{keywordtype}{implicit\ none}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00010}00010\ \ \ \ \ \textcolor{keywordtype}{private}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00011}00011\ \ \ \ \ \textcolor{keywordtype}{public}\ \doxymbox{\hyperlink{namespacemessages_a5e45296f088e9f31115a3b8d869f3177}{init\_output}},\ \doxymbox{\hyperlink{namespacemessages_a6e6bfb084063e4cc91ee86e542043302}{lvl\_ud}},\ \doxymbox{\hyperlink{namespacemessages_aa4a8d01563e92558e8a0875b075ec54c}{writo}},\ \doxymbox{\hyperlink{namespacemessages_a5686118397930f505259225f3688216b}{print\_ar\_1}},\ \doxymbox{\hyperlink{namespacemessages_a80797cedef6112b8dccaeda431f0c610}{print\_ar\_2}},\ \&}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00012}00012\ \ \ \ \ \ \ \ \ \&\doxymbox{\hyperlink{namespacemessages_a0da9248828de8b7480b99b47618e8310}{print\_err\_msg}},\ \doxymbox{\hyperlink{namespacemessages_a8ed785522aec7ac549263cdd54a8619a}{init\_time}},\ \doxymbox{\hyperlink{namespacemessages_a84d5988f3ea5ca8dc2834032f896ae90}{start\_time}},\ \doxymbox{\hyperlink{namespacemessages_aed343894ae4a28ad6dfbd1d39aac64ff}{stop\_time}},\ \doxymbox{\hyperlink{namespacemessages_a34da9df28502ccd63e62674d51fe8de8}{passed\_time}},\ \&}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00013}00013\ \ \ \ \ \ \ \ \ \&\doxymbox{\hyperlink{namespacemessages_a60c95b4c352b0087f32ef87279da49ca}{print\_hello}},\ \doxymbox{\hyperlink{namespacemessages_a5d3f456913230bdf985c363e8cee8489}{print\_goodbye}},\ \&}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00014}00014\ \ \ \ \ \ \ \ \ \&\doxymbox{\hyperlink{namespacemessages_a07070e72f15146af24816c39eea17088}{temp\_output}},\ \doxymbox{\hyperlink{namespacemessages_a36521a46e57da1d3be83019abdff132e}{lvl}},\ \doxymbox{\hyperlink{namespacemessages_ab1101c3acf2edc71877d4aa71aa3d931}{lvl\_sep}},\ \doxymbox{\hyperlink{namespacemessages_ace8877914cfa5253cc002da0f387446a}{temp\_output\_active}},\ \doxymbox{\hyperlink{namespacemessages_abeb2abf0ac1d1fb4f09d881eb57b3dae}{time\_sep}}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00015}00015\ \textcolor{preprocessor}{\#if\ ldebug}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00016}00016\ \textcolor{preprocessor}{}\ \ \ \ \textcolor{keywordtype}{public}\ \doxymbox{\hyperlink{namespacemessages_a82dddaab795b78b3d39e1ff1aab2f665}{get\_mem\_usage}}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00017}00017\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00018}00018\ \textcolor{preprocessor}{}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00019}00019\ \ \ \ \ \textcolor{comment}{!\ global\ variables}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00020}\doxymbox{\hyperlink{namespacemessages_a36521a46e57da1d3be83019abdff132e}{00020}}\ \ \ \ \ \textcolor{keywordtype}{integer}\ ::\ \doxymbox{\hyperlink{namespacemessages_a36521a46e57da1d3be83019abdff132e}{lvl}}\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !<\ determines\ the\ indenting.\ higher\ \(\backslash\)c\ lvl\ =\ more\ indenting}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00021}\doxymbox{\hyperlink{namespacemessages_ab1101c3acf2edc71877d4aa71aa3d931}{00021}}\ \ \ \ \ \textcolor{keywordtype}{character(len=2)}\ ::\ \doxymbox{\hyperlink{namespacemessages_ab1101c3acf2edc71877d4aa71aa3d931}{lvl\_sep}}\ =\ \textcolor{stringliteral}{''}\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !<\ characters\ that\ separate\ different\ levels\ of\ output}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00022}\doxymbox{\hyperlink{namespacemessages_abeb2abf0ac1d1fb4f09d881eb57b3dae}{00022}}\ \ \ \ \ \textcolor{keywordtype}{character(len=10)}\ ::\ \doxymbox{\hyperlink{namespacemessages_abeb2abf0ac1d1fb4f09d881eb57b3dae}{time\_sep}}\ =\ \textcolor{stringliteral}{''}\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !<\ defines\ the\ length\ of\ time\ part\ of\ output}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00023}00023\ \textcolor{keywordtype}{\ \ \ \ real}(\doxymbox{\hyperlink{namespacenum__vars_a03802aa2bd86439d7a9370836fabf3f2}{dp}})\ ::\ deltat\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !<\ length\ of\ time\ interval}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00024}00024\ \textcolor{keywordtype}{\ \ \ \ real}(\doxymbox{\hyperlink{namespacenum__vars_a03802aa2bd86439d7a9370836fabf3f2}{dp}})\ ::\ t1,\ t2\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !<\ end\ points\ of\ time\ interval}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00025}00025\ \ \ \ \ \textcolor{keywordtype}{logical}\ ::\ running\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !<\ whether\ the\ timer\ is\ running}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00026}\doxymbox{\hyperlink{namespacemessages_ace8877914cfa5253cc002da0f387446a}{00026}}\ \ \ \ \ \textcolor{keywordtype}{logical}\ ::\ \doxymbox{\hyperlink{namespacemessages_ace8877914cfa5253cc002da0f387446a}{temp\_output\_active}}\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !<\ true\ if\ temporary\ output\ is\ to\ be\ written\ in\ \(\backslash\)c\ temp\_output}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00027}\doxymbox{\hyperlink{namespacemessages_a07070e72f15146af24816c39eea17088}{00027}}\ \ \ \ \ \textcolor{keywordtype}{character(len=max\_str\_ln)},\ \textcolor{keywordtype}{allocatable}\ ::\ \doxymbox{\hyperlink{namespacemessages_a07070e72f15146af24816c39eea17088}{temp\_output}}(:)\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !<\ temporary\ output,\ before\ output\ file\ is\ opened}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00028}00028\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00029}00029\ \textcolor{keyword}{contains}\textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00030}00030\ \textcolor{comment}{\ \ \ \ !>\ Initialize\ the\ variables\ for\ the\ module.}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00031}\doxymbox{\hyperlink{namespacemessages_a5e45296f088e9f31115a3b8d869f3177}{00031}}\ \ \ \ \ \textcolor{keyword}{subroutine\ }\doxymbox{\hyperlink{namespacemessages_a5e45296f088e9f31115a3b8d869f3177}{init\_output}}()}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00032}00032\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{use\ }\doxymbox{\hyperlink{namespacenum__vars}{num\_vars}},\ \textcolor{keywordtype}{only}:\ \doxymbox{\hyperlink{namespacenum__vars_ab47aa91445feaedb05ac9d1a584664fe}{rank}}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00033}00033\ \textcolor{preprocessor}{\#if\ ldebug}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00034}00034\ \textcolor{preprocessor}{}\ \ \ \ \ \ \ \ \textcolor{keywordtype}{use\ }\doxymbox{\hyperlink{namespacenum__vars}{num\_vars}},\ \textcolor{keywordtype}{only}:\ \doxymbox{\hyperlink{namespacenum__vars_a7f93ac44620a69373a76d591fa8507a2}{mem\_usage\_count}}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00035}00035\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00036}00036\ \textcolor{preprocessor}{}\ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00037}00037\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ output\ level}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00038}00038\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{namespacemessages_a36521a46e57da1d3be83019abdff132e}{lvl}}\ =\ 1}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00039}00039\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00040}00040\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ time}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00041}00041\ \ \ \ \ \ \ \ \ deltat\ =\ 0}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00042}00042\ \ \ \ \ \ \ \ \ t1\ =\ 0}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00043}00043\ \ \ \ \ \ \ \ \ t2\ =\ 0}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00044}00044\ \ \ \ \ \ \ \ \ running\ =\ .false.\ }
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00045}00045\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00046}00046\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ temporary\ output\ for\ master}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00047}00047\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\doxymbox{\hyperlink{namespacenum__vars_ab47aa91445feaedb05ac9d1a584664fe}{rank}}.eq.0)\ \textcolor{keywordflow}{then}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00048}00048\ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{namespacemessages_ace8877914cfa5253cc002da0f387446a}{temp\_output\_active}}\ =\ .true.}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00049}00049\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{allocate}(\doxymbox{\hyperlink{namespacemessages_a07070e72f15146af24816c39eea17088}{temp\_output}}(0))}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00050}00050\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00051}00051\ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{namespacemessages_ace8877914cfa5253cc002da0f387446a}{temp\_output\_active}}\ =\ .false.}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00052}00052\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ end\ if}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00053}00053\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00054}00054\ \textcolor{preprocessor}{\#if\ ldebug}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00055}00055\ \textcolor{preprocessor}{}\ \ \ \ \ \ \ \ \doxymbox{\hyperlink{namespacenum__vars_a7f93ac44620a69373a76d591fa8507a2}{mem\_usage\_count}}\ =\ 0}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00056}00056\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00057}00057\ \textcolor{preprocessor}{}\ \ \ \ \textcolor{keyword}{end\ subroutine\ }\doxymbox{\hyperlink{namespacemessages_a5e45296f088e9f31115a3b8d869f3177}{init\_output}}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00058}00058\ \ \ \ \ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00059}00059\ \textcolor{comment}{\ \ \ \ !>\ Prints\ first\ message.}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00060}\doxymbox{\hyperlink{namespacemessages_a60c95b4c352b0087f32ef87279da49ca}{00060}}\ \ \ \ \ \textcolor{keyword}{subroutine\ }\doxymbox{\hyperlink{namespacemessages_a60c95b4c352b0087f32ef87279da49ca}{print\_hello}}()}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00061}00061\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{use\ }\doxymbox{\hyperlink{namespacenum__vars}{num\_vars}},\ \textcolor{keywordtype}{only}:\ \doxymbox{\hyperlink{namespacenum__vars_ab47aa91445feaedb05ac9d1a584664fe}{rank}},\ \doxymbox{\hyperlink{namespacenum__vars_a7548fedc0d8f3102844aded2e6c11f82}{prog\_name}},\ \doxymbox{\hyperlink{namespacenum__vars_a7ab03bffd054a230cad4b7e2c130def1}{prog\_version}},\ \doxymbox{\hyperlink{namespacenum__vars_a3a1f41c66c3d91fc749bcffd177b0662}{n\_procs}},\ \&}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00062}00062\ \ \ \ \ \ \ \ \ \ \ \ \ \&\doxymbox{\hyperlink{namespacenum__vars_a60589d0e73cbffd69d115c1f709745a2}{debug\_version}}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00063}00063\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00064}00064\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ local\ variables}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00065}00065\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer}\ ::\ istat\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ status}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00066}00066\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00067}00067\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\doxymbox{\hyperlink{namespacenum__vars_ab47aa91445feaedb05ac9d1a584664fe}{rank}}.eq.0)\ \textcolor{keywordflow}{then}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00068}00068\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }write\_formatted(\textcolor{stringliteral}{'\ PB3D\ Copyright\ (C)\ 2019\ \ Toon\ Weyens'},\&}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00069}00069\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&\textcolor{stringliteral}{'italic'})}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00070}00070\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }write\_formatted(\textcolor{stringliteral}{'\ This\ program\ comes\ with\ ABSOLUTELY\ NO\ \&}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00071}00071\ \textcolor{stringliteral}{}\textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&WARRANTY.'},\textcolor{stringliteral}{'italic'})}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00072}00072\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }write\_formatted(\textcolor{stringliteral}{'\ This\ is\ free\ software,\ and\ you\ are\ welcome\ \&}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00073}00073\ \textcolor{stringliteral}{}\textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&to\ redistribute\ it'},\textcolor{stringliteral}{'italic'})}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00074}00074\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }write\_formatted(\textcolor{stringliteral}{'\ under\ certain\ conditions;\ See\ LICENSE\ for\ \&}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00075}00075\ \textcolor{stringliteral}{}\textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&details.'},\textcolor{stringliteral}{'italic'})}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00076}00076\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }write\_formatted(\textcolor{stringliteral}{''},\textcolor{stringliteral}{'italic'})}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00077}00077\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00078}00078\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }write\_formatted(\textcolor{stringliteral}{'\ Simulation\ started\ on\ '}//get\_date()//\textcolor{stringliteral}{',\ at\ '}\&}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00079}00079\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&//get\_clock(),\textcolor{stringliteral}{'italic'})}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00080}00080\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }write\_formatted(\textcolor{stringliteral}{'\ '}//\doxymbox{\hyperlink{namespacenum__vars_a7548fedc0d8f3102844aded2e6c11f82}{prog\_name}}//\textcolor{stringliteral}{'\ version:\ '}//\&}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00081}00081\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&trim(\doxymbox{\hyperlink{namespacestr__utilities_ac778d706b2e021672618939ab58fdd32}{r2strt}}(\doxymbox{\hyperlink{namespacenum__vars_a7ab03bffd054a230cad4b7e2c130def1}{prog\_version}})),\textcolor{stringliteral}{'italic'})}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00082}00082\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\doxymbox{\hyperlink{namespacenum__vars_a60589d0e73cbffd69d115c1f709745a2}{debug\_version}})\ \textcolor{keywordflow}{then}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00083}00083\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }write\_formatted(\textcolor{stringliteral}{'\ debug\ version'},\textcolor{stringliteral}{'italic'})}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00084}00084\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00085}00085\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }write\_formatted(\textcolor{stringliteral}{'\ release\ version'},\textcolor{stringliteral}{'italic'})}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00086}00086\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ \ \ \ \ end\ if}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00087}00087\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\doxymbox{\hyperlink{namespacenum__vars_a3a1f41c66c3d91fc749bcffd177b0662}{n\_procs}}.eq.1)\ \textcolor{keywordflow}{then}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00088}00088\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }write\_formatted(\textcolor{stringliteral}{'\ 1\ MPI\ process'},\textcolor{stringliteral}{'italic'})}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00089}00089\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00090}00090\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }write\_formatted(\textcolor{stringliteral}{'\ '}//trim(\doxymbox{\hyperlink{namespacestr__utilities_a0b97e51770725a3e98ed393d26681414}{i2str}}(\doxymbox{\hyperlink{namespacenum__vars_a3a1f41c66c3d91fc749bcffd177b0662}{n\_procs}}))//\&}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00091}00091\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&\textcolor{stringliteral}{'\ MPI\ processes'},\textcolor{stringliteral}{'italic'})}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00092}00092\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ \ \ \ \ end\ if}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00093}00093\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{write}(*,*,iostat=istat)\ \textcolor{stringliteral}{''}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00094}00094\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ end\ if}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00095}00095\ \ \ \ \ \textcolor{keyword}{end\ subroutine\ }\doxymbox{\hyperlink{namespacemessages_a60c95b4c352b0087f32ef87279da49ca}{print\_hello}}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00096}00096\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00097}00097\ \textcolor{comment}{\ \ \ \ !>\ Prints\ last\ messag.}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00098}\doxymbox{\hyperlink{namespacemessages_a5d3f456913230bdf985c363e8cee8489}{00098}}\ \ \ \ \ \textcolor{keyword}{subroutine\ }\doxymbox{\hyperlink{namespacemessages_a5d3f456913230bdf985c363e8cee8489}{print\_goodbye}}()}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00099}00099\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{use\ }\doxymbox{\hyperlink{namespacenum__vars}{num\_vars}},\ \textcolor{keywordtype}{only}:\ \doxymbox{\hyperlink{namespacenum__vars_ab47aa91445feaedb05ac9d1a584664fe}{rank}}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00100}00100\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00101}00101\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ local\ variables}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00102}00102\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer}\ ::\ istat\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ status}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00103}00103\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00104}00104\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\doxymbox{\hyperlink{namespacenum__vars_ab47aa91445feaedb05ac9d1a584664fe}{rank}}.eq.0)\ \textcolor{keywordflow}{then}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00105}00105\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{write}(*,*,iostat=istat)\ \textcolor{stringliteral}{''}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00106}00106\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }write\_formatted(\textcolor{stringliteral}{'\ Simulation\ finished\ on\ '}//get\_date()//\&}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00107}00107\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&\textcolor{stringliteral}{',\ at\ '}//get\_clock(),\textcolor{stringliteral}{'italic'})}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00108}00108\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ end\ if}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00109}00109\ \ \ \ \ \textcolor{keyword}{end\ subroutine\ }\doxymbox{\hyperlink{namespacemessages_a5d3f456913230bdf985c363e8cee8489}{print\_goodbye}}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00110}00110\ \ \ \ \ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00111}00111\ \textcolor{comment}{\ \ \ \ !>\ Intialize\ the\ time\ passed\ to\ 0.}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00112}\doxymbox{\hyperlink{namespacemessages_a8ed785522aec7ac549263cdd54a8619a}{00112}}\ \ \ \ \ \textcolor{keyword}{subroutine\ }\doxymbox{\hyperlink{namespacemessages_a8ed785522aec7ac549263cdd54a8619a}{init\_time}}()}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00113}00113\ \ \ \ \ \ \ \ \ deltat\ =\ 0}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00114}00114\ \ \ \ \ \ \ \ \ t1\ =\ 0}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00115}00115\ \ \ \ \ \ \ \ \ t2\ =\ 0}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00116}00116\ \ \ \ \ \ \ \ \ running\ =\ .false.\ }
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00117}00117\ \ \ \ \ \textcolor{keyword}{end\ subroutine\ }\doxymbox{\hyperlink{namespacemessages_a8ed785522aec7ac549263cdd54a8619a}{init\_time}}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00118}00118\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00119}00119\ \textcolor{comment}{\ \ \ \ !>\ Start\ a\ timer.}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00120}\doxymbox{\hyperlink{namespacemessages_a84d5988f3ea5ca8dc2834032f896ae90}{00120}}\ \ \ \ \ \textcolor{keyword}{subroutine\ }\doxymbox{\hyperlink{namespacemessages_a84d5988f3ea5ca8dc2834032f896ae90}{start\_time}}()}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00121}00121\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (running)\ \textcolor{keywordflow}{then}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00122}00122\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_aa4a8d01563e92558e8a0875b075ec54c}{writo}}(\textcolor{stringliteral}{'Tried\ to\ start\ timer,\ but\ was\ already\ running'},\&}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00123}00123\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&warning=.true.)}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00124}00124\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00125}00125\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }cpu\_time(t1)}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00126}00126\ \ \ \ \ \ \ \ \ \ \ \ \ running\ =\ .true.}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00127}00127\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ end\ if}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00128}00128\ \ \ \ \ \textcolor{keyword}{end\ subroutine\ }\doxymbox{\hyperlink{namespacemessages_a84d5988f3ea5ca8dc2834032f896ae90}{start\_time}}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00129}00129\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00130}00130\ \textcolor{comment}{\ \ \ \ !>\ Stop\ a\ timer.}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00131}\doxymbox{\hyperlink{namespacemessages_aed343894ae4a28ad6dfbd1d39aac64ff}{00131}}\ \ \ \ \ \textcolor{keyword}{subroutine\ }\doxymbox{\hyperlink{namespacemessages_aed343894ae4a28ad6dfbd1d39aac64ff}{stop\_time}}()}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00132}00132\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (running)\ \textcolor{keywordflow}{then}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00133}00133\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }cpu\_time(t2)}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00134}00134\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00135}00135\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ increase\ deltat}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00136}00136\ \ \ \ \ \ \ \ \ \ \ \ \ deltat\ =\ deltat+t2-\/t1}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00137}00137\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00138}00138\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ set\ t1\ and\ t2\ back\ to\ zero}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00139}00139\ \ \ \ \ \ \ \ \ \ \ \ \ t1\ =\ 0}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00140}00140\ \ \ \ \ \ \ \ \ \ \ \ \ t2\ =\ 0}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00141}00141\ \ \ \ \ \ \ \ \ \ \ \ \ running\ =\ .false.}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00142}00142\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00143}00143\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_aa4a8d01563e92558e8a0875b075ec54c}{writo}}(\textcolor{stringliteral}{'Tried\ to\ stop\ timer,\ but\ was\ already\ stopped'},\&}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00144}00144\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&warning=.true.)}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00145}00145\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ end\ if}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00146}00146\ \ \ \ \ \textcolor{keyword}{end\ subroutine\ }\doxymbox{\hyperlink{namespacemessages_aed343894ae4a28ad6dfbd1d39aac64ff}{stop\_time}}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00147}00147\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00148}00148\ \textcolor{comment}{\ \ \ \ !>\ Display\ the\ time\ that\ has\ passed\ between\ \(\backslash\)c\ t1\ and\ \(\backslash\)c\ t2.}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00149}00149\ \textcolor{comment}{\ \ \ \ !!}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00150}00150\ \textcolor{comment}{\ \ \ \ !!\ Automatically\ stops\ time\ and\ resets\ everything\ to\ zero.}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00151}\doxymbox{\hyperlink{namespacemessages_a34da9df28502ccd63e62674d51fe8de8}{00151}}\ \ \ \ \ \textcolor{keyword}{subroutine\ }\doxymbox{\hyperlink{namespacemessages_a34da9df28502ccd63e62674d51fe8de8}{passed\_time}}()}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00152}00152\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ local\ variables}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00153}00153\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{character(len=max\_str\_ln)}\ ::\ begin\_str,\ end\_str}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00154}00154\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer}\ ::\ time\_in\_units(4)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ time\ in\ days,\ hours,\ minutes,\ seconds}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00155}00155\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer}\ ::\ total\_time}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00156}00156\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{character(len=6)}\ ::\ time\_units(4)\ =\ [\textcolor{stringliteral}{'day\ \ \ '},\textcolor{stringliteral}{'hour\ \ '},\textcolor{stringliteral}{'minute'},\&}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00157}00157\ \ \ \ \ \ \ \ \ \ \ \ \ \&\textcolor{stringliteral}{'second'}]}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00158}00158\ \ \ \ \ \ \ \ \ integer\ ::\ id\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ counter}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00159}00159\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00160}00160\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ stop\ at\ current\ time\ if\ running}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00161}00161\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (running)\ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_aed343894ae4a28ad6dfbd1d39aac64ff}{stop\_time}}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00162}00162\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00163}00163\ \ \ \ \ \ \ \ \ begin\_str\ =\ \textcolor{stringliteral}{'(this\ took'}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00164}00164\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (deltat.lt.1)\ \textcolor{keywordflow}{then}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00165}00165\ \ \ \ \ \ \ \ \ \ \ \ \ end\_str\ =\ \textcolor{stringliteral}{'\ less\ than\ 1\ second)'}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00166}00166\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00167}00167\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ get\ days,\ hours,\ minutes,\ seconds}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00168}00168\ \ \ \ \ \ \ \ \ \ \ \ \ total\_time\ =\ floor(deltat)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ get\ total\ time\ in\ seconds}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00169}00169\ \ \ \ \ \ \ \ \ \ \ \ \ time\_in\_units(1)\ =\ total\_time/(60*60*24)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ get\ days}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00170}00170\ \ \ \ \ \ \ \ \ \ \ \ \ total\_time\ =\ mod(total\_time,60*60*24)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ subtract\ days\ from\ total\ time}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00171}00171\ \ \ \ \ \ \ \ \ \ \ \ \ time\_in\_units(2)\ =\ total\_time/(60*60)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ get\ hours}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00172}00172\ \ \ \ \ \ \ \ \ \ \ \ \ total\_time\ =\ mod(total\_time,60*60)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ subtract\ hours\ from\ total\ time}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00173}00173\ \ \ \ \ \ \ \ \ \ \ \ \ time\_in\_units(3)\ =\ total\_time/(60)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ get\ minutes}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00174}00174\ \ \ \ \ \ \ \ \ \ \ \ \ total\_time\ =\ mod(total\_time,60)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ subtract\ minutes\ from\ total\ time}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00175}00175\ \ \ \ \ \ \ \ \ \ \ \ \ time\_in\_units(4)\ =\ total\_time\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ get\ seconds}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00176}00176\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00177}00177\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ set\ up\ end\_str}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00178}00178\ \ \ \ \ \ \ \ \ \ \ \ \ end\_str\ =\ \textcolor{stringliteral}{''}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00179}00179\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{do}\ id\ =\ 1,4}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00180}00180\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (time\_in\_units(id).gt.0)\ \textcolor{keywordflow}{then}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00181}00181\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (trim(end\_str).ne.\textcolor{stringliteral}{''})\ end\_str\ =\ trim(end\_str)//\textcolor{stringliteral}{','}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00182}00182\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ end\_str\ =\ trim(end\_str)//\textcolor{stringliteral}{'\ '}//\&}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00183}00183\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&trim(\doxymbox{\hyperlink{namespacestr__utilities_a0b97e51770725a3e98ed393d26681414}{i2str}}(time\_in\_units(id)))//\textcolor{stringliteral}{'\ '}//\&}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00184}00184\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&trim(time\_units(id))}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00185}00185\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (time\_in\_units(id).gt.1)\ end\_str\ =\ trim(end\_str)//\textcolor{stringliteral}{'s'}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00186}00186\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ end\ if}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00187}00187\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ \ \ \ \ end\ do}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00188}00188\ \ \ \ \ \ \ \ \ \ \ \ \ end\_str\ =\ trim(end\_str)//\textcolor{stringliteral}{')'}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00189}00189\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ end\ if}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00190}00190\ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_aa4a8d01563e92558e8a0875b075ec54c}{writo}}(trim(begin\_str)\ //\ trim(end\_str))}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00191}00191\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00192}00192\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ restart\ deltat}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00193}00193\ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_a8ed785522aec7ac549263cdd54a8619a}{init\_time}}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00194}00194\ \ \ \ \ \textcolor{keyword}{end\ subroutine\ }\doxymbox{\hyperlink{namespacemessages_a34da9df28502ccd63e62674d51fe8de8}{passed\_time}}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00195}00195\ \ \ \ \ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00196}00196\ \textcolor{comment}{\ \ \ \ !>\ Returns\ the\ date.}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00197}00197\ \textcolor{comment}{\ \ \ \ !!}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00198}00198\ \textcolor{comment}{\ \ \ \ !!\ from\ <http://infohost.nmt.edu/tcc/help/lang/fortran/date.html>}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00199}00199\ \ \ \ \ \textcolor{keyword}{function\ }get\_date()\ \textcolor{keyword}{result}(now)}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00200}00200\ \textcolor{preprocessor}{\#if\ (lwith\_intel\ \&\&\ !lwith\_gnu)}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00201}00201\ \textcolor{preprocessor}{}\ \ \ \ \ \ \ \ \textcolor{keywordtype}{use\ }ifport}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00202}00202\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00203}00203\ \textcolor{preprocessor}{}\ \ \ \ \ \ \ \ \textcolor{comment}{!\ input\ /\ output}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00204}00204\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{character(len=10)}\ ::\ now\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !<\ date}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00205}00205\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00206}00206\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ local\ variables}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00207}00207\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer}\ ::\ today(3)}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00208}00208\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00209}00209\ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }idate(today)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ today(1)=day,\ (2)=month,\ (3)=year}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00210}00210\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00211}00211\ \ \ \ \ \ \ \ \ \textcolor{keyword}{write}\ (now,\textcolor{stringliteral}{'(i2.2,"{}/"{},i2.2,"{}/"{},i4.4)'})\ \ today(2),\ today(1),\ today(3)}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00212}00212\ \ \ \ \ \textcolor{keyword}{end\ function\ }get\_date}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00213}00213\ \ \ \ \ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00214}00214\ \textcolor{comment}{\ \ \ \ !>\ Returns\ the\ time.}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00215}00215\ \textcolor{comment}{\ \ \ \ !!\ }}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00216}00216\ \textcolor{comment}{\ \ \ \ !!\ from\ <http://infohost.nmt.edu/tcc/help/lang/fortran/date.html>}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00217}00217\ \ \ \ \ \textcolor{keyword}{function\ }get\_clock()\ \textcolor{keyword}{result}(time)}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00218}00218\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ input\ /\ output}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00219}00219\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{character(len=8)}\ ::\ time\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !<\ time}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00220}00220\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00221}00221\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ local\ variables}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00222}00222\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer}\ ::\ now(3)}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00223}00223\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00224}00224\ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }itime(now)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ now(1)=hour,\ (2)=minute,\ (3)=second}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00225}00225\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00226}00226\ \ \ \ \ \ \ \ \ \textcolor{keyword}{write}\ (time,\textcolor{stringliteral}{'(i2.2,"{}:"{},i2.2,"{}:"{},i2.2)'})\ \ now}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00227}00227\ \ \ \ \ \textcolor{keyword}{end\ function\ }get\_clock}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00228}00228\ \ \ \ \ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00229}00229\ \textcolor{comment}{\ \ \ \ !>\ Prints\ an\ error\ message\ that\ is\ \ either\ user-\/provided,\ or\ the\ name\ of\ the}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00230}00230\ \textcolor{comment}{\ \ \ \ !!\ calling\ routine.}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00231}00231\ \textcolor{comment}{\ \ \ \ !!}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00232}00232\ \textcolor{comment}{\ \ \ \ !!\ \(\backslash\)note\ This\ should\ be\ used\ with\ the\ macro\ CHCKERR.}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00233}\doxymbox{\hyperlink{namespacemessages_a0da9248828de8b7480b99b47618e8310}{00233}}\ \ \ \ \ \textcolor{keyword}{subroutine\ }\doxymbox{\hyperlink{namespacemessages_a0da9248828de8b7480b99b47618e8310}{print\_err\_msg}}(err\_msg,routine\_name)}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00234}00234\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{use\ }\doxymbox{\hyperlink{namespacenum__vars}{num\_vars}},\ \textcolor{keywordtype}{only}:\ \doxymbox{\hyperlink{namespacenum__vars_ab47aa91445feaedb05ac9d1a584664fe}{rank}}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00235}00235\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00236}00236\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ input\ /\ output}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00237}00237\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{character(len=*)},\ \textcolor{keywordtype}{intent(in)}\ ::\ err\_msg\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !<\ error\ message\ to\ be\ printed}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00238}00238\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{character(len=*)},\ \textcolor{keywordtype}{intent(in)}\ ::\ routine\_name\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !<\ name\ of\ the\ routine}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00239}00239\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00240}00240\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (trim(err\_msg).eq.\textcolor{stringliteral}{''})\ \textcolor{keywordflow}{then}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00241}00241\ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{namespacemessages_a36521a46e57da1d3be83019abdff132e}{lvl}}\ =\ 2}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00242}00242\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_aa4a8d01563e92558e8a0875b075ec54c}{writo}}(\textcolor{stringliteral}{'>>\ calling\ routine:\ '}//trim(routine\_name)//\textcolor{stringliteral}{'\ of\ rank\ '}\&}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00243}00243\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&//trim(\doxymbox{\hyperlink{namespacestr__utilities_a0b97e51770725a3e98ed393d26681414}{i2str}}(\doxymbox{\hyperlink{namespacenum__vars_ab47aa91445feaedb05ac9d1a584664fe}{rank}})),persistent=.true.)}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00244}00244\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00245}00245\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_aa4a8d01563e92558e8a0875b075ec54c}{writo}}(\textcolor{stringliteral}{'ERROR\ in\ '}//trim(routine\_name)//\textcolor{stringliteral}{':\ '}//trim(err\_msg),\&}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00246}00246\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&persistent=.true.,error=.true.)}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00247}00247\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ end\ if}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00248}00248\ \ \ \ \ \textcolor{keyword}{end\ subroutine\ }\doxymbox{\hyperlink{namespacemessages_a0da9248828de8b7480b99b47618e8310}{print\_err\_msg}}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00249}00249\ \ \ \ \ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00250}00250\ \textcolor{comment}{\ \ \ \ !>\ Increases/decreases\ \(\backslash\)c\ lvl\ of\ output.}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00251}00251\ \textcolor{comment}{\ \ \ \ !!}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00252}00252\ \textcolor{comment}{\ \ \ \ !!\ Name\ stands\ for\ level\ up\ or\ down.}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00253}\doxymbox{\hyperlink{namespacemessages_a6e6bfb084063e4cc91ee86e542043302}{00253}}\ \ \ \ \ \textcolor{keyword}{subroutine\ }\doxymbox{\hyperlink{namespacemessages_a6e6bfb084063e4cc91ee86e542043302}{lvl\_ud}}(inc)}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00254}00254\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ input\ /\ output}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00255}00255\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer}\ ::\ inc\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !<\ increment\ of\ level}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00256}00256\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00257}00257\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\doxymbox{\hyperlink{namespacemessages_a36521a46e57da1d3be83019abdff132e}{lvl}}+inc.lt.1)\ \textcolor{keywordflow}{then}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00258}00258\ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{namespacemessages_a36521a46e57da1d3be83019abdff132e}{lvl}}\ =\ 1}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00259}00259\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_aa4a8d01563e92558e8a0875b075ec54c}{writo}}(\textcolor{stringliteral}{'cannot\ go\ below\ lowest\ level'},warning=.true.)}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00260}00260\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00261}00261\ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{namespacemessages_a36521a46e57da1d3be83019abdff132e}{lvl}}\ =\ \doxymbox{\hyperlink{namespacemessages_a36521a46e57da1d3be83019abdff132e}{lvl}}\ +\ inc}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00262}00262\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ end\ if}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00263}00263\ \ \ \ \ \textcolor{keyword}{end\ subroutine\ }\doxymbox{\hyperlink{namespacemessages_a6e6bfb084063e4cc91ee86e542043302}{lvl\_ud}}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00264}00264\ \ \ \ \ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00265}00265\ \textcolor{comment}{\ \ \ \ !>\ Write\ output\ to\ file\ identified\ by\ \(\backslash\)c\ output\_i.}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00266}00266\ \textcolor{comment}{\ \ \ \ !!}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00267}00267\ \textcolor{comment}{\ \ \ \ !!\ This\ is\ done\ using\ the\ correct\ \ indentation\ for\ the\ level\ (\(\backslash\)c\ lvl\_loc)\ of}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00268}00268\ \textcolor{comment}{\ \ \ \ !!\ the\ output.}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00269}00269\ \textcolor{comment}{\ \ \ \ !!}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00270}00270\ \textcolor{comment}{\ \ \ \ !!\ By\ \ default,\ only\ the\ \ master\ outputs,\ but\ this\ \ can\ be\ changed\ \ using\ \(\backslash\)c}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00271}00271\ \textcolor{comment}{\ \ \ \ !!\ persistent.}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00272}00272\ \textcolor{comment}{\ \ \ \ !!}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00273}00273\ \textcolor{comment}{\ \ \ \ !!\ Optionally,\ special\ formatting\ for\ error,\ warning\ or\ alert\ can\ be\ chosen.}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00274}\doxymbox{\hyperlink{namespacemessages_aa4a8d01563e92558e8a0875b075ec54c}{00274}}\ \ \ \ \ \textcolor{keyword}{subroutine\ }\doxymbox{\hyperlink{namespacemessages_aa4a8d01563e92558e8a0875b075ec54c}{writo}}(input\_str,persistent,error,warning,alert)}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00275}00275\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{use\ }\doxymbox{\hyperlink{namespacenum__vars}{num\_vars}},\ \textcolor{keywordtype}{only}:\ \doxymbox{\hyperlink{namespacenum__vars_ab47aa91445feaedb05ac9d1a584664fe}{rank}},\ \doxymbox{\hyperlink{namespacenum__vars_aec5ffb30114a8af11226208844d12998}{output\_i}},\ \doxymbox{\hyperlink{namespacenum__vars_a324342d6240045750e38ef545801c49d}{no\_output}},\ \doxymbox{\hyperlink{namespacenum__vars_ae50396b7028248358850b4524cf84433}{max\_tot\_mem}},\ \doxymbox{\hyperlink{namespacenum__vars_af86827817455d27248f5660c3d616283}{max\_x\_mem}}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00276}00276\ \textcolor{preprocessor}{\#if\ ldebug}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00277}00277\ \textcolor{preprocessor}{}\ \ \ \ \ \ \ \ \textcolor{keywordtype}{use\ }mpi}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00278}00278\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{use\ }\doxymbox{\hyperlink{namespacenum__vars}{num\_vars}},\ \textcolor{keywordtype}{only}:\ \doxymbox{\hyperlink{namespacenum__vars_a28bf4f706f43af630ecc697dec01654c}{print\_mem\_usage}},\ \doxymbox{\hyperlink{namespacenum__vars_a7548fedc0d8f3102844aded2e6c11f82}{prog\_name}},\ \doxymbox{\hyperlink{namespacenum__vars_a88d78503df095a1c19b851caf2d889ba}{mem\_usage\_name}},\ \&}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00279}00279\ \ \ \ \ \ \ \ \ \ \ \ \ \&\doxymbox{\hyperlink{namespacenum__vars_a606c68d407ec135c105f0501c224ea1b}{mem\_usage\_i}},\ \doxymbox{\hyperlink{namespacenum__vars_a7f93ac44620a69373a76d591fa8507a2}{mem\_usage\_count}},\ \doxymbox{\hyperlink{namespacenum__vars_a70922471370a77597325ce9ef7b897a2}{time\_start}}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00280}00280\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00281}00281\ \textcolor{preprocessor}{}\ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00282}00282\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ input\ /\ output}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00283}00283\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{character(len=*)},\ \textcolor{keywordtype}{intent(in)}\ ::\ input\_str\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !<\ the\ name\ that\ is\ searched\ for}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00284}00284\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{logical},\ \textcolor{keywordtype}{intent(in)},\ \textcolor{keywordtype}{optional}\ ::\ persistent\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !<\ output\ even\ if\ not\ group\ master}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00285}00285\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{logical},\ \textcolor{keywordtype}{intent(in)},\ \textcolor{keywordtype}{optional}\ ::\ error\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !<\ error\ message}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00286}00286\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{logical},\ \textcolor{keywordtype}{intent(in)},\ \textcolor{keywordtype}{optional}\ ::\ warning\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !<\ warning\ message}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00287}00287\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{logical},\ \textcolor{keywordtype}{intent(in)},\ \textcolor{keywordtype}{optional}\ ::\ alert\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !<\ alert\ message}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00288}00288\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00289}00289\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ local\ variables}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00290}00290\ \ \ \ \ \ \ \ \ \textcolor{comment}{!character(len=7),\ parameter\ ::\ bright\_str\ =\ "{}bright\ "{}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !\ dark\ terminal\ theme}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00291}00291\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{character(len=0)},\ \textcolor{keywordtype}{parameter}\ ::\ bright\_str\ =\ \textcolor{stringliteral}{"{}"{}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ light\ terminal\ theme}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00292}00292\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{character(len=max\_str\_ln)}\ ::\ output\_str\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ output\ string}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00293}00293\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{character(len=max\_str\_ln)}\ ::\ time\_str\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ time\ string}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00294}00294\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{character(len=max\_str\_ln)}\ ::\ header\_str\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ header\ string}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00295}00295\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{character(len=max\_str\_ln)}\ ::\ input\_str\_loc\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ local\ input\ string}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00296}00296\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{character(len=max\_str\_ln)},\ \textcolor{keywordtype}{allocatable}\ ::\ temp\_output\_loc(:)\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ local\ temporary\ output}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00297}00297\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer}\ ::\ id,\ i\_part\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ counters}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00298}00298\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer}\ ::\ max\_len\_part,\ num\_parts,\ st\_part,\ en\_part\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ variables\ controlling\ strings}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00299}00299\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{logical}\ ::\ ignore\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ normally,\ everybody\ but\ group\ master\ is\ ignored}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00300}00300\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{logical}\ ::\ error\_loc\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ local\ error}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00301}00301\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{logical}\ ::\ warning\_loc\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ local\ warning}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00302}00302\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{logical}\ ::\ alert\_loc\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ local\ alert}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00303}00303\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer}\ ::\ istat\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ status}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00304}00304\ \textcolor{preprocessor}{\#if\ ldebug}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00305}00305\ \textcolor{preprocessor}{}\ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer}\ ::\ mem\_usage\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ memory\ usage}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00306}00306\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer(kind=8)}\ ::\ clock\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ current\ clock}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00307}00307\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00308}00308\ \textcolor{preprocessor}{}\ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00309}00309\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ bypass\ output\ if\ no\_output}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00310}00310\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\doxymbox{\hyperlink{namespacenum__vars_a324342d6240045750e38ef545801c49d}{no\_output}})\ \textcolor{keywordflow}{return}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00311}00311\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00312}00312\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ setup\ ignore,\ error,\ warning\ and\ alert}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00313}00313\ \ \ \ \ \ \ \ \ ignore\ =\ .true.\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ ignore\ by\ default}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00314}00314\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\doxymbox{\hyperlink{namespacenum__vars_ab47aa91445feaedb05ac9d1a584664fe}{rank}}.eq.0)\ ignore\ =\ .false.\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ master\ process\ can\ output}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00315}00315\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\textcolor{keyword}{present}(persistent))\ ignore\ =\ .not.persistent\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ persistent\ can\ override\ this}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00316}00316\ \ \ \ \ \ \ \ \ error\_loc\ =\ .false.}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00317}00317\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\textcolor{keyword}{present}(error))\ error\_loc\ =\ error}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00318}00318\ \ \ \ \ \ \ \ \ warning\_loc\ =\ .false.}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00319}00319\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\textcolor{keyword}{present}(warning))\ warning\_loc\ =\ warning}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00320}00320\ \ \ \ \ \ \ \ \ alert\_loc\ =\ .false.}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00321}00321\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\textcolor{keyword}{present}(alert))\ alert\_loc\ =\ alert}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00322}00322\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00323}00323\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ set\ local\ input\ string}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00324}00324\ \ \ \ \ \ \ \ \ input\_str\_loc\ =\ input\_str}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00325}00325\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00326}00326\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ prepend\ "{}WARNING:\ "{}\ if\ warning}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00327}00327\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (warning\_loc)\ input\_str\_loc\ =\ \textcolor{stringliteral}{'WARNING:\ '}//trim(input\_str\_loc)}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00328}00328\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00329}00329\ \textcolor{preprocessor}{\#if\ ldebug}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00330}00330\ \textcolor{preprocessor}{}\ \ \ \ \ \ \ \ \textcolor{comment}{!\ memory\ usage}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00331}00331\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\doxymbox{\hyperlink{namespacenum__vars_a28bf4f706f43af630ecc697dec01654c}{print\_mem\_usage}})\ \textcolor{keywordflow}{then}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00332}00332\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ increment\ counter}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00333}00333\ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{namespacenum__vars_a7f93ac44620a69373a76d591fa8507a2}{mem\_usage\_count}}\ =\ \doxymbox{\hyperlink{namespacenum__vars_a7f93ac44620a69373a76d591fa8507a2}{mem\_usage\_count}}\ +\ 1}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00334}00334\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00335}00335\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ get\ memory\ usage}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00336}00336\ \ \ \ \ \ \ \ \ \ \ \ \ mem\_usage\ =\ \doxymbox{\hyperlink{namespacemessages_a82dddaab795b78b3d39e1ff1aab2f665}{get\_mem\_usage}}()}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00337}00337\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00338}00338\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ append\ count\ and\ memory\ usage\ in\ MegaBytes}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00339}00339\ \ \ \ \ \ \ \ \ \ \ \ \ input\_str\_loc\ =\ trim(input\_str\_loc)//\textcolor{stringliteral}{'\ -\/\ ['}//\&}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00340}00340\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&trim(\doxymbox{\hyperlink{namespacestr__utilities_a0b97e51770725a3e98ed393d26681414}{i2str}}(\doxymbox{\hyperlink{namespacenum__vars_a7f93ac44620a69373a76d591fa8507a2}{mem\_usage\_count}}))//\textcolor{stringliteral}{':\ '}//\&}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00341}00341\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&trim(\doxymbox{\hyperlink{namespacestr__utilities_a0b97e51770725a3e98ed393d26681414}{i2str}}(mem\_usage))//\textcolor{stringliteral}{'kB]'}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00342}00342\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00343}00343\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ get\ clock}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00344}00344\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }system\_clock(clock)}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00345}00345\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00346}00346\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ write\ rank,\ count,\ time,\ memory\ usage\ to\ file\ if\ not\ temp\_output}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00347}00347\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (.not.\doxymbox{\hyperlink{namespacemessages_ace8877914cfa5253cc002da0f387446a}{temp\_output\_active}})\ \textcolor{keywordflow}{then}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00348}00348\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{open}(unit=\doxymbox{\hyperlink{namespacenum__vars_a606c68d407ec135c105f0501c224ea1b}{mem\_usage\_i}},file=\doxymbox{\hyperlink{namespacenum__vars_a7548fedc0d8f3102844aded2e6c11f82}{prog\_name}}//\textcolor{stringliteral}{'\_'}//\&}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00349}00349\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&trim(\doxymbox{\hyperlink{namespacenum__vars_a88d78503df095a1c19b851caf2d889ba}{mem\_usage\_name}})//\textcolor{stringliteral}{'.dat'},status=\textcolor{stringliteral}{'old'},\&}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00350}00350\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&position=\textcolor{stringliteral}{'append'},iostat=istat)}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00351}00351\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (istat.eq.0)\ \textcolor{keywordflow}{then}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00352}00352\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{write}(\doxymbox{\hyperlink{namespacenum__vars_a606c68d407ec135c105f0501c224ea1b}{mem\_usage\_i}},\textcolor{stringliteral}{"{}(1X,2I10,I21,I10,2ES23.16)"{}},\&}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00353}00353\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&iostat=istat)\ \&}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00354}00354\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&\doxymbox{\hyperlink{namespacenum__vars_ab47aa91445feaedb05ac9d1a584664fe}{rank}},\ \doxymbox{\hyperlink{namespacenum__vars_a7f93ac44620a69373a76d591fa8507a2}{mem\_usage\_count}},\ clock-\/\doxymbox{\hyperlink{namespacenum__vars_a70922471370a77597325ce9ef7b897a2}{time\_start}},\ mem\_usage,\ \&}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00355}00355\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&\doxymbox{\hyperlink{namespacenum__vars_ae50396b7028248358850b4524cf84433}{max\_tot\_mem}}*1000,\ \doxymbox{\hyperlink{namespacenum__vars_af86827817455d27248f5660c3d616283}{max\_x\_mem}}*1000}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00356}00356\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{close}(unit=\doxymbox{\hyperlink{namespacenum__vars_a606c68d407ec135c105f0501c224ea1b}{mem\_usage\_i}},iostat=istat)}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00357}00357\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ end\ if}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00358}00358\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ \ \ \ \ end\ if}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00359}00359\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ end\ if}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00360}00360\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00361}00361\ \textcolor{preprocessor}{}\ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00362}00362\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (.not.ignore)\ \textcolor{keywordflow}{then}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ only\ group\ master\ (=\ global\ master\ if\ no\ groups)\ or\ persistent}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00363}00363\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ set\ local\ error}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00364}00364\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00365}00365\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ Divide\ the\ input\ string\ length\ by\ the\ max\_str\_ln\ and\ loop\ over\ the}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00366}00366\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ different\ parts}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00367}00367\ \ \ \ \ \ \ \ \ \ \ \ \ max\_len\_part\ =\ \doxymbox{\hyperlink{namespacenum__vars_a3ff2bb983ee80a6735277d6789e6ce7c}{max\_str\_ln}}-\/(\doxymbox{\hyperlink{namespacemessages_a36521a46e57da1d3be83019abdff132e}{lvl}}-\/1)*len(\doxymbox{\hyperlink{namespacemessages_ab1101c3acf2edc71877d4aa71aa3d931}{lvl\_sep}})\ -\/\ len(\doxymbox{\hyperlink{namespacemessages_abeb2abf0ac1d1fb4f09d881eb57b3dae}{time\_sep}})\ \ \ \ \ \ \textcolor{comment}{!\ max\ length\ of\ a\ part\ including\ time\ part}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00368}00368\ \ \ \ \ \ \ \ \ \ \ \ \ num\_parts\ =\ (len(trim(input\_str\_loc))-\/1)/(max\_len\_part)\ +\ 1\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ how\ many\ parts\ there\ are}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00369}00369\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{do}\ i\_part\ =\ 1,\ num\_parts}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00370}00370\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ construct\ input\ string\ for\ the\ appropriate\ level}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00371}00371\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ st\_part\ =\ (i\_part-\/1)*max\_len\_part+1\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ index\ of\ start\ of\ this\ part}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00372}00372\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (i\_part.lt.num\_parts)\ \textcolor{keywordflow}{then}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ index\ of\ end\ of\ this\ part}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00373}00373\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ en\_part\ =\ i\_part*max\_len\_part\ }
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00374}00374\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ last\ part\ is\ shorter}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00375}00375\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ en\_part\ =\ len(trim(input\_str\_loc))}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00376}00376\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ end\ if}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00377}00377\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ output\_str\ =\ input\_str\_loc(st\_part:en\_part)}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00378}00378\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }format\_str(\doxymbox{\hyperlink{namespacemessages_a36521a46e57da1d3be83019abdff132e}{lvl}},output\_str)}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00379}00379\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }get\_time\_str(time\_str)}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00380}00380\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00381}00381\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ construct\ header\ string\ of\ equal\ length\ as\ output\ strength}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00382}00382\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ header\_str\ =\ \textcolor{stringliteral}{''}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00383}00383\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{do}\ id\ =\ 1,\ len(trim(output\_str))\ +\ len(trim(time\_str))\ +\ 1\ -\/\ \&}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00384}00384\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&len(\doxymbox{\hyperlink{namespacemessages_abeb2abf0ac1d1fb4f09d881eb57b3dae}{time\_sep}})\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ not\ including\ time\ part,\ 1\ for\ the\ space}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00385}00385\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ header\_str\ =\ \ trim(header\_str)\ //\ \textcolor{stringliteral}{'-\/'}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00386}00386\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ end\ do}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00387}00387\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ header\_str\ =\ \ \textcolor{stringliteral}{'\ \ \ \ \ \ \ \ \ \ '}//trim(header\_str)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ number\ of\ spaces\ matches\ time\ string}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00388}00388\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00389}00389\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ write\ output\ to\ file\ output\_i\ or\ to\ temporary\ output}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00390}00390\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\doxymbox{\hyperlink{namespacemessages_ace8877914cfa5253cc002da0f387446a}{temp\_output\_active}})\ \textcolor{keywordflow}{then}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ temporary\ output\ to\ internal\ variable\ temp\_output}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00391}00391\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ back\ up\ previous\ temporary\ output\ in\ local\ variable}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00392}00392\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{allocate}(temp\_output\_loc(\textcolor{keyword}{size}(\doxymbox{\hyperlink{namespacemessages_a07070e72f15146af24816c39eea17088}{temp\_output}})))}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00393}00393\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ temp\_output\_loc\ =\ \doxymbox{\hyperlink{namespacemessages_a07070e72f15146af24816c39eea17088}{temp\_output}}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00394}00394\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00395}00395\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ reallocate\ temp\_output}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00396}00396\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{deallocate}(\doxymbox{\hyperlink{namespacemessages_a07070e72f15146af24816c39eea17088}{temp\_output}})}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00397}00397\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\doxymbox{\hyperlink{namespacemessages_a36521a46e57da1d3be83019abdff132e}{lvl}}.eq.1)\ \textcolor{keywordflow}{then}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ first\ level}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00398}00398\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{allocate}(\doxymbox{\hyperlink{namespacemessages_a07070e72f15146af24816c39eea17088}{temp\_output}}(\textcolor{keyword}{size}(temp\_output\_loc)+3))}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00399}00399\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{namespacemessages_a07070e72f15146af24816c39eea17088}{temp\_output}}(1:\textcolor{keyword}{size}(temp\_output\_loc))\ =\ temp\_output\_loc}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00400}00400\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{namespacemessages_a07070e72f15146af24816c39eea17088}{temp\_output}}(\textcolor{keyword}{size}(temp\_output\_loc)+1)\ =\ trim(header\_str)\ \textcolor{comment}{!\ first\ level\ gets\ extra\ lines}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00401}00401\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{namespacemessages_a07070e72f15146af24816c39eea17088}{temp\_output}}(\textcolor{keyword}{size}(temp\_output\_loc)+2)\ =\ trim(time\_str)//\&}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00402}00402\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&\textcolor{stringliteral}{'\ '}//trim(output\_str)}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00403}00403\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{namespacemessages_a07070e72f15146af24816c39eea17088}{temp\_output}}(\textcolor{keyword}{size}(temp\_output\_loc)+3)\ =\ trim(header\_str)}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00404}00404\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ other\ levels\ only\ need\ one\ line}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00405}00405\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{allocate}(\doxymbox{\hyperlink{namespacemessages_a07070e72f15146af24816c39eea17088}{temp\_output}}(\textcolor{keyword}{size}(temp\_output\_loc)+1))}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00406}00406\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{namespacemessages_a07070e72f15146af24816c39eea17088}{temp\_output}}(1:\textcolor{keyword}{size}(temp\_output\_loc))\ =\ temp\_output\_loc}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00407}00407\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{namespacemessages_a07070e72f15146af24816c39eea17088}{temp\_output}}(\textcolor{keyword}{size}(temp\_output\_loc)+1)\ =\ trim(time\_str)//\&}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00408}00408\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&\textcolor{stringliteral}{'\ '}//output\_str}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00409}00409\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ end\ if}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00410}00410\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00411}00411\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ deallocate\ local\ variable}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00412}00412\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{deallocate}(temp\_output\_loc)}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00413}00413\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ normal\ output\ to\ file\ output\_i}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00414}00414\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\doxymbox{\hyperlink{namespacenum__vars_aec5ffb30114a8af11226208844d12998}{output\_i}}.ne.0)\ \textcolor{keywordflow}{then}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00415}00415\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\doxymbox{\hyperlink{namespacemessages_a36521a46e57da1d3be83019abdff132e}{lvl}}.eq.1)\ \textcolor{keyword}{write}(\doxymbox{\hyperlink{namespacenum__vars_aec5ffb30114a8af11226208844d12998}{output\_i}},\textcolor{stringliteral}{"{}(1X,A)"{}},iostat=istat)\ \&}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00416}00416\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&trim(header\_str)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ first\ level\ gets\ extra\ lines}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00417}00417\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{write}(\doxymbox{\hyperlink{namespacenum__vars_aec5ffb30114a8af11226208844d12998}{output\_i}},\textcolor{stringliteral}{"{}(1X,A)"{}},iostat=istat)\ \&}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00418}00418\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&trim(time\_str)//\textcolor{stringliteral}{'\ '}//trim(output\_str)}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00419}00419\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\doxymbox{\hyperlink{namespacemessages_a36521a46e57da1d3be83019abdff132e}{lvl}}.eq.1)\ \textcolor{keyword}{write}(\doxymbox{\hyperlink{namespacenum__vars_aec5ffb30114a8af11226208844d12998}{output\_i}},\textcolor{stringliteral}{"{}(1X,A)"{}},iostat=istat)\ \&}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00420}00420\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&trim(header\_str)}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00421}00421\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ end\ if}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00422}00422\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ end\ if}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00423}00423\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00424}00424\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ also\ write\ output\ to\ screen}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00425}00425\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (error\_loc)\ \textcolor{keywordflow}{then}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00426}00426\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }write\_formatted(\textcolor{stringliteral}{'\ '}//trim(time\_str)//\textcolor{stringliteral}{'\ '},\&}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00427}00427\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&\textcolor{stringliteral}{'background\_red'},trim(output\_str),\textcolor{stringliteral}{'italic\ underline'})}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00428}00428\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (warning\_loc\ .or.\ alert\_loc)\ \textcolor{keywordflow}{then}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00429}00429\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }write\_formatted(\textcolor{stringliteral}{'\ '}//trim(time\_str)//\textcolor{stringliteral}{'\ '},\&}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00430}00430\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&\textcolor{stringliteral}{'background\_cyan'},trim(output\_str),\textcolor{stringliteral}{'italic\ underline'})}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00431}00431\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (\doxymbox{\hyperlink{namespacemessages_a36521a46e57da1d3be83019abdff132e}{lvl}}.eq.1)\ \textcolor{keywordflow}{then}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00432}00432\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }write\_formatted(\textcolor{stringliteral}{'\ '}//trim(header\_str),\&}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00433}00433\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&bright\_str//\textcolor{stringliteral}{'green'})}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00434}00434\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }write\_formatted(\textcolor{stringliteral}{'\ '}//trim(time\_str)//\textcolor{stringliteral}{'\ '},\textcolor{stringliteral}{''},\&}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00435}00435\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&trim(output\_str),bright\_str//\textcolor{stringliteral}{'green'})}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00436}00436\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }write\_formatted(\textcolor{stringliteral}{'\ '}//trim(header\_str),\&}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00437}00437\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&bright\_str//\textcolor{stringliteral}{'green'})}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00438}00438\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (\doxymbox{\hyperlink{namespacemessages_a36521a46e57da1d3be83019abdff132e}{lvl}}.eq.2)\ \textcolor{keywordflow}{then}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00439}00439\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }write\_formatted(\textcolor{stringliteral}{'\ '}//trim(time\_str)//\textcolor{stringliteral}{'\ '},\textcolor{stringliteral}{''},\&}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00440}00440\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&trim(output\_str),bright\_str//\textcolor{stringliteral}{'blue'})}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00441}00441\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00442}00442\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{write}(*,\textcolor{stringliteral}{"{}(1X,A)"{}},iostat=istat)\ \&}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00443}00443\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&trim(time\_str)//\textcolor{stringliteral}{'\ '}//trim(output\_str)}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00444}00444\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ end\ if}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00445}00445\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ \ \ \ \ end\ do}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00446}00446\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ end\ if}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00447}00447\ \ \ \ \ \textcolor{keyword}{contains}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00448}00448\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ formats\ the\ string,\ merging\ time\ information\ with\ the\ string.}\textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00449}00449\ \textcolor{comment}{\ \ \ \ \ \ \ \ !>\ \(\backslash\)private}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00450}00450\ \ \ \ \ \ \ \ \ \textcolor{keyword}{subroutine\ }format\_str(lvl,str)}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00451}00451\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ input\ /\ output}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00452}00452\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer},\ \textcolor{keywordtype}{intent(in)}\ ::\ \doxymbox{\hyperlink{namespacemessages_a36521a46e57da1d3be83019abdff132e}{lvl}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ lvl\ of\ indentation}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00453}00453\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{character(len=*)},\ \textcolor{keywordtype}{intent(inout)}\ ::\ str\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ string\ that\ is\ to\ be\ formatted\ for\ the\ lvl}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00454}00454\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00455}00455\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ local\ variables}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00456}00456\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer}\ ::\ id\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ counter}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00457}00457\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00458}00458\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{do}\ id\ =\ 1,\doxymbox{\hyperlink{namespacemessages_a36521a46e57da1d3be83019abdff132e}{lvl}}-\/1\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ start\ with\ lvl\ 1}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00459}00459\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ str\ =\ \doxymbox{\hyperlink{namespacemessages_ab1101c3acf2edc71877d4aa71aa3d931}{lvl\_sep}}\ //\ trim(str)}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00460}00460\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ \ \ \ \ end\ do}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00461}00461\ \ \ \ \ \ \ \ \ \textcolor{keyword}{end\ subroutine\ }format\_str}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00462}00462\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00463}00463\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ prints\ a\ string\ with\ time\ information}\textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00464}00464\ \textcolor{comment}{\ \ \ \ \ \ \ \ !>\ \(\backslash\)private}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00465}00465\ \ \ \ \ \ \ \ \ \textcolor{keyword}{subroutine\ }get\_time\_str(time\_str)}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00466}00466\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ input\ /\ output}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00467}00467\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{character(len=*)},\ \textcolor{keywordtype}{intent(inout)}\ ::\ time\_str\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ string\ with\ time\ information}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00468}00468\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00469}00469\ \ \ \ \ \ \ \ \ \ \ \ \ time\_str\ =\ get\_clock()//\textcolor{stringliteral}{':'}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00470}00470\ \ \ \ \ \ \ \ \ \textcolor{keyword}{end\ subroutine\ }get\_time\_str}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00471}00471\ \ \ \ \ \textcolor{keyword}{end\ subroutine\ }\doxymbox{\hyperlink{namespacemessages_aa4a8d01563e92558e8a0875b075ec54c}{writo}}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00472}00472\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00473}00473\ \textcolor{comment}{\ \ \ \ !>\ Print\ an\ array\ of\ dimension\ 2\ on\ the\ screen.}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00474}\doxymbox{\hyperlink{namespacemessages_a80797cedef6112b8dccaeda431f0c610}{00474}}\ \ \ \ \ \textcolor{keyword}{subroutine\ }\doxymbox{\hyperlink{namespacemessages_a80797cedef6112b8dccaeda431f0c610}{print\_ar\_2}}(arr)}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00475}00475\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ input\ /\ output}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00476}00476\ \textcolor{keywordtype}{\ \ \ \ \ \ \ \ real}(dp),\ \textcolor{keywordtype}{intent(in)}\ ::\ arr(:,:)\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !<\ array\ to\ be\ printed}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00477}00477\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00478}00478\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer}\ ::\ id}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00479}00479\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00480}00480\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{do}\ id=1,\textcolor{keyword}{size}(arr,1)}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00481}00481\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_a5686118397930f505259225f3688216b}{print\_ar\_1}}(arr(id,:))}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00482}00482\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ end\ do}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00483}00483\ \ \ \ \ \textcolor{keyword}{end\ subroutine\ }\doxymbox{\hyperlink{namespacemessages_a80797cedef6112b8dccaeda431f0c610}{print\_ar\_2}}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00484}00484\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00485}00485\ \textcolor{comment}{\ \ \ \ !>\ Print\ an\ array\ of\ dimension\ 1\ on\ the\ screen.}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00486}\doxymbox{\hyperlink{namespacemessages_a5686118397930f505259225f3688216b}{00486}}\ \ \ \ \ \textcolor{keyword}{subroutine\ }\doxymbox{\hyperlink{namespacemessages_a5686118397930f505259225f3688216b}{print\_ar\_1}}(arr)}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00487}00487\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ input\ /\ output}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00488}00488\ \textcolor{keywordtype}{\ \ \ \ \ \ \ \ real}(dp),\ \textcolor{keywordtype}{intent(in)}\ ::\ arr(:)\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !<\ array\ to\ be\ printed}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00489}00489\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00490}00490\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ local\ variables}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00491}00491\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer}\ ::\ id}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00492}00492\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{character(len=2*max\_str\_ln)}\ ::\ output\_str\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ holds\ string\ for\ a\ range\ of\ values}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00493}00493\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{character(len=14)}\ ::\ var\_str\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ holds\ string\ for\ one\ value,\ for\ last\ value}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00494}00494\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer}\ ::\ vlen\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ space\ for\ one\ variable\ +\ leading\ space}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00495}00495\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer}\ ::\ n\_free\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ how\ much\ space\ free}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00496}00496\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{logical}\ ::\ str\_full\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ whether\ the\ output\_str\ is\ full}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00497}00497\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer}\ ::\ istat\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ status}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00498}00498\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00499}00499\ \ \ \ \ \ \ \ \ output\_str\ =\ \textcolor{stringliteral}{'|'}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00500}00500\ \ \ \ \ \ \ \ \ str\_full\ =\ .false.}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00501}00501\ \ \ \ \ \ \ \ \ id\ =\ 1}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00502}00502\ \ \ \ \ \ \ \ \ vlen\ =\ 10\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ 9\ for\ variable\ and\ 1\ for\ space}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00503}00503\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00504}00504\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{do}\ \textcolor{keywordflow}{while}(.not.str\_full\ .and.\ id.le.\textcolor{keyword}{size}(arr))}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00505}00505\ \ \ \ \ \ \ \ \ \ \ \ \ var\_str\ =\ \textcolor{stringliteral}{''}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00506}00506\ \ \ \ \ \ \ \ \ \ \ \ \ n\_free\ =\ len(output\_str)\ -\/\ len(trim(output\_str))\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ how\ many\ characters\ free}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00507}00507\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00508}00508\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (n\_free.ge.2*vlen+6)\ \textcolor{keywordflow}{then}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ >2\ fit}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00509}00509\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{continue}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00510}00510\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (2*vlen+2.le.n\_free\ .and.\ n\_free.lt.2*vlen+6\ .and.\ \&\ \ \ \ \ \ \ \ \textcolor{comment}{!\ special\ case:\ maximum\ 2\ left\ -\/>\ all\ fit}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00511}00511\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&id+1.ge.\textcolor{keyword}{size}(arr))\ \textcolor{keywordflow}{then}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00512}00512\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{continue}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00513}00513\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (vlen+6.le.n\_free\ .and.\ n\_free.lt.2*vlen+6)\ \textcolor{keywordflow}{then}\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ 1\ fit,\ rest\ truncated}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00514}00514\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (id.ge.\textcolor{keyword}{size}(arr))\ \textcolor{keywordflow}{then}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ only\ 1\ left\ -\/>\ all\ fit}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00515}00515\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{continue}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00516}00516\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ truncate}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00517}00517\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ str\_full\ =\ .true.}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00518}00518\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ end\ if}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00519}00519\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (vlen+2.le.n\_free\ .and.\ n\_free.lt.vlen+6\ .and.\ \&\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ special\ case:\ maximum\ 1\ left\ -\/>\ all\ fit}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00520}00520\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&id.eq.\textcolor{keyword}{size}(arr))\ \textcolor{keywordflow}{then}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00521}00521\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{continue}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00522}00522\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ this\ should\ never\ be\ reached}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00523}00523\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_aa4a8d01563e92558e8a0875b075ec54c}{writo}}(\textcolor{stringliteral}{'not\ enough\ room\ to\ display\ variable.\ Something\ \&}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00524}00524\ \textcolor{stringliteral}{}\textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&went\ wrong'},warning=.true.)}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00525}00525\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00526}00526\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ \ \ \ \ end\ if}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00527}00527\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00528}00528\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00529}00529\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (str\_full)\ \textcolor{keywordflow}{then}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ truncate}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00530}00530\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{write}\ (var\_str,\ \textcolor{stringliteral}{'(ES9.2)'})\ arr(\textcolor{keyword}{size}(arr))\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ last\ variable}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00531}00531\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ var\_str\ =\ \textcolor{stringliteral}{'\ ...\ '}\ //\ trim(var\_str)}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00532}00532\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ }
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00533}00533\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{write}\ (var\_str,\ \textcolor{stringliteral}{'(ES9.2)'})\ arr(id)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ current\ variable}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00534}00534\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ var\_str\ =\ \textcolor{stringliteral}{'\ '}\ //\ trim(var\_str)}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00535}00535\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ \ \ \ \ end\ if}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00536}00536\ \ \ \ \ \ \ \ \ \ \ \ \ output\_str\ =\ trim(output\_str)\ //\ trim(var\_str)}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00537}00537\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00538}00538\ \ \ \ \ \ \ \ \ \ \ \ \ id\ =\ id+1}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00539}00539\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ end\ do}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00540}00540\ \ \ \ \ \ \ \ \ output\_str\ =\ trim(output\_str)\ //\ \textcolor{stringliteral}{'\ |'}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00541}00541\ \ \ \ \ \ \ \ \ \textcolor{keyword}{write}(*,\textcolor{stringliteral}{'(1X,A)'},iostat=istat)\ output\_str}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00542}00542\ \ \ \ \ \textcolor{keyword}{end\ subroutine\ }\doxymbox{\hyperlink{namespacemessages_a5686118397930f505259225f3688216b}{print\_ar\_1}}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00543}00543\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00544}00544\ \textcolor{preprocessor}{\#if\ ldebug}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00545}00545\ \textcolor{preprocessor}{}\textcolor{comment}{\ \ \ \ !>\ Returns\ the\ memory\ usage\ in\ kilobytes.}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00546}00546\ \textcolor{comment}{\ \ \ \ !!\ }}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00547}00547\ \textcolor{comment}{\ \ \ \ !!\ Based\ on}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00548}00548\ \textcolor{comment}{\ \ \ \ !!\ <http://stackoverflow.com/questions/22028571/track-\/memory-\/usage-\/in-\/fortran-\/90>}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00549}00549\ \textcolor{comment}{\ \ \ \ !!}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00550}00550\ \textcolor{comment}{\ \ \ \ !!\ \(\backslash\)note\ Only\ works\ under\ linux.}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00551}00551\ \textcolor{comment}{\ \ \ \ !!}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00552}00552\ \textcolor{comment}{\ \ \ \ !!\ \(\backslash\)ldebug}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00553}\doxymbox{\hyperlink{namespacemessages_a82dddaab795b78b3d39e1ff1aab2f665}{00553}}\ \ \ \ \ \textcolor{keyword}{integer\ }\textcolor{keyword}{function\ }\doxymbox{\hyperlink{namespacemessages_a82dddaab795b78b3d39e1ff1aab2f665}{get\_mem\_usage}}()\ \textcolor{keyword}{result}(mem)}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00554}00554\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{use\ }\doxymbox{\hyperlink{namespacenum__vars}{num\_vars}},\ \textcolor{keywordtype}{only}:\ \doxymbox{\hyperlink{namespacenum__vars_a606c68d407ec135c105f0501c224ea1b}{mem\_usage\_i}}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00555}00555\ \textcolor{preprocessor}{\#if\ (\ lwith\_intel\ \&\&\ !lwith\_gnu)}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00556}00556\ \textcolor{preprocessor}{}\ \ \ \ \ \ \ \ \textcolor{keywordtype}{use\ }ifport}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00557}00557\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00558}00558\ \textcolor{preprocessor}{}\ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00559}00559\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ local\ variables}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00560}00560\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{character(len=200)}::\ filename=\textcolor{stringliteral}{'\ '}\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !<\ name\ of\ file\ where\ memory\ stored}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00561}00561\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{character(len=80)}\ ::\ line\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !<\ line\ of\ memory\ file}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00562}00562\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{character(len=8)}\ \ ::\ pid\_char=\textcolor{stringliteral}{'\ '}\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !<\ process\ ID\ in\ string}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00563}00563\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{logical}\ ::\ exists\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !<\ whether\ memory\ file\ exists}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00564}00564\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer}\ ::\ pid\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !<\ process\ ID}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00565}00565\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer}\ ::\ istat\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !<\ status}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00566}00566\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00567}00567\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ initiazlie\ mem\ to\ negative\ number}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00568}00568\ \ \ \ \ \ \ \ \ mem\ =\ -\/1}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00569}00569\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00570}00570\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ get\ process\ ID\ and\ write\ it\ in\ string}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00571}00571\ \ \ \ \ \ \ \ \ pid\ =\ getpid()}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00572}00572\ \ \ \ \ \ \ \ \ \textcolor{keyword}{write}(pid\_char,\textcolor{stringliteral}{'(I8)'})\ pid}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00573}00573\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00574}00574\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ set\ up\ file\ name}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00575}00575\ \ \ \ \ \ \ \ \ filename=\textcolor{stringliteral}{'/proc/'}//trim(adjustl(pid\_char))//\textcolor{stringliteral}{'/status'}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00576}00576\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00577}00577\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ inquire\ about\ memory\ file}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00578}00578\ \ \ \ \ \ \ \ \ \textcolor{keyword}{inquire}\ (file=filename,exist=exists)}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00579}00579\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (.not.exists)\ \textcolor{keywordflow}{return}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00580}00580\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00581}00581\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ open\ and\ read\ memory\ file}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00582}00582\ \ \ \ \ \ \ \ \ \textcolor{keyword}{open}(unit=\doxymbox{\hyperlink{namespacenum__vars_a606c68d407ec135c105f0501c224ea1b}{mem\_usage\_i}}-\/1,file=filename,action=\textcolor{stringliteral}{'read'},iostat=istat)}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00583}00583\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (istat.ne.0)\ \textcolor{keywordflow}{return}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00584}00584\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{do}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00585}00585\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{read}\ (\doxymbox{\hyperlink{namespacenum__vars_a606c68d407ec135c105f0501c224ea1b}{mem\_usage\_i}}-\/1,\textcolor{stringliteral}{'(A)'},iostat=istat)\ line}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00586}00586\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (istat.ne.0)\ \textcolor{keywordflow}{return}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00587}00587\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (line(1:6).eq.\textcolor{stringliteral}{'VmRSS:'})\ \textcolor{keywordflow}{then}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00588}00588\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{read}\ (line(7:),*)\ mem}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00589}00589\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{exit}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00590}00590\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ \ \ \ \ endif}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00591}00591\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ end\ do}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00592}00592\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00593}00593\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ close\ memory\ file}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00594}00594\ \ \ \ \ \ \ \ \ \textcolor{keyword}{close}(\doxymbox{\hyperlink{namespacenum__vars_a606c68d407ec135c105f0501c224ea1b}{mem\_usage\_i}}-\/1)}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00595}00595\ \ \ \ \ \textcolor{keyword}{end\ function\ }\doxymbox{\hyperlink{namespacemessages_a82dddaab795b78b3d39e1ff1aab2f665}{get\_mem\_usage}}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00596}00596\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{messages_8f90_source_l00597}00597\ \textcolor{preprocessor}{}\textcolor{keyword}{end\ module\ }\doxymbox{\hyperlink{namespacemessages}{messages}}}
+
+\end{DoxyCode}

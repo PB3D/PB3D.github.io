@@ -1,30 +1,33 @@
-\hypertarget{interfacenum__utilities_1_1calc__int}{}\doxysection{num\+\_\+utilities\+::calc\+\_\+int Interface Reference}
-\label{interfacenum__utilities_1_1calc__int}\index{num\_utilities::calc\_int@{num\_utilities::calc\_int}}
+\doxysection{num\+\_\+utilities::\+calc\+\_\+int Interface Reference}
+\hypertarget{interfacenum__utilities_1_1calc__int}{}\label{interfacenum__utilities_1_1calc__int}\index{num\_utilities::calc\_int@{num\_utilities::calc\_int}}
 
 
 Integrates a function using the trapezoidal rule.  
 
 
-\doxysubsection*{Public Member Functions}
+\doxysubsubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-integer function \mbox{\hyperlink{interfacenum__utilities_1_1calc__int_a7092121850ec336bfb00da92981bcfc7}{calc\+\_\+int\+\_\+eqd}} (var, step\+\_\+size, var\+\_\+int)
+integer function \doxymbox{\hyperlink{interfacenum__utilities_1_1calc__int_a7092121850ec336bfb00da92981bcfc7}{calc\+\_\+int\+\_\+eqd}} (var, step\+\_\+size, var\+\_\+int)
 \begin{DoxyCompactList}\small\item\em equidistant version \end{DoxyCompactList}\item 
-integer function \mbox{\hyperlink{interfacenum__utilities_1_1calc__int_af8120d958ad202477f2ad33369591d45}{calc\+\_\+int\+\_\+reg}} (var, x, var\+\_\+int)
+integer function \doxymbox{\hyperlink{interfacenum__utilities_1_1calc__int_af8120d958ad202477f2ad33369591d45}{calc\+\_\+int\+\_\+reg}} (var, x, var\+\_\+int)
 \begin{DoxyCompactList}\small\item\em regular version \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
 Integrates a function using the trapezoidal rule. 
 
-This function can be defined on an equidistant grid or a regular one\+:
+This function can be defined on an equidistant grid or a regular one:\+
 \begin{DoxyItemize}
-\item For an equidistant grid, \[\int_1^n f(x) dx = \sum_{k=1}^{n-1} {\left(f(k+1)+f(k)\right) \frac{\Delta_x}{2}},\] is used, with $n$ the number of points, which are assumed to be equidistant with a given step size $Delta_x$.
-\item For a regular grid, \[\int_1^n f(x) dx = \sum_{k=1}^{n-1} {\left(f(k+1)+f(k)\right) \frac{x(k+1)-x(k)}{2}}, \] is used, with $n$ the number of points.
+\item For an equidistant grid,  \[\int_1^n f(x) dx = \sum_{k=1}^{n-1}
+                 {\left(f(k+1)+f(k)\right) \frac{\Delta_x}{2}},\] is used, with $n$ the number of points, which are assumed to be equidistant with a given step size $Delta_x$.
+\item For a regular grid,  \[\int_1^n f(x) dx = \sum_{k=1}^{n-1}
+                 {\left(f(k+1)+f(k)\right) \frac{x(k+1)-x(k)}{2}}, \] is used, with $n$ the number of points.
 \begin{DoxyItemize}
 \item Therefore, $n$ points have to be specified as well as $n$ values for the function to be integrated.
 \item They have to be given in ascending order but the step size does not have to be constant.
-\item This yields the following difference formula\+: \[\int_1^n f(x) dx = \int_1^{n-1} f(x) dx + \left(f(n)+f(n-1)\right) \frac{x(n)-x(n-1)}{2},\] which is used here
+\item This yields the following difference formula:\+  \[\int_1^n f(x) dx = \int_1^{n-1} f(x) dx +
+                 \left(f(n)+f(n-1)\right) \frac{x(n)-x(n-1)}{2},\] which is used here
 \end{DoxyItemize}
 \end{DoxyItemize}
 
@@ -36,16 +39,18 @@ ierr
 \end{DoxyReturn}
 
 
-Definition at line 160 of file num\+\_\+utilities.\+f90.
+Definition at line \doxymbox{\hyperlink{num__utilities_8f90_source_l00160}{160}} of file \doxymbox{\hyperlink{num__utilities_8f90_source}{num\+\_\+utilities.\+f90}}.
 
 
 
-\doxysubsection{Member Function/\+Subroutine Documentation}
-\mbox{\Hypertarget{interfacenum__utilities_1_1calc__int_a7092121850ec336bfb00da92981bcfc7}\label{interfacenum__utilities_1_1calc__int_a7092121850ec336bfb00da92981bcfc7}} 
-\index{num\_utilities::calc\_int@{num\_utilities::calc\_int}!calc\_int\_eqd@{calc\_int\_eqd}}
+\label{doc-func-members}
+\Hypertarget{interfacenum__utilities_1_1calc__int_doc-func-members}
+\doxysubsection{Member Function/\+\+Subroutine Documentation}
+\Hypertarget{interfacenum__utilities_1_1calc__int_a7092121850ec336bfb00da92981bcfc7}\index{num\_utilities::calc\_int@{num\_utilities::calc\_int}!calc\_int\_eqd@{calc\_int\_eqd}}
 \index{calc\_int\_eqd@{calc\_int\_eqd}!num\_utilities::calc\_int@{num\_utilities::calc\_int}}
 \doxysubsubsection{\texorpdfstring{calc\_int\_eqd()}{calc\_int\_eqd()}}
-{\footnotesize\ttfamily integer function num\+\_\+utilities\+::calc\+\_\+int\+::calc\+\_\+int\+\_\+eqd (\begin{DoxyParamCaption}\item[{real(dp), dimension(\+:), intent(in)}]{var,  }\item[{real(dp), intent(in)}]{step\+\_\+size,  }\item[{real(dp), dimension(\+:), intent(inout)}]{var\+\_\+int }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \label{interfacenum__utilities_1_1calc__int_a7092121850ec336bfb00da92981bcfc7} 
+integer function num\+\_\+utilities::\+calc\+\_\+int::\+calc\+\_\+int\+\_\+eqd (\begin{DoxyParamCaption}\item[{real(dp), dimension(:\+), intent(in)}]{var}{, }\item[{real(dp), intent(in)}]{step\+\_\+size}{, }\item[{real(dp), dimension(:\+), intent(inout)}]{var\+\_\+int}{}\end{DoxyParamCaption})}
 
 
 
@@ -53,29 +58,29 @@ equidistant version
 
 
 \begin{DoxyParams}[1]{Parameters}
-\mbox{\texttt{ in,out}}  & {\em var\+\_\+int} & integrated variable \\
+\doxymbox{\texttt{in,out}}  & {\em var\+\_\+int} & integrated variable \\
 \hline
-\mbox{\texttt{ in}}  & {\em var} & variable to be integrated \\
+\doxymbox{\texttt{in}}  & {\em var} & variable to be integrated \\
 \hline
-\mbox{\texttt{ in}}  & {\em step\+\_\+size} & step size of abscissa \\
+\doxymbox{\texttt{in}}  & {\em step\+\_\+size} & step size of abscissa \\
 \hline
 \end{DoxyParams}
 
 
-Definition at line 327 of file num\+\_\+utilities.\+f90.
+Definition at line \doxymbox{\hyperlink{num__utilities_8f90_source_l00326}{326}} of file \doxymbox{\hyperlink{num__utilities_8f90_source}{num\+\_\+utilities.\+f90}}.
 
-Here is the call graph for this function\+:\nopagebreak
+Here is the call graph for this function:\+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{interfacenum__utilities_1_1calc__int_a7092121850ec336bfb00da92981bcfc7_cgraph}
 \end{center}
 \end{figure}
-\mbox{\Hypertarget{interfacenum__utilities_1_1calc__int_af8120d958ad202477f2ad33369591d45}\label{interfacenum__utilities_1_1calc__int_af8120d958ad202477f2ad33369591d45}} 
-\index{num\_utilities::calc\_int@{num\_utilities::calc\_int}!calc\_int\_reg@{calc\_int\_reg}}
+\Hypertarget{interfacenum__utilities_1_1calc__int_af8120d958ad202477f2ad33369591d45}\index{num\_utilities::calc\_int@{num\_utilities::calc\_int}!calc\_int\_reg@{calc\_int\_reg}}
 \index{calc\_int\_reg@{calc\_int\_reg}!num\_utilities::calc\_int@{num\_utilities::calc\_int}}
 \doxysubsubsection{\texorpdfstring{calc\_int\_reg()}{calc\_int\_reg()}}
-{\footnotesize\ttfamily integer function num\+\_\+utilities\+::calc\+\_\+int\+::calc\+\_\+int\+\_\+reg (\begin{DoxyParamCaption}\item[{real(dp), dimension(\+:), intent(in)}]{var,  }\item[{real(dp), dimension(\+:), intent(in)}]{x,  }\item[{real(dp), dimension(\+:), intent(inout)}]{var\+\_\+int }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \label{interfacenum__utilities_1_1calc__int_af8120d958ad202477f2ad33369591d45} 
+integer function num\+\_\+utilities::\+calc\+\_\+int::\+calc\+\_\+int\+\_\+reg (\begin{DoxyParamCaption}\item[{real(dp), dimension(:\+), intent(in)}]{var}{, }\item[{real(dp), dimension(:\+), intent(in)}]{x}{, }\item[{real(dp), dimension(:\+), intent(inout)}]{var\+\_\+int}{}\end{DoxyParamCaption})}
 
 
 
@@ -83,18 +88,18 @@ regular version
 
 
 \begin{DoxyParams}[1]{Parameters}
-\mbox{\texttt{ in,out}}  & {\em var\+\_\+int} & integrated variable \\
+\doxymbox{\texttt{in,out}}  & {\em var\+\_\+int} & integrated variable \\
 \hline
-\mbox{\texttt{ in}}  & {\em var} & variable to be integrated \\
+\doxymbox{\texttt{in}}  & {\em var} & variable to be integrated \\
 \hline
-\mbox{\texttt{ in}}  & {\em x} & abscissa \\
+\doxymbox{\texttt{in}}  & {\em x} & abscissa \\
 \hline
 \end{DoxyParams}
 
 
-Definition at line 286 of file num\+\_\+utilities.\+f90.
+Definition at line \doxymbox{\hyperlink{num__utilities_8f90_source_l00285}{285}} of file \doxymbox{\hyperlink{num__utilities_8f90_source}{num\+\_\+utilities.\+f90}}.
 
-Here is the call graph for this function\+:\nopagebreak
+Here is the call graph for this function:\+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode

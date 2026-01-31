@@ -1,0 +1,256 @@
+\doxysection{PB3\+D.\+f90}
+\hypertarget{PB3D_8f90_source}{}\label{PB3D_8f90_source}\index{/Users/toonweyens/Code/PB3D/PB3D.f90@{/Users/toonweyens/Code/PB3D/PB3D.f90}}
+\doxymbox{\hyperlink{PB3D_8f90}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{PB3D_8f90_source_l00001}00001\ \textcolor{comment}{!\ (from\ http://patorjk.com/software/taag/\ ANSI\ shadow)}}
+\DoxyCodeLine{\Hypertarget{PB3D_8f90_source_l00002}00002\ }
+\DoxyCodeLine{\Hypertarget{PB3D_8f90_source_l00003}00003\ \textcolor{comment}{!\ \ \ ██████╗\ ██████╗\ ██████╗\ ██████╗\ }}
+\DoxyCodeLine{\Hypertarget{PB3D_8f90_source_l00004}00004\ \textcolor{comment}{!\ \ \ ██╔══██╗██╔══██╗╚════██╗██╔══██╗}}
+\DoxyCodeLine{\Hypertarget{PB3D_8f90_source_l00005}00005\ \textcolor{comment}{!\ \ \ ██████╔╝██████╔╝\ █████╔╝██║\ \ ██║}}
+\DoxyCodeLine{\Hypertarget{PB3D_8f90_source_l00006}00006\ \textcolor{comment}{!\ \ \ ██╔═══╝\ ██╔══██╗\ ╚═══██╗██║\ \ ██║}}
+\DoxyCodeLine{\Hypertarget{PB3D_8f90_source_l00007}00007\ \textcolor{comment}{!\ \ \ ██║\ \ \ \ \ ██████╔╝██████╔╝██████╔╝}}
+\DoxyCodeLine{\Hypertarget{PB3D_8f90_source_l00008}00008\ \textcolor{comment}{!\ \ \ ╚═╝\ \ \ \ \ ╚═════╝\ ╚═════╝\ ╚═════╝\ }}
+\DoxyCodeLine{\Hypertarget{PB3D_8f90_source_l00009}00009\ }
+\DoxyCodeLine{\Hypertarget{PB3D_8f90_source_l00010}00010\ \textcolor{comment}{!-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/!}\textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{PB3D_8f90_source_l00011}00011\ \textcolor{comment}{!>\ \ Peeling\ Ballooning\ in\ 3D}}
+\DoxyCodeLine{\Hypertarget{PB3D_8f90_source_l00012}00012\ \textcolor{comment}{!-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/!}\textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{PB3D_8f90_source_l00013}00013\ \textcolor{comment}{!>\ \ \(\backslash\)author}}
+\DoxyCodeLine{\Hypertarget{PB3D_8f90_source_l00014}00014\ \textcolor{comment}{!!\ \ Toon\ Weyens,}}
+\DoxyCodeLine{\Hypertarget{PB3D_8f90_source_l00015}00015\ \textcolor{comment}{!!\ \ Contact:\ weyenst@gmail.com}}
+\DoxyCodeLine{\Hypertarget{PB3D_8f90_source_l00016}00016\ \textcolor{comment}{!-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/!}\textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{PB3D_8f90_source_l00017}00017\ \textcolor{comment}{!>\ \ \(\backslash\)version\ \ \ \ 2.41}}
+\DoxyCodeLine{\Hypertarget{PB3D_8f90_source_l00018}00018\ \textcolor{comment}{!!\ \ \(\backslash\)date\ \ \ \ \ \ \ 2012-\/2020}}
+\DoxyCodeLine{\Hypertarget{PB3D_8f90_source_l00019}00019\ \textcolor{comment}{!!\ \ Copyright\ (C)\ 2020Toon\ Weyens}}
+\DoxyCodeLine{\Hypertarget{PB3D_8f90_source_l00020}00020\ \textcolor{comment}{!!}}
+\DoxyCodeLine{\Hypertarget{PB3D_8f90_source_l00021}00021\ \textcolor{comment}{!!\ \ This\ program\ is\ free\ software:\ you\ can\ redistribute\ it\ and/or\ modify}}
+\DoxyCodeLine{\Hypertarget{PB3D_8f90_source_l00022}00022\ \textcolor{comment}{!!\ \ it\ under\ the\ terms\ of\ the\ GNU\ General\ Public\ License\ as\ published\ by}}
+\DoxyCodeLine{\Hypertarget{PB3D_8f90_source_l00023}00023\ \textcolor{comment}{!!\ \ the\ Free\ Software\ Foundation,\ either\ version\ 3\ of\ the\ License,\ or}}
+\DoxyCodeLine{\Hypertarget{PB3D_8f90_source_l00024}00024\ \textcolor{comment}{!!\ \ (at\ your\ option)\ any\ later\ version.}}
+\DoxyCodeLine{\Hypertarget{PB3D_8f90_source_l00025}00025\ \textcolor{comment}{!!}}
+\DoxyCodeLine{\Hypertarget{PB3D_8f90_source_l00026}00026\ \textcolor{comment}{!!\ \ This\ program\ is\ distributed\ in\ the\ hope\ that\ it\ will\ be\ useful,}}
+\DoxyCodeLine{\Hypertarget{PB3D_8f90_source_l00027}00027\ \textcolor{comment}{!!\ \ but\ WITHOUT\ ANY\ WARRANTY;\ without\ even\ the\ implied\ warranty\ of}}
+\DoxyCodeLine{\Hypertarget{PB3D_8f90_source_l00028}00028\ \textcolor{comment}{!!\ \ MERCHANTABILITY\ or\ FITNESS\ FOR\ A\ PARTICULAR\ PURPOSE.\ \ See\ the}}
+\DoxyCodeLine{\Hypertarget{PB3D_8f90_source_l00029}00029\ \textcolor{comment}{!!\ \ GNU\ General\ Public\ License\ for\ more\ details.}}
+\DoxyCodeLine{\Hypertarget{PB3D_8f90_source_l00030}00030\ \textcolor{comment}{!!}}
+\DoxyCodeLine{\Hypertarget{PB3D_8f90_source_l00031}00031\ \textcolor{comment}{!!\ \ You\ should\ have\ received\ a\ copy\ of\ the\ License\ along\ with\ this\ program.}}
+\DoxyCodeLine{\Hypertarget{PB3D_8f90_source_l00032}00032\ \textcolor{comment}{!!\ \ If\ not,\ contact\ weyenst@gmail.com}}
+\DoxyCodeLine{\Hypertarget{PB3D_8f90_source_l00033}00033\ \textcolor{comment}{!-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/!}\textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{PB3D_8f90_source_l00034}00034\ \textcolor{comment}{!>\ \ \(\backslash\)see}}
+\DoxyCodeLine{\Hypertarget{PB3D_8f90_source_l00035}00035\ \textcolor{comment}{!!\ \ References:}}
+\DoxyCodeLine{\Hypertarget{PB3D_8f90_source_l00036}00036\ \textcolor{comment}{!!\ \ \(\backslash\)cite\ weyens2014theory}}
+\DoxyCodeLine{\Hypertarget{PB3D_8f90_source_l00037}00037\ \textcolor{comment}{!!\ \ \(\backslash\)cite\ Weyens2017PB3D}}
+\DoxyCodeLine{\Hypertarget{PB3D_8f90_source_l00038}00038\ \textcolor{comment}{!-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/!}}
+\DoxyCodeLine{\Hypertarget{PB3D_8f90_source_l00039}\doxymbox{\hyperlink{PB3D_8f90_a36e5b0ce05c9783f58b43c4463b290a1}{00039}}\ \textcolor{preprocessor}{\#define\ CHCKERR\ if(ierr.ne.0)\ then;\ call\ sudden\_stop(ierr);\ end\ if}}
+\DoxyCodeLine{\Hypertarget{PB3D_8f90_source_l00040}00040\ \textcolor{preprocessor}{}\textcolor{keyword}{program}\ pb3d}
+\DoxyCodeLine{\Hypertarget{PB3D_8f90_source_l00041}00041\ \ \ \ \ \textcolor{keywordtype}{use\ }\doxymbox{\hyperlink{namespacenum__vars}{num\_vars}},\ \textcolor{keywordtype}{only}:\ \doxymbox{\hyperlink{namespacenum__vars_a7548fedc0d8f3102844aded2e6c11f82}{prog\_name}},\ \doxymbox{\hyperlink{namespacenum__vars_a50245a345efb453eda46b3fe98b702e8}{prog\_style}},\ \doxymbox{\hyperlink{namespacenum__vars_ab47aa91445feaedb05ac9d1a584664fe}{rank}},\ \doxymbox{\hyperlink{namespacenum__vars_ac4bc885e8034c285bf0a9b76a832a738}{rich\_restart\_lvl}},\ \doxymbox{\hyperlink{namespacenum__vars_a7d8763402037dbb80db19e2534ddf595}{eq\_style}}}
+\DoxyCodeLine{\Hypertarget{PB3D_8f90_source_l00042}00042\ \ \ \ \ \textcolor{keywordtype}{use\ }\doxymbox{\hyperlink{namespacestr__utilities}{str\_utilities}},\ \textcolor{keywordtype}{only}:\ \doxymbox{\hyperlink{namespacestr__utilities_a92ac6c0af1979df094de1caddd28ade0}{r2str}},\ \doxymbox{\hyperlink{namespacestr__utilities_a0b97e51770725a3e98ed393d26681414}{i2str}}}
+\DoxyCodeLine{\Hypertarget{PB3D_8f90_source_l00043}00043\ \ \ \ \ \textcolor{keywordtype}{use\ }\doxymbox{\hyperlink{namespacemessages}{messages}}}
+\DoxyCodeLine{\Hypertarget{PB3D_8f90_source_l00044}00044\ \ \ \ \ \textcolor{keywordtype}{use\ }\doxymbox{\hyperlink{namespacegrid__vars}{grid\_vars}},\ \textcolor{keywordtype}{only}:\ \doxymbox{\hyperlink{structgrid__vars_1_1grid__type}{grid\_type}}}
+\DoxyCodeLine{\Hypertarget{PB3D_8f90_source_l00045}00045\ \ \ \ \ \textcolor{keywordtype}{use\ }\doxymbox{\hyperlink{namespaceeq__vars}{eq\_vars}},\ \textcolor{keywordtype}{only}:\ \doxymbox{\hyperlink{structeq__vars_1_1eq__1__type}{eq\_1\_type}},\ \doxymbox{\hyperlink{structeq__vars_1_1eq__2__type}{eq\_2\_type}}}
+\DoxyCodeLine{\Hypertarget{PB3D_8f90_source_l00046}00046\ \ \ \ \ \textcolor{keywordtype}{use\ }\doxymbox{\hyperlink{namespacex__vars}{x\_vars}},\ \textcolor{keywordtype}{only}:\ \doxymbox{\hyperlink{structx__vars_1_1x__1__type}{x\_1\_type}},\ \doxymbox{\hyperlink{structx__vars_1_1x__2__type}{x\_2\_type}}}
+\DoxyCodeLine{\Hypertarget{PB3D_8f90_source_l00047}00047\ \ \ \ \ \textcolor{keywordtype}{use\ }\doxymbox{\hyperlink{namespacevac__vars}{vac\_vars}},\ \textcolor{keywordtype}{only}:\ \doxymbox{\hyperlink{structvac__vars_1_1vac__type}{vac\_type}}}
+\DoxyCodeLine{\Hypertarget{PB3D_8f90_source_l00048}00048\ \ \ \ \ \textcolor{keywordtype}{use\ }\doxymbox{\hyperlink{namespacesol__vars}{sol\_vars}},\ \textcolor{keywordtype}{only}:\ \doxymbox{\hyperlink{structsol__vars_1_1sol__type}{sol\_type}}}
+\DoxyCodeLine{\Hypertarget{PB3D_8f90_source_l00049}00049\ \ \ \ \ \textcolor{keywordtype}{use\ }\doxymbox{\hyperlink{namespacehdf5__vars}{hdf5\_vars}},\ \textcolor{keywordtype}{only}:\ \doxymbox{\hyperlink{namespacehdf5__vars_ab644703bcb67ce423732e39ab56a4b63}{init\_hdf5}}}
+\DoxyCodeLine{\Hypertarget{PB3D_8f90_source_l00050}00050\ \ \ \ \ \textcolor{keywordtype}{use\ }\doxymbox{\hyperlink{namespacedriver__eq}{driver\_eq}},\ \textcolor{keywordtype}{only}:\ \doxymbox{\hyperlink{namespacedriver__eq_a40d652e15887ad4f788a3945e6253571}{run\_driver\_eq}}}
+\DoxyCodeLine{\Hypertarget{PB3D_8f90_source_l00051}00051\ \ \ \ \ \textcolor{keywordtype}{use\ }\doxymbox{\hyperlink{namespacedriver__x}{driver\_x}},\ \textcolor{keywordtype}{only}:\ \doxymbox{\hyperlink{namespacedriver__x_a0dafd879836a65efc2ec726d04368532}{run\_driver\_x}}}
+\DoxyCodeLine{\Hypertarget{PB3D_8f90_source_l00052}00052\ \ \ \ \ \textcolor{keywordtype}{use\ }\doxymbox{\hyperlink{namespacedriver__sol}{driver\_sol}},\ \textcolor{keywordtype}{only}:\ \doxymbox{\hyperlink{namespacedriver__sol_a8dad197124fcba9c120e568f8f1b85c6}{run\_driver\_sol}}}
+\DoxyCodeLine{\Hypertarget{PB3D_8f90_source_l00053}00053\ \ \ \ \ \textcolor{keywordtype}{use\ }\doxymbox{\hyperlink{namespacefiles__ops}{files\_ops}},\ \textcolor{keywordtype}{only}:\ \doxymbox{\hyperlink{namespacefiles__ops_a63a81a5a451f787025429878b2cec81b}{open\_input}},\ \doxymbox{\hyperlink{namespacefiles__ops_ad681a9e8083a6f664cf0f9d17ebe279c}{open\_output}},\ \doxymbox{\hyperlink{namespacefiles__ops_a051584112f6e4f6e60b0ef824dffbf5e}{parse\_args}},\ \doxymbox{\hyperlink{namespacefiles__ops_a1e219b1147f109f758d03bef89d540e8}{init\_files}},\ \&}
+\DoxyCodeLine{\Hypertarget{PB3D_8f90_source_l00054}00054\ \ \ \ \ \ \ \ \ \&\doxymbox{\hyperlink{namespacefiles__ops_a239cc017150e54eda19a8ccb0ff191cd}{close\_output}}}
+\DoxyCodeLine{\Hypertarget{PB3D_8f90_source_l00055}00055\ \ \ \ \ \textcolor{keywordtype}{use\ }\doxymbox{\hyperlink{namespaceinput__ops}{input\_ops}},\ \textcolor{keywordtype}{only}:\ \doxymbox{\hyperlink{namespaceinput__ops_a434acca4f59f9dc1d91e04f846133684}{read\_input\_opts}},\ \doxymbox{\hyperlink{namespaceinput__ops_a577c897cc266961eb40bb5ef747fa077}{read\_input\_eq}},\ \doxymbox{\hyperlink{namespaceinput__ops_a6a1237ee3005ebd6f4978e7092ab2dc5}{print\_output\_in}}}
+\DoxyCodeLine{\Hypertarget{PB3D_8f90_source_l00056}00056\ \ \ \ \ \textcolor{keywordtype}{use\ }\doxymbox{\hyperlink{namespaceinput__utilities}{input\_utilities}},\ \textcolor{keywordtype}{only}:\ \doxymbox{\hyperlink{namespaceinput__utilities_aa0cf7578f9c9ab6470f8bb8d025f1daf}{dealloc\_in}}}
+\DoxyCodeLine{\Hypertarget{PB3D_8f90_source_l00057}00057\ \ \ \ \ \textcolor{keywordtype}{use\ }\doxymbox{\hyperlink{namespacempi__ops}{mpi\_ops}},\ \textcolor{keywordtype}{only}:\ \doxymbox{\hyperlink{namespacempi__ops_a804ec65ff711509de1f8873f97bdf967}{start\_mpi}},\ \doxymbox{\hyperlink{namespacempi__ops_a0028cc7df4fbd89dbd93de245ab3b2aa}{stop\_mpi}},\ \doxymbox{\hyperlink{namespacempi__ops_a932eba1c998dd7a0f1191b55cd754be3}{broadcast\_input\_opts}},\ \doxymbox{\hyperlink{namespacempi__ops_a40e8610357a9a5b075fef9dab1c3f24f}{sudden\_stop}}}
+\DoxyCodeLine{\Hypertarget{PB3D_8f90_source_l00058}00058\ \ \ \ \ \textcolor{keywordtype}{use\ }\doxymbox{\hyperlink{namespaceeq__ops}{eq\_ops}},\ \textcolor{keywordtype}{only}:\ \doxymbox{\hyperlink{namespaceeq__ops_a7cd38586e386e1bc684a327ebcc4c1de}{calc\_normalization\_const}},\ \doxymbox{\hyperlink{namespaceeq__ops_a1b4c764da73624722d7e76498a2b80a9}{normalize\_input}}}
+\DoxyCodeLine{\Hypertarget{PB3D_8f90_source_l00059}00059\ \ \ \ \ \textcolor{keywordtype}{use\ }\doxymbox{\hyperlink{namespaceeq__utilities}{eq\_utilities}},\ \textcolor{keywordtype}{only}:\ \doxymbox{\hyperlink{namespaceeq__utilities_a5109472305101af3a15e8e8717c426fd}{do\_eq}},\ \doxymbox{\hyperlink{namespaceeq__utilities_a34c5ddab45a54a6c738e5e0b8c7d55d6}{eq\_info}}}
+\DoxyCodeLine{\Hypertarget{PB3D_8f90_source_l00060}00060\ \ \ \ \ \textcolor{keywordtype}{use\ }\doxymbox{\hyperlink{namespacerich__ops}{rich\_ops}},\ \textcolor{keywordtype}{only}:\ \doxymbox{\hyperlink{namespacerich__ops_a9fbbda93eab8973d33063e277c489e7b}{init\_rich}},\ \doxymbox{\hyperlink{namespacerich__ops_a3cf72a3ed0806ac9ddff262a00b2e33d}{term\_rich}},\ \doxymbox{\hyperlink{namespacerich__ops_a50f4088b9ddd59597987fb4112f2a73e}{do\_rich}},\ \doxymbox{\hyperlink{namespacerich__ops_a97206a15127960366fcb41d6889cb3b5}{start\_rich\_lvl}},\ \&}
+\DoxyCodeLine{\Hypertarget{PB3D_8f90_source_l00061}00061\ \ \ \ \ \ \ \ \ \&\doxymbox{\hyperlink{namespacerich__ops_a0cce16b835e18b025d366a038b22efe1}{stop\_rich\_lvl}}}
+\DoxyCodeLine{\Hypertarget{PB3D_8f90_source_l00062}00062\ \ \ \ \ \textcolor{keywordtype}{use\ }\doxymbox{\hyperlink{namespacerich__vars}{rich\_vars}},\ \textcolor{keywordtype}{only}:\ \doxymbox{\hyperlink{namespacerich__vars_a4f54d3fc0ac510fc073220794ee4fa37}{rich\_info}},\ \&}
+\DoxyCodeLine{\Hypertarget{PB3D_8f90_source_l00063}00063\ \ \ \ \ \ \ \ \ \&\doxymbox{\hyperlink{namespacerich__vars_a1b7734ba9ce6cc153b22387e638093c0}{rich\_lvl}}}
+\DoxyCodeLine{\Hypertarget{PB3D_8f90_source_l00064}00064\ \textcolor{preprocessor}{\#if\ ldebug}}
+\DoxyCodeLine{\Hypertarget{PB3D_8f90_source_l00065}00065\ \textcolor{preprocessor}{}\ \ \ \ \textcolor{keywordtype}{use\ }\doxymbox{\hyperlink{namespacenum__vars}{num\_vars}},\ \textcolor{keywordtype}{only}:\ \doxymbox{\hyperlink{namespacenum__vars_a06597cae984d53aec80c150fc13d3e7f}{ltest}}}
+\DoxyCodeLine{\Hypertarget{PB3D_8f90_source_l00066}00066\ \ \ \ \ \textcolor{keywordtype}{use\ }\doxymbox{\hyperlink{namespacetest}{test}},\ \textcolor{keywordtype}{only}:\ \doxymbox{\hyperlink{namespacetest_aca21ee464c0b1f4b617177afdde110ec}{generic\_tests}}}
+\DoxyCodeLine{\Hypertarget{PB3D_8f90_source_l00067}00067\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{PB3D_8f90_source_l00068}00068\ \textcolor{preprocessor}{}\ \ \ \ }
+\DoxyCodeLine{\Hypertarget{PB3D_8f90_source_l00069}00069\ \ \ \ \ \textcolor{keywordtype}{implicit\ none}}
+\DoxyCodeLine{\Hypertarget{PB3D_8f90_source_l00070}00070\ }
+\DoxyCodeLine{\Hypertarget{PB3D_8f90_source_l00071}00071\ \ \ \ \ \textcolor{comment}{!\ local\ variables}}
+\DoxyCodeLine{\Hypertarget{PB3D_8f90_source_l00072}00072\ \ \ \ \ \textcolor{keywordtype}{integer}\ ::\ ierr\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ error}}
+\DoxyCodeLine{\Hypertarget{PB3D_8f90_source_l00073}00073\ \ \ \ \ \textcolor{keywordtype}{type}(\doxymbox{\hyperlink{structgrid__vars_1_1grid__type}{grid\_type}}),\ \textcolor{keywordtype}{target}\ ::\ grid\_eq\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ equilibrium\ grid}}
+\DoxyCodeLine{\Hypertarget{PB3D_8f90_source_l00074}00074\ \ \ \ \ \textcolor{keywordtype}{type}(\doxymbox{\hyperlink{structgrid__vars_1_1grid__type}{grid\_type}}),\ \textcolor{keywordtype}{pointer}\ ::\ grid\_eq\_b\ =>\ null()\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ field-\/aligned\ equilibrium\ grid}}
+\DoxyCodeLine{\Hypertarget{PB3D_8f90_source_l00075}00075\ \ \ \ \ \textcolor{keywordtype}{type}(\doxymbox{\hyperlink{structgrid__vars_1_1grid__type}{grid\_type}}),\ \textcolor{keywordtype}{target}\ ::\ grid\_x\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ perturbation\ grid}}
+\DoxyCodeLine{\Hypertarget{PB3D_8f90_source_l00076}00076\ \ \ \ \ \textcolor{keywordtype}{type}(\doxymbox{\hyperlink{structgrid__vars_1_1grid__type}{grid\_type}}),\ \textcolor{keywordtype}{pointer}\ ::\ grid\_x\_b\ =>\ null()\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ field-\/aligned\ perturbation\ grid}}
+\DoxyCodeLine{\Hypertarget{PB3D_8f90_source_l00077}00077\ \ \ \ \ \textcolor{keywordtype}{type}(\doxymbox{\hyperlink{structgrid__vars_1_1grid__type}{grid\_type}})\ ::\ grid\_sol\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ solution\ grid}}
+\DoxyCodeLine{\Hypertarget{PB3D_8f90_source_l00078}00078\ \ \ \ \ \textcolor{keywordtype}{type}(\doxymbox{\hyperlink{structeq__vars_1_1eq__1__type}{eq\_1\_type}})\ ::\ eq\_1\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ flux\ equilibrium\ variables}}
+\DoxyCodeLine{\Hypertarget{PB3D_8f90_source_l00079}00079\ \ \ \ \ \textcolor{keywordtype}{type}(\doxymbox{\hyperlink{structeq__vars_1_1eq__2__type}{eq\_2\_type}})\ ::\ eq\_2\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ metric\ equilibrium\ variables}}
+\DoxyCodeLine{\Hypertarget{PB3D_8f90_source_l00080}00080\ \ \ \ \ \textcolor{keywordtype}{type}(\doxymbox{\hyperlink{structx__vars_1_1x__1__type}{x\_1\_type}})\ ::\ x\_1\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ vectorial\ perturbation\ variables}}
+\DoxyCodeLine{\Hypertarget{PB3D_8f90_source_l00081}00081\ \ \ \ \ \textcolor{keywordtype}{type}(\doxymbox{\hyperlink{structx__vars_1_1x__2__type}{x\_2\_type}})\ ::\ x\_2\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ integrated\ tensorial\ perturbation\ variables}}
+\DoxyCodeLine{\Hypertarget{PB3D_8f90_source_l00082}00082\ \ \ \ \ \textcolor{keywordtype}{type}(\doxymbox{\hyperlink{structvac__vars_1_1vac__type}{vac\_type}})\ ::\ vac\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ vacuum\ variables}}
+\DoxyCodeLine{\Hypertarget{PB3D_8f90_source_l00083}00083\ \ \ \ \ \textcolor{keywordtype}{type}(\doxymbox{\hyperlink{structsol__vars_1_1sol__type}{sol\_type}})\ ::\ sol\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ solution\ variables}}
+\DoxyCodeLine{\Hypertarget{PB3D_8f90_source_l00084}00084\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{PB3D_8f90_source_l00085}00085\ \ \ \ \ \textcolor{comment}{!-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/!}}
+\DoxyCodeLine{\Hypertarget{PB3D_8f90_source_l00086}00086\ \ \ \ \ \textcolor{comment}{!\ \ \ Initialize\ some\ routines\ \ \ !}}
+\DoxyCodeLine{\Hypertarget{PB3D_8f90_source_l00087}00087\ \ \ \ \ \textcolor{comment}{!-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/!}}
+\DoxyCodeLine{\Hypertarget{PB3D_8f90_source_l00088}00088\ \ \ \ \ ierr\ =\ \doxymbox{\hyperlink{namespacempi__ops_a804ec65ff711509de1f8873f97bdf967}{start\_mpi}}()\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ start\ MPI}}
+\DoxyCodeLine{\Hypertarget{PB3D_8f90_source_l00089}00089\ \ \ \ \ chckerr}
+\DoxyCodeLine{\Hypertarget{PB3D_8f90_source_l00090}00090\ \ \ \ \ \doxymbox{\hyperlink{namespacenum__vars_a7548fedc0d8f3102844aded2e6c11f82}{prog\_name}}\ =\ \textcolor{stringliteral}{'PB3D'}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ program\ name}}
+\DoxyCodeLine{\Hypertarget{PB3D_8f90_source_l00091}00091\ \ \ \ \ \doxymbox{\hyperlink{namespacenum__vars_a50245a345efb453eda46b3fe98b702e8}{prog\_style}}\ =\ 1\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ main\ part}}
+\DoxyCodeLine{\Hypertarget{PB3D_8f90_source_l00092}00092\ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_a60c95b4c352b0087f32ef87279da49ca}{print\_hello}}()\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ print\ message\ with\ time,\ etc}}
+\DoxyCodeLine{\Hypertarget{PB3D_8f90_source_l00093}00093\ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_a5e45296f088e9f31115a3b8d869f3177}{init\_output}}()\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ initialize\ output\ utilities}}
+\DoxyCodeLine{\Hypertarget{PB3D_8f90_source_l00094}00094\ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacefiles__ops_a1e219b1147f109f758d03bef89d540e8}{init\_files}}()\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ initialize\ file\ operations}}
+\DoxyCodeLine{\Hypertarget{PB3D_8f90_source_l00095}00095\ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_a8ed785522aec7ac549263cdd54a8619a}{init\_time}}()\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ initialize\ time}}
+\DoxyCodeLine{\Hypertarget{PB3D_8f90_source_l00096}00096\ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacehdf5__vars_ab644703bcb67ce423732e39ab56a4b63}{init\_hdf5}}()\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ initialize\ HDF5}}
+\DoxyCodeLine{\Hypertarget{PB3D_8f90_source_l00097}00097\ \ }
+\DoxyCodeLine{\Hypertarget{PB3D_8f90_source_l00098}00098\ \ \ \ \ \textcolor{comment}{!-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/!}}
+\DoxyCodeLine{\Hypertarget{PB3D_8f90_source_l00099}00099\ \ \ \ \ \textcolor{comment}{!\ \ \ Read\ the\ user-\/provided\ input\ file\ and\ the\ equilibrium\ code\ output\ \ \ !}}
+\DoxyCodeLine{\Hypertarget{PB3D_8f90_source_l00100}00100\ \ \ \ \ \textcolor{comment}{!-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/!}}
+\DoxyCodeLine{\Hypertarget{PB3D_8f90_source_l00101}00101\ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_a84d5988f3ea5ca8dc2834032f896ae90}{start\_time}}}
+\DoxyCodeLine{\Hypertarget{PB3D_8f90_source_l00102}00102\ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_aa4a8d01563e92558e8a0875b075ec54c}{writo}}(\textcolor{stringliteral}{'Initialization'})}
+\DoxyCodeLine{\Hypertarget{PB3D_8f90_source_l00103}00103\ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_a6e6bfb084063e4cc91ee86e542043302}{lvl\_ud}}(1)}
+\DoxyCodeLine{\Hypertarget{PB3D_8f90_source_l00104}00104\ \ \ \ \ \textcolor{keywordflow}{if}\ (\doxymbox{\hyperlink{namespacenum__vars_ab47aa91445feaedb05ac9d1a584664fe}{rank}}.eq.0)\ \textcolor{keywordflow}{then}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ only\ master}}
+\DoxyCodeLine{\Hypertarget{PB3D_8f90_source_l00105}00105\ \ \ \ \ \ \ \ \ ierr\ =\ \doxymbox{\hyperlink{namespacefiles__ops_a051584112f6e4f6e60b0ef824dffbf5e}{parse\_args}}()\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ parse\ argument\ (options\ are\ used\ in\ open\_input)}}
+\DoxyCodeLine{\Hypertarget{PB3D_8f90_source_l00106}00106\ \ \ \ \ \ \ \ \ chckerr}
+\DoxyCodeLine{\Hypertarget{PB3D_8f90_source_l00107}00107\ \ \ \ \ \ \ \ \ ierr\ =\ \doxymbox{\hyperlink{namespacefiles__ops_a63a81a5a451f787025429878b2cec81b}{open\_input}}()\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ open\ the\ input\ files}}
+\DoxyCodeLine{\Hypertarget{PB3D_8f90_source_l00108}00108\ \ \ \ \ \ \ \ \ chckerr}
+\DoxyCodeLine{\Hypertarget{PB3D_8f90_source_l00109}00109\ \ \ \ \ \ \ \ \ ierr\ =\ \doxymbox{\hyperlink{namespaceinput__ops_a434acca4f59f9dc1d91e04f846133684}{read\_input\_opts}}()\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ read\ input\ options\ file}}
+\DoxyCodeLine{\Hypertarget{PB3D_8f90_source_l00110}00110\ \ \ \ \ \ \ \ \ chckerr}
+\DoxyCodeLine{\Hypertarget{PB3D_8f90_source_l00111}00111\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\doxymbox{\hyperlink{namespacenum__vars_ac4bc885e8034c285bf0a9b76a832a738}{rich\_restart\_lvl}}.eq.1)\ \textcolor{keywordflow}{then}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ start\ at\ first\ level}}
+\DoxyCodeLine{\Hypertarget{PB3D_8f90_source_l00112}00112\ \ \ \ \ \ \ \ \ \ \ \ \ ierr\ =\ \doxymbox{\hyperlink{namespaceinput__ops_a577c897cc266961eb40bb5ef747fa077}{read\_input\_eq}}()\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ read\ input\ equilibrium\ file}}
+\DoxyCodeLine{\Hypertarget{PB3D_8f90_source_l00113}00113\ \ \ \ \ \ \ \ \ \ \ \ \ chckerr}
+\DoxyCodeLine{\Hypertarget{PB3D_8f90_source_l00114}00114\ \ \ \ \ \ \ \ \ \ \ \ \ ierr\ =\ \doxymbox{\hyperlink{namespaceeq__ops_a7cd38586e386e1bc684a327ebcc4c1de}{calc\_normalization\_const}}()\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ set\ up\ normalization\ constants}}
+\DoxyCodeLine{\Hypertarget{PB3D_8f90_source_l00115}00115\ \ \ \ \ \ \ \ \ \ \ \ \ chckerr}
+\DoxyCodeLine{\Hypertarget{PB3D_8f90_source_l00116}00116\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespaceeq__ops_a1b4c764da73624722d7e76498a2b80a9}{normalize\_input}}()\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ normalize\ the\ input}}
+\DoxyCodeLine{\Hypertarget{PB3D_8f90_source_l00117}00117\ \ \ \ \ \ \ \ \ \ \ \ \ ierr\ =\ \doxymbox{\hyperlink{namespacefiles__ops_ad681a9e8083a6f664cf0f9d17ebe279c}{open\_output}}()\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ open\ output\ file}}
+\DoxyCodeLine{\Hypertarget{PB3D_8f90_source_l00118}00118\ \ \ \ \ \ \ \ \ \ \ \ \ chckerr}
+\DoxyCodeLine{\Hypertarget{PB3D_8f90_source_l00119}00119\ \ \ \ \ \ \ \ \ \ \ \ \ ierr\ =\ \doxymbox{\hyperlink{namespaceinput__ops_a6a1237ee3005ebd6f4978e7092ab2dc5}{print\_output\_in}}(\textcolor{stringliteral}{'in'})\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ print\ input\ outputs}}
+\DoxyCodeLine{\Hypertarget{PB3D_8f90_source_l00120}00120\ \ \ \ \ \ \ \ \ \ \ \ \ chckerr}
+\DoxyCodeLine{\Hypertarget{PB3D_8f90_source_l00121}00121\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespaceinput__utilities_aa0cf7578f9c9ab6470f8bb8d025f1daf}{dealloc\_in}}()\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ clean\ up\ input\ from\ equilibrium\ codes}}
+\DoxyCodeLine{\Hypertarget{PB3D_8f90_source_l00122}00122\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ restart\ at\ higher\ level}}
+\DoxyCodeLine{\Hypertarget{PB3D_8f90_source_l00123}00123\ \ \ \ \ \ \ \ \ \ \ \ \ ierr\ =\ \doxymbox{\hyperlink{namespacefiles__ops_ad681a9e8083a6f664cf0f9d17ebe279c}{open\_output}}()\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ open\ output\ file}}
+\DoxyCodeLine{\Hypertarget{PB3D_8f90_source_l00124}00124\ \ \ \ \ \ \ \ \ \ \ \ \ chckerr}
+\DoxyCodeLine{\Hypertarget{PB3D_8f90_source_l00125}00125\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ end\ if}}
+\DoxyCodeLine{\Hypertarget{PB3D_8f90_source_l00126}00126\ \textcolor{keywordflow}{\ \ \ \ end\ if}}
+\DoxyCodeLine{\Hypertarget{PB3D_8f90_source_l00127}00127\ \ \ \ \ ierr\ =\ \doxymbox{\hyperlink{namespacempi__ops_a932eba1c998dd7a0f1191b55cd754be3}{broadcast\_input\_opts}}()\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ broadcast\ input\ options\ to\ other\ processors}}
+\DoxyCodeLine{\Hypertarget{PB3D_8f90_source_l00128}00128\ \ \ \ \ chckerr}
+\DoxyCodeLine{\Hypertarget{PB3D_8f90_source_l00129}00129\ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_aa4a8d01563e92558e8a0875b075ec54c}{writo}}(\textcolor{stringliteral}{''})}
+\DoxyCodeLine{\Hypertarget{PB3D_8f90_source_l00130}00130\ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_a34da9df28502ccd63e62674d51fe8de8}{passed\_time}}}
+\DoxyCodeLine{\Hypertarget{PB3D_8f90_source_l00131}00131\ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_aa4a8d01563e92558e8a0875b075ec54c}{writo}}(\textcolor{stringliteral}{''})}
+\DoxyCodeLine{\Hypertarget{PB3D_8f90_source_l00132}00132\ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_a6e6bfb084063e4cc91ee86e542043302}{lvl\_ud}}(-\/1)}
+\DoxyCodeLine{\Hypertarget{PB3D_8f90_source_l00133}00133\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{PB3D_8f90_source_l00134}00134\ \textcolor{preprocessor}{\#if\ ldebug}}
+\DoxyCodeLine{\Hypertarget{PB3D_8f90_source_l00135}00135\ \textcolor{preprocessor}{}\ \ \ \ \textcolor{comment}{!-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/!}}
+\DoxyCodeLine{\Hypertarget{PB3D_8f90_source_l00136}00136\ \ \ \ \ \textcolor{comment}{!\ \ \ Do\ some\ tests\ \ \ !}}
+\DoxyCodeLine{\Hypertarget{PB3D_8f90_source_l00137}00137\ \ \ \ \ \textcolor{comment}{!-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/!}}
+\DoxyCodeLine{\Hypertarget{PB3D_8f90_source_l00138}00138\ \ \ \ \ \textcolor{keywordflow}{if}\ (\doxymbox{\hyperlink{namespacenum__vars_a06597cae984d53aec80c150fc13d3e7f}{ltest}})\ \textcolor{keywordflow}{then}}
+\DoxyCodeLine{\Hypertarget{PB3D_8f90_source_l00139}00139\ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_a84d5988f3ea5ca8dc2834032f896ae90}{start\_time}}}
+\DoxyCodeLine{\Hypertarget{PB3D_8f90_source_l00140}00140\ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_aa4a8d01563e92558e8a0875b075ec54c}{writo}}(\textcolor{stringliteral}{'Generic\ Tests'})}
+\DoxyCodeLine{\Hypertarget{PB3D_8f90_source_l00141}00141\ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_a6e6bfb084063e4cc91ee86e542043302}{lvl\_ud}}(1)}
+\DoxyCodeLine{\Hypertarget{PB3D_8f90_source_l00142}00142\ \ \ \ \ \ \ \ \ ierr\ =\ \doxymbox{\hyperlink{namespacetest_aca21ee464c0b1f4b617177afdde110ec}{generic\_tests}}()\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ run\ generic\ test}}
+\DoxyCodeLine{\Hypertarget{PB3D_8f90_source_l00143}00143\ \ \ \ \ \ \ \ \ chckerr}
+\DoxyCodeLine{\Hypertarget{PB3D_8f90_source_l00144}00144\ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_aa4a8d01563e92558e8a0875b075ec54c}{writo}}(\textcolor{stringliteral}{''})}
+\DoxyCodeLine{\Hypertarget{PB3D_8f90_source_l00145}00145\ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_a34da9df28502ccd63e62674d51fe8de8}{passed\_time}}}
+\DoxyCodeLine{\Hypertarget{PB3D_8f90_source_l00146}00146\ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_aa4a8d01563e92558e8a0875b075ec54c}{writo}}(\textcolor{stringliteral}{''})}
+\DoxyCodeLine{\Hypertarget{PB3D_8f90_source_l00147}00147\ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_a6e6bfb084063e4cc91ee86e542043302}{lvl\_ud}}(-\/1)}
+\DoxyCodeLine{\Hypertarget{PB3D_8f90_source_l00148}00148\ \textcolor{keywordflow}{\ \ \ \ end\ if}}
+\DoxyCodeLine{\Hypertarget{PB3D_8f90_source_l00149}00149\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{PB3D_8f90_source_l00150}00150\ \textcolor{preprocessor}{}\ \ \ \ }
+\DoxyCodeLine{\Hypertarget{PB3D_8f90_source_l00151}00151\ \ \ \ \ \textcolor{comment}{!-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/!}}
+\DoxyCodeLine{\Hypertarget{PB3D_8f90_source_l00152}00152\ \ \ \ \ \textcolor{comment}{!\ \ \ Initialize\ Richardson\ Extrapolation\ Loop\ \ \ !}}
+\DoxyCodeLine{\Hypertarget{PB3D_8f90_source_l00153}00153\ \ \ \ \ \textcolor{comment}{!-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/!}}
+\DoxyCodeLine{\Hypertarget{PB3D_8f90_source_l00154}00154\ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_a84d5988f3ea5ca8dc2834032f896ae90}{start\_time}}}
+\DoxyCodeLine{\Hypertarget{PB3D_8f90_source_l00155}00155\ \ \ \ \ ierr\ =\ \doxymbox{\hyperlink{namespacerich__ops_a9fbbda93eab8973d33063e277c489e7b}{init\_rich}}()}
+\DoxyCodeLine{\Hypertarget{PB3D_8f90_source_l00156}00156\ \ \ \ \ chckerr}
+\DoxyCodeLine{\Hypertarget{PB3D_8f90_source_l00157}00157\ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_aed343894ae4a28ad6dfbd1d39aac64ff}{stop\_time}}}
+\DoxyCodeLine{\Hypertarget{PB3D_8f90_source_l00158}00158\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{PB3D_8f90_source_l00159}00159\ \ \ \ \ rich:\ \textcolor{keywordflow}{do}\ \textcolor{keywordflow}{while}(\doxymbox{\hyperlink{namespacerich__ops_a50f4088b9ddd59597987fb4112f2a73e}{do\_rich}}())}
+\DoxyCodeLine{\Hypertarget{PB3D_8f90_source_l00160}00160\ \ \ \ \ \ \ \ \ \textcolor{comment}{!-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/!}}
+\DoxyCodeLine{\Hypertarget{PB3D_8f90_source_l00161}00161\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ \ \ Start\ Richardson\ level\ \ \ !}}
+\DoxyCodeLine{\Hypertarget{PB3D_8f90_source_l00162}00162\ \ \ \ \ \ \ \ \ \textcolor{comment}{!-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/!}}
+\DoxyCodeLine{\Hypertarget{PB3D_8f90_source_l00163}00163\ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_a84d5988f3ea5ca8dc2834032f896ae90}{start\_time}}}
+\DoxyCodeLine{\Hypertarget{PB3D_8f90_source_l00164}00164\ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_aa4a8d01563e92558e8a0875b075ec54c}{writo}}(\textcolor{stringliteral}{'Richardson\ level\ '}//trim(\doxymbox{\hyperlink{namespacestr__utilities_a0b97e51770725a3e98ed393d26681414}{i2str}}(\doxymbox{\hyperlink{namespacerich__vars_a1b7734ba9ce6cc153b22387e638093c0}{rich\_lvl}})))}
+\DoxyCodeLine{\Hypertarget{PB3D_8f90_source_l00165}00165\ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_a6e6bfb084063e4cc91ee86e542043302}{lvl\_ud}}(1)}
+\DoxyCodeLine{\Hypertarget{PB3D_8f90_source_l00166}00166\ \ \ \ \ \ \ \ \ ierr\ =\ \doxymbox{\hyperlink{namespacerich__ops_a97206a15127960366fcb41d6889cb3b5}{start\_rich\_lvl}}()\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ start\ Richardson\ level,\ setting\ n\_r\_sol\ and\ other\ variables}}
+\DoxyCodeLine{\Hypertarget{PB3D_8f90_source_l00167}00167\ \ \ \ \ \ \ \ \ chckerr}
+\DoxyCodeLine{\Hypertarget{PB3D_8f90_source_l00168}00168\ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_aed343894ae4a28ad6dfbd1d39aac64ff}{stop\_time}}}
+\DoxyCodeLine{\Hypertarget{PB3D_8f90_source_l00169}00169\ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_aa4a8d01563e92558e8a0875b075ec54c}{writo}}(\textcolor{stringliteral}{''})}
+\DoxyCodeLine{\Hypertarget{PB3D_8f90_source_l00170}00170\ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_a6e6bfb084063e4cc91ee86e542043302}{lvl\_ud}}(-\/1)}
+\DoxyCodeLine{\Hypertarget{PB3D_8f90_source_l00171}00171\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{PB3D_8f90_source_l00172}00172\ \ \ \ \ \ \ \ \ par:\ \textcolor{keywordflow}{do}\ \textcolor{keywordflow}{while}(\doxymbox{\hyperlink{namespaceeq__utilities_a5109472305101af3a15e8e8717c426fd}{do\_eq}}())}
+\DoxyCodeLine{\Hypertarget{PB3D_8f90_source_l00173}00173\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/!}}
+\DoxyCodeLine{\Hypertarget{PB3D_8f90_source_l00174}00174\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ \ \ Main\ Driver:\ Equilibrium\ part\ \ \ !}}
+\DoxyCodeLine{\Hypertarget{PB3D_8f90_source_l00175}00175\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/!}}
+\DoxyCodeLine{\Hypertarget{PB3D_8f90_source_l00176}00176\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_a84d5988f3ea5ca8dc2834032f896ae90}{start\_time}}}
+\DoxyCodeLine{\Hypertarget{PB3D_8f90_source_l00177}00177\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_aa4a8d01563e92558e8a0875b075ec54c}{writo}}(\textcolor{stringliteral}{'Equilibrium\ driver'}//trim(\doxymbox{\hyperlink{namespacerich__vars_a4f54d3fc0ac510fc073220794ee4fa37}{rich\_info}}())//\&}
+\DoxyCodeLine{\Hypertarget{PB3D_8f90_source_l00178}00178\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&trim(\doxymbox{\hyperlink{namespaceeq__utilities_a34c5ddab45a54a6c738e5e0b8c7d55d6}{eq\_info}}()))}
+\DoxyCodeLine{\Hypertarget{PB3D_8f90_source_l00179}00179\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_a6e6bfb084063e4cc91ee86e542043302}{lvl\_ud}}(1)}
+\DoxyCodeLine{\Hypertarget{PB3D_8f90_source_l00180}00180\ \ \ \ \ \ \ \ \ \ \ \ \ ierr\ =\ \doxymbox{\hyperlink{namespacedriver__eq_a40d652e15887ad4f788a3945e6253571}{run\_driver\_eq}}(grid\_eq,grid\_eq\_b,eq\_1,eq\_2,vac)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ equilibrium\ driver}}
+\DoxyCodeLine{\Hypertarget{PB3D_8f90_source_l00181}00181\ \ \ \ \ \ \ \ \ \ \ \ \ chckerr}
+\DoxyCodeLine{\Hypertarget{PB3D_8f90_source_l00182}00182\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_aa4a8d01563e92558e8a0875b075ec54c}{writo}}(\textcolor{stringliteral}{''})}
+\DoxyCodeLine{\Hypertarget{PB3D_8f90_source_l00183}00183\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_a34da9df28502ccd63e62674d51fe8de8}{passed\_time}}}
+\DoxyCodeLine{\Hypertarget{PB3D_8f90_source_l00184}00184\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_aa4a8d01563e92558e8a0875b075ec54c}{writo}}(\textcolor{stringliteral}{''})}
+\DoxyCodeLine{\Hypertarget{PB3D_8f90_source_l00185}00185\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_a6e6bfb084063e4cc91ee86e542043302}{lvl\_ud}}(-\/1)}
+\DoxyCodeLine{\Hypertarget{PB3D_8f90_source_l00186}00186\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{PB3D_8f90_source_l00187}00187\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/!}}
+\DoxyCodeLine{\Hypertarget{PB3D_8f90_source_l00188}00188\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ \ \ Main\ driver:\ Perturbation\ part\ \ \ !}}
+\DoxyCodeLine{\Hypertarget{PB3D_8f90_source_l00189}00189\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/!}}
+\DoxyCodeLine{\Hypertarget{PB3D_8f90_source_l00190}00190\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_a84d5988f3ea5ca8dc2834032f896ae90}{start\_time}}}
+\DoxyCodeLine{\Hypertarget{PB3D_8f90_source_l00191}00191\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_aa4a8d01563e92558e8a0875b075ec54c}{writo}}(\textcolor{stringliteral}{'Perturbation\ driver'}//trim(\doxymbox{\hyperlink{namespacerich__vars_a4f54d3fc0ac510fc073220794ee4fa37}{rich\_info}}())//\&}
+\DoxyCodeLine{\Hypertarget{PB3D_8f90_source_l00192}00192\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&trim(\doxymbox{\hyperlink{namespaceeq__utilities_a34c5ddab45a54a6c738e5e0b8c7d55d6}{eq\_info}}()))}
+\DoxyCodeLine{\Hypertarget{PB3D_8f90_source_l00193}00193\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_a6e6bfb084063e4cc91ee86e542043302}{lvl\_ud}}(1)}
+\DoxyCodeLine{\Hypertarget{PB3D_8f90_source_l00194}00194\ \ \ \ \ \ \ \ \ \ \ \ \ ierr\ =\ \doxymbox{\hyperlink{namespacedriver__x_a0dafd879836a65efc2ec726d04368532}{run\_driver\_x}}(grid\_eq,grid\_eq\_b,grid\_x,grid\_x\_b,eq\_1,eq\_2,\&}
+\DoxyCodeLine{\Hypertarget{PB3D_8f90_source_l00195}00195\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&x\_1,x\_2)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ perturbation\ driver}}
+\DoxyCodeLine{\Hypertarget{PB3D_8f90_source_l00196}00196\ \ \ \ \ \ \ \ \ \ \ \ \ chckerr}
+\DoxyCodeLine{\Hypertarget{PB3D_8f90_source_l00197}00197\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_aa4a8d01563e92558e8a0875b075ec54c}{writo}}(\textcolor{stringliteral}{''})}
+\DoxyCodeLine{\Hypertarget{PB3D_8f90_source_l00198}00198\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_a34da9df28502ccd63e62674d51fe8de8}{passed\_time}}}
+\DoxyCodeLine{\Hypertarget{PB3D_8f90_source_l00199}00199\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_aa4a8d01563e92558e8a0875b075ec54c}{writo}}(\textcolor{stringliteral}{''})}
+\DoxyCodeLine{\Hypertarget{PB3D_8f90_source_l00200}00200\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_a6e6bfb084063e4cc91ee86e542043302}{lvl\_ud}}(-\/1)}
+\DoxyCodeLine{\Hypertarget{PB3D_8f90_source_l00201}00201\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ end\ do}\ par}
+\DoxyCodeLine{\Hypertarget{PB3D_8f90_source_l00202}00202\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{PB3D_8f90_source_l00203}00203\ \ \ \ \ \ \ \ \ \textcolor{comment}{!-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/!}}
+\DoxyCodeLine{\Hypertarget{PB3D_8f90_source_l00204}00204\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ \ \ Main\ driver:\ Solution\ part\ \ \ !}}
+\DoxyCodeLine{\Hypertarget{PB3D_8f90_source_l00205}00205\ \ \ \ \ \ \ \ \ \textcolor{comment}{!-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/!}}
+\DoxyCodeLine{\Hypertarget{PB3D_8f90_source_l00206}00206\ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_a84d5988f3ea5ca8dc2834032f896ae90}{start\_time}}}
+\DoxyCodeLine{\Hypertarget{PB3D_8f90_source_l00207}00207\ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_aa4a8d01563e92558e8a0875b075ec54c}{writo}}(\textcolor{stringliteral}{'Solution\ driver'}//trim(\doxymbox{\hyperlink{namespacerich__vars_a4f54d3fc0ac510fc073220794ee4fa37}{rich\_info}}()))}
+\DoxyCodeLine{\Hypertarget{PB3D_8f90_source_l00208}00208\ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_a6e6bfb084063e4cc91ee86e542043302}{lvl\_ud}}(1)}
+\DoxyCodeLine{\Hypertarget{PB3D_8f90_source_l00209}00209\ \ \ \ \ \ \ \ \ ierr\ =\ \doxymbox{\hyperlink{namespacedriver__sol_a8dad197124fcba9c120e568f8f1b85c6}{run\_driver\_sol}}(grid\_eq,grid\_x,grid\_sol,x\_2,vac,sol)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ solution\ driver}}
+\DoxyCodeLine{\Hypertarget{PB3D_8f90_source_l00210}00210\ \ \ \ \ \ \ \ \ chckerr}
+\DoxyCodeLine{\Hypertarget{PB3D_8f90_source_l00211}00211\ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_aa4a8d01563e92558e8a0875b075ec54c}{writo}}(\textcolor{stringliteral}{''})}
+\DoxyCodeLine{\Hypertarget{PB3D_8f90_source_l00212}00212\ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_a34da9df28502ccd63e62674d51fe8de8}{passed\_time}}}
+\DoxyCodeLine{\Hypertarget{PB3D_8f90_source_l00213}00213\ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_aa4a8d01563e92558e8a0875b075ec54c}{writo}}(\textcolor{stringliteral}{''})}
+\DoxyCodeLine{\Hypertarget{PB3D_8f90_source_l00214}00214\ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_a6e6bfb084063e4cc91ee86e542043302}{lvl\_ud}}(-\/1)}
+\DoxyCodeLine{\Hypertarget{PB3D_8f90_source_l00215}00215\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{PB3D_8f90_source_l00216}00216\ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_a84d5988f3ea5ca8dc2834032f896ae90}{start\_time}}}
+\DoxyCodeLine{\Hypertarget{PB3D_8f90_source_l00217}00217\ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacerich__ops_a0cce16b835e18b025d366a038b22efe1}{stop\_rich\_lvl}}()}
+\DoxyCodeLine{\Hypertarget{PB3D_8f90_source_l00218}00218\ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_aed343894ae4a28ad6dfbd1d39aac64ff}{stop\_time}}}
+\DoxyCodeLine{\Hypertarget{PB3D_8f90_source_l00219}00219\ \textcolor{keywordflow}{\ \ \ \ end\ do}\ rich}
+\DoxyCodeLine{\Hypertarget{PB3D_8f90_source_l00220}00220\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{PB3D_8f90_source_l00221}00221\ \ \ \ \ \textcolor{comment}{!-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/!}}
+\DoxyCodeLine{\Hypertarget{PB3D_8f90_source_l00222}00222\ \ \ \ \ \textcolor{comment}{!\ \ \ Stop\ Richarson\ Extrapolation\ Loop\ \ \ !}}
+\DoxyCodeLine{\Hypertarget{PB3D_8f90_source_l00223}00223\ \ \ \ \ \textcolor{comment}{!-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/!}}
+\DoxyCodeLine{\Hypertarget{PB3D_8f90_source_l00224}00224\ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_a84d5988f3ea5ca8dc2834032f896ae90}{start\_time}}}
+\DoxyCodeLine{\Hypertarget{PB3D_8f90_source_l00225}00225\ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacerich__ops_a3cf72a3ed0806ac9ddff262a00b2e33d}{term\_rich}}()\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ stop\ Richardson\ loop}}
+\DoxyCodeLine{\Hypertarget{PB3D_8f90_source_l00226}00226\ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_aed343894ae4a28ad6dfbd1d39aac64ff}{stop\_time}}}
+\DoxyCodeLine{\Hypertarget{PB3D_8f90_source_l00227}00227\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{PB3D_8f90_source_l00228}00228\ \ \ \ \ \textcolor{comment}{!-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/!}}
+\DoxyCodeLine{\Hypertarget{PB3D_8f90_source_l00229}00229\ \ \ \ \ \textcolor{comment}{!\ \ \ Clean\ up\ \ \ !}}
+\DoxyCodeLine{\Hypertarget{PB3D_8f90_source_l00230}00230\ \ \ \ \ \textcolor{comment}{!-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/!}}
+\DoxyCodeLine{\Hypertarget{PB3D_8f90_source_l00231}00231\ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_aa4a8d01563e92558e8a0875b075ec54c}{writo}}(\textcolor{stringliteral}{'Clean\ up'})}
+\DoxyCodeLine{\Hypertarget{PB3D_8f90_source_l00232}00232\ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_a6e6bfb084063e4cc91ee86e542043302}{lvl\_ud}}(1)}
+\DoxyCodeLine{\Hypertarget{PB3D_8f90_source_l00233}00233\ \ \ \ \ \textcolor{keywordflow}{if}\ (\doxymbox{\hyperlink{namespacenum__vars_a7d8763402037dbb80db19e2534ddf595}{eq\_style}}.eq.2)\ \textcolor{keyword}{call\ }eq\_2\%dealloc()}
+\DoxyCodeLine{\Hypertarget{PB3D_8f90_source_l00234}00234\ \ \ \ \ ierr\ =\ \doxymbox{\hyperlink{namespacempi__ops_a0028cc7df4fbd89dbd93de245ab3b2aa}{stop\_mpi}}(grid\_eq=grid\_eq,\&}
+\DoxyCodeLine{\Hypertarget{PB3D_8f90_source_l00235}00235\ \ \ \ \ \ \ \ \ \&grid\_eq\_b=grid\_eq\_b,\&}
+\DoxyCodeLine{\Hypertarget{PB3D_8f90_source_l00236}00236\ \ \ \ \ \ \ \ \ \&grid\_x=grid\_x,\&}
+\DoxyCodeLine{\Hypertarget{PB3D_8f90_source_l00237}00237\ \ \ \ \ \ \ \ \ \&grid\_x\_b=grid\_x\_b,\&}
+\DoxyCodeLine{\Hypertarget{PB3D_8f90_source_l00238}00238\ \ \ \ \ \ \ \ \ \&grid\_sol=grid\_sol,\&}
+\DoxyCodeLine{\Hypertarget{PB3D_8f90_source_l00239}00239\ \ \ \ \ \ \ \ \ \&eq\_1=eq\_1,\&}
+\DoxyCodeLine{\Hypertarget{PB3D_8f90_source_l00240}00240\ \ \ \ \ \ \ \ \ \&eq\_2=eq\_2,\&}
+\DoxyCodeLine{\Hypertarget{PB3D_8f90_source_l00241}00241\ \ \ \ \ \ \ \ \ \&x\_1=x\_1,\&}
+\DoxyCodeLine{\Hypertarget{PB3D_8f90_source_l00242}00242\ \ \ \ \ \ \ \ \ \&x\_2=x\_2,\&}
+\DoxyCodeLine{\Hypertarget{PB3D_8f90_source_l00243}00243\ \ \ \ \ \ \ \ \ \&vac=vac,\&}
+\DoxyCodeLine{\Hypertarget{PB3D_8f90_source_l00244}00244\ \ \ \ \ \ \ \ \ \&sol=sol)}
+\DoxyCodeLine{\Hypertarget{PB3D_8f90_source_l00245}00245\ \ \ \ \ chckerr}
+\DoxyCodeLine{\Hypertarget{PB3D_8f90_source_l00246}00246\ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacefiles__ops_a239cc017150e54eda19a8ccb0ff191cd}{close\_output}}}
+\DoxyCodeLine{\Hypertarget{PB3D_8f90_source_l00247}00247\ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_a6e6bfb084063e4cc91ee86e542043302}{lvl\_ud}}(-\/1)}
+\DoxyCodeLine{\Hypertarget{PB3D_8f90_source_l00248}00248\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{PB3D_8f90_source_l00249}00249\ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_a5d3f456913230bdf985c363e8cee8489}{print\_goodbye}}}
+\DoxyCodeLine{\Hypertarget{PB3D_8f90_source_l00250}00250\ \textcolor{keyword}{end\ program\ }pb3d}
+
+\end{DoxyCode}

@@ -1,37 +1,37 @@
-\hypertarget{interfaceoutput__ops_1_1plot__hdf5}{}\doxysection{output\+\_\+ops\+::plot\+\_\+hdf5 Interface Reference}
-\label{interfaceoutput__ops_1_1plot__hdf5}\index{output\_ops::plot\_hdf5@{output\_ops::plot\_hdf5}}
+\doxysection{output\+\_\+ops::\+plot\+\_\+hdf5 Interface Reference}
+\hypertarget{interfaceoutput__ops_1_1plot__hdf5}{}\label{interfaceoutput__ops_1_1plot__hdf5}\index{output\_ops::plot\_hdf5@{output\_ops::plot\_hdf5}}
 
 
-Prints variables {\ttfamily vars} with names {\ttfamily var\+\_\+names} in an H\+D\+F5 file with name c file\+\_\+name and accompanying X\+D\+MF file.  
+Prints variables {\ttfamily vars} with names {\ttfamily var\+\_\+names} in an HDF5 file with name c file\+\_\+name and accompanying XDMF file.  
 
 
-\doxysubsection*{Public Member Functions}
+\doxysubsubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-subroutine \mbox{\hyperlink{interfaceoutput__ops_1_1plot__hdf5_a70787d16f320d130c3ab67128075d7a1}{plot\+\_\+hdf5\+\_\+ind}} (var\+\_\+name, file\+\_\+name, var, tot\+\_\+dim, loc\+\_\+offset, X, Y, Z, cont\+\_\+plot, descr)
+subroutine \doxymbox{\hyperlink{interfaceoutput__ops_1_1plot__hdf5_a32670259883fe7381753194a1828fe2e}{plot\+\_\+hdf5\+\_\+ind}} (var\+\_\+name, file\+\_\+name, var, tot\+\_\+dim, loc\+\_\+offset, x, y, z, cont\+\_\+plot, descr)
 \begin{DoxyCompactList}\small\item\em individual version \end{DoxyCompactList}\item 
-subroutine \mbox{\hyperlink{interfaceoutput__ops_1_1plot__hdf5_aabeeacb6f9aab1fb21d226e6a315e3d1}{plot\+\_\+hdf5\+\_\+arr}} (var\+\_\+names, file\+\_\+name, vars, tot\+\_\+dim, loc\+\_\+offset, X, Y, Z, col\+\_\+id, col, sym\+\_\+type, cont\+\_\+plot, descr)
+subroutine \doxymbox{\hyperlink{interfaceoutput__ops_1_1plot__hdf5_ac9a174c29215fad868ebba54a5d51499}{plot\+\_\+hdf5\+\_\+arr}} (var\+\_\+names, file\+\_\+name, vars, tot\+\_\+dim, loc\+\_\+offset, x, y, z, col\+\_\+id, col, sym\+\_\+type, cont\+\_\+plot, descr)
 \begin{DoxyCompactList}\small\item\em array version \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
-Prints variables {\ttfamily vars} with names {\ttfamily var\+\_\+names} in an H\+D\+F5 file with name c file\+\_\+name and accompanying X\+D\+MF file. 
+Prints variables {\ttfamily vars} with names {\ttfamily var\+\_\+names} in an HDF5 file with name c file\+\_\+name and accompanying XDMF file. 
 
-For X\+D\+MF collections (\cite{xdmf}), only the first value for {\ttfamily var\+\_\+names} is used, so it should have a size of one.
+For XDMF collections (\DoxyCite{xdmf}{number}{1}), only the first value for {\ttfamily var\+\_\+names} is used, so it should have a size of one.
 
 The plot is generally 3-\/D, but if one of the dimensions provided is equal to 1, it is checked whether there is poloidal or toroidal axisymmetry and if so, the plot becomes 2-\/D. This can be forced using the optional input argument {\ttfamily sym\+\_\+type}.
 
 Optionally, the (curvilinear) grid can be provided through {\ttfamily X}, {\ttfamily Y} and {\ttfamily Z}. If not, the grid is assumed to be Cartesian with discrete indices where {\ttfamily X} corresponds to the first dimensions, {\ttfamily Y} to the second and {\ttfamily Z} to the third.
 
-Additionally, the total grid size and local offset can be provided in {\ttfamily tot\+\_\+dim} and {\ttfamily loc\+\_\+offset} to run this routine in parallel automatically. Optionally, one of the dimensions ({\ttfamily col\+\_\+id}, default 4) can be associated to a collection dimension using {\ttfamily col} different from 1\+:
+Additionally, the total grid size and local offset can be provided in {\ttfamily tot\+\_\+dim} and {\ttfamily loc\+\_\+offset} to run this routine in parallel automatically. Optionally, one of the dimensions ({\ttfamily col\+\_\+id}, default 4) can be associated to a collection dimension using {\ttfamily col} different from 1:\+
 \begin{DoxyItemize}
-\item {\ttfamily col} = 1\+: no collection, just plots of different variables
-\item {\ttfamily col} = 2\+: time collection
-\item {\ttfamily col} = 3\+: spatial collection
-\item {\ttfamily col} = 4\+: vector field
+\item {\ttfamily col} = 1:\+ no collection, just plots of different variables
+\item {\ttfamily col} = 2:\+ time collection
+\item {\ttfamily col} = 3:\+ spatial collection
+\item {\ttfamily col} = 4:\+ vector field
 \end{DoxyItemize}
 
-Furthermore, using the variable {\ttfamily cont\+\_\+plot}, a plot can be (over-\/)written in multiple writes. By this is meant that there should be an initial plot, with collection type 1, 2, 3 or 4, which can then be followed by an arbitrary number of additional writes. As these additional writes currently cannot modify the plot structure, nor the X\+D\+MF variables, their collection dimension should be complete from the start.
+Furthermore, using the variable {\ttfamily cont\+\_\+plot}, a plot can be (over-\/)written in multiple writes. By this is meant that there should be an initial plot, with collection type 1, 2, 3 or 4, which can then be followed by an arbitrary number of additional writes. As these additional writes currently cannot modify the plot structure, nor the XDMF variables, their collection dimension should be complete from the start.
 
 This has no implications for single plots but means that for collection types 2 to 4 all the elements in the collection have to be present, though they do not necessary need to have been completely written in the other dimensions.
 
@@ -41,31 +41,33 @@ Subsequent writes with {\ttfamily cont\+\_\+plot} can then, for instance, write 
 
 \begin{DoxyEnumerate}
 \item For a vector field, the number of variables has to be 2 for 2-\/D plots or 3 for 3-\/D plots. This should be rewritten in the future, so that collections can be used for vectors as well.
-\item In order to merge collections in their collection dimension, the X\+D\+MF files can always easily be joined.
+\item In order to merge collections in their collection dimension, the XDMF files can always easily be joined.
 \item If necessary, a lock system should be used when multiple processes are writing the same file, including continued writes.
-\item To plot this with Vis\+It, use\+:
+\item To plot this with Vis\+It, use:\+
 \begin{DoxyItemize}
-\item for temporal collections\+: pseudocolor using the variable name (other names are ignored).
-\item for spatial collections\+: subset of blocks or pseudocolor using the variable name (other names are ignored).
-\item for vector plot\+: Vector plot.
-\item for without collections\+: pseudocolor using the variable names.
+\item for temporal collections:\+ pseudocolor using the variable name (other names are ignored).
+\item for spatial collections:\+ subset of blocks or pseudocolor using the variable name (other names are ignored).
+\item for vector plot:\+ Vector plot.
+\item for without collections:\+ pseudocolor using the variable names.
 \end{DoxyItemize}
 \item Currently all of possibly multiple processes that write data have to cover the entire range of the variables in the dimension indicated by {\ttfamily col\+\_\+id}. (This could be implemented by changing how n\+\_\+plot is defined and selectively letting each processer write in the main loop at its corresponding indices.)
-\item To project the data to 2-\/D in Vis\+It, use the projection tool under Operators $>$ Transform 
+\item To project the data to 2-\/D in Vis\+It, use the projection tool under Operators \texorpdfstring{$>$}{>} Transform 
 \end{DoxyEnumerate}
 \end{DoxyNote}
 
 
-Definition at line 137 of file output\+\_\+ops.\+f90.
+Definition at line \doxymbox{\hyperlink{output__ops_8f90_source_l00137}{137}} of file \doxymbox{\hyperlink{output__ops_8f90_source}{output\+\_\+ops.\+f90}}.
 
 
 
-\doxysubsection{Member Function/\+Subroutine Documentation}
-\mbox{\Hypertarget{interfaceoutput__ops_1_1plot__hdf5_aabeeacb6f9aab1fb21d226e6a315e3d1}\label{interfaceoutput__ops_1_1plot__hdf5_aabeeacb6f9aab1fb21d226e6a315e3d1}} 
-\index{output\_ops::plot\_hdf5@{output\_ops::plot\_hdf5}!plot\_hdf5\_arr@{plot\_hdf5\_arr}}
+\label{doc-func-members}
+\Hypertarget{interfaceoutput__ops_1_1plot__hdf5_doc-func-members}
+\doxysubsection{Member Function/\+\+Subroutine Documentation}
+\Hypertarget{interfaceoutput__ops_1_1plot__hdf5_ac9a174c29215fad868ebba54a5d51499}\index{output\_ops::plot\_hdf5@{output\_ops::plot\_hdf5}!plot\_hdf5\_arr@{plot\_hdf5\_arr}}
 \index{plot\_hdf5\_arr@{plot\_hdf5\_arr}!output\_ops::plot\_hdf5@{output\_ops::plot\_hdf5}}
 \doxysubsubsection{\texorpdfstring{plot\_hdf5\_arr()}{plot\_hdf5\_arr()}}
-{\footnotesize\ttfamily subroutine output\+\_\+ops\+::plot\+\_\+hdf5\+::plot\+\_\+hdf5\+\_\+arr (\begin{DoxyParamCaption}\item[{character(len=$\ast$), dimension(\+:), intent(in)}]{var\+\_\+names,  }\item[{character(len=$\ast$), intent(in)}]{file\+\_\+name,  }\item[{real(dp), dimension(\+:,\+:,\+:,\+:), intent(in), target}]{vars,  }\item[{integer, dimension(4), intent(in), optional}]{tot\+\_\+dim,  }\item[{integer, dimension(4), intent(in), optional}]{loc\+\_\+offset,  }\item[{real(dp), dimension(\+:,\+:,\+:,\+:), intent(in), optional, target}]{X,  }\item[{real(dp), dimension(\+:,\+:,\+:,\+:), intent(in), optional, target}]{Y,  }\item[{real(dp), dimension(\+:,\+:,\+:,\+:), intent(in), optional, target}]{Z,  }\item[{integer, intent(in), optional}]{col\+\_\+id,  }\item[{integer, intent(in), optional}]{col,  }\item[{integer, intent(in), optional}]{sym\+\_\+type,  }\item[{logical, intent(in), optional}]{cont\+\_\+plot,  }\item[{character(len=$\ast$), intent(in), optional}]{descr }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \label{interfaceoutput__ops_1_1plot__hdf5_ac9a174c29215fad868ebba54a5d51499} 
+subroutine output\+\_\+ops::\+plot\+\_\+hdf5::\+plot\+\_\+hdf5\+\_\+arr (\begin{DoxyParamCaption}\item[{character(len=\texorpdfstring{$\ast$}{*}), dimension(:\+), intent(in)}]{var\+\_\+names}{, }\item[{character(len=\texorpdfstring{$\ast$}{*}), intent(in)}]{file\+\_\+name}{, }\item[{real(dp), dimension(:\+,:\+,:\+,:\+), intent(in), target}]{vars}{, }\item[{integer, dimension(4), intent(in), optional}]{tot\+\_\+dim}{, }\item[{integer, dimension(4), intent(in), optional}]{loc\+\_\+offset}{, }\item[{real(dp), dimension(:\+,:\+,:\+,:\+), intent(in), optional, target}]{x}{, }\item[{real(dp), dimension(:\+,:\+,:\+,:\+), intent(in), optional, target}]{y}{, }\item[{real(dp), dimension(:\+,:\+,:\+,:\+), intent(in), optional, target}]{z}{, }\item[{integer, intent(in), optional}]{col\+\_\+id}{, }\item[{integer, intent(in), optional}]{col}{, }\item[{integer, intent(in), optional}]{sym\+\_\+type}{, }\item[{logical, intent(in), optional}]{cont\+\_\+plot}{, }\item[{character(len=\texorpdfstring{$\ast$}{*}), intent(in), optional}]{descr}{}\end{DoxyParamCaption})}
 
 
 
@@ -73,49 +75,49 @@ array version
 
 
 \begin{DoxyParams}[1]{Parameters}
-\mbox{\texttt{ in}}  & {\em var\+\_\+names} & names of variable to be plot \\
+\doxymbox{\texttt{in}}  & {\em var\+\_\+names} & names of variable to be plot \\
 \hline
-\mbox{\texttt{ in}}  & {\em file\+\_\+name} & file name \\
+\doxymbox{\texttt{in}}  & {\em file\+\_\+name} & file name \\
 \hline
-\mbox{\texttt{ in}}  & {\em vars} & variables to plot \\
+\doxymbox{\texttt{in}}  & {\em vars} & variables to plot \\
 \hline
-\mbox{\texttt{ in}}  & {\em tot\+\_\+dim} & total dimensions of the arrays \\
+\doxymbox{\texttt{in}}  & {\em tot\+\_\+dim} & total dimensions of the arrays \\
 \hline
-\mbox{\texttt{ in}}  & {\em loc\+\_\+offset} & offset of local dimensions \\
+\doxymbox{\texttt{in}}  & {\em loc\+\_\+offset} & offset of local dimensions \\
 \hline
-\mbox{\texttt{ in}}  & {\em x} & curvilinear grid X points \\
+\doxymbox{\texttt{in}}  & {\em x} & curvilinear grid X points \\
 \hline
-\mbox{\texttt{ in}}  & {\em y} & curvilinear grid Y points \\
+\doxymbox{\texttt{in}}  & {\em y} & curvilinear grid Y points \\
 \hline
-\mbox{\texttt{ in}}  & {\em z} & curvilinear grid Z points \\
+\doxymbox{\texttt{in}}  & {\em z} & curvilinear grid Z points \\
 \hline
-\mbox{\texttt{ in}}  & {\em col\+\_\+id} & index of time dimension \\
+\doxymbox{\texttt{in}}  & {\em col\+\_\+id} & index of time dimension \\
 \hline
-\mbox{\texttt{ in}}  & {\em col} & whether a collection is made \\
+\doxymbox{\texttt{in}}  & {\em col} & whether a collection is made \\
 \hline
-\mbox{\texttt{ in}}  & {\em sym\+\_\+type} & type of symmetry (1\+: no symmetry, 2\+: toroidal, 3\+: poloidal) \\
+\doxymbox{\texttt{in}}  & {\em sym\+\_\+type} & type of symmetry (1:\+ no symmetry, 2:\+ toroidal, 3:\+ poloidal) \\
 \hline
-\mbox{\texttt{ in}}  & {\em cont\+\_\+plot} & continued plot \\
+\doxymbox{\texttt{in}}  & {\em cont\+\_\+plot} & continued plot \\
 \hline
-\mbox{\texttt{ in}}  & {\em descr} & description \\
+\doxymbox{\texttt{in}}  & {\em descr} & description \\
 \hline
 \end{DoxyParams}
 
 
-Definition at line 435 of file output\+\_\+ops.\+f90.
+Definition at line \doxymbox{\hyperlink{output__ops_8f90_source_l00433}{433}} of file \doxymbox{\hyperlink{output__ops_8f90_source}{output\+\_\+ops.\+f90}}.
 
-Here is the call graph for this function\+:\nopagebreak
+Here is the call graph for this function:\+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=350pt]{interfaceoutput__ops_1_1plot__hdf5_aabeeacb6f9aab1fb21d226e6a315e3d1_cgraph}
+\includegraphics[width=350pt]{interfaceoutput__ops_1_1plot__hdf5_ac9a174c29215fad868ebba54a5d51499_cgraph}
 \end{center}
 \end{figure}
-\mbox{\Hypertarget{interfaceoutput__ops_1_1plot__hdf5_a70787d16f320d130c3ab67128075d7a1}\label{interfaceoutput__ops_1_1plot__hdf5_a70787d16f320d130c3ab67128075d7a1}} 
-\index{output\_ops::plot\_hdf5@{output\_ops::plot\_hdf5}!plot\_hdf5\_ind@{plot\_hdf5\_ind}}
+\Hypertarget{interfaceoutput__ops_1_1plot__hdf5_a32670259883fe7381753194a1828fe2e}\index{output\_ops::plot\_hdf5@{output\_ops::plot\_hdf5}!plot\_hdf5\_ind@{plot\_hdf5\_ind}}
 \index{plot\_hdf5\_ind@{plot\_hdf5\_ind}!output\_ops::plot\_hdf5@{output\_ops::plot\_hdf5}}
 \doxysubsubsection{\texorpdfstring{plot\_hdf5\_ind()}{plot\_hdf5\_ind()}}
-{\footnotesize\ttfamily subroutine output\+\_\+ops\+::plot\+\_\+hdf5\+::plot\+\_\+hdf5\+\_\+ind (\begin{DoxyParamCaption}\item[{character(len=$\ast$), intent(in)}]{var\+\_\+name,  }\item[{character(len=$\ast$), intent(in)}]{file\+\_\+name,  }\item[{real(dp), dimension(\+:,\+:,\+:), intent(in)}]{var,  }\item[{integer, dimension(3), intent(in), optional}]{tot\+\_\+dim,  }\item[{integer, dimension(3), intent(in), optional}]{loc\+\_\+offset,  }\item[{real(dp), dimension(\+:,\+:,\+:), intent(in), optional, target}]{X,  }\item[{real(dp), dimension(\+:,\+:,\+:), intent(in), optional, target}]{Y,  }\item[{real(dp), dimension(\+:,\+:,\+:), intent(in), optional, target}]{Z,  }\item[{logical, intent(in), optional}]{cont\+\_\+plot,  }\item[{character(len=$\ast$), intent(in), optional}]{descr }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \label{interfaceoutput__ops_1_1plot__hdf5_a32670259883fe7381753194a1828fe2e} 
+subroutine output\+\_\+ops::\+plot\+\_\+hdf5::\+plot\+\_\+hdf5\+\_\+ind (\begin{DoxyParamCaption}\item[{character(len=\texorpdfstring{$\ast$}{*}), intent(in)}]{var\+\_\+name}{, }\item[{character(len=\texorpdfstring{$\ast$}{*}), intent(in)}]{file\+\_\+name}{, }\item[{real(dp), dimension(:\+,:\+,:\+), intent(in)}]{var}{, }\item[{integer, dimension(3), intent(in), optional}]{tot\+\_\+dim}{, }\item[{integer, dimension(3), intent(in), optional}]{loc\+\_\+offset}{, }\item[{real(dp), dimension(:\+,:\+,:\+), intent(in), optional, target}]{x}{, }\item[{real(dp), dimension(:\+,:\+,:\+), intent(in), optional, target}]{y}{, }\item[{real(dp), dimension(:\+,:\+,:\+), intent(in), optional, target}]{z}{, }\item[{logical, intent(in), optional}]{cont\+\_\+plot}{, }\item[{character(len=\texorpdfstring{$\ast$}{*}), intent(in), optional}]{descr}{}\end{DoxyParamCaption})}
 
 
 
@@ -123,30 +125,30 @@ individual version
 
 
 \begin{DoxyParams}[1]{Parameters}
-\mbox{\texttt{ in}}  & {\em var\+\_\+name} & name of variable to be plot \\
+\doxymbox{\texttt{in}}  & {\em var\+\_\+name} & name of variable to be plot \\
 \hline
-\mbox{\texttt{ in}}  & {\em file\+\_\+name} & file name \\
+\doxymbox{\texttt{in}}  & {\em file\+\_\+name} & file name \\
 \hline
-\mbox{\texttt{ in}}  & {\em var} & variable to plot \\
+\doxymbox{\texttt{in}}  & {\em var} & variable to plot \\
 \hline
-\mbox{\texttt{ in}}  & {\em tot\+\_\+dim} & total dimensions of the arrays \\
+\doxymbox{\texttt{in}}  & {\em tot\+\_\+dim} & total dimensions of the arrays \\
 \hline
-\mbox{\texttt{ in}}  & {\em loc\+\_\+offset} & offset of local dimensions \\
+\doxymbox{\texttt{in}}  & {\em loc\+\_\+offset} & offset of local dimensions \\
 \hline
-\mbox{\texttt{ in}}  & {\em x} & curvilinear grid X points \\
+\doxymbox{\texttt{in}}  & {\em x} & curvilinear grid X points \\
 \hline
-\mbox{\texttt{ in}}  & {\em y} & curvilinear grid Y points \\
+\doxymbox{\texttt{in}}  & {\em y} & curvilinear grid Y points \\
 \hline
-\mbox{\texttt{ in}}  & {\em z} & curvilinear grid Z points \\
+\doxymbox{\texttt{in}}  & {\em z} & curvilinear grid Z points \\
 \hline
-\mbox{\texttt{ in}}  & {\em cont\+\_\+plot} & continued plot \\
+\doxymbox{\texttt{in}}  & {\em cont\+\_\+plot} & continued plot \\
 \hline
-\mbox{\texttt{ in}}  & {\em descr} & description \\
+\doxymbox{\texttt{in}}  & {\em descr} & description \\
 \hline
 \end{DoxyParams}
 
 
-Definition at line 949 of file output\+\_\+ops.\+f90.
+Definition at line \doxymbox{\hyperlink{output__ops_8f90_source_l00947}{947}} of file \doxymbox{\hyperlink{output__ops_8f90_source}{output\+\_\+ops.\+f90}}.
 
 
 

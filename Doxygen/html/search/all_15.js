@@ -1,23 +1,13 @@
 var searchData=
 [
-  ['vac_5fops_887',['vac_ops',['../namespacevac__ops.html',1,'']]],
-  ['vac_5fops_2ef90_888',['vac_ops.f90',['../vac__ops_8f90.html',1,'']]],
-  ['vac_5fperm_889',['vac_perm',['../namespaceeq__vars.html#ac45a3781896236d8c8fe95d920f7337c',1,'eq_vars']]],
-  ['vac_5fpot_5fplot_890',['vac_pot_plot',['../namespacevac__ops.html#a3a2a3aed45951aecef42197b82a5a6da',1,'vac_ops']]],
-  ['vac_5ftype_891',['vac_type',['../structvac__vars_1_1vac__type.html',1,'vac_vars']]],
-  ['vac_5futilities_892',['vac_utilities',['../namespacevac__utilities.html',1,'']]],
-  ['vac_5futilities_2ef90_893',['vac_utilities.f90',['../vac__utilities_8f90.html',1,'']]],
-  ['vac_5fvars_894',['vac_vars',['../namespacevac__vars.html',1,'']]],
-  ['vac_5fvars_2ef90_895',['vac_vars.f90',['../vac__vars_8f90.html',1,'']]],
-  ['val_896',['val',['../structsol__vars_1_1sol__type.html#a4cb91aeea05a69a04dceef7951be1004',1,'sol_vars::sol_type']]],
-  ['var_5f1d_5ftype_897',['var_1d_type',['../structhdf5__vars_1_1var__1d__type.html',1,'hdf5_vars']]],
-  ['var_5fname_898',['var_name',['../structhdf5__vars_1_1var__1d__type.html#a009a09790edf48ec2176bd7fce3abed9',1,'hdf5_vars::var_1d_type']]],
-  ['vec_899',['vec',['../structsol__vars_1_1sol__type.html#a5e21f3c7b6581901982958615c3f936e',1,'sol_vars::sol_type']]],
-  ['vec_5fdis2loc_900',['vec_dis2loc',['../namespacevac__utilities.html#a05e8e1f24569b4bff05e61a867268fc3',1,'vac_utilities']]],
-  ['vmec_5fops_901',['vmec_ops',['../namespacevmec__ops.html',1,'']]],
-  ['vmec_5fops_2ef90_902',['VMEC_ops.f90',['../VMEC__ops_8f90.html',1,'']]],
-  ['vmec_5futilities_903',['vmec_utilities',['../namespacevmec__utilities.html',1,'']]],
-  ['vmec_5futilities_2ef90_904',['VMEC_utilities.f90',['../VMEC__utilities_8f90.html',1,'']]],
-  ['vmec_5fvars_905',['vmec_vars',['../namespacevmec__vars.html',1,'']]],
-  ['vmec_5fvars_2ef90_906',['VMEC_vars.f90',['../VMEC__vars_8f90.html',1,'']]]
+  ['u_5f0_0',['u_0',['../structx__vars_1_1x__1__type.html#a49ba10abb2c45fc9f6faf0412f7af198',1,'x_vars::x_1_type']]],
+  ['u_5f1_1',['u_1',['../structx__vars_1_1x__1__type.html#ab5cb4ea2b358b6787b84ffccdbc65dab',1,'x_vars::x_1_type']]],
+  ['u_5fstyle_2',['u_style',['../namespacenum__vars.html#a5b3a837df1e82bb43fc47815c62c6b49',1,'num_vars']]],
+  ['untrim_5fgrid_3',['untrim_grid',['../namespacegrid__utilities.html#a4679f24af8e02793070f4e27b43e00b6',1,'grid_utilities']]],
+  ['up_20the_20input_20file_4',['Setting Up the Input File',['../page_tutorial.html#tutorial_inputs',1,'']]],
+  ['usage_20file_5',['Memory usage file',['../page_outputs.html#output_file_mem',1,'']]],
+  ['use_5fguess_6',['use_guess',['../namespacerich__vars.html#aedc7171560db899c515d1610d99582c9',1,'rich_vars']]],
+  ['use_5fnormalization_7',['use_normalization',['../namespacenum__vars.html#a585ed16ea01f299cd764690f057af2c6',1,'num_vars']]],
+  ['use_5fpol_5fflux_5fe_8',['use_pol_flux_e',['../namespacenum__vars.html#adedd3c1e77cfdf75dac84e43ee54497a',1,'num_vars']]],
+  ['use_5fpol_5fflux_5ff_9',['use_pol_flux_f',['../namespacenum__vars.html#ae21ec57b791e369c3558c0eb3da1555b',1,'num_vars']]]
 ];

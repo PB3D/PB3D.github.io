@@ -1,27 +1,27 @@
-\hypertarget{structmpi__vars_1_1lock__type}{}\doxysection{mpi\+\_\+vars\+::lock\+\_\+type Type Reference}
-\label{structmpi__vars_1_1lock__type}\index{mpi\_vars::lock\_type@{mpi\_vars::lock\_type}}
+\doxysection{mpi\+\_\+vars::\+lock\+\_\+type Type Reference}
+\hypertarget{structmpi__vars_1_1lock__type}{}\label{structmpi__vars_1_1lock__type}\index{mpi\_vars::lock\_type@{mpi\_vars::lock\_type}}
 
 
 lock type  
 
 
-\doxysubsection*{Public Member Functions}
+\doxysubsubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-procedure \mbox{\hyperlink{structmpi__vars_1_1lock__type_abb38fce763fc0925e6bb7d69162e68b0}{init}} =$>$ \mbox{\hyperlink{namespacempi__vars_ab38aeec20e567cf6f272587890ead066}{init\+\_\+lock}}
+procedure \doxymbox{\hyperlink{structmpi__vars_1_1lock__type_a6227b4a9250ac98f66bb365d0f86cf5b}{init}} (lock\+\_\+loc, \doxymbox{\hyperlink{structmpi__vars_1_1lock__type_ae13a02ff3985d06c3455b2ae29210cc4}{wu\+\_\+tag}})
 \begin{DoxyCompactList}\small\item\em initialize \end{DoxyCompactList}\item 
-procedure \mbox{\hyperlink{structmpi__vars_1_1lock__type_a3b633d333ce2963fbe05e99badd00606}{dealloc}} =$>$ \mbox{\hyperlink{namespacempi__vars_af03c942b5f1c980adf9e1b2ba3f4bd58}{dealloc\+\_\+lock}}
+procedure \doxymbox{\hyperlink{structmpi__vars_1_1lock__type_a2c029c67853e6ab25916cb422de22b85}{dealloc}} (lock\+\_\+loc)
 \begin{DoxyCompactList}\small\item\em deallocate \end{DoxyCompactList}\end{DoxyCompactItemize}
-\doxysubsection*{Public Attributes}
+\doxysubsubsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
-integer, dimension(\+:), allocatable \mbox{\hyperlink{structmpi__vars_1_1lock__type_a1bc45d5db890c080c843318662050565}{wl}}
+integer, dimension(:\+), allocatable \doxymbox{\hyperlink{structmpi__vars_1_1lock__type_a1bc45d5db890c080c843318662050565}{wl}}
 \begin{DoxyCompactList}\small\item\em waiting list \end{DoxyCompactList}\item 
-integer \mbox{\hyperlink{structmpi__vars_1_1lock__type_a19ac8404814735597e92c647e31745ad}{wl\+\_\+win}}
+integer \doxymbox{\hyperlink{structmpi__vars_1_1lock__type_a19ac8404814735597e92c647e31745ad}{wl\+\_\+win}}
 \begin{DoxyCompactList}\small\item\em window to waiting list \end{DoxyCompactList}\item 
-integer \mbox{\hyperlink{structmpi__vars_1_1lock__type_ae13a02ff3985d06c3455b2ae29210cc4}{wu\+\_\+tag}}
+integer \doxymbox{\hyperlink{structmpi__vars_1_1lock__type_ae13a02ff3985d06c3455b2ae29210cc4}{wu\+\_\+tag}}
 \begin{DoxyCompactList}\small\item\em wakeup tag \end{DoxyCompactList}\item 
-logical \mbox{\hyperlink{structmpi__vars_1_1lock__type_a53ce091d52f98ca430a9e97f8bf0c0f4}{blocking}}
+logical \doxymbox{\hyperlink{structmpi__vars_1_1lock__type_a53ce091d52f98ca430a9e97f8bf0c0f4}{blocking}}
 \begin{DoxyCompactList}\small\item\em is a normal blocking process \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
@@ -41,68 +41,63 @@ The advantage of prefering BL processes after finishing a process is that this w
 \begin{DoxyNote}{Note}
 Every process in the waiting queue will eventually receive a notification.
 \end{DoxyNote}
-Scheme\+: \tabulinesep=1mm
-\begin{longtabu}spread 0pt [c]{*{4}{|X[-1]}|}
-\hline
-\cellcolor{\tableheadbgcolor}\textbf{ }&\cellcolor{\tableheadbgcolor}\textbf{ request access }&\cellcolor{\tableheadbgcolor}\textbf{ gain acces }&\cellcolor{\tableheadbgcolor}\textbf{ return access }\\\cline{1-4}
-\endfirsthead
-\hline
-\endfoot
-\hline
-\cellcolor{\tableheadbgcolor}\textbf{ }&\cellcolor{\tableheadbgcolor}\textbf{ request access }&\cellcolor{\tableheadbgcolor}\textbf{ gain acces }&\cellcolor{\tableheadbgcolor}\textbf{ return access }\\\cline{1-4}
-\endhead
-\cellcolor{\tableheadbgcolor}\textbf{ BL }&
+Scheme:\+ 
+\begin{DoxyTable}{4}{}{}{1}
+\SetCell{bg=\tableheadbgcolor,font=\bfseries}&\SetCell{bg=\tableheadbgcolor,font=\bfseries}request access &\SetCell{bg=\tableheadbgcolor,font=\bfseries}gain acces &\SetCell{bg=\tableheadbgcolor,font=\bfseries}return access \\
+\SetCell{bg=\tableheadbgcolor,font=\bfseries}BL &
 \begin{DoxyItemize}
 \item add to queue 
 \item wait 
-\end{DoxyItemize}&if direct\+: 
+\end{DoxyItemize}&if direct:\+ 
 \begin{DoxyItemize}
 \item activate 
 \end{DoxyItemize}&
 \begin{DoxyItemize}
 \item remove from queue 
-\item find next B\+L/\+NB 
+\item find next BL/\+\+NB 
 \item notify 
 \item activate all 
-\end{DoxyItemize}\\\cline{1-4}
-\cellcolor{\tableheadbgcolor}\textbf{ NB }&
+\end{DoxyItemize}\\
+\SetCell{bg=\tableheadbgcolor,font=\bfseries}NB &
 \begin{DoxyItemize}
 \item add to queue 
 \item wait 
-\end{DoxyItemize}&if direct\+: 
+\end{DoxyItemize}&if direct:\+ 
 \begin{DoxyItemize}
 \item find next NB 
-\end{DoxyItemize}for all next NB\+: 
+\end{DoxyItemize}for all next NB:\+ 
 \begin{DoxyItemize}
 \item notify 
 \item activate 
-\end{DoxyItemize}&always\+: 
+\end{DoxyItemize}&always:\+ 
 \begin{DoxyItemize}
 \item remove from queue 
-\end{DoxyItemize}if last NB\+: 
+\end{DoxyItemize}if last NB:\+ 
 \begin{DoxyItemize}
-\item find next B\+L/\+NB 
+\item find next BL/\+\+NB 
 \item notify 
 \item activate all 
-\end{DoxyItemize}\\\cline{1-4}
-\end{longtabu}
-with preference BL $>$ N\+B(s).
+\end{DoxyItemize}\\
+\end{DoxyTable}
+with preference BL \texorpdfstring{$>$}{>} NB(s).
 
 \begin{DoxySeeAlso}{See also}
 This is based on an extension of the ideas in {\ttfamily Ross\+Atomic\+IO}. 
 \end{DoxySeeAlso}
 
 
-Definition at line 63 of file M\+P\+I\+\_\+vars.\+f90.
+Definition at line \doxymbox{\hyperlink{MPI__vars_8f90_source_l00063}{63}} of file \doxymbox{\hyperlink{MPI__vars_8f90_source}{MPI\+\_\+vars.\+f90}}.
 
 
 
-\doxysubsection{Member Function/\+Subroutine Documentation}
-\mbox{\Hypertarget{structmpi__vars_1_1lock__type_a3b633d333ce2963fbe05e99badd00606}\label{structmpi__vars_1_1lock__type_a3b633d333ce2963fbe05e99badd00606}} 
-\index{mpi\_vars::lock\_type@{mpi\_vars::lock\_type}!dealloc@{dealloc}}
+\label{doc-func-members}
+\Hypertarget{structmpi__vars_1_1lock__type_doc-func-members}
+\doxysubsection{Member Function/\+\+Subroutine Documentation}
+\Hypertarget{structmpi__vars_1_1lock__type_a2c029c67853e6ab25916cb422de22b85}\index{mpi\_vars::lock\_type@{mpi\_vars::lock\_type}!dealloc@{dealloc}}
 \index{dealloc@{dealloc}!mpi\_vars::lock\_type@{mpi\_vars::lock\_type}}
 \doxysubsubsection{\texorpdfstring{dealloc()}{dealloc()}}
-{\footnotesize\ttfamily procedure mpi\+\_\+vars\+::lock\+\_\+type\+::dealloc}
+{\footnotesize\ttfamily \label{structmpi__vars_1_1lock__type_a2c029c67853e6ab25916cb422de22b85} 
+procedure mpi\+\_\+vars::\+lock\+\_\+type::\+dealloc (\begin{DoxyParamCaption}\item[{class(\doxymbox{\hyperlink{structmpi__vars_1_1lock__type}{lock\+\_\+type}}), intent(inout)}]{lock\+\_\+loc}{}\end{DoxyParamCaption})}
 
 
 
@@ -110,13 +105,13 @@ deallocate
 
 deallocate 
 
-Definition at line 72 of file M\+P\+I\+\_\+vars.\+f90.
+Definition at line \doxymbox{\hyperlink{MPI__vars_8f90_source_l00072}{72}} of file \doxymbox{\hyperlink{MPI__vars_8f90_source}{MPI\+\_\+vars.\+f90}}.
 
-\mbox{\Hypertarget{structmpi__vars_1_1lock__type_abb38fce763fc0925e6bb7d69162e68b0}\label{structmpi__vars_1_1lock__type_abb38fce763fc0925e6bb7d69162e68b0}} 
-\index{mpi\_vars::lock\_type@{mpi\_vars::lock\_type}!init@{init}}
+\Hypertarget{structmpi__vars_1_1lock__type_a6227b4a9250ac98f66bb365d0f86cf5b}\index{mpi\_vars::lock\_type@{mpi\_vars::lock\_type}!init@{init}}
 \index{init@{init}!mpi\_vars::lock\_type@{mpi\_vars::lock\_type}}
 \doxysubsubsection{\texorpdfstring{init()}{init()}}
-{\footnotesize\ttfamily procedure mpi\+\_\+vars\+::lock\+\_\+type\+::init}
+{\footnotesize\ttfamily \label{structmpi__vars_1_1lock__type_a6227b4a9250ac98f66bb365d0f86cf5b} 
+procedure mpi\+\_\+vars::\+lock\+\_\+type::\+init (\begin{DoxyParamCaption}\item[{class(\doxymbox{\hyperlink{structmpi__vars_1_1lock__type}{lock\+\_\+type}}), intent(inout)}]{lock\+\_\+loc}{, }\item[{integer, intent(in)}]{wu\+\_\+tag}{}\end{DoxyParamCaption})}
 
 
 
@@ -124,16 +119,18 @@ initialize
 
 initialize 
 
-Definition at line 70 of file M\+P\+I\+\_\+vars.\+f90.
+Definition at line \doxymbox{\hyperlink{MPI__vars_8f90_source_l00070}{70}} of file \doxymbox{\hyperlink{MPI__vars_8f90_source}{MPI\+\_\+vars.\+f90}}.
 
 
 
+\label{doc-variable-members}
+\Hypertarget{structmpi__vars_1_1lock__type_doc-variable-members}
 \doxysubsection{Member Data Documentation}
-\mbox{\Hypertarget{structmpi__vars_1_1lock__type_a53ce091d52f98ca430a9e97f8bf0c0f4}\label{structmpi__vars_1_1lock__type_a53ce091d52f98ca430a9e97f8bf0c0f4}} 
-\index{mpi\_vars::lock\_type@{mpi\_vars::lock\_type}!blocking@{blocking}}
+\Hypertarget{structmpi__vars_1_1lock__type_a53ce091d52f98ca430a9e97f8bf0c0f4}\index{mpi\_vars::lock\_type@{mpi\_vars::lock\_type}!blocking@{blocking}}
 \index{blocking@{blocking}!mpi\_vars::lock\_type@{mpi\_vars::lock\_type}}
 \doxysubsubsection{\texorpdfstring{blocking}{blocking}}
-{\footnotesize\ttfamily logical mpi\+\_\+vars\+::lock\+\_\+type\+::blocking}
+{\footnotesize\ttfamily \label{structmpi__vars_1_1lock__type_a53ce091d52f98ca430a9e97f8bf0c0f4} 
+logical mpi\+\_\+vars::\+lock\+\_\+type::\+blocking}
 
 
 
@@ -141,13 +138,13 @@ is a normal blocking process
 
 
 
-Definition at line 67 of file M\+P\+I\+\_\+vars.\+f90.
+Definition at line \doxymbox{\hyperlink{MPI__vars_8f90_source_l00067}{67}} of file \doxymbox{\hyperlink{MPI__vars_8f90_source}{MPI\+\_\+vars.\+f90}}.
 
-\mbox{\Hypertarget{structmpi__vars_1_1lock__type_a1bc45d5db890c080c843318662050565}\label{structmpi__vars_1_1lock__type_a1bc45d5db890c080c843318662050565}} 
-\index{mpi\_vars::lock\_type@{mpi\_vars::lock\_type}!wl@{wl}}
+\Hypertarget{structmpi__vars_1_1lock__type_a1bc45d5db890c080c843318662050565}\index{mpi\_vars::lock\_type@{mpi\_vars::lock\_type}!wl@{wl}}
 \index{wl@{wl}!mpi\_vars::lock\_type@{mpi\_vars::lock\_type}}
 \doxysubsubsection{\texorpdfstring{wl}{wl}}
-{\footnotesize\ttfamily integer, dimension(\+:), allocatable mpi\+\_\+vars\+::lock\+\_\+type\+::wl}
+{\footnotesize\ttfamily \label{structmpi__vars_1_1lock__type_a1bc45d5db890c080c843318662050565} 
+integer, dimension(:\+), allocatable mpi\+\_\+vars::\+lock\+\_\+type::\+wl}
 
 
 
@@ -155,13 +152,13 @@ waiting list
 
 
 
-Definition at line 64 of file M\+P\+I\+\_\+vars.\+f90.
+Definition at line \doxymbox{\hyperlink{MPI__vars_8f90_source_l00064}{64}} of file \doxymbox{\hyperlink{MPI__vars_8f90_source}{MPI\+\_\+vars.\+f90}}.
 
-\mbox{\Hypertarget{structmpi__vars_1_1lock__type_a19ac8404814735597e92c647e31745ad}\label{structmpi__vars_1_1lock__type_a19ac8404814735597e92c647e31745ad}} 
-\index{mpi\_vars::lock\_type@{mpi\_vars::lock\_type}!wl\_win@{wl\_win}}
+\Hypertarget{structmpi__vars_1_1lock__type_a19ac8404814735597e92c647e31745ad}\index{mpi\_vars::lock\_type@{mpi\_vars::lock\_type}!wl\_win@{wl\_win}}
 \index{wl\_win@{wl\_win}!mpi\_vars::lock\_type@{mpi\_vars::lock\_type}}
 \doxysubsubsection{\texorpdfstring{wl\_win}{wl\_win}}
-{\footnotesize\ttfamily integer mpi\+\_\+vars\+::lock\+\_\+type\+::wl\+\_\+win}
+{\footnotesize\ttfamily \label{structmpi__vars_1_1lock__type_a19ac8404814735597e92c647e31745ad} 
+integer mpi\+\_\+vars::\+lock\+\_\+type::\+wl\+\_\+win}
 
 
 
@@ -169,13 +166,13 @@ window to waiting list
 
 
 
-Definition at line 65 of file M\+P\+I\+\_\+vars.\+f90.
+Definition at line \doxymbox{\hyperlink{MPI__vars_8f90_source_l00065}{65}} of file \doxymbox{\hyperlink{MPI__vars_8f90_source}{MPI\+\_\+vars.\+f90}}.
 
-\mbox{\Hypertarget{structmpi__vars_1_1lock__type_ae13a02ff3985d06c3455b2ae29210cc4}\label{structmpi__vars_1_1lock__type_ae13a02ff3985d06c3455b2ae29210cc4}} 
-\index{mpi\_vars::lock\_type@{mpi\_vars::lock\_type}!wu\_tag@{wu\_tag}}
+\Hypertarget{structmpi__vars_1_1lock__type_ae13a02ff3985d06c3455b2ae29210cc4}\index{mpi\_vars::lock\_type@{mpi\_vars::lock\_type}!wu\_tag@{wu\_tag}}
 \index{wu\_tag@{wu\_tag}!mpi\_vars::lock\_type@{mpi\_vars::lock\_type}}
 \doxysubsubsection{\texorpdfstring{wu\_tag}{wu\_tag}}
-{\footnotesize\ttfamily integer mpi\+\_\+vars\+::lock\+\_\+type\+::wu\+\_\+tag}
+{\footnotesize\ttfamily \label{structmpi__vars_1_1lock__type_ae13a02ff3985d06c3455b2ae29210cc4} 
+integer mpi\+\_\+vars::\+lock\+\_\+type::\+wu\+\_\+tag}
 
 
 
@@ -183,7 +180,7 @@ wakeup tag
 
 
 
-Definition at line 66 of file M\+P\+I\+\_\+vars.\+f90.
+Definition at line \doxymbox{\hyperlink{MPI__vars_8f90_source_l00066}{66}} of file \doxymbox{\hyperlink{MPI__vars_8f90_source}{MPI\+\_\+vars.\+f90}}.
 
 
 

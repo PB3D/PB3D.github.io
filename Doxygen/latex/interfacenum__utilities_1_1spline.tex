@@ -1,33 +1,33 @@
-\hypertarget{interfacenum__utilities_1_1spline}{}\doxysection{num\+\_\+utilities\+::spline Interface Reference}
-\label{interfacenum__utilities_1_1spline}\index{num\_utilities::spline@{num\_utilities::spline}}
+\doxysection{num\+\_\+utilities::\+spline Interface Reference}
+\hypertarget{interfacenum__utilities_1_1spline}{}\label{interfacenum__utilities_1_1spline}\index{num\_utilities::spline@{num\_utilities::spline}}
 
 
 Wrapper to the pspline library, making it easier to use for 1-\/D applications where speed is not the main priority. If spline representations are to be reused, manually use the library.  
 
 
-\doxysubsection*{Public Member Functions}
+\doxysubsubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-integer function \mbox{\hyperlink{interfacenum__utilities_1_1spline_a4930f80a2527dde5f5fc32cc90c5c107}{spline\+\_\+real}} (x, y, xnew, ynew, ord, deriv, bcs, bcs\+\_\+val, extrap)
+integer function \doxymbox{\hyperlink{interfacenum__utilities_1_1spline_a4930f80a2527dde5f5fc32cc90c5c107}{spline\+\_\+real}} (x, y, xnew, ynew, ord, deriv, bcs, bcs\+\_\+val, extrap)
 \begin{DoxyCompactList}\small\item\em real version \end{DoxyCompactList}\item 
-integer function \mbox{\hyperlink{interfacenum__utilities_1_1spline_a02b3cc0c51d11a9b5d889f871e2d088f}{spline\+\_\+complex}} (x, y, xnew, ynew, ord, deriv, bcs, bcs\+\_\+val, extrap)
+integer function \doxymbox{\hyperlink{interfacenum__utilities_1_1spline_a02b3cc0c51d11a9b5d889f871e2d088f}{spline\+\_\+complex}} (x, y, xnew, ynew, ord, deriv, bcs, bcs\+\_\+val, extrap)
 \begin{DoxyCompactList}\small\item\em complex version \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
 Wrapper to the pspline library, making it easier to use for 1-\/D applications where speed is not the main priority. If spline representations are to be reused, manually use the library. 
 
-Order 1 (linear), 2 (akima hermite) or 3 (cubic) possible. Boundary conditions are possible\+:
+Order 1 (linear), 2 (akima hermite) or 3 (cubic) possible. Boundary conditions are possible:\+
 \begin{DoxyItemize}
-\item -\/1\+: periodic
-\item 0\+: not-\/a-\/knot
-\item 1\+: prescribe first derivative
-\item 2\+: prescribe second derivative
+\item -\/1:\+ periodic
+\item 0:\+ not-\/a-\/knot
+\item 1:\+ prescribe first derivative
+\item 2:\+ prescribe second derivative
 \end{DoxyItemize}
 
 However, for order 2 boundary condition 2 is not available and for order 1 none of them.
 
-Furthermore, derivatives can be specified\+:
+Furthermore, derivatives can be specified:\+
 \begin{DoxyItemize}
 \item up to 1 for order 1 and 2
 \item up to 2 for order 3
@@ -40,16 +40,18 @@ ierr
 \end{DoxyReturn}
 
 
-Definition at line 276 of file num\+\_\+utilities.\+f90.
+Definition at line \doxymbox{\hyperlink{num__utilities_8f90_source_l00276}{276}} of file \doxymbox{\hyperlink{num__utilities_8f90_source}{num\+\_\+utilities.\+f90}}.
 
 
 
-\doxysubsection{Member Function/\+Subroutine Documentation}
-\mbox{\Hypertarget{interfacenum__utilities_1_1spline_a02b3cc0c51d11a9b5d889f871e2d088f}\label{interfacenum__utilities_1_1spline_a02b3cc0c51d11a9b5d889f871e2d088f}} 
-\index{num\_utilities::spline@{num\_utilities::spline}!spline\_complex@{spline\_complex}}
+\label{doc-func-members}
+\Hypertarget{interfacenum__utilities_1_1spline_doc-func-members}
+\doxysubsection{Member Function/\+\+Subroutine Documentation}
+\Hypertarget{interfacenum__utilities_1_1spline_a02b3cc0c51d11a9b5d889f871e2d088f}\index{num\_utilities::spline@{num\_utilities::spline}!spline\_complex@{spline\_complex}}
 \index{spline\_complex@{spline\_complex}!num\_utilities::spline@{num\_utilities::spline}}
 \doxysubsubsection{\texorpdfstring{spline\_complex()}{spline\_complex()}}
-{\footnotesize\ttfamily integer function num\+\_\+utilities\+::spline\+::spline\+\_\+complex (\begin{DoxyParamCaption}\item[{real(dp), dimension(\+:), intent(in)}]{x,  }\item[{complex(dp), dimension(\+:), intent(in)}]{y,  }\item[{real(dp), dimension(\+:), intent(in)}]{xnew,  }\item[{complex(dp), dimension(\+:), intent(out)}]{ynew,  }\item[{integer, intent(in), optional}]{ord,  }\item[{integer, intent(in), optional}]{deriv,  }\item[{integer, dimension(2), intent(in), optional}]{bcs,  }\item[{complex(dp), dimension(2), intent(in), optional}]{bcs\+\_\+val,  }\item[{logical, intent(in), optional}]{extrap }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \label{interfacenum__utilities_1_1spline_a02b3cc0c51d11a9b5d889f871e2d088f} 
+integer function num\+\_\+utilities::\+spline::\+spline\+\_\+complex (\begin{DoxyParamCaption}\item[{real(dp), dimension(:\+), intent(in)}]{x}{, }\item[{complex(dp), dimension(:\+), intent(in)}]{y}{, }\item[{real(dp), dimension(:\+), intent(in)}]{xnew}{, }\item[{complex(dp), dimension(:\+), intent(out)}]{ynew}{, }\item[{integer, intent(in), optional}]{ord}{, }\item[{integer, intent(in), optional}]{deriv}{, }\item[{integer, dimension(2), intent(in), optional}]{bcs}{, }\item[{complex(dp), dimension(2), intent(in), optional}]{bcs\+\_\+val}{, }\item[{logical, intent(in), optional}]{extrap}{}\end{DoxyParamCaption})}
 
 
 
@@ -57,34 +59,34 @@ complex version
 
 
 \begin{DoxyParams}[1]{Parameters}
-\mbox{\texttt{ in}}  & {\em x} & coordinates \\
+\doxymbox{\texttt{in}}  & {\em x} & coordinates \\
 \hline
-\mbox{\texttt{ in}}  & {\em y} & function value \\
+\doxymbox{\texttt{in}}  & {\em y} & function value \\
 \hline
-\mbox{\texttt{ in}}  & {\em xnew} & new coordinates \\
+\doxymbox{\texttt{in}}  & {\em xnew} & new coordinates \\
 \hline
-\mbox{\texttt{ out}}  & {\em ynew} & new function values \\
+\doxymbox{\texttt{out}}  & {\em ynew} & new function values \\
 \hline
-\mbox{\texttt{ in}}  & {\em ord} & order \mbox{[}def 3\mbox{]} \\
+\doxymbox{\texttt{in}}  & {\em ord} & order \+[def 3]\+ \\
 \hline
-\mbox{\texttt{ in}}  & {\em deriv} & derivative \mbox{[}def 0\mbox{]} \\
+\doxymbox{\texttt{in}}  & {\em deriv} & derivative \+[def 0]\+ \\
 \hline
-\mbox{\texttt{ in}}  & {\em bcs} & boundary conditions \mbox{[}def 0\mbox{]} \\
+\doxymbox{\texttt{in}}  & {\em bcs} & boundary conditions \+[def 0]\+ \\
 \hline
-\mbox{\texttt{ in}}  & {\em bcs\+\_\+val} & boundary conditions \mbox{[}no def\mbox{]} \\
+\doxymbox{\texttt{in}}  & {\em bcs\+\_\+val} & boundary conditions \+[no def]\+ \\
 \hline
-\mbox{\texttt{ in}}  & {\em extrap} & whether extrapolation is allowed \mbox{[}def .false.\mbox{]} \\
+\doxymbox{\texttt{in}}  & {\em extrap} & whether extrapolation is allowed \+[def .false.]\+ \\
 \hline
 \end{DoxyParams}
 
 
-Definition at line 2003 of file num\+\_\+utilities.\+f90.
+Definition at line \doxymbox{\hyperlink{num__utilities_8f90_source_l02001}{2001}} of file \doxymbox{\hyperlink{num__utilities_8f90_source}{num\+\_\+utilities.\+f90}}.
 
-\mbox{\Hypertarget{interfacenum__utilities_1_1spline_a4930f80a2527dde5f5fc32cc90c5c107}\label{interfacenum__utilities_1_1spline_a4930f80a2527dde5f5fc32cc90c5c107}} 
-\index{num\_utilities::spline@{num\_utilities::spline}!spline\_real@{spline\_real}}
+\Hypertarget{interfacenum__utilities_1_1spline_a4930f80a2527dde5f5fc32cc90c5c107}\index{num\_utilities::spline@{num\_utilities::spline}!spline\_real@{spline\_real}}
 \index{spline\_real@{spline\_real}!num\_utilities::spline@{num\_utilities::spline}}
 \doxysubsubsection{\texorpdfstring{spline\_real()}{spline\_real()}}
-{\footnotesize\ttfamily integer function num\+\_\+utilities\+::spline\+::spline\+\_\+real (\begin{DoxyParamCaption}\item[{real(dp), dimension(\+:), intent(in), target}]{x,  }\item[{real(dp), dimension(\+:), intent(in)}]{y,  }\item[{real(dp), dimension(\+:), intent(in), target}]{xnew,  }\item[{real(dp), dimension(\+:), intent(out)}]{ynew,  }\item[{integer, intent(in), optional}]{ord,  }\item[{integer, intent(in), optional}]{deriv,  }\item[{integer, dimension(2), intent(in), optional}]{bcs,  }\item[{real(dp), dimension(2), intent(in), optional}]{bcs\+\_\+val,  }\item[{logical, intent(in), optional}]{extrap }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \label{interfacenum__utilities_1_1spline_a4930f80a2527dde5f5fc32cc90c5c107} 
+integer function num\+\_\+utilities::\+spline::\+spline\+\_\+real (\begin{DoxyParamCaption}\item[{real(dp), dimension(:\+), intent(in), target}]{x}{, }\item[{real(dp), dimension(:\+), intent(in)}]{y}{, }\item[{real(dp), dimension(:\+), intent(in), target}]{xnew}{, }\item[{real(dp), dimension(:\+), intent(out)}]{ynew}{, }\item[{integer, intent(in), optional}]{ord}{, }\item[{integer, intent(in), optional}]{deriv}{, }\item[{integer, dimension(2), intent(in), optional}]{bcs}{, }\item[{real(dp), dimension(2), intent(in), optional}]{bcs\+\_\+val}{, }\item[{logical, intent(in), optional}]{extrap}{}\end{DoxyParamCaption})}
 
 
 
@@ -92,30 +94,30 @@ real version
 
 
 \begin{DoxyParams}[1]{Parameters}
-\mbox{\texttt{ in}}  & {\em x} & coordinates \\
+\doxymbox{\texttt{in}}  & {\em x} & coordinates \\
 \hline
-\mbox{\texttt{ in}}  & {\em y} & function value \\
+\doxymbox{\texttt{in}}  & {\em y} & function value \\
 \hline
-\mbox{\texttt{ in}}  & {\em xnew} & new coordinates \\
+\doxymbox{\texttt{in}}  & {\em xnew} & new coordinates \\
 \hline
-\mbox{\texttt{ out}}  & {\em ynew} & new function values \\
+\doxymbox{\texttt{out}}  & {\em ynew} & new function values \\
 \hline
-\mbox{\texttt{ in}}  & {\em ord} & order \mbox{[}def 3\mbox{]} \\
+\doxymbox{\texttt{in}}  & {\em ord} & order \+[def 3]\+ \\
 \hline
-\mbox{\texttt{ in}}  & {\em deriv} & derivative \mbox{[}def 0\mbox{]} \\
+\doxymbox{\texttt{in}}  & {\em deriv} & derivative \+[def 0]\+ \\
 \hline
-\mbox{\texttt{ in}}  & {\em bcs} & boundary conditions \mbox{[}def 0\mbox{]} \\
+\doxymbox{\texttt{in}}  & {\em bcs} & boundary conditions \+[def 0]\+ \\
 \hline
-\mbox{\texttt{ in}}  & {\em bcs\+\_\+val} & boundary conditions \mbox{[}no def\mbox{]} \\
+\doxymbox{\texttt{in}}  & {\em bcs\+\_\+val} & boundary conditions \+[no def]\+ \\
 \hline
-\mbox{\texttt{ in}}  & {\em extrap} & whether extrapolation is allowed \mbox{[}def .false.\mbox{]} \\
+\doxymbox{\texttt{in}}  & {\em extrap} & whether extrapolation is allowed \+[def .false.]\+ \\
 \hline
 \end{DoxyParams}
 
 
-Definition at line 1676 of file num\+\_\+utilities.\+f90.
+Definition at line \doxymbox{\hyperlink{num__utilities_8f90_source_l01674}{1674}} of file \doxymbox{\hyperlink{num__utilities_8f90_source}{num\+\_\+utilities.\+f90}}.
 
-Here is the call graph for this function\+:\nopagebreak
+Here is the call graph for this function:\+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode

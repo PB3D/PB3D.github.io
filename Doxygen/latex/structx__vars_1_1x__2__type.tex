@@ -1,121 +1,160 @@
-\hypertarget{structx__vars_1_1x__2__type}{}\doxysection{x\+\_\+vars\+::x\+\_\+2\+\_\+type Type Reference}
-\label{structx__vars_1_1x__2__type}\index{x\_vars::x\_2\_type@{x\_vars::x\_2\_type}}
+\doxysection{x\+\_\+vars::\+x\+\_\+2\+\_\+type Type Reference}
+\hypertarget{structx__vars_1_1x__2__type}{}\label{structx__vars_1_1x__2__type}\index{x\_vars::x\_2\_type@{x\_vars::x\_2\_type}}
 
 
 tensorial perturbation type  
 
 
-\doxysubsection*{Public Member Functions}
+\doxysubsubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-procedure \mbox{\hyperlink{structx__vars_1_1x__2__type_ac26c5390ef8fb69a480a4e5694777230}{init}} =$>$ \mbox{\hyperlink{namespacex__vars_a5cb61bfd7fbdae7bae2ec10b63160d74}{init\+\_\+x\+\_\+2}}
+procedure \doxymbox{\hyperlink{structx__vars_1_1x__2__type_a724f2f34bba83ee4c9ffe9b6277324d7}{init}} (x, mds, grid\+\_\+x, \doxymbox{\hyperlink{structx__vars_1_1x__2__type_aac1744d056531f6fe7f7426dd4fcd92b}{lim\+\_\+sec\+\_\+x}}, is\+\_\+field\+\_\+averaged)
 \begin{DoxyCompactList}\small\item\em initialize \end{DoxyCompactList}\item 
-procedure \mbox{\hyperlink{structx__vars_1_1x__2__type_ac0379d6b7ad6a90df7f668bc942cf3da}{copy}} =$>$ \mbox{\hyperlink{namespacex__vars_aeaa25b69e4ef9cc5882c9dcf894201d7}{copy\+\_\+x\+\_\+2}}
+procedure \doxymbox{\hyperlink{structx__vars_1_1x__2__type_aeed276aa462b8995edf4ea75ef8adc9a}{copy}} (x\+\_\+i, mds, grid\+\_\+i, x\+\_\+o)
 \begin{DoxyCompactList}\small\item\em copy \end{DoxyCompactList}\item 
-procedure \mbox{\hyperlink{structx__vars_1_1x__2__type_af4e26ac3d8207b81345e7fb1a0da5b5b}{dealloc}} =$>$ \mbox{\hyperlink{namespacex__vars_ac052defbe764e6d02f436bd29d72db6d}{dealloc\+\_\+x\+\_\+2}}
+procedure \doxymbox{\hyperlink{structx__vars_1_1x__2__type_aa792fe656e5dc276a4140d9ca7416a23}{dealloc}} (x)
 \begin{DoxyCompactList}\small\item\em deallocate \end{DoxyCompactList}\end{DoxyCompactItemize}
-\doxysubsection*{Public Attributes}
+\doxysubsubsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
-integer, dimension(2) \mbox{\hyperlink{structx__vars_1_1x__2__type_a87efa10d03a1570fca946a56f7af7b25}{n\+\_\+mod}}
+integer, dimension(2) \doxymbox{\hyperlink{structx__vars_1_1x__2__type_a87efa10d03a1570fca946a56f7af7b25}{n\+\_\+mod}}
 \begin{DoxyCompactList}\small\item\em size of $n$ and $m$ (nr. of modes) \end{DoxyCompactList}\item 
-integer, dimension(2, 2) \mbox{\hyperlink{structx__vars_1_1x__2__type_aac1744d056531f6fe7f7426dd4fcd92b}{lim\+\_\+sec\+\_\+x}}
+integer, dimension(2, 2) \doxymbox{\hyperlink{structx__vars_1_1x__2__type_aac1744d056531f6fe7f7426dd4fcd92b}{lim\+\_\+sec\+\_\+x}}
 \begin{DoxyCompactList}\small\item\em limits of {\ttfamily m\+\_\+X} (pol. flux) or {\ttfamily n\+\_\+X} (tor. flux) \end{DoxyCompactList}\item 
-integer, dimension(\+:,\+:), allocatable \mbox{\hyperlink{structx__vars_1_1x__2__type_afd547fbb0050babada1f7c82017b7513}{n\+\_\+1}}
+integer, dimension(:\+,:\+), allocatable \doxymbox{\hyperlink{structx__vars_1_1x__2__type_afd547fbb0050babada1f7c82017b7513}{n\+\_\+1}}
 \begin{DoxyCompactList}\small\item\em vector of toroidal mode numbers of dimension 1 \end{DoxyCompactList}\item 
-integer, dimension(\+:,\+:), allocatable \mbox{\hyperlink{structx__vars_1_1x__2__type_a8b82d06227f2a27e19f5d5e08e11c95b}{n\+\_\+2}}
+integer, dimension(:\+,:\+), allocatable \doxymbox{\hyperlink{structx__vars_1_1x__2__type_a8b82d06227f2a27e19f5d5e08e11c95b}{n\+\_\+2}}
 \begin{DoxyCompactList}\small\item\em vector of toroidal mode numbers of dimension 2 \end{DoxyCompactList}\item 
-integer, dimension(\+:,\+:), allocatable \mbox{\hyperlink{structx__vars_1_1x__2__type_a024dedf39f2364d4593fe1bc0c195b10}{m\+\_\+1}}
+integer, dimension(:\+,:\+), allocatable \doxymbox{\hyperlink{structx__vars_1_1x__2__type_a024dedf39f2364d4593fe1bc0c195b10}{m\+\_\+1}}
 \begin{DoxyCompactList}\small\item\em vector of poloidal mode numbers of dimension 1 \end{DoxyCompactList}\item 
-integer, dimension(\+:,\+:), allocatable \mbox{\hyperlink{structx__vars_1_1x__2__type_ae90b6e85d81ec3d3b39488a565512338}{m\+\_\+2}}
+integer, dimension(:\+,:\+), allocatable \doxymbox{\hyperlink{structx__vars_1_1x__2__type_ae90b6e85d81ec3d3b39488a565512338}{m\+\_\+2}}
 \begin{DoxyCompactList}\small\item\em vector of poloidal mode numbers of dimension 2 \end{DoxyCompactList}\item 
-complex(dp), dimension(\+:,\+:,\+:,\+:), allocatable \mbox{\hyperlink{structx__vars_1_1x__2__type_a5b7c4fa433fe46dabc806a7fbb1832dc}{pv\+\_\+0}}
+complex(dp), dimension(:\+,:\+,:\+,:\+), allocatable \doxymbox{\hyperlink{structx__vars_1_1x__2__type_a5b7c4fa433fe46dabc806a7fbb1832dc}{pv\+\_\+0}}
 \begin{DoxyCompactList}\small\item\em $\widetilde{PV}^0$ coefficient \end{DoxyCompactList}\item 
-complex(dp), dimension(\+:,\+:,\+:,\+:), allocatable \mbox{\hyperlink{structx__vars_1_1x__2__type_a53910430e36de0ca91359322bdcf1e86}{pv\+\_\+1}}
+complex(dp), dimension(:\+,:\+,:\+,:\+), allocatable \doxymbox{\hyperlink{structx__vars_1_1x__2__type_a53910430e36de0ca91359322bdcf1e86}{pv\+\_\+1}}
 \begin{DoxyCompactList}\small\item\em $\widetilde{PV}^1$ coefficient \end{DoxyCompactList}\item 
-complex(dp), dimension(\+:,\+:,\+:,\+:), allocatable \mbox{\hyperlink{structx__vars_1_1x__2__type_a02ca37a3af02f70acbc536d20a70bd0e}{pv\+\_\+2}}
+complex(dp), dimension(:\+,:\+,:\+,:\+), allocatable \doxymbox{\hyperlink{structx__vars_1_1x__2__type_a02ca37a3af02f70acbc536d20a70bd0e}{pv\+\_\+2}}
 \begin{DoxyCompactList}\small\item\em $\widetilde{PV}^2$ coefficient \end{DoxyCompactList}\item 
-complex(dp), dimension(\+:,\+:,\+:,\+:), allocatable \mbox{\hyperlink{structx__vars_1_1x__2__type_ae7427dad704bb989266d32d97e5d0235}{kv\+\_\+0}}
+complex(dp), dimension(:\+,:\+,:\+,:\+), allocatable \doxymbox{\hyperlink{structx__vars_1_1x__2__type_ae7427dad704bb989266d32d97e5d0235}{kv\+\_\+0}}
 \begin{DoxyCompactList}\small\item\em $\widetilde{KV}^0$ coefficient \end{DoxyCompactList}\item 
-complex(dp), dimension(\+:,\+:,\+:,\+:), allocatable \mbox{\hyperlink{structx__vars_1_1x__2__type_a0cad62f1816e668211135c7097916123}{kv\+\_\+1}}
+complex(dp), dimension(:\+,:\+,:\+,:\+), allocatable \doxymbox{\hyperlink{structx__vars_1_1x__2__type_a0cad62f1816e668211135c7097916123}{kv\+\_\+1}}
 \begin{DoxyCompactList}\small\item\em $\widetilde{KV}^1$ coefficient \end{DoxyCompactList}\item 
-complex(dp), dimension(\+:,\+:,\+:,\+:), allocatable \mbox{\hyperlink{structx__vars_1_1x__2__type_a7861681a8170e07ce68ae6d29af2f3d3}{kv\+\_\+2}}
+complex(dp), dimension(:\+,:\+,:\+,:\+), allocatable \doxymbox{\hyperlink{structx__vars_1_1x__2__type_a7861681a8170e07ce68ae6d29af2f3d3}{kv\+\_\+2}}
 \begin{DoxyCompactList}\small\item\em $\widetilde{KV}^2$ coefficient \end{DoxyCompactList}\item 
-real(dp) \mbox{\hyperlink{structx__vars_1_1x__2__type_ada4dee48cd358adb447688c11170d3b4}{estim\+\_\+mem\+\_\+usage}}
+real(dp) \doxymbox{\hyperlink{structx__vars_1_1x__2__type_ada4dee48cd358adb447688c11170d3b4}{estim\+\_\+mem\+\_\+usage}}
 \begin{DoxyCompactList}\small\item\em estimated memory usage \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
 tensorial perturbation type 
 
-The arrays here are of the form\+:
+The arrays here are of the form:\+
 \begin{DoxyItemize}
-\item {\ttfamily P\+V\+\_\+i} and K\+V\+\_\+i\+: {\ttfamily (1\+:angle\+\_\+1,1\+:angle\+\_\+2,1;n\+\_\+mod$^\wedge$2)}
+\item {\ttfamily PV\+\_\+i} and KV\+\_\+i:\+ {\ttfamily (1:\+angle\+\_\+1,1:\+angle\+\_\+2,1;n\+\_\+mod\texorpdfstring{$^\wedge$}{\string^}2)}
 \end{DoxyItemize}
 
 \begin{DoxySeeAlso}{See also}
-See \mbox{\hyperlink{structgrid__vars_1_1grid__type}{grid\+\_\+vars.\+grid\+\_\+type}} for a discussion on {\ttfamily ang\+\_\+1} and {\ttfamily ang\+\_\+2}.
+See \doxylink{structgrid__vars_1_1grid__type}{grid\+\_\+vars.\+grid\+\_\+type} for a discussion on {\ttfamily ang\+\_\+1} and {\ttfamily ang\+\_\+2}.
 \end{DoxySeeAlso}
 \begin{DoxyNote}{Note}
 This type is also used for field-\/averaged tensorial perturbation variables, with {\ttfamily angle\+\_\+1} of size 1. 
 \end{DoxyNote}
 
 
-Definition at line 81 of file X\+\_\+vars.\+f90.
+Definition at line \doxymbox{\hyperlink{X__vars_8f90_source_l00081}{81}} of file \doxymbox{\hyperlink{X__vars_8f90_source}{X\+\_\+vars.\+f90}}.
 
 
 
-\doxysubsection{Member Function/\+Subroutine Documentation}
-\mbox{\Hypertarget{structx__vars_1_1x__2__type_ac0379d6b7ad6a90df7f668bc942cf3da}\label{structx__vars_1_1x__2__type_ac0379d6b7ad6a90df7f668bc942cf3da}} 
-\index{x\_vars::x\_2\_type@{x\_vars::x\_2\_type}!copy@{copy}}
+\label{doc-func-members}
+\Hypertarget{structx__vars_1_1x__2__type_doc-func-members}
+\doxysubsection{Member Function/\+\+Subroutine Documentation}
+\Hypertarget{structx__vars_1_1x__2__type_aeed276aa462b8995edf4ea75ef8adc9a}\index{x\_vars::x\_2\_type@{x\_vars::x\_2\_type}!copy@{copy}}
 \index{copy@{copy}!x\_vars::x\_2\_type@{x\_vars::x\_2\_type}}
 \doxysubsubsection{\texorpdfstring{copy()}{copy()}}
-{\footnotesize\ttfamily procedure x\+\_\+vars\+::x\+\_\+2\+\_\+type\+::copy}
+{\footnotesize\ttfamily \label{structx__vars_1_1x__2__type_aeed276aa462b8995edf4ea75ef8adc9a} 
+procedure x\+\_\+vars::\+x\+\_\+2\+\_\+type::\+copy (\begin{DoxyParamCaption}\item[{class(\doxymbox{\hyperlink{structx__vars_1_1x__2__type}{x\+\_\+2\+\_\+type}}), intent(in)}]{x\+\_\+i}{, }\item[{type(\doxymbox{\hyperlink{structx__vars_1_1modes__type}{modes\+\_\+type}}), intent(in)}]{mds}{, }\item[{type(\doxymbox{\hyperlink{structgrid__vars_1_1grid__type}{grid\+\_\+type}}), intent(in)}]{grid\+\_\+i}{, }\item[{type(\doxymbox{\hyperlink{structx__vars_1_1x__2__type}{x\+\_\+2\+\_\+type}}), intent(inout)}]{x\+\_\+o}{}\end{DoxyParamCaption})}
 
 
 
 copy 
 
 
+\begin{DoxyParams}[1]{Parameters}
+\doxymbox{\texttt{in}}  & {\em x\+\_\+i} & X\+\_\+2 to be copied \\
+\hline
+\doxymbox{\texttt{in}}  & {\em mds} & general modes variables \\
+\hline
+\doxymbox{\texttt{in}}  & {\em grid\+\_\+i} & grid of eq\+\_\+i \\
+\hline
+\doxymbox{\texttt{in,out}}  & {\em x\+\_\+o} & copied X\+\_\+1 \\
+\hline
+\end{DoxyParams}
 
-Definition at line 101 of file X\+\_\+vars.\+f90.
 
-\mbox{\Hypertarget{structx__vars_1_1x__2__type_af4e26ac3d8207b81345e7fb1a0da5b5b}\label{structx__vars_1_1x__2__type_af4e26ac3d8207b81345e7fb1a0da5b5b}} 
-\index{x\_vars::x\_2\_type@{x\_vars::x\_2\_type}!dealloc@{dealloc}}
+Definition at line \doxymbox{\hyperlink{X__vars_8f90_source_l00101}{101}} of file \doxymbox{\hyperlink{X__vars_8f90_source}{X\+\_\+vars.\+f90}}.
+
+\Hypertarget{structx__vars_1_1x__2__type_aa792fe656e5dc276a4140d9ca7416a23}\index{x\_vars::x\_2\_type@{x\_vars::x\_2\_type}!dealloc@{dealloc}}
 \index{dealloc@{dealloc}!x\_vars::x\_2\_type@{x\_vars::x\_2\_type}}
 \doxysubsubsection{\texorpdfstring{dealloc()}{dealloc()}}
-{\footnotesize\ttfamily procedure x\+\_\+vars\+::x\+\_\+2\+\_\+type\+::dealloc}
+{\footnotesize\ttfamily \label{structx__vars_1_1x__2__type_aa792fe656e5dc276a4140d9ca7416a23} 
+procedure x\+\_\+vars::\+x\+\_\+2\+\_\+type::\+dealloc (\begin{DoxyParamCaption}\item[{class(\doxymbox{\hyperlink{structx__vars_1_1x__2__type}{x\+\_\+2\+\_\+type}}), intent(inout)}]{x}{}\end{DoxyParamCaption})}
 
 
 
 deallocate 
 
 
+\begin{DoxyParams}[1]{Parameters}
+\doxymbox{\texttt{in,out}}  & {\em x} & perturbation variables to be deallocated \\
+\hline
+\end{DoxyParams}
 
-Definition at line 103 of file X\+\_\+vars.\+f90.
 
-\mbox{\Hypertarget{structx__vars_1_1x__2__type_ac26c5390ef8fb69a480a4e5694777230}\label{structx__vars_1_1x__2__type_ac26c5390ef8fb69a480a4e5694777230}} 
-\index{x\_vars::x\_2\_type@{x\_vars::x\_2\_type}!init@{init}}
+Definition at line \doxymbox{\hyperlink{X__vars_8f90_source_l00103}{103}} of file \doxymbox{\hyperlink{X__vars_8f90_source}{X\+\_\+vars.\+f90}}.
+
+\Hypertarget{structx__vars_1_1x__2__type_a724f2f34bba83ee4c9ffe9b6277324d7}\index{x\_vars::x\_2\_type@{x\_vars::x\_2\_type}!init@{init}}
 \index{init@{init}!x\_vars::x\_2\_type@{x\_vars::x\_2\_type}}
 \doxysubsubsection{\texorpdfstring{init()}{init()}}
-{\footnotesize\ttfamily procedure x\+\_\+vars\+::x\+\_\+2\+\_\+type\+::init}
+{\footnotesize\ttfamily \label{structx__vars_1_1x__2__type_a724f2f34bba83ee4c9ffe9b6277324d7} 
+procedure x\+\_\+vars::\+x\+\_\+2\+\_\+type::\+init (\begin{DoxyParamCaption}\item[{class(\doxymbox{\hyperlink{structx__vars_1_1x__2__type}{x\+\_\+2\+\_\+type}}), intent(inout)}]{x}{, }\item[{type(\doxymbox{\hyperlink{structx__vars_1_1modes__type}{modes\+\_\+type}}), intent(in)}]{mds}{, }\item[{type(\doxymbox{\hyperlink{structgrid__vars_1_1grid__type}{grid\+\_\+type}}), intent(in)}]{grid\+\_\+x}{, }\item[{integer, dimension(2,2), intent(in), optional}]{lim\+\_\+sec\+\_\+x}{, }\item[{logical, intent(in), optional}]{is\+\_\+field\+\_\+averaged}{}\end{DoxyParamCaption})}
 
 
 
 initialize 
 
+\begin{DoxySeeAlso}{See also}
+See init\+\_\+\+X\+\_\+1().
+\end{DoxySeeAlso}
+\begin{DoxyNote}{Note}
+The tensorial perturbation type can also be used for field-\/aligned variables, in which case the first index is assumed to have dimension 1 only. This can be triggered using {\ttfamily is\+\_\+field\+\_\+averaged}. There is no difference between a tensorial perturbation type with size of first dimension set to one through the use of this flag, or through other means. 
+\end{DoxyNote}
+
+\begin{DoxyParams}[1]{Parameters}
+\doxymbox{\texttt{in,out}}  & {\em x} & tensorial perturbation variables \\
+\hline
+\doxymbox{\texttt{in}}  & {\em mds} & general modes variables \\
+\hline
+\doxymbox{\texttt{in}}  & {\em grid\+\_\+x} & perturbation grid \\
+\hline
+\doxymbox{\texttt{in}}  & {\em \doxylink{structx__vars_1_1x__2__type_aac1744d056531f6fe7f7426dd4fcd92b}{lim\+\_\+sec\+\_\+x}} & limits of {\ttfamily m\+\_\+X} (pol. flux) or {\ttfamily n\+\_\+X} (tor. flux) for both dimensions \\
+\hline
+\doxymbox{\texttt{in}}  & {\em is\+\_\+field\+\_\+averaged} & if field-\/aligned, only one dimension for first index \\
+\hline
+\end{DoxyParams}
 
 
-Definition at line 99 of file X\+\_\+vars.\+f90.
+Definition at line \doxymbox{\hyperlink{X__vars_8f90_source_l00099}{99}} of file \doxymbox{\hyperlink{X__vars_8f90_source}{X\+\_\+vars.\+f90}}.
 
 
 
+\label{doc-variable-members}
+\Hypertarget{structx__vars_1_1x__2__type_doc-variable-members}
 \doxysubsection{Member Data Documentation}
-\mbox{\Hypertarget{structx__vars_1_1x__2__type_ada4dee48cd358adb447688c11170d3b4}\label{structx__vars_1_1x__2__type_ada4dee48cd358adb447688c11170d3b4}} 
-\index{x\_vars::x\_2\_type@{x\_vars::x\_2\_type}!estim\_mem\_usage@{estim\_mem\_usage}}
+\Hypertarget{structx__vars_1_1x__2__type_ada4dee48cd358adb447688c11170d3b4}\index{x\_vars::x\_2\_type@{x\_vars::x\_2\_type}!estim\_mem\_usage@{estim\_mem\_usage}}
 \index{estim\_mem\_usage@{estim\_mem\_usage}!x\_vars::x\_2\_type@{x\_vars::x\_2\_type}}
 \doxysubsubsection{\texorpdfstring{estim\_mem\_usage}{estim\_mem\_usage}}
-{\footnotesize\ttfamily real(dp) x\+\_\+vars\+::x\+\_\+2\+\_\+type\+::estim\+\_\+mem\+\_\+usage}
+{\footnotesize\ttfamily \label{structx__vars_1_1x__2__type_ada4dee48cd358adb447688c11170d3b4} 
+real(dp) x\+\_\+vars::\+x\+\_\+2\+\_\+type::\+estim\+\_\+mem\+\_\+usage}
 
 
 
@@ -126,13 +165,13 @@ Debug version only
 \end{DoxyNote}
 
 
-Definition at line 95 of file X\+\_\+vars.\+f90.
+Definition at line \doxymbox{\hyperlink{X__vars_8f90_source_l00095}{95}} of file \doxymbox{\hyperlink{X__vars_8f90_source}{X\+\_\+vars.\+f90}}.
 
-\mbox{\Hypertarget{structx__vars_1_1x__2__type_ae7427dad704bb989266d32d97e5d0235}\label{structx__vars_1_1x__2__type_ae7427dad704bb989266d32d97e5d0235}} 
-\index{x\_vars::x\_2\_type@{x\_vars::x\_2\_type}!kv\_0@{kv\_0}}
+\Hypertarget{structx__vars_1_1x__2__type_ae7427dad704bb989266d32d97e5d0235}\index{x\_vars::x\_2\_type@{x\_vars::x\_2\_type}!kv\_0@{kv\_0}}
 \index{kv\_0@{kv\_0}!x\_vars::x\_2\_type@{x\_vars::x\_2\_type}}
 \doxysubsubsection{\texorpdfstring{kv\_0}{kv\_0}}
-{\footnotesize\ttfamily complex(dp), dimension(\+:,\+:,\+:,\+:), allocatable x\+\_\+vars\+::x\+\_\+2\+\_\+type\+::kv\+\_\+0}
+{\footnotesize\ttfamily \label{structx__vars_1_1x__2__type_ae7427dad704bb989266d32d97e5d0235} 
+complex(dp), dimension(:\+,:\+,:\+,:\+), allocatable x\+\_\+vars::\+x\+\_\+2\+\_\+type::\+kv\+\_\+0}
 
 
 
@@ -140,13 +179,13 @@ $\widetilde{KV}^0$ coefficient
 
 
 
-Definition at line 91 of file X\+\_\+vars.\+f90.
+Definition at line \doxymbox{\hyperlink{X__vars_8f90_source_l00091}{91}} of file \doxymbox{\hyperlink{X__vars_8f90_source}{X\+\_\+vars.\+f90}}.
 
-\mbox{\Hypertarget{structx__vars_1_1x__2__type_a0cad62f1816e668211135c7097916123}\label{structx__vars_1_1x__2__type_a0cad62f1816e668211135c7097916123}} 
-\index{x\_vars::x\_2\_type@{x\_vars::x\_2\_type}!kv\_1@{kv\_1}}
+\Hypertarget{structx__vars_1_1x__2__type_a0cad62f1816e668211135c7097916123}\index{x\_vars::x\_2\_type@{x\_vars::x\_2\_type}!kv\_1@{kv\_1}}
 \index{kv\_1@{kv\_1}!x\_vars::x\_2\_type@{x\_vars::x\_2\_type}}
 \doxysubsubsection{\texorpdfstring{kv\_1}{kv\_1}}
-{\footnotesize\ttfamily complex(dp), dimension(\+:,\+:,\+:,\+:), allocatable x\+\_\+vars\+::x\+\_\+2\+\_\+type\+::kv\+\_\+1}
+{\footnotesize\ttfamily \label{structx__vars_1_1x__2__type_a0cad62f1816e668211135c7097916123} 
+complex(dp), dimension(:\+,:\+,:\+,:\+), allocatable x\+\_\+vars::\+x\+\_\+2\+\_\+type::\+kv\+\_\+1}
 
 
 
@@ -154,13 +193,13 @@ $\widetilde{KV}^1$ coefficient
 
 
 
-Definition at line 92 of file X\+\_\+vars.\+f90.
+Definition at line \doxymbox{\hyperlink{X__vars_8f90_source_l00092}{92}} of file \doxymbox{\hyperlink{X__vars_8f90_source}{X\+\_\+vars.\+f90}}.
 
-\mbox{\Hypertarget{structx__vars_1_1x__2__type_a7861681a8170e07ce68ae6d29af2f3d3}\label{structx__vars_1_1x__2__type_a7861681a8170e07ce68ae6d29af2f3d3}} 
-\index{x\_vars::x\_2\_type@{x\_vars::x\_2\_type}!kv\_2@{kv\_2}}
+\Hypertarget{structx__vars_1_1x__2__type_a7861681a8170e07ce68ae6d29af2f3d3}\index{x\_vars::x\_2\_type@{x\_vars::x\_2\_type}!kv\_2@{kv\_2}}
 \index{kv\_2@{kv\_2}!x\_vars::x\_2\_type@{x\_vars::x\_2\_type}}
 \doxysubsubsection{\texorpdfstring{kv\_2}{kv\_2}}
-{\footnotesize\ttfamily complex(dp), dimension(\+:,\+:,\+:,\+:), allocatable x\+\_\+vars\+::x\+\_\+2\+\_\+type\+::kv\+\_\+2}
+{\footnotesize\ttfamily \label{structx__vars_1_1x__2__type_a7861681a8170e07ce68ae6d29af2f3d3} 
+complex(dp), dimension(:\+,:\+,:\+,:\+), allocatable x\+\_\+vars::\+x\+\_\+2\+\_\+type::\+kv\+\_\+2}
 
 
 
@@ -168,13 +207,13 @@ $\widetilde{KV}^2$ coefficient
 
 
 
-Definition at line 93 of file X\+\_\+vars.\+f90.
+Definition at line \doxymbox{\hyperlink{X__vars_8f90_source_l00093}{93}} of file \doxymbox{\hyperlink{X__vars_8f90_source}{X\+\_\+vars.\+f90}}.
 
-\mbox{\Hypertarget{structx__vars_1_1x__2__type_aac1744d056531f6fe7f7426dd4fcd92b}\label{structx__vars_1_1x__2__type_aac1744d056531f6fe7f7426dd4fcd92b}} 
-\index{x\_vars::x\_2\_type@{x\_vars::x\_2\_type}!lim\_sec\_x@{lim\_sec\_x}}
+\Hypertarget{structx__vars_1_1x__2__type_aac1744d056531f6fe7f7426dd4fcd92b}\index{x\_vars::x\_2\_type@{x\_vars::x\_2\_type}!lim\_sec\_x@{lim\_sec\_x}}
 \index{lim\_sec\_x@{lim\_sec\_x}!x\_vars::x\_2\_type@{x\_vars::x\_2\_type}}
 \doxysubsubsection{\texorpdfstring{lim\_sec\_x}{lim\_sec\_x}}
-{\footnotesize\ttfamily integer, dimension(2,2) x\+\_\+vars\+::x\+\_\+2\+\_\+type\+::lim\+\_\+sec\+\_\+x}
+{\footnotesize\ttfamily \label{structx__vars_1_1x__2__type_aac1744d056531f6fe7f7426dd4fcd92b} 
+integer, dimension(2,2) x\+\_\+vars::\+x\+\_\+2\+\_\+type::\+lim\+\_\+sec\+\_\+x}
 
 
 
@@ -182,13 +221,13 @@ limits of {\ttfamily m\+\_\+X} (pol. flux) or {\ttfamily n\+\_\+X} (tor. flux)
 
 
 
-Definition at line 83 of file X\+\_\+vars.\+f90.
+Definition at line \doxymbox{\hyperlink{X__vars_8f90_source_l00083}{83}} of file \doxymbox{\hyperlink{X__vars_8f90_source}{X\+\_\+vars.\+f90}}.
 
-\mbox{\Hypertarget{structx__vars_1_1x__2__type_a024dedf39f2364d4593fe1bc0c195b10}\label{structx__vars_1_1x__2__type_a024dedf39f2364d4593fe1bc0c195b10}} 
-\index{x\_vars::x\_2\_type@{x\_vars::x\_2\_type}!m\_1@{m\_1}}
+\Hypertarget{structx__vars_1_1x__2__type_a024dedf39f2364d4593fe1bc0c195b10}\index{x\_vars::x\_2\_type@{x\_vars::x\_2\_type}!m\_1@{m\_1}}
 \index{m\_1@{m\_1}!x\_vars::x\_2\_type@{x\_vars::x\_2\_type}}
 \doxysubsubsection{\texorpdfstring{m\_1}{m\_1}}
-{\footnotesize\ttfamily integer, dimension(\+:,\+:), allocatable x\+\_\+vars\+::x\+\_\+2\+\_\+type\+::m\+\_\+1}
+{\footnotesize\ttfamily \label{structx__vars_1_1x__2__type_a024dedf39f2364d4593fe1bc0c195b10} 
+integer, dimension(:\+,:\+), allocatable x\+\_\+vars::\+x\+\_\+2\+\_\+type::\+m\+\_\+1}
 
 
 
@@ -196,13 +235,13 @@ vector of poloidal mode numbers of dimension 1
 
 
 
-Definition at line 86 of file X\+\_\+vars.\+f90.
+Definition at line \doxymbox{\hyperlink{X__vars_8f90_source_l00086}{86}} of file \doxymbox{\hyperlink{X__vars_8f90_source}{X\+\_\+vars.\+f90}}.
 
-\mbox{\Hypertarget{structx__vars_1_1x__2__type_ae90b6e85d81ec3d3b39488a565512338}\label{structx__vars_1_1x__2__type_ae90b6e85d81ec3d3b39488a565512338}} 
-\index{x\_vars::x\_2\_type@{x\_vars::x\_2\_type}!m\_2@{m\_2}}
+\Hypertarget{structx__vars_1_1x__2__type_ae90b6e85d81ec3d3b39488a565512338}\index{x\_vars::x\_2\_type@{x\_vars::x\_2\_type}!m\_2@{m\_2}}
 \index{m\_2@{m\_2}!x\_vars::x\_2\_type@{x\_vars::x\_2\_type}}
 \doxysubsubsection{\texorpdfstring{m\_2}{m\_2}}
-{\footnotesize\ttfamily integer, dimension(\+:,\+:), allocatable x\+\_\+vars\+::x\+\_\+2\+\_\+type\+::m\+\_\+2}
+{\footnotesize\ttfamily \label{structx__vars_1_1x__2__type_ae90b6e85d81ec3d3b39488a565512338} 
+integer, dimension(:\+,:\+), allocatable x\+\_\+vars::\+x\+\_\+2\+\_\+type::\+m\+\_\+2}
 
 
 
@@ -210,13 +249,13 @@ vector of poloidal mode numbers of dimension 2
 
 
 
-Definition at line 87 of file X\+\_\+vars.\+f90.
+Definition at line \doxymbox{\hyperlink{X__vars_8f90_source_l00087}{87}} of file \doxymbox{\hyperlink{X__vars_8f90_source}{X\+\_\+vars.\+f90}}.
 
-\mbox{\Hypertarget{structx__vars_1_1x__2__type_afd547fbb0050babada1f7c82017b7513}\label{structx__vars_1_1x__2__type_afd547fbb0050babada1f7c82017b7513}} 
-\index{x\_vars::x\_2\_type@{x\_vars::x\_2\_type}!n\_1@{n\_1}}
+\Hypertarget{structx__vars_1_1x__2__type_afd547fbb0050babada1f7c82017b7513}\index{x\_vars::x\_2\_type@{x\_vars::x\_2\_type}!n\_1@{n\_1}}
 \index{n\_1@{n\_1}!x\_vars::x\_2\_type@{x\_vars::x\_2\_type}}
 \doxysubsubsection{\texorpdfstring{n\_1}{n\_1}}
-{\footnotesize\ttfamily integer, dimension(\+:,\+:), allocatable x\+\_\+vars\+::x\+\_\+2\+\_\+type\+::n\+\_\+1}
+{\footnotesize\ttfamily \label{structx__vars_1_1x__2__type_afd547fbb0050babada1f7c82017b7513} 
+integer, dimension(:\+,:\+), allocatable x\+\_\+vars::\+x\+\_\+2\+\_\+type::\+n\+\_\+1}
 
 
 
@@ -224,13 +263,13 @@ vector of toroidal mode numbers of dimension 1
 
 
 
-Definition at line 84 of file X\+\_\+vars.\+f90.
+Definition at line \doxymbox{\hyperlink{X__vars_8f90_source_l00084}{84}} of file \doxymbox{\hyperlink{X__vars_8f90_source}{X\+\_\+vars.\+f90}}.
 
-\mbox{\Hypertarget{structx__vars_1_1x__2__type_a8b82d06227f2a27e19f5d5e08e11c95b}\label{structx__vars_1_1x__2__type_a8b82d06227f2a27e19f5d5e08e11c95b}} 
-\index{x\_vars::x\_2\_type@{x\_vars::x\_2\_type}!n\_2@{n\_2}}
+\Hypertarget{structx__vars_1_1x__2__type_a8b82d06227f2a27e19f5d5e08e11c95b}\index{x\_vars::x\_2\_type@{x\_vars::x\_2\_type}!n\_2@{n\_2}}
 \index{n\_2@{n\_2}!x\_vars::x\_2\_type@{x\_vars::x\_2\_type}}
 \doxysubsubsection{\texorpdfstring{n\_2}{n\_2}}
-{\footnotesize\ttfamily integer, dimension(\+:,\+:), allocatable x\+\_\+vars\+::x\+\_\+2\+\_\+type\+::n\+\_\+2}
+{\footnotesize\ttfamily \label{structx__vars_1_1x__2__type_a8b82d06227f2a27e19f5d5e08e11c95b} 
+integer, dimension(:\+,:\+), allocatable x\+\_\+vars::\+x\+\_\+2\+\_\+type::\+n\+\_\+2}
 
 
 
@@ -238,13 +277,13 @@ vector of toroidal mode numbers of dimension 2
 
 
 
-Definition at line 85 of file X\+\_\+vars.\+f90.
+Definition at line \doxymbox{\hyperlink{X__vars_8f90_source_l00085}{85}} of file \doxymbox{\hyperlink{X__vars_8f90_source}{X\+\_\+vars.\+f90}}.
 
-\mbox{\Hypertarget{structx__vars_1_1x__2__type_a87efa10d03a1570fca946a56f7af7b25}\label{structx__vars_1_1x__2__type_a87efa10d03a1570fca946a56f7af7b25}} 
-\index{x\_vars::x\_2\_type@{x\_vars::x\_2\_type}!n\_mod@{n\_mod}}
+\Hypertarget{structx__vars_1_1x__2__type_a87efa10d03a1570fca946a56f7af7b25}\index{x\_vars::x\_2\_type@{x\_vars::x\_2\_type}!n\_mod@{n\_mod}}
 \index{n\_mod@{n\_mod}!x\_vars::x\_2\_type@{x\_vars::x\_2\_type}}
 \doxysubsubsection{\texorpdfstring{n\_mod}{n\_mod}}
-{\footnotesize\ttfamily integer, dimension(2) x\+\_\+vars\+::x\+\_\+2\+\_\+type\+::n\+\_\+mod}
+{\footnotesize\ttfamily \label{structx__vars_1_1x__2__type_a87efa10d03a1570fca946a56f7af7b25} 
+integer, dimension(2) x\+\_\+vars::\+x\+\_\+2\+\_\+type::\+n\+\_\+mod}
 
 
 
@@ -252,13 +291,13 @@ size of $n$ and $m$ (nr. of modes)
 
 
 
-Definition at line 82 of file X\+\_\+vars.\+f90.
+Definition at line \doxymbox{\hyperlink{X__vars_8f90_source_l00082}{82}} of file \doxymbox{\hyperlink{X__vars_8f90_source}{X\+\_\+vars.\+f90}}.
 
-\mbox{\Hypertarget{structx__vars_1_1x__2__type_a5b7c4fa433fe46dabc806a7fbb1832dc}\label{structx__vars_1_1x__2__type_a5b7c4fa433fe46dabc806a7fbb1832dc}} 
-\index{x\_vars::x\_2\_type@{x\_vars::x\_2\_type}!pv\_0@{pv\_0}}
+\Hypertarget{structx__vars_1_1x__2__type_a5b7c4fa433fe46dabc806a7fbb1832dc}\index{x\_vars::x\_2\_type@{x\_vars::x\_2\_type}!pv\_0@{pv\_0}}
 \index{pv\_0@{pv\_0}!x\_vars::x\_2\_type@{x\_vars::x\_2\_type}}
 \doxysubsubsection{\texorpdfstring{pv\_0}{pv\_0}}
-{\footnotesize\ttfamily complex(dp), dimension(\+:,\+:,\+:,\+:), allocatable x\+\_\+vars\+::x\+\_\+2\+\_\+type\+::pv\+\_\+0}
+{\footnotesize\ttfamily \label{structx__vars_1_1x__2__type_a5b7c4fa433fe46dabc806a7fbb1832dc} 
+complex(dp), dimension(:\+,:\+,:\+,:\+), allocatable x\+\_\+vars::\+x\+\_\+2\+\_\+type::\+pv\+\_\+0}
 
 
 
@@ -266,13 +305,13 @@ $\widetilde{PV}^0$ coefficient
 
 
 
-Definition at line 88 of file X\+\_\+vars.\+f90.
+Definition at line \doxymbox{\hyperlink{X__vars_8f90_source_l00088}{88}} of file \doxymbox{\hyperlink{X__vars_8f90_source}{X\+\_\+vars.\+f90}}.
 
-\mbox{\Hypertarget{structx__vars_1_1x__2__type_a53910430e36de0ca91359322bdcf1e86}\label{structx__vars_1_1x__2__type_a53910430e36de0ca91359322bdcf1e86}} 
-\index{x\_vars::x\_2\_type@{x\_vars::x\_2\_type}!pv\_1@{pv\_1}}
+\Hypertarget{structx__vars_1_1x__2__type_a53910430e36de0ca91359322bdcf1e86}\index{x\_vars::x\_2\_type@{x\_vars::x\_2\_type}!pv\_1@{pv\_1}}
 \index{pv\_1@{pv\_1}!x\_vars::x\_2\_type@{x\_vars::x\_2\_type}}
 \doxysubsubsection{\texorpdfstring{pv\_1}{pv\_1}}
-{\footnotesize\ttfamily complex(dp), dimension(\+:,\+:,\+:,\+:), allocatable x\+\_\+vars\+::x\+\_\+2\+\_\+type\+::pv\+\_\+1}
+{\footnotesize\ttfamily \label{structx__vars_1_1x__2__type_a53910430e36de0ca91359322bdcf1e86} 
+complex(dp), dimension(:\+,:\+,:\+,:\+), allocatable x\+\_\+vars::\+x\+\_\+2\+\_\+type::\+pv\+\_\+1}
 
 
 
@@ -280,13 +319,13 @@ $\widetilde{PV}^1$ coefficient
 
 
 
-Definition at line 89 of file X\+\_\+vars.\+f90.
+Definition at line \doxymbox{\hyperlink{X__vars_8f90_source_l00089}{89}} of file \doxymbox{\hyperlink{X__vars_8f90_source}{X\+\_\+vars.\+f90}}.
 
-\mbox{\Hypertarget{structx__vars_1_1x__2__type_a02ca37a3af02f70acbc536d20a70bd0e}\label{structx__vars_1_1x__2__type_a02ca37a3af02f70acbc536d20a70bd0e}} 
-\index{x\_vars::x\_2\_type@{x\_vars::x\_2\_type}!pv\_2@{pv\_2}}
+\Hypertarget{structx__vars_1_1x__2__type_a02ca37a3af02f70acbc536d20a70bd0e}\index{x\_vars::x\_2\_type@{x\_vars::x\_2\_type}!pv\_2@{pv\_2}}
 \index{pv\_2@{pv\_2}!x\_vars::x\_2\_type@{x\_vars::x\_2\_type}}
 \doxysubsubsection{\texorpdfstring{pv\_2}{pv\_2}}
-{\footnotesize\ttfamily complex(dp), dimension(\+:,\+:,\+:,\+:), allocatable x\+\_\+vars\+::x\+\_\+2\+\_\+type\+::pv\+\_\+2}
+{\footnotesize\ttfamily \label{structx__vars_1_1x__2__type_a02ca37a3af02f70acbc536d20a70bd0e} 
+complex(dp), dimension(:\+,:\+,:\+,:\+), allocatable x\+\_\+vars::\+x\+\_\+2\+\_\+type::\+pv\+\_\+2}
 
 
 
@@ -294,7 +333,7 @@ $\widetilde{PV}^2$ coefficient
 
 
 
-Definition at line 90 of file X\+\_\+vars.\+f90.
+Definition at line \doxymbox{\hyperlink{X__vars_8f90_source_l00090}{90}} of file \doxymbox{\hyperlink{X__vars_8f90_source}{X\+\_\+vars.\+f90}}.
 
 
 

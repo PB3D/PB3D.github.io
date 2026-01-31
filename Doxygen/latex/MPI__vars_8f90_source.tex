@@ -1,0 +1,154 @@
+\doxysection{MPI\+\_\+vars.\+f90}
+\hypertarget{MPI__vars_8f90_source}{}\label{MPI__vars_8f90_source}\index{/Users/toonweyens/Code/PB3D/Modules/MPI\_vars.f90@{/Users/toonweyens/Code/PB3D/Modules/MPI\_vars.f90}}
+\doxymbox{\hyperlink{MPI__vars_8f90}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{MPI__vars_8f90_source_l00001}00001\ \textcolor{comment}{!-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/!}\textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{MPI__vars_8f90_source_l00002}00002\ \textcolor{comment}{!>\ Variables\ pertaining\ to\ MPI.}}
+\DoxyCodeLine{\Hypertarget{MPI__vars_8f90_source_l00003}00003\ \textcolor{comment}{!-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/!}}
+\DoxyCodeLine{\Hypertarget{MPI__vars_8f90_source_l00004}\doxymbox{\hyperlink{namespacempi__vars}{00004}}\ \textcolor{keyword}{module}\ \doxymbox{\hyperlink{namespacempi__vars}{mpi\_vars}}}
+\DoxyCodeLine{\Hypertarget{MPI__vars_8f90_source_l00005}00005\ \textcolor{preprocessor}{\#include\ <PB3D\_macros.h>}}
+\DoxyCodeLine{\Hypertarget{MPI__vars_8f90_source_l00006}00006\ \textcolor{preprocessor}{}\ \ \ \ \textcolor{keywordtype}{use\ }\doxymbox{\hyperlink{namespacenum__vars}{num\_vars}},\ \textcolor{keywordtype}{only}:\ \doxymbox{\hyperlink{namespacenum__vars_a3ff2bb983ee80a6735277d6789e6ce7c}{max\_str\_ln}},\ \doxymbox{\hyperlink{namespacenum__vars_a03802aa2bd86439d7a9370836fabf3f2}{dp}},\ \doxymbox{\hyperlink{namespacenum__vars_a63868c5912af08559dcdd2db31e68696}{plot\_dir}},\ \doxymbox{\hyperlink{namespacenum__vars_af48173a7062997585f7a7ca9363290b3}{data\_dir}},\ \doxymbox{\hyperlink{namespacenum__vars_a2b5f419579cb2d0ac2adda364be58fb5}{script\_dir}}}
+\DoxyCodeLine{\Hypertarget{MPI__vars_8f90_source_l00007}00007\ \ \ \ \ \textcolor{keywordtype}{use\ }\doxymbox{\hyperlink{namespacestr__utilities}{str\_utilities}},\ \textcolor{keywordtype}{only}:\ \doxymbox{\hyperlink{namespacestr__utilities_a0b97e51770725a3e98ed393d26681414}{i2str}},\ \doxymbox{\hyperlink{namespacestr__utilities_a92ac6c0af1979df094de1caddd28ade0}{r2str}},\ \doxymbox{\hyperlink{namespacestr__utilities_ac778d706b2e021672618939ab58fdd32}{r2strt}}}
+\DoxyCodeLine{\Hypertarget{MPI__vars_8f90_source_l00008}00008\ \ \ \ \ \textcolor{keywordtype}{use\ }mpi}
+\DoxyCodeLine{\Hypertarget{MPI__vars_8f90_source_l00009}00009\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{MPI__vars_8f90_source_l00010}00010\ \ \ \ \ \textcolor{keywordtype}{implicit\ none}}
+\DoxyCodeLine{\Hypertarget{MPI__vars_8f90_source_l00011}00011\ \ \ \ \ \textcolor{keywordtype}{private}}
+\DoxyCodeLine{\Hypertarget{MPI__vars_8f90_source_l00012}00012\ \ \ \ \ \textcolor{keywordtype}{public}\ \doxymbox{\hyperlink{namespacempi__vars_ab38aeec20e567cf6f272587890ead066}{init\_lock}},\ \doxymbox{\hyperlink{namespacempi__vars_af03c942b5f1c980adf9e1b2ba3f4bd58}{dealloc\_lock}},\ \&}
+\DoxyCodeLine{\Hypertarget{MPI__vars_8f90_source_l00013}00013\ \ \ \ \ \ \ \ \ \&\doxymbox{\hyperlink{namespacempi__vars_a834e19cd963fef0ad150e22aa3c56d53}{hdf5\_lock}}}
+\DoxyCodeLine{\Hypertarget{MPI__vars_8f90_source_l00014}00014\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{MPI__vars_8f90_source_l00015}00015\ \textcolor{comment}{\ \ \ \ !>\ lock\ type}}
+\DoxyCodeLine{\Hypertarget{MPI__vars_8f90_source_l00016}00016\ \textcolor{comment}{\ \ \ \ !!}}
+\DoxyCodeLine{\Hypertarget{MPI__vars_8f90_source_l00017}00017\ \textcolor{comment}{\ \ \ \ !!\ There\ is\ a\ blocking\ (BL)\ and\ \ a\ nonblocking\ (NB)\ version\ where\ the\ former}}
+\DoxyCodeLine{\Hypertarget{MPI__vars_8f90_source_l00018}00018\ \textcolor{comment}{\ \ \ \ !!\ requires\ an\ exclusive\ lock\ and\ the\ latter\ \ a\ shared\ one.\ This\ is\ saved\ in}}
+\DoxyCodeLine{\Hypertarget{MPI__vars_8f90_source_l00019}00019\ \textcolor{comment}{\ \ \ \ !!\ the\ variable\ \(\backslash\)c\ blocking.}}
+\DoxyCodeLine{\Hypertarget{MPI__vars_8f90_source_l00020}00020\ \textcolor{comment}{\ \ \ \ !!}}
+\DoxyCodeLine{\Hypertarget{MPI__vars_8f90_source_l00021}00021\ \textcolor{comment}{\ \ \ \ !!\ NB\ processes\ \ that\ get\ the\ lock\ \ directly\ on\ request\ (meaning\ \ that\ there}}
+\DoxyCodeLine{\Hypertarget{MPI__vars_8f90_source_l00022}00022\ \textcolor{comment}{\ \ \ \ !!\ were\ no\ \ other\ processes\ in\ \ the\ queue)\ notify\ \ directly\ all\ the\ \ next\ NB}}
+\DoxyCodeLine{\Hypertarget{MPI__vars_8f90_source_l00023}00023\ \textcolor{comment}{\ \ \ \ !!\ processes\ after\ gaining\ access.\ It\ also\ sets\ their\ status\ to\ active.\ When}}
+\DoxyCodeLine{\Hypertarget{MPI__vars_8f90_source_l00024}00024\ \textcolor{comment}{\ \ \ \ !!\ a\ NB\ process\ gains\ the\ lock\ when\ notified\ after\ waiting,\ it\ does\ not\ have}}
+\DoxyCodeLine{\Hypertarget{MPI__vars_8f90_source_l00025}00025\ \textcolor{comment}{\ \ \ \ !!\ to\ check\ for\ other\ \ NB\ processes,\ as\ this\ has\ been\ \ done\ by\ the\ notifying}}
+\DoxyCodeLine{\Hypertarget{MPI__vars_8f90_source_l00026}00026\ \textcolor{comment}{\ \ \ \ !!\ process.}}
+\DoxyCodeLine{\Hypertarget{MPI__vars_8f90_source_l00027}00027\ \textcolor{comment}{\ \ \ \ !!}}
+\DoxyCodeLine{\Hypertarget{MPI__vars_8f90_source_l00028}00028\ \textcolor{comment}{\ \ \ \ !!\ A\ BL\ process\ retains\ exclusive\ access\ upon\ receipt\ of\ the\ lock.\ Similarly}}
+\DoxyCodeLine{\Hypertarget{MPI__vars_8f90_source_l00029}00029\ \textcolor{comment}{\ \ \ \ !!\ to\ NB\ processes,\ if\ the\ receipt\ was\ \ direct\ on\ request,\ the\ status\ is\ set}}
+\DoxyCodeLine{\Hypertarget{MPI__vars_8f90_source_l00030}00030\ \textcolor{comment}{\ \ \ \ !!\ to\ active,\ but\ only\ of\ this\ NB\ process.}}
+\DoxyCodeLine{\Hypertarget{MPI__vars_8f90_source_l00031}00031\ \textcolor{comment}{\ \ \ \ !!}}
+\DoxyCodeLine{\Hypertarget{MPI__vars_8f90_source_l00032}00032\ \textcolor{comment}{\ \ \ \ !!\ When\ returning\ the\ lock,\ all\ BL\ \ processes\ and\ NB\ that\ find\ themselves\ to}}
+\DoxyCodeLine{\Hypertarget{MPI__vars_8f90_source_l00033}00033\ \textcolor{comment}{\ \ \ \ !!\ be\ the\ last\ \ active\ NB\ process,\ scan\ \ the\ waiting\ list\ and\ \ pass\ the\ lock}}
+\DoxyCodeLine{\Hypertarget{MPI__vars_8f90_source_l00034}00034\ \textcolor{comment}{\ \ \ \ !!\ preferably\ to\ another\ BL\ process\ to\ notify.\ If\ not\ available,\ it\ searches}}
+\DoxyCodeLine{\Hypertarget{MPI__vars_8f90_source_l00035}00035\ \textcolor{comment}{\ \ \ \ !!\ for\ all\ the\ NB\ processes\ to\ notify\ together.}}
+\DoxyCodeLine{\Hypertarget{MPI__vars_8f90_source_l00036}00036\ \textcolor{comment}{\ \ \ \ !!}}
+\DoxyCodeLine{\Hypertarget{MPI__vars_8f90_source_l00037}00037\ \textcolor{comment}{\ \ \ \ !!\ The\ advantage\ of\ prefering\ BL\ processes\ after\ finishing\ a\ process\ is\ that}}
+\DoxyCodeLine{\Hypertarget{MPI__vars_8f90_source_l00038}00038\ \textcolor{comment}{\ \ \ \ !!\ this\ \ way\ \ NB\ \ processes\ \ are\ \ accumulated,\ \ and\ \ then\ \ quickly\ \ finished}}
+\DoxyCodeLine{\Hypertarget{MPI__vars_8f90_source_l00039}00039\ \textcolor{comment}{\ \ \ \ !!\ afterwards.}}
+\DoxyCodeLine{\Hypertarget{MPI__vars_8f90_source_l00040}00040\ \textcolor{comment}{\ \ \ \ !!}}
+\DoxyCodeLine{\Hypertarget{MPI__vars_8f90_source_l00041}00041\ \textcolor{comment}{\ \ \ \ !!\ \(\backslash\)note\ \ Every\ process\ \ in\ \ the\ \ waiting\ queue\ \ will\ \ eventually\ receive\ \ a}}
+\DoxyCodeLine{\Hypertarget{MPI__vars_8f90_source_l00042}00042\ \textcolor{comment}{\ \ \ \ !!\ notification.}}
+\DoxyCodeLine{\Hypertarget{MPI__vars_8f90_source_l00043}00043\ \textcolor{comment}{\ \ \ \ !!}}
+\DoxyCodeLine{\Hypertarget{MPI__vars_8f90_source_l00044}00044\ \textcolor{comment}{\ \ \ \ !!\ Scheme:}}
+\DoxyCodeLine{\Hypertarget{MPI__vars_8f90_source_l00045}00045\ \textcolor{comment}{\ \ \ \ !!\ <table>}}
+\DoxyCodeLine{\Hypertarget{MPI__vars_8f90_source_l00046}00046\ \textcolor{comment}{\ \ \ \ !!\ \ <tr>\ <th>\ <th>\ request\ access\ <th>\ gain\ acces\ <th>\ return\ access}}
+\DoxyCodeLine{\Hypertarget{MPI__vars_8f90_source_l00047}00047\ \textcolor{comment}{\ \ \ \ !!\ \ <tr>\ <th>\ BL}}
+\DoxyCodeLine{\Hypertarget{MPI__vars_8f90_source_l00048}00048\ \textcolor{comment}{\ \ \ \ !!\ \ \ \ \ \ <td>\ <ul><li>\ add\ to\ queue\ <li>\ wait\ </ul>}}
+\DoxyCodeLine{\Hypertarget{MPI__vars_8f90_source_l00049}00049\ \textcolor{comment}{\ \ \ \ !!\ \ \ \ \ \ <td>\ if\ direct:\ <ul><li>\ activate\ </ul>}}
+\DoxyCodeLine{\Hypertarget{MPI__vars_8f90_source_l00050}00050\ \textcolor{comment}{\ \ \ \ !!\ \ \ \ \ \ <td>\ <ul><li>\ remove\ from\ queue\ <li>\ find\ next\ BL/NB}}
+\DoxyCodeLine{\Hypertarget{MPI__vars_8f90_source_l00051}00051\ \textcolor{comment}{\ \ \ \ !!\ \ \ \ \ \ \ \ \ \ <li>\ notify\ <li>\ activate\ all\ </ul>}}
+\DoxyCodeLine{\Hypertarget{MPI__vars_8f90_source_l00052}00052\ \textcolor{comment}{\ \ \ \ !!\ \ <tr>\ <th>\ NB}}
+\DoxyCodeLine{\Hypertarget{MPI__vars_8f90_source_l00053}00053\ \textcolor{comment}{\ \ \ \ !!\ \ \ \ \ \ <td>\ <ul><li>\ add\ to\ queue\ <li>\ wait\ </ul>}}
+\DoxyCodeLine{\Hypertarget{MPI__vars_8f90_source_l00054}00054\ \textcolor{comment}{\ \ \ \ !!\ \ \ \ \ \ <td>\ if\ direct:\ <ul><li>\ find\ next\ NB\ </ul>}}
+\DoxyCodeLine{\Hypertarget{MPI__vars_8f90_source_l00055}00055\ \textcolor{comment}{\ \ \ \ !!\ \ \ \ \ \ \ \ \ \ for\ all\ next\ NB:\ <ul>\ <li>\ notify\ <li>\ activate\ </ul>}}
+\DoxyCodeLine{\Hypertarget{MPI__vars_8f90_source_l00056}00056\ \textcolor{comment}{\ \ \ \ !!\ \ \ \ \ \ <td>\ always:\ <ul><li>\ remove\ from\ queue\ </ul>}}
+\DoxyCodeLine{\Hypertarget{MPI__vars_8f90_source_l00057}00057\ \textcolor{comment}{\ \ \ \ !!\ \ \ \ \ \ \ \ \ \ if\ last\ NB:\ <ul><li>\ find\ next\ BL/NB}}
+\DoxyCodeLine{\Hypertarget{MPI__vars_8f90_source_l00058}00058\ \textcolor{comment}{\ \ \ \ !!\ \ \ \ \ \ \ \ \ \ <li>\ notify\ <li>\ activate\ all\ </ul>}}
+\DoxyCodeLine{\Hypertarget{MPI__vars_8f90_source_l00059}00059\ \textcolor{comment}{\ \ \ \ !!\ </table>}}
+\DoxyCodeLine{\Hypertarget{MPI__vars_8f90_source_l00060}00060\ \textcolor{comment}{\ \ \ \ !!\ with\ preference\ BL\ >\ NB(s).}}
+\DoxyCodeLine{\Hypertarget{MPI__vars_8f90_source_l00061}00061\ \textcolor{comment}{\ \ \ \ !!}}
+\DoxyCodeLine{\Hypertarget{MPI__vars_8f90_source_l00062}00062\ \textcolor{comment}{\ \ \ \ !!\ \(\backslash\)see\ This\ is\ based\ on\ an\ extension\ of\ the\ ideas\ in\ \(\backslash\)c\ RossAtomicIO.}}
+\DoxyCodeLine{\Hypertarget{MPI__vars_8f90_source_l00063}\doxymbox{\hyperlink{structmpi__vars_1_1lock__type}{00063}}\ \ \ \ \ \textcolor{keyword}{type},\ \textcolor{keyword}{public}\ ::\ \doxymbox{\hyperlink{structmpi__vars_1_1lock__type}{lock\_type}}}
+\DoxyCodeLine{\Hypertarget{MPI__vars_8f90_source_l00064}\doxymbox{\hyperlink{structmpi__vars_1_1lock__type_a1bc45d5db890c080c843318662050565}{00064}}\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer},\ \textcolor{keywordtype}{allocatable}\ ::\ wl(:)\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !<\ waiting\ list}}
+\DoxyCodeLine{\Hypertarget{MPI__vars_8f90_source_l00065}\doxymbox{\hyperlink{structmpi__vars_1_1lock__type_a19ac8404814735597e92c647e31745ad}{00065}}\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer}\ ::\ wl\_win\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !<\ window\ to\ waiting\ list}}
+\DoxyCodeLine{\Hypertarget{MPI__vars_8f90_source_l00066}\doxymbox{\hyperlink{structmpi__vars_1_1lock__type_ae13a02ff3985d06c3455b2ae29210cc4}{00066}}\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer}\ ::\ wu\_tag\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !<\ wakeup\ tag}}
+\DoxyCodeLine{\Hypertarget{MPI__vars_8f90_source_l00067}\doxymbox{\hyperlink{structmpi__vars_1_1lock__type_a53ce091d52f98ca430a9e97f8bf0c0f4}{00067}}\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{logical}\ ::\ blocking\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !<\ is\ a\ normal\ blocking\ process}}
+\DoxyCodeLine{\Hypertarget{MPI__vars_8f90_source_l00068}00068\ \ \ \ \ \textcolor{keyword}{contains}\textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{MPI__vars_8f90_source_l00069}00069\ \textcolor{comment}{\ \ \ \ \ \ \ \ !>\ initialize}}
+\DoxyCodeLine{\Hypertarget{MPI__vars_8f90_source_l00070}\doxymbox{\hyperlink{structmpi__vars_1_1lock__type_a6227b4a9250ac98f66bb365d0f86cf5b}{00070}}\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{procedure}\ ::\ init\ =>\ \doxymbox{\hyperlink{namespacempi__vars_ab38aeec20e567cf6f272587890ead066}{init\_lock}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!<\ initialize}}
+\DoxyCodeLine{\Hypertarget{MPI__vars_8f90_source_l00071}00071\ \textcolor{comment}{\ \ \ \ \ \ \ \ !>\ deallocate}}
+\DoxyCodeLine{\Hypertarget{MPI__vars_8f90_source_l00072}\doxymbox{\hyperlink{structmpi__vars_1_1lock__type_a2c029c67853e6ab25916cb422de22b85}{00072}}\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{procedure}\ ::\ dealloc\ =>\ \doxymbox{\hyperlink{namespacempi__vars_af03c942b5f1c980adf9e1b2ba3f4bd58}{dealloc\_lock}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!<\ deallocate}}
+\DoxyCodeLine{\Hypertarget{MPI__vars_8f90_source_l00073}00073\ \ \ \ \ \textcolor{keyword}{end\ type\ }\doxymbox{\hyperlink{structmpi__vars_1_1lock__type}{lock\_type}}}
+\DoxyCodeLine{\Hypertarget{MPI__vars_8f90_source_l00074}00074\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{MPI__vars_8f90_source_l00075}00075\ \ \ \ \ \textcolor{comment}{!\ global\ variables}}
+\DoxyCodeLine{\Hypertarget{MPI__vars_8f90_source_l00076}\doxymbox{\hyperlink{namespacempi__vars_a834e19cd963fef0ad150e22aa3c56d53}{00076}}\ \ \ \ \ \textcolor{keywordtype}{type}(\doxymbox{\hyperlink{structmpi__vars_1_1lock__type}{lock\_type}})\ ::\ \doxymbox{\hyperlink{namespacempi__vars_a834e19cd963fef0ad150e22aa3c56d53}{hdf5\_lock}}\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !<\ HDF5\ lock}}
+\DoxyCodeLine{\Hypertarget{MPI__vars_8f90_source_l00077}00077\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{MPI__vars_8f90_source_l00078}00078\ \textcolor{keyword}{contains}\textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{MPI__vars_8f90_source_l00079}00079\ \textcolor{comment}{\ \ \ \ !>\ Initializes\ a\ lock.}}
+\DoxyCodeLine{\Hypertarget{MPI__vars_8f90_source_l00080}00080\ \textcolor{comment}{\ \ \ \ !!}}
+\DoxyCodeLine{\Hypertarget{MPI__vars_8f90_source_l00081}00081\ \textcolor{comment}{\ \ \ \ !!\ \(\backslash\)note}}
+\DoxyCodeLine{\Hypertarget{MPI__vars_8f90_source_l00082}00082\ \textcolor{comment}{\ \ \ \ !!\ \ -\/\#\ Should\ be\ called\ collectively.}}
+\DoxyCodeLine{\Hypertarget{MPI__vars_8f90_source_l00083}00083\ \textcolor{comment}{\ \ \ \ !!\ \ -\/\#\ Every\ lock\ should\ have\ a\ unique\ wakeup\ tag.}}
+\DoxyCodeLine{\Hypertarget{MPI__vars_8f90_source_l00084}00084\ \textcolor{comment}{\ \ \ \ !!}}
+\DoxyCodeLine{\Hypertarget{MPI__vars_8f90_source_l00085}00085\ \textcolor{comment}{\ \ \ \ !!\ \(\backslash\)return\ ierr}}
+\DoxyCodeLine{\Hypertarget{MPI__vars_8f90_source_l00086}\doxymbox{\hyperlink{namespacempi__vars_ab38aeec20e567cf6f272587890ead066}{00086}}\ \ \ \ \ \textcolor{keyword}{integer\ }\textcolor{keyword}{function\ }\doxymbox{\hyperlink{namespacempi__vars_ab38aeec20e567cf6f272587890ead066}{init\_lock}}(lock\_loc,wu\_tag)\ \textcolor{keyword}{result}(ierr)}
+\DoxyCodeLine{\Hypertarget{MPI__vars_8f90_source_l00087}00087\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{use\ }\doxymbox{\hyperlink{namespacenum__vars}{num\_vars}},\ \textcolor{keywordtype}{only}:\ \doxymbox{\hyperlink{namespacenum__vars_a3a1f41c66c3d91fc749bcffd177b0662}{n\_procs}},\ \doxymbox{\hyperlink{namespacenum__vars_ab47aa91445feaedb05ac9d1a584664fe}{rank}}}
+\DoxyCodeLine{\Hypertarget{MPI__vars_8f90_source_l00088}00088\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{MPI__vars_8f90_source_l00089}00089\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{character(*)},\ \textcolor{keywordtype}{parameter}\ ::\ rout\_name\ =\ \textcolor{stringliteral}{'init\_lock'}}
+\DoxyCodeLine{\Hypertarget{MPI__vars_8f90_source_l00090}00090\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{MPI__vars_8f90_source_l00091}00091\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ input\ /\ output}}
+\DoxyCodeLine{\Hypertarget{MPI__vars_8f90_source_l00092}00092\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{class}(\doxymbox{\hyperlink{structmpi__vars_1_1lock__type}{lock\_type}}),\ \textcolor{keywordtype}{intent(inout)}\ ::\ lock\_loc\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !<\ lock}}
+\DoxyCodeLine{\Hypertarget{MPI__vars_8f90_source_l00093}00093\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer},\ \textcolor{keywordtype}{intent(in)}\ ::\ wu\_tag\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !<\ wakeup\ tag}}
+\DoxyCodeLine{\Hypertarget{MPI__vars_8f90_source_l00094}00094\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{MPI__vars_8f90_source_l00095}00095\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ local\ variables}}
+\DoxyCodeLine{\Hypertarget{MPI__vars_8f90_source_l00096}00096\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer(kind=MPI\_ADDRESS\_KIND)}\ ::\ intlb\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ lower\ bound\ of\ int\ type}}
+\DoxyCodeLine{\Hypertarget{MPI__vars_8f90_source_l00097}00097\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer(kind=MPI\_ADDRESS\_KIND)}\ ::\ intex\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ extent\ of\ int\ type}}
+\DoxyCodeLine{\Hypertarget{MPI__vars_8f90_source_l00098}00098\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{MPI__vars_8f90_source_l00099}00099\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ initialize\ ierr}}
+\DoxyCodeLine{\Hypertarget{MPI__vars_8f90_source_l00100}00100\ \ \ \ \ \ \ \ \ ierr\ =\ 0}
+\DoxyCodeLine{\Hypertarget{MPI__vars_8f90_source_l00101}00101\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{MPI__vars_8f90_source_l00102}00102\ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }mpi\_type\_get\_extent(mpi\_integer,intlb,intex,ierr)}
+\DoxyCodeLine{\Hypertarget{MPI__vars_8f90_source_l00103}00103\ \ \ \ \ \ \ \ \ chckerr(\textcolor{stringliteral}{'Failed\ to\ get\ extent\ of\ int'})}
+\DoxyCodeLine{\Hypertarget{MPI__vars_8f90_source_l00104}00104\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{MPI__vars_8f90_source_l00105}00105\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\doxymbox{\hyperlink{namespacenum__vars_ab47aa91445feaedb05ac9d1a584664fe}{rank}}.eq.0)\ \textcolor{keywordflow}{then}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ master}}
+\DoxyCodeLine{\Hypertarget{MPI__vars_8f90_source_l00106}00106\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{allocate}(lock\_loc\%wl(\doxymbox{\hyperlink{namespacenum__vars_a3a1f41c66c3d91fc749bcffd177b0662}{n\_procs}}))}
+\DoxyCodeLine{\Hypertarget{MPI__vars_8f90_source_l00107}00107\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{MPI__vars_8f90_source_l00108}00108\ \ \ \ \ \ \ \ \ \ \ \ \ lock\_loc\%wl\ =\ 0}
+\DoxyCodeLine{\Hypertarget{MPI__vars_8f90_source_l00109}00109\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }mpi\_win\_create(lock\_loc\%wl,\doxymbox{\hyperlink{namespacenum__vars_a3a1f41c66c3d91fc749bcffd177b0662}{n\_procs}}*intex,int(intex),\&}
+\DoxyCodeLine{\Hypertarget{MPI__vars_8f90_source_l00110}00110\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&mpi\_info\_null,mpi\_comm\_world,lock\_loc\%wl\_win,ierr)}
+\DoxyCodeLine{\Hypertarget{MPI__vars_8f90_source_l00111}00111\ \ \ \ \ \ \ \ \ \ \ \ \ chckerr(\textcolor{stringliteral}{'Failed\ to\ create\ window\ to\ lock\_loc'})}
+\DoxyCodeLine{\Hypertarget{MPI__vars_8f90_source_l00112}00112\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{MPI__vars_8f90_source_l00113}00113\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{allocate}(lock\_loc\%wl(0))}
+\DoxyCodeLine{\Hypertarget{MPI__vars_8f90_source_l00114}00114\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{MPI__vars_8f90_source_l00115}00115\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }mpi\_win\_create(lock\_loc\%wl,0*intex,int(intex),mpi\_info\_null,\&}
+\DoxyCodeLine{\Hypertarget{MPI__vars_8f90_source_l00116}00116\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&mpi\_comm\_world,lock\_loc\%wl\_win,ierr)}
+\DoxyCodeLine{\Hypertarget{MPI__vars_8f90_source_l00117}00117\ \ \ \ \ \ \ \ \ \ \ \ \ chckerr(\textcolor{stringliteral}{'Failed\ to\ create\ window\ to\ lock\_loc'})}
+\DoxyCodeLine{\Hypertarget{MPI__vars_8f90_source_l00118}00118\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ end\ if}}
+\DoxyCodeLine{\Hypertarget{MPI__vars_8f90_source_l00119}00119\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{MPI__vars_8f90_source_l00120}00120\ \ \ \ \ \ \ \ \ lock\_loc\%wu\_tag\ =\ wu\_tag}
+\DoxyCodeLine{\Hypertarget{MPI__vars_8f90_source_l00121}00121\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{MPI__vars_8f90_source_l00122}00122\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ set\ fences}}
+\DoxyCodeLine{\Hypertarget{MPI__vars_8f90_source_l00123}00123\ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }mpi\_win\_fence(0,lock\_loc\%wl\_win,ierr)\ }
+\DoxyCodeLine{\Hypertarget{MPI__vars_8f90_source_l00124}00124\ \ \ \ \ \ \ \ \ chckerr(\textcolor{stringliteral}{'Couldn'}\textcolor{stringliteral}{'t\ set\ fence'})\ }
+\DoxyCodeLine{\Hypertarget{MPI__vars_8f90_source_l00125}00125\ \ \ \ \ \textcolor{keyword}{end\ function\ }\doxymbox{\hyperlink{namespacempi__vars_ab38aeec20e567cf6f272587890ead066}{init\_lock}}}
+\DoxyCodeLine{\Hypertarget{MPI__vars_8f90_source_l00126}00126\ \ \ \ \ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{MPI__vars_8f90_source_l00127}00127\ \textcolor{comment}{\ \ \ \ !>\ Deallocates\ a\ lock.}}
+\DoxyCodeLine{\Hypertarget{MPI__vars_8f90_source_l00128}00128\ \textcolor{comment}{\ \ \ \ !!}}
+\DoxyCodeLine{\Hypertarget{MPI__vars_8f90_source_l00129}00129\ \textcolor{comment}{\ \ \ \ !!\ \(\backslash\)note\ Should\ be\ called\ collectively.}}
+\DoxyCodeLine{\Hypertarget{MPI__vars_8f90_source_l00130}00130\ \textcolor{comment}{\ \ \ \ !!}}
+\DoxyCodeLine{\Hypertarget{MPI__vars_8f90_source_l00131}00131\ \textcolor{comment}{\ \ \ \ !!\ \(\backslash\)return\ ierr}}
+\DoxyCodeLine{\Hypertarget{MPI__vars_8f90_source_l00132}\doxymbox{\hyperlink{namespacempi__vars_af03c942b5f1c980adf9e1b2ba3f4bd58}{00132}}\ \ \ \ \ \textcolor{keyword}{integer\ }\textcolor{keyword}{function\ }\doxymbox{\hyperlink{namespacempi__vars_af03c942b5f1c980adf9e1b2ba3f4bd58}{dealloc\_lock}}(lock\_loc)\ \textcolor{keyword}{result}(ierr)}
+\DoxyCodeLine{\Hypertarget{MPI__vars_8f90_source_l00133}00133\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{character(*)},\ \textcolor{keywordtype}{parameter}\ ::\ rout\_name\ =\ \textcolor{stringliteral}{'dealloc\_lock'}}
+\DoxyCodeLine{\Hypertarget{MPI__vars_8f90_source_l00134}00134\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{MPI__vars_8f90_source_l00135}00135\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ input\ /\ output}}
+\DoxyCodeLine{\Hypertarget{MPI__vars_8f90_source_l00136}00136\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{class}(\doxymbox{\hyperlink{structmpi__vars_1_1lock__type}{lock\_type}}),\ \textcolor{keywordtype}{intent(inout)}\ ::\ lock\_loc\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !<\ lock}}
+\DoxyCodeLine{\Hypertarget{MPI__vars_8f90_source_l00137}00137\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{MPI__vars_8f90_source_l00138}00138\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ initialize\ ierr}}
+\DoxyCodeLine{\Hypertarget{MPI__vars_8f90_source_l00139}00139\ \ \ \ \ \ \ \ \ ierr\ =\ 0}
+\DoxyCodeLine{\Hypertarget{MPI__vars_8f90_source_l00140}00140\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{MPI__vars_8f90_source_l00141}00141\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ free\ lock\ window}}
+\DoxyCodeLine{\Hypertarget{MPI__vars_8f90_source_l00142}00142\ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }mpi\_win\_free(lock\_loc\%wl\_win,ierr)}
+\DoxyCodeLine{\Hypertarget{MPI__vars_8f90_source_l00143}00143\ \ \ \ \ \ \ \ \ chckerr(\textcolor{stringliteral}{'Failed\ to\ free\ window\ to\ HDF5\_lock'})}
+\DoxyCodeLine{\Hypertarget{MPI__vars_8f90_source_l00144}00144\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{MPI__vars_8f90_source_l00145}00145\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ deallocate\ lock}}
+\DoxyCodeLine{\Hypertarget{MPI__vars_8f90_source_l00146}00146\ \ \ \ \ \ \ \ \ \textcolor{keyword}{deallocate}(lock\_loc\%wl)}
+\DoxyCodeLine{\Hypertarget{MPI__vars_8f90_source_l00147}00147\ \ \ \ \ \textcolor{keyword}{end\ function\ }\doxymbox{\hyperlink{namespacempi__vars_af03c942b5f1c980adf9e1b2ba3f4bd58}{dealloc\_lock}}}
+\DoxyCodeLine{\Hypertarget{MPI__vars_8f90_source_l00148}00148\ \textcolor{keyword}{end\ module\ }\doxymbox{\hyperlink{namespacempi__vars}{mpi\_vars}}}
+
+\end{DoxyCode}

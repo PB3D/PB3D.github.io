@@ -1,46 +1,48 @@
-\hypertarget{interfacenum__utilities_1_1calc__det}{}\doxysection{num\+\_\+utilities\+::calc\+\_\+det Interface Reference}
-\label{interfacenum__utilities_1_1calc__det}\index{num\_utilities::calc\_det@{num\_utilities::calc\_det}}
+\doxysection{num\+\_\+utilities::\+calc\+\_\+det Interface Reference}
+\hypertarget{interfacenum__utilities_1_1calc__det}{}\label{interfacenum__utilities_1_1calc__det}\index{num\_utilities::calc\_det@{num\_utilities::calc\_det}}
 
 
 Calculate determinant of a matrix.  
 
 
-\doxysubsection*{Public Member Functions}
+\doxysubsubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-integer function \mbox{\hyperlink{interfacenum__utilities_1_1calc__det_a2e4cb14f30a1269383252f02dd561523}{calc\+\_\+det\+\_\+0d}} (det\+\_\+0D, A)
+integer function \doxymbox{\hyperlink{interfacenum__utilities_1_1calc__det_a8f03fa9d07bfd1f7f870a5595d590a61}{calc\+\_\+det\+\_\+0d}} (det\+\_\+0d, a)
 \begin{DoxyCompactList}\small\item\em private constant version \end{DoxyCompactList}\item 
-integer recursive function \mbox{\hyperlink{interfacenum__utilities_1_1calc__det_ae87e1d37bd74ff2915019d3a090a2ff8}{calc\+\_\+det\+\_\+3d}} (detA, A, n)
+integer recursive function \doxymbox{\hyperlink{interfacenum__utilities_1_1calc__det_a35f8eeb2367038b728b896f17d9ae8a1}{calc\+\_\+det\+\_\+3d}} (deta, a, n)
 \begin{DoxyCompactList}\small\item\em private array version \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
 Calculate determinant of a matrix. 
 
-This matrix can be defined on a 3-\/D grid or constant. The storage convention described in \mbox{\hyperlink{structeq__vars_1_1eq__2__type}{eq\+\_\+vars.\+eq\+\_\+2\+\_\+type}} is used.
+This matrix can be defined on a 3-\/D grid or constant. The storage convention described in \doxylink{structeq__vars_1_1eq__2__type}{eq\+\_\+vars.\+eq\+\_\+2\+\_\+type} is used.
 
 In the former case the size of the matrix (last two indices) should be small, as the direct formula employing cofactors is used through a recursive formulation.
 
 In the latter case, lapack routines are used.
 
 \begin{DoxySeeAlso}{See also}
-Adapted from \href{http://dualm.wordpress.com/2012/01/06/computing-determinant-in-fortran/}{\texttt{ http\+://dualm.\+wordpress.\+com/2012/01/06/computing-\/determinant-\/in-\/fortran/}}
+Adapted from \href{http://dualm.wordpress.com/2012/01/06/computing-determinant-in-fortran/}{\texttt{http:\+/\+/\+dualm.\+wordpress.\+com/\+2012/\+01/\+06/\+computing-\/determinant-\/in-\/fortran/\+}}
 \end{DoxySeeAlso}
 \begin{DoxyReturn}{Returns}
 ierr 
 \end{DoxyReturn}
 
 
-Definition at line 63 of file num\+\_\+utilities.\+f90.
+Definition at line \doxymbox{\hyperlink{num__utilities_8f90_source_l00063}{63}} of file \doxymbox{\hyperlink{num__utilities_8f90_source}{num\+\_\+utilities.\+f90}}.
 
 
 
-\doxysubsection{Member Function/\+Subroutine Documentation}
-\mbox{\Hypertarget{interfacenum__utilities_1_1calc__det_a2e4cb14f30a1269383252f02dd561523}\label{interfacenum__utilities_1_1calc__det_a2e4cb14f30a1269383252f02dd561523}} 
-\index{num\_utilities::calc\_det@{num\_utilities::calc\_det}!calc\_det\_0d@{calc\_det\_0d}}
+\label{doc-func-members}
+\Hypertarget{interfacenum__utilities_1_1calc__det_doc-func-members}
+\doxysubsection{Member Function/\+\+Subroutine Documentation}
+\Hypertarget{interfacenum__utilities_1_1calc__det_a8f03fa9d07bfd1f7f870a5595d590a61}\index{num\_utilities::calc\_det@{num\_utilities::calc\_det}!calc\_det\_0d@{calc\_det\_0d}}
 \index{calc\_det\_0d@{calc\_det\_0d}!num\_utilities::calc\_det@{num\_utilities::calc\_det}}
 \doxysubsubsection{\texorpdfstring{calc\_det\_0d()}{calc\_det\_0d()}}
-{\footnotesize\ttfamily integer function num\+\_\+utilities\+::calc\+\_\+det\+::calc\+\_\+det\+\_\+0d (\begin{DoxyParamCaption}\item[{real(dp), intent(inout)}]{det\+\_\+0D,  }\item[{real(dp), dimension(\+:,\+:), intent(in)}]{A }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \label{interfacenum__utilities_1_1calc__det_a8f03fa9d07bfd1f7f870a5595d590a61} 
+integer function num\+\_\+utilities::\+calc\+\_\+det::\+calc\+\_\+det\+\_\+0d (\begin{DoxyParamCaption}\item[{real(dp), intent(inout)}]{det\+\_\+0d}{, }\item[{real(dp), dimension(:\+,:\+), intent(in)}]{a}{}\end{DoxyParamCaption})}
 
 
 
@@ -48,20 +50,20 @@ private constant version
 
 
 \begin{DoxyParams}[1]{Parameters}
-\mbox{\texttt{ in,out}}  & {\em det\+\_\+0d} & output \\
+\doxymbox{\texttt{in,out}}  & {\em det\+\_\+0d} & output \\
 \hline
-\mbox{\texttt{ in}}  & {\em a} & input \\
+\doxymbox{\texttt{in}}  & {\em a} & input \\
 \hline
 \end{DoxyParams}
 
 
-Definition at line 622 of file num\+\_\+utilities.\+f90.
+Definition at line \doxymbox{\hyperlink{num__utilities_8f90_source_l00621}{621}} of file \doxymbox{\hyperlink{num__utilities_8f90_source}{num\+\_\+utilities.\+f90}}.
 
-\mbox{\Hypertarget{interfacenum__utilities_1_1calc__det_ae87e1d37bd74ff2915019d3a090a2ff8}\label{interfacenum__utilities_1_1calc__det_ae87e1d37bd74ff2915019d3a090a2ff8}} 
-\index{num\_utilities::calc\_det@{num\_utilities::calc\_det}!calc\_det\_3d@{calc\_det\_3d}}
+\Hypertarget{interfacenum__utilities_1_1calc__det_a35f8eeb2367038b728b896f17d9ae8a1}\index{num\_utilities::calc\_det@{num\_utilities::calc\_det}!calc\_det\_3d@{calc\_det\_3d}}
 \index{calc\_det\_3d@{calc\_det\_3d}!num\_utilities::calc\_det@{num\_utilities::calc\_det}}
 \doxysubsubsection{\texorpdfstring{calc\_det\_3d()}{calc\_det\_3d()}}
-{\footnotesize\ttfamily integer recursive function num\+\_\+utilities\+::calc\+\_\+det\+::calc\+\_\+det\+\_\+3d (\begin{DoxyParamCaption}\item[{real(dp), dimension(\+:,\+:,\+:), intent(inout)}]{detA,  }\item[{real(dp), dimension(\+:,\+:,\+:,\+:), intent(in)}]{A,  }\item[{integer, intent(in)}]{n }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \label{interfacenum__utilities_1_1calc__det_a35f8eeb2367038b728b896f17d9ae8a1} 
+integer recursive function num\+\_\+utilities::\+calc\+\_\+det::\+calc\+\_\+det\+\_\+3d (\begin{DoxyParamCaption}\item[{real(dp), dimension(:\+,:\+,:\+), intent(inout)}]{deta}{, }\item[{real(dp), dimension(:\+,:\+,:\+,:\+), intent(in)}]{a}{, }\item[{integer, intent(in)}]{n}{}\end{DoxyParamCaption})}
 
 
 
@@ -69,22 +71,22 @@ private array version
 
 
 \begin{DoxyParams}[1]{Parameters}
-\mbox{\texttt{ in,out}}  & {\em deta} & output \\
+\doxymbox{\texttt{in,out}}  & {\em deta} & output \\
 \hline
-\mbox{\texttt{ in}}  & {\em a} & input \\
+\doxymbox{\texttt{in}}  & {\em a} & input \\
 \hline
-\mbox{\texttt{ in}}  & {\em n} & size of matrix \\
+\doxymbox{\texttt{in}}  & {\em n} & size of matrix \\
 \hline
 \end{DoxyParams}
 
 
-Definition at line 543 of file num\+\_\+utilities.\+f90.
+Definition at line \doxymbox{\hyperlink{num__utilities_8f90_source_l00542}{542}} of file \doxymbox{\hyperlink{num__utilities_8f90_source}{num\+\_\+utilities.\+f90}}.
 
-Here is the call graph for this function\+:\nopagebreak
+Here is the call graph for this function:\+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=350pt]{interfacenum__utilities_1_1calc__det_ae87e1d37bd74ff2915019d3a090a2ff8_cgraph}
+\includegraphics[width=350pt]{interfacenum__utilities_1_1calc__det_a35f8eeb2367038b728b896f17d9ae8a1_cgraph}
 \end{center}
 \end{figure}
 

@@ -1,0 +1,361 @@
+\doxysection{HDF5\+\_\+utilities.\+f90}
+\hypertarget{HDF5__utilities_8f90_source}{}\label{HDF5__utilities_8f90_source}\index{/Users/toonweyens/Code/PB3D/Modules/HDF5\_utilities.f90@{/Users/toonweyens/Code/PB3D/Modules/HDF5\_utilities.f90}}
+\doxymbox{\hyperlink{HDF5__utilities_8f90}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00001}00001\ \textcolor{comment}{!-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/!}\textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00002}00002\ \textcolor{comment}{!>\ Utilities\ pertaining\ to\ HDF5\ and\ XDMF}}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00003}00003\ \textcolor{comment}{!!\ }}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00004}00004\ \textcolor{comment}{!!\ \(\backslash\)see\ See\ hdf5\_ops\ for\ notes\ on\ HDF5\ and\ XDMF.}}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00005}00005\ \textcolor{comment}{!-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/!}}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00006}\doxymbox{\hyperlink{namespacehdf5__utilities}{00006}}\ \textcolor{keyword}{module}\ \doxymbox{\hyperlink{namespacehdf5__utilities}{hdf5\_utilities}}}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00007}00007\ \textcolor{preprocessor}{\#include\ <PB3D\_macros.h>}}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00008}00008\ \textcolor{preprocessor}{}\ \ \ \ \textcolor{keywordtype}{use\ }\doxymbox{\hyperlink{namespacenum__vars}{num\_vars}},\ \textcolor{keywordtype}{only}:\ \doxymbox{\hyperlink{namespacenum__vars_a3ff2bb983ee80a6735277d6789e6ce7c}{max\_str\_ln}},\ \doxymbox{\hyperlink{namespacenum__vars_a03802aa2bd86439d7a9370836fabf3f2}{dp}},\ \doxymbox{\hyperlink{namespacenum__vars_a63868c5912af08559dcdd2db31e68696}{plot\_dir}},\ \doxymbox{\hyperlink{namespacenum__vars_af48173a7062997585f7a7ca9363290b3}{data\_dir}},\ \doxymbox{\hyperlink{namespacenum__vars_a2b5f419579cb2d0ac2adda364be58fb5}{script\_dir}}}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00009}00009\ \ \ \ \ \textcolor{keywordtype}{use\ }\doxymbox{\hyperlink{namespacemessages}{messages}}}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00010}00010\ \ \ \ \ \textcolor{keywordtype}{use\ }\doxymbox{\hyperlink{namespacestr__utilities}{str\_utilities}},\ \textcolor{keywordtype}{only}:\ \doxymbox{\hyperlink{namespacestr__utilities_a0b97e51770725a3e98ed393d26681414}{i2str}},\ \doxymbox{\hyperlink{namespacestr__utilities_a92ac6c0af1979df094de1caddd28ade0}{r2str}},\ \doxymbox{\hyperlink{namespacestr__utilities_ac778d706b2e021672618939ab58fdd32}{r2strt}}}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00011}00011\ \ \ \ \ \textcolor{keywordtype}{use\ }\doxymbox{\hyperlink{namespacehdf5__vars}{hdf5\_vars}}}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00012}00012\ \ \ \ \ \textcolor{keywordtype}{use\ }hdf5}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00013}00013\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00014}00014\ \ \ \ \ \textcolor{keywordtype}{implicit\ none}}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00015}00015\ \ \ \ \ \textcolor{keywordtype}{private}}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00016}00016\ \ \ \ \ \textcolor{keywordtype}{public}\ \doxymbox{\hyperlink{namespacehdf5__utilities_ac0c7e6c4047b37031ac8ff7fdc271cf6}{probe\_hdf5\_group}},\ \doxymbox{\hyperlink{namespacehdf5__utilities_a7574320980affc30a584f7776d33a51c}{set\_1d\_vars}}}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00017}00017\ \textcolor{preprocessor}{\#if\ ldebug}}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00018}00018\ \textcolor{preprocessor}{}\ \ \ \ \textcolor{keywordtype}{public}\ \doxymbox{\hyperlink{namespacehdf5__utilities_aa9d76166f970a7052cd0d96c8f3ee0be}{list\_all\_vars\_in\_group}},\ \&}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00019}00019\ \ \ \ \ \ \ \ \ \&\doxymbox{\hyperlink{namespacehdf5__utilities_addf084b90450dc2a0cc614f2f5ac13fc}{debug\_set\_1d\_vars}}}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00020}00020\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00021}00021\ \textcolor{preprocessor}{}\ \ \ \ }
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00022}00022\ \textcolor{preprocessor}{\#if\ ldebug}}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00023}00023\ \textcolor{preprocessor}{}\ \ \ \ \textcolor{comment}{!\ global\ variables}}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00024}\doxymbox{\hyperlink{namespacehdf5__utilities_addf084b90450dc2a0cc614f2f5ac13fc}{00024}}\ \ \ \ \ \textcolor{keywordtype}{logical}\ ::\ \doxymbox{\hyperlink{namespacehdf5__utilities_addf084b90450dc2a0cc614f2f5ac13fc}{debug\_set\_1d\_vars}}\ =\ .false.\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!<\ set\ to\ true\ to\ debug\ set\_1D\_vars\ \(\backslash\)ldebug}}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00025}00025\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00026}00026\ \textcolor{preprocessor}{}\ \ \ \ }
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00027}00027\ \textcolor{keyword}{contains}\textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00028}00028\ \textcolor{comment}{\ \ \ \ !>\ Sets\ up\ the\ chunk\ property\ list\ \ and/or\ the\ 1D\ hyperslabs\ that\ correspond}}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00029}00029\ \textcolor{comment}{\ \ \ \ !!\ to\ a\ local\ subset\ of\ \(\backslash\)c\ lim\_tot\ given\ by\ the\ limits\ \(\backslash\)c\ lim\_loc.}}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00030}00030\ \textcolor{comment}{\ \ \ \ !!}}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00031}00031\ \textcolor{comment}{\ \ \ \ !!\ An\ example\ \ for\ the\ \ hyperslab\ is\ \ given\ in\ \ 3\ dimensions\ \ with\ size\ \ n\ =}}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00032}00032\ \textcolor{comment}{\ \ \ \ !!\ 5,3,3:}}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00033}00033\ \textcolor{comment}{\ \ \ \ !!\ \ -\/\ for\ dim\ =\ 1,\ limits:\ 2..4}}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00034}00034\ \textcolor{comment}{\ \ \ \ !!\ \ -\/\ for\ dim\ =\ 2,\ limits:\ 3..3}}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00035}00035\ \textcolor{comment}{\ \ \ \ !!\ \ -\/\ for\ dim\ =\ 3,\ limits:\ 2..3.}}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00036}00036\ \textcolor{comment}{\ \ \ \ !!}}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00037}00037\ \textcolor{comment}{\ \ \ \ !!\ The\ 1D\ equivalent\ can\ be\ represented\ as}}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00038}00038\ \textcolor{comment}{\ \ \ \ !!\ \`{}\`{}\`{}}}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00039}00039\ \textcolor{comment}{\ \ \ \ !!\ [.....][.....][.....]\ |\ [.....][.....][.....]\ |\ [.....][.....][.....]}}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00040}00040\ \textcolor{comment}{\ \ \ \ !!\ \`{}\`{}\`{}}}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00041}00041\ \textcolor{comment}{\ \ \ \ !!\ Now,\ dimension\ 1\ will\ only\ allow\ for\ the\ following\ elements}}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00042}00042\ \textcolor{comment}{\ \ \ \ !!\ (given\ by\ <tt>-\/</tt>):}}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00043}00043\ \textcolor{comment}{\ \ \ \ !!\ \`{}\`{}\`{}}}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00044}00044\ \textcolor{comment}{\ \ \ \ !!\ [.-\/-\/-\/.][.-\/-\/-\/.][.-\/-\/-\/.]\ |\ [.-\/-\/-\/.][.-\/-\/-\/.][.-\/-\/-\/.]\ |\ [.-\/-\/-\/.][.-\/-\/-\/.][.-\/-\/-\/.]}}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00045}00045\ \textcolor{comment}{\ \ \ \ !!\ \`{}\`{}\`{}}}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00046}00046\ \textcolor{comment}{\ \ \ \ !!\ dimension\ 2\ will\ only\ allow\ for\ the\ following\ elements:}}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00047}00047\ \textcolor{comment}{\ \ \ \ !!\ \`{}\`{}\`{}}}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00048}00048\ \textcolor{comment}{\ \ \ \ !!\ [.....][.....][-\/-\/-\/-\/-\/]\ |\ [.....][.....][-\/-\/-\/-\/-\/]\ |\ [.....][.....][-\/-\/-\/-\/-\/]}}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00049}00049\ \textcolor{comment}{\ \ \ \ !!\ \`{}\`{}\`{}}}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00050}00050\ \textcolor{comment}{\ \ \ \ !!\ dimension\ 3\ will\ only\ allow\ for\ the\ following\ elements:}}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00051}00051\ \textcolor{comment}{\ \ \ \ !!\ \`{}\`{}\`{}}}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00052}00052\ \textcolor{comment}{\ \ \ \ !!\ [.....][.....][.....]\ |\ [-\/-\/-\/-\/-\/][-\/-\/-\/-\/-\/][-\/-\/-\/-\/-\/]\ |\ [-\/-\/-\/-\/-\/][-\/-\/-\/-\/-\/][-\/-\/-\/-\/-\/]}}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00053}00053\ \textcolor{comment}{\ \ \ \ !!\ \`{}\`{}\`{}}}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00054}00054\ \textcolor{comment}{\ \ \ \ !!\ so\ that\ the\ total\ is\ given\ by:}}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00055}00055\ \textcolor{comment}{\ \ \ \ !!\ \`{}\`{}\`{}}}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00056}00056\ \textcolor{comment}{\ \ \ \ !!\ [.....][.....][.....]\ |\ [.....][.....][.....]\ |\ [.....][.....][.-\/-\/-\/.]}}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00057}00057\ \textcolor{comment}{\ \ \ \ !!\ \`{}\`{}\`{}}}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00058}00058\ \textcolor{comment}{\ \ \ \ !!}}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00059}00059\ \textcolor{comment}{\ \ \ \ !!\ In\ practice,\ it\ is\ easiest\ to\ work\ with\ a\ full\ selection,\ where\ for\ every}}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00060}00060\ \textcolor{comment}{\ \ \ \ !!\ dimension\ \ the\ \ ranges\ that\ \ do\ \ not\ \ correspond\ \ to\ \ the\ range\ \ of\ \ that}}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00061}00061\ \textcolor{comment}{\ \ \ \ !!\ dimension\ are\ \ taken\ away.\ Clearly,\ \ if\ a\ \ dimension\ has\ the\ \ full\ range,}}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00062}00062\ \textcolor{comment}{\ \ \ \ !!\ nothing\ will\ be\ taken\ out:}}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00063}00063\ \textcolor{comment}{\ \ \ \ !!\ \ -\/\ \(\backslash\)c\ block\_i\ \ \ \ \ =\ \(\backslash\)f\$n\_1\ n\_2\ \(\backslash\)cdots\ n\_\{i-\/1\}\ (b\_i-\/a\_\{i+1\})\ \(\backslash\)f\$\ ,}}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00064}00064\ \textcolor{comment}{\ \ \ \ !!\ \ -\/\ \(\backslash\)c\ stride\_i\ \ \ \ =\ \(\backslash\)f\$n\_1\ n\_2\ \(\backslash\)cdots\ n\_\{i-\/1\}\ (B\_i-\/A\_\{i+1\})\ \(\backslash\)f\$\ ,}}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00065}00065\ \textcolor{comment}{\ \ \ \ !!\ \ -\/\ \(\backslash\)c\ offset\_i\ \ \ \ =\ \(\backslash\)f\$n\_1\ n\_2\ \(\backslash\)cdots\ n\_\{i-\/1\}\ (a\_i-\/A\_i)\ \(\backslash\)f\$\ ,}}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00066}00066\ \textcolor{comment}{\ \ \ \ !!\ \ -\/\ \(\backslash\)c\ count\_i\ \ \ \ \ =\ \(\backslash\)f\$n\_\{i+1\}\ n\_\{i+2\}\ \(\backslash\)cdots\ n\_N\ \(\backslash\)f\$\ ,}}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00067}00067\ \textcolor{comment}{\ \ \ \ !!}}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00068}00068\ \textcolor{comment}{\ \ \ \ !!\ where\ \(\backslash\)f\$a\_i\(\backslash\)f\$\ \ and\ \(\backslash\)f\$b\_i\(\backslash\)f\$\ \ represent\ the\ \ local\ limits\ \ of\ dimension}}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00069}00069\ \textcolor{comment}{\ \ \ \ !!\ \(\backslash\)f\$i\(\backslash\)f\$,\ \ \(\backslash\)f\$A\_i\(\backslash\)f\$\ \ and\ \(\backslash\)f\$B\_i\(\backslash\)f\$\ \ the\ \ total\ \ ones\ \ and\ the\ \ number\ \ of}}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00070}00070\ \textcolor{comment}{\ \ \ \ !!\ dimensions\ is\ \(\backslash\)f\$N\(\backslash\)f\$,\ as\ can\ be\ verified.}}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00071}00071\ \textcolor{comment}{\ \ \ \ !!}}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00072}00072\ \textcolor{comment}{\ \ \ \ !!\ The\ chunk\ property\ \ list\ for\ creation\ can\ \ be\ set\ up\ so\ that\ \ its\ size\ is}}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00073}00073\ \textcolor{comment}{\ \ \ \ !!\ equal\ to\ the\ largest\ dimensions\ of\ full\ range,\ or\ an\ integer\ part\ of\ that}}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00074}00074\ \textcolor{comment}{\ \ \ \ !!\ if\ it\ exceeds\ \ 4GB.\ Since\ the\ variables\ \ don't\ need\ to\ be\ \ used\ more\ than}}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00075}00075\ \textcolor{comment}{\ \ \ \ !!\ once,\ \ either\ \(\backslash\)c\ \ nbytes\ or\ \ \(\backslash\)c\ nslots\ \ could\ be\ \ set\ to\ \ 0\ in\ \ an\ access}}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00076}00076\ \textcolor{comment}{\ \ \ \ !!\ property\ list,\ but\ this\ is\ currently\ not\ done.}}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00077}00077\ \textcolor{comment}{\ \ \ \ !!}}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00078}00078\ \textcolor{comment}{\ \ \ \ !!\ \(\backslash\)return\ ierr}}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00079}\doxymbox{\hyperlink{namespacehdf5__utilities_a7574320980affc30a584f7776d33a51c}{00079}}\ \ \ \ \ \textcolor{keyword}{integer\ }\textcolor{keyword}{function\ }\doxymbox{\hyperlink{namespacehdf5__utilities_a7574320980affc30a584f7776d33a51c}{set\_1d\_vars}}(lim\_tot,lim\_loc,space\_id,c\_plist\_id)\ \&}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00080}00080\ \ \ \ \ \ \ \ \ \&result(ierr)}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00081}00081\ \textcolor{preprocessor}{\#if\ ldebug}}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00082}00082\ \textcolor{preprocessor}{}\ \ \ \ \ \ \ \ \textcolor{keywordtype}{use\ }\doxymbox{\hyperlink{namespacenum__vars}{num\_vars}},\ \textcolor{keywordtype}{only}:\ \doxymbox{\hyperlink{namespacenum__vars_ab47aa91445feaedb05ac9d1a584664fe}{rank}}}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00083}00083\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00084}00084\ \textcolor{preprocessor}{}\ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00085}00085\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{character(*)},\ \textcolor{keywordtype}{parameter}\ ::\ rout\_name\ =\ \textcolor{stringliteral}{'set\_1D\_vars'}}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00086}00086\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00087}00087\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ input\ /\ output}}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00088}00088\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer},\ \textcolor{keywordtype}{intent(in)}\ ::\ lim\_tot(:,:)\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !<\ total\ limits}}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00089}00089\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer},\ \textcolor{keywordtype}{intent(in)}\ ::\ lim\_loc(:,:)\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !<\ local\ limits}}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00090}00090\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer(HID\_T)},\ \textcolor{keywordtype}{intent(in)},\ \textcolor{keywordtype}{optional}\ ::\ space\_id\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !<\ dataspace\ identifier}}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00091}00091\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer(HID\_T)},\ \textcolor{keywordtype}{intent(inout)},\ \textcolor{keywordtype}{optional}\ ::\ c\_plist\_id\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !<\ chunk\ creation\ property\ list\ identifier\ }}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00092}00092\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00093}00093\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ local\ variables}}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00094}00094\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer}\ ::\ id,\ kd\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ counters}}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00095}00095\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer}\ ::\ n\_dims\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ nr.\ of\ dimensions}}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00096}00096\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer}\ ::\ n\_prod(2)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ n\_prod(1)\ =\ n\_1*n\_2*..*n\_(i-\/1),\ n\_prod(2)\ =\ n\_prod(1)*n\_i}}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00097}00097\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer}\ ::\ div\_dim\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ first\ divided\ dimension}}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00098}00098\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer}\ ::\ chunk\_size\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ size\ of\ chunk}}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00099}00099\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer(HSIZE\_T)}\ ::\ block(1)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ block\ size\ in\ memory}}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00100}00100\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer(HSIZE\_T)}\ ::\ stride(1)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ stride\ in\ memory}}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00101}00101\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer(HSIZE\_T)}\ ::\ count(1)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ nr.\ of\ repetitions\ of\ block\ in\ memory}}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00102}00102\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer(HSIZE\_T)}\ ::\ offset(1)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ offset\ in\ memory}}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00103}00103\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer(HSIZE\_T)}\ ::\ chunk\_dims(1)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ chunk\ dimensions}}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00104}00104\ \textcolor{keywordtype}{\ \ \ \ \ \ \ \ real}(\doxymbox{\hyperlink{namespacenum__vars_a03802aa2bd86439d7a9370836fabf3f2}{dp}})\ ::\ max\_chunk\_size\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ maximum\ 4\ GB\ (from\ manual)}}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00105}00105\ \textcolor{keywordtype}{\ \ \ \ \ \ \ \ real}(\doxymbox{\hyperlink{namespacenum__vars_a03802aa2bd86439d7a9370836fabf3f2}{dp}})\ ::\ min\_chunk\_size\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ minimum\ 10\ MB\ (from\ experience)}}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00106}00106\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{character(len=max\_str\_ln)}\ ::\ err\_msg\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ error\ message}}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00107}00107\ \textcolor{preprocessor}{\#if\ ldebug}}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00108}00108\ \textcolor{preprocessor}{}\ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer}\ ::\ istat\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ status}}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00109}00109\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00110}00110\ \textcolor{preprocessor}{}\ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00111}00111\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ initialize\ ierr}}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00112}00112\ \ \ \ \ \ \ \ \ ierr\ =\ 0}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00113}00113\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00114}00114\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ set\ n\_dims}}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00115}00115\ \ \ \ \ \ \ \ \ n\_dims\ =\ \textcolor{keyword}{size}(lim\_tot,1)}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00116}00116\ }
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00117}00117\ \textcolor{preprocessor}{\#if\ ldebug}}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00118}00118\ \textcolor{preprocessor}{}\ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\textcolor{keyword}{size}(lim\_loc,1).ne.n\_dims)\ \textcolor{keywordflow}{then}}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00119}00119\ \ \ \ \ \ \ \ \ \ \ \ \ ierr\ =\ 1}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00120}00120\ \ \ \ \ \ \ \ \ \ \ \ \ err\_msg\ =\ \textcolor{stringliteral}{'lim\_tot\ and\ lim\_loc\ are\ not\ compatible'}}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00121}00121\ \ \ \ \ \ \ \ \ \ \ \ \ chckerr(err\_msg)}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00122}00122\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ end\ if}}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00123}00123\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\textcolor{keyword}{size}(lim\_tot,2).ne.2\ .or.\ \textcolor{keyword}{size}(lim\_loc,2).ne.2)\ \textcolor{keywordflow}{then}}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00124}00124\ \ \ \ \ \ \ \ \ \ \ \ \ ierr\ =\ 1}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00125}00125\ \ \ \ \ \ \ \ \ \ \ \ \ err\_msg\ =\ \textcolor{stringliteral}{'lim\_tot\ and\_lim\_loc\ need\ to\ contain\ 2\ columns'}}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00126}00126\ \ \ \ \ \ \ \ \ \ \ \ \ chckerr(err\_msg)}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00127}00127\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ end\ if}}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00128}00128\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{do}\ id\ =\ 1,n\_dims}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00129}00129\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (lim\_tot(id,1).gt.lim\_loc(id,1)\ .or.\ \&}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00130}00130\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&lim\_tot(id,2).lt.lim\_loc(id,2))\ \textcolor{keywordflow}{then}}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00131}00131\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{write}(*,*)\ \doxymbox{\hyperlink{namespacenum__vars_ab47aa91445feaedb05ac9d1a584664fe}{rank}},\ \textcolor{stringliteral}{'lim\_tot\ =\ '},\ lim\_tot}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00132}00132\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{write}(*,*)\ \doxymbox{\hyperlink{namespacenum__vars_ab47aa91445feaedb05ac9d1a584664fe}{rank}},\ \textcolor{stringliteral}{'lim\_loc\ =\ '},\ lim\_loc}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00133}00133\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ierr\ =\ 1}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00134}00134\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ err\_msg\ =\ \textcolor{stringliteral}{'Total\ limits\ must\ comprise\ local\ ones'}}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00135}00135\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ chckerr(err\_msg)}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00136}00136\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ \ \ \ \ end\ if}}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00137}00137\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ end\ do}}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00138}00138\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00139}00139\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\doxymbox{\hyperlink{namespacehdf5__utilities_addf084b90450dc2a0cc614f2f5ac13fc}{debug\_set\_1d\_vars}})\ \textcolor{keywordflow}{then}}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00140}00140\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{write}(*,*,iostat=istat)\ \doxymbox{\hyperlink{namespacenum__vars_ab47aa91445feaedb05ac9d1a584664fe}{rank}},\ \textcolor{stringliteral}{'in\ set\_1D\_vars:'}}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00141}00141\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{write}(*,*,iostat=istat)\ \doxymbox{\hyperlink{namespacenum__vars_ab47aa91445feaedb05ac9d1a584664fe}{rank}},\ \textcolor{stringliteral}{'lim\_tot\_lo\ =\ '},\ lim\_tot(:,1)}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00142}00142\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{write}(*,*,iostat=istat)\ \doxymbox{\hyperlink{namespacenum__vars_ab47aa91445feaedb05ac9d1a584664fe}{rank}},\ \textcolor{stringliteral}{'lim\_tot\_hi\ =\ '},\ lim\_tot(:,2)}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00143}00143\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{write}(*,*,iostat=istat)\ \doxymbox{\hyperlink{namespacenum__vars_ab47aa91445feaedb05ac9d1a584664fe}{rank}},\ \textcolor{stringliteral}{'lim\_loc\_lo\ =\ '},\ lim\_loc(:,1)}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00144}00144\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{write}(*,*,iostat=istat)\ \doxymbox{\hyperlink{namespacenum__vars_ab47aa91445feaedb05ac9d1a584664fe}{rank}},\ \textcolor{stringliteral}{'lim\_loc\_hi\ =\ '},\ lim\_loc(:,2)}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00145}00145\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ end\ if}}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00146}00146\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00147}00147\ \textcolor{preprocessor}{}\ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00148}00148\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ initialize\ divided\ dimension}}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00149}00149\ \ \ \ \ \ \ \ \ div\_dim\ =\ n\_dims+1}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00150}00150\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00151}00151\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ set\ hyperslab\ to\ be\ everything\ if\ requested}}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00152}00152\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\textcolor{keyword}{present}(space\_id))\ \textcolor{keywordflow}{then}}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00153}00153\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }h5sselect\_all\_f(space\_id,ierr)\ }
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00154}00154\ \ \ \ \ \ \ \ \ \ \ \ \ chckerr(\textcolor{stringliteral}{'Failed\ to\ select\ hyperslab'})}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00155}00155\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ end\ if}}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00156}00156\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00157}00157\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ loop\ over\ dimensions\ to\ possibly\ restrict\ hyperslab\ and\ set\ div\_dim}}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00158}00158\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{do}\ id\ =\ 1,n\_dims}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00159}00159\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ only\ restrict\ hyperslab\ if\ local\ range\ differ\ from\ total\ one}}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00160}00160\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (lim\_loc(id,1).gt.lim\_tot(id,1)\ .or.\ \&}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00161}00161\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&lim\_loc(id,2).lt.lim\_tot(id,2))\ \textcolor{keywordflow}{then}}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00162}00162\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ set\ divided\ dimension\ if\ first\ time}}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00163}00163\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (div\_dim.eq.n\_dims+1)\ div\_dim\ =\ id}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00164}00164\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00165}00165\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ calculations\ if\ hyperslab\ restriction\ requested}}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00166}00166\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\textcolor{keyword}{present}(space\_id))\ \textcolor{keywordflow}{then}}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00167}00167\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ set\ auxiliary\ variables}}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00168}00168\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ n\_prod(1)\ =\ product(lim\_tot(1:id-\/1,2)-\/lim\_tot(1:id-\/1,1)+1)}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00169}00169\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ n\_prod(2)\ =\ n\_prod(1)*(lim\_tot(id,2)-\/lim\_tot(id,1)+1)}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00170}00170\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00171}00171\ \textcolor{preprocessor}{\#if\ ldebug}}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00172}00172\ \textcolor{preprocessor}{}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\doxymbox{\hyperlink{namespacehdf5__utilities_addf084b90450dc2a0cc614f2f5ac13fc}{debug\_set\_1d\_vars}})\ \textcolor{keywordflow}{then}}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00173}00173\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{write}(*,*,iostat=istat)\ \doxymbox{\hyperlink{namespacenum__vars_ab47aa91445feaedb05ac9d1a584664fe}{rank}},\ \textcolor{stringliteral}{'dimension'},\ id,\ \textcolor{stringliteral}{'of'},\ \&}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00174}00174\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&n\_dims}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00175}00175\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{write}(*,*,iostat=istat)\ \doxymbox{\hyperlink{namespacenum__vars_ab47aa91445feaedb05ac9d1a584664fe}{rank}},\ \textcolor{stringliteral}{'n\_prod\ =\ '},\ n\_prod}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00176}00176\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ end\ if}}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00177}00177\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00178}00178\ \textcolor{preprocessor}{}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00179}00179\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ block\ =\ (lim\_loc(id,2)-\/lim\_loc(id,1)+1)\ *\ n\_prod(1)}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00180}00180\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ stride\ =\ n\_prod(2)}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00181}00181\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ offset\ =\ (lim\_loc(id,1)-\/lim\_tot(id,1))\ *\ n\_prod(1)}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00182}00182\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ count\ =\ 1}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00183}00183\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{do}\ kd\ =\ id+1,n\_dims}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00184}00184\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ count\ =\ count*(lim\_tot(kd,2)-\/lim\_tot(kd,1)+1)}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00185}00185\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ end\ do}}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00186}00186\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00187}00187\ \textcolor{preprocessor}{\#if\ ldebug}}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00188}00188\ \textcolor{preprocessor}{}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\doxymbox{\hyperlink{namespacehdf5__utilities_addf084b90450dc2a0cc614f2f5ac13fc}{debug\_set\_1d\_vars}})\ \textcolor{keywordflow}{then}}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00189}00189\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{write}(*,*,iostat=istat)\ \doxymbox{\hyperlink{namespacenum__vars_ab47aa91445feaedb05ac9d1a584664fe}{rank}},\ \textcolor{stringliteral}{'block,\ offset,\ stride,\ \&}}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00190}00190\ \textcolor{stringliteral}{}\textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&count\ =\ '},\ block,\ offset,\ stride,\ count}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00191}00191\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ end\ if}}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00192}00192\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00193}00193\ \textcolor{preprocessor}{}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00194}00194\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }h5sselect\_hyperslab\_f(space\_id,h5s\_select\_and\_f,\&}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00195}00195\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&offset,count,ierr,stride=stride,block=block)}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00196}00196\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ chckerr(\textcolor{stringliteral}{'Failed\ to\ select\ hyperslab'})}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00197}00197\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ end\ if}}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00198}00198\ \textcolor{preprocessor}{\#if\ ldebug}}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00199}00199\ \textcolor{preprocessor}{}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\doxymbox{\hyperlink{namespacehdf5__utilities_addf084b90450dc2a0cc614f2f5ac13fc}{debug\_set\_1d\_vars}})\ \textcolor{keywordflow}{then}}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00200}00200\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{write}(*,*,iostat=istat)\ \doxymbox{\hyperlink{namespacenum__vars_ab47aa91445feaedb05ac9d1a584664fe}{rank}},\ \textcolor{stringliteral}{'total\ range\ DIFFERS\ from\ \&}}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00201}00201\ \textcolor{stringliteral}{}\textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&local'}}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00202}00202\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ end\ if}}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00203}00203\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00204}00204\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\doxymbox{\hyperlink{namespacehdf5__utilities_addf084b90450dc2a0cc614f2f5ac13fc}{debug\_set\_1d\_vars}})\ \textcolor{keywordflow}{then}}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00205}00205\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{write}(*,*,iostat=istat)\ \doxymbox{\hyperlink{namespacenum__vars_ab47aa91445feaedb05ac9d1a584664fe}{rank}},\ \textcolor{stringliteral}{'total\ range\ EQUAL\ to\ local'}}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00206}00206\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ end\ if}}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00207}00207\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00208}00208\ \textcolor{preprocessor}{}\textcolor{keywordflow}{\ \ \ \ \ \ \ \ \ \ \ \ end\ if}}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00209}00209\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ end\ do}}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00210}00210\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00211}00211\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ set\ chunk\ property\ list\ if\ requested}}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00212}00212\ \ \ \ \ \ \ \ \ max\_chunk\_size\ =\ 4.e9\_dp\ /\ sizeof(1.\_dp)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ maximum\ 4\ GB\ (from\ manual)}}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00213}00213\ \ \ \ \ \ \ \ \ min\_chunk\_size\ =\ min(10.e6\_dp/sizeof(1.\_dp),\&}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00214}00214\ \ \ \ \ \ \ \ \ \ \ \ \ \&product(lim\_tot(:,2)-\/lim\_tot(:,1)+1.\_dp))\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ maximum\ 10\ MB\ (from\ experience),\ or\ limit\ to\ total\ variable\ size}}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00215}00215\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\textcolor{keyword}{present}(c\_plist\_id))\ \textcolor{keywordflow}{then}}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00216}00216\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ set\ up\ variables}}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00217}00217\ \ \ \ \ \ \ \ \ \ \ \ \ chunk\_size\ =\ 1}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00218}00218\ \ \ \ \ \ \ \ \ \ \ \ \ id\ =\ 1}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00219}00219\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{do}\ \textcolor{keywordflow}{while}\ (chunk\_size.le.min\_chunk\_size\ .and.\ id.le.\textcolor{keyword}{size}(lim\_tot,1))}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00220}00220\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ chunk\_size\ =\ chunk\_size\ *\ (lim\_tot(id,2)-\/lim\_tot(id,1)+1)}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00221}00221\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ id\ =\ id\ +\ 1}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00222}00222\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ \ \ \ \ end\ do}}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00223}00223\ \textcolor{preprocessor}{\#if\ ldebug}}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00224}00224\ \textcolor{preprocessor}{}\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\doxymbox{\hyperlink{namespacehdf5__utilities_addf084b90450dc2a0cc614f2f5ac13fc}{debug\_set\_1d\_vars}})\ \textcolor{keywordflow}{then}}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00225}00225\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{write}(*,*,iostat=istat)\ \doxymbox{\hyperlink{namespacenum__vars_ab47aa91445feaedb05ac9d1a584664fe}{rank}},\ \textcolor{stringliteral}{'suggested\ chunk\ size'},\ chunk\_size}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00226}00226\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ \ \ \ \ end\ if}}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00227}00227\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00228}00228\ \textcolor{preprocessor}{}\ \ \ \ \ \ \ \ \ \ \ \ chunk\_size\ =\ chunk\_size\ /\ (1\ +\ floor(chunk\_size/max\_chunk\_size))\ \ \ \ \textcolor{comment}{!\ limit\ to\ max\ chunk\ size}}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00229}00229\ \textcolor{preprocessor}{\#if\ ldebug}}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00230}00230\ \textcolor{preprocessor}{}\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\doxymbox{\hyperlink{namespacehdf5__utilities_addf084b90450dc2a0cc614f2f5ac13fc}{debug\_set\_1d\_vars}})\ \textcolor{keywordflow}{then}}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00231}00231\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{write}(*,*,iostat=istat)\ \doxymbox{\hyperlink{namespacenum__vars_ab47aa91445feaedb05ac9d1a584664fe}{rank}},\ \textcolor{stringliteral}{'def.\ chunk\ size'},\ chunk\_size}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00232}00232\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ \ \ \ \ end\ if}}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00233}00233\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00234}00234\ \textcolor{preprocessor}{}\ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00235}00235\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ set\ creation\ property\ list\ if\ provided}}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00236}00236\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\textcolor{keyword}{present}(c\_plist\_id))\ \textcolor{keywordflow}{then}}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00237}00237\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ chunk\_dims\ =\ chunk\_size}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00238}00238\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }h5pcreate\_f(h5p\_dataset\_create\_f,c\_plist\_id,ierr)\ }
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00239}00239\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ chckerr(\textcolor{stringliteral}{'Failed\ to\ create\ property\ list'})}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00240}00240\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }h5pset\_chunk\_f(c\_plist\_id,1,chunk\_dims,ierr)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ one\ dimension\ for\ 1D\ chunk}}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00241}00241\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ chckerr(\textcolor{stringliteral}{'Failed\ to\ create\ chunk'})}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00242}00242\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ \ \ \ \ end\ if}}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00243}00243\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ end\ if}}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00244}00244\ \ \ \ \ \textcolor{keyword}{end\ function\ }\doxymbox{\hyperlink{namespacehdf5__utilities_a7574320980affc30a584f7776d33a51c}{set\_1d\_vars}}}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00245}00245\ \ \ \ \ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00246}00246\ \textcolor{comment}{\ \ \ \ !>\ Probe\ HDF5\ file\ for\ group\ existence.}}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00247}00247\ \textcolor{comment}{\ \ \ \ !!}}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00248}00248\ \textcolor{comment}{\ \ \ \ !!\ \(\backslash\)return\ ierr}}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00249}\doxymbox{\hyperlink{namespacehdf5__utilities_ac0c7e6c4047b37031ac8ff7fdc271cf6}{00249}}\ \ \ \ \ \textcolor{keyword}{integer\ }\textcolor{keyword}{function\ }\doxymbox{\hyperlink{namespacehdf5__utilities_ac0c7e6c4047b37031ac8ff7fdc271cf6}{probe\_hdf5\_group}}(HDF5\_name,group\_name,group\_exists)\ \&}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00250}00250\ \ \ \ \ \ \ \ \ \&result(ierr)}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00251}00251\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{use\ }\doxymbox{\hyperlink{namespacempi__vars}{mpi\_vars}},\ \textcolor{keywordtype}{only}:\ \doxymbox{\hyperlink{namespacempi__vars_a834e19cd963fef0ad150e22aa3c56d53}{hdf5\_lock}}}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00252}00252\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{use\ }\doxymbox{\hyperlink{namespacempi__utilities}{mpi\_utilities}},\ \textcolor{keywordtype}{only}:\ \doxymbox{\hyperlink{namespacempi__utilities_a5a789d05be41d6109c01f46cc98620c8}{lock\_req\_acc}},\ \doxymbox{\hyperlink{namespacempi__utilities_a86f9982a0f92b51a916f832d9a3d8ba9}{lock\_return\_acc}}}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00253}00253\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00254}00254\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{character(*)},\ \textcolor{keywordtype}{parameter}\ ::\ rout\_name\ =\ \textcolor{stringliteral}{'probe\_HDF5\_group'}}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00255}00255\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00256}00256\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ input\ /\ output}}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00257}00257\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{character(len=*)},\ \textcolor{keywordtype}{intent(in)}\ ::\ hdf5\_name\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !<\ name\ of\ HDF5\ file}}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00258}00258\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{character(len=*)},\ \textcolor{keywordtype}{intent(in)}\ ::\ group\_name\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !<\ name\ of\ group\ to\ probe\ for}}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00259}00259\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{logical},\ \textcolor{keywordtype}{intent(inout)}\ ::\ group\_exists\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !<\ whether\ group\ exists}}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00260}00260\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00261}00261\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ local\ variables}}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00262}00262\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer}\ ::\ istat\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ status}}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00263}00263\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer(HID\_T)}\ ::\ hdf5\_i\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ file\ identifier\ }}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00264}00264\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer(HID\_T)}\ ::\ group\_id\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ group\ identifier}}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00265}00265\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00266}00266\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ initialize\ ierr}}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00267}00267\ \ \ \ \ \ \ \ \ ierr\ =\ 0}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00268}00268\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00269}00269\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ initialize\ FORTRAN\ predefined\ datatypes}}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00270}00270\ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }h5open\_f(ierr)\ }
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00271}00271\ \ \ \ \ \ \ \ \ chckerr(\textcolor{stringliteral}{'Failed\ to\ initialize\ HDF5'})}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00272}00272\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00273}00273\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ wait\ for\ file\ access\ in\ a\ non-\/blocking\ way}}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00274}00274\ \ \ \ \ \ \ \ \ ierr\ =\ \doxymbox{\hyperlink{namespacempi__utilities_a5a789d05be41d6109c01f46cc98620c8}{lock\_req\_acc}}(\doxymbox{\hyperlink{namespacempi__vars_a834e19cd963fef0ad150e22aa3c56d53}{hdf5\_lock}},blocking=.false.)}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00275}00275\ \ \ \ \ \ \ \ \ chckerr(\textcolor{stringliteral}{''})}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00276}00276\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00277}00277\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ open\ the\ file}}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00278}00278\ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }h5fopen\_f(hdf5\_name,h5f\_acc\_rdonly\_f,hdf5\_i,ierr)}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00279}00279\ \ \ \ \ \ \ \ \ chckerr(\textcolor{stringliteral}{'Failed\ to\ open\ file.\ Does\ it\ exist?'})}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00280}00280\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00281}00281\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ disable\ error\ messages}}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00282}00282\ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }h5eset\_auto\_f(0,ierr)}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00283}00283\ \ \ \ \ \ \ \ \ chckerr(\textcolor{stringliteral}{'Failed\ to\ disable\ error\ printing'})}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00284}00284\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00285}00285\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ try\ to\ open\ group}}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00286}00286\ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }h5gopen\_f(hdf5\_i,group\_name,group\_id,istat)}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00287}00287\ \ \ \ \ \ \ \ \ group\_exists\ =\ istat.eq.0}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00288}00288\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00289}00289\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ reenable\ error\ messages}}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00290}00290\ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }h5eset\_auto\_f(1,ierr)}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00291}00291\ \ \ \ \ \ \ \ \ chckerr(\textcolor{stringliteral}{'Failed\ to\ enable\ error\ printing'})}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00292}00292\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00293}00293\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ close\ group}}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00294}00294\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (group\_exists)\ \textcolor{keywordflow}{then}}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00295}00295\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }h5gclose\_f(group\_id,ierr)}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00296}00296\ \ \ \ \ \ \ \ \ \ \ \ \ chckerr(\textcolor{stringliteral}{'Failed\ to\ close\ head\ group'})}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00297}00297\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ end\ if}}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00298}00298\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00299}00299\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ close\ the\ HDF5\ file}}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00300}00300\ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }h5fclose\_f(hdf5\_i,ierr)}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00301}00301\ \ \ \ \ \ \ \ \ chckerr(\textcolor{stringliteral}{'failed\ to\ close\ HDF5\ file'})}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00302}00302\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00303}00303\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ return\ lock}}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00304}00304\ \ \ \ \ \ \ \ \ ierr\ =\ \doxymbox{\hyperlink{namespacempi__utilities_a86f9982a0f92b51a916f832d9a3d8ba9}{lock\_return\_acc}}(\doxymbox{\hyperlink{namespacempi__vars_a834e19cd963fef0ad150e22aa3c56d53}{hdf5\_lock}})}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00305}00305\ \ \ \ \ \ \ \ \ chckerr(\textcolor{stringliteral}{''})}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00306}00306\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00307}00307\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ close\ FORTRAN\ interfaces\ and\ HDF5\ library.}}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00308}00308\ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }h5close\_f(ierr)}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00309}00309\ \ \ \ \ \ \ \ \ chckerr(\textcolor{stringliteral}{'Failed\ to\ close\ FORTRAN\ HDF5\ interface'})}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00310}00310\ \ \ \ \ \textcolor{keyword}{end\ function\ }\doxymbox{\hyperlink{namespacehdf5__utilities_ac0c7e6c4047b37031ac8ff7fdc271cf6}{probe\_hdf5\_group}}}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00311}00311\ }
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00312}00312\ \textcolor{preprocessor}{\#if\ ldebug}}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00313}00313\ \textcolor{preprocessor}{}\textcolor{comment}{\ \ \ \ !>\ Lists\ all\ variables\ in\ a\ HDF5\ group.}}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00314}00314\ \textcolor{comment}{\ \ \ \ !!}}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00315}00315\ \textcolor{comment}{\ \ \ \ !!\ \(\backslash\)ldebug}}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00316}00316\ \textcolor{comment}{\ \ \ \ !!}}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00317}00317\ \textcolor{comment}{\ \ \ \ !!\ \(\backslash\)return\ ierr}}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00318}\doxymbox{\hyperlink{namespacehdf5__utilities_aa9d76166f970a7052cd0d96c8f3ee0be}{00318}}\ \ \ \ \ \textcolor{keyword}{integer\ }\textcolor{keyword}{function\ }\doxymbox{\hyperlink{namespacehdf5__utilities_aa9d76166f970a7052cd0d96c8f3ee0be}{list\_all\_vars\_in\_group}}(group\_id)\ \textcolor{keyword}{result}(ierr)}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00319}00319\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{character(*)},\ \textcolor{keywordtype}{parameter}\ ::\ rout\_name\ =\ \textcolor{stringliteral}{'list\_all\_vars\_in\_group'}}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00320}00320\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00321}00321\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ input\ /\ output}}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00322}00322\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer(HID\_T)},\ \textcolor{keywordtype}{intent(in)}\ ::\ group\_id\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !<\ group\ identifier}}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00323}00323\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00324}00324\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ local\ variables}}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00325}00325\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer}\ ::\ storage\_type\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ type\ of\ storage\ used\ in\ HDF5\ file}}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00326}00326\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer}\ ::\ nr\_lnks\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ number\ of\ links\ in\ group}}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00327}00327\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer}\ ::\ max\_corder\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ current\ maximum\ creation\ order\ value\ for\ group}}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00328}00328\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer(HSIZE\_T)}\ ::\ id\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ counter}}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00329}00329\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer}\ ::\ id\_loc\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ local\ id}}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00330}00330\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer(SIZE\_T)}\ ::\ name\_len\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ length\ of\ name\ of\ group}}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00331}00331\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{character(len=max\_str\_ln)}\ ::\ var\_name\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ name\ of\ variable}}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00332}00332\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00333}00333\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ get\ number\ of\ objects\ in\ group}}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00334}00334\ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }h5gget\_info\_f(group\_id,storage\_type,nr\_lnks,max\_corder,\&}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00335}00335\ \ \ \ \ \ \ \ \ \ \ \ \ \&ierr)}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00336}00336\ \ \ \ \ \ \ \ \ chckerr(\textcolor{stringliteral}{'Failed\ to\ get\ group\ info'})}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00337}00337\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00338}00338\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ user\ output}}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00339}00339\ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_aa4a8d01563e92558e8a0875b075ec54c}{writo}}(\textcolor{stringliteral}{'The\ group\ has\ '}//trim(\doxymbox{\hyperlink{namespacestr__utilities_a0b97e51770725a3e98ed393d26681414}{i2str}}(nr\_lnks))//\textcolor{stringliteral}{'\ elements'})}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00340}00340\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00341}00341\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ loop\ over\ all\ elements}}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00342}00342\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{do}\ id\ =\ 1,nr\_lnks}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00343}00343\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ get\ variable\ name}}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00344}00344\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }h5lget\_name\_by\_idx\_f(group\_id,\textcolor{stringliteral}{'.'},h5\_index\_name\_f,\&}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00345}00345\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&h5\_iter\_native\_f,id-\/1,var\_name,ierr,size=name\_len)}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00346}00346\ \ \ \ \ \ \ \ \ \ \ \ \ chckerr(\textcolor{stringliteral}{'Failed\ to\ get\ name'})}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00347}00347\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00348}00348\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ user\ output}}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00349}00349\ \ \ \ \ \ \ \ \ \ \ \ \ id\_loc\ =\ int(id,1)}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00350}00350\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_aa4a8d01563e92558e8a0875b075ec54c}{writo}}(\textcolor{stringliteral}{'Element\ '}//trim(\doxymbox{\hyperlink{namespacestr__utilities_a0b97e51770725a3e98ed393d26681414}{i2str}}(id\_loc))//\textcolor{stringliteral}{'/'}//\&}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00351}00351\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&trim(\doxymbox{\hyperlink{namespacestr__utilities_a0b97e51770725a3e98ed393d26681414}{i2str}}(nr\_lnks))//\textcolor{stringliteral}{':\ '}//trim(var\_name))}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00352}00352\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ end\ do}}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00353}00353\ \ \ \ \ \textcolor{keyword}{end\ function\ }\doxymbox{\hyperlink{namespacehdf5__utilities_aa9d76166f970a7052cd0d96c8f3ee0be}{list\_all\_vars\_in\_group}}}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00354}00354\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{HDF5__utilities_8f90_source_l00355}00355\ \textcolor{preprocessor}{}\textcolor{keyword}{end\ module\ }\doxymbox{\hyperlink{namespacehdf5__utilities}{hdf5\_utilities}}}
+
+\end{DoxyCode}

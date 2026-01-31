@@ -1,28 +1,30 @@
-\hypertarget{interfacesol__utilities_1_1calc__xuq}{}\doxysection{sol\+\_\+utilities\+::calc\+\_\+xuq Interface Reference}
-\label{interfacesol__utilities_1_1calc__xuq}\index{sol\_utilities::calc\_xuq@{sol\_utilities::calc\_xuq}}
+\doxysection{sol\+\_\+utilities::\+calc\+\_\+xuq Interface Reference}
+\hypertarget{interfacesol__utilities_1_1calc__xuq}{}\label{interfacesol__utilities_1_1calc__xuq}\index{sol\_utilities::calc\_xuq@{sol\_utilities::calc\_xuq}}
 
 
-Calculates the normal ( $\cdot_n$) or geodesic ( $\cdot_g$) components of the plasma perturbation $\vec{\xi}$ or the magnetic perturbation $\vec{Q} = \nabla \times \left(\vec{x} \times \vec{B}\right)$.  
+Calculates the normal ( $\cdot_n$) or geodesic ( $\cdot_g$) components of the plasma perturbation $\vec{\xi}$ or the magnetic perturbation  $\vec{Q}  = \nabla  \times \left(\vec{x}  \times
+        \vec{B}\right)$.  
 
 
-\doxysubsection*{Public Member Functions}
+\doxysubsubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-integer function \mbox{\hyperlink{interfacesol__utilities_1_1calc__xuq_a5a102e1e32fac72b138a38df4c543134}{calc\+\_\+xuq\+\_\+ind}} (mds\+\_\+X, mds\+\_\+sol, grid\+\_\+eq, grid\+\_\+X, grid\+\_\+sol, eq\+\_\+1, eq\+\_\+2, X, sol, X\+\_\+id, X\+U\+Q\+\_\+style, time, X\+UQ, deriv)
+integer function \doxymbox{\hyperlink{interfacesol__utilities_1_1calc__xuq_a3f87adcb2624f6c855c1d1d7d3805bb6}{calc\+\_\+xuq\+\_\+ind}} (mds\+\_\+x, mds\+\_\+sol, grid\+\_\+eq, grid\+\_\+x, grid\+\_\+sol, eq\+\_\+1, eq\+\_\+2, x, sol, x\+\_\+id, xuq\+\_\+style, time, xuq, deriv)
 \begin{DoxyCompactList}\small\item\em (time) individual version \end{DoxyCompactList}\item 
-integer function \mbox{\hyperlink{interfacesol__utilities_1_1calc__xuq_a17d7f9af7119c48b7203cf683f80d304}{calc\+\_\+xuq\+\_\+arr}} (mds\+\_\+X, mds\+\_\+sol, grid\+\_\+eq, grid\+\_\+X, grid\+\_\+sol, eq\+\_\+1, eq\+\_\+2, X, sol, X\+\_\+id, X\+U\+Q\+\_\+style, time, X\+UQ, deriv)
+integer function \doxymbox{\hyperlink{interfacesol__utilities_1_1calc__xuq_a4b43f8b6d93cfd1659f24da15adbcca0}{calc\+\_\+xuq\+\_\+arr}} (mds\+\_\+x, mds\+\_\+sol, grid\+\_\+eq, grid\+\_\+x, grid\+\_\+sol, eq\+\_\+1, eq\+\_\+2, x, sol, x\+\_\+id, xuq\+\_\+style, time, xuq, deriv)
 \begin{DoxyCompactList}\small\item\em (time) array version \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
-Calculates the normal ( $\cdot_n$) or geodesic ( $\cdot_g$) components of the plasma perturbation $\vec{\xi}$ or the magnetic perturbation $\vec{Q} = \nabla \times \left(\vec{x} \times \vec{B}\right)$. 
+Calculates the normal ( $\cdot_n$) or geodesic ( $\cdot_g$) components of the plasma perturbation $\vec{\xi}$ or the magnetic perturbation  $\vec{Q}  = \nabla  \times \left(\vec{x}  \times
+        \vec{B}\right)$. 
 
-Which variables are plot depends on {\ttfamily X\+U\+Q\+\_\+style} \cite{Weyens3D} \+:
+Which variables are plot depends on {\ttfamily XUQ\+\_\+style} \DoxyCite{weyens3d}{number}{1} :\+
 \begin{DoxyItemize}
-\item {\ttfamily X\+U\+Q\+\_\+style} = 1\+: $X$ (supports parallel derivative)
-\item {\ttfamily X\+U\+Q\+\_\+style} = 2\+: $U$ (supports parallel derivative)
-\item {\ttfamily X\+U\+Q\+\_\+style} = 3\+: $Q_n$
-\item {\ttfamily X\+U\+Q\+\_\+style} = 4\+: $Q_g$
+\item {\ttfamily XUQ\+\_\+style} = 1:\+ $X$ (supports parallel derivative)
+\item {\ttfamily XUQ\+\_\+style} = 2:\+ $U$ (supports parallel derivative)
+\item {\ttfamily XUQ\+\_\+style} = 3:\+ $Q_n$
+\item {\ttfamily XUQ\+\_\+style} = 4:\+ $Q_g$
 \end{DoxyItemize}
 
 $X$ and $U$ support the calculation of the parallel derivative.
@@ -38,16 +40,18 @@ ierr
 \end{DoxyReturn}
 
 
-Definition at line 56 of file sol\+\_\+utilities.\+f90.
+Definition at line \doxymbox{\hyperlink{sol__utilities_8f90_source_l00056}{56}} of file \doxymbox{\hyperlink{sol__utilities_8f90_source}{sol\+\_\+utilities.\+f90}}.
 
 
 
-\doxysubsection{Member Function/\+Subroutine Documentation}
-\mbox{\Hypertarget{interfacesol__utilities_1_1calc__xuq_a17d7f9af7119c48b7203cf683f80d304}\label{interfacesol__utilities_1_1calc__xuq_a17d7f9af7119c48b7203cf683f80d304}} 
-\index{sol\_utilities::calc\_xuq@{sol\_utilities::calc\_xuq}!calc\_xuq\_arr@{calc\_xuq\_arr}}
+\label{doc-func-members}
+\Hypertarget{interfacesol__utilities_1_1calc__xuq_doc-func-members}
+\doxysubsection{Member Function/\+\+Subroutine Documentation}
+\Hypertarget{interfacesol__utilities_1_1calc__xuq_a4b43f8b6d93cfd1659f24da15adbcca0}\index{sol\_utilities::calc\_xuq@{sol\_utilities::calc\_xuq}!calc\_xuq\_arr@{calc\_xuq\_arr}}
 \index{calc\_xuq\_arr@{calc\_xuq\_arr}!sol\_utilities::calc\_xuq@{sol\_utilities::calc\_xuq}}
 \doxysubsubsection{\texorpdfstring{calc\_xuq\_arr()}{calc\_xuq\_arr()}}
-{\footnotesize\ttfamily integer function sol\+\_\+utilities\+::calc\+\_\+xuq\+::calc\+\_\+xuq\+\_\+arr (\begin{DoxyParamCaption}\item[{type(modes\+\_\+type), intent(in), target}]{mds\+\_\+X,  }\item[{type(modes\+\_\+type), intent(in), target}]{mds\+\_\+sol,  }\item[{type(\mbox{\hyperlink{structgrid__vars_1_1grid__type}{grid\+\_\+type}}), intent(in)}]{grid\+\_\+eq,  }\item[{type(\mbox{\hyperlink{structgrid__vars_1_1grid__type}{grid\+\_\+type}}), intent(in)}]{grid\+\_\+X,  }\item[{type(\mbox{\hyperlink{structgrid__vars_1_1grid__type}{grid\+\_\+type}}), intent(in)}]{grid\+\_\+sol,  }\item[{type(\mbox{\hyperlink{structeq__vars_1_1eq__1__type}{eq\+\_\+1\+\_\+type}}), intent(in)}]{eq\+\_\+1,  }\item[{type(\mbox{\hyperlink{structeq__vars_1_1eq__2__type}{eq\+\_\+2\+\_\+type}}), intent(in)}]{eq\+\_\+2,  }\item[{type(x\+\_\+1\+\_\+type), intent(in), target}]{X,  }\item[{type(\mbox{\hyperlink{structsol__vars_1_1sol__type}{sol\+\_\+type}}), intent(in)}]{sol,  }\item[{integer, intent(in)}]{X\+\_\+id,  }\item[{integer, intent(in)}]{X\+U\+Q\+\_\+style,  }\item[{real(dp), dimension(\+:), intent(in)}]{time,  }\item[{complex(dp), dimension(\+:,\+:,\+:,\+:), intent(inout)}]{X\+UQ,  }\item[{logical, intent(in), optional}]{deriv }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \label{interfacesol__utilities_1_1calc__xuq_a4b43f8b6d93cfd1659f24da15adbcca0} 
+integer function sol\+\_\+utilities::\+calc\+\_\+xuq::\+calc\+\_\+xuq\+\_\+arr (\begin{DoxyParamCaption}\item[{type(\doxymbox{\hyperlink{structx__vars_1_1modes__type}{modes\+\_\+type}}), intent(in), target}]{mds\+\_\+x}{, }\item[{type(\doxymbox{\hyperlink{structx__vars_1_1modes__type}{modes\+\_\+type}}), intent(in), target}]{mds\+\_\+sol}{, }\item[{type(\doxymbox{\hyperlink{structgrid__vars_1_1grid__type}{grid\+\_\+type}}), intent(in)}]{grid\+\_\+eq}{, }\item[{type(\doxymbox{\hyperlink{structgrid__vars_1_1grid__type}{grid\+\_\+type}}), intent(in)}]{grid\+\_\+x}{, }\item[{type(\doxymbox{\hyperlink{structgrid__vars_1_1grid__type}{grid\+\_\+type}}), intent(in)}]{grid\+\_\+sol}{, }\item[{type(\doxymbox{\hyperlink{structeq__vars_1_1eq__1__type}{eq\+\_\+1\+\_\+type}}), intent(in)}]{eq\+\_\+1}{, }\item[{type(\doxymbox{\hyperlink{structeq__vars_1_1eq__2__type}{eq\+\_\+2\+\_\+type}}), intent(in)}]{eq\+\_\+2}{, }\item[{type(\doxymbox{\hyperlink{structx__vars_1_1x__1__type}{x\+\_\+1\+\_\+type}}), intent(in), target}]{x}{, }\item[{type(\doxymbox{\hyperlink{structsol__vars_1_1sol__type}{sol\+\_\+type}}), intent(in)}]{sol}{, }\item[{integer, intent(in)}]{x\+\_\+id}{, }\item[{integer, intent(in)}]{xuq\+\_\+style}{, }\item[{real(dp), dimension(:\+), intent(in)}]{time}{, }\item[{complex(dp), dimension(:\+,:\+,:\+,:\+), intent(inout)}]{xuq}{, }\item[{logical, intent(in), optional}]{deriv}{}\end{DoxyParamCaption})}
 
 
 
@@ -55,51 +59,51 @@ Definition at line 56 of file sol\+\_\+utilities.\+f90.
 
 
 \begin{DoxyParams}[1]{Parameters}
-\mbox{\texttt{ in}}  & {\em mds\+\_\+x} & general modes variables in perturbation grid \\
+\doxymbox{\texttt{in}}  & {\em mds\+\_\+x} & general modes variables in perturbation grid \\
 \hline
-\mbox{\texttt{ in}}  & {\em mds\+\_\+sol} & general modes variables in solution grid \\
+\doxymbox{\texttt{in}}  & {\em mds\+\_\+sol} & general modes variables in solution grid \\
 \hline
-\mbox{\texttt{ in}}  & {\em grid\+\_\+eq} & equilibrium grid \\
+\doxymbox{\texttt{in}}  & {\em grid\+\_\+eq} & equilibrium grid \\
 \hline
-\mbox{\texttt{ in}}  & {\em grid\+\_\+x} & perturbation grid \\
+\doxymbox{\texttt{in}}  & {\em grid\+\_\+x} & perturbation grid \\
 \hline
-\mbox{\texttt{ in}}  & {\em grid\+\_\+sol} & solution grid \\
+\doxymbox{\texttt{in}}  & {\em grid\+\_\+sol} & solution grid \\
 \hline
-\mbox{\texttt{ in}}  & {\em eq\+\_\+1} & flux equilibrium \\
+\doxymbox{\texttt{in}}  & {\em eq\+\_\+1} & flux equilibrium \\
 \hline
-\mbox{\texttt{ in}}  & {\em eq\+\_\+2} & metric equilibrium \\
+\doxymbox{\texttt{in}}  & {\em eq\+\_\+2} & metric equilibrium \\
 \hline
-\mbox{\texttt{ in}}  & {\em x} & perturbation variables \\
+\doxymbox{\texttt{in}}  & {\em x} & perturbation variables \\
 \hline
-\mbox{\texttt{ in}}  & {\em sol} & solution variables \\
+\doxymbox{\texttt{in}}  & {\em sol} & solution variables \\
 \hline
-\mbox{\texttt{ in}}  & {\em x\+\_\+id} & nr. of Eigenvalue \\
+\doxymbox{\texttt{in}}  & {\em x\+\_\+id} & nr. of Eigenvalue \\
 \hline
-\mbox{\texttt{ in}}  & {\em xuq\+\_\+style} & whether to calculate $X$, $U$, $Q_n$ or $Q_g$ \\
+\doxymbox{\texttt{in}}  & {\em xuq\+\_\+style} & whether to calculate $X$, $U$, $Q_n$ or $Q_g$ \\
 \hline
-\mbox{\texttt{ in}}  & {\em time} & time range \\
+\doxymbox{\texttt{in}}  & {\em time} & time range \\
 \hline
-\mbox{\texttt{ in,out}}  & {\em xuq} & $X$, $U$, $Q_n$ or $Q_g$ \\
+\doxymbox{\texttt{in,out}}  & {\em xuq} & $X$, $U$, $Q_n$ or $Q_g$ \\
 \hline
-\mbox{\texttt{ in}}  & {\em deriv} & return parallel derivative \\
+\doxymbox{\texttt{in}}  & {\em deriv} & return parallel derivative \\
 \hline
 \end{DoxyParams}
 
 
-Definition at line 67 of file sol\+\_\+utilities.\+f90.
+Definition at line \doxymbox{\hyperlink{sol__utilities_8f90_source_l00065}{65}} of file \doxymbox{\hyperlink{sol__utilities_8f90_source}{sol\+\_\+utilities.\+f90}}.
 
-Here is the call graph for this function\+:\nopagebreak
+Here is the call graph for this function:\+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=350pt]{interfacesol__utilities_1_1calc__xuq_a17d7f9af7119c48b7203cf683f80d304_cgraph}
+\includegraphics[width=350pt]{interfacesol__utilities_1_1calc__xuq_a4b43f8b6d93cfd1659f24da15adbcca0_cgraph}
 \end{center}
 \end{figure}
-\mbox{\Hypertarget{interfacesol__utilities_1_1calc__xuq_a5a102e1e32fac72b138a38df4c543134}\label{interfacesol__utilities_1_1calc__xuq_a5a102e1e32fac72b138a38df4c543134}} 
-\index{sol\_utilities::calc\_xuq@{sol\_utilities::calc\_xuq}!calc\_xuq\_ind@{calc\_xuq\_ind}}
+\Hypertarget{interfacesol__utilities_1_1calc__xuq_a3f87adcb2624f6c855c1d1d7d3805bb6}\index{sol\_utilities::calc\_xuq@{sol\_utilities::calc\_xuq}!calc\_xuq\_ind@{calc\_xuq\_ind}}
 \index{calc\_xuq\_ind@{calc\_xuq\_ind}!sol\_utilities::calc\_xuq@{sol\_utilities::calc\_xuq}}
 \doxysubsubsection{\texorpdfstring{calc\_xuq\_ind()}{calc\_xuq\_ind()}}
-{\footnotesize\ttfamily integer function sol\+\_\+utilities\+::calc\+\_\+xuq\+::calc\+\_\+xuq\+\_\+ind (\begin{DoxyParamCaption}\item[{type(modes\+\_\+type), intent(in)}]{mds\+\_\+X,  }\item[{type(modes\+\_\+type), intent(in)}]{mds\+\_\+sol,  }\item[{type(\mbox{\hyperlink{structgrid__vars_1_1grid__type}{grid\+\_\+type}}), intent(in)}]{grid\+\_\+eq,  }\item[{type(\mbox{\hyperlink{structgrid__vars_1_1grid__type}{grid\+\_\+type}}), intent(in)}]{grid\+\_\+X,  }\item[{type(\mbox{\hyperlink{structgrid__vars_1_1grid__type}{grid\+\_\+type}}), intent(in)}]{grid\+\_\+sol,  }\item[{type(\mbox{\hyperlink{structeq__vars_1_1eq__1__type}{eq\+\_\+1\+\_\+type}}), intent(in)}]{eq\+\_\+1,  }\item[{type(\mbox{\hyperlink{structeq__vars_1_1eq__2__type}{eq\+\_\+2\+\_\+type}}), intent(in)}]{eq\+\_\+2,  }\item[{type(x\+\_\+1\+\_\+type), intent(in)}]{X,  }\item[{type(\mbox{\hyperlink{structsol__vars_1_1sol__type}{sol\+\_\+type}}), intent(in)}]{sol,  }\item[{integer, intent(in)}]{X\+\_\+id,  }\item[{integer, intent(in)}]{X\+U\+Q\+\_\+style,  }\item[{real(dp), intent(in)}]{time,  }\item[{complex(dp), dimension(\+:,\+:,\+:), intent(inout)}]{X\+UQ,  }\item[{logical, intent(in), optional}]{deriv }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \label{interfacesol__utilities_1_1calc__xuq_a3f87adcb2624f6c855c1d1d7d3805bb6} 
+integer function sol\+\_\+utilities::\+calc\+\_\+xuq::\+calc\+\_\+xuq\+\_\+ind (\begin{DoxyParamCaption}\item[{type(\doxymbox{\hyperlink{structx__vars_1_1modes__type}{modes\+\_\+type}}), intent(in)}]{mds\+\_\+x}{, }\item[{type(\doxymbox{\hyperlink{structx__vars_1_1modes__type}{modes\+\_\+type}}), intent(in)}]{mds\+\_\+sol}{, }\item[{type(\doxymbox{\hyperlink{structgrid__vars_1_1grid__type}{grid\+\_\+type}}), intent(in)}]{grid\+\_\+eq}{, }\item[{type(\doxymbox{\hyperlink{structgrid__vars_1_1grid__type}{grid\+\_\+type}}), intent(in)}]{grid\+\_\+x}{, }\item[{type(\doxymbox{\hyperlink{structgrid__vars_1_1grid__type}{grid\+\_\+type}}), intent(in)}]{grid\+\_\+sol}{, }\item[{type(\doxymbox{\hyperlink{structeq__vars_1_1eq__1__type}{eq\+\_\+1\+\_\+type}}), intent(in)}]{eq\+\_\+1}{, }\item[{type(\doxymbox{\hyperlink{structeq__vars_1_1eq__2__type}{eq\+\_\+2\+\_\+type}}), intent(in)}]{eq\+\_\+2}{, }\item[{type(\doxymbox{\hyperlink{structx__vars_1_1x__1__type}{x\+\_\+1\+\_\+type}}), intent(in)}]{x}{, }\item[{type(\doxymbox{\hyperlink{structsol__vars_1_1sol__type}{sol\+\_\+type}}), intent(in)}]{sol}{, }\item[{integer, intent(in)}]{x\+\_\+id}{, }\item[{integer, intent(in)}]{xuq\+\_\+style}{, }\item[{real(dp), intent(in)}]{time}{, }\item[{complex(dp), dimension(:\+,:\+,:\+), intent(inout)}]{xuq}{, }\item[{logical, intent(in), optional}]{deriv}{}\end{DoxyParamCaption})}
 
 
 
@@ -107,36 +111,36 @@ Here is the call graph for this function\+:\nopagebreak
 
 
 \begin{DoxyParams}[1]{Parameters}
-\mbox{\texttt{ in}}  & {\em mds\+\_\+x} & general modes variables in perturbation grid \\
+\doxymbox{\texttt{in}}  & {\em mds\+\_\+x} & general modes variables in perturbation grid \\
 \hline
-\mbox{\texttt{ in}}  & {\em mds\+\_\+sol} & general modes variables in solution grid \\
+\doxymbox{\texttt{in}}  & {\em mds\+\_\+sol} & general modes variables in solution grid \\
 \hline
-\mbox{\texttt{ in}}  & {\em grid\+\_\+eq} & equilibrium grid \\
+\doxymbox{\texttt{in}}  & {\em grid\+\_\+eq} & equilibrium grid \\
 \hline
-\mbox{\texttt{ in}}  & {\em grid\+\_\+x} & perturbation grid \\
+\doxymbox{\texttt{in}}  & {\em grid\+\_\+x} & perturbation grid \\
 \hline
-\mbox{\texttt{ in}}  & {\em grid\+\_\+sol} & solution grid \\
+\doxymbox{\texttt{in}}  & {\em grid\+\_\+sol} & solution grid \\
 \hline
-\mbox{\texttt{ in}}  & {\em eq\+\_\+1} & flux equilibrium \\
+\doxymbox{\texttt{in}}  & {\em eq\+\_\+1} & flux equilibrium \\
 \hline
-\mbox{\texttt{ in}}  & {\em eq\+\_\+2} & metric equilibrium \\
+\doxymbox{\texttt{in}}  & {\em eq\+\_\+2} & metric equilibrium \\
 \hline
-\mbox{\texttt{ in}}  & {\em x} & perturbation variables \\
+\doxymbox{\texttt{in}}  & {\em x} & perturbation variables \\
 \hline
-\mbox{\texttt{ in}}  & {\em sol} & solution variables \\
+\doxymbox{\texttt{in}}  & {\em sol} & solution variables \\
 \hline
-\mbox{\texttt{ in}}  & {\em x\+\_\+id} & nr. of Eigenvalue \\
+\doxymbox{\texttt{in}}  & {\em x\+\_\+id} & nr. of Eigenvalue \\
 \hline
-\mbox{\texttt{ in}}  & {\em xuq\+\_\+style} & whether to calculate X, U, Qn or Qg \\
+\doxymbox{\texttt{in}}  & {\em xuq\+\_\+style} & whether to calculate X, U, Qn or Qg \\
 \hline
-\mbox{\texttt{ in,out}}  & {\em xuq} & normal component of perturbation \\
+\doxymbox{\texttt{in,out}}  & {\em xuq} & normal component of perturbation \\
 \hline
-\mbox{\texttt{ in}}  & {\em deriv} & return parallel derivative \\
+\doxymbox{\texttt{in}}  & {\em deriv} & return parallel derivative \\
 \hline
 \end{DoxyParams}
 
 
-Definition at line 520 of file sol\+\_\+utilities.\+f90.
+Definition at line \doxymbox{\hyperlink{sol__utilities_8f90_source_l00518}{518}} of file \doxymbox{\hyperlink{sol__utilities_8f90_source}{sol\+\_\+utilities.\+f90}}.
 
 
 

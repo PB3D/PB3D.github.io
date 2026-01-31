@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['vac_5fpot_5fplot_1514',['vac_pot_plot',['../namespacevac__ops.html#a3a2a3aed45951aecef42197b82a5a6da',1,'vac_ops']]],
-  ['vec_5fdis2loc_1515',['vec_dis2loc',['../namespacevac__utilities.html#a05e8e1f24569b4bff05e61a867268fc3',1,'vac_utilities']]]
+  ['untrim_5fgrid_0',['untrim_grid',['../namespacegrid__utilities.html#a4679f24af8e02793070f4e27b43e00b6',1,'grid_utilities']]]
 ];

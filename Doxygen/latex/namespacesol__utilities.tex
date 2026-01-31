@@ -1,100 +1,103 @@
-\hypertarget{namespacesol__utilities}{}\doxysection{sol\+\_\+utilities Module Reference}
-\label{namespacesol__utilities}\index{sol\_utilities@{sol\_utilities}}
+\doxysection{sol\+\_\+utilities Module Reference}
+\hypertarget{namespacesol__utilities}{}\label{namespacesol__utilities}\index{sol\_utilities@{sol\_utilities}}
 
 
 Numerical utilities related to the solution vectors.  
 
 
-\doxysubsection*{Interfaces and Types}
+\doxysubsubsection*{Interfaces and Types}
 \begin{DoxyCompactItemize}
 \item 
-interface \mbox{\hyperlink{interfacesol__utilities_1_1calc__xuq}{calc\+\_\+xuq}}
-\begin{DoxyCompactList}\small\item\em Calculates the normal ( $\cdot_n$) or geodesic ( $\cdot_g$) components of the plasma perturbation $\vec{\xi}$ or the magnetic perturbation $\vec{Q} = \nabla \times \left(\vec{x} \times \vec{B}\right)$. \end{DoxyCompactList}\end{DoxyCompactItemize}
-\doxysubsection*{Functions/\+Subroutines}
+interface \doxymbox{\hyperlink{interfacesol__utilities_1_1calc__xuq}{calc\+\_\+xuq}}
+\begin{DoxyCompactList}\small\item\em Calculates the normal ( $\cdot_n$) or geodesic ( $\cdot_g$) components of the plasma perturbation $\vec{\xi}$ or the magnetic perturbation  $\vec{Q}  = \nabla  \times \left(\vec{x}  \times
+        \vec{B}\right)$. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions/\+\+Subroutines}
 \begin{DoxyCompactItemize}
 \item 
-integer function, public \mbox{\hyperlink{namespacesol__utilities_a8b902a82ae6a238e725da2cf09e7854f}{calc\+\_\+tot\+\_\+sol\+\_\+vec}} (mds, grid\+\_\+sol, sol\+\_\+vec\+\_\+loc, sol\+\_\+vec\+\_\+tot, deriv)
+integer function, public \doxymbox{\hyperlink{namespacesol__utilities_a8b902a82ae6a238e725da2cf09e7854f}{calc\+\_\+tot\+\_\+sol\+\_\+vec}} (mds, grid\+\_\+sol, sol\+\_\+vec\+\_\+loc, sol\+\_\+vec\+\_\+tot, deriv)
 \begin{DoxyCompactList}\small\item\em Calculate the total version of the solution vector from the local version. \end{DoxyCompactList}\item 
-integer function, public \mbox{\hyperlink{namespacesol__utilities_a677373f47ee68ad02e9cef5b409bdc26}{calc\+\_\+loc\+\_\+sol\+\_\+vec}} (mds, i\+\_\+min, sol\+\_\+vec\+\_\+tot, sol\+\_\+vec\+\_\+loc)
+integer function, public \doxymbox{\hyperlink{namespacesol__utilities_a677373f47ee68ad02e9cef5b409bdc26}{calc\+\_\+loc\+\_\+sol\+\_\+vec}} (mds, i\+\_\+min, sol\+\_\+vec\+\_\+tot, sol\+\_\+vec\+\_\+loc)
 \begin{DoxyCompactList}\small\item\em Calculate the local version of the solution vector from the total version. \end{DoxyCompactList}\item 
-integer function, public \mbox{\hyperlink{namespacesol__utilities_a9af30f5bb948778dcafa7b80af6ea1fa}{interp\+\_\+v\+\_\+spline}} (V\+\_\+i, V\+\_\+o, r\+\_\+i, r\+\_\+o, extrap, ivs\+\_\+stat)
+integer function, public \doxymbox{\hyperlink{namespacesol__utilities_a6bc8c29a0b3fc64f7f9b80635e95ec58}{interp\+\_\+v\+\_\+spline}} (v\+\_\+i, v\+\_\+o, r\+\_\+i, r\+\_\+o, extrap, ivs\+\_\+stat)
 \begin{DoxyCompactList}\small\item\em Interpolation for a quantity V using splines. \end{DoxyCompactList}\end{DoxyCompactItemize}
-\doxysubsection*{Variables}
+\doxysubsubsection*{Variables}
 \begin{DoxyCompactItemize}
 \item 
-logical, public \mbox{\hyperlink{namespacesol__utilities_a4779ff845b4ddc046892bf4eb4490dd2}{debug\+\_\+calc\+\_\+xuq\+\_\+arr}} = .false.
-\begin{DoxyCompactList}\small\item\em plot debug information for calc\+\_\+\+X\+U\+Q\+\_\+arr \end{DoxyCompactList}\item 
-logical, public \mbox{\hyperlink{namespacesol__utilities_aa36c52e73c02a783074c7c0e5076c903}{debug\+\_\+interp\+\_\+v\+\_\+spline}} = .false.
+logical, public \doxymbox{\hyperlink{namespacesol__utilities_a4779ff845b4ddc046892bf4eb4490dd2}{debug\+\_\+calc\+\_\+xuq\+\_\+arr}} = .false.
+\begin{DoxyCompactList}\small\item\em plot debug information for calc\+\_\+\+XUQ\+\_\+arr \end{DoxyCompactList}\item 
+logical, public \doxymbox{\hyperlink{namespacesol__utilities_aa36c52e73c02a783074c7c0e5076c903}{debug\+\_\+interp\+\_\+v\+\_\+spline}} = .false.
 \begin{DoxyCompactList}\small\item\em debug information for interp\+\_\+v\+\_\+spline \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
 Numerical utilities related to the solution vectors. 
 
-\doxysubsection{Function/\+Subroutine Documentation}
-\mbox{\Hypertarget{namespacesol__utilities_a677373f47ee68ad02e9cef5b409bdc26}\label{namespacesol__utilities_a677373f47ee68ad02e9cef5b409bdc26}} 
-\index{sol\_utilities@{sol\_utilities}!calc\_loc\_sol\_vec@{calc\_loc\_sol\_vec}}
+\label{doc-func-members}
+\Hypertarget{namespacesol__utilities_doc-func-members}
+\doxysubsection{Function/\+\+Subroutine Documentation}
+\Hypertarget{namespacesol__utilities_a677373f47ee68ad02e9cef5b409bdc26}\index{sol\_utilities@{sol\_utilities}!calc\_loc\_sol\_vec@{calc\_loc\_sol\_vec}}
 \index{calc\_loc\_sol\_vec@{calc\_loc\_sol\_vec}!sol\_utilities@{sol\_utilities}}
 \doxysubsubsection{\texorpdfstring{calc\_loc\_sol\_vec()}{calc\_loc\_sol\_vec()}}
-{\footnotesize\ttfamily integer function, public sol\+\_\+utilities\+::calc\+\_\+loc\+\_\+sol\+\_\+vec (\begin{DoxyParamCaption}\item[{type(modes\+\_\+type), intent(in)}]{mds,  }\item[{integer, intent(in)}]{i\+\_\+min,  }\item[{complex(dp), dimension(\+:,\+:), intent(in)}]{sol\+\_\+vec\+\_\+tot,  }\item[{complex(dp), dimension(\+:,\+:), intent(inout), allocatable}]{sol\+\_\+vec\+\_\+loc }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \label{namespacesol__utilities_a677373f47ee68ad02e9cef5b409bdc26} 
+integer function, public sol\+\_\+utilities::\+calc\+\_\+loc\+\_\+sol\+\_\+vec (\begin{DoxyParamCaption}\item[{type(\doxymbox{\hyperlink{structx__vars_1_1modes__type}{modes\+\_\+type}}), intent(in)}]{mds}{, }\item[{integer, intent(in)}]{i\+\_\+min}{, }\item[{complex(dp), dimension(:\+,:\+), intent(in)}]{sol\+\_\+vec\+\_\+tot}{, }\item[{complex(dp), dimension(:\+,:\+), intent(inout), allocatable}]{sol\+\_\+vec\+\_\+loc}{}\end{DoxyParamCaption})}
 
 
 
 Calculate the local version of the solution vector from the total version. 
 
 \begin{DoxySeeAlso}{See also}
-See \mbox{\hyperlink{namespacesol__utilities_a8b902a82ae6a238e725da2cf09e7854f}{calc\+\_\+tot\+\_\+sol\+\_\+vec()}}.
+See \doxylink{namespacesol__utilities_a8b902a82ae6a238e725da2cf09e7854f}{calc\+\_\+tot\+\_\+sol\+\_\+vec()}.
 \end{DoxySeeAlso}
 \begin{DoxyReturn}{Returns}
 ierr 
 \end{DoxyReturn}
 
 \begin{DoxyParams}[1]{Parameters}
-\mbox{\texttt{ in}}  & {\em mds} & general modes variables \\
+\doxymbox{\texttt{in}}  & {\em mds} & general modes variables \\
 \hline
-\mbox{\texttt{ in}}  & {\em i\+\_\+min} & {\ttfamily i\+\_\+min} of grid in which variables are tabulated \\
+\doxymbox{\texttt{in}}  & {\em i\+\_\+min} & {\ttfamily i\+\_\+min} of grid in which variables are tabulated \\
 \hline
-\mbox{\texttt{ in}}  & {\em sol\+\_\+vec\+\_\+tot} & solution vector for all possible resonating modes \\
+\doxymbox{\texttt{in}}  & {\em sol\+\_\+vec\+\_\+tot} & solution vector for all possible resonating modes \\
 \hline
-\mbox{\texttt{ in,out}}  & {\em sol\+\_\+vec\+\_\+loc} & solution vector for local resonating modes \\
+\doxymbox{\texttt{in,out}}  & {\em sol\+\_\+vec\+\_\+loc} & solution vector for local resonating modes \\
 \hline
 \end{DoxyParams}
 
 
-Definition at line 722 of file sol\+\_\+utilities.\+f90.
+Definition at line \doxymbox{\hyperlink{sol__utilities_8f90_source_l00720}{720}} of file \doxymbox{\hyperlink{sol__utilities_8f90_source}{sol\+\_\+utilities.\+f90}}.
 
-Here is the call graph for this function\+:\nopagebreak
+Here is the call graph for this function:\+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=343pt]{namespacesol__utilities_a677373f47ee68ad02e9cef5b409bdc26_cgraph}
+\includegraphics[width=350pt]{namespacesol__utilities_a677373f47ee68ad02e9cef5b409bdc26_cgraph}
 \end{center}
 \end{figure}
-Here is the caller graph for this function\+:\nopagebreak
+Here is the caller graph for this function:\+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{namespacesol__utilities_a677373f47ee68ad02e9cef5b409bdc26_icgraph}
 \end{center}
 \end{figure}
-\mbox{\Hypertarget{namespacesol__utilities_a8b902a82ae6a238e725da2cf09e7854f}\label{namespacesol__utilities_a8b902a82ae6a238e725da2cf09e7854f}} 
-\index{sol\_utilities@{sol\_utilities}!calc\_tot\_sol\_vec@{calc\_tot\_sol\_vec}}
+\Hypertarget{namespacesol__utilities_a8b902a82ae6a238e725da2cf09e7854f}\index{sol\_utilities@{sol\_utilities}!calc\_tot\_sol\_vec@{calc\_tot\_sol\_vec}}
 \index{calc\_tot\_sol\_vec@{calc\_tot\_sol\_vec}!sol\_utilities@{sol\_utilities}}
 \doxysubsubsection{\texorpdfstring{calc\_tot\_sol\_vec()}{calc\_tot\_sol\_vec()}}
-{\footnotesize\ttfamily integer function, public sol\+\_\+utilities\+::calc\+\_\+tot\+\_\+sol\+\_\+vec (\begin{DoxyParamCaption}\item[{type(modes\+\_\+type), intent(in)}]{mds,  }\item[{type(\mbox{\hyperlink{structgrid__vars_1_1grid__type}{grid\+\_\+type}}), intent(in)}]{grid\+\_\+sol,  }\item[{complex(dp), dimension(\+:,\+:), intent(in)}]{sol\+\_\+vec\+\_\+loc,  }\item[{complex(dp), dimension(\+:,\+:), intent(inout), allocatable}]{sol\+\_\+vec\+\_\+tot,  }\item[{integer, intent(in), optional}]{deriv }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \label{namespacesol__utilities_a8b902a82ae6a238e725da2cf09e7854f} 
+integer function, public sol\+\_\+utilities::\+calc\+\_\+tot\+\_\+sol\+\_\+vec (\begin{DoxyParamCaption}\item[{type(\doxymbox{\hyperlink{structx__vars_1_1modes__type}{modes\+\_\+type}}), intent(in)}]{mds}{, }\item[{type(\doxymbox{\hyperlink{structgrid__vars_1_1grid__type}{grid\+\_\+type}}), intent(in)}]{grid\+\_\+sol}{, }\item[{complex(dp), dimension(:\+,:\+), intent(in)}]{sol\+\_\+vec\+\_\+loc}{, }\item[{complex(dp), dimension(:\+,:\+), intent(inout), allocatable}]{sol\+\_\+vec\+\_\+tot}{, }\item[{integer, intent(in), optional}]{deriv}{}\end{DoxyParamCaption})}
 
 
 
 Calculate the total version of the solution vector from the local version. 
 
-This is the solution vector for all of the possible mode numbers, which can be different from the local mode numbers for X style 2 (fast)\+:
+This is the solution vector for all of the possible mode numbers, which can be different from the local mode numbers for X style 2 (fast):\+
 \begin{DoxyItemize}
-\item local\+: the size of the saved perturbation and solution variables, prescribed by the user as input\+:
+\item local:\+ the size of the saved perturbation and solution variables, prescribed by the user as input:\+
 \begin{DoxyItemize}
 \item either directly through {\ttfamily n\+\_\+mod\+\_\+X} 
 \item or through the limits on the modes using {\ttfamily min\+\_\+sec\+\_\+X} and {\ttfamily max\+\_\+sec\+\_\+X}.
 \end{DoxyItemize}
-\item total\+: all the possible modes that can resonate in the plasma, which can be different from the local number for {\ttfamily X\+\_\+style} 2, as the mode numbers depend on the normal coordinate.
+\item total:\+ all the possible modes that can resonate in the plasma, which can be different from the local number for {\ttfamily X\+\_\+style} 2, as the mode numbers depend on the normal coordinate.
 \end{DoxyItemize}
 
 If the output variable is not allocated, it is done here.
@@ -109,40 +112,40 @@ ierr
 \end{DoxyReturn}
 
 \begin{DoxyParams}[1]{Parameters}
-\mbox{\texttt{ in}}  & {\em mds} & general modes variables \\
+\doxymbox{\texttt{in}}  & {\em mds} & general modes variables \\
 \hline
-\mbox{\texttt{ in}}  & {\em grid\+\_\+sol} & solution grid \\
+\doxymbox{\texttt{in}}  & {\em grid\+\_\+sol} & solution grid \\
 \hline
-\mbox{\texttt{ in}}  & {\em sol\+\_\+vec\+\_\+loc} & solution vector for local resonating modes \\
+\doxymbox{\texttt{in}}  & {\em sol\+\_\+vec\+\_\+loc} & solution vector for local resonating modes \\
 \hline
-\mbox{\texttt{ in,out}}  & {\em sol\+\_\+vec\+\_\+tot} & solution vector for all possible resonating modes \\
+\doxymbox{\texttt{in,out}}  & {\em sol\+\_\+vec\+\_\+tot} & solution vector for all possible resonating modes \\
 \hline
-\mbox{\texttt{ in}}  & {\em deriv} & order of derivative \\
+\doxymbox{\texttt{in}}  & {\em deriv} & order of derivative \\
 \hline
 \end{DoxyParams}
 
 
-Definition at line 581 of file sol\+\_\+utilities.\+f90.
+Definition at line \doxymbox{\hyperlink{sol__utilities_8f90_source_l00579}{579}} of file \doxymbox{\hyperlink{sol__utilities_8f90_source}{sol\+\_\+utilities.\+f90}}.
 
-Here is the call graph for this function\+:\nopagebreak
+Here is the call graph for this function:\+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=343pt]{namespacesol__utilities_a8b902a82ae6a238e725da2cf09e7854f_cgraph}
+\includegraphics[width=350pt]{namespacesol__utilities_a8b902a82ae6a238e725da2cf09e7854f_cgraph}
 \end{center}
 \end{figure}
-Here is the caller graph for this function\+:\nopagebreak
+Here is the caller graph for this function:\+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{namespacesol__utilities_a8b902a82ae6a238e725da2cf09e7854f_icgraph}
 \end{center}
 \end{figure}
-\mbox{\Hypertarget{namespacesol__utilities_a9af30f5bb948778dcafa7b80af6ea1fa}\label{namespacesol__utilities_a9af30f5bb948778dcafa7b80af6ea1fa}} 
-\index{sol\_utilities@{sol\_utilities}!interp\_v\_spline@{interp\_v\_spline}}
+\Hypertarget{namespacesol__utilities_a6bc8c29a0b3fc64f7f9b80635e95ec58}\index{sol\_utilities@{sol\_utilities}!interp\_v\_spline@{interp\_v\_spline}}
 \index{interp\_v\_spline@{interp\_v\_spline}!sol\_utilities@{sol\_utilities}}
 \doxysubsubsection{\texorpdfstring{interp\_v\_spline()}{interp\_v\_spline()}}
-{\footnotesize\ttfamily integer function, public sol\+\_\+utilities\+::interp\+\_\+v\+\_\+spline (\begin{DoxyParamCaption}\item[{complex(dp), dimension(\+:,\+:,\+:), intent(in)}]{V\+\_\+i,  }\item[{complex(dp), dimension(\+:,\+:,\+:), intent(out)}]{V\+\_\+o,  }\item[{real(dp), dimension(\+:), intent(in)}]{r\+\_\+i,  }\item[{real(dp), dimension(\+:), intent(in)}]{r\+\_\+o,  }\item[{logical, intent(in)}]{extrap,  }\item[{integer, intent(out), optional}]{ivs\+\_\+stat }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \label{namespacesol__utilities_a6bc8c29a0b3fc64f7f9b80635e95ec58} 
+integer function, public sol\+\_\+utilities::\+interp\+\_\+v\+\_\+spline (\begin{DoxyParamCaption}\item[{complex(dp), dimension(:\+,:\+,:\+), intent(in)}]{v\+\_\+i}{, }\item[{complex(dp), dimension(:\+,:\+,:\+), intent(out)}]{v\+\_\+o}{, }\item[{real(dp), dimension(:\+), intent(in)}]{r\+\_\+i}{, }\item[{real(dp), dimension(:\+), intent(in)}]{r\+\_\+o}{, }\item[{logical, intent(in)}]{extrap}{, }\item[{integer, intent(out), optional}]{ivs\+\_\+stat}{}\end{DoxyParamCaption})}
 
 
 
@@ -150,40 +153,42 @@ Interpolation for a quantity V using splines.
 
 Optionally, a variable \textquotesingle{}ivs\+\_\+stat\textquotesingle{} is returned that indicates whether the interpolation was a plain copy (1), a linear interpolation (2) or a spline interpolation (3). 
 
-Definition at line 801 of file sol\+\_\+utilities.\+f90.
+Definition at line \doxymbox{\hyperlink{sol__utilities_8f90_source_l00799}{799}} of file \doxymbox{\hyperlink{sol__utilities_8f90_source}{sol\+\_\+utilities.\+f90}}.
 
-Here is the caller graph for this function\+:\nopagebreak
+Here is the caller graph for this function:\+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=350pt]{namespacesol__utilities_a9af30f5bb948778dcafa7b80af6ea1fa_icgraph}
+\includegraphics[width=350pt]{namespacesol__utilities_a6bc8c29a0b3fc64f7f9b80635e95ec58_icgraph}
 \end{center}
 \end{figure}
 
 
+\label{doc-var-members}
+\Hypertarget{namespacesol__utilities_doc-var-members}
 \doxysubsection{Variable Documentation}
-\mbox{\Hypertarget{namespacesol__utilities_a4779ff845b4ddc046892bf4eb4490dd2}\label{namespacesol__utilities_a4779ff845b4ddc046892bf4eb4490dd2}} 
-\index{sol\_utilities@{sol\_utilities}!debug\_calc\_xuq\_arr@{debug\_calc\_xuq\_arr}}
+\Hypertarget{namespacesol__utilities_a4779ff845b4ddc046892bf4eb4490dd2}\index{sol\_utilities@{sol\_utilities}!debug\_calc\_xuq\_arr@{debug\_calc\_xuq\_arr}}
 \index{debug\_calc\_xuq\_arr@{debug\_calc\_xuq\_arr}!sol\_utilities@{sol\_utilities}}
 \doxysubsubsection{\texorpdfstring{debug\_calc\_xuq\_arr}{debug\_calc\_xuq\_arr}}
-{\footnotesize\ttfamily logical, public sol\+\_\+utilities\+::debug\+\_\+calc\+\_\+xuq\+\_\+arr = .false.}
+{\footnotesize\ttfamily \label{namespacesol__utilities_a4779ff845b4ddc046892bf4eb4490dd2} 
+logical, public sol\+\_\+utilities::\+debug\+\_\+calc\+\_\+xuq\+\_\+arr = .false.}
 
 
 
-plot debug information for calc\+\_\+\+X\+U\+Q\+\_\+arr 
+plot debug information for calc\+\_\+\+XUQ\+\_\+arr 
 
 \begin{DoxyNote}{Note}
 Debug version only 
 \end{DoxyNote}
 
 
-Definition at line 25 of file sol\+\_\+utilities.\+f90.
+Definition at line \doxymbox{\hyperlink{sol__utilities_8f90_source_l00025}{25}} of file \doxymbox{\hyperlink{sol__utilities_8f90_source}{sol\+\_\+utilities.\+f90}}.
 
-\mbox{\Hypertarget{namespacesol__utilities_aa36c52e73c02a783074c7c0e5076c903}\label{namespacesol__utilities_aa36c52e73c02a783074c7c0e5076c903}} 
-\index{sol\_utilities@{sol\_utilities}!debug\_interp\_v\_spline@{debug\_interp\_v\_spline}}
+\Hypertarget{namespacesol__utilities_aa36c52e73c02a783074c7c0e5076c903}\index{sol\_utilities@{sol\_utilities}!debug\_interp\_v\_spline@{debug\_interp\_v\_spline}}
 \index{debug\_interp\_v\_spline@{debug\_interp\_v\_spline}!sol\_utilities@{sol\_utilities}}
 \doxysubsubsection{\texorpdfstring{debug\_interp\_v\_spline}{debug\_interp\_v\_spline}}
-{\footnotesize\ttfamily logical, public sol\+\_\+utilities\+::debug\+\_\+interp\+\_\+v\+\_\+spline = .false.}
+{\footnotesize\ttfamily \label{namespacesol__utilities_aa36c52e73c02a783074c7c0e5076c903} 
+logical, public sol\+\_\+utilities::\+debug\+\_\+interp\+\_\+v\+\_\+spline = .false.}
 
 
 
@@ -194,5 +199,5 @@ Debug version only
 \end{DoxyNote}
 
 
-Definition at line 26 of file sol\+\_\+utilities.\+f90.
+Definition at line \doxymbox{\hyperlink{sol__utilities_8f90_source_l00026}{26}} of file \doxymbox{\hyperlink{sol__utilities_8f90_source}{sol\+\_\+utilities.\+f90}}.
 

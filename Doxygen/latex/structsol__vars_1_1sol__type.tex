@@ -1,86 +1,118 @@
-\hypertarget{structsol__vars_1_1sol__type}{}\doxysection{sol\+\_\+vars\+::sol\+\_\+type Type Reference}
-\label{structsol__vars_1_1sol__type}\index{sol\_vars::sol\_type@{sol\_vars::sol\_type}}
+\doxysection{sol\+\_\+vars::\+sol\+\_\+type Type Reference}
+\hypertarget{structsol__vars_1_1sol__type}{}\label{structsol__vars_1_1sol__type}\index{sol\_vars::sol\_type@{sol\_vars::sol\_type}}
 
 
 solution type  
 
 
-\doxysubsection*{Public Member Functions}
+\doxysubsubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-procedure \mbox{\hyperlink{structsol__vars_1_1sol__type_a0963ae0c30f925b509a5da7e624ace84}{init}} =$>$ \mbox{\hyperlink{namespacesol__vars_a05d1378774a44f53c9643bdacc5bee4a}{init\+\_\+sol}}
+procedure \doxymbox{\hyperlink{structsol__vars_1_1sol__type_a9d90b80e3844031b0a30fc99ea439aa0}{init}} (sol, mds, grid\+\_\+sol, n\+\_\+ev, \doxymbox{\hyperlink{structsol__vars_1_1sol__type_a2192f30619609d910a999dc6a8934934}{lim\+\_\+sec\+\_\+x}})
 \begin{DoxyCompactList}\small\item\em initialize \end{DoxyCompactList}\item 
-procedure \mbox{\hyperlink{structsol__vars_1_1sol__type_a0501ba6efed7b97dcc3762a788caf826}{dealloc}} =$>$ \mbox{\hyperlink{namespacesol__vars_a9ae65a5252aede548e5238e50c1bb2ba}{dealloc\+\_\+sol}}
+procedure \doxymbox{\hyperlink{structsol__vars_1_1sol__type_a20093f407840359c4b0c7d23ea48e976}{dealloc}} (sol)
 \begin{DoxyCompactList}\small\item\em deallocate \end{DoxyCompactList}\end{DoxyCompactItemize}
-\doxysubsection*{Public Attributes}
+\doxysubsubsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
-integer \mbox{\hyperlink{structsol__vars_1_1sol__type_a05faca84fd837b32985ae5c4fdadb6da}{n\+\_\+mod}}
+integer \doxymbox{\hyperlink{structsol__vars_1_1sol__type_a05faca84fd837b32985ae5c4fdadb6da}{n\+\_\+mod}}
 \begin{DoxyCompactList}\small\item\em size of n and m (nr. of modes) \end{DoxyCompactList}\item 
-integer, dimension(2) \mbox{\hyperlink{structsol__vars_1_1sol__type_a2192f30619609d910a999dc6a8934934}{lim\+\_\+sec\+\_\+x}}
+integer, dimension(2) \doxymbox{\hyperlink{structsol__vars_1_1sol__type_a2192f30619609d910a999dc6a8934934}{lim\+\_\+sec\+\_\+x}}
 \begin{DoxyCompactList}\small\item\em limits of {\ttfamily m\+\_\+X} (pol. flux) or {\ttfamily n\+\_\+X} (tor. flux) \end{DoxyCompactList}\item 
-integer, dimension(\+:,\+:), allocatable \mbox{\hyperlink{structsol__vars_1_1sol__type_acb5f4ea951583b240591bce4e32f5230}{n}}
+integer, dimension(:\+,:\+), allocatable \doxymbox{\hyperlink{structsol__vars_1_1sol__type_acb5f4ea951583b240591bce4e32f5230}{n}}
 \begin{DoxyCompactList}\small\item\em vector of toroidal mode numbers \end{DoxyCompactList}\item 
-integer, dimension(\+:,\+:), allocatable \mbox{\hyperlink{structsol__vars_1_1sol__type_ad00b40efc03a825e83a58b6ef6b29e2b}{m}}
+integer, dimension(:\+,:\+), allocatable \doxymbox{\hyperlink{structsol__vars_1_1sol__type_ad00b40efc03a825e83a58b6ef6b29e2b}{m}}
 \begin{DoxyCompactList}\small\item\em vector of poloidal mode numbers \end{DoxyCompactList}\item 
-complex(dp), dimension(\+:,\+:,\+:), allocatable \mbox{\hyperlink{structsol__vars_1_1sol__type_a5e21f3c7b6581901982958615c3f936e}{vec}}
+complex(dp), dimension(:\+,:\+,:\+), allocatable \doxymbox{\hyperlink{structsol__vars_1_1sol__type_a5e21f3c7b6581901982958615c3f936e}{vec}}
 \begin{DoxyCompactList}\small\item\em Eigenvector solution. \end{DoxyCompactList}\item 
-complex(dp), dimension(\+:), allocatable \mbox{\hyperlink{structsol__vars_1_1sol__type_a4cb91aeea05a69a04dceef7951be1004}{val}}
+complex(dp), dimension(:\+), allocatable \doxymbox{\hyperlink{structsol__vars_1_1sol__type_a4cb91aeea05a69a04dceef7951be1004}{val}}
 \begin{DoxyCompactList}\small\item\em Eigenvalue solution. \end{DoxyCompactList}\item 
-real(dp) \mbox{\hyperlink{structsol__vars_1_1sol__type_a16f8e9b26e0d976589c79fe534982617}{estim\+\_\+mem\+\_\+usage}}
+real(dp) \doxymbox{\hyperlink{structsol__vars_1_1sol__type_a16f8e9b26e0d976589c79fe534982617}{estim\+\_\+mem\+\_\+usage}}
 \begin{DoxyCompactList}\small\item\em estimated memory usage \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
 solution type 
 
-The arrays here are of the form\+:
+The arrays here are of the form:\+
 \begin{DoxyItemize}
-\item {\ttfamily val\+:} {\ttfamily (1\+:n\+\_\+\+EV)}
-\item {\ttfamily vec\+:} {\ttfamily (1\+:n\+\_\+mod,1\+:loc\+\_\+n\+\_\+r,1\+:n\+\_\+\+EV)} 
+\item {\ttfamily val:\+} {\ttfamily (1:\+n\+\_\+\+EV)}
+\item {\ttfamily vec:\+} {\ttfamily (1:\+\doxylink{structsol__vars_1_1sol__type_a05faca84fd837b32985ae5c4fdadb6da}{n\+\_\+mod},1:\+loc\+\_\+n\+\_\+r,1:\+n\+\_\+\+EV)} 
 \end{DoxyItemize}
 
-Definition at line 30 of file sol\+\_\+vars.\+f90.
+Definition at line \doxymbox{\hyperlink{sol__vars_8f90_source_l00030}{30}} of file \doxymbox{\hyperlink{sol__vars_8f90_source}{sol\+\_\+vars.\+f90}}.
 
 
 
-\doxysubsection{Member Function/\+Subroutine Documentation}
-\mbox{\Hypertarget{structsol__vars_1_1sol__type_a0501ba6efed7b97dcc3762a788caf826}\label{structsol__vars_1_1sol__type_a0501ba6efed7b97dcc3762a788caf826}} 
-\index{sol\_vars::sol\_type@{sol\_vars::sol\_type}!dealloc@{dealloc}}
+\label{doc-func-members}
+\Hypertarget{structsol__vars_1_1sol__type_doc-func-members}
+\doxysubsection{Member Function/\+\+Subroutine Documentation}
+\Hypertarget{structsol__vars_1_1sol__type_a20093f407840359c4b0c7d23ea48e976}\index{sol\_vars::sol\_type@{sol\_vars::sol\_type}!dealloc@{dealloc}}
 \index{dealloc@{dealloc}!sol\_vars::sol\_type@{sol\_vars::sol\_type}}
 \doxysubsubsection{\texorpdfstring{dealloc()}{dealloc()}}
-{\footnotesize\ttfamily procedure sol\+\_\+vars\+::sol\+\_\+type\+::dealloc}
+{\footnotesize\ttfamily \label{structsol__vars_1_1sol__type_a20093f407840359c4b0c7d23ea48e976} 
+procedure sol\+\_\+vars::\+sol\+\_\+type::\+dealloc (\begin{DoxyParamCaption}\item[{class(\doxymbox{\hyperlink{structsol__vars_1_1sol__type}{sol\+\_\+type}}), intent(inout)}]{sol}{}\end{DoxyParamCaption})}
 
 
 
 deallocate 
 
+\begin{DoxyNote}{Note}
+intent(out) automatically deallocates the variable 
+\end{DoxyNote}
+
+\begin{DoxyParams}[1]{Parameters}
+\doxymbox{\texttt{in,out}}  & {\em sol} & solution variables to be deallocated \\
+\hline
+\end{DoxyParams}
 
 
-Definition at line 44 of file sol\+\_\+vars.\+f90.
+Definition at line \doxymbox{\hyperlink{sol__vars_8f90_source_l00044}{44}} of file \doxymbox{\hyperlink{sol__vars_8f90_source}{sol\+\_\+vars.\+f90}}.
 
-\mbox{\Hypertarget{structsol__vars_1_1sol__type_a0963ae0c30f925b509a5da7e624ace84}\label{structsol__vars_1_1sol__type_a0963ae0c30f925b509a5da7e624ace84}} 
-\index{sol\_vars::sol\_type@{sol\_vars::sol\_type}!init@{init}}
+\Hypertarget{structsol__vars_1_1sol__type_a9d90b80e3844031b0a30fc99ea439aa0}\index{sol\_vars::sol\_type@{sol\_vars::sol\_type}!init@{init}}
 \index{init@{init}!sol\_vars::sol\_type@{sol\_vars::sol\_type}}
 \doxysubsubsection{\texorpdfstring{init()}{init()}}
-{\footnotesize\ttfamily procedure sol\+\_\+vars\+::sol\+\_\+type\+::init}
+{\footnotesize\ttfamily \label{structsol__vars_1_1sol__type_a9d90b80e3844031b0a30fc99ea439aa0} 
+procedure sol\+\_\+vars::\+sol\+\_\+type::\+init (\begin{DoxyParamCaption}\item[{class(\doxymbox{\hyperlink{structsol__vars_1_1sol__type}{sol\+\_\+type}}), intent(inout)}]{sol}{, }\item[{type(\doxymbox{\hyperlink{structx__vars_1_1modes__type}{modes\+\_\+type}}), intent(in)}]{mds}{, }\item[{type(\doxymbox{\hyperlink{structgrid__vars_1_1grid__type}{grid\+\_\+type}}), intent(in)}]{grid\+\_\+sol}{, }\item[{integer, intent(in)}]{n\+\_\+ev}{, }\item[{integer, dimension(2), intent(in), optional}]{lim\+\_\+sec\+\_\+x}{}\end{DoxyParamCaption})}
 
 
 
 initialize 
 
+The number of modes as well as {\ttfamily n} and {\ttfamily m} are also set up.
+
+Optionally, the secondary mode number can be specified ({\ttfamily m} if poloidal flux is used as normal coordinate and c n if toroidal flux). By default, they are taken from the global {\ttfamily X\+\_\+vars} variables.
+
+\begin{DoxyNote}{Note}
+If the lowest limits of the grid is not 1 (e.\+g. {\ttfamily grid\+\_\+soli\+\_\+min = 1} for first process), the input variable {\ttfamily i\+\_\+min} should be set to set correctly. For a full grid, it should be set to 1. 
+\end{DoxyNote}
+
+\begin{DoxyParams}[1]{Parameters}
+\doxymbox{\texttt{in,out}}  & {\em sol} & solution variables \\
+\hline
+\doxymbox{\texttt{in}}  & {\em mds} & general modes variables \\
+\hline
+\doxymbox{\texttt{in}}  & {\em grid\+\_\+sol} & solution grid \\
+\hline
+\doxymbox{\texttt{in}}  & {\em n\+\_\+ev} & nr. of Eigenvalues \\
+\hline
+\doxymbox{\texttt{in}}  & {\em \doxylink{structsol__vars_1_1sol__type_a2192f30619609d910a999dc6a8934934}{lim\+\_\+sec\+\_\+x}} & limits of {\ttfamily m\+\_\+X} (pol. flux) or {\ttfamily n\+\_\+X} (tor. flux) \\
+\hline
+\end{DoxyParams}
 
 
-Definition at line 42 of file sol\+\_\+vars.\+f90.
+Definition at line \doxymbox{\hyperlink{sol__vars_8f90_source_l00042}{42}} of file \doxymbox{\hyperlink{sol__vars_8f90_source}{sol\+\_\+vars.\+f90}}.
 
 
 
+\label{doc-variable-members}
+\Hypertarget{structsol__vars_1_1sol__type_doc-variable-members}
 \doxysubsection{Member Data Documentation}
-\mbox{\Hypertarget{structsol__vars_1_1sol__type_a16f8e9b26e0d976589c79fe534982617}\label{structsol__vars_1_1sol__type_a16f8e9b26e0d976589c79fe534982617}} 
-\index{sol\_vars::sol\_type@{sol\_vars::sol\_type}!estim\_mem\_usage@{estim\_mem\_usage}}
+\Hypertarget{structsol__vars_1_1sol__type_a16f8e9b26e0d976589c79fe534982617}\index{sol\_vars::sol\_type@{sol\_vars::sol\_type}!estim\_mem\_usage@{estim\_mem\_usage}}
 \index{estim\_mem\_usage@{estim\_mem\_usage}!sol\_vars::sol\_type@{sol\_vars::sol\_type}}
 \doxysubsubsection{\texorpdfstring{estim\_mem\_usage}{estim\_mem\_usage}}
-{\footnotesize\ttfamily real(dp) sol\+\_\+vars\+::sol\+\_\+type\+::estim\+\_\+mem\+\_\+usage}
+{\footnotesize\ttfamily \label{structsol__vars_1_1sol__type_a16f8e9b26e0d976589c79fe534982617} 
+real(dp) sol\+\_\+vars::\+sol\+\_\+type::\+estim\+\_\+mem\+\_\+usage}
 
 
 
@@ -91,13 +123,13 @@ Debug version only
 \end{DoxyNote}
 
 
-Definition at line 38 of file sol\+\_\+vars.\+f90.
+Definition at line \doxymbox{\hyperlink{sol__vars_8f90_source_l00038}{38}} of file \doxymbox{\hyperlink{sol__vars_8f90_source}{sol\+\_\+vars.\+f90}}.
 
-\mbox{\Hypertarget{structsol__vars_1_1sol__type_a2192f30619609d910a999dc6a8934934}\label{structsol__vars_1_1sol__type_a2192f30619609d910a999dc6a8934934}} 
-\index{sol\_vars::sol\_type@{sol\_vars::sol\_type}!lim\_sec\_x@{lim\_sec\_x}}
+\Hypertarget{structsol__vars_1_1sol__type_a2192f30619609d910a999dc6a8934934}\index{sol\_vars::sol\_type@{sol\_vars::sol\_type}!lim\_sec\_x@{lim\_sec\_x}}
 \index{lim\_sec\_x@{lim\_sec\_x}!sol\_vars::sol\_type@{sol\_vars::sol\_type}}
 \doxysubsubsection{\texorpdfstring{lim\_sec\_x}{lim\_sec\_x}}
-{\footnotesize\ttfamily integer, dimension(2) sol\+\_\+vars\+::sol\+\_\+type\+::lim\+\_\+sec\+\_\+x}
+{\footnotesize\ttfamily \label{structsol__vars_1_1sol__type_a2192f30619609d910a999dc6a8934934} 
+integer, dimension(2) sol\+\_\+vars::\+sol\+\_\+type::\+lim\+\_\+sec\+\_\+x}
 
 
 
@@ -105,13 +137,13 @@ limits of {\ttfamily m\+\_\+X} (pol. flux) or {\ttfamily n\+\_\+X} (tor. flux)
 
 
 
-Definition at line 32 of file sol\+\_\+vars.\+f90.
+Definition at line \doxymbox{\hyperlink{sol__vars_8f90_source_l00032}{32}} of file \doxymbox{\hyperlink{sol__vars_8f90_source}{sol\+\_\+vars.\+f90}}.
 
-\mbox{\Hypertarget{structsol__vars_1_1sol__type_ad00b40efc03a825e83a58b6ef6b29e2b}\label{structsol__vars_1_1sol__type_ad00b40efc03a825e83a58b6ef6b29e2b}} 
-\index{sol\_vars::sol\_type@{sol\_vars::sol\_type}!m@{m}}
+\Hypertarget{structsol__vars_1_1sol__type_ad00b40efc03a825e83a58b6ef6b29e2b}\index{sol\_vars::sol\_type@{sol\_vars::sol\_type}!m@{m}}
 \index{m@{m}!sol\_vars::sol\_type@{sol\_vars::sol\_type}}
 \doxysubsubsection{\texorpdfstring{m}{m}}
-{\footnotesize\ttfamily integer, dimension(\+:,\+:), allocatable sol\+\_\+vars\+::sol\+\_\+type\+::m}
+{\footnotesize\ttfamily \label{structsol__vars_1_1sol__type_ad00b40efc03a825e83a58b6ef6b29e2b} 
+integer, dimension(:\+,:\+), allocatable sol\+\_\+vars::\+sol\+\_\+type::\+m}
 
 
 
@@ -119,13 +151,13 @@ vector of poloidal mode numbers
 
 
 
-Definition at line 34 of file sol\+\_\+vars.\+f90.
+Definition at line \doxymbox{\hyperlink{sol__vars_8f90_source_l00034}{34}} of file \doxymbox{\hyperlink{sol__vars_8f90_source}{sol\+\_\+vars.\+f90}}.
 
-\mbox{\Hypertarget{structsol__vars_1_1sol__type_acb5f4ea951583b240591bce4e32f5230}\label{structsol__vars_1_1sol__type_acb5f4ea951583b240591bce4e32f5230}} 
-\index{sol\_vars::sol\_type@{sol\_vars::sol\_type}!n@{n}}
+\Hypertarget{structsol__vars_1_1sol__type_acb5f4ea951583b240591bce4e32f5230}\index{sol\_vars::sol\_type@{sol\_vars::sol\_type}!n@{n}}
 \index{n@{n}!sol\_vars::sol\_type@{sol\_vars::sol\_type}}
 \doxysubsubsection{\texorpdfstring{n}{n}}
-{\footnotesize\ttfamily integer, dimension(\+:,\+:), allocatable sol\+\_\+vars\+::sol\+\_\+type\+::n}
+{\footnotesize\ttfamily \label{structsol__vars_1_1sol__type_acb5f4ea951583b240591bce4e32f5230} 
+integer, dimension(:\+,:\+), allocatable sol\+\_\+vars::\+sol\+\_\+type::\+n}
 
 
 
@@ -133,13 +165,13 @@ vector of toroidal mode numbers
 
 
 
-Definition at line 33 of file sol\+\_\+vars.\+f90.
+Definition at line \doxymbox{\hyperlink{sol__vars_8f90_source_l00033}{33}} of file \doxymbox{\hyperlink{sol__vars_8f90_source}{sol\+\_\+vars.\+f90}}.
 
-\mbox{\Hypertarget{structsol__vars_1_1sol__type_a05faca84fd837b32985ae5c4fdadb6da}\label{structsol__vars_1_1sol__type_a05faca84fd837b32985ae5c4fdadb6da}} 
-\index{sol\_vars::sol\_type@{sol\_vars::sol\_type}!n\_mod@{n\_mod}}
+\Hypertarget{structsol__vars_1_1sol__type_a05faca84fd837b32985ae5c4fdadb6da}\index{sol\_vars::sol\_type@{sol\_vars::sol\_type}!n\_mod@{n\_mod}}
 \index{n\_mod@{n\_mod}!sol\_vars::sol\_type@{sol\_vars::sol\_type}}
 \doxysubsubsection{\texorpdfstring{n\_mod}{n\_mod}}
-{\footnotesize\ttfamily integer sol\+\_\+vars\+::sol\+\_\+type\+::n\+\_\+mod}
+{\footnotesize\ttfamily \label{structsol__vars_1_1sol__type_a05faca84fd837b32985ae5c4fdadb6da} 
+integer sol\+\_\+vars::\+sol\+\_\+type::\+n\+\_\+mod}
 
 
 
@@ -147,13 +179,13 @@ size of n and m (nr. of modes)
 
 
 
-Definition at line 31 of file sol\+\_\+vars.\+f90.
+Definition at line \doxymbox{\hyperlink{sol__vars_8f90_source_l00031}{31}} of file \doxymbox{\hyperlink{sol__vars_8f90_source}{sol\+\_\+vars.\+f90}}.
 
-\mbox{\Hypertarget{structsol__vars_1_1sol__type_a4cb91aeea05a69a04dceef7951be1004}\label{structsol__vars_1_1sol__type_a4cb91aeea05a69a04dceef7951be1004}} 
-\index{sol\_vars::sol\_type@{sol\_vars::sol\_type}!val@{val}}
+\Hypertarget{structsol__vars_1_1sol__type_a4cb91aeea05a69a04dceef7951be1004}\index{sol\_vars::sol\_type@{sol\_vars::sol\_type}!val@{val}}
 \index{val@{val}!sol\_vars::sol\_type@{sol\_vars::sol\_type}}
 \doxysubsubsection{\texorpdfstring{val}{val}}
-{\footnotesize\ttfamily complex(dp), dimension(\+:), allocatable sol\+\_\+vars\+::sol\+\_\+type\+::val}
+{\footnotesize\ttfamily \label{structsol__vars_1_1sol__type_a4cb91aeea05a69a04dceef7951be1004} 
+complex(dp), dimension(:\+), allocatable sol\+\_\+vars::\+sol\+\_\+type::\+val}
 
 
 
@@ -161,13 +193,13 @@ Eigenvalue solution.
 
 
 
-Definition at line 36 of file sol\+\_\+vars.\+f90.
+Definition at line \doxymbox{\hyperlink{sol__vars_8f90_source_l00036}{36}} of file \doxymbox{\hyperlink{sol__vars_8f90_source}{sol\+\_\+vars.\+f90}}.
 
-\mbox{\Hypertarget{structsol__vars_1_1sol__type_a5e21f3c7b6581901982958615c3f936e}\label{structsol__vars_1_1sol__type_a5e21f3c7b6581901982958615c3f936e}} 
-\index{sol\_vars::sol\_type@{sol\_vars::sol\_type}!vec@{vec}}
+\Hypertarget{structsol__vars_1_1sol__type_a5e21f3c7b6581901982958615c3f936e}\index{sol\_vars::sol\_type@{sol\_vars::sol\_type}!vec@{vec}}
 \index{vec@{vec}!sol\_vars::sol\_type@{sol\_vars::sol\_type}}
 \doxysubsubsection{\texorpdfstring{vec}{vec}}
-{\footnotesize\ttfamily complex(dp), dimension(\+:,\+:,\+:), allocatable sol\+\_\+vars\+::sol\+\_\+type\+::vec}
+{\footnotesize\ttfamily \label{structsol__vars_1_1sol__type_a5e21f3c7b6581901982958615c3f936e} 
+complex(dp), dimension(:\+,:\+,:\+), allocatable sol\+\_\+vars::\+sol\+\_\+type::\+vec}
 
 
 
@@ -175,7 +207,7 @@ Eigenvector solution.
 
 
 
-Definition at line 35 of file sol\+\_\+vars.\+f90.
+Definition at line \doxymbox{\hyperlink{sol__vars_8f90_source_l00035}{35}} of file \doxymbox{\hyperlink{sol__vars_8f90_source}{sol\+\_\+vars.\+f90}}.
 
 
 

@@ -1,77 +1,79 @@
-\hypertarget{namespacehdf5__ops}{}\doxysection{hdf5\+\_\+ops Module Reference}
-\label{namespacehdf5__ops}\index{hdf5\_ops@{hdf5\_ops}}
+\doxysection{hdf5\+\_\+ops Module Reference}
+\hypertarget{namespacehdf5__ops}{}\label{namespacehdf5__ops}\index{hdf5\_ops@{hdf5\_ops}}
 
 
-Operations on H\+D\+F5 and X\+D\+MF variables.  
+Operations on HDF5 and XDMF variables.  
 
 
-\doxysubsection*{Interfaces and Types}
+\doxysubsubsection*{Interfaces and Types}
 \begin{DoxyCompactItemize}
 \item 
-interface \mbox{\hyperlink{interfacehdf5__ops_1_1reset__hdf5__item}{reset\+\_\+hdf5\+\_\+item}}
-\begin{DoxyCompactList}\small\item\em Resets an H\+D\+F5 X\+D\+MF item. \end{DoxyCompactList}\end{DoxyCompactItemize}
-\doxysubsection*{Functions/\+Subroutines}
+interface \doxymbox{\hyperlink{interfacehdf5__ops_1_1reset__hdf5__item}{reset\+\_\+hdf5\+\_\+item}}
+\begin{DoxyCompactList}\small\item\em Resets an HDF5 XDMF item. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions/\+\+Subroutines}
 \begin{DoxyCompactItemize}
 \item 
-integer function, public \mbox{\hyperlink{namespacehdf5__ops_a72c3974bb01858e1b232fc888d387bb6}{open\+\_\+hdf5\+\_\+file}} (file\+\_\+info, file\+\_\+name, sym\+\_\+type, descr, ind\+\_\+plot, cont\+\_\+plot)
-\begin{DoxyCompactList}\small\item\em Opens an H\+D\+F5 file and accompanying xmf file and returns the handles. \end{DoxyCompactList}\item 
-integer function, public \mbox{\hyperlink{namespacehdf5__ops_ad6c53fff55bd71f63470ca1e525ddb56}{close\+\_\+hdf5\+\_\+file}} (file\+\_\+info, ind\+\_\+plot, cont\+\_\+plot)
-\begin{DoxyCompactList}\small\item\em Closes an H\+D\+F5 file and writes the accompanying xmf file. \end{DoxyCompactList}\item 
-integer function, public \mbox{\hyperlink{namespacehdf5__ops_ade36dbd73b60da30e33a1059e590f734}{add\+\_\+hdf5\+\_\+item}} (file\+\_\+info, X\+D\+M\+F\+\_\+item, reset, ind\+\_\+plot)
-\begin{DoxyCompactList}\small\item\em Add an X\+D\+MF item to a H\+D\+F5 file. \end{DoxyCompactList}\item 
-integer function, public \mbox{\hyperlink{namespacehdf5__ops_ad794d069ca355f28536fba7e0d21bc13}{print\+\_\+hdf5\+\_\+3d\+\_\+data\+\_\+item}} (dataitem\+\_\+id, file\+\_\+info, var\+\_\+name, var, dim\+\_\+tot, loc\+\_\+dim, loc\+\_\+offset, init\+\_\+val, ind\+\_\+plot, cont\+\_\+plot)
-\begin{DoxyCompactList}\small\item\em Prints an H\+D\+F5 data item. \end{DoxyCompactList}\item 
-subroutine, public \mbox{\hyperlink{namespacehdf5__ops_a7b18b66402089eef2288b2d532f6af5d}{merge\+\_\+hdf5\+\_\+3d\+\_\+data\+\_\+items}} (merged\+\_\+id, dataitem\+\_\+ids, var\+\_\+name, dim\+\_\+tot, reset, ind\+\_\+plot, cont\+\_\+plot)
+integer function, public \doxymbox{\hyperlink{namespacehdf5__ops_a72c3974bb01858e1b232fc888d387bb6}{open\+\_\+hdf5\+\_\+file}} (file\+\_\+info, file\+\_\+name, sym\+\_\+type, descr, ind\+\_\+plot, cont\+\_\+plot)
+\begin{DoxyCompactList}\small\item\em Opens an HDF5 file and accompanying xmf file and returns the handles. \end{DoxyCompactList}\item 
+integer function, public \doxymbox{\hyperlink{namespacehdf5__ops_ad6c53fff55bd71f63470ca1e525ddb56}{close\+\_\+hdf5\+\_\+file}} (file\+\_\+info, ind\+\_\+plot, cont\+\_\+plot)
+\begin{DoxyCompactList}\small\item\em Closes an HDF5 file and writes the accompanying xmf file. \end{DoxyCompactList}\item 
+integer function, public \doxymbox{\hyperlink{namespacehdf5__ops_a59ff5ec017362698322f14fa1a633dd6}{add\+\_\+hdf5\+\_\+item}} (file\+\_\+info, xdmf\+\_\+item, reset, ind\+\_\+plot)
+\begin{DoxyCompactList}\small\item\em Add an XDMF item to a HDF5 file. \end{DoxyCompactList}\item 
+integer function, public \doxymbox{\hyperlink{namespacehdf5__ops_ad794d069ca355f28536fba7e0d21bc13}{print\+\_\+hdf5\+\_\+3d\+\_\+data\+\_\+item}} (dataitem\+\_\+id, file\+\_\+info, var\+\_\+name, var, dim\+\_\+tot, loc\+\_\+dim, loc\+\_\+offset, init\+\_\+val, ind\+\_\+plot, cont\+\_\+plot)
+\begin{DoxyCompactList}\small\item\em Prints an HDF5 data item. \end{DoxyCompactList}\item 
+subroutine, public \doxymbox{\hyperlink{namespacehdf5__ops_a7b18b66402089eef2288b2d532f6af5d}{merge\+\_\+hdf5\+\_\+3d\+\_\+data\+\_\+items}} (merged\+\_\+id, dataitem\+\_\+ids, var\+\_\+name, dim\+\_\+tot, reset, ind\+\_\+plot, cont\+\_\+plot)
 \begin{DoxyCompactList}\small\item\em Joins dataitems in a vector. \end{DoxyCompactList}\item 
-subroutine, public \mbox{\hyperlink{namespacehdf5__ops_a4d0ba813f369f904a9e991804662d099}{print\+\_\+hdf5\+\_\+att}} (att\+\_\+id, att\+\_\+dataitem, att\+\_\+name, att\+\_\+center, att\+\_\+type, reset, ind\+\_\+plot)
-\begin{DoxyCompactList}\small\item\em Prints an H\+D\+F5 attribute. \end{DoxyCompactList}\item 
-subroutine, public \mbox{\hyperlink{namespacehdf5__ops_af34b4aea64a8b67ec827aaf4a7425caf}{print\+\_\+hdf5\+\_\+top}} (top\+\_\+id, top\+\_\+type, top\+\_\+n\+\_\+elem, ind\+\_\+plot)
-\begin{DoxyCompactList}\small\item\em Prints an H\+D\+F5 topology. \end{DoxyCompactList}\item 
-subroutine, public \mbox{\hyperlink{namespacehdf5__ops_ac23a71e7029f46e5f38a95468fc10e22}{print\+\_\+hdf5\+\_\+geom}} (geom\+\_\+id, geom\+\_\+type, geom\+\_\+dataitems, reset, ind\+\_\+plot)
-\begin{DoxyCompactList}\small\item\em Prints an H\+D\+F5 geometry. \end{DoxyCompactList}\item 
-integer function, public \mbox{\hyperlink{namespacehdf5__ops_a144d595445778d89ec1a1bc0b12a94fb}{print\+\_\+hdf5\+\_\+grid}} (grid\+\_\+id, grid\+\_\+name, grid\+\_\+type, grid\+\_\+time, grid\+\_\+top, grid\+\_\+geom, grid\+\_\+atts, grid\+\_\+grids, reset, ind\+\_\+plot)
-\begin{DoxyCompactList}\small\item\em Prints an H\+D\+F5 grid. \end{DoxyCompactList}\item 
-integer function, public \mbox{\hyperlink{namespacehdf5__ops_a1263636fffc4f4aa86f72bd5fd3352a0}{create\+\_\+output\+\_\+hdf5}} (H\+D\+F5\+\_\+name)
-\begin{DoxyCompactList}\small\item\em Creates an H\+D\+F5 output file. \end{DoxyCompactList}\item 
-integer function, public \mbox{\hyperlink{namespacehdf5__ops_af80b879ed614698ed91b8235cf1cb22a}{print\+\_\+hdf5\+\_\+arrs}} (vars, P\+B3\+D\+\_\+name, head\+\_\+name, rich\+\_\+lvl, disp\+\_\+info, ind\+\_\+print, remove\+\_\+previous\+\_\+arrs)
-\begin{DoxyCompactList}\small\item\em Prints a series of arrays, in the form of an array of pointers, to an H\+D\+F5 file. \end{DoxyCompactList}\item 
-integer function, public \mbox{\hyperlink{namespacehdf5__ops_a5108e0d6f6b492cb981505ebceedd9ee}{read\+\_\+hdf5\+\_\+arr}} (var, P\+B3\+D\+\_\+name, head\+\_\+name, var\+\_\+name, rich\+\_\+lvl, disp\+\_\+info, lim\+\_\+loc)
-\begin{DoxyCompactList}\small\item\em Reads a P\+B3D output file in H\+D\+F5 format. \end{DoxyCompactList}\end{DoxyCompactItemize}
-\doxysubsection*{Variables}
+subroutine, public \doxymbox{\hyperlink{namespacehdf5__ops_a4d0ba813f369f904a9e991804662d099}{print\+\_\+hdf5\+\_\+att}} (att\+\_\+id, att\+\_\+dataitem, att\+\_\+name, att\+\_\+center, att\+\_\+type, reset, ind\+\_\+plot)
+\begin{DoxyCompactList}\small\item\em Prints an HDF5 attribute. \end{DoxyCompactList}\item 
+subroutine, public \doxymbox{\hyperlink{namespacehdf5__ops_af34b4aea64a8b67ec827aaf4a7425caf}{print\+\_\+hdf5\+\_\+top}} (top\+\_\+id, top\+\_\+type, top\+\_\+n\+\_\+elem, ind\+\_\+plot)
+\begin{DoxyCompactList}\small\item\em Prints an HDF5 topology. \end{DoxyCompactList}\item 
+subroutine, public \doxymbox{\hyperlink{namespacehdf5__ops_ac23a71e7029f46e5f38a95468fc10e22}{print\+\_\+hdf5\+\_\+geom}} (geom\+\_\+id, geom\+\_\+type, geom\+\_\+dataitems, reset, ind\+\_\+plot)
+\begin{DoxyCompactList}\small\item\em Prints an HDF5 geometry. \end{DoxyCompactList}\item 
+integer function, public \doxymbox{\hyperlink{namespacehdf5__ops_a144d595445778d89ec1a1bc0b12a94fb}{print\+\_\+hdf5\+\_\+grid}} (grid\+\_\+id, grid\+\_\+name, grid\+\_\+type, grid\+\_\+time, grid\+\_\+top, grid\+\_\+geom, grid\+\_\+atts, grid\+\_\+grids, reset, ind\+\_\+plot)
+\begin{DoxyCompactList}\small\item\em Prints an HDF5 grid. \end{DoxyCompactList}\item 
+integer function, public \doxymbox{\hyperlink{namespacehdf5__ops_a1c2e937415ceb9e749fa3dca3789d4e0}{create\+\_\+output\+\_\+hdf5}} (hdf5\+\_\+name)
+\begin{DoxyCompactList}\small\item\em Creates an HDF5 output file. \end{DoxyCompactList}\item 
+integer function, public \doxymbox{\hyperlink{namespacehdf5__ops_a2c76f91dc7fb8022ee64b54b4f3b4b52}{print\+\_\+hdf5\+\_\+arrs}} (vars, pb3d\+\_\+name, head\+\_\+name, rich\+\_\+lvl, disp\+\_\+info, ind\+\_\+print, remove\+\_\+previous\+\_\+arrs)
+\begin{DoxyCompactList}\small\item\em Prints a series of arrays, in the form of an array of pointers, to an HDF5 file. \end{DoxyCompactList}\item 
+integer function, public \doxymbox{\hyperlink{namespacehdf5__ops_ad14fad6af31ce64338c421cb9a8b5ac7}{read\+\_\+hdf5\+\_\+arr}} (var, pb3d\+\_\+name, head\+\_\+name, var\+\_\+name, rich\+\_\+lvl, disp\+\_\+info, lim\+\_\+loc)
+\begin{DoxyCompactList}\small\item\em Reads a PB3D output file in HDF5 format. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
 \begin{DoxyCompactItemize}
 \item 
-logical, public \mbox{\hyperlink{namespacehdf5__ops_a9b7c63811a63e9454539f1a2c89678b4}{debug\+\_\+hdf5\+\_\+ops}} = .false.
+logical, public \doxymbox{\hyperlink{namespacehdf5__ops_a9b7c63811a63e9454539f1a2c89678b4}{debug\+\_\+hdf5\+\_\+ops}} = .false.
 \begin{DoxyCompactList}\small\item\em set to true to debug general information \end{DoxyCompactList}\item 
-logical, public \mbox{\hyperlink{namespacehdf5__ops_a00bbaa77652e040350c9726668cc22ac}{debug\+\_\+print\+\_\+hdf5\+\_\+arrs}} = .false.
-\begin{DoxyCompactList}\small\item\em set to true to debug print\+\_\+\+H\+D\+F5\+\_\+arrs \end{DoxyCompactList}\end{DoxyCompactItemize}
+logical, public \doxymbox{\hyperlink{namespacehdf5__ops_a00bbaa77652e040350c9726668cc22ac}{debug\+\_\+print\+\_\+hdf5\+\_\+arrs}} = .false.
+\begin{DoxyCompactList}\small\item\em set to true to debug print\+\_\+\+HDF5\+\_\+arrs \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
-Operations on H\+D\+F5 and X\+D\+MF variables. 
+Operations on HDF5 and XDMF variables. 
 
 \begin{DoxyNote}{Note}
-Notes about X\+D\+MF\+:
+Notes about XDMF:\+
 \begin{DoxyItemize}
-\item Collections can be spatial or temporal. If a variable is to be evolved in time or if its domain is decomposed (e.\+g. the same physical variable is defined in multiple H\+D\+F5 variables), then the attribute name of this variable has to be the same for all the grids in the collection.
+\item Collections can be spatial or temporal. If a variable is to be evolved in time or if its domain is decomposed (e.\+g. the same physical variable is defined in multiple HDF5 variables), then the attribute name of this variable has to be the same for all the grids in the collection.
 \item If no collection is used, but just multiple grids, the attribute can be different but does not have to be, as the different grid are distinguished by their different grid names, not by the attribute of the variables they contain.
-\item The selection of hyperslabs is used, as described here\+: \href{http://davis.lbl.gov/Manuals/HDF5-1.8.7/UG/12_Dataspaces.html}{\texttt{ http\+://davis.\+lbl.\+gov/\+Manuals/\+H\+D\+F5-\/1.\+8.\+7/\+U\+G/12\+\_\+\+Dataspaces.\+html}}
-\item Chunking is used for partial I/O, as described here\+: \href{https://www.hdfgroup.org/HDF5/doc/Advanced/Chunking/}{\texttt{ https\+://www.\+hdfgroup.\+org/\+H\+D\+F5/doc/\+Advanced/\+Chunking/}} As no chunk cache is reused, the w0 setting should be 1. Furthermore, the number of slots is chosen to be equal to the number of chunks. And Finally, the chunk size is chosen to be the size of the previous dimensions, if it does not exceed 4GB
-\item Individual writes or plots are done now using the standard I/O driver, as using M\+PI does not allow for more than 2GB. This is important for the H\+E\+L\+E\+NA version of P\+B3D where {\ttfamily X\+\_\+2} variables get larger than that. \href{https://www.hdfgroup.org/HDF5/doc/UG/OldHtmlSource/UG_frame08TheFile.html}{\texttt{ https\+://www.\+hdfgroup.\+org/\+H\+D\+F5/doc/\+U\+G/\+Old\+Html\+Source/\+U\+G\+\_\+frame08\+The\+File.\+html}}
-\item Have a look in Documentation/\+X\+D\+M\+F\+\_\+\+H\+D\+F5.\+pdf for an example. 
+\item The selection of hyperslabs is used, as described here:\+ \href{http://davis.lbl.gov/Manuals/HDF5-1.8.7/UG/12_Dataspaces.html}{\texttt{http:\+/\+/\+davis.\+lbl.\+gov/\+\+Manuals/\+\+HDF5-\/1.\+8.\+7/\+\+UG/\+12\+\_\+\+Dataspaces.\+html}}
+\item Chunking is used for partial I/\+O, as described here:\+ \href{https://www.hdfgroup.org/HDF5/doc/Advanced/Chunking/}{\texttt{https:\+/\+/\+www.\+hdfgroup.\+org/\+\+HDF5/\+doc/\+\+Advanced/\+\+Chunking/\+}} As no chunk cache is reused, the w0 setting should be 1. Furthermore, the number of slots is chosen to be equal to the number of chunks. And Finally, the chunk size is chosen to be the size of the previous dimensions, if it does not exceed 4GB
+\item Individual writes or plots are done now using the standard I/\+O driver, as using MPI does not allow for more than 2GB. This is important for the HELENA version of PB3D where {\ttfamily X\+\_\+2} variables get larger than that. \href{https://www.hdfgroup.org/HDF5/doc/UG/OldHtmlSource/UG_frame08TheFile.html}{\texttt{https:\+/\+/\+www.\+hdfgroup.\+org/\+\+HDF5/\+doc/\+\+UG/\+\+Old\+Html\+Source/\+\+UG\+\_\+frame08\+The\+File.\+html}}
+\item Have a look in Documentation/\+\+XDMF\+\_\+\+HDF5.\+pdf for an example. 
 \end{DoxyItemize}
 \end{DoxyNote}
 
 
-\doxysubsection{Function/\+Subroutine Documentation}
-\mbox{\Hypertarget{namespacehdf5__ops_ade36dbd73b60da30e33a1059e590f734}\label{namespacehdf5__ops_ade36dbd73b60da30e33a1059e590f734}} 
-\index{hdf5\_ops@{hdf5\_ops}!add\_hdf5\_item@{add\_hdf5\_item}}
+\label{doc-func-members}
+\Hypertarget{namespacehdf5__ops_doc-func-members}
+\doxysubsection{Function/\+\+Subroutine Documentation}
+\Hypertarget{namespacehdf5__ops_a59ff5ec017362698322f14fa1a633dd6}\index{hdf5\_ops@{hdf5\_ops}!add\_hdf5\_item@{add\_hdf5\_item}}
 \index{add\_hdf5\_item@{add\_hdf5\_item}!hdf5\_ops@{hdf5\_ops}}
 \doxysubsubsection{\texorpdfstring{add\_hdf5\_item()}{add\_hdf5\_item()}}
-{\footnotesize\ttfamily integer function, public hdf5\+\_\+ops\+::add\+\_\+hdf5\+\_\+item (\begin{DoxyParamCaption}\item[{type(hdf5\+\_\+file\+\_\+type), intent(inout)}]{file\+\_\+info,  }\item[{type(xml\+\_\+str\+\_\+type), intent(inout)}]{X\+D\+M\+F\+\_\+item,  }\item[{logical, intent(in), optional}]{reset,  }\item[{logical, intent(in), optional}]{ind\+\_\+plot }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \label{namespacehdf5__ops_a59ff5ec017362698322f14fa1a633dd6} 
+integer function, public hdf5\+\_\+ops::\+add\+\_\+hdf5\+\_\+item (\begin{DoxyParamCaption}\item[{type(\doxymbox{\hyperlink{structhdf5__vars_1_1hdf5__file__type}{hdf5\+\_\+file\+\_\+type}}), intent(inout)}]{file\+\_\+info}{, }\item[{type(\doxymbox{\hyperlink{structhdf5__vars_1_1xml__str__type}{xml\+\_\+str\+\_\+type}}), intent(inout)}]{xdmf\+\_\+item}{, }\item[{logical, intent(in), optional}]{reset}{, }\item[{logical, intent(in), optional}]{ind\+\_\+plot}{}\end{DoxyParamCaption})}
 
 
 
-Add an X\+D\+MF item to a H\+D\+F5 file. 
+Add an XDMF item to a HDF5 file. 
 
 \begin{DoxyNote}{Note}
 This should only be used with grids (or for topologies and geometries that are used throughout)
@@ -81,104 +83,104 @@ ierr
 \end{DoxyReturn}
 
 \begin{DoxyParams}[1]{Parameters}
-\mbox{\texttt{ in,out}}  & {\em file\+\_\+info} & info about H\+D\+F5 file \\
+\doxymbox{\texttt{in,out}}  & {\em file\+\_\+info} & info about HDF5 file \\
 \hline
-\mbox{\texttt{ in,out}}  & {\em xdmf\+\_\+item} & X\+D\+MF item to add \\
+\doxymbox{\texttt{in,out}}  & {\em xdmf\+\_\+item} & XDMF item to add \\
 \hline
-\mbox{\texttt{ in}}  & {\em reset} & if .true., X\+D\+M\+F\+\_\+item is reset \\
+\doxymbox{\texttt{in}}  & {\em reset} & if .true., XDMF\+\_\+item is reset \\
 \hline
-\mbox{\texttt{ in}}  & {\em ind\+\_\+plot} & whether individual plot \\
+\doxymbox{\texttt{in}}  & {\em ind\+\_\+plot} & whether individual plot \\
 \hline
 \end{DoxyParams}
 
 
-Definition at line 340 of file H\+D\+F5\+\_\+ops.\+f90.
+Definition at line \doxymbox{\hyperlink{HDF5__ops_8f90_source_l00338}{338}} of file \doxymbox{\hyperlink{HDF5__ops_8f90_source}{HDF5\+\_\+ops.\+f90}}.
 
-Here is the caller graph for this function\+:\nopagebreak
+Here is the caller graph for this function:\+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=350pt]{namespacehdf5__ops_ade36dbd73b60da30e33a1059e590f734_icgraph}
+\includegraphics[width=350pt]{namespacehdf5__ops_a59ff5ec017362698322f14fa1a633dd6_icgraph}
 \end{center}
 \end{figure}
-\mbox{\Hypertarget{namespacehdf5__ops_ad6c53fff55bd71f63470ca1e525ddb56}\label{namespacehdf5__ops_ad6c53fff55bd71f63470ca1e525ddb56}} 
-\index{hdf5\_ops@{hdf5\_ops}!close\_hdf5\_file@{close\_hdf5\_file}}
+\Hypertarget{namespacehdf5__ops_ad6c53fff55bd71f63470ca1e525ddb56}\index{hdf5\_ops@{hdf5\_ops}!close\_hdf5\_file@{close\_hdf5\_file}}
 \index{close\_hdf5\_file@{close\_hdf5\_file}!hdf5\_ops@{hdf5\_ops}}
 \doxysubsubsection{\texorpdfstring{close\_hdf5\_file()}{close\_hdf5\_file()}}
-{\footnotesize\ttfamily integer function, public hdf5\+\_\+ops\+::close\+\_\+hdf5\+\_\+file (\begin{DoxyParamCaption}\item[{type(hdf5\+\_\+file\+\_\+type), intent(inout)}]{file\+\_\+info,  }\item[{logical, intent(in), optional}]{ind\+\_\+plot,  }\item[{logical, intent(in), optional}]{cont\+\_\+plot }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \label{namespacehdf5__ops_ad6c53fff55bd71f63470ca1e525ddb56} 
+integer function, public hdf5\+\_\+ops::\+close\+\_\+hdf5\+\_\+file (\begin{DoxyParamCaption}\item[{type(\doxymbox{\hyperlink{structhdf5__vars_1_1hdf5__file__type}{hdf5\+\_\+file\+\_\+type}}), intent(inout)}]{file\+\_\+info}{, }\item[{logical, intent(in), optional}]{ind\+\_\+plot}{, }\item[{logical, intent(in), optional}]{cont\+\_\+plot}{}\end{DoxyParamCaption})}
 
 
 
-Closes an H\+D\+F5 file and writes the accompanying xmf file. 
+Closes an HDF5 file and writes the accompanying xmf file. 
 
 \begin{DoxyReturn}{Returns}
 ierr 
 \end{DoxyReturn}
 
 \begin{DoxyParams}[1]{Parameters}
-\mbox{\texttt{ in,out}}  & {\em file\+\_\+info} & info about H\+D\+F5 file \\
+\doxymbox{\texttt{in,out}}  & {\em file\+\_\+info} & info about HDF5 file \\
 \hline
-\mbox{\texttt{ in}}  & {\em ind\+\_\+plot} & whether individual plot \\
+\doxymbox{\texttt{in}}  & {\em ind\+\_\+plot} & whether individual plot \\
 \hline
-\mbox{\texttt{ in}}  & {\em cont\+\_\+plot} & continued plot \\
+\doxymbox{\texttt{in}}  & {\em cont\+\_\+plot} & continued plot \\
 \hline
 \end{DoxyParams}
 
 
-Definition at line 264 of file H\+D\+F5\+\_\+ops.\+f90.
+Definition at line \doxymbox{\hyperlink{HDF5__ops_8f90_source_l00263}{263}} of file \doxymbox{\hyperlink{HDF5__ops_8f90_source}{HDF5\+\_\+ops.\+f90}}.
 
-Here is the call graph for this function\+:\nopagebreak
+Here is the call graph for this function:\+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{namespacehdf5__ops_ad6c53fff55bd71f63470ca1e525ddb56_cgraph}
 \end{center}
 \end{figure}
-Here is the caller graph for this function\+:\nopagebreak
+Here is the caller graph for this function:\+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{namespacehdf5__ops_ad6c53fff55bd71f63470ca1e525ddb56_icgraph}
 \end{center}
 \end{figure}
-\mbox{\Hypertarget{namespacehdf5__ops_a1263636fffc4f4aa86f72bd5fd3352a0}\label{namespacehdf5__ops_a1263636fffc4f4aa86f72bd5fd3352a0}} 
-\index{hdf5\_ops@{hdf5\_ops}!create\_output\_hdf5@{create\_output\_hdf5}}
+\Hypertarget{namespacehdf5__ops_a1c2e937415ceb9e749fa3dca3789d4e0}\index{hdf5\_ops@{hdf5\_ops}!create\_output\_hdf5@{create\_output\_hdf5}}
 \index{create\_output\_hdf5@{create\_output\_hdf5}!hdf5\_ops@{hdf5\_ops}}
 \doxysubsubsection{\texorpdfstring{create\_output\_hdf5()}{create\_output\_hdf5()}}
-{\footnotesize\ttfamily integer function, public hdf5\+\_\+ops\+::create\+\_\+output\+\_\+hdf5 (\begin{DoxyParamCaption}\item[{character(len=$\ast$), intent(in)}]{H\+D\+F5\+\_\+name }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \label{namespacehdf5__ops_a1c2e937415ceb9e749fa3dca3789d4e0} 
+integer function, public hdf5\+\_\+ops::\+create\+\_\+output\+\_\+hdf5 (\begin{DoxyParamCaption}\item[{character(len=\texorpdfstring{$\ast$}{*}), intent(in)}]{hdf5\+\_\+name}{}\end{DoxyParamCaption})}
 
 
 
-Creates an H\+D\+F5 output file. 
+Creates an HDF5 output file. 
 
 
 \begin{DoxyParams}[1]{Parameters}
-\mbox{\texttt{ in}}  & {\em hdf5\+\_\+name} & name of H\+D\+F5 file \\
+\doxymbox{\texttt{in}}  & {\em hdf5\+\_\+name} & name of HDF5 file \\
 \hline
 \end{DoxyParams}
 
 
-Definition at line 1075 of file H\+D\+F5\+\_\+ops.\+f90.
+Definition at line \doxymbox{\hyperlink{HDF5__ops_8f90_source_l01074}{1074}} of file \doxymbox{\hyperlink{HDF5__ops_8f90_source}{HDF5\+\_\+ops.\+f90}}.
 
-Here is the call graph for this function\+:\nopagebreak
+Here is the call graph for this function:\+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=350pt]{namespacehdf5__ops_a1263636fffc4f4aa86f72bd5fd3352a0_cgraph}
+\includegraphics[width=350pt]{namespacehdf5__ops_a1c2e937415ceb9e749fa3dca3789d4e0_cgraph}
 \end{center}
 \end{figure}
-Here is the caller graph for this function\+:\nopagebreak
+Here is the caller graph for this function:\+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=350pt]{namespacehdf5__ops_a1263636fffc4f4aa86f72bd5fd3352a0_icgraph}
+\includegraphics[width=350pt]{namespacehdf5__ops_a1c2e937415ceb9e749fa3dca3789d4e0_icgraph}
 \end{center}
 \end{figure}
-\mbox{\Hypertarget{namespacehdf5__ops_a7b18b66402089eef2288b2d532f6af5d}\label{namespacehdf5__ops_a7b18b66402089eef2288b2d532f6af5d}} 
-\index{hdf5\_ops@{hdf5\_ops}!merge\_hdf5\_3d\_data\_items@{merge\_hdf5\_3d\_data\_items}}
+\Hypertarget{namespacehdf5__ops_a7b18b66402089eef2288b2d532f6af5d}\index{hdf5\_ops@{hdf5\_ops}!merge\_hdf5\_3d\_data\_items@{merge\_hdf5\_3d\_data\_items}}
 \index{merge\_hdf5\_3d\_data\_items@{merge\_hdf5\_3d\_data\_items}!hdf5\_ops@{hdf5\_ops}}
 \doxysubsubsection{\texorpdfstring{merge\_hdf5\_3d\_data\_items()}{merge\_hdf5\_3d\_data\_items()}}
-{\footnotesize\ttfamily subroutine, public hdf5\+\_\+ops\+::merge\+\_\+hdf5\+\_\+3d\+\_\+data\+\_\+items (\begin{DoxyParamCaption}\item[{type(xml\+\_\+str\+\_\+type), intent(inout)}]{merged\+\_\+id,  }\item[{type(xml\+\_\+str\+\_\+type), dimension(\+:), intent(inout)}]{dataitem\+\_\+ids,  }\item[{character(len=$\ast$), intent(in)}]{var\+\_\+name,  }\item[{integer, dimension(3), intent(in)}]{dim\+\_\+tot,  }\item[{logical, intent(in), optional}]{reset,  }\item[{logical, intent(in), optional}]{ind\+\_\+plot,  }\item[{logical, intent(in), optional}]{cont\+\_\+plot }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \label{namespacehdf5__ops_a7b18b66402089eef2288b2d532f6af5d} 
+subroutine, public hdf5\+\_\+ops::\+merge\+\_\+hdf5\+\_\+3d\+\_\+data\+\_\+items (\begin{DoxyParamCaption}\item[{type(\doxymbox{\hyperlink{structhdf5__vars_1_1xml__str__type}{xml\+\_\+str\+\_\+type}}), intent(inout)}]{merged\+\_\+id}{, }\item[{type(\doxymbox{\hyperlink{structhdf5__vars_1_1xml__str__type}{xml\+\_\+str\+\_\+type}}), dimension(:\+), intent(inout)}]{dataitem\+\_\+ids}{, }\item[{character(len=\texorpdfstring{$\ast$}{*}), intent(in)}]{var\+\_\+name}{, }\item[{integer, dimension(3), intent(in)}]{dim\+\_\+tot}{, }\item[{logical, intent(in), optional}]{reset}{, }\item[{logical, intent(in), optional}]{ind\+\_\+plot}{, }\item[{logical, intent(in), optional}]{cont\+\_\+plot}{}\end{DoxyParamCaption})}
 
 
 
@@ -186,48 +188,48 @@ Joins dataitems in a vector.
 
 
 \begin{DoxyParams}[1]{Parameters}
-\mbox{\texttt{ in,out}}  & {\em merged\+\_\+id} & ID of merged data item \\
+\doxymbox{\texttt{in,out}}  & {\em merged\+\_\+id} & ID of merged data item \\
 \hline
-\mbox{\texttt{ in,out}}  & {\em dataitem\+\_\+ids} & ID of data items \\
+\doxymbox{\texttt{in,out}}  & {\em dataitem\+\_\+ids} & ID of data items \\
 \hline
-\mbox{\texttt{ in}}  & {\em var\+\_\+name} & name of variable \\
+\doxymbox{\texttt{in}}  & {\em var\+\_\+name} & name of variable \\
 \hline
-\mbox{\texttt{ in}}  & {\em dim\+\_\+tot} & total dimensions of variable \\
+\doxymbox{\texttt{in}}  & {\em dim\+\_\+tot} & total dimensions of variable \\
 \hline
-\mbox{\texttt{ in}}  & {\em reset} & whether to reset dataitems \\
+\doxymbox{\texttt{in}}  & {\em reset} & whether to reset dataitems \\
 \hline
-\mbox{\texttt{ in}}  & {\em ind\+\_\+plot} & whether individual plot \\
+\doxymbox{\texttt{in}}  & {\em ind\+\_\+plot} & whether individual plot \\
 \hline
-\mbox{\texttt{ in}}  & {\em cont\+\_\+plot} & continued plot \\
+\doxymbox{\texttt{in}}  & {\em cont\+\_\+plot} & continued plot \\
 \hline
 \end{DoxyParams}
 
 
-Definition at line 603 of file H\+D\+F5\+\_\+ops.\+f90.
+Definition at line \doxymbox{\hyperlink{HDF5__ops_8f90_source_l00601}{601}} of file \doxymbox{\hyperlink{HDF5__ops_8f90_source}{HDF5\+\_\+ops.\+f90}}.
 
-Here is the call graph for this function\+:\nopagebreak
+Here is the call graph for this function:\+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{namespacehdf5__ops_a7b18b66402089eef2288b2d532f6af5d_cgraph}
 \end{center}
 \end{figure}
-Here is the caller graph for this function\+:\nopagebreak
+Here is the caller graph for this function:\+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{namespacehdf5__ops_a7b18b66402089eef2288b2d532f6af5d_icgraph}
 \end{center}
 \end{figure}
-\mbox{\Hypertarget{namespacehdf5__ops_a72c3974bb01858e1b232fc888d387bb6}\label{namespacehdf5__ops_a72c3974bb01858e1b232fc888d387bb6}} 
-\index{hdf5\_ops@{hdf5\_ops}!open\_hdf5\_file@{open\_hdf5\_file}}
+\Hypertarget{namespacehdf5__ops_a72c3974bb01858e1b232fc888d387bb6}\index{hdf5\_ops@{hdf5\_ops}!open\_hdf5\_file@{open\_hdf5\_file}}
 \index{open\_hdf5\_file@{open\_hdf5\_file}!hdf5\_ops@{hdf5\_ops}}
 \doxysubsubsection{\texorpdfstring{open\_hdf5\_file()}{open\_hdf5\_file()}}
-{\footnotesize\ttfamily integer function, public hdf5\+\_\+ops\+::open\+\_\+hdf5\+\_\+file (\begin{DoxyParamCaption}\item[{type(hdf5\+\_\+file\+\_\+type), intent(inout)}]{file\+\_\+info,  }\item[{character(len=$\ast$), intent(in)}]{file\+\_\+name,  }\item[{integer, intent(inout), optional}]{sym\+\_\+type,  }\item[{character(len=$\ast$), intent(in), optional}]{descr,  }\item[{logical, intent(in), optional}]{ind\+\_\+plot,  }\item[{logical, intent(in), optional}]{cont\+\_\+plot }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \label{namespacehdf5__ops_a72c3974bb01858e1b232fc888d387bb6} 
+integer function, public hdf5\+\_\+ops::\+open\+\_\+hdf5\+\_\+file (\begin{DoxyParamCaption}\item[{type(\doxymbox{\hyperlink{structhdf5__vars_1_1hdf5__file__type}{hdf5\+\_\+file\+\_\+type}}), intent(inout)}]{file\+\_\+info}{, }\item[{character(len=\texorpdfstring{$\ast$}{*}), intent(in)}]{file\+\_\+name}{, }\item[{integer, intent(inout), optional}]{sym\+\_\+type}{, }\item[{character(len=\texorpdfstring{$\ast$}{*}), intent(in), optional}]{descr}{, }\item[{logical, intent(in), optional}]{ind\+\_\+plot}{, }\item[{logical, intent(in), optional}]{cont\+\_\+plot}{}\end{DoxyParamCaption})}
 
 
 
-Opens an H\+D\+F5 file and accompanying xmf file and returns the handles. 
+Opens an HDF5 file and accompanying xmf file and returns the handles. 
 
 Optionally, a description of the file can be provided.
 
@@ -240,46 +242,46 @@ ierr
 \end{DoxyReturn}
 
 \begin{DoxyParams}[1]{Parameters}
-\mbox{\texttt{ in,out}}  & {\em file\+\_\+info} & info about H\+D\+F5 file \\
+\doxymbox{\texttt{in,out}}  & {\em file\+\_\+info} & info about HDF5 file \\
 \hline
-\mbox{\texttt{ in}}  & {\em file\+\_\+name} & name of H\+D\+F5 file \\
+\doxymbox{\texttt{in}}  & {\em file\+\_\+name} & name of HDF5 file \\
 \hline
-\mbox{\texttt{ in,out}}  & {\em sym\+\_\+type} & symmetry type \\
+\doxymbox{\texttt{in,out}}  & {\em sym\+\_\+type} & symmetry type \\
 \hline
-\mbox{\texttt{ in}}  & {\em descr} & description of file \\
+\doxymbox{\texttt{in}}  & {\em descr} & description of file \\
 \hline
-\mbox{\texttt{ in}}  & {\em ind\+\_\+plot} & whether individual plot \\
+\doxymbox{\texttt{in}}  & {\em ind\+\_\+plot} & whether individual plot \\
 \hline
-\mbox{\texttt{ in}}  & {\em cont\+\_\+plot} & continued plot \\
+\doxymbox{\texttt{in}}  & {\em cont\+\_\+plot} & continued plot \\
 \hline
 \end{DoxyParams}
 
 
-Definition at line 78 of file H\+D\+F5\+\_\+ops.\+f90.
+Definition at line \doxymbox{\hyperlink{HDF5__ops_8f90_source_l00076}{76}} of file \doxymbox{\hyperlink{HDF5__ops_8f90_source}{HDF5\+\_\+ops.\+f90}}.
 
-Here is the call graph for this function\+:\nopagebreak
+Here is the call graph for this function:\+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{namespacehdf5__ops_a72c3974bb01858e1b232fc888d387bb6_cgraph}
 \end{center}
 \end{figure}
-Here is the caller graph for this function\+:\nopagebreak
+Here is the caller graph for this function:\+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{namespacehdf5__ops_a72c3974bb01858e1b232fc888d387bb6_icgraph}
 \end{center}
 \end{figure}
-\mbox{\Hypertarget{namespacehdf5__ops_ad794d069ca355f28536fba7e0d21bc13}\label{namespacehdf5__ops_ad794d069ca355f28536fba7e0d21bc13}} 
-\index{hdf5\_ops@{hdf5\_ops}!print\_hdf5\_3d\_data\_item@{print\_hdf5\_3d\_data\_item}}
+\Hypertarget{namespacehdf5__ops_ad794d069ca355f28536fba7e0d21bc13}\index{hdf5\_ops@{hdf5\_ops}!print\_hdf5\_3d\_data\_item@{print\_hdf5\_3d\_data\_item}}
 \index{print\_hdf5\_3d\_data\_item@{print\_hdf5\_3d\_data\_item}!hdf5\_ops@{hdf5\_ops}}
 \doxysubsubsection{\texorpdfstring{print\_hdf5\_3d\_data\_item()}{print\_hdf5\_3d\_data\_item()}}
-{\footnotesize\ttfamily integer function, public hdf5\+\_\+ops\+::print\+\_\+hdf5\+\_\+3d\+\_\+data\+\_\+item (\begin{DoxyParamCaption}\item[{type(xml\+\_\+str\+\_\+type), intent(inout)}]{dataitem\+\_\+id,  }\item[{type(hdf5\+\_\+file\+\_\+type), intent(in)}]{file\+\_\+info,  }\item[{character(len=$\ast$), intent(in)}]{var\+\_\+name,  }\item[{real(dp), dimension(\+:,\+:,\+:), intent(in)}]{var,  }\item[{integer, dimension(3), intent(in)}]{dim\+\_\+tot,  }\item[{integer, dimension(3), intent(in), optional}]{loc\+\_\+dim,  }\item[{integer, dimension(3), intent(in), optional}]{loc\+\_\+offset,  }\item[{real(dp), intent(in), optional}]{init\+\_\+val,  }\item[{logical, intent(in), optional}]{ind\+\_\+plot,  }\item[{logical, intent(in), optional}]{cont\+\_\+plot }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \label{namespacehdf5__ops_ad794d069ca355f28536fba7e0d21bc13} 
+integer function, public hdf5\+\_\+ops::\+print\+\_\+hdf5\+\_\+3d\+\_\+data\+\_\+item (\begin{DoxyParamCaption}\item[{type(\doxymbox{\hyperlink{structhdf5__vars_1_1xml__str__type}{xml\+\_\+str\+\_\+type}}), intent(inout)}]{dataitem\+\_\+id}{, }\item[{type(\doxymbox{\hyperlink{structhdf5__vars_1_1hdf5__file__type}{hdf5\+\_\+file\+\_\+type}}), intent(in)}]{file\+\_\+info}{, }\item[{character(len=\texorpdfstring{$\ast$}{*}), intent(in)}]{var\+\_\+name}{, }\item[{real(dp), dimension(:\+,:\+,:\+), intent(in)}]{var}{, }\item[{integer, dimension(3), intent(in)}]{dim\+\_\+tot}{, }\item[{integer, dimension(3), intent(in), optional}]{loc\+\_\+dim}{, }\item[{integer, dimension(3), intent(in), optional}]{loc\+\_\+offset}{, }\item[{real(dp), intent(in), optional}]{init\+\_\+val}{, }\item[{logical, intent(in), optional}]{ind\+\_\+plot}{, }\item[{logical, intent(in), optional}]{cont\+\_\+plot}{}\end{DoxyParamCaption})}
 
 
 
-Prints an H\+D\+F5 data item. 
+Prints an HDF5 data item. 
 
 If this is a parallel data item, the group dimension and offset have to be specified as well.
 
@@ -288,183 +290,183 @@ ierr
 \end{DoxyReturn}
 
 \begin{DoxyParams}[1]{Parameters}
-\mbox{\texttt{ in,out}}  & {\em dataitem\+\_\+id} & ID of data item \\
+\doxymbox{\texttt{in,out}}  & {\em dataitem\+\_\+id} & ID of data item \\
 \hline
-\mbox{\texttt{ in}}  & {\em file\+\_\+info} & info about H\+D\+F5 file \\
+\doxymbox{\texttt{in}}  & {\em file\+\_\+info} & info about HDF5 file \\
 \hline
-\mbox{\texttt{ in}}  & {\em var\+\_\+name} & name of variable \\
+\doxymbox{\texttt{in}}  & {\em var\+\_\+name} & name of variable \\
 \hline
-\mbox{\texttt{ in}}  & {\em var} & variable to write \\
+\doxymbox{\texttt{in}}  & {\em var} & variable to write \\
 \hline
-\mbox{\texttt{ in}}  & {\em dim\+\_\+tot} & total dimensions of variable \\
+\doxymbox{\texttt{in}}  & {\em dim\+\_\+tot} & total dimensions of variable \\
 \hline
-\mbox{\texttt{ in}}  & {\em loc\+\_\+dim} & dimensions in this group \\
+\doxymbox{\texttt{in}}  & {\em loc\+\_\+dim} & dimensions in this group \\
 \hline
-\mbox{\texttt{ in}}  & {\em loc\+\_\+offset} & offset in this group \\
+\doxymbox{\texttt{in}}  & {\em loc\+\_\+offset} & offset in this group \\
 \hline
-\mbox{\texttt{ in}}  & {\em init\+\_\+val} & initial fill value \\
+\doxymbox{\texttt{in}}  & {\em init\+\_\+val} & initial fill value \\
 \hline
-\mbox{\texttt{ in}}  & {\em ind\+\_\+plot} & whether individual plot \\
+\doxymbox{\texttt{in}}  & {\em ind\+\_\+plot} & whether individual plot \\
 \hline
-\mbox{\texttt{ in}}  & {\em cont\+\_\+plot} & continued plot \\
+\doxymbox{\texttt{in}}  & {\em cont\+\_\+plot} & continued plot \\
 \hline
 \end{DoxyParams}
 
 
-Definition at line 396 of file H\+D\+F5\+\_\+ops.\+f90.
+Definition at line \doxymbox{\hyperlink{HDF5__ops_8f90_source_l00393}{393}} of file \doxymbox{\hyperlink{HDF5__ops_8f90_source}{HDF5\+\_\+ops.\+f90}}.
 
-Here is the call graph for this function\+:\nopagebreak
+Here is the call graph for this function:\+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{namespacehdf5__ops_ad794d069ca355f28536fba7e0d21bc13_cgraph}
 \end{center}
 \end{figure}
-Here is the caller graph for this function\+:\nopagebreak
+Here is the caller graph for this function:\+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{namespacehdf5__ops_ad794d069ca355f28536fba7e0d21bc13_icgraph}
 \end{center}
 \end{figure}
-\mbox{\Hypertarget{namespacehdf5__ops_af80b879ed614698ed91b8235cf1cb22a}\label{namespacehdf5__ops_af80b879ed614698ed91b8235cf1cb22a}} 
-\index{hdf5\_ops@{hdf5\_ops}!print\_hdf5\_arrs@{print\_hdf5\_arrs}}
+\Hypertarget{namespacehdf5__ops_a2c76f91dc7fb8022ee64b54b4f3b4b52}\index{hdf5\_ops@{hdf5\_ops}!print\_hdf5\_arrs@{print\_hdf5\_arrs}}
 \index{print\_hdf5\_arrs@{print\_hdf5\_arrs}!hdf5\_ops@{hdf5\_ops}}
 \doxysubsubsection{\texorpdfstring{print\_hdf5\_arrs()}{print\_hdf5\_arrs()}}
-{\footnotesize\ttfamily integer function, public hdf5\+\_\+ops\+::print\+\_\+hdf5\+\_\+arrs (\begin{DoxyParamCaption}\item[{type(var\+\_\+1d\+\_\+type), dimension(\+:), intent(in)}]{vars,  }\item[{character(len=$\ast$), intent(in)}]{P\+B3\+D\+\_\+name,  }\item[{character(len=$\ast$), intent(in)}]{head\+\_\+name,  }\item[{integer, intent(in), optional}]{rich\+\_\+lvl,  }\item[{logical, intent(in), optional}]{disp\+\_\+info,  }\item[{logical, intent(in), optional}]{ind\+\_\+print,  }\item[{logical, intent(in), optional}]{remove\+\_\+previous\+\_\+arrs }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \label{namespacehdf5__ops_a2c76f91dc7fb8022ee64b54b4f3b4b52} 
+integer function, public hdf5\+\_\+ops::\+print\+\_\+hdf5\+\_\+arrs (\begin{DoxyParamCaption}\item[{type(\doxymbox{\hyperlink{structhdf5__vars_1_1var__1d__type}{var\+\_\+1d\+\_\+type}}), dimension(:\+), intent(in)}]{vars}{, }\item[{character(len=\texorpdfstring{$\ast$}{*}), intent(in)}]{pb3d\+\_\+name}{, }\item[{character(len=\texorpdfstring{$\ast$}{*}), intent(in)}]{head\+\_\+name}{, }\item[{integer, intent(in), optional}]{rich\+\_\+lvl}{, }\item[{logical, intent(in), optional}]{disp\+\_\+info}{, }\item[{logical, intent(in), optional}]{ind\+\_\+print}{, }\item[{logical, intent(in), optional}]{remove\+\_\+previous\+\_\+arrs}{}\end{DoxyParamCaption})}
 
 
 
-Prints a series of arrays, in the form of an array of pointers, to an H\+D\+F5 file. 
+Prints a series of arrays, in the form of an array of pointers, to an HDF5 file. 
 
-Optionally, output can be given about the variable being written. Also, if {\ttfamily rich\+\_\+lvl} is provided, {\ttfamily \+\_\+\+R\+\_\+\mbox{[}rich\+\_\+lvl\mbox{]}} is appended to the head name if it is $>$ 0.
+Optionally, output can be given about the variable being written. Also, if {\ttfamily rich\+\_\+lvl} is provided, {\ttfamily {\itshape R}\+[rich\+\_\+lvl]\+} is appended to the head name if it is \texorpdfstring{$>$}{>} 0.
 
-Also optionally, previously encountered arrays can be removed. This is to be used with care, as it may disturb the internal workings of P\+B3D. Currently (v2.\+15) it is used only for the specific case of jumping to solutions for {\ttfamily X\+\_\+grid\+\_\+style} 1 or 3, when writing solutions and solution grids.
+Also optionally, previously encountered arrays can be removed. This is to be used with care, as it may disturb the internal workings of PB3D. Currently (v2.\+15) it is used only for the specific case of jumping to solutions for {\ttfamily X\+\_\+grid\+\_\+style} 1 or 3, when writing solutions and solution grids.
 
 \begin{DoxyNote}{Note}
-See \href{https://www.hdfgroup.org/HDF5/doc/UG/12_Dataspaces.html}{\texttt{ https\+://www.\+hdfgroup.\+org/\+H\+D\+F5/doc/\+U\+G/12\+\_\+\+Dataspaces.\+html}}, 7.\+4.\+2.\+3 for an explanation of the selection of the dataspaces.
+See \href{https://www.hdfgroup.org/HDF5/doc/UG/12_Dataspaces.html}{\texttt{https:\+/\+/\+www.\+hdfgroup.\+org/\+\+HDF5/\+doc/\+\+UG/\+12\+\_\+\+Dataspaces.\+html}}, 7.\+4.\+2.\+3 for an explanation of the selection of the dataspaces.
 \end{DoxyNote}
 \begin{DoxyReturn}{Returns}
 ierr 
 \end{DoxyReturn}
 
 \begin{DoxyParams}[1]{Parameters}
-\mbox{\texttt{ in}}  & {\em vars} & variables to write \\
+\doxymbox{\texttt{in}}  & {\em vars} & variables to write \\
 \hline
-\mbox{\texttt{ in}}  & {\em pb3d\+\_\+name} & name of P\+B3D file \\
+\doxymbox{\texttt{in}}  & {\em pb3d\+\_\+name} & name of PB3D file \\
 \hline
-\mbox{\texttt{ in}}  & {\em head\+\_\+name} & head name of variables \\
+\doxymbox{\texttt{in}}  & {\em head\+\_\+name} & head name of variables \\
 \hline
-\mbox{\texttt{ in}}  & {\em rich\+\_\+lvl} & Richardson level to append to file name \\
+\doxymbox{\texttt{in}}  & {\em rich\+\_\+lvl} & Richardson level to append to file name \\
 \hline
-\mbox{\texttt{ in}}  & {\em disp\+\_\+info} & display additional information about variable being read \\
+\doxymbox{\texttt{in}}  & {\em disp\+\_\+info} & display additional information about variable being read \\
 \hline
-\mbox{\texttt{ in}}  & {\em ind\+\_\+print} & individual write (possibly partial I/O) \\
+\doxymbox{\texttt{in}}  & {\em ind\+\_\+print} & individual write (possibly partial I/\+O) \\
 \hline
-\mbox{\texttt{ in}}  & {\em remove\+\_\+previous\+\_\+arrs} & remove previous variables if present \\
+\doxymbox{\texttt{in}}  & {\em remove\+\_\+previous\+\_\+arrs} & remove previous variables if present \\
 \hline
 \end{DoxyParams}
 
 
-Definition at line 1132 of file H\+D\+F5\+\_\+ops.\+f90.
+Definition at line \doxymbox{\hyperlink{HDF5__ops_8f90_source_l01130}{1130}} of file \doxymbox{\hyperlink{HDF5__ops_8f90_source}{HDF5\+\_\+ops.\+f90}}.
 
-Here is the call graph for this function\+:\nopagebreak
+Here is the call graph for this function:\+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=350pt]{namespacehdf5__ops_af80b879ed614698ed91b8235cf1cb22a_cgraph}
+\includegraphics[width=350pt]{namespacehdf5__ops_a2c76f91dc7fb8022ee64b54b4f3b4b52_cgraph}
 \end{center}
 \end{figure}
-Here is the caller graph for this function\+:\nopagebreak
+Here is the caller graph for this function:\+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=350pt]{namespacehdf5__ops_af80b879ed614698ed91b8235cf1cb22a_icgraph}
+\includegraphics[width=350pt]{namespacehdf5__ops_a2c76f91dc7fb8022ee64b54b4f3b4b52_icgraph}
 \end{center}
 \end{figure}
-\mbox{\Hypertarget{namespacehdf5__ops_a4d0ba813f369f904a9e991804662d099}\label{namespacehdf5__ops_a4d0ba813f369f904a9e991804662d099}} 
-\index{hdf5\_ops@{hdf5\_ops}!print\_hdf5\_att@{print\_hdf5\_att}}
+\Hypertarget{namespacehdf5__ops_a4d0ba813f369f904a9e991804662d099}\index{hdf5\_ops@{hdf5\_ops}!print\_hdf5\_att@{print\_hdf5\_att}}
 \index{print\_hdf5\_att@{print\_hdf5\_att}!hdf5\_ops@{hdf5\_ops}}
 \doxysubsubsection{\texorpdfstring{print\_hdf5\_att()}{print\_hdf5\_att()}}
-{\footnotesize\ttfamily subroutine, public hdf5\+\_\+ops\+::print\+\_\+hdf5\+\_\+att (\begin{DoxyParamCaption}\item[{type(xml\+\_\+str\+\_\+type), intent(inout)}]{att\+\_\+id,  }\item[{type(xml\+\_\+str\+\_\+type), intent(inout)}]{att\+\_\+dataitem,  }\item[{character(len=$\ast$), intent(in)}]{att\+\_\+name,  }\item[{integer, intent(in)}]{att\+\_\+center,  }\item[{integer, intent(in)}]{att\+\_\+type,  }\item[{logical, intent(in), optional}]{reset,  }\item[{logical, intent(in), optional}]{ind\+\_\+plot }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \label{namespacehdf5__ops_a4d0ba813f369f904a9e991804662d099} 
+subroutine, public hdf5\+\_\+ops::\+print\+\_\+hdf5\+\_\+att (\begin{DoxyParamCaption}\item[{type(\doxymbox{\hyperlink{structhdf5__vars_1_1xml__str__type}{xml\+\_\+str\+\_\+type}}), intent(inout)}]{att\+\_\+id}{, }\item[{type(\doxymbox{\hyperlink{structhdf5__vars_1_1xml__str__type}{xml\+\_\+str\+\_\+type}}), intent(inout)}]{att\+\_\+dataitem}{, }\item[{character(len=\texorpdfstring{$\ast$}{*}), intent(in)}]{att\+\_\+name}{, }\item[{integer, intent(in)}]{att\+\_\+center}{, }\item[{integer, intent(in)}]{att\+\_\+type}{, }\item[{logical, intent(in), optional}]{reset}{, }\item[{logical, intent(in), optional}]{ind\+\_\+plot}{}\end{DoxyParamCaption})}
 
 
 
-Prints an H\+D\+F5 attribute. 
+Prints an HDF5 attribute. 
 
 
 \begin{DoxyParams}[1]{Parameters}
-\mbox{\texttt{ in,out}}  & {\em att\+\_\+id} & ID of attribute \\
+\doxymbox{\texttt{in,out}}  & {\em att\+\_\+id} & ID of attribute \\
 \hline
-\mbox{\texttt{ in,out}}  & {\em att\+\_\+dataitem} & dataitem of attribute \\
+\doxymbox{\texttt{in,out}}  & {\em att\+\_\+dataitem} & dataitem of attribute \\
 \hline
-\mbox{\texttt{ in}}  & {\em att\+\_\+name} & name of attribute \\
+\doxymbox{\texttt{in}}  & {\em att\+\_\+name} & name of attribute \\
 \hline
-\mbox{\texttt{ in}}  & {\em att\+\_\+center} & center of attribute \\
+\doxymbox{\texttt{in}}  & {\em att\+\_\+center} & center of attribute \\
 \hline
-\mbox{\texttt{ in}}  & {\em att\+\_\+type} & type of attribute \\
+\doxymbox{\texttt{in}}  & {\em att\+\_\+type} & type of attribute \\
 \hline
-\mbox{\texttt{ in}}  & {\em reset} & whether to reset dataitems \\
+\doxymbox{\texttt{in}}  & {\em reset} & whether to reset dataitems \\
 \hline
-\mbox{\texttt{ in}}  & {\em ind\+\_\+plot} & whether individual plot \\
+\doxymbox{\texttt{in}}  & {\em ind\+\_\+plot} & whether individual plot \\
 \hline
 \end{DoxyParams}
 
 
-Definition at line 696 of file H\+D\+F5\+\_\+ops.\+f90.
+Definition at line \doxymbox{\hyperlink{HDF5__ops_8f90_source_l00694}{694}} of file \doxymbox{\hyperlink{HDF5__ops_8f90_source}{HDF5\+\_\+ops.\+f90}}.
 
-Here is the caller graph for this function\+:\nopagebreak
+Here is the caller graph for this function:\+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{namespacehdf5__ops_a4d0ba813f369f904a9e991804662d099_icgraph}
 \end{center}
 \end{figure}
-\mbox{\Hypertarget{namespacehdf5__ops_ac23a71e7029f46e5f38a95468fc10e22}\label{namespacehdf5__ops_ac23a71e7029f46e5f38a95468fc10e22}} 
-\index{hdf5\_ops@{hdf5\_ops}!print\_hdf5\_geom@{print\_hdf5\_geom}}
+\Hypertarget{namespacehdf5__ops_ac23a71e7029f46e5f38a95468fc10e22}\index{hdf5\_ops@{hdf5\_ops}!print\_hdf5\_geom@{print\_hdf5\_geom}}
 \index{print\_hdf5\_geom@{print\_hdf5\_geom}!hdf5\_ops@{hdf5\_ops}}
 \doxysubsubsection{\texorpdfstring{print\_hdf5\_geom()}{print\_hdf5\_geom()}}
-{\footnotesize\ttfamily subroutine, public hdf5\+\_\+ops\+::print\+\_\+hdf5\+\_\+geom (\begin{DoxyParamCaption}\item[{type(xml\+\_\+str\+\_\+type), intent(inout)}]{geom\+\_\+id,  }\item[{integer, intent(in)}]{geom\+\_\+type,  }\item[{type(xml\+\_\+str\+\_\+type), dimension(\+:), intent(inout)}]{geom\+\_\+dataitems,  }\item[{logical, intent(in), optional}]{reset,  }\item[{logical, intent(in), optional}]{ind\+\_\+plot }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \label{namespacehdf5__ops_ac23a71e7029f46e5f38a95468fc10e22} 
+subroutine, public hdf5\+\_\+ops::\+print\+\_\+hdf5\+\_\+geom (\begin{DoxyParamCaption}\item[{type(\doxymbox{\hyperlink{structhdf5__vars_1_1xml__str__type}{xml\+\_\+str\+\_\+type}}), intent(inout)}]{geom\+\_\+id}{, }\item[{integer, intent(in)}]{geom\+\_\+type}{, }\item[{type(\doxymbox{\hyperlink{structhdf5__vars_1_1xml__str__type}{xml\+\_\+str\+\_\+type}}), dimension(:\+), intent(inout)}]{geom\+\_\+dataitems}{, }\item[{logical, intent(in), optional}]{reset}{, }\item[{logical, intent(in), optional}]{ind\+\_\+plot}{}\end{DoxyParamCaption})}
 
 
 
-Prints an H\+D\+F5 geometry. 
+Prints an HDF5 geometry. 
 
 
 \begin{DoxyParams}[1]{Parameters}
-\mbox{\texttt{ in,out}}  & {\em geom\+\_\+id} & ID of geometry \\
+\doxymbox{\texttt{in,out}}  & {\em geom\+\_\+id} & ID of geometry \\
 \hline
-\mbox{\texttt{ in}}  & {\em geom\+\_\+type} & type of geometry \\
+\doxymbox{\texttt{in}}  & {\em geom\+\_\+type} & type of geometry \\
 \hline
-\mbox{\texttt{ in,out}}  & {\em geom\+\_\+dataitems} & data items of geometry \\
+\doxymbox{\texttt{in,out}}  & {\em geom\+\_\+dataitems} & data items of geometry \\
 \hline
-\mbox{\texttt{ in}}  & {\em reset} & whether to reset dataitems \\
+\doxymbox{\texttt{in}}  & {\em reset} & whether to reset dataitems \\
 \hline
-\mbox{\texttt{ in}}  & {\em ind\+\_\+plot} & whether individual plot \\
+\doxymbox{\texttt{in}}  & {\em ind\+\_\+plot} & whether individual plot \\
 \hline
 \end{DoxyParams}
 
 
-Definition at line 805 of file H\+D\+F5\+\_\+ops.\+f90.
+Definition at line \doxymbox{\hyperlink{HDF5__ops_8f90_source_l00804}{804}} of file \doxymbox{\hyperlink{HDF5__ops_8f90_source}{HDF5\+\_\+ops.\+f90}}.
 
-Here is the caller graph for this function\+:\nopagebreak
+Here is the caller graph for this function:\+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{namespacehdf5__ops_ac23a71e7029f46e5f38a95468fc10e22_icgraph}
 \end{center}
 \end{figure}
-\mbox{\Hypertarget{namespacehdf5__ops_a144d595445778d89ec1a1bc0b12a94fb}\label{namespacehdf5__ops_a144d595445778d89ec1a1bc0b12a94fb}} 
-\index{hdf5\_ops@{hdf5\_ops}!print\_hdf5\_grid@{print\_hdf5\_grid}}
+\Hypertarget{namespacehdf5__ops_a144d595445778d89ec1a1bc0b12a94fb}\index{hdf5\_ops@{hdf5\_ops}!print\_hdf5\_grid@{print\_hdf5\_grid}}
 \index{print\_hdf5\_grid@{print\_hdf5\_grid}!hdf5\_ops@{hdf5\_ops}}
 \doxysubsubsection{\texorpdfstring{print\_hdf5\_grid()}{print\_hdf5\_grid()}}
-{\footnotesize\ttfamily integer function, public hdf5\+\_\+ops\+::print\+\_\+hdf5\+\_\+grid (\begin{DoxyParamCaption}\item[{type(xml\+\_\+str\+\_\+type), intent(inout)}]{grid\+\_\+id,  }\item[{character(len=$\ast$), intent(in)}]{grid\+\_\+name,  }\item[{integer, intent(in)}]{grid\+\_\+type,  }\item[{real(dp), intent(in), optional}]{grid\+\_\+time,  }\item[{type(xml\+\_\+str\+\_\+type), optional}]{grid\+\_\+top,  }\item[{type(xml\+\_\+str\+\_\+type), optional}]{grid\+\_\+geom,  }\item[{type(xml\+\_\+str\+\_\+type), dimension(\+:), optional}]{grid\+\_\+atts,  }\item[{type(xml\+\_\+str\+\_\+type), dimension(\+:), optional}]{grid\+\_\+grids,  }\item[{logical, intent(in), optional}]{reset,  }\item[{logical, intent(in), optional}]{ind\+\_\+plot }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \label{namespacehdf5__ops_a144d595445778d89ec1a1bc0b12a94fb} 
+integer function, public hdf5\+\_\+ops::\+print\+\_\+hdf5\+\_\+grid (\begin{DoxyParamCaption}\item[{type(\doxymbox{\hyperlink{structhdf5__vars_1_1xml__str__type}{xml\+\_\+str\+\_\+type}}), intent(inout)}]{grid\+\_\+id}{, }\item[{character(len=\texorpdfstring{$\ast$}{*}), intent(in)}]{grid\+\_\+name}{, }\item[{integer, intent(in)}]{grid\+\_\+type}{, }\item[{real(dp), intent(in), optional}]{grid\+\_\+time}{, }\item[{type(\doxymbox{\hyperlink{structhdf5__vars_1_1xml__str__type}{xml\+\_\+str\+\_\+type}}), optional}]{grid\+\_\+top}{, }\item[{type(\doxymbox{\hyperlink{structhdf5__vars_1_1xml__str__type}{xml\+\_\+str\+\_\+type}}), optional}]{grid\+\_\+geom}{, }\item[{type(\doxymbox{\hyperlink{structhdf5__vars_1_1xml__str__type}{xml\+\_\+str\+\_\+type}}), dimension(:\+), optional}]{grid\+\_\+atts}{, }\item[{type(\doxymbox{\hyperlink{structhdf5__vars_1_1xml__str__type}{xml\+\_\+str\+\_\+type}}), dimension(:\+), optional}]{grid\+\_\+grids}{, }\item[{logical, intent(in), optional}]{reset}{, }\item[{logical, intent(in), optional}]{ind\+\_\+plot}{}\end{DoxyParamCaption})}
 
 
 
-Prints an H\+D\+F5 grid. 
+Prints an HDF5 grid. 
 
-If this is is a uniform grid, the geometry and topology have to be specified, or else it will be assumed that it is already present in the X\+D\+MF domain, and reused.
+If this is is a uniform grid, the geometry and topology have to be specified, or else it will be assumed that it is already present in the XDMF domain, and reused.
 
 If the grid is a collection grid, the grids in the collection have to be specified.
 
@@ -475,13 +477,13 @@ ierr
 \end{DoxyReturn}
 
 \begin{DoxyParams}[1]{Parameters}
-\mbox{\texttt{ in,out}}  & {\em grid\+\_\+id} & ID of grid \\
+\doxymbox{\texttt{in,out}}  & {\em grid\+\_\+id} & ID of grid \\
 \hline
-\mbox{\texttt{ in}}  & {\em grid\+\_\+name} & name \\
+\doxymbox{\texttt{in}}  & {\em grid\+\_\+name} & name \\
 \hline
-\mbox{\texttt{ in}}  & {\em grid\+\_\+type} & type \\
+\doxymbox{\texttt{in}}  & {\em grid\+\_\+type} & type \\
 \hline
-\mbox{\texttt{ in}}  & {\em grid\+\_\+time} & time of grid \\
+\doxymbox{\texttt{in}}  & {\em grid\+\_\+time} & time of grid \\
 \hline
  & {\em grid\+\_\+top} & topology \\
 \hline
@@ -491,84 +493,84 @@ ierr
 \hline
  & {\em grid\+\_\+grids} & grids \\
 \hline
-\mbox{\texttt{ in}}  & {\em reset} & whether top, geom and atts and grids are reset \\
+\doxymbox{\texttt{in}}  & {\em reset} & whether top, geom and atts and grids are reset \\
 \hline
-\mbox{\texttt{ in}}  & {\em ind\+\_\+plot} & whether individual plot \\
+\doxymbox{\texttt{in}}  & {\em ind\+\_\+plot} & whether individual plot \\
 \hline
 \end{DoxyParams}
 
 
-Definition at line 886 of file H\+D\+F5\+\_\+ops.\+f90.
+Definition at line \doxymbox{\hyperlink{HDF5__ops_8f90_source_l00884}{884}} of file \doxymbox{\hyperlink{HDF5__ops_8f90_source}{HDF5\+\_\+ops.\+f90}}.
 
-Here is the call graph for this function\+:\nopagebreak
+Here is the call graph for this function:\+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{namespacehdf5__ops_a144d595445778d89ec1a1bc0b12a94fb_cgraph}
 \end{center}
 \end{figure}
-Here is the caller graph for this function\+:\nopagebreak
+Here is the caller graph for this function:\+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{namespacehdf5__ops_a144d595445778d89ec1a1bc0b12a94fb_icgraph}
 \end{center}
 \end{figure}
-\mbox{\Hypertarget{namespacehdf5__ops_af34b4aea64a8b67ec827aaf4a7425caf}\label{namespacehdf5__ops_af34b4aea64a8b67ec827aaf4a7425caf}} 
-\index{hdf5\_ops@{hdf5\_ops}!print\_hdf5\_top@{print\_hdf5\_top}}
+\Hypertarget{namespacehdf5__ops_af34b4aea64a8b67ec827aaf4a7425caf}\index{hdf5\_ops@{hdf5\_ops}!print\_hdf5\_top@{print\_hdf5\_top}}
 \index{print\_hdf5\_top@{print\_hdf5\_top}!hdf5\_ops@{hdf5\_ops}}
 \doxysubsubsection{\texorpdfstring{print\_hdf5\_top()}{print\_hdf5\_top()}}
-{\footnotesize\ttfamily subroutine, public hdf5\+\_\+ops\+::print\+\_\+hdf5\+\_\+top (\begin{DoxyParamCaption}\item[{type(xml\+\_\+str\+\_\+type), intent(inout)}]{top\+\_\+id,  }\item[{integer, intent(in)}]{top\+\_\+type,  }\item[{integer, dimension(\+:), intent(in)}]{top\+\_\+n\+\_\+elem,  }\item[{logical, intent(in), optional}]{ind\+\_\+plot }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \label{namespacehdf5__ops_af34b4aea64a8b67ec827aaf4a7425caf} 
+subroutine, public hdf5\+\_\+ops::\+print\+\_\+hdf5\+\_\+top (\begin{DoxyParamCaption}\item[{type(\doxymbox{\hyperlink{structhdf5__vars_1_1xml__str__type}{xml\+\_\+str\+\_\+type}}), intent(inout)}]{top\+\_\+id}{, }\item[{integer, intent(in)}]{top\+\_\+type}{, }\item[{integer, dimension(:\+), intent(in)}]{top\+\_\+n\+\_\+elem}{, }\item[{logical, intent(in), optional}]{ind\+\_\+plot}{}\end{DoxyParamCaption})}
 
 
 
-Prints an H\+D\+F5 topology. 
+Prints an HDF5 topology. 
 
 \begin{DoxyNote}{Note}
 Currently only structured grids supported. 
 \end{DoxyNote}
 
 \begin{DoxyParams}[1]{Parameters}
-\mbox{\texttt{ in,out}}  & {\em top\+\_\+id} & ID of topology \\
+\doxymbox{\texttt{in,out}}  & {\em top\+\_\+id} & ID of topology \\
 \hline
-\mbox{\texttt{ in}}  & {\em top\+\_\+type} & type \\
+\doxymbox{\texttt{in}}  & {\em top\+\_\+type} & type \\
 \hline
-\mbox{\texttt{ in}}  & {\em top\+\_\+n\+\_\+elem} & nr. of elements \\
+\doxymbox{\texttt{in}}  & {\em top\+\_\+n\+\_\+elem} & nr. of elements \\
 \hline
-\mbox{\texttt{ in}}  & {\em ind\+\_\+plot} & whether individual plot \\
+\doxymbox{\texttt{in}}  & {\em ind\+\_\+plot} & whether individual plot \\
 \hline
 \end{DoxyParams}
 
 
-Definition at line 755 of file H\+D\+F5\+\_\+ops.\+f90.
+Definition at line \doxymbox{\hyperlink{HDF5__ops_8f90_source_l00754}{754}} of file \doxymbox{\hyperlink{HDF5__ops_8f90_source}{HDF5\+\_\+ops.\+f90}}.
 
-Here is the call graph for this function\+:\nopagebreak
+Here is the call graph for this function:\+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{namespacehdf5__ops_af34b4aea64a8b67ec827aaf4a7425caf_cgraph}
 \end{center}
 \end{figure}
-Here is the caller graph for this function\+:\nopagebreak
+Here is the caller graph for this function:\+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{namespacehdf5__ops_af34b4aea64a8b67ec827aaf4a7425caf_icgraph}
 \end{center}
 \end{figure}
-\mbox{\Hypertarget{namespacehdf5__ops_a5108e0d6f6b492cb981505ebceedd9ee}\label{namespacehdf5__ops_a5108e0d6f6b492cb981505ebceedd9ee}} 
-\index{hdf5\_ops@{hdf5\_ops}!read\_hdf5\_arr@{read\_hdf5\_arr}}
+\Hypertarget{namespacehdf5__ops_ad14fad6af31ce64338c421cb9a8b5ac7}\index{hdf5\_ops@{hdf5\_ops}!read\_hdf5\_arr@{read\_hdf5\_arr}}
 \index{read\_hdf5\_arr@{read\_hdf5\_arr}!hdf5\_ops@{hdf5\_ops}}
 \doxysubsubsection{\texorpdfstring{read\_hdf5\_arr()}{read\_hdf5\_arr()}}
-{\footnotesize\ttfamily integer function, public hdf5\+\_\+ops\+::read\+\_\+hdf5\+\_\+arr (\begin{DoxyParamCaption}\item[{type(var\+\_\+1d\+\_\+type), intent(inout)}]{var,  }\item[{character(len=$\ast$), intent(in)}]{P\+B3\+D\+\_\+name,  }\item[{character(len=$\ast$), intent(in)}]{head\+\_\+name,  }\item[{character(len=$\ast$), intent(in)}]{var\+\_\+name,  }\item[{integer, intent(in), optional}]{rich\+\_\+lvl,  }\item[{logical, intent(in), optional}]{disp\+\_\+info,  }\item[{integer, dimension(\+:,\+:), intent(in), optional}]{lim\+\_\+loc }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \label{namespacehdf5__ops_ad14fad6af31ce64338c421cb9a8b5ac7} 
+integer function, public hdf5\+\_\+ops::\+read\+\_\+hdf5\+\_\+arr (\begin{DoxyParamCaption}\item[{type(\doxymbox{\hyperlink{structhdf5__vars_1_1var__1d__type}{var\+\_\+1d\+\_\+type}}), intent(inout)}]{var}{, }\item[{character(len=\texorpdfstring{$\ast$}{*}), intent(in)}]{pb3d\+\_\+name}{, }\item[{character(len=\texorpdfstring{$\ast$}{*}), intent(in)}]{head\+\_\+name}{, }\item[{character(len=\texorpdfstring{$\ast$}{*}), intent(in)}]{var\+\_\+name}{, }\item[{integer, intent(in), optional}]{rich\+\_\+lvl}{, }\item[{logical, intent(in), optional}]{disp\+\_\+info}{, }\item[{integer, dimension(:\+,:\+), intent(in), optional}]{lim\+\_\+loc}{}\end{DoxyParamCaption})}
 
 
 
-Reads a P\+B3D output file in H\+D\+F5 format. 
+Reads a PB3D output file in HDF5 format. 
 
 This happens in a non-\/parallel way. By default, all variables are read, but an array of strings with acceptable variable names can be passed.
 
-Optionally, output can be given about the variable being read. Also, if {\ttfamily rich\+\_\+lvl} is provided, {\ttfamily \+\_\+\+R\+\_\+rich\+\_\+lvl} is appended to the head name if it is $>$ 0.
+Optionally, output can be given about the variable being read. Also, if {\ttfamily rich\+\_\+lvl} is provided, {\ttfamily \+\_\+\+R\+\_\+rich\+\_\+lvl} is appended to the head name if it is \texorpdfstring{$>$}{>} 0.
 
 Furthermore, using {\ttfamily lim\+\_\+loc}, a hyperslab of the variable can be read.
 
@@ -580,47 +582,49 @@ ierr
 \end{DoxyReturn}
 
 \begin{DoxyParams}[1]{Parameters}
-\mbox{\texttt{ in,out}}  & {\em var} & variable to read \\
+\doxymbox{\texttt{in,out}}  & {\em var} & variable to read \\
 \hline
-\mbox{\texttt{ in}}  & {\em pb3d\+\_\+name} & name of P\+B3D file \\
+\doxymbox{\texttt{in}}  & {\em pb3d\+\_\+name} & name of PB3D file \\
 \hline
-\mbox{\texttt{ in}}  & {\em head\+\_\+name} & head name of variables \\
+\doxymbox{\texttt{in}}  & {\em head\+\_\+name} & head name of variables \\
 \hline
-\mbox{\texttt{ in}}  & {\em var\+\_\+name} & name of variable \\
+\doxymbox{\texttt{in}}  & {\em var\+\_\+name} & name of variable \\
 \hline
-\mbox{\texttt{ in}}  & {\em rich\+\_\+lvl} & Richardson level to reconstruct \\
+\doxymbox{\texttt{in}}  & {\em rich\+\_\+lvl} & Richardson level to reconstruct \\
 \hline
-\mbox{\texttt{ in}}  & {\em disp\+\_\+info} & display additional information about variable being read \\
+\doxymbox{\texttt{in}}  & {\em disp\+\_\+info} & display additional information about variable being read \\
 \hline
-\mbox{\texttt{ in}}  & {\em lim\+\_\+loc} & local limits \\
+\doxymbox{\texttt{in}}  & {\em lim\+\_\+loc} & local limits \\
 \hline
 \end{DoxyParams}
 
 
-Definition at line 1530 of file H\+D\+F5\+\_\+ops.\+f90.
+Definition at line \doxymbox{\hyperlink{HDF5__ops_8f90_source_l01528}{1528}} of file \doxymbox{\hyperlink{HDF5__ops_8f90_source}{HDF5\+\_\+ops.\+f90}}.
 
-Here is the call graph for this function\+:\nopagebreak
+Here is the call graph for this function:\+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=350pt]{namespacehdf5__ops_a5108e0d6f6b492cb981505ebceedd9ee_cgraph}
+\includegraphics[width=350pt]{namespacehdf5__ops_ad14fad6af31ce64338c421cb9a8b5ac7_cgraph}
 \end{center}
 \end{figure}
-Here is the caller graph for this function\+:\nopagebreak
+Here is the caller graph for this function:\+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=350pt]{namespacehdf5__ops_a5108e0d6f6b492cb981505ebceedd9ee_icgraph}
+\includegraphics[width=350pt]{namespacehdf5__ops_ad14fad6af31ce64338c421cb9a8b5ac7_icgraph}
 \end{center}
 \end{figure}
 
 
+\label{doc-var-members}
+\Hypertarget{namespacehdf5__ops_doc-var-members}
 \doxysubsection{Variable Documentation}
-\mbox{\Hypertarget{namespacehdf5__ops_a9b7c63811a63e9454539f1a2c89678b4}\label{namespacehdf5__ops_a9b7c63811a63e9454539f1a2c89678b4}} 
-\index{hdf5\_ops@{hdf5\_ops}!debug\_hdf5\_ops@{debug\_hdf5\_ops}}
+\Hypertarget{namespacehdf5__ops_a9b7c63811a63e9454539f1a2c89678b4}\index{hdf5\_ops@{hdf5\_ops}!debug\_hdf5\_ops@{debug\_hdf5\_ops}}
 \index{debug\_hdf5\_ops@{debug\_hdf5\_ops}!hdf5\_ops@{hdf5\_ops}}
 \doxysubsubsection{\texorpdfstring{debug\_hdf5\_ops}{debug\_hdf5\_ops}}
-{\footnotesize\ttfamily logical, public hdf5\+\_\+ops\+::debug\+\_\+hdf5\+\_\+ops = .false.}
+{\footnotesize\ttfamily \label{namespacehdf5__ops_a9b7c63811a63e9454539f1a2c89678b4} 
+logical, public hdf5\+\_\+ops::\+debug\+\_\+hdf5\+\_\+ops = .false.}
 
 
 
@@ -631,22 +635,22 @@ Debug version only
 \end{DoxyNote}
 
 
-Definition at line 47 of file H\+D\+F5\+\_\+ops.\+f90.
+Definition at line \doxymbox{\hyperlink{HDF5__ops_8f90_source_l00047}{47}} of file \doxymbox{\hyperlink{HDF5__ops_8f90_source}{HDF5\+\_\+ops.\+f90}}.
 
-\mbox{\Hypertarget{namespacehdf5__ops_a00bbaa77652e040350c9726668cc22ac}\label{namespacehdf5__ops_a00bbaa77652e040350c9726668cc22ac}} 
-\index{hdf5\_ops@{hdf5\_ops}!debug\_print\_hdf5\_arrs@{debug\_print\_hdf5\_arrs}}
+\Hypertarget{namespacehdf5__ops_a00bbaa77652e040350c9726668cc22ac}\index{hdf5\_ops@{hdf5\_ops}!debug\_print\_hdf5\_arrs@{debug\_print\_hdf5\_arrs}}
 \index{debug\_print\_hdf5\_arrs@{debug\_print\_hdf5\_arrs}!hdf5\_ops@{hdf5\_ops}}
 \doxysubsubsection{\texorpdfstring{debug\_print\_hdf5\_arrs}{debug\_print\_hdf5\_arrs}}
-{\footnotesize\ttfamily logical, public hdf5\+\_\+ops\+::debug\+\_\+print\+\_\+hdf5\+\_\+arrs = .false.}
+{\footnotesize\ttfamily \label{namespacehdf5__ops_a00bbaa77652e040350c9726668cc22ac} 
+logical, public hdf5\+\_\+ops::\+debug\+\_\+print\+\_\+hdf5\+\_\+arrs = .false.}
 
 
 
-set to true to debug print\+\_\+\+H\+D\+F5\+\_\+arrs 
+set to true to debug print\+\_\+\+HDF5\+\_\+arrs 
 
 \begin{DoxyNote}{Note}
 Debug version only 
 \end{DoxyNote}
 
 
-Definition at line 48 of file H\+D\+F5\+\_\+ops.\+f90.
+Definition at line \doxymbox{\hyperlink{HDF5__ops_8f90_source_l00048}{48}} of file \doxymbox{\hyperlink{HDF5__ops_8f90_source}{HDF5\+\_\+ops.\+f90}}.
 

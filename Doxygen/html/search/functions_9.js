@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['kappa_5fplot_1347',['kappa_plot',['../namespaceeq__ops.html#ad173efd111cb85c11bc2bc78a7555096',1,'eq_ops']]]
+  ['j_5fplot_0',['j_plot',['../namespaceeq__ops.html#aa16cc7b5d17f3e3b65b045f12b40540d',1,'eq_ops']]]
 ];

@@ -1,0 +1,394 @@
+\doxysection{vac\+\_\+vars.\+f90}
+\hypertarget{vac__vars_8f90_source}{}\label{vac__vars_8f90_source}\index{/Users/toonweyens/Code/PB3D/Modules/vac\_vars.f90@{/Users/toonweyens/Code/PB3D/Modules/vac\_vars.f90}}
+\doxymbox{\hyperlink{vac__vars_8f90}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00001}00001\ \textcolor{comment}{!-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/!}\textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00002}00002\ \textcolor{comment}{!>\ Variables\ pertaining\ to\ the\ vacuum\ quantities.}}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00003}00003\ \textcolor{comment}{!-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/!}}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00004}\doxymbox{\hyperlink{namespacevac__vars}{00004}}\ \textcolor{keyword}{module}\ \doxymbox{\hyperlink{namespacevac__vars}{vac\_vars}}}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00005}00005\ \textcolor{preprocessor}{\#include\ <PB3D\_macros.h>}}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00006}00006\ \textcolor{preprocessor}{}\ \ \ \ \textcolor{keywordtype}{use\ }strumpackdensepackage}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00007}00007\ \ \ \ \ \textcolor{keywordtype}{use\ }\doxymbox{\hyperlink{namespacestr__utilities}{str\_utilities}}}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00008}00008\ \ \ \ \ \textcolor{keywordtype}{use\ }\doxymbox{\hyperlink{namespacemessages}{messages}}}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00009}00009\ \ \ \ \ \textcolor{keywordtype}{use\ }\doxymbox{\hyperlink{namespacenum__vars}{num\_vars}},\ \textcolor{keywordtype}{only}:\ \doxymbox{\hyperlink{namespacenum__vars_a03802aa2bd86439d7a9370836fabf3f2}{dp}},\ \doxymbox{\hyperlink{namespacenum__vars_a1b79c43315241705b429443dfe798837}{max\_name\_ln}},\ \doxymbox{\hyperlink{namespacenum__vars_a3b9303c24ebbdff7b366337702795211}{iu}},\ \doxymbox{\hyperlink{namespacenum__vars_ad5be06791ebf0ca75fc6dc7339916ae8}{weight\_dp}},\ \doxymbox{\hyperlink{namespacenum__vars_a3ff2bb983ee80a6735277d6789e6ce7c}{max\_str\_ln}}}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00010}00010\ \ \ \ \ \textcolor{keywordtype}{use\ }\doxymbox{\hyperlink{namespacegrid__vars}{grid\_vars}},\ \textcolor{keywordtype}{only}:\ \doxymbox{\hyperlink{structgrid__vars_1_1grid__type}{grid\_type}}}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00011}00011\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00012}00012\ \ \ \ \ \textcolor{keywordtype}{implicit\ none}}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00013}00013\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00014}00014\ \ \ \ \ \textcolor{keywordtype}{private}}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00015}00015\ \ \ \ \ \textcolor{keywordtype}{public}\ \doxymbox{\hyperlink{namespacevac__vars_a8da702035bfcc208bd810258f9944f6a}{copy\_vac}},\ \doxymbox{\hyperlink{namespacevac__vars_a5bfa31e3a61464281d70a4e1a8246510}{set\_loc\_lims}},\ \doxymbox{\hyperlink{namespacevac__vars_af0fd2f819434bf7adc494753df4af19c}{in\_context}}}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00016}00016\ \textcolor{preprocessor}{\#if\ ldebug}}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00017}00017\ \textcolor{preprocessor}{}\ \ \ \ \textcolor{keywordtype}{public}\ \doxymbox{\hyperlink{namespacevac__vars_a48e085d21d3006e777a7052577e89a21}{n\_alloc\_vacs}}}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00018}00018\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00019}00019\ \textcolor{preprocessor}{}\ \ \ \ }
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00020}00020\ \ \ \ \ \textcolor{comment}{!\ global\ variables}}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00021}00021\ \ \ \ \ \textcolor{keywordtype}{integer},\ \textcolor{keywordtype}{parameter}\ ::\ bs\ =\ 16\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !<\ Blocksize\ of\ the\ 2D\ block-\/cyclic\ distribution}}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00022}00022\ \textcolor{preprocessor}{\#if\ ldebug}}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00023}\doxymbox{\hyperlink{namespacevac__vars_a48e085d21d3006e777a7052577e89a21}{00023}}\ \textcolor{preprocessor}{}\ \ \ \ \textcolor{keywordtype}{integer}\ ::\ \doxymbox{\hyperlink{namespacevac__vars_a48e085d21d3006e777a7052577e89a21}{n\_alloc\_vacs}}\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !<\ nr.\ of\ allocated\ vacs\ \(\backslash\)ldebug}}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00024}00024\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00025}00025\ \textcolor{preprocessor}{}\ \ \ \ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00026}00026\ \textcolor{comment}{\ \ \ \ !>\ vacuum\ type}}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00027}00027\ \textcolor{comment}{\ \ \ \ !!}}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00028}00028\ \textcolor{comment}{\ \ \ \ !!\ The\ arrays\ here\ are\ of\ the\ form:}}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00029}00029\ \textcolor{comment}{\ \ \ \ !!\ \ -\/\ \(\backslash\)c\ H,\ \(\backslash\)c\ G:\ \ \ <tt>(n\_loc,n\_loc)</tt>}}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00030}00030\ \textcolor{comment}{\ \ \ \ !!\ \ -\/\ \(\backslash\)c\ res:\ \ \ \ \ \ \ <tt>(n\_mod\_X,n\_mod\_X)</tt>}}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00031}00031\ \textcolor{comment}{\ \ \ \ !!}}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00032}00032\ \textcolor{comment}{\ \ \ \ !!\ where\ \(\backslash\)c\ n\_loc\ is\ the\ number\ of\ \ points\ in\ the\ boundary,\ i.e.\ a\ subset\ of}}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00033}00033\ \textcolor{comment}{\ \ \ \ !!\ \(\backslash\)c\ n\_bnd.}}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00034}00034\ \textcolor{comment}{\ \ \ \ !!}}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00035}00035\ \textcolor{comment}{\ \ \ \ !!\ For\ \ vacuum\ style\ \ 1,\ the\ \ vacuum\ \ is\ assumed\ \ to\ be\ \ equidsitant\ in\ \ the}}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00036}00036\ \textcolor{comment}{\ \ \ \ !!\ coordinate\ \ along\ the\ \ magnetic\ field\ \ lines\ and,\ \ if\ there\ \ are\ multiple}}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00037}00037\ \textcolor{comment}{\ \ \ \ !!\ field\ \ lines,\ also\ \ in\ \ the\ \ field\ line\ \ label\ \ \(\backslash\)f\$\(\backslash\)alpha\(\backslash\)f\$.\ The\ \ limits}}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00038}00038\ \textcolor{comment}{\ \ \ \ !!\ on\ \ the\ \ angles\ are\ \ assumed\ \ to\ \ be\ given\ \ by\ \ the\ \ global\ variables\ \ \(\backslash\)c}}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00039}00039\ \textcolor{comment}{\ \ \ \ !!\ grid\_vars.min\_par\_x,\ \(\backslash\)c\ \ grid\_vars.max\_par\_x\ and\ \ \(\backslash\)c\ grid\_vars.min\_alpha,}}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00040}00040\ \textcolor{comment}{\ \ \ \ !!\ \(\backslash\)c\ grid\_vars.max\_alpha.}}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00041}00041\ \textcolor{comment}{\ \ \ \ !!}}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00042}00042\ \textcolor{comment}{\ \ \ \ !!\ For\ vacuum\ style\ 2,\ \ there\ is\ an\ additional\ angle\ \(\backslash\)c\ \ ang.\ It\ is\ composed}}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00043}00043\ \textcolor{comment}{\ \ \ \ !!\ of\ the\ \ angles\ along\ the\ magnetic\ \ fields\ (which\ refers\ to\ \ \(\backslash\)c\ angle\_1\ in}}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00044}00044\ \textcolor{comment}{\ \ \ \ !!\ the\ \ discussion\ \ of\ \ \(\backslash\)c\ \ grid\_vars.grid\_type),\ \ of\ \ which\ \ there\ \ can\ \ be}}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00045}00045\ \textcolor{comment}{\ \ \ \ !!\ multiple,\ but\ the\ total\ sum\ must\ be\ equal\ to\ \(\backslash\)c\ n\_bnd.}}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00046}\doxymbox{\hyperlink{structvac__vars_1_1vac__type}{00046}}\ \ \ \ \ \textcolor{keyword}{type},\ \textcolor{keyword}{public}\ ::\ \doxymbox{\hyperlink{structvac__vars_1_1vac__type}{vac\_type}}}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00047}\doxymbox{\hyperlink{structvac__vars_1_1vac__type_afbd856ce1a362b252a9d8195b83546cd}{00047}}\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer}\ ::\ style\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !<\ style\ of\ vacuum\ (1:\ field-\/line\ 3-\/D,\ 2:\ axisymmetric)}}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00048}\doxymbox{\hyperlink{structvac__vars_1_1vac__type_a75bec679a19120000183f0d0d6fcd880}{00048}}\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer}\ ::\ prim\_x\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !<\ primary\ mode\ number}}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00049}\doxymbox{\hyperlink{structvac__vars_1_1vac__type_a975901d1517e02c7a78be46054decde0}{00049}}\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer}\ ::\ ctxt\_hg\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !<\ context\ for\ H\ and\ G}}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00050}\doxymbox{\hyperlink{structvac__vars_1_1vac__type_a099ac67e58545d9dd3863d0397f37b05}{00050}}\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer}\ ::\ n\_bnd\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !<\ number\ of\ points\ in\ boundary}}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00051}\doxymbox{\hyperlink{structvac__vars_1_1vac__type_aacac3cfc228c0a5de03540bf63bc9014}{00051}}\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer}\ ::\ bs\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !<\ block\ size\ in\ cyclical\ storage}}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00052}\doxymbox{\hyperlink{structvac__vars_1_1vac__type_af24c1254132acf04aef2f91952b73243}{00052}}\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer}\ ::\ mpi\_comm\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !<\ communicator\ for\ vacuum}}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00053}\doxymbox{\hyperlink{structvac__vars_1_1vac__type_a7d588dd9ece3c1a645329431769c28de}{00053}}\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer}\ ::\ desc\_h(blacsctxtsize)\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !<\ descriptor\ for\ H}}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00054}\doxymbox{\hyperlink{structvac__vars_1_1vac__type_a8c1903cbdc406915f473535daa1cafb7}{00054}}\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer}\ ::\ desc\_g(blacsctxtsize)\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !<\ descriptor\ for\ G}}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00055}\doxymbox{\hyperlink{structvac__vars_1_1vac__type_aaf6def83c79ec72152b8aa27081fde11}{00055}}\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer}\ ::\ n\_p(2)\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !<\ nr.\ of\ processes\ in\ grid}}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00056}\doxymbox{\hyperlink{structvac__vars_1_1vac__type_ac337095579ae842776d35a4b975254e8}{00056}}\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer}\ ::\ n\_ang(2)\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !<\ number\ of\ angles\ (1)\ and\ number\ of\ field\ lines\ (2)}}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00057}\doxymbox{\hyperlink{structvac__vars_1_1vac__type_ae875caaff6d6ddf9bf6abba721f081ec}{00057}}\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer}\ ::\ ind\_p(2)\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !<\ index\ of\ local\ process\ in\ grid}}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00058}\doxymbox{\hyperlink{structvac__vars_1_1vac__type_ad773e9aa724066256c3955a1a98a1d63}{00058}}\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer}\ ::\ n\_loc(2)\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !<\ local\ number\ of\ rows\ and\ columns}}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00059}\doxymbox{\hyperlink{structvac__vars_1_1vac__type_aeb4618332068796eb12784a5b5582416}{00059}}\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer},\ \textcolor{keywordtype}{allocatable}\ ::\ sec\_x(:)\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !<\ secondary\ mode\ numbers}}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00060}\doxymbox{\hyperlink{structvac__vars_1_1vac__type_ad4aa76e0d91f32808465d15ac04528ec}{00060}}\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer},\ \textcolor{keywordtype}{allocatable}\ ::\ lims\_c(:,:)\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !<\ column\ limits\ for\ different\ subrows\ of\ G\ and\ H}}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00061}\doxymbox{\hyperlink{structvac__vars_1_1vac__type_aac146dc17760b97ff3cb7966cd1b41f9}{00061}}\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer},\ \textcolor{keywordtype}{allocatable}\ ::\ lims\_r(:,:)\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !<\ row\ limits\ for\ different\ subcolumns\ of\ G\ and\ H}}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00062}\doxymbox{\hyperlink{structvac__vars_1_1vac__type_a8cba6ae0e61249966161e44ab1c465fb}{00062}}\ \textcolor{keywordtype}{\ \ \ \ \ \ \ \ real}(\doxymbox{\hyperlink{namespacenum__vars_a03802aa2bd86439d7a9370836fabf3f2}{dp}})\ ::\ jq\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !<\ iota\ (tor.\ flux)\ or\ q\ (pol.\ flux)\ at\ edge}}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00063}\doxymbox{\hyperlink{structvac__vars_1_1vac__type_a8a79c1f2b383fda22b5f3cca1f7afd31}{00063}}\ \textcolor{keywordtype}{\ \ \ \ \ \ \ \ real}(\doxymbox{\hyperlink{namespacenum__vars_a03802aa2bd86439d7a9370836fabf3f2}{dp}}),\ \textcolor{keywordtype}{allocatable}\ ::\ ang(:,:)\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !<\ angle\ along\ field\ line,\ for\ each\ field\ line}}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00064}\doxymbox{\hyperlink{structvac__vars_1_1vac__type_a0a50780974a5360abbc019e2e32f82ec}{00064}}\ \textcolor{keywordtype}{\ \ \ \ \ \ \ \ real}(\doxymbox{\hyperlink{namespacenum__vars_a03802aa2bd86439d7a9370836fabf3f2}{dp}}),\ \textcolor{keywordtype}{allocatable}\ ::\ norm(:,:)\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !<\ J\ nabla\ psi\ normal\ vector}}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00065}\doxymbox{\hyperlink{structvac__vars_1_1vac__type_a7703921b8900d9886904fd51e8cba073}{00065}}\ \textcolor{keywordtype}{\ \ \ \ \ \ \ \ real}(\doxymbox{\hyperlink{namespacenum__vars_a03802aa2bd86439d7a9370836fabf3f2}{dp}}),\ \textcolor{keywordtype}{allocatable}\ ::\ dnorm(:,:)\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !<\ poloidal\ derivative\ of\ norm\ (only\ for\ style\ 2)}}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00066}\doxymbox{\hyperlink{structvac__vars_1_1vac__type_abdbf97da81162577af6880aba4e44061}{00066}}\ \textcolor{keywordtype}{\ \ \ \ \ \ \ \ real}(\doxymbox{\hyperlink{namespacenum__vars_a03802aa2bd86439d7a9370836fabf3f2}{dp}}),\ \textcolor{keywordtype}{allocatable}\ ::\ h\_fac(:,:)\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !<\ metric\ factors\ (1,1),\ (1,3)\ and\ (3,3)\ (only\ for\ style\ 1)}}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00067}\doxymbox{\hyperlink{structvac__vars_1_1vac__type_ae485365ab16528f580d33805ba4633d3}{00067}}\ \textcolor{keywordtype}{\ \ \ \ \ \ \ \ real}(\doxymbox{\hyperlink{namespacenum__vars_a03802aa2bd86439d7a9370836fabf3f2}{dp}}),\ \textcolor{keywordtype}{allocatable}\ ::\ x\_vec(:,:)\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !<\ Cartesian\ vector\ of\ position}}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00068}\doxymbox{\hyperlink{structvac__vars_1_1vac__type_a409e9e1182fbfe4cdf9b882297a5faf9}{00068}}\ \textcolor{keywordtype}{\ \ \ \ \ \ \ \ real}(\doxymbox{\hyperlink{namespacenum__vars_a03802aa2bd86439d7a9370836fabf3f2}{dp}}),\ \textcolor{keywordtype}{allocatable}\ ::\ h(:,:)\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !<\ H\ coefficient}}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00069}\doxymbox{\hyperlink{structvac__vars_1_1vac__type_abccce7d8c7e44b2bbc76104b2138ea5b}{00069}}\ \textcolor{keywordtype}{\ \ \ \ \ \ \ \ real}(\doxymbox{\hyperlink{namespacenum__vars_a03802aa2bd86439d7a9370836fabf3f2}{dp}}),\ \textcolor{keywordtype}{allocatable}\ ::\ g(:,:)\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !<\ G\ coefficient}}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00070}\doxymbox{\hyperlink{structvac__vars_1_1vac__type_ac7baffb7968c67d876d2c3f8a7c90a89}{00070}}\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{complex(dp)},\ \textcolor{keywordtype}{allocatable}\ ::\ res(:,:)\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !<\ vacuum\ response}}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00071}00071\ \textcolor{preprocessor}{\#if\ ldebug}}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00072}\doxymbox{\hyperlink{structvac__vars_1_1vac__type_ab01e7e74ce3f5c2a0e4bff7cd88d5c3f}{00072}}\ \textcolor{preprocessor}{}\textcolor{keywordtype}{\ \ \ \ \ \ \ \ real}(\doxymbox{\hyperlink{namespacenum__vars_a03802aa2bd86439d7a9370836fabf3f2}{dp}})\ ::\ estim\_mem\_usage\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !<\ estimated\ memory\ usage\ \(\backslash\)ldebug}}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00073}00073\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00074}00074\ \textcolor{preprocessor}{}\ \ \ \ \textcolor{keyword}{contains}\textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00075}00075\ \textcolor{comment}{\ \ \ \ \ \ \ \ !>\ initialize}}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00076}\doxymbox{\hyperlink{structvac__vars_1_1vac__type_afa967069239b8a72212e3a5cbe57721b}{00076}}\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{procedure}\ ::\ init\ =>\ \doxymbox{\hyperlink{namespacevac__vars_a62f1cdc62a18ca5389f8c5efbc25fa16}{init\_vac}}\textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00077}00077\ \textcolor{comment}{\ \ \ \ \ \ \ \ !>\ deallocate}}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00078}\doxymbox{\hyperlink{structvac__vars_1_1vac__type_a6b5be1440804ecde87e2fede08ca897b}{00078}}\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{procedure}\ ::\ dealloc\ =>\ \doxymbox{\hyperlink{namespacevac__vars_aa6669ed787cf96e8f8fa665149bc83a3}{dealloc\_vac}}}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00079}00079\ \ \ \ \ \textcolor{keyword}{end\ type}}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00080}00080\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00081}00081\ \textcolor{keyword}{contains}\textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00082}00082\ \textcolor{comment}{\ \ \ \ !>\ \(\backslash\)public\ Initializes\ a\ vacuum\ type.}}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00083}00083\ \textcolor{comment}{\ \ \ \ !!}}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00084}00084\ \textcolor{comment}{\ \ \ \ !!\ The\ number\ of\ modes\ as\ well\ as\ \(\backslash\)c\ n\ and\ \(\backslash\)c\ m\ are\ also\ set\ up.}}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00085}00085\ \textcolor{comment}{\ \ \ \ !!}}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00086}00086\ \textcolor{comment}{\ \ \ \ !!\ The\ \ variables\ G\ \ and\ H\ \ are\ \ saved\ in\ \ a\ \ special\ format,\ \ based\ on\ \ the}}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00087}00087\ \textcolor{comment}{\ \ \ \ !!\ block-\/cyclical\ \ distribution\ employed\ \ in\ \ scalapack.\ \ As\ a\ \ hypothetical}}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00088}00088\ \textcolor{comment}{\ \ \ \ !!\ example,\ consider\ a\ process\ grid\ \ corresponding\ to\ block-\/size\ 1x2\ and\ 2x3}}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00089}00089\ \textcolor{comment}{\ \ \ \ !!\ processes\ with\ a\ total\ size\ of\ 3x15:}}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00090}00090\ \textcolor{comment}{\ \ \ \ !!\ \(\backslash\)f[\(\backslash\)left[\(\backslash\)begin\{array\}\{ccccccccccccccc\}}}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00091}00091\ \textcolor{comment}{\ \ \ \ !!\ \ 0\ \&\ 0\ \&\ 1\ \&\ 1\ \&\ 2\ \&\ 2\ \&\ 0\ \&\ 0\ \&\ 1\ \&\ 1\ \&\ 2\ \&\ 2\ \&\ 0\ \&\ 0\ \&\ 1\ \(\backslash\)\(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00092}00092\ \textcolor{comment}{\ \ \ \ !!\ \ 3\ \&\ 3\ \&\ 4\ \&\ 4\ \&\ 5\ \&\ 5\ \&\ 3\ \&\ 3\ \&\ 4\ \&\ 4\ \&\ 5\ \&\ 5\ \&\ 3\ \&\ 3\ \&\ 4\ \(\backslash\)\(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00093}00093\ \textcolor{comment}{\ \ \ \ !!\ \ 0\ \&\ 0\ \&\ 1\ \&\ 1\ \&\ 2\ \&\ 2\ \&\ 0\ \&\ 0\ \&\ 1\ \&\ 1\ \&\ 2\ \&\ 2\ \&\ 0\ \&\ 0\ \&\ 1}}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00094}00094\ \textcolor{comment}{\ \ \ \ !!\ \(\backslash\)end\{array\}\(\backslash\)right]\(\backslash\)f]}}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00095}00095\ \textcolor{comment}{\ \ \ \ !!}}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00096}00096\ \textcolor{comment}{\ \ \ \ !!\ Therefore,\ the\ 3-\/D\ storage\ convention\ used\ is,\ for\ example,\ for\ process\ 1:}}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00097}00097\ \textcolor{comment}{\ \ \ \ !!\ \(\backslash\)f[\(\backslash\)begin\{bmatrix\}}}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00098}00098\ \textcolor{comment}{\ \ \ \ !!\ \ (1,3)\ \&\ (1,4)\ \&\ (1,9)\ \&\ (1,10)\ \&\ (1,15)\ \&\ (1,\(\backslash\)cdot)\ \(\backslash\)\(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00099}00099\ \textcolor{comment}{\ \ \ \ !!\ \ (3,3)\ \&\ (3,4)\ \&\ (3,9)\ \&\ (3,10)\ \&\ (3,15)\ \&\ (3,\(\backslash\)cdot)}}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00100}00100\ \textcolor{comment}{\ \ \ \ !!\ \(\backslash\)end\{bmatrix\}\(\backslash\)f]}}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00101}00101\ \textcolor{comment}{\ \ \ \ !!}}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00102}00102\ \textcolor{comment}{\ \ \ \ !!\ The\ \ \ information\ \ concerning\ \ \ the\ \ delimitations\ \ \ of\ \ the\ \ \ individual}}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00103}00103\ \textcolor{comment}{\ \ \ \ !!\ subintervals\ in\ the\ \ horizontal\ and\ vertical\ direction\ can\ \ be\ saved\ once}}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00104}00104\ \textcolor{comment}{\ \ \ \ !!\ per\ subinterval.}}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00105}00105\ \textcolor{comment}{\ \ \ \ !!\ For\ process\ 4\ of\ above\ example,\ this\ would\ be}}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00106}00106\ \textcolor{comment}{\ \ \ \ !!\ \(\backslash\)f[}}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00107}00107\ \textcolor{comment}{\ \ \ \ !!\ \ \(\backslash\)begin\{bmatrix\}\ 2\ \(\backslash\)\(\backslash\)\ 2\ \(\backslash\)end\{bmatrix\}\ ;}}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00108}00108\ \textcolor{comment}{\ \ \ \ !!\ \(\backslash\)f]}}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00109}00109\ \textcolor{comment}{\ \ \ \ !!\ for\ the\ vertical\ direction,\ and}}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00110}00110\ \textcolor{comment}{\ \ \ \ !!\ \(\backslash\)f[}}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00111}00111\ \textcolor{comment}{\ \ \ \ !!\ \ \(\backslash\)begin\{bmatrix\}\ 3\ \&\ 9\ \&\ 15\ \(\backslash\)\(\backslash\)\ 4\ \&\ 10\ \&\ 15\ \(\backslash\)end\{bmatrix\}\ ;}}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00112}00112\ \textcolor{comment}{\ \ \ \ !!\ \(\backslash\)f]}}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00113}00113\ \textcolor{comment}{\ \ \ \ !!\ for\ the\ horizontal\ direction.}}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00114}00114\ \textcolor{comment}{\ \ \ \ !!}}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00115}00115\ \textcolor{comment}{\ \ \ \ !!\ A\ value\ \ \(\backslash\)f\$\(\backslash\)cdot\(\backslash\)f\$\ indicates\ that\ \ the\ index\ \ is\ out\ of\ \ global\ bounds.}}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00116}00116\ \textcolor{comment}{\ \ \ \ !!\ Practically,\ this\ is\ \ checked\ by\ seeing\ whether\ the\ total\ \ index\ does\ not}}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00117}00117\ \textcolor{comment}{\ \ \ \ !!\ exceed\ the\ global\ bounds.}}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00118}00118\ \textcolor{comment}{\ \ \ \ !!\ }}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00119}00119\ \textcolor{comment}{\ \ \ \ !!\ \(\backslash\)return\ ierr}}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00120}\doxymbox{\hyperlink{namespacevac__vars_a62f1cdc62a18ca5389f8c5efbc25fa16}{00120}}\ \ \ \ \ \textcolor{keyword}{integer\ }\textcolor{keyword}{function\ }\doxymbox{\hyperlink{namespacevac__vars_a62f1cdc62a18ca5389f8c5efbc25fa16}{init\_vac}}(vac,style,n\_bnd,prim\_X,n\_ang,jq)\ \textcolor{keyword}{result}(ierr)}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00121}00121\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{use\ }mpi}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00122}00122\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{use\ }\doxymbox{\hyperlink{namespacenum__vars}{num\_vars}},\ \textcolor{keywordtype}{only}:\ \doxymbox{\hyperlink{namespacenum__vars_a3a1f41c66c3d91fc749bcffd177b0662}{n\_procs}},\ \doxymbox{\hyperlink{namespacenum__vars_ab47aa91445feaedb05ac9d1a584664fe}{rank}}}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00123}00123\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{use\ }\doxymbox{\hyperlink{namespacex__vars}{x\_vars}},\ \textcolor{keywordtype}{only}:\ \doxymbox{\hyperlink{namespacex__vars_a2e8fe6c5fe1cf61704bf176925d2b02e}{n\_mod\_x}}}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00124}00124\ \textcolor{preprocessor}{\#if\ ldebug}}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00125}00125\ \textcolor{preprocessor}{}\ \ \ \ \ \ \ \ \textcolor{keywordtype}{use\ }\doxymbox{\hyperlink{namespacenum__vars}{num\_vars}},\ \textcolor{keywordtype}{only}:\ \doxymbox{\hyperlink{namespacenum__vars_a28bf4f706f43af630ecc697dec01654c}{print\_mem\_usage}}}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00126}00126\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00127}00127\ \textcolor{preprocessor}{}\ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00128}00128\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{character(*)},\ \textcolor{keywordtype}{parameter}\ ::\ rout\_name\ =\ \textcolor{stringliteral}{'init\_vac'}}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00129}00129\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00130}00130\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ input\ /\ output}}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00131}00131\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{class}(\doxymbox{\hyperlink{structvac__vars_1_1vac__type}{vac\_type}}),\ \textcolor{keywordtype}{intent(inout)}\ ::\ vac\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !<\ vacuum\ variables}}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00132}00132\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer},\ \textcolor{keywordtype}{intent(in)}\ ::\ style\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !<\ style\ of\ vacuum\ (1:\ field-\/line\ 3-\/D,\ 2:\ axisymmetric)}}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00133}00133\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer},\ \textcolor{keywordtype}{intent(in)}\ ::\ n\_bnd\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !<\ total\ number\ of\ points\ in\ boundary}}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00134}00134\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer},\ \textcolor{keywordtype}{intent(in)}\ ::\ \doxymbox{\hyperlink{namespacex__vars_ae7f7061534fb3ad68a538cdcea20d1d9}{prim\_x}}\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !<\ primary\ mode\ number\ }}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00135}00135\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer},\ \textcolor{keywordtype}{intent(in)}\ ::\ n\_ang(2)\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !<\ number\ of\ angles\ (1)\ and\ number\ of\ field\ lines\ (2)}}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00136}00136\ \textcolor{keywordtype}{\ \ \ \ \ \ \ \ real}(\doxymbox{\hyperlink{namespacenum__vars_a03802aa2bd86439d7a9370836fabf3f2}{dp}}),\ \textcolor{keywordtype}{intent(in)}\ ::\ jq\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !<\ iota\ (tor.\ flux)\ or\ q\ (pol.\ flux)\ at\ edge}}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00137}00137\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00138}00138\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ local\ variables}}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00139}00139\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{character(len=max\_str\_ln)}\ ::\ err\_msg\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ error\ message}}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00140}00140\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer}\ ::\ n\_dims\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ number\ of\ dimensions\ to\ be\ saved\ in\ x\_vec\ and\ norm}}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00141}00141\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer}\ ::\ jd\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ counter}}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00142}00142\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer},\ \textcolor{keywordtype}{allocatable}\ ::\ proc\_map(:,:)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ process\ map}}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00143}00143\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00144}00144\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ initialize\ ierr}}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00145}00145\ \ \ \ \ \ \ \ \ ierr\ =\ 0}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00146}00146\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00147}00147\ \textcolor{preprocessor}{\#if\ ldebug}}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00148}00148\ \textcolor{preprocessor}{}\ \ \ \ \ \ \ \ \textcolor{comment}{!\ initialize\ memory\ usage}}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00149}00149\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\doxymbox{\hyperlink{namespacenum__vars_a28bf4f706f43af630ecc697dec01654c}{print\_mem\_usage}})\ vac\%estim\_mem\_usage\ =\ 0.\_dp}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00150}00150\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00151}00151\ \textcolor{preprocessor}{}\ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00152}00152\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ test}}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00153}00153\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (product(n\_ang).ne.n\_bnd)\ \textcolor{keywordflow}{then}}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00154}00154\ \ \ \ \ \ \ \ \ \ \ \ \ ierr\ =\ 1}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00155}00155\ \ \ \ \ \ \ \ \ \ \ \ \ err\_msg\ =\ \textcolor{stringliteral}{'The\ total\ number\ of\ angles\ along\ B,\ '}//\&}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00156}00156\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&trim(\doxymbox{\hyperlink{namespacestr__utilities_a0b97e51770725a3e98ed393d26681414}{i2str}}(product(n\_ang)))//\textcolor{stringliteral}{',\ is\ not\ equal\ to\ n\_bnd\ =\ '}//\&}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00157}00157\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&trim(\doxymbox{\hyperlink{namespacestr__utilities_a0b97e51770725a3e98ed393d26681414}{i2str}}(n\_bnd))}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00158}00158\ \ \ \ \ \ \ \ \ \ \ \ \ chckerr(err\_msg)}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00159}00159\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ end\ if}}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00160}00160\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00161}00161\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ set\ some\ variables}}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00162}00162\ \ \ \ \ \ \ \ \ vac\%bs\ =\ bs}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00163}00163\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\doxymbox{\hyperlink{namespacenum__vars_a3a1f41c66c3d91fc749bcffd177b0662}{n\_procs}}.eq.1)\ vac\%bs\ =\ n\_bnd}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00164}00164\ \ \ \ \ \ \ \ \ vac\%jq\ =\ jq}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00165}00165\ \ \ \ \ \ \ \ \ vac\%n\_ang\ =\ n\_ang}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00166}00166\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00167}00167\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ Initialize\ the\ BLACS\ grid\ for\ H\ and\ G}}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00168}00168\ \ \ \ \ \ \ \ \ vac\%prim\_X\ =\ \doxymbox{\hyperlink{namespacex__vars_ae7f7061534fb3ad68a538cdcea20d1d9}{prim\_x}}}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00169}00169\ \ \ \ \ \ \ \ \ vac\%n\_bnd\ =\ n\_bnd}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00170}00170\ \ \ \ \ \ \ \ \ vac\%n\_p(1)=floor(sqrt(\doxymbox{\hyperlink{namespacenum__vars_a3a1f41c66c3d91fc749bcffd177b0662}{n\_procs}}*1.\_dp))}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00171}00171\ \ \ \ \ \ \ \ \ vac\%n\_p(2)=\doxymbox{\hyperlink{namespacenum__vars_a3a1f41c66c3d91fc749bcffd177b0662}{n\_procs}}/vac\%n\_p(1)}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00172}00172\ \ \ \ \ \ \ \ \ \textcolor{keyword}{allocate}(proc\_map(vac\%n\_p(1),vac\%n\_p(2)))}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00173}00173\ \ \ \ \ \ \ \ \ proc\_map\ =\ transpose(reshape(\&}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00174}00174\ \ \ \ \ \ \ \ \ \ \ \ \ \&[(jd+\doxymbox{\hyperlink{namespacenum__vars_a3a1f41c66c3d91fc749bcffd177b0662}{n\_procs}}-\/1-\/product(vac\%n\_p),jd=1,product(vac\%n\_p))],vac\%n\_p))}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00175}00175\ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }blacs\_get(0,0,vac\%ctxt\_HG)}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00176}00176\ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }blacs\_gridmap(vac\%ctxt\_HG,proc\_map,vac\%n\_p(1),vac\%n\_p(1),\&}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00177}00177\ \ \ \ \ \ \ \ \ \ \ \ \ \&vac\%n\_p(2))\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ last\ MPI\ proc\ is\ also\ last\ process\ in\ map}}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00178}00178\ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }blacs\_gridinfo(vac\%ctxt\_HG,vac\%n\_p(1),vac\%n\_p(2),vac\%ind\_p(1),\&}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00179}00179\ \ \ \ \ \ \ \ \ \ \ \ \ \&vac\%ind\_p(2))\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ get\ nr.\ of\ rows\ and\ columns\ and\ local\ index}}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00180}00180\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(minval(vac\%ind\_p).ge.0)\ \textcolor{keywordflow}{then}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ only\ the\ ranks\ that\ participate}}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00181}00181\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{do}\ jd\ =\ 1,2\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ loop\ over\ rows,\ then\ columns}}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00182}00182\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ vac\%n\_loc(jd)\ =\ numroc(vac\%n\_bnd,vac\%bs,vac\%ind\_p(jd),0,\&}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00183}00183\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&vac\%n\_p(jd))\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ get\ local\ number\ of\ rows,\ then\ columns}}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00184}00184\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ \ \ \ \ end\ do}}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00185}00185\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }descinit(vac\%desc\_H,n\_bnd,n\_bnd,vac\%bs,vac\%bs,0,0,vac\%ctxt\_HG,\&}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00186}00186\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&max(1,vac\%n\_loc(1)),ierr)}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00187}00187\ \ \ \ \ \ \ \ \ \ \ \ \ chckerr(\textcolor{stringliteral}{'descinit\ failed'})}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00188}00188\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }descinit(vac\%desc\_G,n\_bnd,n\_bnd,vac\%bs,vac\%bs,0,0,vac\%ctxt\_HG,\&}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00189}00189\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&max(1,vac\%n\_loc(1)),ierr)}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00190}00190\ \ \ \ \ \ \ \ \ \ \ \ \ chckerr(\textcolor{stringliteral}{'descinit\ failed'})}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00191}00191\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }mpi\_comm\_split(mpi\_comm\_world,1,\doxymbox{\hyperlink{namespacenum__vars_ab47aa91445feaedb05ac9d1a584664fe}{rank}},vac\%MPI\_Comm,ierr)}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00192}00192\ \ \ \ \ \ \ \ \ \ \ \ \ chckerr(\textcolor{stringliteral}{''})}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00193}00193\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00194}00194\ \ \ \ \ \ \ \ \ \ \ \ \ vac\%n\_loc\ =\ [0,0]}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00195}00195\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }mpi\_comm\_split(mpi\_comm\_world,mpi\_undefined,\doxymbox{\hyperlink{namespacenum__vars_ab47aa91445feaedb05ac9d1a584664fe}{rank}},\&}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00196}00196\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&vac\%MPI\_Comm,ierr)}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00197}00197\ \ \ \ \ \ \ \ \ \ \ \ \ chckerr(\textcolor{stringliteral}{''})}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00198}00198\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ end\ if}}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00199}00199\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00200}00200\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ set\ limits}}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00201}00201\ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacevac__vars_a5bfa31e3a61464281d70a4e1a8246510}{set\_loc\_lims}}(vac\%n\_loc(1),vac\%bs,vac\%ind\_p(1),vac\%n\_p(1),\&}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00202}00202\ \ \ \ \ \ \ \ \ \ \ \ \ \&vac\%lims\_r)}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00203}00203\ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacevac__vars_a5bfa31e3a61464281d70a4e1a8246510}{set\_loc\_lims}}(vac\%n\_loc(2),vac\%bs,vac\%ind\_p(2),vac\%n\_p(2),\&}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00204}00204\ \ \ \ \ \ \ \ \ \ \ \ \ \&vac\%lims\_c)}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00205}00205\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00206}00206\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ set\ n\_dims}}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00207}00207\ \ \ \ \ \ \ \ \ vac\%style\ =\ style}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00208}00208\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{select\ case}\ (vac\%style)}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00209}00209\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ (1)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ field-\/line\ 3-\/D}}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00210}00210\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ n\_dims\ =\ 3}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00211}00211\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ (2)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ axisymmetric}}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00212}00212\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ n\_dims\ =\ 2}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00213}00213\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ \ \ \ \ case\ default}}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00214}00214\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ierr\ =\ 1}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00215}00215\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ err\_msg\ =\ \textcolor{stringliteral}{'No\ vacuum\ style\ '}//trim(\doxymbox{\hyperlink{namespacestr__utilities_a0b97e51770725a3e98ed393d26681414}{i2str}}(vac\%style))//\&}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00216}00216\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&\textcolor{stringliteral}{'\ possible'}}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00217}00217\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ chckerr(err\_msg)}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00218}00218\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ end\ select}}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00219}00219\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00220}00220\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ allocate\ normal\ and\ position\ vector}}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00221}00221\ \ \ \ \ \ \ \ \ \textcolor{keyword}{allocate}(vac\%norm(vac\%n\_bnd,n\_dims))}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00222}00222\ \ \ \ \ \ \ \ \ \textcolor{keyword}{allocate}(vac\%x\_vec(vac\%n\_bnd,n\_dims))}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00223}00223\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00224}00224\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ allocate\ variables\ specific\ to\ style}}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00225}00225\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{select\ case}\ (vac\%style)}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00226}00226\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ (1)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ field-\/line\ 3-\/D}}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00227}00227\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{allocate}(vac\%h\_fac(vac\%n\_bnd,4))}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00228}00228\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ (2)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ axisymmetric}}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00229}00229\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{allocate}(vac\%ang(n\_ang(1),n\_ang(2)))}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00230}00230\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{allocate}(vac\%dnorm(vac\%n\_bnd,n\_dims))}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00231}00231\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ end\ select}}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00232}00232\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00233}00233\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ allocate\ vacuum\ response\ if\ last\ process}}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00234}00234\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\doxymbox{\hyperlink{namespacenum__vars_ab47aa91445feaedb05ac9d1a584664fe}{rank}}.eq.\doxymbox{\hyperlink{namespacenum__vars_a3a1f41c66c3d91fc749bcffd177b0662}{n\_procs}}-\/1)\ \textcolor{keyword}{allocate}(vac\%res(\doxymbox{\hyperlink{namespacex__vars_a2e8fe6c5fe1cf61704bf176925d2b02e}{n\_mod\_x}},\doxymbox{\hyperlink{namespacex__vars_a2e8fe6c5fe1cf61704bf176925d2b02e}{n\_mod\_x}}))}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00235}00235\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00236}00236\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ allocate\ H\ and\ G}}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00237}00237\ \ \ \ \ \ \ \ \ \textcolor{keyword}{allocate}(vac\%G(vac\%n\_loc(1),vac\%n\_loc(2)))}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00238}00238\ \ \ \ \ \ \ \ \ \textcolor{keyword}{allocate}(vac\%H(vac\%n\_loc(1),vac\%n\_loc(2)))}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00239}00239\ \ \ \ \ \ \ \ \ vac\%G\ =\ 0.\_dp}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00240}00240\ \ \ \ \ \ \ \ \ vac\%H\ =\ 0.\_dp}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00241}00241\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00242}00242\ \textcolor{preprocessor}{\#if\ ldebug}}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00243}00243\ \textcolor{preprocessor}{}\ \ \ \ \ \ \ \ \textcolor{comment}{!\ set\ estimated\ memory\ usage}}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00244}00244\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\doxymbox{\hyperlink{namespacenum__vars_a28bf4f706f43af630ecc697dec01654c}{print\_mem\_usage}})\ vac\%estim\_mem\_usage\ =\ \&}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00245}00245\ \ \ \ \ \ \ \ \ \ \ \ \ \&vac\%estim\_mem\_usage\ +\ \textcolor{keyword}{size}(vac\%G)\ +\ \doxymbox{\hyperlink{namespacex__vars_a2e8fe6c5fe1cf61704bf176925d2b02e}{n\_mod\_x}}**2}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00246}00246\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00247}00247\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ increment\ n\_alloc\_vacs}}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00248}00248\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{namespacevac__vars_a48e085d21d3006e777a7052577e89a21}{n\_alloc\_vacs}}\ =\ \doxymbox{\hyperlink{namespacevac__vars_a48e085d21d3006e777a7052577e89a21}{n\_alloc\_vacs}}\ +\ 1}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00249}00249\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00250}00250\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ print\ memory\ usage}}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00251}00251\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\doxymbox{\hyperlink{namespacenum__vars_a28bf4f706f43af630ecc697dec01654c}{print\_mem\_usage}})\ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_aa4a8d01563e92558e8a0875b075ec54c}{writo}}(\textcolor{stringliteral}{'[rank\ '}//trim(\doxymbox{\hyperlink{namespacestr__utilities_a0b97e51770725a3e98ed393d26681414}{i2str}}(\doxymbox{\hyperlink{namespacenum__vars_ab47aa91445feaedb05ac9d1a584664fe}{rank}}))//\&}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00252}00252\ \ \ \ \ \ \ \ \ \ \ \ \ \&\textcolor{stringliteral}{'\ -\/\ Expected\ memory\ usage\ of\ vac:\ '}//\&}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00253}00253\ \ \ \ \ \ \ \ \ \ \ \ \ \&trim(\doxymbox{\hyperlink{namespacestr__utilities_ac778d706b2e021672618939ab58fdd32}{r2strt}}(vac\%estim\_mem\_usage*\doxymbox{\hyperlink{namespacenum__vars_ad5be06791ebf0ca75fc6dc7339916ae8}{weight\_dp}}*2))//\textcolor{stringliteral}{'\ kB]'},alert=.true.)}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00254}00254\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00255}00255\ \textcolor{preprocessor}{}\ \ \ \ \textcolor{keyword}{end\ function\ }\doxymbox{\hyperlink{namespacevac__vars_a62f1cdc62a18ca5389f8c5efbc25fa16}{init\_vac}}}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00256}00256\ \ \ \ \ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00257}00257\ \textcolor{comment}{\ \ \ \ !>\ Calculates\ the\ limits\ in\ local\ index.}}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00258}00258\ \textcolor{comment}{\ \ \ \ !!}}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00259}00259\ \textcolor{comment}{\ \ \ \ !!\ \(\backslash\)see\ See\ init\_var()\ for\ an\ explanation.}}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00260}\doxymbox{\hyperlink{namespacevac__vars_a5bfa31e3a61464281d70a4e1a8246510}{00260}}\ \ \ \ \ \textcolor{keyword}{subroutine\ }\doxymbox{\hyperlink{namespacevac__vars_a5bfa31e3a61464281d70a4e1a8246510}{set\_loc\_lims}}(n\_loc,bs,ind\_p,n\_p,lims)}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00261}00261\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ input\ /\ output}}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00262}00262\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer},\ \textcolor{keywordtype}{intent(in)}\ ::\ n\_loc\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !<\ number\ of\ points\ owned\ by\ local\ process}}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00263}00263\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer},\ \textcolor{keywordtype}{intent(in)}\ ::\ bs\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !<\ block\ size}}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00264}00264\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer},\ \textcolor{keywordtype}{intent(in)}\ ::\ ind\_p\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !<\ index\ of\ current\ process\ in\ this\ dimension}}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00265}00265\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer},\ \textcolor{keywordtype}{intent(in)}\ ::\ n\_p\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !<\ number\ of\ processes\ in\ this\ dimension}}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00266}00266\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer},\ \textcolor{keywordtype}{intent(inout)},\ \textcolor{keywordtype}{allocatable}\ ::\ lims(:,:)\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !<\ limits\ for\ different\ subregions\ in\ this\ dimension}}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00267}00267\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00268}00268\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ local\ variables}}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00269}00269\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer}\ ::\ jd\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ counter}}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00270}00270\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00271}00271\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ set\ limits}}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00272}00272\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (n\_loc.gt.0)\ \textcolor{keywordflow}{then}}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00273}00273\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{allocate}(lims(2,ceiling(n\_loc*1.\_dp/bs)))}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00274}00274\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{do}\ jd\ =\ 1,\textcolor{keyword}{size}(lims,2)}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00275}00275\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ lims(1,jd)\ =\ indxl2g((jd-\/1)*bs+1,bs,ind\_p,0,n\_p)}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00276}00276\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ lims(2,jd)\ =\ indxl2g(min(jd*bs,n\_loc),bs,ind\_p,0,n\_p)}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00277}00277\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ \ \ \ \ end\ do}}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00278}00278\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00279}00279\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ these\ processes\ don't\ play\ along}}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00280}00280\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{allocate}(lims(2,1))}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00281}00281\ \ \ \ \ \ \ \ \ \ \ \ \ lims(:,1)\ =\ [0,-\/1]}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00282}00282\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ end\ if}}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00283}00283\ \ \ \ \ \textcolor{keyword}{end\ subroutine\ }\doxymbox{\hyperlink{namespacevac__vars_a5bfa31e3a61464281d70a4e1a8246510}{set\_loc\_lims}}}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00284}00284\ \ \ \ \ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00285}00285\ \textcolor{comment}{\ \ \ \ !>\ \(\backslash\)public\ Deallocates\ vacuum\ variables.}}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00286}\doxymbox{\hyperlink{namespacevac__vars_aa6669ed787cf96e8f8fa665149bc83a3}{00286}}\ \ \ \ \ \textcolor{keyword}{subroutine\ }\doxymbox{\hyperlink{namespacevac__vars_aa6669ed787cf96e8f8fa665149bc83a3}{dealloc\_vac}}(vac)}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00287}00287\ \textcolor{preprocessor}{\#if\ ldebug}}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00288}00288\ \textcolor{preprocessor}{}\ \ \ \ \ \ \ \ \textcolor{keywordtype}{use\ }\doxymbox{\hyperlink{namespacenum__vars}{num\_vars}},\ \textcolor{keywordtype}{only}:\ \doxymbox{\hyperlink{namespacenum__vars_ab47aa91445feaedb05ac9d1a584664fe}{rank}},\ \doxymbox{\hyperlink{namespacenum__vars_a28bf4f706f43af630ecc697dec01654c}{print\_mem\_usage}}}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00289}00289\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00290}00290\ \textcolor{preprocessor}{}\ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00291}00291\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ input\ /\ output}}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00292}00292\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{class}(\doxymbox{\hyperlink{structvac__vars_1_1vac__type}{vac\_type}}),\ \textcolor{keywordtype}{intent(inout)}\ ::\ vac\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !<\ vacuum\ variables\ to\ be\ deallocated}}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00293}00293\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00294}00294\ \textcolor{preprocessor}{\#if\ ldebug}}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00295}00295\ \textcolor{preprocessor}{}\ \ \ \ \ \ \ \ \textcolor{comment}{!\ local\ variables}}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00296}00296\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer}\ ::\ mem\_diff\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ difference\ in\ memory}}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00297}00297\ \textcolor{keywordtype}{\ \ \ \ \ \ \ \ real}(dp)\ ::\ estim\_mem\_usage\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ estimated\ memory\ usage}}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00298}00298\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00299}00299\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ memory\ usage\ before\ deallocation}}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00300}00300\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\doxymbox{\hyperlink{namespacenum__vars_a28bf4f706f43af630ecc697dec01654c}{print\_mem\_usage}})\ \textcolor{keywordflow}{then}}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00301}00301\ \ \ \ \ \ \ \ \ \ \ \ \ mem\_diff\ =\ \doxymbox{\hyperlink{namespacemessages_a82dddaab795b78b3d39e1ff1aab2f665}{get\_mem\_usage}}()}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00302}00302\ \ \ \ \ \ \ \ \ \ \ \ \ estim\_mem\_usage\ =\ vac\%estim\_mem\_usage}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00303}00303\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ end\ if}}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00304}00304\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00305}00305\ \textcolor{preprocessor}{}\ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00306}00306\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ free\ grid}}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00307}00307\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\doxymbox{\hyperlink{namespacevac__vars_af0fd2f819434bf7adc494753df4af19c}{in\_context}}(vac\%ctxt\_HG))\ \textcolor{keyword}{call\ }blacs\_gridexit(vac\%ctxt\_HG)}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00308}00308\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00309}00309\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ deallocate\ allocatable\ variables}}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00310}00310\ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }dealloc\_vac\_final(vac)}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00311}00311\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00312}00312\ \textcolor{preprocessor}{\#if\ ldebug}}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00313}00313\ \textcolor{preprocessor}{}\ \ \ \ \ \ \ \ \textcolor{comment}{!\ decrement\ n\_alloc\_vacs}}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00314}00314\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{namespacevac__vars_a48e085d21d3006e777a7052577e89a21}{n\_alloc\_vacs}}\ =\ \doxymbox{\hyperlink{namespacevac__vars_a48e085d21d3006e777a7052577e89a21}{n\_alloc\_vacs}}\ -\/\ 1}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00315}00315\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00316}00316\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ memory\ usage\ difference\ after\ deallocation}}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00317}00317\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\doxymbox{\hyperlink{namespacenum__vars_a28bf4f706f43af630ecc697dec01654c}{print\_mem\_usage}})\ \textcolor{keywordflow}{then}}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00318}00318\ \ \ \ \ \ \ \ \ \ \ \ \ mem\_diff\ =\ mem\_diff\ -\/\ \doxymbox{\hyperlink{namespacemessages_a82dddaab795b78b3d39e1ff1aab2f665}{get\_mem\_usage}}()}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00319}00319\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_aa4a8d01563e92558e8a0875b075ec54c}{writo}}(\textcolor{stringliteral}{'[Rank\ '}//trim(\doxymbox{\hyperlink{namespacestr__utilities_a0b97e51770725a3e98ed393d26681414}{i2str}}(\doxymbox{\hyperlink{namespacenum__vars_ab47aa91445feaedb05ac9d1a584664fe}{rank}}))//\textcolor{stringliteral}{'\ -\/\ liberated\ '}//\&}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00320}00320\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&trim(\doxymbox{\hyperlink{namespacestr__utilities_a0b97e51770725a3e98ed393d26681414}{i2str}}(mem\_diff))//\textcolor{stringliteral}{'kB\ deallocating\ vac\ ('}//\&}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00321}00321\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&trim(\doxymbox{\hyperlink{namespacestr__utilities_a0b97e51770725a3e98ed393d26681414}{i2str}}(nint(100*mem\_diff/\&}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00322}00322\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&(estim\_mem\_usage*\doxymbox{\hyperlink{namespacenum__vars_ad5be06791ebf0ca75fc6dc7339916ae8}{weight\_dp}}*2))))//\&}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00323}00323\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&\textcolor{stringliteral}{'\%\ of\ estimated)]'},alert=.true.)}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00324}00324\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ end\ if}}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00325}00325\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00326}00326\ \textcolor{preprocessor}{}\ \ \ \ \textcolor{keyword}{contains}}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00327}00327\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ Note:\ intent(out)\ automatically\ deallocates\ the\ variable}\textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00328}00328\ \textcolor{comment}{\ \ \ \ \ \ \ \ !>\ \(\backslash\)private}}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00329}00329\ \ \ \ \ \ \ \ \ \textcolor{keyword}{subroutine\ }dealloc\_vac\_final(vac)}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00330}00330\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ input\ /\ output}}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00331}00331\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{type}(\doxymbox{\hyperlink{structvac__vars_1_1vac__type}{vac\_type}}),\ \textcolor{keywordtype}{intent(out)}\ ::\ vac\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ vacuum\ variables\ to\ be\ deallocated}}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00332}00332\ \ \ \ \ \ \ \ \ \textcolor{keyword}{end\ subroutine\ }dealloc\_vac\_final}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00333}00333\ \ \ \ \ \textcolor{keyword}{end\ subroutine\ }\doxymbox{\hyperlink{namespacevac__vars_aa6669ed787cf96e8f8fa665149bc83a3}{dealloc\_vac}}}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00334}00334\ \ \ \ \ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00335}00335\ \textcolor{comment}{\ \ \ \ !>\ Copy\ a\ vacuum\ type.}}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00336}00336\ \textcolor{comment}{\ \ \ \ !!}}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00337}00337\ \textcolor{comment}{\ \ \ \ !!\ \(\backslash\)note\ The\ copy\ should\ be\ unallocated.}}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00338}\doxymbox{\hyperlink{namespacevac__vars_a8da702035bfcc208bd810258f9944f6a}{00338}}\ \ \ \ \ \textcolor{keyword}{integer\ }\textcolor{keyword}{function\ }\doxymbox{\hyperlink{namespacevac__vars_a8da702035bfcc208bd810258f9944f6a}{copy\_vac}}(vac,vac\_copy)\ \textcolor{keyword}{result}(ierr)}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00339}00339\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{use\ }\doxymbox{\hyperlink{namespacenum__vars}{num\_vars}},\ \textcolor{keywordtype}{only}:\ \doxymbox{\hyperlink{namespacenum__vars_ab47aa91445feaedb05ac9d1a584664fe}{rank}},\ \doxymbox{\hyperlink{namespacenum__vars_a3a1f41c66c3d91fc749bcffd177b0662}{n\_procs}}}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00340}00340\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00341}00341\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ input\ /\ output}}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00342}00342\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{class}(\doxymbox{\hyperlink{structvac__vars_1_1vac__type}{vac\_type}}),\ \textcolor{keywordtype}{intent(in)}\ ::\ vac\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !<\ vac\ to\ be\ copied}}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00343}00343\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{class}(\doxymbox{\hyperlink{structvac__vars_1_1vac__type}{vac\_type}}),\ \textcolor{keywordtype}{intent(inout)}\ ::\ vac\_copy\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !<\ copy}}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00344}00344\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00345}00345\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{character(*)},\ \textcolor{keywordtype}{parameter}\ ::\ rout\_name\ =\ \textcolor{stringliteral}{'copy\_vac'}}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00346}00346\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00347}00347\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ initialize\ ierr}}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00348}00348\ \ \ \ \ \ \ \ \ ierr\ =\ 0}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00349}00349\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00350}00350\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ reallocate}}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00351}00351\ \ \ \ \ \ \ \ \ ierr\ =\ vac\_copy\%init(vac\%style,vac\%n\_bnd,vac\%prim\_X,vac\%n\_ang,\&}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00352}00352\ \ \ \ \ \ \ \ \ \ \ \ \ \&vac\%jq)}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00353}00353\ \ \ \ \ \ \ \ \ chckerr(\textcolor{stringliteral}{''})}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00354}00354\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00355}00355\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ copy\ normal\ and\ position\ vector}}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00356}00356\ \ \ \ \ \ \ \ \ vac\_copy\%norm\ =\ vac\%norm}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00357}00357\ \ \ \ \ \ \ \ \ vac\_copy\%x\_vec\ =\ vac\%x\_vec}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00358}00358\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00359}00359\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ copy\ variables\ specific\ to\ style}}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00360}00360\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{select\ case}\ (vac\%style)}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00361}00361\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ (1)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ field-\/line\ 3-\/D}}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00362}00362\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ vac\_copy\%h\_fac\ =\ vac\%h\_fac}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00363}00363\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ (2)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ axisymmetric}}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00364}00364\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ vac\_copy\%dnorm\ =\ vac\%dnorm}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00365}00365\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ vac\_copy\%ang\ =\ vac\%ang}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00366}00366\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ end\ select}}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00367}00367\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00368}00368\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ copy\ vacuum\ response}}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00369}00369\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\doxymbox{\hyperlink{namespacenum__vars_ab47aa91445feaedb05ac9d1a584664fe}{rank}}.eq.\doxymbox{\hyperlink{namespacenum__vars_a3a1f41c66c3d91fc749bcffd177b0662}{n\_procs}}-\/1)\ vac\_copy\%res\ =\ vac\%res}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00370}00370\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00371}00371\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ copy\ H\ and\ G}}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00372}00372\ \ \ \ \ \ \ \ \ vac\_copy\%H\ =\ vac\%H}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00373}00373\ \ \ \ \ \ \ \ \ vac\_copy\%G\ =\ vac\%G}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00374}00374\ \ \ \ \ \textcolor{keyword}{end\ function\ }\doxymbox{\hyperlink{namespacevac__vars_a8da702035bfcc208bd810258f9944f6a}{copy\_vac}}}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00375}00375\ \ \ \ \ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00376}00376\ \textcolor{comment}{\ \ \ \ !>\ Indicates\ whether\ current\ process\ is\ in\ the\ context.}}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00377}\doxymbox{\hyperlink{namespacevac__vars_af0fd2f819434bf7adc494753df4af19c}{00377}}\ \ \ \ \ \textcolor{keyword}{logical\ }\textcolor{keyword}{function\ }\doxymbox{\hyperlink{namespacevac__vars_af0fd2f819434bf7adc494753df4af19c}{in\_context}}(ctxt)\ \textcolor{keyword}{result}(res)}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00378}00378\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ input\ /\ output}}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00379}00379\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer},\ \textcolor{keywordtype}{intent(in)}\ ::\ ctxt\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !<\ context\ for\ vector}}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00380}00380\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00381}00381\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ local\ variables}}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00382}00382\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer}\ ::\ n\_p(2)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ nr.\ of\ processes\ in\ grid}}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00383}00383\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer}\ ::\ ind\_p(2)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ index\ of\ local\ process\ in\ grid}}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00384}00384\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00385}00385\ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }blacs\_gridinfo(ctxt,n\_p(1),n\_p(2),ind\_p(1),ind\_p(2))\ }
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00386}00386\ \ \ \ \ \ \ \ \ res\ =\ ind\_p(1).ge.0}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00387}00387\ \ \ \ \ \textcolor{keyword}{end\ function\ }\doxymbox{\hyperlink{namespacevac__vars_af0fd2f819434bf7adc494753df4af19c}{in\_context}}}
+\DoxyCodeLine{\Hypertarget{vac__vars_8f90_source_l00388}00388\ \textcolor{keyword}{end\ module\ }\doxymbox{\hyperlink{namespacevac__vars}{vac\_vars}}}
+
+\end{DoxyCode}

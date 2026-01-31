@@ -1,0 +1,178 @@
+\doxysection{str\+\_\+utilities.\+f90}
+\hypertarget{str__utilities_8f90_source}{}\label{str__utilities_8f90_source}\index{/Users/toonweyens/Code/PB3D/Modules/str\_utilities.f90@{/Users/toonweyens/Code/PB3D/Modules/str\_utilities.f90}}
+\doxymbox{\hyperlink{str__utilities_8f90}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{str__utilities_8f90_source_l00001}00001\ \textcolor{comment}{!-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/!}\textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{str__utilities_8f90_source_l00002}00002\ \textcolor{comment}{!>\ Operations\ on\ strings.}}
+\DoxyCodeLine{\Hypertarget{str__utilities_8f90_source_l00003}00003\ \textcolor{comment}{!-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/!}}
+\DoxyCodeLine{\Hypertarget{str__utilities_8f90_source_l00004}\doxymbox{\hyperlink{namespacestr__utilities}{00004}}\ \textcolor{keyword}{module}\ \doxymbox{\hyperlink{namespacestr__utilities}{str\_utilities}}}
+\DoxyCodeLine{\Hypertarget{str__utilities_8f90_source_l00005}00005\ \textcolor{preprocessor}{\#include\ <wrappers.h>}}
+\DoxyCodeLine{\Hypertarget{str__utilities_8f90_source_l00006}00006\ \textcolor{preprocessor}{}\ \ \ \ \textcolor{keywordtype}{use\ }\doxymbox{\hyperlink{namespacenum__vars}{num\_vars}},\ \textcolor{keywordtype}{only}:\ \doxymbox{\hyperlink{namespacenum__vars_a03802aa2bd86439d7a9370836fabf3f2}{dp}},\ \doxymbox{\hyperlink{namespacenum__vars_a3ff2bb983ee80a6735277d6789e6ce7c}{max\_str\_ln}}}
+\DoxyCodeLine{\Hypertarget{str__utilities_8f90_source_l00007}00007\ \ \ \ \ \textcolor{keywordtype}{implicit\ none}}
+\DoxyCodeLine{\Hypertarget{str__utilities_8f90_source_l00008}00008\ \ \ \ \ \textcolor{keywordtype}{private}}
+\DoxyCodeLine{\Hypertarget{str__utilities_8f90_source_l00009}00009\ \ \ \ \ \textcolor{keywordtype}{public}\ \doxymbox{\hyperlink{namespacestr__utilities_a0b97e51770725a3e98ed393d26681414}{i2str}},\ \doxymbox{\hyperlink{namespacestr__utilities_acb8c4e66aead51f178e47fdea8d7a7db}{ii2str}},\ \doxymbox{\hyperlink{namespacestr__utilities_a92ac6c0af1979df094de1caddd28ade0}{r2str}},\ \doxymbox{\hyperlink{namespacestr__utilities_ac778d706b2e021672618939ab58fdd32}{r2strt}},\ \doxymbox{\hyperlink{namespacestr__utilities_a308e943e5e244e3e0f852f2ecb3e3183}{c2str}},\ \doxymbox{\hyperlink{namespacestr__utilities_abca28d6272d447dc1c0c100624c6ed75}{c2strt}},\ \doxymbox{\hyperlink{namespacestr__utilities_a219964a283968cc6a968db0197d2187e}{strh2l}},\ \doxymbox{\hyperlink{namespacestr__utilities_a7e2e441d509c12045a3373819040a806}{strl2h}},\ \&}
+\DoxyCodeLine{\Hypertarget{str__utilities_8f90_source_l00010}00010\ \ \ \ \ \ \ \ \ \&\doxymbox{\hyperlink{namespacestr__utilities_a6ab16f33c155db79844279c6a56a494c}{merge\_strings}}}
+\DoxyCodeLine{\Hypertarget{str__utilities_8f90_source_l00011}00011\ }
+\DoxyCodeLine{\Hypertarget{str__utilities_8f90_source_l00012}00012\ \textcolor{keyword}{contains}\textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{str__utilities_8f90_source_l00013}00013\ \textcolor{comment}{\ \ \ \ !>\ Convert\ an\ integer\ to\ string.}}
+\DoxyCodeLine{\Hypertarget{str__utilities_8f90_source_l00014}00014\ \textcolor{comment}{\ \ \ \ !!}}
+\DoxyCodeLine{\Hypertarget{str__utilities_8f90_source_l00015}00015\ \textcolor{comment}{\ \ \ \ !!\ \(\backslash\)see\ from}}
+\DoxyCodeLine{\Hypertarget{str__utilities_8f90_source_l00016}00016\ \textcolor{comment}{\ \ \ \ !!\ <http://stackoverflow.com/questions/1262695/converting-\/integers-\/to-\/strings-\/in-\/fortran>}}
+\DoxyCodeLine{\Hypertarget{str__utilities_8f90_source_l00017}\doxymbox{\hyperlink{namespacestr__utilities_a0b97e51770725a3e98ed393d26681414}{00017}}\ \ \ \ \ \textcolor{keywordtype}{elemental}\ \textcolor{keyword}{character(len=max\_str\_ln)\ }\textcolor{keyword}{function\ }\doxymbox{\hyperlink{namespacestr__utilities_a0b97e51770725a3e98ed393d26681414}{i2str}}(k)}
+\DoxyCodeLine{\Hypertarget{str__utilities_8f90_source_l00018}00018\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ input\ /\ output}}
+\DoxyCodeLine{\Hypertarget{str__utilities_8f90_source_l00019}00019\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer},\ \textcolor{keywordtype}{intent(in)}\ ::\ k\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !<\ integer\ to\ convert}}
+\DoxyCodeLine{\Hypertarget{str__utilities_8f90_source_l00020}00020\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{str__utilities_8f90_source_l00021}00021\ \ \ \ \ \ \ \ \ \textcolor{keyword}{write}\ (\doxymbox{\hyperlink{namespacestr__utilities_a0b97e51770725a3e98ed393d26681414}{i2str}},\ *)\ k}
+\DoxyCodeLine{\Hypertarget{str__utilities_8f90_source_l00022}00022\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{namespacestr__utilities_a0b97e51770725a3e98ed393d26681414}{i2str}}\ =\ adjustl(\doxymbox{\hyperlink{namespacestr__utilities_a0b97e51770725a3e98ed393d26681414}{i2str}})}
+\DoxyCodeLine{\Hypertarget{str__utilities_8f90_source_l00023}00023\ \ \ \ \ \textcolor{keyword}{end\ function\ }\doxymbox{\hyperlink{namespacestr__utilities_a0b97e51770725a3e98ed393d26681414}{i2str}}\textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{str__utilities_8f90_source_l00024}00024\ \textcolor{comment}{\ \ \ \ !>\ Convert\ an\ integer\ to\ string.}}
+\DoxyCodeLine{\Hypertarget{str__utilities_8f90_source_l00025}00025\ \textcolor{comment}{\ \ \ \ !!}}
+\DoxyCodeLine{\Hypertarget{str__utilities_8f90_source_l00026}00026\ \textcolor{comment}{\ \ \ \ !!\ Version\ with\ kind\ 8\ integers.}}
+\DoxyCodeLine{\Hypertarget{str__utilities_8f90_source_l00027}00027\ \textcolor{comment}{\ \ \ \ !!}}
+\DoxyCodeLine{\Hypertarget{str__utilities_8f90_source_l00028}00028\ \textcolor{comment}{\ \ \ \ !!\ \(\backslash\)see\ See\ i2str().}}
+\DoxyCodeLine{\Hypertarget{str__utilities_8f90_source_l00029}\doxymbox{\hyperlink{namespacestr__utilities_acb8c4e66aead51f178e47fdea8d7a7db}{00029}}\ \ \ \ \ \textcolor{keywordtype}{elemental}\ \textcolor{keyword}{character(len=max\_str\_ln)\ }\textcolor{keyword}{function\ }\doxymbox{\hyperlink{namespacestr__utilities_acb8c4e66aead51f178e47fdea8d7a7db}{ii2str}}(k)}
+\DoxyCodeLine{\Hypertarget{str__utilities_8f90_source_l00030}00030\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ input\ /\ output}}
+\DoxyCodeLine{\Hypertarget{str__utilities_8f90_source_l00031}00031\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer(kind=8)},\ \textcolor{keywordtype}{intent(in)}\ ::\ k\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !<\ integer\ to\ convert}}
+\DoxyCodeLine{\Hypertarget{str__utilities_8f90_source_l00032}00032\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{str__utilities_8f90_source_l00033}00033\ \ \ \ \ \ \ \ \ \textcolor{keyword}{write}\ (\doxymbox{\hyperlink{namespacestr__utilities_acb8c4e66aead51f178e47fdea8d7a7db}{ii2str}},\ *)\ k}
+\DoxyCodeLine{\Hypertarget{str__utilities_8f90_source_l00034}00034\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{namespacestr__utilities_acb8c4e66aead51f178e47fdea8d7a7db}{ii2str}}\ =\ adjustl(\doxymbox{\hyperlink{namespacestr__utilities_acb8c4e66aead51f178e47fdea8d7a7db}{ii2str}})}
+\DoxyCodeLine{\Hypertarget{str__utilities_8f90_source_l00035}00035\ \ \ \ \ \textcolor{keyword}{end\ function\ }\doxymbox{\hyperlink{namespacestr__utilities_acb8c4e66aead51f178e47fdea8d7a7db}{ii2str}}}
+\DoxyCodeLine{\Hypertarget{str__utilities_8f90_source_l00036}00036\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{str__utilities_8f90_source_l00037}00037\ \textcolor{comment}{\ \ \ \ !>\ Convert\ a\ real\ (double)\ to\ string}}
+\DoxyCodeLine{\Hypertarget{str__utilities_8f90_source_l00038}00038\ \textcolor{comment}{\ \ \ \ !!}}
+\DoxyCodeLine{\Hypertarget{str__utilities_8f90_source_l00039}00039\ \textcolor{comment}{\ \ \ \ !!\ \(\backslash\)note\ See\ \ <http://www.fortran90.org/src/best-\/practices.html>\ how\ \ to\ not}}
+\DoxyCodeLine{\Hypertarget{str__utilities_8f90_source_l00040}00040\ \textcolor{comment}{\ \ \ \ !!\ lose\ precision.}}
+\DoxyCodeLine{\Hypertarget{str__utilities_8f90_source_l00041}\doxymbox{\hyperlink{namespacestr__utilities_a92ac6c0af1979df094de1caddd28ade0}{00041}}\ \ \ \ \ \textcolor{keywordtype}{elemental}\ \textcolor{keyword}{character(len=max\_str\_ln)\ }\textcolor{keyword}{function\ }\doxymbox{\hyperlink{namespacestr__utilities_a92ac6c0af1979df094de1caddd28ade0}{r2str}}(k)}
+\DoxyCodeLine{\Hypertarget{str__utilities_8f90_source_l00042}00042\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ input\ /\ output}}
+\DoxyCodeLine{\Hypertarget{str__utilities_8f90_source_l00043}00043\ \textcolor{keywordtype}{\ \ \ \ \ \ \ \ real}(\doxymbox{\hyperlink{namespacenum__vars_a03802aa2bd86439d7a9370836fabf3f2}{dp}}),\ \textcolor{keywordtype}{intent(in)}\ ::\ k\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !<\ real\ to\ convert}}
+\DoxyCodeLine{\Hypertarget{str__utilities_8f90_source_l00044}00044\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{str__utilities_8f90_source_l00045}00045\ \ \ \ \ \ \ \ \ \textcolor{keyword}{write}\ (\doxymbox{\hyperlink{namespacestr__utilities_a92ac6c0af1979df094de1caddd28ade0}{r2str}},\ \textcolor{stringliteral}{'(ES23.16)'})\ k}
+\DoxyCodeLine{\Hypertarget{str__utilities_8f90_source_l00046}00046\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{namespacestr__utilities_a92ac6c0af1979df094de1caddd28ade0}{r2str}}\ =\ adjustl(\doxymbox{\hyperlink{namespacestr__utilities_a92ac6c0af1979df094de1caddd28ade0}{r2str}})}
+\DoxyCodeLine{\Hypertarget{str__utilities_8f90_source_l00047}00047\ \ \ \ \ \textcolor{keyword}{end\ function\ }\doxymbox{\hyperlink{namespacestr__utilities_a92ac6c0af1979df094de1caddd28ade0}{r2str}}\textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{str__utilities_8f90_source_l00048}00048\ \textcolor{comment}{\ \ \ \ !>\ Convert\ a\ real\ (double)\ to\ string}}
+\DoxyCodeLine{\Hypertarget{str__utilities_8f90_source_l00049}00049\ \textcolor{comment}{\ \ \ \ !!}}
+\DoxyCodeLine{\Hypertarget{str__utilities_8f90_source_l00050}00050\ \textcolor{comment}{\ \ \ \ !!\ Version\ with\ less\ precise\ output.}}
+\DoxyCodeLine{\Hypertarget{str__utilities_8f90_source_l00051}00051\ \textcolor{comment}{\ \ \ \ !!}}
+\DoxyCodeLine{\Hypertarget{str__utilities_8f90_source_l00052}00052\ \textcolor{comment}{\ \ \ \ !!\ \(\backslash\)see\ See\ r2str().}}
+\DoxyCodeLine{\Hypertarget{str__utilities_8f90_source_l00053}\doxymbox{\hyperlink{namespacestr__utilities_ac778d706b2e021672618939ab58fdd32}{00053}}\ \ \ \ \ \textcolor{keywordtype}{elemental}\ \textcolor{keyword}{character(len=max\_str\_ln)\ }\textcolor{keyword}{function\ }\doxymbox{\hyperlink{namespacestr__utilities_ac778d706b2e021672618939ab58fdd32}{r2strt}}(k)}
+\DoxyCodeLine{\Hypertarget{str__utilities_8f90_source_l00054}00054\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ input\ /\ output}}
+\DoxyCodeLine{\Hypertarget{str__utilities_8f90_source_l00055}00055\ \textcolor{keywordtype}{\ \ \ \ \ \ \ \ real}(\doxymbox{\hyperlink{namespacenum__vars_a03802aa2bd86439d7a9370836fabf3f2}{dp}}),\ \textcolor{keywordtype}{intent(in)}\ ::\ k\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !<\ real\ to\ convert}}
+\DoxyCodeLine{\Hypertarget{str__utilities_8f90_source_l00056}00056\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{str__utilities_8f90_source_l00057}00057\ \ \ \ \ \ \ \ \ \textcolor{keyword}{write}\ (\doxymbox{\hyperlink{namespacestr__utilities_ac778d706b2e021672618939ab58fdd32}{r2strt}},\ \textcolor{stringliteral}{'(ES9.2)'})\ k}
+\DoxyCodeLine{\Hypertarget{str__utilities_8f90_source_l00058}00058\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{namespacestr__utilities_ac778d706b2e021672618939ab58fdd32}{r2strt}}\ =\ adjustl(\doxymbox{\hyperlink{namespacestr__utilities_ac778d706b2e021672618939ab58fdd32}{r2strt}})}
+\DoxyCodeLine{\Hypertarget{str__utilities_8f90_source_l00059}00059\ \ \ \ \ \textcolor{keyword}{end\ function\ }\doxymbox{\hyperlink{namespacestr__utilities_ac778d706b2e021672618939ab58fdd32}{r2strt}}}
+\DoxyCodeLine{\Hypertarget{str__utilities_8f90_source_l00060}00060\ \ \ \ \ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{str__utilities_8f90_source_l00061}00061\ \textcolor{comment}{\ \ \ \ !>\ Convert\ a\ complex\ (double)\ to\ string}}
+\DoxyCodeLine{\Hypertarget{str__utilities_8f90_source_l00062}00062\ \textcolor{comment}{\ \ \ \ !!}}
+\DoxyCodeLine{\Hypertarget{str__utilities_8f90_source_l00063}00063\ \textcolor{comment}{\ \ \ \ !!\ \(\backslash\)note\ See\ \ <http://www.fortran90.org/src/best-\/practices.html>\ how\ \ to\ not}}
+\DoxyCodeLine{\Hypertarget{str__utilities_8f90_source_l00064}00064\ \textcolor{comment}{\ \ \ \ !!\ lose\ precision.}}
+\DoxyCodeLine{\Hypertarget{str__utilities_8f90_source_l00065}\doxymbox{\hyperlink{namespacestr__utilities_a308e943e5e244e3e0f852f2ecb3e3183}{00065}}\ \ \ \ \ \textcolor{keywordtype}{elemental}\ \textcolor{keyword}{character(len=max\_str\_ln)\ }\textcolor{keyword}{function\ }\doxymbox{\hyperlink{namespacestr__utilities_a308e943e5e244e3e0f852f2ecb3e3183}{c2str}}(k)}
+\DoxyCodeLine{\Hypertarget{str__utilities_8f90_source_l00066}00066\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ input\ /\ output}}
+\DoxyCodeLine{\Hypertarget{str__utilities_8f90_source_l00067}00067\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{complex(dp)},\ \textcolor{keywordtype}{intent(in)}\ ::\ k\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !<\ complex\ to\ convert}}
+\DoxyCodeLine{\Hypertarget{str__utilities_8f90_source_l00068}00068\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{str__utilities_8f90_source_l00069}00069\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ local\ variables}}
+\DoxyCodeLine{\Hypertarget{str__utilities_8f90_source_l00070}00070\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{character(len=max\_str\_ln)}\ ::\ dum\_str\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ dummy\ string}}
+\DoxyCodeLine{\Hypertarget{str__utilities_8f90_source_l00071}00071\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{str__utilities_8f90_source_l00072}00072\ \ \ \ \ \ \ \ \ \textcolor{keyword}{write}\ (\doxymbox{\hyperlink{namespacestr__utilities_a308e943e5e244e3e0f852f2ecb3e3183}{c2str}},\ \textcolor{stringliteral}{'(ES23.16)'})\ rp(k)}
+\DoxyCodeLine{\Hypertarget{str__utilities_8f90_source_l00073}00073\ \ \ \ \ \ \ \ \ \textcolor{keyword}{write}\ (dum\_str,\ \textcolor{stringliteral}{'(ES23.16)'})\ abs(imag(k))}
+\DoxyCodeLine{\Hypertarget{str__utilities_8f90_source_l00074}00074\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (imag(k).lt.0)\ \textcolor{keywordflow}{then}}
+\DoxyCodeLine{\Hypertarget{str__utilities_8f90_source_l00075}00075\ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{namespacestr__utilities_a308e943e5e244e3e0f852f2ecb3e3183}{c2str}}\ =\ trim(\doxymbox{\hyperlink{namespacestr__utilities_a308e943e5e244e3e0f852f2ecb3e3183}{c2str}})//\textcolor{stringliteral}{'\ -\/'}}
+\DoxyCodeLine{\Hypertarget{str__utilities_8f90_source_l00076}00076\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{str__utilities_8f90_source_l00077}00077\ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{namespacestr__utilities_a308e943e5e244e3e0f852f2ecb3e3183}{c2str}}\ =\ trim(\doxymbox{\hyperlink{namespacestr__utilities_a308e943e5e244e3e0f852f2ecb3e3183}{c2str}})//\textcolor{stringliteral}{'\ +'}}
+\DoxyCodeLine{\Hypertarget{str__utilities_8f90_source_l00078}00078\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ end\ if}}
+\DoxyCodeLine{\Hypertarget{str__utilities_8f90_source_l00079}00079\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{namespacestr__utilities_a308e943e5e244e3e0f852f2ecb3e3183}{c2str}}\ =\ trim(\doxymbox{\hyperlink{namespacestr__utilities_a308e943e5e244e3e0f852f2ecb3e3183}{c2str}})//\textcolor{stringliteral}{'\ '}//dum\_str}
+\DoxyCodeLine{\Hypertarget{str__utilities_8f90_source_l00080}00080\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{namespacestr__utilities_a308e943e5e244e3e0f852f2ecb3e3183}{c2str}}\ =\ adjustl(\doxymbox{\hyperlink{namespacestr__utilities_a308e943e5e244e3e0f852f2ecb3e3183}{c2str}})}
+\DoxyCodeLine{\Hypertarget{str__utilities_8f90_source_l00081}00081\ \ \ \ \ \textcolor{keyword}{end\ function\ }\doxymbox{\hyperlink{namespacestr__utilities_a308e943e5e244e3e0f852f2ecb3e3183}{c2str}}\textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{str__utilities_8f90_source_l00082}00082\ \textcolor{comment}{\ \ \ \ !>\ Convert\ a\ complex\ (double)\ to\ string}}
+\DoxyCodeLine{\Hypertarget{str__utilities_8f90_source_l00083}00083\ \textcolor{comment}{\ \ \ \ !!}}
+\DoxyCodeLine{\Hypertarget{str__utilities_8f90_source_l00084}00084\ \textcolor{comment}{\ \ \ \ !!\ Version\ with\ less\ precise\ output.}}
+\DoxyCodeLine{\Hypertarget{str__utilities_8f90_source_l00085}00085\ \textcolor{comment}{\ \ \ \ !!}}
+\DoxyCodeLine{\Hypertarget{str__utilities_8f90_source_l00086}00086\ \textcolor{comment}{\ \ \ \ !!\ \(\backslash\)see\ See\ c2str().}}
+\DoxyCodeLine{\Hypertarget{str__utilities_8f90_source_l00087}\doxymbox{\hyperlink{namespacestr__utilities_abca28d6272d447dc1c0c100624c6ed75}{00087}}\ \ \ \ \ \textcolor{keywordtype}{elemental}\ \textcolor{keyword}{character(len=max\_str\_ln)\ }\textcolor{keyword}{function\ }\doxymbox{\hyperlink{namespacestr__utilities_abca28d6272d447dc1c0c100624c6ed75}{c2strt}}(k)}
+\DoxyCodeLine{\Hypertarget{str__utilities_8f90_source_l00088}00088\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ input\ /\ output}}
+\DoxyCodeLine{\Hypertarget{str__utilities_8f90_source_l00089}00089\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{complex(dp)},\ \textcolor{keywordtype}{intent(in)}\ ::\ k\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !<\ complex\ to\ convert}}
+\DoxyCodeLine{\Hypertarget{str__utilities_8f90_source_l00090}00090\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{str__utilities_8f90_source_l00091}00091\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ local\ variables}}
+\DoxyCodeLine{\Hypertarget{str__utilities_8f90_source_l00092}00092\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{character(len=max\_str\_ln)}\ ::\ dum\_str\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ dummy\ string}}
+\DoxyCodeLine{\Hypertarget{str__utilities_8f90_source_l00093}00093\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{str__utilities_8f90_source_l00094}00094\ \ \ \ \ \ \ \ \ \textcolor{keyword}{write}\ (\doxymbox{\hyperlink{namespacestr__utilities_abca28d6272d447dc1c0c100624c6ed75}{c2strt}},\ \textcolor{stringliteral}{'(ES9.2)'})\ rp(k)}
+\DoxyCodeLine{\Hypertarget{str__utilities_8f90_source_l00095}00095\ \ \ \ \ \ \ \ \ \textcolor{keyword}{write}\ (dum\_str,\ \textcolor{stringliteral}{'(ES9.2)'})\ abs(imag(k))}
+\DoxyCodeLine{\Hypertarget{str__utilities_8f90_source_l00096}00096\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (imag(k).lt.0)\ \textcolor{keywordflow}{then}}
+\DoxyCodeLine{\Hypertarget{str__utilities_8f90_source_l00097}00097\ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{namespacestr__utilities_abca28d6272d447dc1c0c100624c6ed75}{c2strt}}\ =\ trim(\doxymbox{\hyperlink{namespacestr__utilities_abca28d6272d447dc1c0c100624c6ed75}{c2strt}})//\textcolor{stringliteral}{'\ -\/'}}
+\DoxyCodeLine{\Hypertarget{str__utilities_8f90_source_l00098}00098\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{str__utilities_8f90_source_l00099}00099\ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{namespacestr__utilities_abca28d6272d447dc1c0c100624c6ed75}{c2strt}}\ =\ trim(\doxymbox{\hyperlink{namespacestr__utilities_abca28d6272d447dc1c0c100624c6ed75}{c2strt}})//\textcolor{stringliteral}{'\ +'}}
+\DoxyCodeLine{\Hypertarget{str__utilities_8f90_source_l00100}00100\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ end\ if}}
+\DoxyCodeLine{\Hypertarget{str__utilities_8f90_source_l00101}00101\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{namespacestr__utilities_abca28d6272d447dc1c0c100624c6ed75}{c2strt}}\ =\ trim(\doxymbox{\hyperlink{namespacestr__utilities_abca28d6272d447dc1c0c100624c6ed75}{c2strt}})//\textcolor{stringliteral}{'\ '}//trim(dum\_str)//\textcolor{stringliteral}{'\ i'}}
+\DoxyCodeLine{\Hypertarget{str__utilities_8f90_source_l00102}00102\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{namespacestr__utilities_abca28d6272d447dc1c0c100624c6ed75}{c2strt}}\ =\ adjustl(\doxymbox{\hyperlink{namespacestr__utilities_abca28d6272d447dc1c0c100624c6ed75}{c2strt}})}
+\DoxyCodeLine{\Hypertarget{str__utilities_8f90_source_l00103}00103\ \ \ \ \ \textcolor{keyword}{end\ function\ }\doxymbox{\hyperlink{namespacestr__utilities_abca28d6272d447dc1c0c100624c6ed75}{c2strt}}}
+\DoxyCodeLine{\Hypertarget{str__utilities_8f90_source_l00104}00104\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{str__utilities_8f90_source_l00105}00105\ \textcolor{comment}{\ \ \ \ !>\ Convert\ a\ string\ to\ lowercase.}}
+\DoxyCodeLine{\Hypertarget{str__utilities_8f90_source_l00106}00106\ \textcolor{comment}{\ \ \ \ !!}}
+\DoxyCodeLine{\Hypertarget{str__utilities_8f90_source_l00107}00107\ \textcolor{comment}{\ \ \ \ !!\ \(\backslash\)see\ from\ \(\backslash\)cite\ RedwineF90,\ figure\ 3.5B,\ pg\ 80.\ }}
+\DoxyCodeLine{\Hypertarget{str__utilities_8f90_source_l00108}\doxymbox{\hyperlink{namespacestr__utilities_a219964a283968cc6a968db0197d2187e}{00108}}\ \ \ \ \ \textcolor{keyword}{function\ }\doxymbox{\hyperlink{namespacestr__utilities_a219964a283968cc6a968db0197d2187e}{strh2l}}(input\_string)\ \textcolor{keyword}{result}(output\_string)}
+\DoxyCodeLine{\Hypertarget{str__utilities_8f90_source_l00109}00109\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ input\ /\ output}}
+\DoxyCodeLine{\Hypertarget{str__utilities_8f90_source_l00110}00110\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{character(*)},\ \textcolor{keywordtype}{intent(in)}\ \ \ \ \ ::\ input\_string\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !<\ input\ string}}
+\DoxyCodeLine{\Hypertarget{str__utilities_8f90_source_l00111}00111\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{character(len(input\_string))}\ ::\ output\_string\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !<\ lowercase\ version}}
+\DoxyCodeLine{\Hypertarget{str__utilities_8f90_source_l00112}00112\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{str__utilities_8f90_source_l00113}00113\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ local\ variables}}
+\DoxyCodeLine{\Hypertarget{str__utilities_8f90_source_l00114}00114\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer}\ ::\ i,\ n}
+\DoxyCodeLine{\Hypertarget{str__utilities_8f90_source_l00115}00115\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{character(*)},\ \textcolor{keywordtype}{parameter}\ ::\ lower\_case\ =\ \textcolor{stringliteral}{'abcdefghijklmnopqrstuvwxyz'}}
+\DoxyCodeLine{\Hypertarget{str__utilities_8f90_source_l00116}00116\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{character(*)},\ \textcolor{keywordtype}{parameter}\ ::\ upper\_case\ =\ \textcolor{stringliteral}{'ABCDEFGHIJKLMNOPQRSTUVWXYZ'}}
+\DoxyCodeLine{\Hypertarget{str__utilities_8f90_source_l00117}00117\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{str__utilities_8f90_source_l00118}00118\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ copy\ input\ string}}
+\DoxyCodeLine{\Hypertarget{str__utilities_8f90_source_l00119}00119\ \ \ \ \ \ \ \ \ output\_string\ =\ input\_string}
+\DoxyCodeLine{\Hypertarget{str__utilities_8f90_source_l00120}00120\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{str__utilities_8f90_source_l00121}00121\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ convert\ case\ character\ by\ character}}
+\DoxyCodeLine{\Hypertarget{str__utilities_8f90_source_l00122}00122\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{do}\ i\ =\ 1,\ len(output\_string)}
+\DoxyCodeLine{\Hypertarget{str__utilities_8f90_source_l00123}00123\ \ \ \ \ \ \ \ \ \ \ n\ =\ index(upper\_case,\ output\_string(i:i))}
+\DoxyCodeLine{\Hypertarget{str__utilities_8f90_source_l00124}00124\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ n\ /=\ 0\ )\ output\_string(i:i)\ =\ lower\_case(n:n)}
+\DoxyCodeLine{\Hypertarget{str__utilities_8f90_source_l00125}00125\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ end\ do}}
+\DoxyCodeLine{\Hypertarget{str__utilities_8f90_source_l00126}00126\ \ \ \ \ \textcolor{keyword}{end\ function\ }\doxymbox{\hyperlink{namespacestr__utilities_a219964a283968cc6a968db0197d2187e}{strh2l}}\textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{str__utilities_8f90_source_l00127}00127\ \textcolor{comment}{\ \ \ \ !>\ convert\ a\ string\ to\ uppercase.}}
+\DoxyCodeLine{\Hypertarget{str__utilities_8f90_source_l00128}00128\ \textcolor{comment}{\ \ \ \ !!}}
+\DoxyCodeLine{\Hypertarget{str__utilities_8f90_source_l00129}00129\ \textcolor{comment}{\ \ \ \ !!\ \(\backslash\)see\ See\ strh2l()}}
+\DoxyCodeLine{\Hypertarget{str__utilities_8f90_source_l00130}\doxymbox{\hyperlink{namespacestr__utilities_a7e2e441d509c12045a3373819040a806}{00130}}\ \ \ \ \ \textcolor{keyword}{function\ }\doxymbox{\hyperlink{namespacestr__utilities_a7e2e441d509c12045a3373819040a806}{strl2h}}(input\_string)\ \textcolor{keyword}{result}(output\_string)}
+\DoxyCodeLine{\Hypertarget{str__utilities_8f90_source_l00131}00131\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ input\ /\ output}}
+\DoxyCodeLine{\Hypertarget{str__utilities_8f90_source_l00132}00132\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{character(*)},\ \textcolor{keywordtype}{intent(in)}\ \ \ \ \ ::\ input\_string\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !<\ input\ string}}
+\DoxyCodeLine{\Hypertarget{str__utilities_8f90_source_l00133}00133\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{character(len(input\_string))}\ ::\ output\_string\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !<\ uppercase\ version}}
+\DoxyCodeLine{\Hypertarget{str__utilities_8f90_source_l00134}00134\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{str__utilities_8f90_source_l00135}00135\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ local\ variables}}
+\DoxyCodeLine{\Hypertarget{str__utilities_8f90_source_l00136}00136\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer}\ ::\ i,\ n}
+\DoxyCodeLine{\Hypertarget{str__utilities_8f90_source_l00137}00137\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{character(*)},\ \textcolor{keywordtype}{parameter}\ ::\ lower\_case\ =\ \textcolor{stringliteral}{'abcdefghijklmnopqrstuvwxyz'}}
+\DoxyCodeLine{\Hypertarget{str__utilities_8f90_source_l00138}00138\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{character(*)},\ \textcolor{keywordtype}{parameter}\ ::\ upper\_case\ =\ \textcolor{stringliteral}{'ABCDEFGHIJKLMNOPQRSTUVWXYZ'}}
+\DoxyCodeLine{\Hypertarget{str__utilities_8f90_source_l00139}00139\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{str__utilities_8f90_source_l00140}00140\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ copy\ input\ string}}
+\DoxyCodeLine{\Hypertarget{str__utilities_8f90_source_l00141}00141\ \ \ \ \ \ \ \ \ output\_string\ =\ input\_string}
+\DoxyCodeLine{\Hypertarget{str__utilities_8f90_source_l00142}00142\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{str__utilities_8f90_source_l00143}00143\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ convert\ case\ character\ by\ character}}
+\DoxyCodeLine{\Hypertarget{str__utilities_8f90_source_l00144}00144\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{do}\ i\ =\ 1,\ len(output\_string)}
+\DoxyCodeLine{\Hypertarget{str__utilities_8f90_source_l00145}00145\ \ \ \ \ \ \ \ \ \ \ n\ =\ index(lower\_case,\ output\_string(i:i))}
+\DoxyCodeLine{\Hypertarget{str__utilities_8f90_source_l00146}00146\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ n\ /=\ 0\ )\ output\_string(i:i)\ =\ upper\_case(n:n)}
+\DoxyCodeLine{\Hypertarget{str__utilities_8f90_source_l00147}00147\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ end\ do}}
+\DoxyCodeLine{\Hypertarget{str__utilities_8f90_source_l00148}00148\ \ \ \ \ \textcolor{keyword}{end\ function\ }\doxymbox{\hyperlink{namespacestr__utilities_a7e2e441d509c12045a3373819040a806}{strl2h}}}
+\DoxyCodeLine{\Hypertarget{str__utilities_8f90_source_l00149}00149\ \ \ \ \ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{str__utilities_8f90_source_l00150}00150\ \textcolor{comment}{\ \ \ \ !>\ Merge\ array\ of\ strings.}}
+\DoxyCodeLine{\Hypertarget{str__utilities_8f90_source_l00151}\doxymbox{\hyperlink{namespacestr__utilities_a6ab16f33c155db79844279c6a56a494c}{00151}}\ \ \ \ \ \textcolor{keyword}{function\ }\doxymbox{\hyperlink{namespacestr__utilities_a6ab16f33c155db79844279c6a56a494c}{merge\_strings}}(input\_strings)}
+\DoxyCodeLine{\Hypertarget{str__utilities_8f90_source_l00152}00152\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ input\ /\ output}}
+\DoxyCodeLine{\Hypertarget{str__utilities_8f90_source_l00153}00153\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{character(*)},\ \textcolor{keywordtype}{intent(in)}\ ::\ input\_strings(:)\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !<\ array\ of\ strings}}
+\DoxyCodeLine{\Hypertarget{str__utilities_8f90_source_l00154}00154\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{character((len(input\_strings)+2)*size(input\_strings))}\ ::\ \doxymbox{\hyperlink{namespacestr__utilities_a6ab16f33c155db79844279c6a56a494c}{merge\_strings}}\textcolor{comment}{\ \ !<\ merged\ string}}
+\DoxyCodeLine{\Hypertarget{str__utilities_8f90_source_l00155}00155\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{str__utilities_8f90_source_l00156}00156\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ local\ variables}}
+\DoxyCodeLine{\Hypertarget{str__utilities_8f90_source_l00157}00157\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer}\ ::\ id\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ counter}}
+\DoxyCodeLine{\Hypertarget{str__utilities_8f90_source_l00158}00158\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{str__utilities_8f90_source_l00159}00159\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ start\ with\ first\ string}}
+\DoxyCodeLine{\Hypertarget{str__utilities_8f90_source_l00160}00160\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\textcolor{keyword}{size}(input\_strings).gt.0)\ \textcolor{keywordflow}{then}}
+\DoxyCodeLine{\Hypertarget{str__utilities_8f90_source_l00161}00161\ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{namespacestr__utilities_a6ab16f33c155db79844279c6a56a494c}{merge\_strings}}\ =\ trim(input\_strings(1))}
+\DoxyCodeLine{\Hypertarget{str__utilities_8f90_source_l00162}00162\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{str__utilities_8f90_source_l00163}00163\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ loop\ over\ next\ strings}}
+\DoxyCodeLine{\Hypertarget{str__utilities_8f90_source_l00164}00164\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{do}\ id\ =\ 2,\textcolor{keyword}{size}(input\_strings)}
+\DoxyCodeLine{\Hypertarget{str__utilities_8f90_source_l00165}00165\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{namespacestr__utilities_a6ab16f33c155db79844279c6a56a494c}{merge\_strings}}\ =\ trim(\doxymbox{\hyperlink{namespacestr__utilities_a6ab16f33c155db79844279c6a56a494c}{merge\_strings}})//\textcolor{stringliteral}{',\ '}//\&}
+\DoxyCodeLine{\Hypertarget{str__utilities_8f90_source_l00166}00166\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&trim(input\_strings(id))}
+\DoxyCodeLine{\Hypertarget{str__utilities_8f90_source_l00167}00167\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ \ \ \ \ end\ do}}
+\DoxyCodeLine{\Hypertarget{str__utilities_8f90_source_l00168}00168\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{str__utilities_8f90_source_l00169}00169\ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{namespacestr__utilities_a6ab16f33c155db79844279c6a56a494c}{merge\_strings}}\ =\ \textcolor{stringliteral}{''}}
+\DoxyCodeLine{\Hypertarget{str__utilities_8f90_source_l00170}00170\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ end\ if}}
+\DoxyCodeLine{\Hypertarget{str__utilities_8f90_source_l00171}00171\ \ \ \ \ \textcolor{keyword}{end\ function\ }\doxymbox{\hyperlink{namespacestr__utilities_a6ab16f33c155db79844279c6a56a494c}{merge\_strings}}}
+\DoxyCodeLine{\Hypertarget{str__utilities_8f90_source_l00172}00172\ \textcolor{keyword}{end\ module\ }\doxymbox{\hyperlink{namespacestr__utilities}{str\_utilities}}}
+
+\end{DoxyCode}

@@ -1,0 +1,156 @@
+\doxysection{sol\+\_\+vars.\+f90}
+\hypertarget{sol__vars_8f90_source}{}\label{sol__vars_8f90_source}\index{/Users/toonweyens/Code/PB3D/Modules/sol\_vars.f90@{/Users/toonweyens/Code/PB3D/Modules/sol\_vars.f90}}
+\doxymbox{\hyperlink{sol__vars_8f90}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{sol__vars_8f90_source_l00001}00001\ \textcolor{comment}{!-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/!}\textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{sol__vars_8f90_source_l00002}00002\ \textcolor{comment}{!>\ Variables\ pertaining\ to\ the\ solution\ quantities.}}
+\DoxyCodeLine{\Hypertarget{sol__vars_8f90_source_l00003}00003\ \textcolor{comment}{!-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/!}}
+\DoxyCodeLine{\Hypertarget{sol__vars_8f90_source_l00004}\doxymbox{\hyperlink{namespacesol__vars}{00004}}\ \textcolor{keyword}{module}\ \doxymbox{\hyperlink{namespacesol__vars}{sol\_vars}}}
+\DoxyCodeLine{\Hypertarget{sol__vars_8f90_source_l00005}00005\ \textcolor{preprocessor}{\#include\ <PB3D\_macros.h>}}
+\DoxyCodeLine{\Hypertarget{sol__vars_8f90_source_l00006}00006\ \textcolor{preprocessor}{}\ \ \ \ \textcolor{keywordtype}{use\ }\doxymbox{\hyperlink{namespacestr__utilities}{str\_utilities}}}
+\DoxyCodeLine{\Hypertarget{sol__vars_8f90_source_l00007}00007\ \ \ \ \ \textcolor{keywordtype}{use\ }\doxymbox{\hyperlink{namespacemessages}{messages}}}
+\DoxyCodeLine{\Hypertarget{sol__vars_8f90_source_l00008}00008\ \ \ \ \ \textcolor{keywordtype}{use\ }\doxymbox{\hyperlink{namespacenum__vars}{num\_vars}},\ \textcolor{keywordtype}{only}:\ \doxymbox{\hyperlink{namespacenum__vars_a03802aa2bd86439d7a9370836fabf3f2}{dp}},\ \doxymbox{\hyperlink{namespacenum__vars_a3ff2bb983ee80a6735277d6789e6ce7c}{max\_str\_ln}},\ \doxymbox{\hyperlink{namespacenum__vars_a3b9303c24ebbdff7b366337702795211}{iu}},\ \doxymbox{\hyperlink{namespacenum__vars_ad5be06791ebf0ca75fc6dc7339916ae8}{weight\_dp}}}
+\DoxyCodeLine{\Hypertarget{sol__vars_8f90_source_l00009}00009\ \ \ \ \ \textcolor{keywordtype}{use\ }\doxymbox{\hyperlink{namespacegrid__vars}{grid\_vars}},\ \textcolor{keywordtype}{only}:\ \doxymbox{\hyperlink{structgrid__vars_1_1grid__type}{grid\_type}}}
+\DoxyCodeLine{\Hypertarget{sol__vars_8f90_source_l00010}00010\ \ \ \ \ \textcolor{keywordtype}{use\ }\doxymbox{\hyperlink{namespacex__vars}{x\_vars}},\ \textcolor{keywordtype}{only}:\ \doxymbox{\hyperlink{structx__vars_1_1modes__type}{modes\_type}}}
+\DoxyCodeLine{\Hypertarget{sol__vars_8f90_source_l00011}00011\ \ \ \ \ \textcolor{keywordtype}{use\ }\doxymbox{\hyperlink{namespaceoutput__ops}{output\_ops}}}
+\DoxyCodeLine{\Hypertarget{sol__vars_8f90_source_l00012}00012\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{sol__vars_8f90_source_l00013}00013\ \ \ \ \ \textcolor{keywordtype}{implicit\ none}}
+\DoxyCodeLine{\Hypertarget{sol__vars_8f90_source_l00014}00014\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{sol__vars_8f90_source_l00015}00015\ \ \ \ \ \textcolor{keywordtype}{private}}
+\DoxyCodeLine{\Hypertarget{sol__vars_8f90_source_l00016}00016\ \textcolor{preprocessor}{\#if\ ldebug}}
+\DoxyCodeLine{\Hypertarget{sol__vars_8f90_source_l00017}00017\ \textcolor{preprocessor}{}\ \ \ \ \textcolor{keywordtype}{public}\ \doxymbox{\hyperlink{namespacesol__vars_a91634d69ba45b896816f40e9013ddc79}{n\_alloc\_sols}}}
+\DoxyCodeLine{\Hypertarget{sol__vars_8f90_source_l00018}00018\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{sol__vars_8f90_source_l00019}00019\ \textcolor{preprocessor}{}\ \ \ \ }
+\DoxyCodeLine{\Hypertarget{sol__vars_8f90_source_l00020}00020\ \ \ \ \ \textcolor{comment}{!\ global\ variables}}
+\DoxyCodeLine{\Hypertarget{sol__vars_8f90_source_l00021}00021\ \textcolor{preprocessor}{\#if\ ldebug}}
+\DoxyCodeLine{\Hypertarget{sol__vars_8f90_source_l00022}\doxymbox{\hyperlink{namespacesol__vars_a91634d69ba45b896816f40e9013ddc79}{00022}}\ \textcolor{preprocessor}{}\ \ \ \ \textcolor{keywordtype}{integer}\ ::\ \doxymbox{\hyperlink{namespacesol__vars_a91634d69ba45b896816f40e9013ddc79}{n\_alloc\_sols}}\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !<\ nr.\ of\ allocated\ grids\ \(\backslash\)ldebug}}
+\DoxyCodeLine{\Hypertarget{sol__vars_8f90_source_l00023}00023\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{sol__vars_8f90_source_l00024}00024\ \textcolor{preprocessor}{}\ \ \ \ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{sol__vars_8f90_source_l00025}00025\ \textcolor{comment}{\ \ \ \ !>\ solution\ type}}
+\DoxyCodeLine{\Hypertarget{sol__vars_8f90_source_l00026}00026\ \textcolor{comment}{\ \ \ \ !!}}
+\DoxyCodeLine{\Hypertarget{sol__vars_8f90_source_l00027}00027\ \textcolor{comment}{\ \ \ \ !!\ The\ arrays\ here\ are\ of\ the\ form:}}
+\DoxyCodeLine{\Hypertarget{sol__vars_8f90_source_l00028}00028\ \textcolor{comment}{\ \ \ \ !!\ \ -\/\ \(\backslash\)c\ val:\ <tt>(1:n\_EV)</tt>}}
+\DoxyCodeLine{\Hypertarget{sol__vars_8f90_source_l00029}00029\ \textcolor{comment}{\ \ \ \ !!\ \ -\/\ \(\backslash\)c\ vec:\ <tt>(1:n\_mod,1:loc\_n\_r,1:n\_EV)</tt>}}
+\DoxyCodeLine{\Hypertarget{sol__vars_8f90_source_l00030}\doxymbox{\hyperlink{structsol__vars_1_1sol__type}{00030}}\ \ \ \ \ \textcolor{keyword}{type},\ \textcolor{keyword}{public}\ ::\ \doxymbox{\hyperlink{structsol__vars_1_1sol__type}{sol\_type}}}
+\DoxyCodeLine{\Hypertarget{sol__vars_8f90_source_l00031}\doxymbox{\hyperlink{structsol__vars_1_1sol__type_a05faca84fd837b32985ae5c4fdadb6da}{00031}}\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer}\ ::\ n\_mod\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !<\ size\ of\ n\ and\ m\ (nr.\ of\ modes)}}
+\DoxyCodeLine{\Hypertarget{sol__vars_8f90_source_l00032}\doxymbox{\hyperlink{structsol__vars_1_1sol__type_a2192f30619609d910a999dc6a8934934}{00032}}\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer}\ ::\ lim\_sec\_x(2)\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !<\ limits\ of\ \(\backslash\)c\ m\_X\ (pol.\ flux)\ or\ \(\backslash\)c\ n\_X\ (tor.\ flux)}}
+\DoxyCodeLine{\Hypertarget{sol__vars_8f90_source_l00033}\doxymbox{\hyperlink{structsol__vars_1_1sol__type_acb5f4ea951583b240591bce4e32f5230}{00033}}\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer},\ \textcolor{keywordtype}{allocatable}\ ::\ n(:,:)\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !<\ vector\ of\ toroidal\ mode\ numbers}}
+\DoxyCodeLine{\Hypertarget{sol__vars_8f90_source_l00034}\doxymbox{\hyperlink{structsol__vars_1_1sol__type_ad00b40efc03a825e83a58b6ef6b29e2b}{00034}}\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer},\ \textcolor{keywordtype}{allocatable}\ ::\ m(:,:)\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !<\ vector\ of\ poloidal\ mode\ numbers}}
+\DoxyCodeLine{\Hypertarget{sol__vars_8f90_source_l00035}\doxymbox{\hyperlink{structsol__vars_1_1sol__type_a5e21f3c7b6581901982958615c3f936e}{00035}}\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{complex(dp)},\ \textcolor{keywordtype}{allocatable}\ ::\ vec(:,:,:)\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !<\ Eigenvector\ solution}}
+\DoxyCodeLine{\Hypertarget{sol__vars_8f90_source_l00036}\doxymbox{\hyperlink{structsol__vars_1_1sol__type_a4cb91aeea05a69a04dceef7951be1004}{00036}}\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{complex(dp)},\ \textcolor{keywordtype}{allocatable}\ ::\ val(:)\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !<\ Eigenvalue\ solution}}
+\DoxyCodeLine{\Hypertarget{sol__vars_8f90_source_l00037}00037\ \textcolor{preprocessor}{\#if\ ldebug}}
+\DoxyCodeLine{\Hypertarget{sol__vars_8f90_source_l00038}\doxymbox{\hyperlink{structsol__vars_1_1sol__type_a16f8e9b26e0d976589c79fe534982617}{00038}}\ \textcolor{preprocessor}{}\textcolor{keywordtype}{\ \ \ \ \ \ \ \ real}(\doxymbox{\hyperlink{namespacenum__vars_a03802aa2bd86439d7a9370836fabf3f2}{dp}})\ ::\ estim\_mem\_usage\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !<\ estimated\ memory\ usage\ \(\backslash\)ldebug}}
+\DoxyCodeLine{\Hypertarget{sol__vars_8f90_source_l00039}00039\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{sol__vars_8f90_source_l00040}00040\ \textcolor{preprocessor}{}\ \ \ \ \textcolor{keyword}{contains}\textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{sol__vars_8f90_source_l00041}00041\ \textcolor{comment}{\ \ \ \ \ \ \ \ !>\ initialize}}
+\DoxyCodeLine{\Hypertarget{sol__vars_8f90_source_l00042}\doxymbox{\hyperlink{structsol__vars_1_1sol__type_a9d90b80e3844031b0a30fc99ea439aa0}{00042}}\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{procedure}\ ::\ init\ =>\ \doxymbox{\hyperlink{namespacesol__vars_ab1395fe16eca4dccaf7dbb60056fbccf}{init\_sol}}\textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{sol__vars_8f90_source_l00043}00043\ \textcolor{comment}{\ \ \ \ \ \ \ \ !>\ deallocate}}
+\DoxyCodeLine{\Hypertarget{sol__vars_8f90_source_l00044}\doxymbox{\hyperlink{structsol__vars_1_1sol__type_a20093f407840359c4b0c7d23ea48e976}{00044}}\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{procedure}\ ::\ dealloc\ =>\ \doxymbox{\hyperlink{namespacesol__vars_a9ae65a5252aede548e5238e50c1bb2ba}{dealloc\_sol}}}
+\DoxyCodeLine{\Hypertarget{sol__vars_8f90_source_l00045}00045\ \ \ \ \ \textcolor{keyword}{end\ type}}
+\DoxyCodeLine{\Hypertarget{sol__vars_8f90_source_l00046}00046\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{sol__vars_8f90_source_l00047}00047\ \textcolor{keyword}{contains}\textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{sol__vars_8f90_source_l00048}00048\ \textcolor{comment}{\ \ \ \ !>\ \(\backslash\)public\ Initialize\ a\ solution\ type\ and\ allocate\ the\ variables.}}
+\DoxyCodeLine{\Hypertarget{sol__vars_8f90_source_l00049}00049\ \textcolor{comment}{\ \ \ \ !!}}
+\DoxyCodeLine{\Hypertarget{sol__vars_8f90_source_l00050}00050\ \textcolor{comment}{\ \ \ \ !!\ The\ number\ of\ modes\ as\ well\ as\ \(\backslash\)c\ n\ and\ \(\backslash\)c\ m\ are\ also\ set\ up.}}
+\DoxyCodeLine{\Hypertarget{sol__vars_8f90_source_l00051}00051\ \textcolor{comment}{\ \ \ \ !!}}
+\DoxyCodeLine{\Hypertarget{sol__vars_8f90_source_l00052}00052\ \textcolor{comment}{\ \ \ \ !!\ Optionally,\ the\ secondary\ mode\ number\ can\ \ be\ specified\ (\(\backslash\)c\ m\ if\ poloidal}}
+\DoxyCodeLine{\Hypertarget{sol__vars_8f90_source_l00053}00053\ \textcolor{comment}{\ \ \ \ !!\ flux\ is\ used\ as\ normal\ coordinate\ and\ \ c\ n\ if\ toroidal\ flux).\ By\ default,}}
+\DoxyCodeLine{\Hypertarget{sol__vars_8f90_source_l00054}00054\ \textcolor{comment}{\ \ \ \ !!\ they\ are\ taken\ from\ the\ global\ \(\backslash\)c\ X\_vars\ variables.}}
+\DoxyCodeLine{\Hypertarget{sol__vars_8f90_source_l00055}00055\ \textcolor{comment}{\ \ \ \ !!}}
+\DoxyCodeLine{\Hypertarget{sol__vars_8f90_source_l00056}00056\ \textcolor{comment}{\ \ \ \ !!\ \(\backslash\)note\ If\ the\ lowest\ limits\ of\ \ the\ grid\ is\ not\ 1\ (e.g.\ <tt>grid\_sol\%i\_min}}
+\DoxyCodeLine{\Hypertarget{sol__vars_8f90_source_l00057}00057\ \textcolor{comment}{\ \ \ \ !!\ =\ 1</tt>\ for\ first\ process),\ the\ input\ variable\ \(\backslash\)c\ i\_min\ should\ be\ set\ to}}
+\DoxyCodeLine{\Hypertarget{sol__vars_8f90_source_l00058}00058\ \textcolor{comment}{\ \ \ \ !!\ set\ correctly.\ For\ a\ full\ grid,\ it\ should\ be\ set\ to\ 1.}}
+\DoxyCodeLine{\Hypertarget{sol__vars_8f90_source_l00059}\doxymbox{\hyperlink{namespacesol__vars_ab1395fe16eca4dccaf7dbb60056fbccf}{00059}}\ \ \ \ \ \textcolor{keyword}{subroutine\ }\doxymbox{\hyperlink{namespacesol__vars_ab1395fe16eca4dccaf7dbb60056fbccf}{init\_sol}}(sol,mds,grid\_sol,n\_EV,lim\_sec\_X)}
+\DoxyCodeLine{\Hypertarget{sol__vars_8f90_source_l00060}00060\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{use\ }\doxymbox{\hyperlink{namespacex__vars}{x\_vars}},\ \textcolor{keywordtype}{only}:\ \doxymbox{\hyperlink{interfacex__vars_1_1set__nm__x}{set\_nm\_x}}}
+\DoxyCodeLine{\Hypertarget{sol__vars_8f90_source_l00061}00061\ \textcolor{preprocessor}{\#if\ ldebug}}
+\DoxyCodeLine{\Hypertarget{sol__vars_8f90_source_l00062}00062\ \textcolor{preprocessor}{}\ \ \ \ \ \ \ \ \textcolor{keywordtype}{use\ }\doxymbox{\hyperlink{namespacenum__vars}{num\_vars}},\ \textcolor{keywordtype}{only}:\ \doxymbox{\hyperlink{namespacenum__vars_a28bf4f706f43af630ecc697dec01654c}{print\_mem\_usage}},\ \doxymbox{\hyperlink{namespacenum__vars_ab47aa91445feaedb05ac9d1a584664fe}{rank}}}
+\DoxyCodeLine{\Hypertarget{sol__vars_8f90_source_l00063}00063\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{sol__vars_8f90_source_l00064}00064\ \textcolor{preprocessor}{}\ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{sol__vars_8f90_source_l00065}00065\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ input\ /\ output}}
+\DoxyCodeLine{\Hypertarget{sol__vars_8f90_source_l00066}00066\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{class}(\doxymbox{\hyperlink{structsol__vars_1_1sol__type}{sol\_type}}),\ \textcolor{keywordtype}{intent(inout)}\ ::\ sol\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !<\ solution\ variables}}
+\DoxyCodeLine{\Hypertarget{sol__vars_8f90_source_l00067}00067\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{type}(\doxymbox{\hyperlink{structx__vars_1_1modes__type}{modes\_type}}),\ \textcolor{keywordtype}{intent(in)}\ ::\ mds\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !<\ general\ modes\ variables}}
+\DoxyCodeLine{\Hypertarget{sol__vars_8f90_source_l00068}00068\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{type}(\doxymbox{\hyperlink{structgrid__vars_1_1grid__type}{grid\_type}}),\ \textcolor{keywordtype}{intent(in)}\ ::\ grid\_sol\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !<\ solution\ grid}}
+\DoxyCodeLine{\Hypertarget{sol__vars_8f90_source_l00069}00069\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer},\ \textcolor{keywordtype}{intent(in)}\ ::\ n\_EV\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !<\ nr.\ of\ Eigenvalues}}
+\DoxyCodeLine{\Hypertarget{sol__vars_8f90_source_l00070}00070\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer},\ \textcolor{keywordtype}{intent(in)},\ \textcolor{keywordtype}{optional}\ ::\ lim\_sec\_X(2)\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !<\ limits\ of\ \(\backslash\)c\ m\_X\ (pol.\ flux)\ or\ \(\backslash\)c\ n\_X\ (tor.\ flux)}}
+\DoxyCodeLine{\Hypertarget{sol__vars_8f90_source_l00071}00071\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{sol__vars_8f90_source_l00072}00072\ \textcolor{preprocessor}{\#if\ ldebug}}
+\DoxyCodeLine{\Hypertarget{sol__vars_8f90_source_l00073}00073\ \textcolor{preprocessor}{}\ \ \ \ \ \ \ \ \textcolor{comment}{!\ initialize\ memory\ usage}}
+\DoxyCodeLine{\Hypertarget{sol__vars_8f90_source_l00074}00074\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\doxymbox{\hyperlink{namespacenum__vars_a28bf4f706f43af630ecc697dec01654c}{print\_mem\_usage}})\ sol\%estim\_mem\_usage\ =\ 0.\_dp}
+\DoxyCodeLine{\Hypertarget{sol__vars_8f90_source_l00075}00075\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{sol__vars_8f90_source_l00076}00076\ \textcolor{preprocessor}{}\ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{sol__vars_8f90_source_l00077}00077\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ set\ mode\ numbers}}
+\DoxyCodeLine{\Hypertarget{sol__vars_8f90_source_l00078}00078\ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{interfacex__vars_1_1set__nm__x}{set\_nm\_x}}(mds,grid\_sol,sol\%lim\_sec\_X,sol\%n,sol\%m,lim\_sec\_x)}
+\DoxyCodeLine{\Hypertarget{sol__vars_8f90_source_l00079}00079\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{sol__vars_8f90_source_l00080}00080\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ set\ n\_mod}}
+\DoxyCodeLine{\Hypertarget{sol__vars_8f90_source_l00081}00081\ \ \ \ \ \ \ \ \ sol\%n\_mod\ =\ \textcolor{keyword}{size}(sol\%n,2)}
+\DoxyCodeLine{\Hypertarget{sol__vars_8f90_source_l00082}00082\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{sol__vars_8f90_source_l00083}00083\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ allocate\ val}}
+\DoxyCodeLine{\Hypertarget{sol__vars_8f90_source_l00084}00084\ \ \ \ \ \ \ \ \ \textcolor{keyword}{allocate}(sol\%val(1:n\_ev))}
+\DoxyCodeLine{\Hypertarget{sol__vars_8f90_source_l00085}00085\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{sol__vars_8f90_source_l00086}00086\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ allocate\ vec}}
+\DoxyCodeLine{\Hypertarget{sol__vars_8f90_source_l00087}00087\ \ \ \ \ \ \ \ \ \textcolor{keyword}{allocate}(sol\%vec(1:sol\%n\_mod,1:grid\_sol\%loc\_n\_r,1:n\_ev))}
+\DoxyCodeLine{\Hypertarget{sol__vars_8f90_source_l00088}00088\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{sol__vars_8f90_source_l00089}00089\ \textcolor{preprocessor}{\#if\ ldebug}}
+\DoxyCodeLine{\Hypertarget{sol__vars_8f90_source_l00090}00090\ \textcolor{preprocessor}{}\ \ \ \ \ \ \ \ \textcolor{comment}{!\ set\ estimated\ memory\ usage}}
+\DoxyCodeLine{\Hypertarget{sol__vars_8f90_source_l00091}00091\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\doxymbox{\hyperlink{namespacenum__vars_a28bf4f706f43af630ecc697dec01654c}{print\_mem\_usage}})\ sol\%estim\_mem\_usage\ =\ sol\%estim\_mem\_usage\ +\ \&}
+\DoxyCodeLine{\Hypertarget{sol__vars_8f90_source_l00092}00092\ \ \ \ \ \ \ \ \ \ \ \ \ \&n\_ev\ *\ (1\ +\ sol\%n\_mod*grid\_sol\%loc\_n\_r)}
+\DoxyCodeLine{\Hypertarget{sol__vars_8f90_source_l00093}00093\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{sol__vars_8f90_source_l00094}00094\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ increment\ n\_alloc\_sols}}
+\DoxyCodeLine{\Hypertarget{sol__vars_8f90_source_l00095}00095\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{namespacesol__vars_a91634d69ba45b896816f40e9013ddc79}{n\_alloc\_sols}}\ =\ \doxymbox{\hyperlink{namespacesol__vars_a91634d69ba45b896816f40e9013ddc79}{n\_alloc\_sols}}\ +\ 1}
+\DoxyCodeLine{\Hypertarget{sol__vars_8f90_source_l00096}00096\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\doxymbox{\hyperlink{namespacenum__vars_a28bf4f706f43af630ecc697dec01654c}{print\_mem\_usage}})\ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_aa4a8d01563e92558e8a0875b075ec54c}{writo}}(\textcolor{stringliteral}{'[rank\ '}//trim(\doxymbox{\hyperlink{namespacestr__utilities_a0b97e51770725a3e98ed393d26681414}{i2str}}(\doxymbox{\hyperlink{namespacenum__vars_ab47aa91445feaedb05ac9d1a584664fe}{rank}}))//\&}
+\DoxyCodeLine{\Hypertarget{sol__vars_8f90_source_l00097}00097\ \ \ \ \ \ \ \ \ \ \ \ \ \&\textcolor{stringliteral}{'\ -\/\ Expected\ memory\ usage\ of\ sol:\ '}//\&}
+\DoxyCodeLine{\Hypertarget{sol__vars_8f90_source_l00098}00098\ \ \ \ \ \ \ \ \ \ \ \ \ \&trim(\doxymbox{\hyperlink{namespacestr__utilities_ac778d706b2e021672618939ab58fdd32}{r2strt}}(sol\%estim\_mem\_usage*\doxymbox{\hyperlink{namespacenum__vars_ad5be06791ebf0ca75fc6dc7339916ae8}{weight\_dp}}*2))//\textcolor{stringliteral}{'\ kB]'},alert=.true.)}
+\DoxyCodeLine{\Hypertarget{sol__vars_8f90_source_l00099}00099\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{sol__vars_8f90_source_l00100}00100\ \textcolor{preprocessor}{}\ \ \ \ \textcolor{keyword}{end\ subroutine\ }\doxymbox{\hyperlink{namespacesol__vars_ab1395fe16eca4dccaf7dbb60056fbccf}{init\_sol}}}
+\DoxyCodeLine{\Hypertarget{sol__vars_8f90_source_l00101}00101\ \ \ \ \ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{sol__vars_8f90_source_l00102}00102\ \textcolor{comment}{\ \ \ \ !>\ \(\backslash\)public\ Deallocates\ solution\ variables.}}
+\DoxyCodeLine{\Hypertarget{sol__vars_8f90_source_l00103}00103\ \textcolor{comment}{\ \ \ \ !!}}
+\DoxyCodeLine{\Hypertarget{sol__vars_8f90_source_l00104}00104\ \textcolor{comment}{\ \ \ \ !!\ \(\backslash\)note\ intent(out)\ automatically\ deallocates\ the\ variable}}
+\DoxyCodeLine{\Hypertarget{sol__vars_8f90_source_l00105}\doxymbox{\hyperlink{namespacesol__vars_a9ae65a5252aede548e5238e50c1bb2ba}{00105}}\ \ \ \ \ \textcolor{keyword}{subroutine\ }\doxymbox{\hyperlink{namespacesol__vars_a9ae65a5252aede548e5238e50c1bb2ba}{dealloc\_sol}}(sol)}
+\DoxyCodeLine{\Hypertarget{sol__vars_8f90_source_l00106}00106\ \textcolor{preprocessor}{\#if\ ldebug}}
+\DoxyCodeLine{\Hypertarget{sol__vars_8f90_source_l00107}00107\ \textcolor{preprocessor}{}\ \ \ \ \ \ \ \ \textcolor{keywordtype}{use\ }\doxymbox{\hyperlink{namespacenum__vars}{num\_vars}},\ \textcolor{keywordtype}{only}:\ \doxymbox{\hyperlink{namespacenum__vars_ab47aa91445feaedb05ac9d1a584664fe}{rank}},\ \doxymbox{\hyperlink{namespacenum__vars_a28bf4f706f43af630ecc697dec01654c}{print\_mem\_usage}}}
+\DoxyCodeLine{\Hypertarget{sol__vars_8f90_source_l00108}00108\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{sol__vars_8f90_source_l00109}00109\ \textcolor{preprocessor}{}\ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{sol__vars_8f90_source_l00110}00110\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ input\ /\ output}}
+\DoxyCodeLine{\Hypertarget{sol__vars_8f90_source_l00111}00111\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{class}(\doxymbox{\hyperlink{structsol__vars_1_1sol__type}{sol\_type}}),\ \textcolor{keywordtype}{intent(inout)}\ ::\ sol\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !<\ solution\ variables\ to\ be\ deallocated}}
+\DoxyCodeLine{\Hypertarget{sol__vars_8f90_source_l00112}00112\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{sol__vars_8f90_source_l00113}00113\ \textcolor{preprocessor}{\#if\ ldebug}}
+\DoxyCodeLine{\Hypertarget{sol__vars_8f90_source_l00114}00114\ \textcolor{preprocessor}{}\ \ \ \ \ \ \ \ \textcolor{comment}{!\ local\ variables}}
+\DoxyCodeLine{\Hypertarget{sol__vars_8f90_source_l00115}00115\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer}\ ::\ mem\_diff\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ difference\ in\ memory}}
+\DoxyCodeLine{\Hypertarget{sol__vars_8f90_source_l00116}00116\ \textcolor{keywordtype}{\ \ \ \ \ \ \ \ real}(dp)\ ::\ estim\_mem\_usage\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ estimated\ memory\ usage}}
+\DoxyCodeLine{\Hypertarget{sol__vars_8f90_source_l00117}00117\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{sol__vars_8f90_source_l00118}00118\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ memory\ usage\ before\ deallocation}}
+\DoxyCodeLine{\Hypertarget{sol__vars_8f90_source_l00119}00119\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\doxymbox{\hyperlink{namespacenum__vars_a28bf4f706f43af630ecc697dec01654c}{print\_mem\_usage}})\ \textcolor{keywordflow}{then}}
+\DoxyCodeLine{\Hypertarget{sol__vars_8f90_source_l00120}00120\ \ \ \ \ \ \ \ \ \ \ \ \ mem\_diff\ =\ \doxymbox{\hyperlink{namespacemessages_a82dddaab795b78b3d39e1ff1aab2f665}{get\_mem\_usage}}()}
+\DoxyCodeLine{\Hypertarget{sol__vars_8f90_source_l00121}00121\ \ \ \ \ \ \ \ \ \ \ \ \ estim\_mem\_usage\ =\ sol\%estim\_mem\_usage}
+\DoxyCodeLine{\Hypertarget{sol__vars_8f90_source_l00122}00122\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ end\ if}}
+\DoxyCodeLine{\Hypertarget{sol__vars_8f90_source_l00123}00123\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{sol__vars_8f90_source_l00124}00124\ \textcolor{preprocessor}{}\ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{sol__vars_8f90_source_l00125}00125\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ deallocate\ allocatable\ variables}}
+\DoxyCodeLine{\Hypertarget{sol__vars_8f90_source_l00126}00126\ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }dealloc\_sol\_final(sol)}
+\DoxyCodeLine{\Hypertarget{sol__vars_8f90_source_l00127}00127\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{sol__vars_8f90_source_l00128}00128\ \textcolor{preprocessor}{\#if\ ldebug}}
+\DoxyCodeLine{\Hypertarget{sol__vars_8f90_source_l00129}00129\ \textcolor{preprocessor}{}\ \ \ \ \ \ \ \ \textcolor{comment}{!\ decrement\ n\_alloc\_sols}}
+\DoxyCodeLine{\Hypertarget{sol__vars_8f90_source_l00130}00130\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{namespacesol__vars_a91634d69ba45b896816f40e9013ddc79}{n\_alloc\_sols}}\ =\ \doxymbox{\hyperlink{namespacesol__vars_a91634d69ba45b896816f40e9013ddc79}{n\_alloc\_sols}}\ -\/\ 1}
+\DoxyCodeLine{\Hypertarget{sol__vars_8f90_source_l00131}00131\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{sol__vars_8f90_source_l00132}00132\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ memory\ usage\ difference\ after\ deallocation}}
+\DoxyCodeLine{\Hypertarget{sol__vars_8f90_source_l00133}00133\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\doxymbox{\hyperlink{namespacenum__vars_a28bf4f706f43af630ecc697dec01654c}{print\_mem\_usage}})\ \textcolor{keywordflow}{then}}
+\DoxyCodeLine{\Hypertarget{sol__vars_8f90_source_l00134}00134\ \ \ \ \ \ \ \ \ \ \ \ \ mem\_diff\ =\ mem\_diff\ -\/\ \doxymbox{\hyperlink{namespacemessages_a82dddaab795b78b3d39e1ff1aab2f665}{get\_mem\_usage}}()}
+\DoxyCodeLine{\Hypertarget{sol__vars_8f90_source_l00135}00135\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_aa4a8d01563e92558e8a0875b075ec54c}{writo}}(\textcolor{stringliteral}{'[Rank\ '}//trim(\doxymbox{\hyperlink{namespacestr__utilities_a0b97e51770725a3e98ed393d26681414}{i2str}}(\doxymbox{\hyperlink{namespacenum__vars_ab47aa91445feaedb05ac9d1a584664fe}{rank}}))//\textcolor{stringliteral}{'\ -\/\ liberated\ '}//\&}
+\DoxyCodeLine{\Hypertarget{sol__vars_8f90_source_l00136}00136\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&trim(\doxymbox{\hyperlink{namespacestr__utilities_a0b97e51770725a3e98ed393d26681414}{i2str}}(mem\_diff))//\textcolor{stringliteral}{'kB\ deallocating\ sol\ ('}//\&}
+\DoxyCodeLine{\Hypertarget{sol__vars_8f90_source_l00137}00137\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&trim(\doxymbox{\hyperlink{namespacestr__utilities_a0b97e51770725a3e98ed393d26681414}{i2str}}(nint(100*mem\_diff/\&}
+\DoxyCodeLine{\Hypertarget{sol__vars_8f90_source_l00138}00138\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&(estim\_mem\_usage*\doxymbox{\hyperlink{namespacenum__vars_ad5be06791ebf0ca75fc6dc7339916ae8}{weight\_dp}}*2))))//\&}
+\DoxyCodeLine{\Hypertarget{sol__vars_8f90_source_l00139}00139\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&\textcolor{stringliteral}{'\%\ of\ estimated)]'},alert=.true.)}
+\DoxyCodeLine{\Hypertarget{sol__vars_8f90_source_l00140}00140\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ end\ if}}
+\DoxyCodeLine{\Hypertarget{sol__vars_8f90_source_l00141}00141\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{sol__vars_8f90_source_l00142}00142\ \textcolor{preprocessor}{}\ \ \ \ \textcolor{keyword}{contains}}
+\DoxyCodeLine{\Hypertarget{sol__vars_8f90_source_l00143}00143\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ Note:\ intent(out)\ automatically\ deallocates\ the\ variable}\textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{sol__vars_8f90_source_l00144}00144\ \textcolor{comment}{\ \ \ \ \ \ \ \ !>\ \(\backslash\)private}}
+\DoxyCodeLine{\Hypertarget{sol__vars_8f90_source_l00145}00145\ \ \ \ \ \ \ \ \ \textcolor{keyword}{subroutine\ }dealloc\_sol\_final(sol)}
+\DoxyCodeLine{\Hypertarget{sol__vars_8f90_source_l00146}00146\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ input\ /\ output}}
+\DoxyCodeLine{\Hypertarget{sol__vars_8f90_source_l00147}00147\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{type}(\doxymbox{\hyperlink{structsol__vars_1_1sol__type}{sol\_type}}),\ \textcolor{keywordtype}{intent(out)}\ ::\ sol\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ solution\ to\ be\ deallocated}}
+\DoxyCodeLine{\Hypertarget{sol__vars_8f90_source_l00148}00148\ \ \ \ \ \ \ \ \ \textcolor{keyword}{end\ subroutine\ }dealloc\_sol\_final}
+\DoxyCodeLine{\Hypertarget{sol__vars_8f90_source_l00149}00149\ \ \ \ \ \textcolor{keyword}{end\ subroutine\ }\doxymbox{\hyperlink{namespacesol__vars_a9ae65a5252aede548e5238e50c1bb2ba}{dealloc\_sol}}}
+\DoxyCodeLine{\Hypertarget{sol__vars_8f90_source_l00150}00150\ \textcolor{keyword}{end\ module\ }\doxymbox{\hyperlink{namespacesol__vars}{sol\_vars}}}
+
+\end{DoxyCode}

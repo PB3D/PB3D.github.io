@@ -1,22 +1,22 @@
-\hypertarget{namespacevac__utilities}{}\doxysection{vac\+\_\+utilities Module Reference}
-\label{namespacevac__utilities}\index{vac\_utilities@{vac\_utilities}}
+\doxysection{vac\+\_\+utilities Module Reference}
+\hypertarget{namespacevac__utilities}{}\label{namespacevac__utilities}\index{vac\_utilities@{vac\_utilities}}
 
 
 Numerical utilities related to the vacuum response.  
 
 
-\doxysubsection*{Functions/\+Subroutines}
+\doxysubsubsection*{Functions/\+\+Subroutines}
 \begin{DoxyCompactItemize}
 \item 
-subroutine, public \mbox{\hyperlink{namespacevac__utilities_aa8859980354d180445ed0437d7f51bcd}{calc\+\_\+gh\+\_\+int\+\_\+1}} (G, H, x\+\_\+s, x\+\_\+in, norm\+\_\+s, h\+\_\+fac\+\_\+in, step\+\_\+size, tol)
+subroutine, public \doxymbox{\hyperlink{namespacevac__utilities_a167cd4d3bee273c153bd18c0904cf468}{calc\+\_\+gh\+\_\+int\+\_\+1}} (g, h, x\+\_\+s, x\+\_\+in, norm\+\_\+s, h\+\_\+fac\+\_\+in, step\+\_\+size, tol)
 \begin{DoxyCompactList}\small\item\em Calculate G\+\_\+ij and H\+\_\+ij on an interval for field line aligned configurations. \end{DoxyCompactList}\item 
-subroutine, public \mbox{\hyperlink{namespacevac__utilities_af387fcaa54ec681e55d6eb685ad622bd}{calc\+\_\+gh\+\_\+int\+\_\+2}} (G, H, t\+\_\+s, t\+\_\+in, x\+\_\+s, x\+\_\+in, norm\+\_\+s, norm\+\_\+in, Aij, ql, tol, b\+\_\+coeff, n\+\_\+tor)
+subroutine, public \doxymbox{\hyperlink{namespacevac__utilities_a000076e068b91103036aeb8fffeca33a}{calc\+\_\+gh\+\_\+int\+\_\+2}} (g, h, t\+\_\+s, t\+\_\+in, x\+\_\+s, x\+\_\+in, norm\+\_\+s, norm\+\_\+in, aij, ql, tol, b\+\_\+coeff, n\+\_\+tor)
 \begin{DoxyCompactList}\small\item\em Calculate G\+\_\+ij and H\+\_\+ij on an interval for axisymmetric configurations. \end{DoxyCompactList}\item 
-integer function, public \mbox{\hyperlink{namespacevac__utilities_a05e8e1f24569b4bff05e61a867268fc3}{vec\+\_\+dis2loc}} (ctxt, vec\+\_\+dis, lims, vec\+\_\+loc, proc)
+integer function, public \doxymbox{\hyperlink{namespacevac__utilities_a05e8e1f24569b4bff05e61a867268fc3}{vec\+\_\+dis2loc}} (ctxt, vec\+\_\+dis, lims, vec\+\_\+loc, proc)
 \begin{DoxyCompactList}\small\item\em Gathers a distributed vector on a single process. \end{DoxyCompactList}\item 
-integer function, public \mbox{\hyperlink{namespacevac__utilities_ae70e8a1fc132ba79a9a4f49f4944a352}{mat\+\_\+dis2loc}} (ctxt, mat\+\_\+dis, lims\+\_\+r, lims\+\_\+c, mat\+\_\+loc, proc)
+integer function, public \doxymbox{\hyperlink{namespacevac__utilities_ae70e8a1fc132ba79a9a4f49f4944a352}{mat\+\_\+dis2loc}} (ctxt, mat\+\_\+dis, lims\+\_\+r, lims\+\_\+c, mat\+\_\+loc, proc)
 \begin{DoxyCompactList}\small\item\em Gathers a distributed vector on a single process. \end{DoxyCompactList}\item 
-integer function, public \mbox{\hyperlink{namespacevac__utilities_a8e7889688701f6ac2fd2c60cdee2b96a}{interlaced\+\_\+vac\+\_\+copy}} (vac\+\_\+old, vac)
+integer function, public \doxymbox{\hyperlink{namespacevac__utilities_a8e7889688701f6ac2fd2c60cdee2b96a}{interlaced\+\_\+vac\+\_\+copy}} (vac\+\_\+old, vac)
 \begin{DoxyCompactList}\small\item\em Copies vacuum variables of a previous level into the appropriate, interlaced place of a next level. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
@@ -24,22 +24,24 @@ integer function, public \mbox{\hyperlink{namespacevac__utilities_a8e7889688701f
 Numerical utilities related to the vacuum response. 
 
 \begin{DoxySeeAlso}{See also}
-\mbox{\hyperlink{namespacevac__ops}{vac\+\_\+ops}} for information. 
+\doxylink{namespacevac__ops}{vac\+\_\+ops} for information. 
 \end{DoxySeeAlso}
 
 
-\doxysubsection{Function/\+Subroutine Documentation}
-\mbox{\Hypertarget{namespacevac__utilities_aa8859980354d180445ed0437d7f51bcd}\label{namespacevac__utilities_aa8859980354d180445ed0437d7f51bcd}} 
-\index{vac\_utilities@{vac\_utilities}!calc\_gh\_int\_1@{calc\_gh\_int\_1}}
+\label{doc-func-members}
+\Hypertarget{namespacevac__utilities_doc-func-members}
+\doxysubsection{Function/\+\+Subroutine Documentation}
+\Hypertarget{namespacevac__utilities_a167cd4d3bee273c153bd18c0904cf468}\index{vac\_utilities@{vac\_utilities}!calc\_gh\_int\_1@{calc\_gh\_int\_1}}
 \index{calc\_gh\_int\_1@{calc\_gh\_int\_1}!vac\_utilities@{vac\_utilities}}
 \doxysubsubsection{\texorpdfstring{calc\_gh\_int\_1()}{calc\_gh\_int\_1()}}
-{\footnotesize\ttfamily subroutine, public vac\+\_\+utilities\+::calc\+\_\+gh\+\_\+int\+\_\+1 (\begin{DoxyParamCaption}\item[{real(dp), dimension(2), intent(inout)}]{G,  }\item[{real(dp), dimension(2), intent(inout)}]{H,  }\item[{real(dp), dimension(2,3), intent(in)}]{x\+\_\+s,  }\item[{real(dp), dimension(3), intent(in)}]{x\+\_\+in,  }\item[{real(dp), dimension(2,3), intent(in)}]{norm\+\_\+s,  }\item[{real(dp), dimension(4), intent(in)}]{h\+\_\+fac\+\_\+in,  }\item[{real(dp), dimension(2), intent(in)}]{step\+\_\+size,  }\item[{real(dp), intent(in)}]{tol }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \label{namespacevac__utilities_a167cd4d3bee273c153bd18c0904cf468} 
+subroutine, public vac\+\_\+utilities::\+calc\+\_\+gh\+\_\+int\+\_\+1 (\begin{DoxyParamCaption}\item[{real(dp), dimension(2), intent(inout)}]{g}{, }\item[{real(dp), dimension(2), intent(inout)}]{h}{, }\item[{real(dp), dimension(2,3), intent(in)}]{x\+\_\+s}{, }\item[{real(dp), dimension(3), intent(in)}]{x\+\_\+in}{, }\item[{real(dp), dimension(2,3), intent(in)}]{norm\+\_\+s}{, }\item[{real(dp), dimension(4), intent(in)}]{h\+\_\+fac\+\_\+in}{, }\item[{real(dp), dimension(2), intent(in)}]{step\+\_\+size}{, }\item[{real(dp), intent(in)}]{tol}{}\end{DoxyParamCaption})}
 
 
 
 Calculate G\+\_\+ij and H\+\_\+ij on an interval for field line aligned configurations. 
 
-The indices for the source variables are {\ttfamily \mbox{[}left\+:right,dim\mbox{]}} where {\ttfamily dim} is the Cartesian dimension. The same holds for {\ttfamily ql}.
+The indices for the source variables are {\ttfamily \+[left:\+right,dim]\+} where {\ttfamily dim} is the Cartesian dimension. The same holds for {\ttfamily ql}.
 
 For subintegrals close to the singularity, the procedure uses the analytical approximation.
 
@@ -48,41 +50,41 @@ This routine does not calculate the contribution $2\beta$.
 \end{DoxyNote}
 
 \begin{DoxyParams}[1]{Parameters}
-\mbox{\texttt{ in}}  & {\em x\+\_\+s} & position vector at left and right limit of source interval \\
+\doxymbox{\texttt{in}}  & {\em x\+\_\+s} & position vector at left and right limit of source interval \\
 \hline
-\mbox{\texttt{ in}}  & {\em x\+\_\+in} & position vector at which to calculate influence \\
+\doxymbox{\texttt{in}}  & {\em x\+\_\+in} & position vector at which to calculate influence \\
 \hline
-\mbox{\texttt{ in}}  & {\em norm\+\_\+s} & normal vector at left and right limit of source interval \\
+\doxymbox{\texttt{in}}  & {\em norm\+\_\+s} & normal vector at left and right limit of source interval \\
 \hline
-\mbox{\texttt{ in}}  & {\em h\+\_\+fac\+\_\+in} & metric factors at which to calculate influence \\
+\doxymbox{\texttt{in}}  & {\em h\+\_\+fac\+\_\+in} & metric factors at which to calculate influence \\
 \hline
-\mbox{\texttt{ in}}  & {\em step\+\_\+size} & step sizes in parallel direction and alpha \\
+\doxymbox{\texttt{in}}  & {\em step\+\_\+size} & step sizes in parallel direction and alpha \\
 \hline
-\mbox{\texttt{ in}}  & {\em tol} & tolerance on distance between points \\
+\doxymbox{\texttt{in}}  & {\em tol} & tolerance on distance between points \\
 \hline
 \end{DoxyParams}
 
 
-Definition at line 33 of file vac\+\_\+utilities.\+f90.
+Definition at line \doxymbox{\hyperlink{vac__utilities_8f90_source_l00032}{32}} of file \doxymbox{\hyperlink{vac__utilities_8f90_source}{vac\+\_\+utilities.\+f90}}.
 
-Here is the caller graph for this function\+:\nopagebreak
+Here is the caller graph for this function:\+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=350pt]{namespacevac__utilities_aa8859980354d180445ed0437d7f51bcd_icgraph}
+\includegraphics[width=350pt]{namespacevac__utilities_a167cd4d3bee273c153bd18c0904cf468_icgraph}
 \end{center}
 \end{figure}
-\mbox{\Hypertarget{namespacevac__utilities_af387fcaa54ec681e55d6eb685ad622bd}\label{namespacevac__utilities_af387fcaa54ec681e55d6eb685ad622bd}} 
-\index{vac\_utilities@{vac\_utilities}!calc\_gh\_int\_2@{calc\_gh\_int\_2}}
+\Hypertarget{namespacevac__utilities_a000076e068b91103036aeb8fffeca33a}\index{vac\_utilities@{vac\_utilities}!calc\_gh\_int\_2@{calc\_gh\_int\_2}}
 \index{calc\_gh\_int\_2@{calc\_gh\_int\_2}!vac\_utilities@{vac\_utilities}}
 \doxysubsubsection{\texorpdfstring{calc\_gh\_int\_2()}{calc\_gh\_int\_2()}}
-{\footnotesize\ttfamily subroutine, public vac\+\_\+utilities\+::calc\+\_\+gh\+\_\+int\+\_\+2 (\begin{DoxyParamCaption}\item[{real(dp), dimension(2), intent(inout)}]{G,  }\item[{real(dp), dimension(2), intent(inout)}]{H,  }\item[{real(dp), dimension(2), intent(in)}]{t\+\_\+s,  }\item[{real(dp), intent(in)}]{t\+\_\+in,  }\item[{real(dp), dimension(2,2), intent(in)}]{x\+\_\+s,  }\item[{real(dp), dimension(2), intent(in)}]{x\+\_\+in,  }\item[{real(dp), dimension(2,2), intent(in)}]{norm\+\_\+s,  }\item[{real(dp), dimension(2), intent(in)}]{norm\+\_\+in,  }\item[{real(dp), dimension(2), intent(in)}]{Aij,  }\item[{real(dp), dimension(2,2), intent(in)}]{ql,  }\item[{real(dp), intent(in)}]{tol,  }\item[{real(dp), dimension(2), intent(in)}]{b\+\_\+coeff,  }\item[{integer, intent(in)}]{n\+\_\+tor }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \label{namespacevac__utilities_a000076e068b91103036aeb8fffeca33a} 
+subroutine, public vac\+\_\+utilities::\+calc\+\_\+gh\+\_\+int\+\_\+2 (\begin{DoxyParamCaption}\item[{real(dp), dimension(2), intent(inout)}]{g}{, }\item[{real(dp), dimension(2), intent(inout)}]{h}{, }\item[{real(dp), dimension(2), intent(in)}]{t\+\_\+s}{, }\item[{real(dp), intent(in)}]{t\+\_\+in}{, }\item[{real(dp), dimension(2,2), intent(in)}]{x\+\_\+s}{, }\item[{real(dp), dimension(2), intent(in)}]{x\+\_\+in}{, }\item[{real(dp), dimension(2,2), intent(in)}]{norm\+\_\+s}{, }\item[{real(dp), dimension(2), intent(in)}]{norm\+\_\+in}{, }\item[{real(dp), dimension(2), intent(in)}]{aij}{, }\item[{real(dp), dimension(2,2), intent(in)}]{ql}{, }\item[{real(dp), intent(in)}]{tol}{, }\item[{real(dp), dimension(2), intent(in)}]{b\+\_\+coeff}{, }\item[{integer, intent(in)}]{n\+\_\+tor}{}\end{DoxyParamCaption})}
 
 
 
 Calculate G\+\_\+ij and H\+\_\+ij on an interval for axisymmetric configurations. 
 
-The indices for the source variables are {\ttfamily \mbox{[}left\+:right,dim\mbox{]}} where {\ttfamily dim} is the Cartesian dimension. The same holds for {\ttfamily ql}.
+The indices for the source variables are {\ttfamily \+[left:\+right,dim]\+} where {\ttfamily dim} is the Cartesian dimension. The same holds for {\ttfamily ql}.
 
 For subintegrals close to the singularity (i.\+e. where the tolerance is no being met), the routine approximates the toroidal functions with the analytical approximation. If one of the boundaries of the subintegral is far enough from the singularity, there is an additional contribution due to the difference between the actual toroidal function and the approximation. This contribution is zero if both boundaries are close, because in this case it is assumed that the entire integral is given by the analytical approximation.
 
@@ -91,132 +93,138 @@ This routine does not calculate the contribution $2\beta$.
 \end{DoxyNote}
 
 \begin{DoxyParams}[1]{Parameters}
-\mbox{\texttt{ in}}  & {\em t\+\_\+s} & pol. angle at left and right limit of source interval \\
+\doxymbox{\texttt{in}}  & {\em t\+\_\+s} & pol. angle at left and right limit of source interval \\
 \hline
-\mbox{\texttt{ in}}  & {\em t\+\_\+in} & pol. angle at which to calculate influence \\
+\doxymbox{\texttt{in}}  & {\em t\+\_\+in} & pol. angle at which to calculate influence \\
 \hline
-\mbox{\texttt{ in}}  & {\em x\+\_\+s} & position vector at left and right limit of source interval \\
+\doxymbox{\texttt{in}}  & {\em x\+\_\+s} & position vector at left and right limit of source interval \\
 \hline
-\mbox{\texttt{ in}}  & {\em x\+\_\+in} & position vector at which to calculate influence \\
+\doxymbox{\texttt{in}}  & {\em x\+\_\+in} & position vector at which to calculate influence \\
 \hline
-\mbox{\texttt{ in}}  & {\em norm\+\_\+s} & normal vector at left and right limit of source interval \\
+\doxymbox{\texttt{in}}  & {\em norm\+\_\+s} & normal vector at left and right limit of source interval \\
 \hline
-\mbox{\texttt{ in}}  & {\em norm\+\_\+in} & normal vector at which to calculate influence \\
+\doxymbox{\texttt{in}}  & {\em norm\+\_\+in} & normal vector at which to calculate influence \\
 \hline
-\mbox{\texttt{ in}}  & {\em aij} & Aij helper variable for H \\
+\doxymbox{\texttt{in}}  & {\em aij} & Aij helper variable for H \\
 \hline
-\mbox{\texttt{ in}}  & {\em ql} & ql for n-\/1 and n at left and right limit of source interval \\
+\doxymbox{\texttt{in}}  & {\em ql} & ql for n-\/1 and n at left and right limit of source interval \\
 \hline
-\mbox{\texttt{ in}}  & {\em tol} & tolerance on rho2 \\
+\doxymbox{\texttt{in}}  & {\em tol} & tolerance on rho2 \\
 \hline
-\mbox{\texttt{ in}}  & {\em b\+\_\+coeff} & $b = \sum_{k=1}^n \frac{2}{2k-1}$ for n and n-\/1 \\
+\doxymbox{\texttt{in}}  & {\em b\+\_\+coeff} & $b = \sum_{k=1}^n \frac{2}{2k-1}$ for n and n-\/1 \\
 \hline
-\mbox{\texttt{ in}}  & {\em n\+\_\+tor} & toroidal mode number \\
+\doxymbox{\texttt{in}}  & {\em n\+\_\+tor} & toroidal mode number \\
 \hline
 \end{DoxyParams}
 
 
-Definition at line 99 of file vac\+\_\+utilities.\+f90.
+Definition at line \doxymbox{\hyperlink{vac__utilities_8f90_source_l00097}{97}} of file \doxymbox{\hyperlink{vac__utilities_8f90_source}{vac\+\_\+utilities.\+f90}}.
 
-Here is the caller graph for this function\+:\nopagebreak
+Here is the caller graph for this function:\+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=350pt]{namespacevac__utilities_af387fcaa54ec681e55d6eb685ad622bd_icgraph}
+\includegraphics[width=350pt]{namespacevac__utilities_a000076e068b91103036aeb8fffeca33a_icgraph}
 \end{center}
 \end{figure}
-\mbox{\Hypertarget{namespacevac__utilities_a8e7889688701f6ac2fd2c60cdee2b96a}\label{namespacevac__utilities_a8e7889688701f6ac2fd2c60cdee2b96a}} 
-\index{vac\_utilities@{vac\_utilities}!interlaced\_vac\_copy@{interlaced\_vac\_copy}}
+\Hypertarget{namespacevac__utilities_a8e7889688701f6ac2fd2c60cdee2b96a}\index{vac\_utilities@{vac\_utilities}!interlaced\_vac\_copy@{interlaced\_vac\_copy}}
 \index{interlaced\_vac\_copy@{interlaced\_vac\_copy}!vac\_utilities@{vac\_utilities}}
 \doxysubsubsection{\texorpdfstring{interlaced\_vac\_copy()}{interlaced\_vac\_copy()}}
-{\footnotesize\ttfamily integer function, public vac\+\_\+utilities\+::interlaced\+\_\+vac\+\_\+copy (\begin{DoxyParamCaption}\item[{type(\mbox{\hyperlink{structvac__vars_1_1vac__type}{vac\+\_\+type}}), intent(in)}]{vac\+\_\+old,  }\item[{type(\mbox{\hyperlink{structvac__vars_1_1vac__type}{vac\+\_\+type}}), intent(inout)}]{vac }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \label{namespacevac__utilities_a8e7889688701f6ac2fd2c60cdee2b96a} 
+integer function, public vac\+\_\+utilities::\+interlaced\+\_\+vac\+\_\+copy (\begin{DoxyParamCaption}\item[{type(\doxymbox{\hyperlink{structvac__vars_1_1vac__type}{vac\+\_\+type}}), intent(in)}]{vac\+\_\+old}{, }\item[{type(\doxymbox{\hyperlink{structvac__vars_1_1vac__type}{vac\+\_\+type}}), intent(inout)}]{vac}{}\end{DoxyParamCaption})}
 
 
 
 Copies vacuum variables of a previous level into the appropriate, interlaced place of a next level. 
 
-This is done by multiplying left by $\overline{\text{T}}$ and right by $\overline{\text{T}}^T$ with \[ a_{ij} = \left\{\begin{aligned} 1 \quad &\text{for} \left(i,j\right) = \left(2j-1+(i-1)n_\text{old},j+(i-1)n_\text{old}\right) \\ 0 \quad &\text{otherwise} \end{aligned}\right. \] where $i$ ranges from $1$ to $n_\text{old}$ and $j$ from $1$ to $m_\text{old}$, with the size of $\overline{\text{T}}$ equal to $n_\text{new} \times n_\text{old} $ where $n$ refers to {\ttfamily n\+\_\+bnd(1)} and $m$ to {\ttfamily n\+\_\+bnd(2)}. 
+This is done by multiplying left by $\overline{\text{T}}$ and right by $\overline{\text{T}}^T$ with        \[         a_{ij} =
+             \left\{\begin{aligned}
+                 1 \quad &\text{for}  \left(i,j\right) =
+                     \left(2j-1+(i-1)n_\text{old},j+(i-1)n_\text{old}\right) \\
+                 0 \quad &\text{otherwise} 
+             \end{aligned}\right.
+\] where $i$ ranges from $1$ to $n_\text{old}$ and $j$ from $1$ to $m_\text{old}$, with the size of $\overline{\text{T}}$ equal to $n_\text{new} \times n_\text{old}  $ where $n$ refers to {\ttfamily n\+\_\+bnd(1)} and $m$ to {\ttfamily n\+\_\+bnd(2)}. 
 \begin{DoxyParams}[1]{Parameters}
-\mbox{\texttt{ in}}  & {\em vac\+\_\+old} & old vacuum \\
+\doxymbox{\texttt{in}}  & {\em vac\+\_\+old} & old vacuum \\
 \hline
-\mbox{\texttt{ in,out}}  & {\em vac} & vacuum \\
+\doxymbox{\texttt{in,out}}  & {\em vac} & vacuum \\
 \hline
 \end{DoxyParams}
 
 
-Definition at line 355 of file vac\+\_\+utilities.\+f90.
+Definition at line \doxymbox{\hyperlink{vac__utilities_8f90_source_l00354}{354}} of file \doxymbox{\hyperlink{vac__utilities_8f90_source}{vac\+\_\+utilities.\+f90}}.
 
-Here is the call graph for this function\+:\nopagebreak
+Here is the call graph for this function:\+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{namespacevac__utilities_a8e7889688701f6ac2fd2c60cdee2b96a_cgraph}
 \end{center}
 \end{figure}
-Here is the caller graph for this function\+:\nopagebreak
+Here is the caller graph for this function:\+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{namespacevac__utilities_a8e7889688701f6ac2fd2c60cdee2b96a_icgraph}
 \end{center}
 \end{figure}
-\mbox{\Hypertarget{namespacevac__utilities_ae70e8a1fc132ba79a9a4f49f4944a352}\label{namespacevac__utilities_ae70e8a1fc132ba79a9a4f49f4944a352}} 
-\index{vac\_utilities@{vac\_utilities}!mat\_dis2loc@{mat\_dis2loc}}
+\Hypertarget{namespacevac__utilities_ae70e8a1fc132ba79a9a4f49f4944a352}\index{vac\_utilities@{vac\_utilities}!mat\_dis2loc@{mat\_dis2loc}}
 \index{mat\_dis2loc@{mat\_dis2loc}!vac\_utilities@{vac\_utilities}}
 \doxysubsubsection{\texorpdfstring{mat\_dis2loc()}{mat\_dis2loc()}}
-{\footnotesize\ttfamily integer function, public vac\+\_\+utilities\+::mat\+\_\+dis2loc (\begin{DoxyParamCaption}\item[{integer, intent(in)}]{ctxt,  }\item[{real(dp), dimension(\+:,\+:), intent(in)}]{mat\+\_\+dis,  }\item[{integer, dimension(\+:,\+:), intent(in)}]{lims\+\_\+r,  }\item[{integer, dimension(\+:,\+:), intent(in)}]{lims\+\_\+c,  }\item[{real(dp), dimension(\+:,\+:), intent(inout)}]{mat\+\_\+loc,  }\item[{integer, intent(in), optional}]{proc }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \label{namespacevac__utilities_ae70e8a1fc132ba79a9a4f49f4944a352} 
+integer function, public vac\+\_\+utilities::\+mat\+\_\+dis2loc (\begin{DoxyParamCaption}\item[{integer, intent(in)}]{ctxt}{, }\item[{real(dp), dimension(:\+,:\+), intent(in)}]{mat\+\_\+dis}{, }\item[{integer, dimension(:\+,:\+), intent(in)}]{lims\+\_\+r}{, }\item[{integer, dimension(:\+,:\+), intent(in)}]{lims\+\_\+c}{, }\item[{real(dp), dimension(:\+,:\+), intent(inout)}]{mat\+\_\+loc}{, }\item[{integer, intent(in), optional}]{proc}{}\end{DoxyParamCaption})}
 
 
 
 Gathers a distributed vector on a single process. 
 
 \begin{DoxySeeAlso}{See also}
-See \mbox{\hyperlink{namespacevac__utilities_a05e8e1f24569b4bff05e61a867268fc3}{vec\+\_\+dis2loc()}} for exaplanation. 
+See \doxylink{namespacevac__utilities_a05e8e1f24569b4bff05e61a867268fc3}{vec\+\_\+dis2loc()} for exaplanation. 
 \end{DoxySeeAlso}
 
 \begin{DoxyParams}[1]{Parameters}
-\mbox{\texttt{ in}}  & {\em ctxt} & context for matrix \\
+\doxymbox{\texttt{in}}  & {\em ctxt} & context for matrix \\
 \hline
-\mbox{\texttt{ in}}  & {\em mat\+\_\+dis} & distributed matrix \\
+\doxymbox{\texttt{in}}  & {\em mat\+\_\+dis} & distributed matrix \\
 \hline
-\mbox{\texttt{ in}}  & {\em lims\+\_\+r} & limits for different subrows \\
+\doxymbox{\texttt{in}}  & {\em lims\+\_\+r} & limits for different subrows \\
 \hline
-\mbox{\texttt{ in}}  & {\em lims\+\_\+c} & limits for different subcolumns \\
+\doxymbox{\texttt{in}}  & {\em lims\+\_\+c} & limits for different subcolumns \\
 \hline
-\mbox{\texttt{ in,out}}  & {\em mat\+\_\+loc} & local matrix \\
+\doxymbox{\texttt{in,out}}  & {\em mat\+\_\+loc} & local matrix \\
 \hline
-\mbox{\texttt{ in}}  & {\em proc} & which process receives result \\
+\doxymbox{\texttt{in}}  & {\em proc} & which process receives result \\
 \hline
 \end{DoxyParams}
 
 
-Definition at line 277 of file vac\+\_\+utilities.\+f90.
+Definition at line \doxymbox{\hyperlink{vac__utilities_8f90_source_l00275}{275}} of file \doxymbox{\hyperlink{vac__utilities_8f90_source}{vac\+\_\+utilities.\+f90}}.
 
-Here is the call graph for this function\+:\nopagebreak
+Here is the call graph for this function:\+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{namespacevac__utilities_ae70e8a1fc132ba79a9a4f49f4944a352_cgraph}
 \end{center}
 \end{figure}
-Here is the caller graph for this function\+:\nopagebreak
+Here is the caller graph for this function:\+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{namespacevac__utilities_ae70e8a1fc132ba79a9a4f49f4944a352_icgraph}
 \end{center}
 \end{figure}
-\mbox{\Hypertarget{namespacevac__utilities_a05e8e1f24569b4bff05e61a867268fc3}\label{namespacevac__utilities_a05e8e1f24569b4bff05e61a867268fc3}} 
-\index{vac\_utilities@{vac\_utilities}!vec\_dis2loc@{vec\_dis2loc}}
+\Hypertarget{namespacevac__utilities_a05e8e1f24569b4bff05e61a867268fc3}\index{vac\_utilities@{vac\_utilities}!vec\_dis2loc@{vec\_dis2loc}}
 \index{vec\_dis2loc@{vec\_dis2loc}!vac\_utilities@{vac\_utilities}}
 \doxysubsubsection{\texorpdfstring{vec\_dis2loc()}{vec\_dis2loc()}}
-{\footnotesize\ttfamily integer function, public vac\+\_\+utilities\+::vec\+\_\+dis2loc (\begin{DoxyParamCaption}\item[{integer, intent(in)}]{ctxt,  }\item[{real(dp), dimension(\+:), intent(in)}]{vec\+\_\+dis,  }\item[{integer, dimension(\+:,\+:), intent(in)}]{lims,  }\item[{real(dp), dimension(\+:), intent(inout)}]{vec\+\_\+loc,  }\item[{integer, intent(in), optional}]{proc }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \label{namespacevac__utilities_a05e8e1f24569b4bff05e61a867268fc3} 
+integer function, public vac\+\_\+utilities::\+vec\+\_\+dis2loc (\begin{DoxyParamCaption}\item[{integer, intent(in)}]{ctxt}{, }\item[{real(dp), dimension(:\+), intent(in)}]{vec\+\_\+dis}{, }\item[{integer, dimension(:\+,:\+), intent(in)}]{lims}{, }\item[{real(dp), dimension(:\+), intent(inout)}]{vec\+\_\+loc}{, }\item[{integer, intent(in), optional}]{proc}{}\end{DoxyParamCaption})}
 
 
 
 Gathers a distributed vector on a single process. 
 
-For the distributed vector, the limits of the different subrows need to be provided, as discussed in \mbox{\hyperlink{namespacevac__vars_a81df0b01b0c2bf8072453f4ca12e2d5e}{init\+\_\+vac()}}.
+For the distributed vector, the limits of the different subrows need to be provided, as discussed in init\+\_\+vac().
 
 By default, the result lands on the master process, but this can be changed using {\ttfamily proc}. If it is negative, all processes receive the result. In any case, {\ttfamily vec\+\_\+loc} will be utilized.
 
@@ -225,29 +233,29 @@ By default, the result lands on the master process, but this can be changed usin
 \end{DoxyNote}
 
 \begin{DoxyParams}[1]{Parameters}
-\mbox{\texttt{ in}}  & {\em ctxt} & context for vector \\
+\doxymbox{\texttt{in}}  & {\em ctxt} & context for vector \\
 \hline
-\mbox{\texttt{ in}}  & {\em vec\+\_\+dis} & distributed vector \\
+\doxymbox{\texttt{in}}  & {\em vec\+\_\+dis} & distributed vector \\
 \hline
-\mbox{\texttt{ in}}  & {\em lims} & limits for different subrows \\
+\doxymbox{\texttt{in}}  & {\em lims} & limits for different subrows \\
 \hline
-\mbox{\texttt{ in,out}}  & {\em vec\+\_\+loc} & local vector \\
+\doxymbox{\texttt{in,out}}  & {\em vec\+\_\+loc} & local vector \\
 \hline
-\mbox{\texttt{ in}}  & {\em proc} & which process receives result \\
+\doxymbox{\texttt{in}}  & {\em proc} & which process receives result \\
 \hline
 \end{DoxyParams}
 
 
-Definition at line 223 of file vac\+\_\+utilities.\+f90.
+Definition at line \doxymbox{\hyperlink{vac__utilities_8f90_source_l00222}{222}} of file \doxymbox{\hyperlink{vac__utilities_8f90_source}{vac\+\_\+utilities.\+f90}}.
 
-Here is the call graph for this function\+:\nopagebreak
+Here is the call graph for this function:\+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{namespacevac__utilities_a05e8e1f24569b4bff05e61a867268fc3_cgraph}
 \end{center}
 \end{figure}
-Here is the caller graph for this function\+:\nopagebreak
+Here is the caller graph for this function:\+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode

@@ -1,0 +1,300 @@
+\doxysection{grid\+\_\+vars.\+f90}
+\hypertarget{grid__vars_8f90_source}{}\label{grid__vars_8f90_source}\index{/Users/toonweyens/Code/PB3D/Modules/grid\_vars.f90@{/Users/toonweyens/Code/PB3D/Modules/grid\_vars.f90}}
+\doxymbox{\hyperlink{grid__vars_8f90}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00001}00001\ \textcolor{comment}{!-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/!}\textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00002}00002\ \textcolor{comment}{!>\ Variables\ pertaining\ to\ the\ different\ grids\ used.}}
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00003}00003\ \textcolor{comment}{!-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/!}}
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00004}\doxymbox{\hyperlink{namespacegrid__vars}{00004}}\ \textcolor{keyword}{module}\ \doxymbox{\hyperlink{namespacegrid__vars}{grid\_vars}}}
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00005}00005\ \textcolor{preprocessor}{\#include\ <PB3D\_macros.h>}}
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00006}00006\ \textcolor{preprocessor}{}\ \ \ \ \textcolor{keywordtype}{use\ }\doxymbox{\hyperlink{namespacestr__utilities}{str\_utilities}}}
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00007}00007\ \ \ \ \ \textcolor{keywordtype}{use\ }\doxymbox{\hyperlink{namespacemessages}{messages}}}
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00008}00008\ \ \ \ \ \textcolor{keywordtype}{use\ }\doxymbox{\hyperlink{namespacenum__vars}{num\_vars}},\ \textcolor{keywordtype}{only}:\ \doxymbox{\hyperlink{namespacenum__vars_a03802aa2bd86439d7a9370836fabf3f2}{dp}},\ \doxymbox{\hyperlink{namespacenum__vars_a26f47310576a3414135b3d3fcc079709}{pi}},\ \doxymbox{\hyperlink{namespacenum__vars_a3ff2bb983ee80a6735277d6789e6ce7c}{max\_str\_ln}},\ \doxymbox{\hyperlink{namespacenum__vars_ad5be06791ebf0ca75fc6dc7339916ae8}{weight\_dp}}}
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00009}00009\ }
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00010}00010\ \ \ \ \ \textcolor{keywordtype}{implicit\ none}}
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00011}00011\ \ \ \ \ \textcolor{keywordtype}{private}}
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00012}00012\ \ \ \ \ \textcolor{keywordtype}{public}\ \doxymbox{\hyperlink{namespacegrid__vars_ad1047cc6f07720d61c8e6fdc3c68a317}{n\_r\_in}},\ \doxymbox{\hyperlink{namespacegrid__vars_aa3785d71892d3d7db81aca0b6aa880b0}{n\_r\_eq}},\ \doxymbox{\hyperlink{namespacegrid__vars_abee8a41de92fe25b2d3dfaf472b02cd2}{n\_r\_x}},\ \doxymbox{\hyperlink{namespacegrid__vars_ad998db12a656afb94d2d54a7d0eca642}{n\_r\_sol}},\ \doxymbox{\hyperlink{namespacegrid__vars_a689c08cf03bc54338878f85c6429b856}{min\_par\_x}},\ \doxymbox{\hyperlink{namespacegrid__vars_acaa1fd21d0c728ad8f24591c0d2a5801}{max\_par\_x}},\ \doxymbox{\hyperlink{namespacegrid__vars_a83a6486b23c4a218822540da15904426}{n\_alpha}},\ \&}
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00013}00013\ \ \ \ \ \ \ \ \ \&\doxymbox{\hyperlink{namespacegrid__vars_ad6f74227054278479670c68d8950e0e2}{min\_alpha}},\ \doxymbox{\hyperlink{namespacegrid__vars_ad3cab5cd1037b6956ccf74cde4539298}{max\_alpha}},\ \doxymbox{\hyperlink{namespacegrid__vars_a07bf4730be1d5ab8b42f85be63e11797}{alpha}}}
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00014}00014\ \textcolor{preprocessor}{\#if\ ldebug}}
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00015}00015\ \textcolor{preprocessor}{}\ \ \ \ \textcolor{keywordtype}{public}\ \doxymbox{\hyperlink{namespacegrid__vars_ac4b43443d16af06fdc62d542b3eadee2}{n\_alloc\_grids}},\ \doxymbox{\hyperlink{namespacegrid__vars_a23b5e4789dc5d3d0d6dadeb47909ddbd}{n\_alloc\_discs}}}
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00016}00016\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00017}00017\ \textcolor{preprocessor}{}\ \ \ \ }
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00018}00018\ \ \ \ \ \textcolor{comment}{!\ global\ variables}}
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00019}\doxymbox{\hyperlink{namespacegrid__vars_ad1047cc6f07720d61c8e6fdc3c68a317}{00019}}\ \ \ \ \ \textcolor{keywordtype}{integer}\ ::\ \doxymbox{\hyperlink{namespacegrid__vars_ad1047cc6f07720d61c8e6fdc3c68a317}{n\_r\_in}}\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !<\ nr.\ of\ normal\ points\ in\ input\ grid}}
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00020}\doxymbox{\hyperlink{namespacegrid__vars_aa3785d71892d3d7db81aca0b6aa880b0}{00020}}\ \ \ \ \ \textcolor{keywordtype}{integer}\ ::\ \doxymbox{\hyperlink{namespacegrid__vars_aa3785d71892d3d7db81aca0b6aa880b0}{n\_r\_eq}}\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !<\ nr.\ of\ normal\ points\ in\ equilibrium\ grid}}
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00021}\doxymbox{\hyperlink{namespacegrid__vars_abee8a41de92fe25b2d3dfaf472b02cd2}{00021}}\ \ \ \ \ \textcolor{keywordtype}{integer}\ ::\ \doxymbox{\hyperlink{namespacegrid__vars_abee8a41de92fe25b2d3dfaf472b02cd2}{n\_r\_x}}\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !<\ nr.\ of\ normal\ points\ in\ perturbation\ grid}}
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00022}\doxymbox{\hyperlink{namespacegrid__vars_ad998db12a656afb94d2d54a7d0eca642}{00022}}\ \ \ \ \ \textcolor{keywordtype}{integer}\ ::\ \doxymbox{\hyperlink{namespacegrid__vars_ad998db12a656afb94d2d54a7d0eca642}{n\_r\_sol}}\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !<\ nr.\ of\ normal\ points\ in\ solution\ grid}}
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00023}\doxymbox{\hyperlink{namespacegrid__vars_a83a6486b23c4a218822540da15904426}{00023}}\ \ \ \ \ \textcolor{keywordtype}{integer}\ ::\ \doxymbox{\hyperlink{namespacegrid__vars_a83a6486b23c4a218822540da15904426}{n\_alpha}}\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !<\ nr.\ of\ field-\/lines}}
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00024}\doxymbox{\hyperlink{namespacegrid__vars_a689c08cf03bc54338878f85c6429b856}{00024}}\ \textcolor{keywordtype}{\ \ \ \ real}(\doxymbox{\hyperlink{namespacenum__vars_a03802aa2bd86439d7a9370836fabf3f2}{dp}})\ ::\ \doxymbox{\hyperlink{namespacegrid__vars_a689c08cf03bc54338878f85c6429b856}{min\_par\_x}}\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !<\ min.\ of\ parallel\ coordinate\ [\(\backslash\)f\$\(\backslash\)pi\(\backslash\)f\$]\ in\ field-\/aligned\ grid}}
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00025}\doxymbox{\hyperlink{namespacegrid__vars_acaa1fd21d0c728ad8f24591c0d2a5801}{00025}}\ \textcolor{keywordtype}{\ \ \ \ real}(\doxymbox{\hyperlink{namespacenum__vars_a03802aa2bd86439d7a9370836fabf3f2}{dp}})\ ::\ \doxymbox{\hyperlink{namespacegrid__vars_acaa1fd21d0c728ad8f24591c0d2a5801}{max\_par\_x}}\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !<\ max.\ of\ parallel\ coordinate\ [\(\backslash\)f\$\(\backslash\)pi\(\backslash\)f\$]\ in\ field-\/aligned\ grid}}
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00026}\doxymbox{\hyperlink{namespacegrid__vars_ad6f74227054278479670c68d8950e0e2}{00026}}\ \textcolor{keywordtype}{\ \ \ \ real}(\doxymbox{\hyperlink{namespacenum__vars_a03802aa2bd86439d7a9370836fabf3f2}{dp}})\ ::\ \doxymbox{\hyperlink{namespacegrid__vars_ad6f74227054278479670c68d8950e0e2}{min\_alpha}}\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !<\ min.\ of\ field-\/line\ label\ [\(\backslash\)f\$\(\backslash\)pi\(\backslash\)f\$]\ in\ field-\/aligned\ grid}}
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00027}\doxymbox{\hyperlink{namespacegrid__vars_ad3cab5cd1037b6956ccf74cde4539298}{00027}}\ \textcolor{keywordtype}{\ \ \ \ real}(\doxymbox{\hyperlink{namespacenum__vars_a03802aa2bd86439d7a9370836fabf3f2}{dp}})\ ::\ \doxymbox{\hyperlink{namespacegrid__vars_ad3cab5cd1037b6956ccf74cde4539298}{max\_alpha}}\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !<\ max.\ of\ field-\/line\ label\ [\(\backslash\)f\$\(\backslash\)pi\(\backslash\)f\$]\ in\ field-\/aligned\ grid}}
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00028}\doxymbox{\hyperlink{namespacegrid__vars_a07bf4730be1d5ab8b42f85be63e11797}{00028}}\ \textcolor{keywordtype}{\ \ \ \ real}(\doxymbox{\hyperlink{namespacenum__vars_a03802aa2bd86439d7a9370836fabf3f2}{dp}}),\ \textcolor{keywordtype}{allocatable}\ ::\ \doxymbox{\hyperlink{namespacegrid__vars_a07bf4730be1d5ab8b42f85be63e11797}{alpha}}(:)\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !<\ field\ line\ label\ alpha}}
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00029}00029\ \textcolor{preprocessor}{\#if\ ldebug}}
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00030}\doxymbox{\hyperlink{namespacegrid__vars_ac4b43443d16af06fdc62d542b3eadee2}{00030}}\ \textcolor{preprocessor}{}\ \ \ \ \textcolor{keywordtype}{integer}\ ::\ \doxymbox{\hyperlink{namespacegrid__vars_ac4b43443d16af06fdc62d542b3eadee2}{n\_alloc\_grids}}\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !<\ nr.\ of\ allocated\ grids\ \(\backslash\)ldebug}}
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00031}\doxymbox{\hyperlink{namespacegrid__vars_a23b5e4789dc5d3d0d6dadeb47909ddbd}{00031}}\ \ \ \ \ \textcolor{keywordtype}{integer}\ ::\ \doxymbox{\hyperlink{namespacegrid__vars_a23b5e4789dc5d3d0d6dadeb47909ddbd}{n\_alloc\_discs}}\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !<\ nr.\ of\ allocated\ discretizations\ \(\backslash\)ldebug}}
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00032}00032\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00033}00033\ \textcolor{preprocessor}{}\textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00034}00034\ \textcolor{comment}{\ \ \ \ !>\ Type\ for\ grids}}
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00035}00035\ \textcolor{comment}{\ \ \ \ !!}}
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00036}00036\ \textcolor{comment}{\ \ \ \ !!\ The\ \ \ \ \ grids\ \ \ \ \ are\ \ \ \ \ saved\ \ \ \ \ \ in\ \ \ \ \ the\ \ \ \ \ following\ \ \ \ \ format:}}
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00037}00037\ \textcolor{comment}{\ \ \ \ !!\ <tt>(angle\_1,angle\_2,r)</tt>,\ where\ \(\backslash\)c\ angle\_1\ and\ \ \(\backslash\)c\ angle\_2\ can\ be\ any}}
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00038}00038\ \textcolor{comment}{\ \ \ \ !!\ angle\ that\ completely\ describe\ a\ flux\ surface.}}
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00039}00039\ \textcolor{comment}{\ \ \ \ !!\ }}
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00040}00040\ \textcolor{comment}{\ \ \ \ !!\ For\ example,\ \ they\ can\ refer\ \ to\ a\ \ grid\ of\ \(\backslash\)f\$\(\backslash\)theta\(\backslash\)f\$\ \ and\ \(\backslash\)f\$\(\backslash\)zeta\(\backslash\)f\$}}
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00041}00041\ \textcolor{comment}{\ \ \ \ !!\ values,\ but\ \ they\ can\ also\ \ refer\ to\ \ (Modified)\ flux\ coordinates\ \ with\ a}}
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00042}00042\ \textcolor{comment}{\ \ \ \ !!\ parallel\ angle\ and\ a\ field\ line\ coordinate\ (\(\backslash\)f\$\(\backslash\)alpha\(\backslash\)f\$).}}
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00043}00043\ \textcolor{comment}{\ \ \ \ !!}}
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00044}00044\ \textcolor{comment}{\ \ \ \ !!\ For\ \ field-\/aligned\ grids,\ \ \(\backslash\)c\ angle\_1\ \ is\ generally\ \ chosen\ equal\ \ to\ the}}
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00045}00045\ \textcolor{comment}{\ \ \ \ !!\ parallel\ coordinate\ in\ \ the\ Flux\ coordinate\ system,\ and\ \ \(\backslash\)c\ angle\_2\ equal}}
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00046}00046\ \textcolor{comment}{\ \ \ \ !!\ to\ the\ field\ line\ label\ (so\ the\ \ second\ dimension\ of\ the\ matrices\ is\ then}}
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00047}00047\ \textcolor{comment}{\ \ \ \ !!\ chosen\ to\ be\ of\ size\ 1\ for\ the\ calculations\ on\ a\ single\ field\ line).}}
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00048}00048\ \textcolor{comment}{\ \ \ \ !!}}
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00049}00049\ \textcolor{comment}{\ \ \ \ !!\ At\ the\ \ same\ time,\ \ the\ parallel\ coordinate,\ \ in\ which\ \ integrations\ will}}
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00050}00050\ \textcolor{comment}{\ \ \ \ !!\ have\ to\ \ be\ done,\ \ ocupies\ the\ \ first\ index.\ This\ \ is\ good\ \ for\ numerical}}
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00051}00051\ \textcolor{comment}{\ \ \ \ !!\ efficiency.}}
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00052}00052\ \textcolor{comment}{\ \ \ \ !!}}
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00053}00053\ \textcolor{comment}{\ \ \ \ !!\ For\ specific\ equilibrium\ \ grids,\ such\ as\ the\ case\ \ for\ HELENA\ equilibria,}}
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00054}00054\ \textcolor{comment}{\ \ \ \ !!\ \(\backslash\)c\ angle\_1\ \ corresponds\ to\ \ \(\backslash\)f\$\(\backslash\)theta\(\backslash\)f\$\ and\ \(\backslash\)c\ \ angle\_2\ to\ \ the\ symmetry}}
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00055}00055\ \textcolor{comment}{\ \ \ \ !!\ angle\ \(\backslash\)f\$\(\backslash\)zeta\(\backslash\)f\$.}}
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00056}00056\ \textcolor{comment}{\ \ \ \ !!}}
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00057}00057\ \textcolor{comment}{\ \ \ \ !!\ It\ is\ important\ that\ this\ order\ of\ the\ coordinates\ in\ space\ is\ consistent}}
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00058}00058\ \textcolor{comment}{\ \ \ \ !!\ among\ all\ the\ variables.}}
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00059}\doxymbox{\hyperlink{structgrid__vars_1_1grid__type}{00059}}\ \ \ \ \ \textcolor{keyword}{type},\ \textcolor{keyword}{public}\ ::\ \doxymbox{\hyperlink{structgrid__vars_1_1grid__type}{grid\_type}}}
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00060}\doxymbox{\hyperlink{structgrid__vars_1_1grid__type_a6c7d0e3483a15c2c8019fc3c00504686}{00060}}\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer}\ ::\ n(3)\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !<\ tot\ nr.\ of\ points}}
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00061}\doxymbox{\hyperlink{structgrid__vars_1_1grid__type_abb914b054e63edb4e56329b578031b0c}{00061}}\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer}\ ::\ loc\_n\_r\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !<\ local\ nr.\ of\ normal\ points}}
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00062}\doxymbox{\hyperlink{structgrid__vars_1_1grid__type_adb8e8ac883ac155accedc570de003465}{00062}}\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer}\ ::\ i\_min\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !<\ min.\ normal\ index\ of\ this\ process\ in\ full\ arrays}}
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00063}\doxymbox{\hyperlink{structgrid__vars_1_1grid__type_aabfcadb3adae8b408a18569f6cddf663}{00063}}\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer}\ ::\ i\_max\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !<\ max.\ normal\ index\ of\ this\ process\ in\ full\ arrays}}
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00064}\doxymbox{\hyperlink{structgrid__vars_1_1grid__type_ac4e6680c60d5a7ef4b776e5df5410f8a}{00064}}\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{logical}\ ::\ divided\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !<\ whether\ the\ grid\ is\ split\ up\ among\ the\ processes}}
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00065}\doxymbox{\hyperlink{structgrid__vars_1_1grid__type_aeb2850b6e1157f7935270a02d77f688d}{00065}}\ \textcolor{keywordtype}{\ \ \ \ \ \ \ \ real}(\doxymbox{\hyperlink{namespacenum__vars_a03802aa2bd86439d7a9370836fabf3f2}{dp}}),\ \textcolor{keywordtype}{pointer}\ ::\ r\_e(:)\ =>\ null()\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!<\ E(quilibrium)\ coord.\ values\ at\ n\ points\ }}
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00066}\doxymbox{\hyperlink{structgrid__vars_1_1grid__type_a070b58cf0d5f41f3b99f2e3fabd2fdd4}{00066}}\ \textcolor{keywordtype}{\ \ \ \ \ \ \ \ real}(\doxymbox{\hyperlink{namespacenum__vars_a03802aa2bd86439d7a9370836fabf3f2}{dp}}),\ \textcolor{keywordtype}{pointer}\ ::\ r\_f(:)\ =>\ null()\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!<\ F(lux)\ coord.\ values\ at\ n\ points\ }}
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00067}\doxymbox{\hyperlink{structgrid__vars_1_1grid__type_a898df4540526374d3f749fdbf6e0068b}{00067}}\ \textcolor{keywordtype}{\ \ \ \ \ \ \ \ real}(\doxymbox{\hyperlink{namespacenum__vars_a03802aa2bd86439d7a9370836fabf3f2}{dp}}),\ \textcolor{keywordtype}{pointer}\ ::\ loc\_r\_e(:)\ =>\ null()\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!<\ E(quilibrium)\ coord.\ values\ at\ n\ points\ }}
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00068}\doxymbox{\hyperlink{structgrid__vars_1_1grid__type_afcc03f0dce24d88dfa0ae8e725238d4c}{00068}}\ \textcolor{keywordtype}{\ \ \ \ \ \ \ \ real}(\doxymbox{\hyperlink{namespacenum__vars_a03802aa2bd86439d7a9370836fabf3f2}{dp}}),\ \textcolor{keywordtype}{pointer}\ ::\ loc\_r\_f(:)\ =>\ null()\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!<\ F(lux)\ coord.\ values\ at\ n\ points\ }}
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00069}\doxymbox{\hyperlink{structgrid__vars_1_1grid__type_ab0b41e4a204896b653c662b24ce1360e}{00069}}\ \textcolor{keywordtype}{\ \ \ \ \ \ \ \ real}(\doxymbox{\hyperlink{namespacenum__vars_a03802aa2bd86439d7a9370836fabf3f2}{dp}}),\ \textcolor{keywordtype}{pointer}\ ::\ theta\_e(:,:,:)\ =>\ null()\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!<\ E(quilibrium)\ coord.\ values\ of\ first\ angle\ at\ n\ points\ in\ 3-\/D}}
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00070}\doxymbox{\hyperlink{structgrid__vars_1_1grid__type_a1a9efc98321f582b71ddb6d62c3e791b}{00070}}\ \textcolor{keywordtype}{\ \ \ \ \ \ \ \ real}(\doxymbox{\hyperlink{namespacenum__vars_a03802aa2bd86439d7a9370836fabf3f2}{dp}}),\ \textcolor{keywordtype}{pointer}\ ::\ theta\_f(:,:,:)\ =>\ null()\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!<\ F(lux)\ coord.\ values\ of\ first\ angle\ at\ n\ points\ in\ 3-\/D}}
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00071}\doxymbox{\hyperlink{structgrid__vars_1_1grid__type_a0d866f4fcf46ea05611089afa76cbea0}{00071}}\ \textcolor{keywordtype}{\ \ \ \ \ \ \ \ real}(\doxymbox{\hyperlink{namespacenum__vars_a03802aa2bd86439d7a9370836fabf3f2}{dp}}),\ \textcolor{keywordtype}{pointer}\ ::\ zeta\_e(:,:,:)\ =>\ null()\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!<\ E(quilibrium)\ coord.\ values\ of\ second\ angle\ at\ n\ points\ in\ 3-\/D}}
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00072}\doxymbox{\hyperlink{structgrid__vars_1_1grid__type_a839dff9cce6047247918fd47a87ef1fc}{00072}}\ \textcolor{keywordtype}{\ \ \ \ \ \ \ \ real}(\doxymbox{\hyperlink{namespacenum__vars_a03802aa2bd86439d7a9370836fabf3f2}{dp}}),\ \textcolor{keywordtype}{pointer}\ ::\ zeta\_f(:,:,:)\ =>\ null()\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!<\ F(lux)\ coord.\ values\ of\ second\ angle\ at\ n\ points\ in\ 3-\/D}}
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00073}\doxymbox{\hyperlink{structgrid__vars_1_1grid__type_adebef5699de49c33289e03cda2875232}{00073}}\ \textcolor{keywordtype}{\ \ \ \ \ \ \ \ real}(\doxymbox{\hyperlink{namespacenum__vars_a03802aa2bd86439d7a9370836fabf3f2}{dp}}),\ \textcolor{keywordtype}{allocatable}\ ::\ trigon\_factors(:,:,:,:,:)\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !<\ trigonometric\ factor\ cosine\ for\ the\ inverse\ fourier\ transf.}}
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00074}00074\ \textcolor{preprocessor}{\#if\ ldebug}}
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00075}\doxymbox{\hyperlink{structgrid__vars_1_1grid__type_a18ae7f2f277c6aea8402fdc81a7d58f6}{00075}}\ \textcolor{preprocessor}{}\textcolor{keywordtype}{\ \ \ \ \ \ \ \ real}(\doxymbox{\hyperlink{namespacenum__vars_a03802aa2bd86439d7a9370836fabf3f2}{dp}})\ ::\ estim\_mem\_usage\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !<\ estimated\ memory\ usage\ \(\backslash\)ldebug}}
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00076}00076\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00077}00077\ \textcolor{preprocessor}{}\ \ \ \ \textcolor{keyword}{contains}\textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00078}00078\ \textcolor{comment}{\ \ \ \ \ \ \ \ !>\ initialize}}
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00079}\doxymbox{\hyperlink{structgrid__vars_1_1grid__type_af354f19ccb41d04bd5dedc816a19ae33}{00079}}\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{procedure}\ ::\ init\ =>\ \doxymbox{\hyperlink{namespacegrid__vars_aa0d888796fd875e9024443e46eeb11f8}{init\_grid}}\textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00080}00080\ \textcolor{comment}{\ \ \ \ \ \ \ \ !>\ copy}}
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00081}\doxymbox{\hyperlink{structgrid__vars_1_1grid__type_a3ca2502d4adda8d46063bb17b0050997}{00081}}\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{procedure}\ ::\ copy\ =>\ \doxymbox{\hyperlink{namespacegrid__vars_a6fa9a9920f1a700d50075bc9c291a247}{copy\_grid}}\textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00082}00082\ \textcolor{comment}{\ \ \ \ \ \ \ \ !>\ deallocate}}
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00083}\doxymbox{\hyperlink{structgrid__vars_1_1grid__type_a1a51e8a6f223af04cd0e0f206930942b}{00083}}\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{procedure}\ ::\ dealloc\ =>\ \doxymbox{\hyperlink{namespacegrid__vars_abc8ea59261a1e773754afebdb13276f9}{dealloc\_grid}}}
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00084}00084\ \ \ \ \ \textcolor{keyword}{end\ type}}
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00085}00085\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00086}00086\ \textcolor{keyword}{contains}\textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00087}00087\ \textcolor{comment}{\ \ \ \ !>\ \(\backslash\)public\ Initializes\ a\ new\ grid.}}
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00088}00088\ \textcolor{comment}{\ \ \ \ !!}}
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00089}00089\ \textcolor{comment}{\ \ \ \ !!\ Optionally,\ the\ local\ limits\ can\ be\ provided\ for\ a\ divided\ grid.}}
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00090}00090\ \textcolor{comment}{\ \ \ \ !!\ }}
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00091}00091\ \textcolor{comment}{\ \ \ \ !!\ Optionally,\ it\ can\ be\ set\ whether\ the\ grid\ is\ divided\ or\ not.\ A\ situation}}
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00092}00092\ \textcolor{comment}{\ \ \ \ !!\ where\ this\ is\ \ useful\ is\ when\ only\ \ a\ subset\ of\ MPI\ processes\ \ is\ used\ to}}
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00093}00093\ \textcolor{comment}{\ \ \ \ !!\ calculate\ the\ solution\ \ in\ SLEPC.\ In\ this\ case,\ the\ \ extra\ ranks\ all\ only}}
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00094}00094\ \textcolor{comment}{\ \ \ \ !!\ contain\ the\ last\ grid\ point,\ and\ the\ last\ used\ process\ has\ as\ upper\ limit}}
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00095}00095\ \textcolor{comment}{\ \ \ \ !!\ this\ same\ grid\ \ point.\ This\ way,\ all\ the\ procedures\ \ are\ reusable,\ but\ in}}
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00096}00096\ \textcolor{comment}{\ \ \ \ !!\ this\ case\ \ if\ only\ one\ process\ \ is\ used,\ this\ procedure\ \ becomes\ confused}}
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00097}00097\ \textcolor{comment}{\ \ \ \ !!\ and\ sets\ \ this\ process\ \ to\ undivided.\ In\ \ most\ cases,\ \ this\ functionality}}
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00098}00098\ \textcolor{comment}{\ \ \ \ !!\ probably\ does\ not\ need\ to\ be\ used.}}
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00099}00099\ \textcolor{comment}{\ \ \ \ !!}}
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00100}00100\ \textcolor{comment}{\ \ \ \ !!\ \(\backslash\)return\ ierr}}
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00101}\doxymbox{\hyperlink{namespacegrid__vars_aa0d888796fd875e9024443e46eeb11f8}{00101}}\ \ \ \ \ \textcolor{keyword}{integer\ }\textcolor{keyword}{function\ }\doxymbox{\hyperlink{namespacegrid__vars_aa0d888796fd875e9024443e46eeb11f8}{init\_grid}}(grid,n,i\_lim,divided)\ \textcolor{keyword}{result}(ierr)}
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00102}00102\ \textcolor{preprocessor}{\#if\ ldebug}}
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00103}00103\ \textcolor{preprocessor}{}\ \ \ \ \ \ \ \ \textcolor{keywordtype}{use\ }\doxymbox{\hyperlink{namespacenum__vars}{num\_vars}},\ \textcolor{keywordtype}{only}:\ \doxymbox{\hyperlink{namespacenum__vars_a28bf4f706f43af630ecc697dec01654c}{print\_mem\_usage}},\ \doxymbox{\hyperlink{namespacenum__vars_ab47aa91445feaedb05ac9d1a584664fe}{rank}}}
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00104}00104\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00105}00105\ \textcolor{preprocessor}{}\ \ \ \ \ \ \ \ \textcolor{keywordtype}{character(*)},\ \textcolor{keywordtype}{parameter}\ ::\ rout\_name\ =\ \textcolor{stringliteral}{'init\_grid'}}
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00106}00106\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00107}00107\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ input\ /\ output}}
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00108}00108\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{class}(\doxymbox{\hyperlink{structgrid__vars_1_1grid__type}{grid\_type}}),\ \textcolor{keywordtype}{intent(inout)}\ ::\ grid\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !<\ grid\ to\ be\ initialized}}
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00109}00109\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer},\ \textcolor{keywordtype}{intent(in)}\ ::\ n(3)\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !<\ tot.\ nr.\ of\ points\ (par,r,alpha)}}
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00110}00110\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer},\ \textcolor{keywordtype}{intent(in)},\ \textcolor{keywordtype}{optional}\ ::\ i\_lim(2)\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !<\ min.\ and\ max.\ local\ normal\ index}}
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00111}00111\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{logical},\ \textcolor{keywordtype}{intent(in)},\ \textcolor{keywordtype}{optional}\ ::\ divided\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !<\ divided\ grid\ or\ not}}
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00112}00112\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00113}00113\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ local\ variables}}
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00114}00114\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{character(len=max\_str\_ln)}\ ::\ err\_msg\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ error\ message}}
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00115}00115\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{logical}\ ::\ divided\_loc\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ local\ divided}}
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00116}00116\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00117}00117\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ initialize\ ierr}}
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00118}00118\ \ \ \ \ \ \ \ \ ierr\ =\ 0}
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00119}00119\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00120}00120\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ tests}}
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00121}00121\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\textcolor{keyword}{present}(i\_lim))\ \textcolor{keywordflow}{then}}
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00122}00122\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (i\_lim(2)-\/i\_lim(1)+1.gt.n(3))\ \textcolor{keywordflow}{then}}
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00123}00123\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ierr\ =\ 1}
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00124}00124\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ err\_msg\ =\ \textcolor{stringliteral}{'The\ local\ nr.\ of\ normal\ points\ cannot\ be\ higher\ \&}}
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00125}00125\ \textcolor{stringliteral}{}\textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&than\ the\ total\ nr.\ of\ normal\ points'}}
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00126}00126\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ chckerr(err\_msg)}
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00127}00127\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ \ \ \ \ end\ if}}
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00128}00128\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ end\ if}}
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00129}00129\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00130}00130\ \textcolor{preprocessor}{\#if\ ldebug}}
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00131}00131\ \textcolor{preprocessor}{}\ \ \ \ \ \ \ \ \textcolor{comment}{!\ initialize\ memory\ usage}}
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00132}00132\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\doxymbox{\hyperlink{namespacenum__vars_a28bf4f706f43af630ecc697dec01654c}{print\_mem\_usage}})\ grid\%estim\_mem\_usage\ =\ 0.\_dp}
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00133}00133\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00134}00134\ \textcolor{preprocessor}{}\ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00135}00135\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ set\ local\ divided\ and\ loc\_n\_r}}
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00136}00136\ \ \ \ \ \ \ \ \ divided\_loc\ =\ .false.}
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00137}00137\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\textcolor{keyword}{present}(i\_lim))\ \textcolor{keywordflow}{then}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ might\ be\ divided\ grid}}
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00138}00138\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (i\_lim(2).lt.i\_lim(1))\ \textcolor{keywordflow}{then}}
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00139}00139\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ierr\ =\ 1}
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00140}00140\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{write}(*,*)\ \textcolor{stringliteral}{'i\_lim\ =\ '},\ i\_lim}
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00141}00141\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ err\_msg\ =\ \textcolor{stringliteral}{'faulty\ i\_lim'}}
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00142}00142\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ chckerr(err\_msg)}
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00143}00143\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ \ \ \ \ end\ if}}
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00144}00144\ \ \ \ \ \ \ \ \ \ \ \ \ grid\%i\_min\ =\ i\_lim(1)}
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00145}00145\ \ \ \ \ \ \ \ \ \ \ \ \ grid\%i\_max\ =\ i\_lim(2)}
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00146}00146\ \ \ \ \ \ \ \ \ \ \ \ \ grid\%loc\_n\_r\ =\ i\_lim(2)-\/i\_lim(1)+1}
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00147}00147\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (i\_lim(2)-\/i\_lim(1)+1.lt.n(3))\ divided\_loc\ =\ .true.\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ only\ divided\ if\ difference\ between\ local\ and\ total}}
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00148}00148\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ certainly\ not\ divided\ grid}}
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00149}00149\ \ \ \ \ \ \ \ \ \ \ \ \ grid\%i\_min\ =\ 1}
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00150}00150\ \ \ \ \ \ \ \ \ \ \ \ \ grid\%i\_max\ =\ n(3)}
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00151}00151\ \ \ \ \ \ \ \ \ \ \ \ \ grid\%loc\_n\_r\ =\ n(3)}
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00152}00152\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ end\ if}}
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00153}00153\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\textcolor{keyword}{present}(divided))\ divided\_loc\ =\ divided}
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00154}00154\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00155}00155\ \ \ \ \ \ \ \ \ grid\%divided\ =\ divided\_loc}
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00156}00156\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00157}00157\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ allocate\ normal\ variables}}
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00158}00158\ \ \ \ \ \ \ \ \ grid\%n\ =\ n}
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00159}00159\ \ \ \ \ \ \ \ \ \textcolor{keyword}{allocate}(grid\%r\_E(n(3)))}
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00160}00160\ \ \ \ \ \ \ \ \ \textcolor{keyword}{allocate}(grid\%r\_F(n(3)))}
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00161}00161\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (divided\_loc)\ \textcolor{keywordflow}{then}}
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00162}00162\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{allocate}(grid\%loc\_r\_E(grid\%loc\_n\_r))}
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00163}00163\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{allocate}(grid\%loc\_r\_F(grid\%loc\_n\_r))}
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00164}00164\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00165}00165\ \ \ \ \ \ \ \ \ \ \ \ \ grid\%loc\_r\_E\ =>\ grid\%r\_E}
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00166}00166\ \ \ \ \ \ \ \ \ \ \ \ \ grid\%loc\_r\_F\ =>\ grid\%r\_F}
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00167}00167\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ end\ if}}
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00168}00168\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00169}00169\ \textcolor{preprocessor}{\#if\ ldebug}}
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00170}00170\ \textcolor{preprocessor}{}\ \ \ \ \ \ \ \ \textcolor{comment}{!\ set\ estimated\ memory\ usage}}
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00171}00171\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\doxymbox{\hyperlink{namespacenum__vars_a28bf4f706f43af630ecc697dec01654c}{print\_mem\_usage}})\ grid\%estim\_mem\_usage\ =\ grid\%estim\_mem\_usage\ +\ \&}
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00172}00172\ \ \ \ \ \ \ \ \ \ \ \ \ \&grid\%n(3)*2}
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00173}00173\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00174}00174\ \textcolor{preprocessor}{}\ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00175}00175\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ allocate\ angular\ variables}}
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00176}00176\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (n(1).ne.0\ .and.\ n(2).ne.0)\ \textcolor{keywordflow}{then}}
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00177}00177\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{allocate}(grid\%theta\_E(n(1),n(2),grid\%loc\_n\_r))}
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00178}00178\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{allocate}(grid\%zeta\_E(n(1),n(2),grid\%loc\_n\_r))}
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00179}00179\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{allocate}(grid\%theta\_F(n(1),n(2),grid\%loc\_n\_r))}
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00180}00180\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{allocate}(grid\%zeta\_F(n(1),n(2),grid\%loc\_n\_r))}
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00181}00181\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00182}00182\ \textcolor{preprocessor}{\#if\ ldebug}}
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00183}00183\ \textcolor{preprocessor}{}\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ set\ estimated\ memory\ usage}}
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00184}00184\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\doxymbox{\hyperlink{namespacenum__vars_a28bf4f706f43af630ecc697dec01654c}{print\_mem\_usage}})\ grid\%estim\_mem\_usage\ =\ grid\%estim\_mem\_usage\ +\ \&}
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00185}00185\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&grid\%loc\_n\_r*n(1)*n(2)*4}
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00186}00186\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00187}00187\ \textcolor{preprocessor}{}\textcolor{keywordflow}{\ \ \ \ \ \ \ \ end\ if}}
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00188}00188\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00189}00189\ \textcolor{preprocessor}{\#if\ ldebug}}
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00190}00190\ \textcolor{preprocessor}{}\ \ \ \ \ \ \ \ \textcolor{comment}{!\ increment\ n\_alloc\_grids}}
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00191}00191\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{namespacegrid__vars_ac4b43443d16af06fdc62d542b3eadee2}{n\_alloc\_grids}}\ =\ \doxymbox{\hyperlink{namespacegrid__vars_ac4b43443d16af06fdc62d542b3eadee2}{n\_alloc\_grids}}\ +\ 1}
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00192}00192\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00193}00193\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ print\ memory\ usage}}
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00194}00194\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\doxymbox{\hyperlink{namespacenum__vars_a28bf4f706f43af630ecc697dec01654c}{print\_mem\_usage}})\ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_aa4a8d01563e92558e8a0875b075ec54c}{writo}}(\textcolor{stringliteral}{'[rank\ '}//trim(\doxymbox{\hyperlink{namespacestr__utilities_a0b97e51770725a3e98ed393d26681414}{i2str}}(\doxymbox{\hyperlink{namespacenum__vars_ab47aa91445feaedb05ac9d1a584664fe}{rank}}))//\&}
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00195}00195\ \ \ \ \ \ \ \ \ \ \ \ \ \&\textcolor{stringliteral}{'\ -\/\ Expected\ memory\ usage\ of\ grid:\ '}//\&}
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00196}00196\ \ \ \ \ \ \ \ \ \ \ \ \ \&trim(\doxymbox{\hyperlink{namespacestr__utilities_ac778d706b2e021672618939ab58fdd32}{r2strt}}(grid\%estim\_mem\_usage*\doxymbox{\hyperlink{namespacenum__vars_ad5be06791ebf0ca75fc6dc7339916ae8}{weight\_dp}}))//\textcolor{stringliteral}{'\ kB]'},\&}
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00197}00197\ \ \ \ \ \ \ \ \ \ \ \ \ \&alert=.true.)}
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00198}00198\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00199}00199\ \textcolor{preprocessor}{}\ \ \ \ \textcolor{keyword}{end\ function\ }\doxymbox{\hyperlink{namespacegrid__vars_aa0d888796fd875e9024443e46eeb11f8}{init\_grid}}}
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00200}00200\ \ \ \ \ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00201}00201\ \textcolor{comment}{\ \ \ \ !>\ \(\backslash\)public\ Deallocates\ a\ grid.}}
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00202}\doxymbox{\hyperlink{namespacegrid__vars_abc8ea59261a1e773754afebdb13276f9}{00202}}\ \ \ \ \ \textcolor{keyword}{subroutine\ }\doxymbox{\hyperlink{namespacegrid__vars_abc8ea59261a1e773754afebdb13276f9}{dealloc\_grid}}(grid)}
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00203}00203\ \textcolor{preprocessor}{\#if\ ldebug}}
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00204}00204\ \textcolor{preprocessor}{}\ \ \ \ \ \ \ \ \textcolor{keywordtype}{use\ }\doxymbox{\hyperlink{namespacenum__vars}{num\_vars}},\ \textcolor{keywordtype}{only}:\ \doxymbox{\hyperlink{namespacenum__vars_ab47aa91445feaedb05ac9d1a584664fe}{rank}},\ \doxymbox{\hyperlink{namespacenum__vars_a28bf4f706f43af630ecc697dec01654c}{print\_mem\_usage}}}
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00205}00205\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00206}00206\ \textcolor{preprocessor}{}\ \ \ \ \ \ \ \ \textcolor{comment}{!\ input\ /\ output}}
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00207}00207\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{class}(\doxymbox{\hyperlink{structgrid__vars_1_1grid__type}{grid\_type}}),\ \textcolor{keywordtype}{intent(inout)}\ ::\ grid\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !<\ grid\ to\ be\ deallocated}}
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00208}00208\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00209}00209\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ local\ variables}}
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00210}00210\ \textcolor{preprocessor}{\#if\ ldebug}}
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00211}00211\ \textcolor{preprocessor}{}\ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer}\ ::\ mem\_diff\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ difference\ in\ memory}}
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00212}00212\ \textcolor{keywordtype}{\ \ \ \ \ \ \ \ real}(dp)\ ::\ estim\_mem\_usage\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ estimated\ memory\ usage}}
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00213}00213\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00214}00214\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ memory\ usage\ before\ deallocation}}
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00215}00215\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\doxymbox{\hyperlink{namespacenum__vars_a28bf4f706f43af630ecc697dec01654c}{print\_mem\_usage}})\ \textcolor{keywordflow}{then}}
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00216}00216\ \ \ \ \ \ \ \ \ \ \ \ \ mem\_diff\ =\ \doxymbox{\hyperlink{namespacemessages_a82dddaab795b78b3d39e1ff1aab2f665}{get\_mem\_usage}}()}
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00217}00217\ \ \ \ \ \ \ \ \ \ \ \ \ estim\_mem\_usage\ =\ grid\%estim\_mem\_usage}
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00218}00218\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ end\ if}}
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00219}00219\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00220}00220\ \textcolor{preprocessor}{}\ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00221}00221\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ deallocate\ allocated\ pointers}}
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00222}00222\ \ \ \ \ \ \ \ \ \textcolor{keyword}{deallocate}(grid\%r\_E,grid\%r\_F)}
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00223}00223\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (grid\%n(1).ne.0\ .and.\ grid\%n(2).ne.0)\ \textcolor{keywordflow}{then}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ 3D\ grid}}
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00224}00224\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{deallocate}(grid\%theta\_E,grid\%zeta\_E)}
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00225}00225\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{deallocate}(grid\%theta\_F,grid\%zeta\_F)}
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00226}00226\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ end\ if}}
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00227}00227\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (grid\%divided)\ \textcolor{keyword}{deallocate}(grid\%loc\_r\_E,grid\%loc\_r\_F)}
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00228}00228\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00229}00229\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ nullify\ pointers}}
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00230}00230\ \ \ \ \ \ \ \ \ \textcolor{keyword}{nullify}(grid\%r\_E,grid\%r\_F)}
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00231}00231\ \ \ \ \ \ \ \ \ \textcolor{keyword}{nullify}(grid\%theta\_E,grid\%zeta\_E)}
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00232}00232\ \ \ \ \ \ \ \ \ \textcolor{keyword}{nullify}(grid\%theta\_F,grid\%zeta\_F)}
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00233}00233\ \ \ \ \ \ \ \ \ \textcolor{keyword}{nullify}(grid\%loc\_r\_E,grid\%loc\_r\_F)}
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00234}00234\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00235}00235\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ deallocate\ allocatable\ variables}}
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00236}00236\ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }dealloc\_grid\_final(grid)}
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00237}00237\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00238}00238\ \textcolor{preprocessor}{\#if\ ldebug}}
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00239}00239\ \textcolor{preprocessor}{}\ \ \ \ \ \ \ \ \textcolor{comment}{!\ decrement\ n\_alloc\_grids}}
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00240}00240\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{namespacegrid__vars_ac4b43443d16af06fdc62d542b3eadee2}{n\_alloc\_grids}}\ =\ \doxymbox{\hyperlink{namespacegrid__vars_ac4b43443d16af06fdc62d542b3eadee2}{n\_alloc\_grids}}\ -\/\ 1}
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00241}00241\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00242}00242\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ memory\ usage\ difference\ after\ deallocation}}
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00243}00243\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\doxymbox{\hyperlink{namespacenum__vars_a28bf4f706f43af630ecc697dec01654c}{print\_mem\_usage}})\ \textcolor{keywordflow}{then}}
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00244}00244\ \ \ \ \ \ \ \ \ \ \ \ \ mem\_diff\ =\ mem\_diff\ -\/\ \doxymbox{\hyperlink{namespacemessages_a82dddaab795b78b3d39e1ff1aab2f665}{get\_mem\_usage}}()}
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00245}00245\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_aa4a8d01563e92558e8a0875b075ec54c}{writo}}(\textcolor{stringliteral}{'[Rank\ '}//trim(\doxymbox{\hyperlink{namespacestr__utilities_a0b97e51770725a3e98ed393d26681414}{i2str}}(\doxymbox{\hyperlink{namespacenum__vars_ab47aa91445feaedb05ac9d1a584664fe}{rank}}))//\textcolor{stringliteral}{'\ -\/\ liberated\ '}//\&}
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00246}00246\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&trim(\doxymbox{\hyperlink{namespacestr__utilities_a0b97e51770725a3e98ed393d26681414}{i2str}}(mem\_diff))//\textcolor{stringliteral}{'kB\ deallocating\ grid\ ('}//\&}
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00247}00247\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&trim(\doxymbox{\hyperlink{namespacestr__utilities_a0b97e51770725a3e98ed393d26681414}{i2str}}(nint(100*mem\_diff/\&}
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00248}00248\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&(estim\_mem\_usage*\doxymbox{\hyperlink{namespacenum__vars_ad5be06791ebf0ca75fc6dc7339916ae8}{weight\_dp}}))))//\&}
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00249}00249\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&\textcolor{stringliteral}{'\%\ of\ estimated)]'},alert=.true.)}
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00250}00250\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ end\ if}}
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00251}00251\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00252}00252\ \textcolor{preprocessor}{}\ \ \ \ \textcolor{keyword}{contains}}
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00253}00253\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ Note:\ intent(out)\ automatically\ deallocates\ the\ variable}\textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00254}00254\ \textcolor{comment}{\ \ \ \ \ \ \ \ !>\ \(\backslash\)private}}
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00255}00255\ \ \ \ \ \ \ \ \ \textcolor{keyword}{subroutine\ }dealloc\_grid\_final(grid)}
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00256}00256\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ input\ /\ output}}
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00257}00257\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{type}(\doxymbox{\hyperlink{structgrid__vars_1_1grid__type}{grid\_type}}),\ \textcolor{keywordtype}{intent(out)}\ ::\ grid\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ grid\ to\ be\ deallocated}}
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00258}00258\ \ \ \ \ \ \ \ \ \textcolor{keyword}{end\ subroutine\ }dealloc\_grid\_final}
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00259}00259\ \ \ \ \ \textcolor{keyword}{end\ subroutine\ }\doxymbox{\hyperlink{namespacegrid__vars_abc8ea59261a1e773754afebdb13276f9}{dealloc\_grid}}}
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00260}00260\ \ \ \ \ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00261}00261\ \textcolor{comment}{\ \ \ \ !>\ \(\backslash\)public\ Deep\ copy\ of\ a\ grid.}}
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00262}00262\ \textcolor{comment}{\ \ \ \ !!}}
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00263}00263\ \textcolor{comment}{\ \ \ \ !!\ \(\backslash\)note\ Does\ not\ copy\ possible\ trigoniometric\ factors.}}
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00264}00264\ \textcolor{comment}{\ \ \ \ !!}}
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00265}00265\ \textcolor{comment}{\ \ \ \ !!\ \(\backslash\)return\ ierr}}
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00266}\doxymbox{\hyperlink{namespacegrid__vars_a6fa9a9920f1a700d50075bc9c291a247}{00266}}\ \ \ \ \ \textcolor{keyword}{integer\ }\textcolor{keyword}{function\ }\doxymbox{\hyperlink{namespacegrid__vars_a6fa9a9920f1a700d50075bc9c291a247}{copy\_grid}}(grid\_i,grid\_o)\ \textcolor{keyword}{result}(ierr)}
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00267}00267\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{character(*)},\ \textcolor{keywordtype}{parameter}\ ::\ rout\_name\ =\ \textcolor{stringliteral}{'copy\_grid'}}
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00268}00268\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00269}00269\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ input\ /\ output}}
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00270}00270\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{class}(\doxymbox{\hyperlink{structgrid__vars_1_1grid__type}{grid\_type}}),\ \textcolor{keywordtype}{intent(in)}\ ::\ grid\_i\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !<\ grid\ to\ be\ copied}}
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00271}00271\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{type}(\doxymbox{\hyperlink{structgrid__vars_1_1grid__type}{grid\_type}}),\ \textcolor{keywordtype}{intent(inout)}\ ::\ grid\_o\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !<\ copied\ grid}}
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00272}00272\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00273}00273\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ initialize\ ierr}}
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00274}00274\ \ \ \ \ \ \ \ \ ierr\ =\ 0}
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00275}00275\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00276}00276\ \ \ \ \ \ \ \ \ ierr\ =\ \doxymbox{\hyperlink{namespacegrid__vars_aa0d888796fd875e9024443e46eeb11f8}{init\_grid}}(grid\_o,grid\_i\%n,i\_lim=[grid\_i\%i\_min,grid\_i\%i\_max],\&}
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00277}00277\ \ \ \ \ \ \ \ \ \ \ \ \ \&divided=grid\_i\%divided)}
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00278}00278\ \ \ \ \ \ \ \ \ chckerr(\textcolor{stringliteral}{''})}
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00279}00279\ \ \ \ \ \ \ \ \ grid\_o\%r\_E\ =\ grid\_i\%r\_E}
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00280}00280\ \ \ \ \ \ \ \ \ grid\_o\%r\_F\ =\ grid\_i\%r\_F}
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00281}00281\ \ \ \ \ \ \ \ \ grid\_o\%loc\_r\_E\ =\ grid\_i\%loc\_r\_E}
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00282}00282\ \ \ \ \ \ \ \ \ grid\_o\%loc\_r\_F\ =\ grid\_i\%loc\_r\_F}
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00283}00283\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\textcolor{keyword}{associated}(grid\_i\%theta\_E))\ grid\_o\%theta\_E\ =\ grid\_i\%theta\_E}
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00284}00284\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\textcolor{keyword}{associated}(grid\_i\%theta\_F))\ grid\_o\%theta\_F\ =\ grid\_i\%theta\_F}
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00285}00285\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\textcolor{keyword}{associated}(grid\_i\%zeta\_E))\ grid\_o\%zeta\_E\ =\ grid\_i\%zeta\_E}
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00286}00286\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\textcolor{keyword}{associated}(grid\_i\%zeta\_F))\ grid\_o\%zeta\_F\ =\ grid\_i\%zeta\_F}
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00287}00287\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\textcolor{keyword}{allocated}(grid\_i\%trigon\_factors))\ \textcolor{keywordflow}{then}}
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00288}00288\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{allocate}(grid\_o\%trigon\_factors(\textcolor{keyword}{size}(grid\_i\%trigon\_factors,1),\&}
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00289}00289\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&\textcolor{keyword}{size}(grid\_i\%trigon\_factors,2),\textcolor{keyword}{size}(grid\_i\%trigon\_factors,3),\&}
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00290}00290\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&\textcolor{keyword}{size}(grid\_i\%trigon\_factors,4),\textcolor{keyword}{size}(grid\_i\%trigon\_factors,5)))}
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00291}00291\ \ \ \ \ \ \ \ \ \ \ \ \ grid\_o\%trigon\_factors\ =\ grid\_i\%trigon\_factors}
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00292}00292\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ end\ if}}
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00293}00293\ \ \ \ \ \textcolor{keyword}{end\ function\ }\doxymbox{\hyperlink{namespacegrid__vars_a6fa9a9920f1a700d50075bc9c291a247}{copy\_grid}}}
+\DoxyCodeLine{\Hypertarget{grid__vars_8f90_source_l00294}00294\ \textcolor{keyword}{end\ module\ }\doxymbox{\hyperlink{namespacegrid__vars}{grid\_vars}}}
+
+\end{DoxyCode}
