@@ -168,6 +168,12 @@
     For the field-line style the near-field rule is used only for a point that lies closer to its nearest boundary point than that boundary point lies to its neighbour on the same field line.
     Within a few grid spacings of the boundary the quadrature does not resolve the kernels; vac_pot_plot() corrects the largest part of that error with sub_nearest().
 
+    For the axisymmetric style, calc_GH_2() treats a point that lies closer to its nearest boundary point than a tolerance as that boundary point: the row of the point gives the boundary value there.
+    PB3D prints the tolerance as "Tolerance on rho for analytical integral".
+    The code warns that points off the boundary are not treated accurately in two cases:
+        - The row of such a point is the correct limit from outside only for a potential that is harmonic outside the boundary. sub_nearest() also evaluates \f$R^{|n|}\f$, which is harmonic inside the boundary and whose correct value outside is 0. At such a point, vac_pot_plot() therefore plots 0 instead of the boundary value. The boundary row of \c H and \c G of the nearest boundary point, with \f$4\pi\f$ added in its own column, would give the correct limit for both kinds of potential.
+        - A point farther than the tolerance from every boundary point, but closer to the boundary than about one spacing of the boundary points, goes through the regular quadrature, which is inaccurate there. sub_nearest() removes only part of that error; such points need a quadrature for nearly singular integrals.
+
     \section vacuum_limits Input rules and known limits
 
         - The field-line style needs at least 2 field lines (\c n_alpha) and at least 4 points per line; PB3D stops otherwise. A free-boundary VMEC run needs <tt>alpha_style = 2</tt>.
