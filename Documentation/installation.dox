@@ -1,122 +1,314 @@
 /*! \page page_installation Installation
-    
+
     \tableofcontents
-    
+
     \section installation_introduction Introduction
-    
-    PB3D is written in Fortran, and makes use of multiple numerical libraries:
-        - <a href="http://www.netlib.org/lapack/">blas / lapack</a>
-            - for basic linear algebra
-        - <a href="http://www.netlib.org/scalapack/">pblas / blacs / scalapack</a>
-            - for parallelized basic linear algebra
-        - <a href="https://www.hdfgroup.org/HDF5/">HDF5</a>
-            - for storage files
-            - works in parallel
-        - <a href="https://www.unidata.ucar.edu/software/netcdf/">NetCDF</a>
-            - to read input of VMEC
-            - sequential
-        - <a href="https://www.mcs.anl.gov/petsc/">PETSc</a> / <a href="http://slepc.upv.es/">SLEPc</a>
-            - for linear algebra of large, sparse matrices
-            - can reach \f$\sim \mathcal{O} (n)\f$ complexity
-            - Minimal installation instructions:
-                -# Configure PETSc using
-                    `./configure PETSC_ARCH=complex COPTFLAGS=-O3 CXXOPTFLAGS=-O3 FOPTFLAGS=-O3 \`<br/>
-                    `--with-scalar-type=complex \`<br/>
-                    `--download-metis \`<br/>
-                    `--download-mumps \`<br/>
-                    `--download-parmetis \`<br/>
-                    `--with-scalapack-lib="-L[SCALAPACKDIR]/lib -lscalapack" \`<br/>
-                    `--with-valgrind-dir=/usr \`<br/>
-                    `--with-debugging=no \`<br/>
-                    `--with-fortran-kernels=1`<br/>
-                  (If you want debug, remove `--with-debugging=no`, `--with-fortran-kernels=1`, COPTSFLAGS, CXXOPTFLAGS and FOPTFLAGS, and change PETSC_ARCH to `debug-complex`.)<br/>
-                  (If you use a different HDF5, add `--with-hdf5-dir=[HDF5DIR]`.)
-                -# follow instructions to do makes and tests.
-                -# Set global variables `export SLEPC_DIR=[SLEPC DIR]`, `export PETSC_DIR=[PETSC_DIR]` and `export PETSC_ARCH=[debug-]complex` (depending on whether it is debug or not).
-                -# Configure SLEPc using `./configure`
-                -# follow instructions to do makes and tests
-        - <a href="http://portal.nersc.gov/project/sparse/strumpack/">StrumPack</a>
-            - for linear algebra of structured matrices \cite Ambikasaran2013
-            - the vacuum potential energy perturbation calculations use such matrices as they are generated with a \f$1/r\f$ kernel.
-            - can reach \f$\sim \mathcal{O} (n \log(n))\f$ complexity
-            - we use the dense version of the package, which for Fortran is 1.1.1.
-            - Minimal installation instructions:
-                -# [Download](http://portal.nersc.gov/project/sparse/strumpack/STRUMPACK-Dense-1.1.1.tar.gz), untar and go to root folder.
-                -# Go to examples, copy `Makefile.gnu` to `Makefile.inc` and adapt:
-                    -# for example, it might be necessary to add `-lblacs` before `-lscalapack`
-                    -# if you use intel, have a look at the [link line advisor](https://software.intel.com/en-us/articles/intel-mkl-link-line-advisor), and update the `LIB`
-                    -# possibly, you might have to set the `CC` and `FC` compiler commands to, for example, `mpicc` respectively `mpiifort`
-                -# Create directories `lib` and `inc`.
-                -# Run `make f90_example`
-                -# Make a library of `StrumpackDensePackage.o` using `ar -rcs libstrumpack.a  *.o` in src.
-                -# In inc, create a symlink `libstrumpack.a` to `libstrumpack.a` in src.
-                -# In lib, create a symlink `strumpackdensepackage.mod` to `strumpackdensepackage.mod` in examples.
-        - <a href="https://bitbucket.org/lazerson_princeton/stellopt/wiki/Home">libstell</a>
-            - part of Stellopt suite, which contains VMEC
-            - provides routines to read VMEC output data
-        - <a href="https://w3.pppl.gov/ntcc/PSPLINE/">pspline</a>
+
+    PB3D is written in Fortran and is built with <a href="https://cmake.org/">CMake</a>.
+    It makes use of the following external libraries:
+        - <a href="https://www.mpi-forum.org/">MPI</a>
+            - for the parallel processes
+        - <a href="https://petsc.org/">PETSc</a> / <a href="https://slepc.upv.es/">SLEPc</a>, built with complex scalars
+            - for the large, sparse matrices of the eigenvalue problem and for its solution
+        - <a href="https://mumps-solver.org/">MUMPS</a>, through PETSc
+            - for the distributed LU factorization in the eigenvalue solver, which is needed to run PB3D on more than one MPI process
+        - <a href="https://www.hdfgroup.org/solutions/hdf5/">HDF5</a>, parallel and with Fortran bindings
+            - for the output files
+        - <a href="https://www.unidata.ucar.edu/software/netcdf/">NetCDF-Fortran</a>
+            - to read the output of VMEC
+        - <a href="http://www.netlib.org/lapack/">BLAS / LAPACK</a> and <a href="http://www.netlib.org/scalapack/">ScaLAPACK</a>
+            - for dense linear algebra, in particular the boundary-element system of the vacuum
+        - <a href="https://github.com/PrincetonUniversity/STELLOPT">LIBSTELL</a>, part of the STELLOPT suite, which contains VMEC
+            - to read the output of VMEC (PB3D uses only the module \c read_wout_mod)
+        - <a href="https://github.com/ilonster/pspline">PSPLINE</a>
             - Princeton Spline and Hermite Cubic Interpolation Routines
-            - Minimal installation instructions:
-                -# Export \c FFLAGS en \c CFLAGS if you want to optimize:
-                    - copy `share/Make.overwrite.sample` to `share/Make.overwrite`
-                    - Run the gmake below and note the flags, then edit these and put them in `share/Make.overwrite`
-                    - if GCC:
-                        - `FFLAGS = -c -O3 -m64 -fno-range-check -fdollar-ok -cpp ; export FFLAGS`
-                        - `CFLAGS = -c -O3 -m64 ; export CFLAGS`
-                        - `CXXFLAGS = -c -O3 -m64 ; export CXXFLAGS`
-                    - if Intel:
-                        - `FFLAGS = -c -O3 -nowarn -ftz -auto-scalar -traceback -align dcommons`
-                        - `MPI_FFLAGS =  -c -O3 -nowarn  -ftz -traceback -align dcommons -auto-scalar`
-                          (possibly add FC=mpiifort, \c CXX=mpicpc, \c CC=mpiicc if on a cluster)
-                -# Compile with `gmake NETCDF_DIR= FORTRAN_VARIANT=[VARIANT]` with `[VARIANT]` either `GCC` or `Intel` (add `DEBUG=1` and remove the FLAGS if debug wanted). Possibly also add `OBJ=$[COMP_DIR]` if on a cluster, with `[COMP_DIR]` the directory where to put the resulting library.
-                -# Run tests from \c README_Pspline.
+        - STRUMPACK-Dense 1.1.1 (optional)
+            - for a compressed solver of the boundary-element system of the vacuum \cite Ambikasaran2013; without it, PB3D solves that system with the LU factorization of ScaLAPACK
 
-    They should probably be installed in this order. On linux distributions such as Ubuntu, they may be available as packages.
-    
-    Furthermore, PB3D comes bundled with some other, smaller libraries:
-        - <a href="http://www.netlib.org/fftpack/">fftpack</a>
+    Furthermore, PB3D comes bundled with some other, smaller libraries, which CMake compiles with the code:
+        - <a href="http://www.netlib.org/fftpack/">fftpack</a> (<tt>Libraries/dfft.f</tt>)
             - to calculate the fast Fourier transform
-        - <a href="http://foul.sourceforge.net/">foul</a>
+        - <a href="http://foul.sourceforge.net/">foul</a> (<tt>Libraries/foul.f90</tt>)
             - the Fortran Output Library
-
-    These do not have to be installed separately.
-    
-    \section installation_compilation Compilation
-    
-    When all dependencies are satisfied, the program is then compiled in the standard way:
-        - Including the headers of all the libraries in the compilation of the object files:
-            - This is done using <tt>-I[path_to_library]</tt>.
-            - Make sure you add the <tt>-o</tt> option to create only object files.
-        - Linking with the actual libraries
-            - This is done using <tt>-L[path_to_library] -l[library_name]</tt>.
-    
-    \section installation_makefile Makefile Example
-
-    \includelineno example.mk
-
-    \note 
-        -# PETSc and SLEPc don't like to be included in another makefile.
-        The trick is to include two files:
-        \snippetlineno example.mk PETSc and SLEPc trick
-        which will load the variables  \c PETSC_FC_INCLUDES and \c SLEPC_INCLUDE, used in
-        \snippetlineno example.mk PETSc and SLEPc trick inc
-        as well as the variables \c PETSC_LIB and \c SLEPC_LIB, used in
-        \snippetlineno example.mk PETSc and SLEPc trick lib
-        -# There are versions of libstell that do not use the standard convention.
-        In this case you have to look for the <tt>*.mod</tt> files.
-        In the example makefile this is done with
-        \snippetlineno example.mk Libstell special
-        instead of the standard <tt>inc</tt> directory.
-        -# In \snippetlineno example.mk PB3D include
-        there are includefiles that contain macros and wrappers specifically for PB3D.
-        -# In \snippetlineno example.mk PB3D libraries
-        linking is done with external libraries that are bundled with PB3D.
-    
-    \example example.mk An example makefile:
-*/
+        - <a href="https://github.com/fortran-lang/test-drive">test-drive</a> (<tt>tests/vendor/test-drive</tt>)
+            - the framework of the unit tests
 
     PB3D can be obtained using git:
-        \code 
-        git clone https://ToonWeyens@bitbucket.org/ToonWeyens/pb3d.git
-        \endcode
-    
+    \verbatim
+    git clone https://github.com/ToonWeyens/PB3D.git
+    \endverbatim
+
+    The commands below use two shell variables. \c PB3D_SRC is the directory of this clone, and \c DEPS is a directory in which the dependencies that are built by hand are kept.
+    \verbatim
+    export PB3D_SRC=$PWD/PB3D
+    export DEPS=$HOME/pb3d-deps
+    mkdir -p $DEPS
+    \endverbatim
+
+    \section installation_requirements Requirements
+
+    The build needs the following tools:
+        - A Fortran compiler, and a C and a C++ compiler. The builds that are tested use GNU Fortran 13, 14.2 and 16. <tt>CMakeLists.txt</tt> also contains flags for the Intel Fortran compiler.
+        - CMake 3.18 or later. With PETSc 3.25, use CMake 4 (see \ref installation_problems).
+        - An MPI library with Fortran, C and C++ bindings, such as OpenMPI.
+        - pkg-config. CMake finds PETSc, SLEPc and NetCDF-Fortran through pkg-config, and ScaLAPACK through pkg-config or by the library name.
+        - xz, to decompress the equilibrium files of the regression tests.
+        - Optionally Python 3 with h5py and scipy, for the checks of the regression tests that read the HDF5 output.
+
+    PETSc must be built with complex scalars and double precision.
+    The PETSc versions that are tested are 3.19, with SLEPc 3.19, and 3.25.3, with SLEPc 3.25.1.
+    PETSc and SLEPc must have the same minor version.
+
+    \section installation_dependencies Dependencies
+
+    PETSc, SLEPc, HDF5, NetCDF-Fortran and ScaLAPACK can come from the packages of a Linux distribution (\ref installation_deps_apt), from Spack (\ref installation_deps_spack), or from a build from source, which is the usual route on a cluster (\ref installation_deps_source).
+    PSPLINE and LIBSTELL are built by hand in all cases, with the scripts in the directory <tt>Libraries</tt> of the code (\ref installation_pspline and \ref installation_libstell).
+
+    \subsection installation_deps_apt Ubuntu packages
+
+    On Ubuntu 24.04, which the continuous integration of PB3D uses, the packages are installed with
+    \verbatim
+    sudo apt-get install gfortran g++ cmake pkg-config xz-utils \
+        libopenmpi-dev openmpi-bin \
+        libpetsc-complex3.19-dev libslepc-complex3.19-dev \
+        libhdf5-openmpi-dev libnetcdff-dev \
+        liblapack-dev libblas-dev libscalapack-openmpi-dev
+    export PETSC_DIR=/usr/lib/petscdir/petsc3.19/x86_64-linux-gnu-complex
+    export SLEPC_DIR=/usr/lib/slepcdir/slepc3.19/x86_64-linux-gnu-complex
+    export PKG_CONFIG_PATH=$PETSC_DIR/lib/pkgconfig:$SLEPC_DIR/lib/pkgconfig
+    export NETCDF_FORTRAN_DIR=/usr
+    \endverbatim
+    The parallel HDF5 of these packages is selected at the configuration of PB3D with <tt>-DHDF5_ROOT=/usr/lib/x86_64-linux-gnu/hdf5/openmpi</tt>.
+    The continuous integration solves the eigenvalue problem with these packages on one process only.
+    Whether a PETSc has MUMPS can be checked in the file <tt>petscconf.h</tt> of PETSc, which defines \c PETSC_HAVE_MUMPS if it has:
+    \verbatim
+    grep PETSC_HAVE_MUMPS $PETSC_DIR/include/petscconf.h
+    \endverbatim
+
+    \subsection installation_deps_spack Spack
+
+    The file <tt>spack.yaml</tt> in the code describes a <a href="https://spack.readthedocs.io/">Spack</a> environment with PETSc 3.25 (complex scalars), SLEPc 3.25, parallel HDF5 with Fortran bindings, NetCDF-Fortran, ScaLAPACK and pkg-config.
+    It was tested with GCC 16 and OpenMPI 5 on macOS (Apple Silicon).
+    On macOS, Apple Clang has no Fortran compiler, so GCC has to be installed first, for example with Homebrew (<tt>brew install gcc</tt>).
+    The environment is created and built with
+    \verbatim
+    git clone https://github.com/spack/spack.git $DEPS/spack
+    . $DEPS/spack/share/spack/setup-env.sh
+    spack compiler find
+    spack external find cmake openmpi gmake perl python
+    cd $PB3D_SRC
+    spack env create pb3d-env spack.yaml
+    spack env activate pb3d-env
+    spack concretize -f
+    spack install
+    export NETCDF_FORTRAN_DIR=$(spack location -i netcdf-fortran)
+    \endverbatim
+    The command <tt>spack external find</tt> lets Spack use the MPI library and the tools that are already installed instead of building them.
+    The first <tt>spack install</tt> takes a long time, because it builds PETSc and SLEPc with their dependencies.
+    With the environment active, pkg-config and CMake find the libraries of the environment.
+    The PETSc of <tt>spack.yaml</tt> has no MUMPS, so PB3D runs with it on one process only.
+
+    \subsection installation_deps_source PETSc and SLEPc from source
+
+    A build from source is needed when no PETSc with complex scalars is available, which is often the case on clusters, or when PB3D has to run on more than one process and the available PETSc has no MUMPS.
+    The compilers, MPI, BLAS/LAPACK, ScaLAPACK, parallel HDF5 and NetCDF-Fortran then come from the system, for example from its environment modules.
+    The following recipe was tested with PETSc 3.25.3, which downloads and builds MUMPS, ParMETIS and METIS itself, and SLEPc 3.25.1.
+    The options <tt>--with-blaslapack-lib</tt> and <tt>--with-scalapack-lib</tt> must point to the libraries of the system; the values below are examples.
+    \verbatim
+    cd $DEPS
+    curl -L -O https://web.cels.anl.gov/projects/petsc/download/release-snapshots/petsc-3.25.3.tar.gz
+    tar xzf petsc-3.25.3.tar.gz
+    cd petsc-3.25.3
+    export PETSC_DIR=$PWD PETSC_ARCH=arch-complex-opt
+    ./configure --prefix=$DEPS/petsc \
+        --with-scalar-type=complex --with-precision=double --with-debugging=0 \
+        --with-cc=mpicc --with-cxx=mpicxx --with-fc=mpif90 \
+        --with-blaslapack-lib="-L/path/to/blas/lib -lopenblas" \
+        --with-scalapack-lib="-L/path/to/scalapack/lib -lscalapack" \
+        --download-mumps --download-parmetis --download-metis \
+        --with-fortran-bindings=1 --with-shared-libraries=1 --with-x=0 \
+        COPTFLAGS=-O2 CXXOPTFLAGS=-O2 FOPTFLAGS=-O2
+    make all
+    make install
+
+    cd $DEPS
+    curl -L -O https://slepc.upv.es/download/distrib/slepc-3.25.1.tar.gz
+    tar xzf slepc-3.25.1.tar.gz
+    cd slepc-3.25.1
+    export PETSC_DIR=$DEPS/petsc SLEPC_DIR=$PWD
+    unset PETSC_ARCH
+    ./configure --prefix=$DEPS/slepc
+    make
+    make install
+
+    export PKG_CONFIG_PATH=$DEPS/petsc/lib/pkgconfig:$DEPS/slepc/lib/pkgconfig:$PKG_CONFIG_PATH
+    \endverbatim
+    PETSc then uses MUMPS for the distributed LU factorization without any setting in PB3D.
+    The build of PETSc with MUMPS takes about half an hour on 16 cores.
+    The code contains the scripts that build PB3D in this way on one cluster, in the directory <tt>scripts/snellius</tt>; their paths and modules are those of that cluster.
+
+    \subsection installation_pspline PSPLINE
+
+    The script <tt>Libraries/build_pspline.sh</tt> builds PSPLINE with gfortran, without NetCDF, from a clone of <a href="https://github.com/ilonster/pspline">github.com/ilonster/pspline</a>.
+    It first applies the patch <tt>Libraries/pspline-r8genxpkg-nx3.patch</tt>, which has to lie next to the script.
+    The patch stops the routine \c r8genxpkg from writing 8 bytes past the end of its array for three unevenly spaced points; PB3D calls it with such points, and without the patch about every other run crashes on macOS.
+    The script is copied into the clone and run there:
+    \verbatim
+    git clone --depth 1 https://github.com/ilonster/pspline.git $DEPS/pspline
+    cp $PB3D_SRC/Libraries/build_pspline.sh $PB3D_SRC/Libraries/pspline-r8genxpkg-nx3.patch $DEPS/pspline/
+    $DEPS/pspline/build_pspline.sh
+    export PSPLINE_DIR=$DEPS/pspline/install
+    \endverbatim
+    The library and the module files are then in <tt>$DEPS/pspline/install/lib</tt> and <tt>$DEPS/pspline/install/include</tt>.
+
+    \subsection installation_libstell LIBSTELL
+
+    PB3D uses only the module \c read_wout_mod of LIBSTELL.
+    The script <tt>Libraries/build_libstell_min.sh</tt> compiles this module and the modules it depends on from a clone of STELLOPT into a small static library.
+    It needs \c mpif90 and NetCDF-Fortran; \c NETCDF_FORTRAN_DIR is the installation directory of NetCDF-Fortran, which contains <tt>include/netcdf.inc</tt>.
+    \verbatim
+    git clone --depth 1 https://github.com/PrincetonUniversity/STELLOPT.git $DEPS/stellopt
+    STELLOPT_SRC=$DEPS/stellopt NETCDF_FORTRAN_DIR=$NETCDF_FORTRAN_DIR \
+        $PB3D_SRC/Libraries/build_libstell_min.sh $DEPS/libstell-min
+    export LIBSTELL_DIR=$DEPS/libstell-min
+    \endverbatim
+    The last argument of the script is the installation directory. It should always be given, because the default of the script assumes that the code lies in <tt>$HOME/Code/PB3D</tt>.
+    Both scripts put <tt>/opt/homebrew/bin</tt> at the front of \c PATH, so on macOS they use the compilers of Homebrew.
+    A full LIBSTELL, built with the build system of STELLOPT, works as well. CMake looks under \c LIBSTELL_DIR (or \c STELLOPT_DIR) for the library \c libstell and for the module file \c vsvd0.mod or \c vmec_input.mod.
+
+    \subsection installation_strumpack STRUMPACK-Dense (optional)
+
+    Without STRUMPACK, PB3D solves the boundary-element system of the vacuum with the LU factorization of ScaLAPACK (\c pdgetrf and \c pdgetrs).
+    The continuous integration and the cluster builds use this solver.
+    PB3D can use the old STRUMPACK-Dense 1.1.1 instead, through its Fortran module \c strumpackdensepackage, which the newer STRUMPACK 7 does not have.
+    The source, <tt>STRUMPACK-Dense-1.1.1.tar.gz</tt>, comes from <tt>portal.nersc.gov/project/sparse/strumpack</tt>, which is not always reachable.
+    In the directory <tt>src</tt> of the unpacked package, the two sources are compiled into a library:
+    \verbatim
+    mpic++ -O3 -std=gnu++11 -I. -c StrumpackDensePackage_C.cpp -o StrumpackDensePackage_C.o
+    mpif90 -O3 -c StrumpackDensePackage.F90 -o StrumpackDensePackage.o
+    ar -rcs libstrumpack.a StrumpackDensePackage_C.o StrumpackDensePackage.o
+    \endverbatim
+    The MPI C++ compiler must use the GNU C++ compiler (for OpenMPI, with <tt>OMPI_CXX=g++</tt>), because PB3D links with \c -lstdc++.
+    CMake looks for <tt>libstrumpack.a</tt> in the subdirectory <tt>lib</tt> or <tt>src</tt> of \c STRUMPACK_DIR, and for <tt>strumpackdensepackage.mod</tt> in the subdirectory <tt>inc</tt> or <tt>examples</tt>.
+    Links in <tt>lib</tt> and <tt>inc</tt> of the package directory to the two files in <tt>src</tt> satisfy this, and \c STRUMPACK_DIR is then the package directory.
+
+    \section installation_compilation Compilation with CMake
+
+    When all dependencies are available, PB3D is configured and compiled in a separate build directory:
+    \verbatim
+    cmake -S $PB3D_SRC -B $PB3D_SRC/build \
+        -DCMAKE_BUILD_TYPE=Release \
+        -DPSPLINE_DIR=$PSPLINE_DIR \
+        -DLIBSTELL_DIR=$LIBSTELL_DIR
+    cmake --build $PB3D_SRC/build -j
+    \endverbatim
+    With the Ubuntu packages, the configuration also needs <tt>-DHDF5_ROOT=/usr/lib/x86_64-linux-gnu/hdf5/openmpi</tt>.
+    At the end of the configuration, CMake prints a summary of the dependencies it found, including whether it found STRUMPACK.
+    The executables \c PB3D and \c POST are created in the build directory.
+    <tt>cmake --install $PB3D_SRC/build --prefix DIR</tt> copies them into <tt>DIR/bin</tt>.
+
+    A debug build, which has the debug code of PB3D and the runtime checks of the compiler, is made in a second build directory:
+    \verbatim
+    cmake -S $PB3D_SRC -B $PB3D_SRC/build-debug \
+        -DCMAKE_BUILD_TYPE=Debug -DPB3D_ENABLE_DEBUG=ON \
+        -DPSPLINE_DIR=$PSPLINE_DIR -DLIBSTELL_DIR=$LIBSTELL_DIR
+    cmake --build $PB3D_SRC/build-debug -j
+    \endverbatim
+
+    The following options and variables are passed to CMake with <tt>-D</tt>:
+
+    <table>
+    <caption id="installation_cmake_tab">Table 1. CMake options and variables</caption>
+    <tr>
+        <th> name </th><th> default </th><th> explanation </th>
+    </tr>
+    <tr>
+        <td> \c CMAKE_BUILD_TYPE </td><td> \c Release </td><td> compiler flags: \c Release optimizes with \c -O3, \c Debug compiles with \c -O0 \c -g and the runtime checks of the compiler, \c RelWithDebInfo uses \c -O2 \c -g </td>
+    </tr>
+    <tr>
+        <td> \c PB3D_ENABLE_DEBUG </td><td> \c OFF </td><td> defines the preprocessor flag \c ldebug, which compiles the debug code of PB3D: the command-line options \c test, \c mem_info and \c invert_top_bottom_H (see \ref page_inputs), and additional checks and output; it is independent of \c CMAKE_BUILD_TYPE </td>
+    </tr>
+    <tr>
+        <td> \c PB3D_ENABLE_INFINIBAND </td><td> \c OFF </td><td> defines the preprocessor flag \c lIB, which switches off data sieving for reading and writing (the ROMIO hints \c romio_ds_read and \c romio_ds_write) when PB3D opens its HDF5 files through MPI-IO </td>
+    </tr>
+    <tr>
+        <td> \c PB3D_BUILD_EXECUTABLES </td><td> \c ON </td><td> with \c OFF, only the core library of PB3D that needs no external library is built, with its unit tests </td>
+    </tr>
+    <tr>
+        <td> \c BUILD_TESTING </td><td> \c ON </td><td> builds the test suite (see \ref installation_tests) </td>
+    </tr>
+    <tr>
+        <td> \c PSPLINE_DIR </td><td> none </td><td> installation directory of PSPLINE; \c PSPLINE_ROOT and the environment variables \c PSPLINE_DIR and \c PSPLINE_ROOT work as well </td>
+    </tr>
+    <tr>
+        <td> \c LIBSTELL_DIR </td><td> none </td><td> installation directory of LIBSTELL; \c LIBSTELL_ROOT, \c STELLOPT_DIR and the environment variables of the same names work as well </td>
+    </tr>
+    <tr>
+        <td> \c STRUMPACK_DIR </td><td> <tt>$HOME/Code/STRUMPACK-Dense-1.1.1</tt> </td><td> directory of a STRUMPACK-Dense 1.1.1 build; if CMake finds no library there, PB3D uses ScaLAPACK for the vacuum </td>
+    </tr>
+    <tr>
+        <td> \c HDF5_ROOT </td><td> none </td><td> standard CMake variable that selects the HDF5 installation; PB3D needs the parallel HDF5 </td>
+    </tr>
+    <tr>
+        <td> \c PB3D_FIXTURE_DIR </td><td> <tt>fixtures</tt> in the build directory </td><td> directory with the equilibrium files of the regression tests; by default, CMake decompresses the files of <tt>tests/fixtures</tt> into it with xz </td>
+    </tr>
+    <tr>
+        <td> \c PB3D_TEST_MPI_REGRESSION </td><td> \c OFF </td><td> adds regression tests that run PB3D under <tt>mpirun -n 2</tt> and <tt>-n 4</tt> and require the eigenvalue to agree with the one-process run to \f$10^{-6}\f$; they need PETSc with MUMPS </td>
+    </tr>
+    <tr>
+        <td> \c Python3_EXECUTABLE </td><td> found by CMake </td><td> Python of the regression checks that read the HDF5 output; without h5py, these checks are skipped </td>
+    </tr>
+    </table>
+
+    \section installation_tests Tests
+
+    The tests are run with CTest from the build directory:
+    \verbatim
+    ctest --test-dir $PB3D_SRC/build --output-on-failure
+    \endverbatim
+    They are grouped in layers, which are selected by their labels, for example with <tt>ctest -L unit</tt>:
+
+    <table>
+    <caption id="installation_tests_tab">Table 2. Test layers</caption>
+    <tr>
+        <th> label </th><th> needs </th><th> contents </th>
+    </tr>
+    <tr>
+        <td> \c unit </td><td> a Fortran compiler (and LAPACK for some suites) </td><td> unit tests of the core library </td>
+    </tr>
+    <tr>
+        <td> \c smoke </td><td> the executables </td><td> \c PB3D and \c POST print their usage message </td>
+    </tr>
+    <tr>
+        <td> \c fullstack </td><td> the executables and all dependencies </td><td> tests of the modules against analytical and brute-force references, mainly of the vacuum; some also run under <tt>mpirun -n 2</tt> and <tt>-n 4</tt> </td>
+    </tr>
+    <tr>
+        <td> \c regression </td><td> the executables and the equilibrium files </td><td> complete runs of \c PB3D on the equilibrium files of <tt>tests/fixtures</tt>, with the eigenvalues compared to recorded values </td>
+    </tr>
+    </table>
+
+    The tests that run under \c mpirun carry the label \c mpi as well, and <tt>ctest -LE mpi</tt> leaves them out.
+    The unit tests can also be built without any of the external libraries:
+    \verbatim
+    cmake -S $PB3D_SRC -B $PB3D_SRC/build-tests -DPB3D_BUILD_EXECUTABLES=OFF
+    cmake --build $PB3D_SRC/build-tests -j
+    ctest --test-dir $PB3D_SRC/build-tests --output-on-failure
+    \endverbatim
+    CMake still looks for a C and a C++ compiler in this case, because the project declares these languages.
+    The file <tt>Documentation/testing.md</tt> of the code describes every test and the recorded eigenvalues.
+
+    \section installation_problems Known problems
+
+    - With more than one MPI process, a PETSc without MUMPS stops the eigenvalue solver with the message "Could not locate a solver type for factorization type LU and matrix type mpibaij", which PB3D reports as error code 92 from get_solution(). The solver uses shift-invert, which needs an LU factorization of a distributed matrix, and the LU factorization of PETSc itself works on one process only.
+    - With PETSc 3.25, CMake 3.31 does not finish the dependency scan of the Fortran header files of PETSc. The scan runs for a quarter of an hour and uses 13 GB of memory before the compilation starts. CMake 4 does not have this problem.
+    - On macOS with OpenMPI 5 from Homebrew, \c mpirun itself can crash while it detects the hardware. PB3D then still runs on one process when the executable is called directly, without \c mpirun, and <tt>ctest -LE mpi</tt> skips the tests that use \c mpirun.
+    - GNU Fortran 14.2 and 14.3 compile the bounds check of an array subscript that contains a function call with an array-constructor argument wrongly. CMake therefore removes \c -fcheck=bounds from the flags of the debug build for every GNU Fortran 14.
+    - PB3D stores file names in strings of 120 characters, so the paths of the input and equilibrium files given on the command line must not be longer than that. A symbolic link with a short name helps.
+    - A PSPLINE built without the patch of \ref installation_pspline makes about every other run crash on macOS, with a SIGTRAP or a failure of \c H5Fcreate.
+
+    \section installation_makefile Legacy Makefile
+
+    The code also contains a hand-written Makefile, <tt>Makefile.legacy</tt>, which is kept for reference.
+    Its paths have to be edited by hand, and neither the tests nor the continuous integration use it.
+    CMake is the supported way to build PB3D.
+*/
