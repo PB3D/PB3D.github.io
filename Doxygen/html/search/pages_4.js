@@ -6,6 +6,5 @@ var searchData=
   ['equilibrium_20jobs_3',['Equilibrium jobs',['../page_overview.html#overview_jobs_eq',1,'']]],
   ['equilibrium_20optional_4',['Checking the equilibrium (optional)',['../page_tutorial.html#tutorial_test_eq',1,'']]],
   ['equilibrium_20perturbation_20jobs_5',['Equilibrium &amp;amp; Perturbation Jobs',['../page_overview.html#overview_jobs',1,'']]],
-  ['errors_6',['runtime errors',['../page_faq.html#faq_errors',1,'']]],
-  ['example_7',['Makefile Example',['../page_installation.html#installation_makefile',1,'']]]
+  ['errors_6',['runtime errors',['../page_faq.html#faq_errors',1,'']]]
 ];

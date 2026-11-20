@@ -4,5 +4,7 @@ var searchData=
   ['g_5fc_1',['g_c',['../structeq__vars_1_1eq__2__type.html#a802c4087efeb67ea5fb5d837267af4b1',1,'eq_vars::eq_2_type']]],
   ['g_5fe_2',['g_e',['../structeq__vars_1_1eq__2__type.html#a19309c67f2334ff898d3eef1a9b1b1da',1,'eq_vars::eq_2_type']]],
   ['g_5ff_3',['g_f',['../structeq__vars_1_1eq__2__type.html#a86af2ae617633d732fbb3927f10b62d4',1,'eq_vars::eq_2_type']]],
-  ['g_5ffd_4',['g_fd',['../structeq__vars_1_1eq__2__type.html#adaa37b20905a132d62a632ca5a60abf8',1,'eq_vars::eq_2_type']]]
+  ['g_5ffd_4',['g_fd',['../structeq__vars_1_1eq__2__type.html#adaa37b20905a132d62a632ca5a60abf8',1,'eq_vars::eq_2_type']]],
+  ['gl16_5fw_5',['gl16_w',['../namespacevac__utilities.html#a6b32be38dc5dbcfea100ec8aaec304bd',1,'vac_utilities']]],
+  ['gl16_5fx_6',['gl16_x',['../namespacevac__utilities.html#ad9f479331f1d097095e9d50eb58a2629',1,'vac_utilities']]]
 ];

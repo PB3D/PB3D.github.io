@@ -5,5 +5,6 @@ var searchData=
   ['sol_5fops_2',['sol_ops',['../namespacesol__ops.html',1,'']]],
   ['sol_5futilities_3',['sol_utilities',['../namespacesol__utilities.html',1,'']]],
   ['sol_5fvars_4',['sol_vars',['../namespacesol__vars.html',1,'']]],
-  ['str_5futilities_5',['str_utilities',['../namespacestr__utilities.html',1,'']]]
+  ['spline_5futilities_5',['spline_utilities',['../namespacespline__utilities.html',1,'']]],
+  ['str_5futilities_6',['str_utilities',['../namespacestr__utilities.html',1,'']]]
 ];

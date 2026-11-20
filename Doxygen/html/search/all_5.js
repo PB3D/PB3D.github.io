@@ -25,9 +25,9 @@ var searchData=
   ['ev_5fbc_22',['ev_bc',['../namespacenum__vars.html#a4efc3cca2482236a18b8927bca8361c2',1,'num_vars']]],
   ['ev_5fguess_23',['ev_guess',['../namespacenum__vars.html#a4c19f47e50c92bfd52985761500a999e',1,'num_vars']]],
   ['ev_5fstyle_24',['ev_style',['../namespacenum__vars.html#aae749d5063afce3b912a097ff0993d00',1,'num_vars']]],
-  ['ex_5fmax_5fsize_25',['ex_max_size',['../namespacenum__vars.html#a032fd6a1d45689b56362d8aab1cdc57c',1,'num_vars']]],
-  ['ex_5fplot_5fstyle_26',['ex_plot_style',['../namespacenum__vars.html#aac52d1fda60883bea62738fe0ecd7527',1,'num_vars']]],
-  ['example_27',['Makefile Example',['../page_installation.html#installation_makefile',1,'']]],
+  ['eval_5fpot_5fext_25',['eval_pot_ext',['../namespacevac__ops.html#a33bf7285ead934fa8e4242c708542d92',1,'vac_ops']]],
+  ['ex_5fmax_5fsize_26',['ex_max_size',['../namespacenum__vars.html#a032fd6a1d45689b56362d8aab1cdc57c',1,'num_vars']]],
+  ['ex_5fplot_5fstyle_27',['ex_plot_style',['../namespacenum__vars.html#aac52d1fda60883bea62738fe0ecd7527',1,'num_vars']]],
   ['export_5fhel_28',['export_hel',['../namespacenum__vars.html#aa1342b6b43268bd10bb254fa9bf754f0',1,'num_vars']]],
   ['extend_5fgrid_5ff_29',['extend_grid_f',['../namespacegrid__utilities.html#a414a1a11924bc935afca3a89fc31f2f5',1,'grid_utilities']]]
 ];

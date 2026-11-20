@@ -5,5 +5,6 @@ var searchData=
   ['files_2',['Output Files',['../page_outputs.html#output_files',1,'']]],
   ['flowchart_3',['Detailed PB3D Flowchart',['../page_overview.html#detail_PB3D',1,'']]],
   ['flowchart_4',['PB3D flowchart',['../page_overview.html#overview_PB3D_flowchart',1,'']]],
-  ['frequently_20asked_20questions_5',['Frequently Asked Questions',['../page_faq.html',1,'']]]
+  ['frequently_20asked_20questions_5',['Frequently Asked Questions',['../page_faq.html',1,'']]],
+  ['from_20source_6',['PETSc and SLEPc from source',['../page_installation.html#installation_deps_source',1,'']]]
 ];

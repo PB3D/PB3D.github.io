@@ -5,5 +5,6 @@ var searchData=
   ['sol_5fops_2ef90_2',['sol_ops.f90',['../sol__ops_8f90.html',1,'']]],
   ['sol_5futilities_2ef90_3',['sol_utilities.f90',['../sol__utilities_8f90.html',1,'']]],
   ['sol_5fvars_2ef90_4',['sol_vars.f90',['../sol__vars_8f90.html',1,'']]],
-  ['str_5futilities_2ef90_5',['str_utilities.f90',['../str__utilities_8f90.html',1,'']]]
+  ['spline_5futilities_2ef90_5',['spline_utilities.f90',['../spline__utilities_8f90.html',1,'']]],
+  ['str_5futilities_2ef90_6',['str_utilities.f90',['../str__utilities_8f90.html',1,'']]]
 ];

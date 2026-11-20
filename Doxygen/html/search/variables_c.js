@@ -7,7 +7,7 @@ var searchData=
   ['matrix_5fslepc_5fstyle_4',['matrix_slepc_style',['../namespacenum__vars.html#addd869f9551067812954f8e24fe078b1',1,'num_vars']]],
   ['max_5falpha_5',['max_alpha',['../namespacegrid__vars.html#ad3cab5cd1037b6956ccf74cde4539298',1,'grid_vars']]],
   ['max_5fderiv_6',['max_deriv',['../namespacenum__vars.html#a78f5aeea9d9c2f41e388bfcef9021e64',1,'num_vars']]],
-  ['max_5fdim_5fvar_5f1d_7',['max_dim_var_1d',['../namespacehdf5__vars.html#a69c36b36ad7f55ff124ebc328d18adb7',1,'hdf5_vars']]],
+  ['max_5fdim_5fvar_5fflat_7',['max_dim_var_flat',['../namespaceflat__vars.html#a876c965053478841a6d42f81b7733434',1,'flat_vars']]],
   ['max_5fflux_5fe_8',['max_flux_e',['../namespaceeq__vars.html#a863feef76ae60309d2e3ed4eed6bd436',1,'eq_vars']]],
   ['max_5fflux_5ff_9',['max_flux_f',['../namespaceeq__vars.html#a46c97bf2a6d6eca952ca5173fcf9cdcb',1,'eq_vars']]],
   ['max_5fit_5frich_10',['max_it_rich',['../namespacenum__vars.html#afbd4cb9a4ef9e8a277aecfc41b09aa1d',1,'num_vars']]],
@@ -51,7 +51,10 @@ var searchData=
   ['min_5ftheta_5fplot_48',['min_theta_plot',['../namespacenum__vars.html#a2085f22558c1b4a349b5ad1b6abfe09f',1,'num_vars']]],
   ['min_5fzeta_5fplot_49',['min_zeta_plot',['../namespacenum__vars.html#a773a55cfd780f1f9db69887fdf48b0a5',1,'num_vars']]],
   ['min_5fzvac_5fplot_50',['min_zvac_plot',['../namespacenum__vars.html#ab9fd7d4e9921ff8ceab88317f0c1ae5f',1,'num_vars']]],
-  ['mn_5fv_51',['mn_v',['../namespacevmec__vars.html#a4b9a64bc60d45f2b10e03f624ade3e82',1,'vmec_vars']]],
-  ['mpi_5fcomm_52',['mpi_comm',['../structvac__vars_1_1vac__type.html#af24c1254132acf04aef2f91952b73243',1,'vac_vars::vac_type']]],
-  ['mu_5f0_5foriginal_53',['mu_0_original',['../namespacenum__vars.html#a50e309ca1a5833d2838ed7457b7eb686',1,'num_vars']]]
+  ['mn_5fv_51',['mn_v',['../namespacevmec__vars.html#a00697202d4f8fc19965188a9b5ddc7e9',1,'vmec_vars']]],
+  ['mn_5fv_5fnyq_52',['mn_v_nyq',['../namespacevmec__vars.html#a2c3b8c979957fd6dca6909d2b0bdee05',1,'vmec_vars']]],
+  ['mnmax_5fnyq_5fv_53',['mnmax_nyq_v',['../namespacevmec__vars.html#a54cace62b89eb50a74db99ed7e578d93',1,'vmec_vars']]],
+  ['mpi_5fcomm_54',['mpi_comm',['../structvac__vars_1_1vac__type.html#af24c1254132acf04aef2f91952b73243',1,'vac_vars::vac_type']]],
+  ['mpol_5ftf_55',['mpol_tf',['../namespacevmec__vars.html#a3ad89240d8ad171f16423d1d514a1ca8',1,'vmec_vars']]],
+  ['mu_5f0_5foriginal_56',['mu_0_original',['../namespacenum__vars.html#a50e309ca1a5833d2838ed7457b7eb686',1,'num_vars']]]
 ];

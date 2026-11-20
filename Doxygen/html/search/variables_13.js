@@ -15,7 +15,7 @@ var searchData=
   ['tol_5frich_12',['tol_rich',['../namespacenum__vars.html#aa0091a935b9502afef09a87c0f590e9d',1,'num_vars']]],
   ['tol_5fslepc_13',['tol_slepc',['../namespacenum__vars.html#acbfccf15a8af9fce37f9cb3f2c85be76',1,'num_vars']]],
   ['tol_5fzero_14',['tol_zero',['../namespacenum__vars.html#ae2387f8182114da91104322ca3250d9a',1,'num_vars']]],
-  ['tot_5fi_5fmax_15',['tot_i_max',['../structhdf5__vars_1_1var__1d__type.html#a9bd0a717bed83cef6e892111b55e5a1a',1,'hdf5_vars::var_1d_type']]],
-  ['tot_5fi_5fmin_16',['tot_i_min',['../structhdf5__vars_1_1var__1d__type.html#a7f18f0f538910233cf1a09d15a6322f1',1,'hdf5_vars::var_1d_type']]],
+  ['tot_5fi_5fmax_15',['tot_i_max',['../structflat__vars_1_1var__flat__type.html#af6625a9bd27e68fe45606be4d07c2f3e',1,'flat_vars::var_flat_type']]],
+  ['tot_5fi_5fmin_16',['tot_i_min',['../structflat__vars_1_1var__flat__type.html#aa19e74069cb4ed740686e19f42998b9f',1,'flat_vars::var_flat_type']]],
   ['trigon_5ffactors_17',['trigon_factors',['../structgrid__vars_1_1grid__type.html#adebef5699de49c33289e03cda2875232',1,'grid_vars::grid_type']]]
 ];
