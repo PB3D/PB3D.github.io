@@ -12,7 +12,7 @@ var searchData=
   ['files_5futilities_9',['files_utilities',['../namespacefiles__utilities.html',1,'']]],
   ['files_5futilities_2ef90_10',['files_utilities.f90',['../files__utilities_8f90.html',1,'']]],
   ['find_5fcompr_5frange_11',['find_compr_range',['../namespacegrid__utilities.html#a169b137ec246579a2fa94fa4612104d1',1,'grid_utilities']]],
-  ['find_5fmax_5frich_5flvl_12',['find_max_rich_lvl',['../namespacerich__ops.html#a58e1bed1bed5c2d0b91cc7dc5e3099d9',1,'rich_ops']]],
+  ['find_5fmax_5frich_5flvl_12',['find_max_rich_lvl',['../namespacerich__ops.html#acadb2170408937a71a230e655bd15675',1,'rich_ops']]],
   ['fit_5fdiag_13',['fit_diag',['../namespacevac__utilities.html#aa2cd312350e1c3f53293a13d94f23654',1,'vac_utilities']]],
   ['flat_5fvars_14',['flat_vars',['../namespaceflat__vars.html',1,'']]],
   ['flat_5fvars_2ef90_15',['flat_vars.f90',['../flat__vars_8f90.html',1,'']]],

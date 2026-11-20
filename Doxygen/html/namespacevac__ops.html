@@ -206,9 +206,14 @@ Variables</h2></td></tr>
 <p>This is done by iterating over the subintervals, calculating the contributions to the potential values on the left and right boundary of the interval, and adding these to the appropriate values in G and H.</p>
 <p>As each process in the blacs grid only has access to its own values, an extra interval is is calculated to the left and right of the internal process grid edges.</p>
 <p>Optionally, this procedure can be used to calculate the coefficients G and H with respect to other points, outside of the boundary. This is useful when the potential is to be calculated at external points.</p>
-<p>In this case, however, no (near-) singular points are calculated, and if they appear any way, perhaps by accident, they will not be accurate.</p>
-<p>\Note Multiple field lines are stored sequentially, which implies that the integral between the last point on a field line and the first point on the next field lines needs to be left out.</p>
-<dl class="section note"><dt>Note</dt><dd>For style 1 the kernel is integrated along the field line within four interval lengths of the influence point (<a class="el" href="namespacevac__utilities.html#a3b2836606e5331d38278bd3551c9bb75" title="Calculate G_ij and H_ij on an interval for field line aligned configurations.">vac_utilities.calc_gh_int_1</a>), because neighbouring field lines can lie much closer together than the points along them. The rule along and across the field lines is described in <a class="el" href="#aa0e2983daefe876c0eb16be9af046a97" title="Calculates matrices G and H in 3-D configuration.">calc_gh_1()</a>.</dd></dl>
+<p>For external points no diagonal is set, and the points near the boundary are treated as follows:</p><ul>
+<li>field-line style (<a class="el" href="#aa0e2983daefe876c0eb16be9af046a97" title="Calculates matrices G and H in 3-D configuration.">calc_gh_1()</a>): the near-field rule along the field lines is used for an external point that lies closer to its nearest boundary point than that boundary point lies to its neighbour on the same field line. A point that coincides with a boundary point gets the analytical half-cell integral of G, with the metric factors of the left endpoint of the interval, which is the coinciding point or its neighbour on the field line.</li>
+<li>axisymmetric style (<a class="el" href="#a6fb02475c7ef2da9408952cf6f1cca8b" title="Calculates matrices G and H in axisymmetric configurations.">calc_gh_2()</a>): a point that coincides with a boundary point gets the row that returns the boundary value, with \(4\pi\) in the column of that point and zero elsewhere. Other points near the boundary get no special treatment.</li>
+</ul>
+<p>Within a few grid spacings of the boundary the quadrature does not resolve the kernels (<a class="el" href="#a33bf7285ead934fa8e4242c708542d92" title="Potential at points off the boundary, from its values and its normal data on the boundary.">eval_pot_ext()</a>).</p>
+<dl class="section note"><dt>Note</dt><dd>Multiple field lines are stored sequentially, which implies that the integral between the last point on a field line and the first point on the next field lines needs to be left out.</dd>
+<dd>
+For style 1 the kernel is integrated along the field line within four interval lengths of the influence point (<a class="el" href="namespacevac__utilities.html#a3b2836606e5331d38278bd3551c9bb75" title="Calculate G_ij and H_ij on an interval for field line aligned configurations.">vac_utilities.calc_gh_int_1</a>), because neighbouring field lines can lie much closer together than the points along them. The rule along and across the field lines is described in <a class="el" href="#aa0e2983daefe876c0eb16be9af046a97" title="Calculates matrices G and H in 3-D configuration.">calc_gh_1()</a>.</dd></dl>
 <dl class="todo"><dt><b><a class="el" href="todo.html#_todo000002">Todo</a></b></dt><dd>For 3-D vacuums, step sizes are constant. Subsequent Richardson levels should therefore make use of the fact that the contribution to the points inherited from the previous levels can be just scaled by 1/2 and do not need to be recalculated. Currently, the copy is done correctly in interlaced_vac_copy(), but they are afterwards overwritten.</dd></dl>
 <dl class="section return"><dt>Returns</dt><dd>ierr </dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
@@ -223,18 +228,18 @@ Variables</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="vac__ops_8f90_source.html#l00543">543</a> of file <a class="el" href="vac__ops_8f90_source.html">vac_ops.f90</a>.</p>
+<p class="definition">Definition at line <a class="el" href="vac__ops_8f90_source.html#l00557">557</a> of file <a class="el" href="vac__ops_8f90_source.html">vac_ops.f90</a>.</p>
 <div id="dynsection-0" class="dynheader closed"><span class="dynarrow"><span class="arrowhead closed"></span></span>Here is the call graph for this function:</div>
 <div id="dynsection-0-summary" class="dynsummary">
 </div>
 <div id="dynsection-0-content" class="dyncontent hidden">
-<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="namespacevac__ops_a8d70ea940b7548e4a2f397699c694b67_cgraph.svg" width="1608" height="1414"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="namespacevac__ops_a8d70ea940b7548e4a2f397699c694b67_cgraph.svg" width="1720" height="1414"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 <div id="dynsection-1" class="dynheader closed"><span class="dynarrow"><span class="arrowhead closed"></span></span>Here is the caller graph for this function:</div>
 <div id="dynsection-1-summary" class="dynsummary">
 </div>
 <div id="dynsection-1-content" class="dyncontent hidden">
-<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="namespacevac__ops_a8d70ea940b7548e4a2f397699c694b67_icgraph.svg" width="1020" height="140"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="namespacevac__ops_a8d70ea940b7548e4a2f397699c694b67_icgraph.svg" width="1086" height="140"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
@@ -312,18 +317,18 @@ Variables</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="vac__ops_8f90_source.html#l00781">781</a> of file <a class="el" href="vac__ops_8f90_source.html">vac_ops.f90</a>.</p>
+<p class="definition">Definition at line <a class="el" href="vac__ops_8f90_source.html#l00795">795</a> of file <a class="el" href="vac__ops_8f90_source.html">vac_ops.f90</a>.</p>
 <div id="dynsection-2" class="dynheader closed"><span class="dynarrow"><span class="arrowhead closed"></span></span>Here is the call graph for this function:</div>
 <div id="dynsection-2-summary" class="dynsummary">
 </div>
 <div id="dynsection-2-content" class="dyncontent hidden">
-<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="namespacevac__ops_aa0e2983daefe876c0eb16be9af046a97_cgraph.svg" width="636" height="264"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="namespacevac__ops_aa0e2983daefe876c0eb16be9af046a97_cgraph.svg" width="651" height="264"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 <div id="dynsection-3" class="dynheader closed"><span class="dynarrow"><span class="arrowhead closed"></span></span>Here is the caller graph for this function:</div>
 <div id="dynsection-3-summary" class="dynsummary">
 </div>
 <div id="dynsection-3-content" class="dyncontent hidden">
-<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="namespacevac__ops_aa0e2983daefe876c0eb16be9af046a97_icgraph.svg" width="1231" height="140"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="namespacevac__ops_aa0e2983daefe876c0eb16be9af046a97_icgraph.svg" width="1299" height="140"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
@@ -388,18 +393,18 @@ Variables</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="vac__ops_8f90_source.html#l00935">935</a> of file <a class="el" href="vac__ops_8f90_source.html">vac_ops.f90</a>.</p>
+<p class="definition">Definition at line <a class="el" href="vac__ops_8f90_source.html#l00951">951</a> of file <a class="el" href="vac__ops_8f90_source.html">vac_ops.f90</a>.</p>
 <div id="dynsection-4" class="dynheader closed"><span class="dynarrow"><span class="arrowhead closed"></span></span>Here is the call graph for this function:</div>
 <div id="dynsection-4-summary" class="dynsummary">
 </div>
 <div id="dynsection-4-content" class="dyncontent hidden">
-<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="namespacevac__ops_a6fb02475c7ef2da9408952cf6f1cca8b_cgraph.svg" width="1334" height="739"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="namespacevac__ops_a6fb02475c7ef2da9408952cf6f1cca8b_cgraph.svg" width="1435" height="739"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 <div id="dynsection-5" class="dynheader closed"><span class="dynarrow"><span class="arrowhead closed"></span></span>Here is the caller graph for this function:</div>
 <div id="dynsection-5-summary" class="dynsummary">
 </div>
 <div id="dynsection-5-content" class="dyncontent hidden">
-<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="namespacevac__ops_a6fb02475c7ef2da9408952cf6f1cca8b_icgraph.svg" width="1231" height="140"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="namespacevac__ops_a6fb02475c7ef2da9408952cf6f1cca8b_icgraph.svg" width="1299" height="140"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
@@ -429,9 +434,8 @@ Variables</h2></td></tr>
          \overline{\text{G}}\overline{\text{E}} \overline{\text{P}}\), followed by left-multiplication of \(\overline{\Phi}\) by \(\overline{\text{P}}\overline{\text{E}}^\dagger\).</p>
 <p>The non-square matrix \(\overline{\text{E}}\) contains the exponents for different mode numbers and different poloidal grid points, whereas \(\overline{\text{P}}\) are diagonal matrices that contain the factors \((nq-m)\).</p>
 <p>In practice, the complex matrix \(\overline{\text{E}}\) is split in the two components of a real matrix twice the width.</p>
-<p>For vacuum style 1, the poloidal grid points correspond to the paralell grid points and have to be provied by a <code>grid</code> variable.</p>
+<p>For vacuum style 1, the parallel coordinate and the field-line label of every boundary point follow from <code>min_par_X</code>, <code>min_alpha</code> and the steps of <a class="el" href="namespacevac__utilities.html#abc6ea224f7a8b897e3af84c6664f302b" title="Step sizes of the field-line grid in the parallel coordinate and in the field-line label,...">vac_utilities.vac_steps()</a>; for vacuum style 2, the poloidal angles are those stored in <code>vac%ang</code>.</p>
 <p>If <code>jump_to_sol</code> is used for the current Richardson level, the vacuum quantities are not calculated, but just restored.</p>
-<p>Currently, this procedure only works for vacuum style 2 (axisymmetric).</p>
 <dl class="section return"><dt>Returns</dt><dd>ierr </dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -441,18 +445,18 @@ Variables</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="vac__ops_8f90_source.html#l01547">1547</a> of file <a class="el" href="vac__ops_8f90_source.html">vac_ops.f90</a>.</p>
+<p class="definition">Definition at line <a class="el" href="vac__ops_8f90_source.html#l01583">1583</a> of file <a class="el" href="vac__ops_8f90_source.html">vac_ops.f90</a>.</p>
 <div id="dynsection-6" class="dynheader closed"><span class="dynarrow"><span class="arrowhead closed"></span></span>Here is the call graph for this function:</div>
 <div id="dynsection-6-summary" class="dynsummary">
 </div>
 <div id="dynsection-6-content" class="dyncontent hidden">
-<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="namespacevac__ops_a5e5a8322b3aa2e3704b1050426f06d9d_cgraph.svg" width="1894" height="2742"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="namespacevac__ops_a5e5a8322b3aa2e3704b1050426f06d9d_cgraph.svg" width="2014" height="2744"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 <div id="dynsection-7" class="dynheader closed"><span class="dynarrow"><span class="arrowhead closed"></span></span>Here is the caller graph for this function:</div>
 <div id="dynsection-7-summary" class="dynsummary">
 </div>
 <div id="dynsection-7-content" class="dyncontent hidden">
-<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="namespacevac__ops_a5e5a8322b3aa2e3704b1050426f06d9d_icgraph.svg" width="616" height="39"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="namespacevac__ops_a5e5a8322b3aa2e3704b1050426f06d9d_icgraph.svg" width="643" height="39"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
@@ -521,18 +525,18 @@ Variables</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="vac__ops_8f90_source.html#l02621">2621</a> of file <a class="el" href="vac__ops_8f90_source.html">vac_ops.f90</a>.</p>
+<p class="definition">Definition at line <a class="el" href="vac__ops_8f90_source.html#l02657">2657</a> of file <a class="el" href="vac__ops_8f90_source.html">vac_ops.f90</a>.</p>
 <div id="dynsection-8" class="dynheader closed"><span class="dynarrow"><span class="arrowhead closed"></span></span>Here is the call graph for this function:</div>
 <div id="dynsection-8-summary" class="dynsummary">
 </div>
 <div id="dynsection-8-content" class="dyncontent hidden">
-<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="namespacevac__ops_a33bf7285ead934fa8e4242c708542d92_cgraph.svg" width="1874" height="1552"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="namespacevac__ops_a33bf7285ead934fa8e4242c708542d92_cgraph.svg" width="2006" height="1552"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 <div id="dynsection-9" class="dynheader closed"><span class="dynarrow"><span class="arrowhead closed"></span></span>Here is the caller graph for this function:</div>
 <div id="dynsection-9-summary" class="dynsummary">
 </div>
 <div id="dynsection-9-content" class="dyncontent hidden">
-<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="namespacevac__ops_a33bf7285ead934fa8e4242c708542d92_icgraph.svg" width="803" height="63"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="namespacevac__ops_a33bf7285ead934fa8e4242c708542d92_icgraph.svg" width="848" height="63"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
@@ -576,7 +580,7 @@ Variables</h2></td></tr>
 <dl class="section note"><dt>Note</dt><dd><ol type="1">
 <li>This routine should be called by a single process, in contrast to the other output routines such as <a class="el" href="interfaceeq__ops_1_1print__output__eq.html" title="Print equilibrium quantities to an output file:">eq_ops.print_output_eq()</a>, print_output_sol(), ...</li>
 <li>This process should be the last one, as it will set the boundary contribution.</li>
-<li>This routine does not save the <code>H</code> and <code>G</code> matrices because they are large and foreseen to be saved directly as Hierarchical matrices in the future. They therefore need to be regenerated if Richardson restart is done, or when after a jump to solution, another Richardson level is attempted. In calc_vac, it is checked when copying the vacuum variables from previous to current Richardson level, whether the <code>G</code> and <code>H</code> matrices are allocated and if not, they are calculated.</li>
+<li>This routine does not save the <code>H</code> and <code>G</code> matrices because they are large and foreseen to be saved directly as Hierarchical matrices in the future. <a class="el" href="#a5e5a8322b3aa2e3704b1050426f06d9d" title="Calculates the vacuum response.">calc_vac_res()</a> computes them again with <a class="el" href="#a8d70ea940b7548e4a2f397699c694b67" title="Calculate the matrices G and H.">calc_gh()</a> at every Richardson level, except at the restart level with <code>jump_to_sol</code>, where it reads the stored vacuum response back instead.</li>
 </ol>
 </dd></dl>
 <dl class="section return"><dt>Returns</dt><dd>ierr </dd></dl>
@@ -589,18 +593,18 @@ Variables</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="vac__ops_8f90_source.html#l03711">3711</a> of file <a class="el" href="vac__ops_8f90_source.html">vac_ops.f90</a>.</p>
+<p class="definition">Definition at line <a class="el" href="vac__ops_8f90_source.html#l03745">3745</a> of file <a class="el" href="vac__ops_8f90_source.html">vac_ops.f90</a>.</p>
 <div id="dynsection-10" class="dynheader closed"><span class="dynarrow"><span class="arrowhead closed"></span></span>Here is the call graph for this function:</div>
 <div id="dynsection-10-summary" class="dynsummary">
 </div>
 <div id="dynsection-10-content" class="dyncontent hidden">
-<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="namespacevac__ops_a78969bf43f80f0df3acf23c47edf7aff_cgraph.svg" width="1310" height="390"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="namespacevac__ops_a78969bf43f80f0df3acf23c47edf7aff_cgraph.svg" width="1435" height="392"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 <div id="dynsection-11" class="dynheader closed"><span class="dynarrow"><span class="arrowhead closed"></span></span>Here is the caller graph for this function:</div>
 <div id="dynsection-11-summary" class="dynsummary">
 </div>
 <div id="dynsection-11-content" class="dyncontent hidden">
-<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="namespacevac__ops_a78969bf43f80f0df3acf23c47edf7aff_icgraph.svg" width="640" height="39"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="namespacevac__ops_a78969bf43f80f0df3acf23c47edf7aff_icgraph.svg" width="675" height="39"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
@@ -668,18 +672,18 @@ Variables</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="vac__ops_8f90_source.html#l03436">3436</a> of file <a class="el" href="vac__ops_8f90_source.html">vac_ops.f90</a>.</p>
+<p class="definition">Definition at line <a class="el" href="vac__ops_8f90_source.html#l03472">3472</a> of file <a class="el" href="vac__ops_8f90_source.html">vac_ops.f90</a>.</p>
 <div id="dynsection-12" class="dynheader closed"><span class="dynarrow"><span class="arrowhead closed"></span></span>Here is the call graph for this function:</div>
 <div id="dynsection-12-summary" class="dynsummary">
 </div>
 <div id="dynsection-12-content" class="dyncontent hidden">
-<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="namespacevac__ops_afb0bbf55ee22e8831b31bef1be85a741_cgraph.svg" width="1102" height="548"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="namespacevac__ops_afb0bbf55ee22e8831b31bef1be85a741_cgraph.svg" width="1158" height="548"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 <div id="dynsection-13" class="dynheader closed"><span class="dynarrow"><span class="arrowhead closed"></span></span>Here is the caller graph for this function:</div>
 <div id="dynsection-13-summary" class="dynsummary">
 </div>
 <div id="dynsection-13-content" class="dyncontent hidden">
-<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="namespacevac__ops_afb0bbf55ee22e8831b31bef1be85a741_icgraph.svg" width="863" height="91"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="namespacevac__ops_afb0bbf55ee22e8831b31bef1be85a741_icgraph.svg" width="888" height="91"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
@@ -740,13 +744,13 @@ Variables</h2></td></tr>
 <div id="dynsection-14-summary" class="dynsummary">
 </div>
 <div id="dynsection-14-content" class="dyncontent hidden">
-<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="namespacevac__ops_a37220702fbf378626a0f2c12f446e0aa_cgraph.svg" width="1547" height="1204"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="namespacevac__ops_a37220702fbf378626a0f2c12f446e0aa_cgraph.svg" width="1704" height="1204"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 <div id="dynsection-15" class="dynheader closed"><span class="dynarrow"><span class="arrowhead closed"></span></span>Here is the caller graph for this function:</div>
 <div id="dynsection-15-summary" class="dynsummary">
 </div>
 <div id="dynsection-15-content" class="dyncontent hidden">
-<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="namespacevac__ops_a37220702fbf378626a0f2c12f446e0aa_icgraph.svg" width="586" height="39"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="namespacevac__ops_a37220702fbf378626a0f2c12f446e0aa_icgraph.svg" width="603" height="39"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
@@ -797,18 +801,18 @@ Variables</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="vac__ops_8f90_source.html#l03032">3032</a> of file <a class="el" href="vac__ops_8f90_source.html">vac_ops.f90</a>.</p>
+<p class="definition">Definition at line <a class="el" href="vac__ops_8f90_source.html#l03068">3068</a> of file <a class="el" href="vac__ops_8f90_source.html">vac_ops.f90</a>.</p>
 <div id="dynsection-16" class="dynheader closed"><span class="dynarrow"><span class="arrowhead closed"></span></span>Here is the call graph for this function:</div>
 <div id="dynsection-16-summary" class="dynsummary">
 </div>
 <div id="dynsection-16-content" class="dyncontent hidden">
-<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="namespacevac__ops_a8bcc01cfc5c1022f767b5479c7739ea0_cgraph.svg" width="2118" height="2172"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="namespacevac__ops_a8bcc01cfc5c1022f767b5479c7739ea0_cgraph.svg" width="2243" height="2174"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 <div id="dynsection-17" class="dynheader closed"><span class="dynarrow"><span class="arrowhead closed"></span></span>Here is the caller graph for this function:</div>
 <div id="dynsection-17-summary" class="dynsummary">
 </div>
 <div id="dynsection-17-content" class="dyncontent hidden">
-<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="namespacevac__ops_a8bcc01cfc5c1022f767b5479c7739ea0_icgraph.svg" width="574" height="39"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="namespacevac__ops_a8bcc01cfc5c1022f767b5479c7739ea0_icgraph.svg" width="611" height="39"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
