@@ -8,7 +8,10 @@ var searchData=
   ['add_5fhdf5_5fitem_5',['add_hdf5_item',['../namespacehdf5__ops.html#a59ff5ec017362698322f14fa1a633dd6',1,'hdf5_ops']]],
   ['alpha_6',['alpha',['../namespacegrid__vars.html#a07bf4730be1d5ab8b42f85be63e11797',1,'grid_vars']]],
   ['alpha_5fstyle_7',['alpha_style',['../namespacenum__vars.html#aa3b575dadc3dc227a57d52b118408d62',1,'num_vars']]],
-  ['and_20slepc_20from_20source_8',['PETSc and SLEPc from source',['../page_installation.html#installation_deps_source',1,'']]],
-  ['ang_9',['ang',['../structvac__vars_1_1vac__type.html#a8a79c1f2b383fda22b5f3cca1f7afd31',1,'vac_vars::vac_type']]],
-  ['asked_20questions_10',['Frequently Asked Questions',['../page_faq.html',1,'']]]
+  ['and_20known_20limits_8',['Input rules and known limits',['../page_vacuum.html#vacuum_limits',1,'']]],
+  ['and_20restarts_9',['Richardson levels and restarts',['../page_vacuum.html#vacuum_rich',1,'']]],
+  ['and_20slepc_20from_20source_10',['PETSc and SLEPc from source',['../page_installation.html#installation_deps_source',1,'']]],
+  ['ang_11',['ang',['../structvac__vars_1_1vac__type.html#a8a79c1f2b383fda22b5f3cca1f7afd31',1,'vac_vars::vac_type']]],
+  ['asked_20questions_12',['Frequently Asked Questions',['../page_faq.html',1,'']]],
+  ['axisymmetric_20style_20helena_13',['Axisymmetric style (HELENA)',['../page_vacuum.html#vacuum_axisym',1,'']]]
 ];
