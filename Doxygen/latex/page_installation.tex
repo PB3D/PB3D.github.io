@@ -1,334 +1,216 @@
 \chapter{Installation }
 \hypertarget{page_installation}{}\label{page_installation}\index{Installation@{Installation}}
 \hypertarget{page_installation_installation_introduction}{}\doxysection{\texorpdfstring{Introduction}{Introduction}}\label{page_installation_installation_introduction}
-PB3D is written in Fortran, and makes use of multiple numerical libraries:\+
+PB3D is written in Fortran and is built with \href{https://cmake.org/}{\texttt{CMake}}. It makes use of the following external libraries:
 \begin{DoxyItemize}
-\item \href{http://www.netlib.org/lapack/}{\texttt{blas /\+ lapack}}
+\item \href{https://www.mpi-forum.org/}{\texttt{MPI}}
 \begin{DoxyItemize}
-\item for basic linear algebra
+\item for the parallel processes
 \end{DoxyItemize}
-\item \href{http://www.netlib.org/scalapack/}{\texttt{pblas /\+ blacs /\+ scalapack}}
+\item \href{https://petsc.org/}{\texttt{PETSc}} / \href{https://slepc.upv.es/}{\texttt{SLEPc}}, built with complex scalars
 \begin{DoxyItemize}
-\item for parallelized basic linear algebra
+\item for the large, sparse matrices of the eigenvalue problem and for its solution
 \end{DoxyItemize}
-\item \href{https://www.hdfgroup.org/HDF5/}{\texttt{HDF5}}
+\item \href{https://mumps-solver.org/}{\texttt{MUMPS}}, through PETSc
 \begin{DoxyItemize}
-\item for storage files
-\item works in parallel
+\item for the distributed LU factorization in the eigenvalue solver, which is needed to run PB3D on more than one MPI process
 \end{DoxyItemize}
-\item \href{https://www.unidata.ucar.edu/software/netcdf/}{\texttt{Net\+CDF}}
+\item \href{https://www.hdfgroup.org/solutions/hdf5/}{\texttt{HDF5}}, parallel and with Fortran bindings
 \begin{DoxyItemize}
-\item to read input of VMEC
-\item sequential
+\item for the output files
 \end{DoxyItemize}
-\item \href{https://www.mcs.anl.gov/petsc/}{\texttt{PETSc}} /\+ \href{http://slepc.upv.es/}{\texttt{SLEPc}}
+\item \href{https://www.unidata.ucar.edu/software/netcdf/}{\texttt{Net\+CDF-\/\+Fortran}}
 \begin{DoxyItemize}
-\item for linear algebra of large, sparse matrices
-\item can reach $\sim \mathcal{O} (n)$ complexity
-\item Minimal installation instructions:\+
-\begin{DoxyEnumerate}
-\item Configure PETSc using {\ttfamily ./\+configure PETSC\+\_\+\+ARCH=complex COPTFLAGS=-\/O3 CXXOPTFLAGS=-\/O3 FOPTFLAGS=-\/O3 \textbackslash{}\textbackslash{}endiskip}~\newline
- {\ttfamily -\/-\/with-\/scalar-\/type=complex \textbackslash{}\textbackslash{}endiskip}~\newline
- {\ttfamily -\/-\/download-\/metis \textbackslash{}\textbackslash{}endiskip}~\newline
- {\ttfamily -\/-\/download-\/mumps \textbackslash{}\textbackslash{}endiskip}~\newline
- {\ttfamily -\/-\/download-\/parmetis \textbackslash{}\textbackslash{}endiskip}~\newline
- {\ttfamily -\/-\/with-\/scalapack-\/lib="{}-\/L\+[SCALAPACKDIR]\+/\+lib -\/lscalapack"{} \textbackslash{}\textbackslash{}endiskip}~\newline
- {\ttfamily -\/-\/with-\/valgrind-\/dir=/\+usr \textbackslash{}\textbackslash{}endiskip}~\newline
- {\ttfamily -\/-\/with-\/debugging=no \textbackslash{}\textbackslash{}endiskip}~\newline
- {\ttfamily -\/-\/with-\/fortran-\/kernels=1}~\newline
- (If you want debug, remove {\ttfamily -\/-\/with-\/debugging=no}, {\ttfamily -\/-\/with-\/fortran-\/kernels=1}, COPTSFLAGS, CXXOPTFLAGS and FOPTFLAGS, and change PETSC\+\_\+\+ARCH to {\ttfamily debug-\/complex}.)~\newline
- (If you use a different HDF5, add {\ttfamily -\/-\/with-\/hdf5-\/dir=\+[HDF5\+DIR]\+}.)
-\item follow instructions to do makes and tests.
-\item Set global variables {\ttfamily export SLEPC\+\_\+\+DIR=\+[SLEPC DIR]\+}, {\ttfamily export PETSC\+\_\+\+DIR=\+[PETSC\+\_\+\+DIR]\+} and {\ttfamily export PETSC\+\_\+\+ARCH=\+[debug-\/]\+complex} (depending on whether it is debug or not).
-\item Configure SLEPc using {\ttfamily ./\+configure}
-\item follow instructions to do makes and tests
-\end{DoxyEnumerate}
+\item to read the output of VMEC
 \end{DoxyItemize}
-\item \href{http://portal.nersc.gov/project/sparse/strumpack/}{\texttt{Strum\+Pack}}
+\item \href{http://www.netlib.org/lapack/}{\texttt{BLAS / LAPACK}} and \href{http://www.netlib.org/scalapack/}{\texttt{Sca\+LAPACK}}
 \begin{DoxyItemize}
-\item for linear algebra of structured matrices \DoxyCite{ambikasaran2013}{number}{1}
-\item the vacuum potential energy perturbation calculations use such matrices as they are generated with a $1/r$ kernel.
-\item can reach $\sim \mathcal{O} (n \log(n))$ complexity
-\item we use the dense version of the package, which for Fortran is 1.\+1.\+1.
-\item Minimal installation instructions:\+
-\begin{DoxyEnumerate}
-\item \href{http://portal.nersc.gov/project/sparse/strumpack/STRUMPACK-Dense-1.1.1.tar.gz}{\texttt{Download}}, untar and go to root folder.
-\item Go to examples, copy {\ttfamily Makefile.\+gnu} to {\ttfamily Makefile.\+inc} and adapt:\+
-\begin{DoxyEnumerate}
-\item for example, it might be necessary to add {\ttfamily -\/lblacs} before {\ttfamily -\/lscalapack}
-\item if you use intel, have a look at the \href{https://software.intel.com/en-us/articles/intel-mkl-link-line-advisor}{\texttt{link line advisor}}, and update the {\ttfamily LIB}
-\item possibly, you might have to set the {\ttfamily CC} and {\ttfamily FC} compiler commands to, for example, {\ttfamily mpicc} respectively {\ttfamily mpiifort}
-\end{DoxyEnumerate}
-\item Create directories {\ttfamily lib} and {\ttfamily inc}.
-\item Run {\ttfamily make f90\+\_\+example}
-\item Make a library of {\ttfamily Strumpack\+Dense\+Package.\+o} using {\ttfamily ar -\/rcs libstrumpack.\+a \texorpdfstring{$\ast$}{*}.o} in src.
-\item In inc, create a symlink {\ttfamily libstrumpack.\+a} to {\ttfamily libstrumpack.\+a} in src.
-\item In lib, create a symlink {\ttfamily strumpackdensepackage.\+mod} to {\ttfamily strumpackdensepackage.\+mod} in examples.
-\end{DoxyEnumerate}
+\item for dense linear algebra, in particular the boundary-\/element system of the vacuum
 \end{DoxyItemize}
-\item \href{https://bitbucket.org/lazerson_princeton/stellopt/wiki/Home}{\texttt{libstell}}
+\item \href{https://github.com/PrincetonUniversity/STELLOPT}{\texttt{LIBSTELL}}, part of the STELLOPT suite, which contains VMEC
 \begin{DoxyItemize}
-\item part of Stellopt suite, which contains VMEC
-\item provides routines to read VMEC output data
+\item to read the output of VMEC (PB3D uses only the module {\ttfamily read\+\_\+wout\+\_\+mod})
 \end{DoxyItemize}
-\item \href{https://w3.pppl.gov/ntcc/PSPLINE/}{\texttt{pspline}}
+\item \href{https://github.com/ilonster/pspline}{\texttt{PSPLINE}}
 \begin{DoxyItemize}
 \item Princeton Spline and Hermite Cubic Interpolation Routines
-\item Minimal installation instructions:\+
-\begin{DoxyEnumerate}
-\item Export {\ttfamily FFLAGS} en {\ttfamily CFLAGS} if you want to optimize:\+
-\begin{DoxyItemize}
-\item copy {\ttfamily share/\+\+Make.\+overwrite.\+sample} to {\ttfamily share/\+\+Make.\+overwrite}
-\item Run the gmake below and note the flags, then edit these and put them in {\ttfamily share/\+\+Make.\+overwrite}
-\item if GCC:\+
-\begin{DoxyItemize}
-\item {\ttfamily FFLAGS = -\/c -\/O3 -\/m64 -\/fno-\/range-\/check -\/fdollar-\/ok -\/cpp ; export FFLAGS}
-\item {\ttfamily CFLAGS = -\/c -\/O3 -\/m64 ; export CFLAGS}
-\item {\ttfamily CXXFLAGS = -\/c -\/O3 -\/m64 ; export CXXFLAGS}
 \end{DoxyItemize}
-\item if Intel:\+
+\item STRUMPACK-\/\+Dense 1.\+1.\+1 (optional)
 \begin{DoxyItemize}
-\item {\ttfamily FFLAGS = -\/c -\/O3 -\/nowarn -\/ftz -\/auto-\/scalar -\/traceback -\/align dcommons}
-\item {\ttfamily MPI\+\_\+\+FFLAGS = -\/c -\/O3 -\/nowarn -\/ftz -\/traceback -\/align dcommons -\/auto-\/scalar} (possibly add FC=mpiifort, {\ttfamily CXX=mpicpc}, {\ttfamily CC=mpiicc} if on a cluster)
-\end{DoxyItemize}
-\end{DoxyItemize}
-\item Compile with {\ttfamily gmake NETCDF\+\_\+\+DIR= FORTRAN\+\_\+\+VARIANT=\+[VARIANT]\+} with {\ttfamily \+[VARIANT]\+} either {\ttfamily GCC} or {\ttfamily Intel} (add {\ttfamily DEBUG=1} and remove the FLAGS if debug wanted). Possibly also add {\ttfamily OBJ=\$\+[COMP\+\_\+\+DIR]\+} if on a cluster, with {\ttfamily \+[COMP\+\_\+\+DIR]\+} the directory where to put the resulting library.
-\item Run tests from {\ttfamily README\+\_\+\+Pspline}.
-\end{DoxyEnumerate}
+\item for a compressed solver of the boundary-\/element system of the vacuum \DoxyCite{ambikasaran2013}{number}{1}; without it, PB3D solves that system with the LU factorization of Sca\+LAPACK
 \end{DoxyItemize}
 \end{DoxyItemize}
 
-They should probably be installed in this order. On linux distributions such as Ubuntu, they may be available as packages.
-
-Furthermore, PB3D comes bundled with some other, smaller libraries:\+
+Furthermore, PB3D comes bundled with some other, smaller libraries, which CMake compiles with the code:
 \begin{DoxyItemize}
-\item \href{http://www.netlib.org/fftpack/}{\texttt{fftpack}}
+\item \href{http://www.netlib.org/fftpack/}{\texttt{fftpack}} ({\ttfamily Libraries/\+dfft.\+f})
 \begin{DoxyItemize}
 \item to calculate the fast Fourier transform
 \end{DoxyItemize}
-\item \href{http://foul.sourceforge.net/}{\texttt{foul}}
+\item \href{http://foul.sourceforge.net/}{\texttt{foul}} ({\ttfamily Libraries/\+foul.\+f90})
 \begin{DoxyItemize}
 \item the Fortran Output Library
 \end{DoxyItemize}
+\item \href{https://github.com/fortran-lang/test-drive}{\texttt{test-\/drive}} ({\ttfamily tests/\+vendor/\+test-\/drive})
+\begin{DoxyItemize}
+\item the framework of the unit tests
+\end{DoxyItemize}
 \end{DoxyItemize}
 
-These do not have to be installed separately.\hypertarget{page_installation_installation_compilation}{}\doxysection{\texorpdfstring{Compilation}{Compilation}}\label{page_installation_installation_compilation}
-When all dependencies are satisfied, the program is then compiled in the standard way:\+
+PB3D can be obtained using git: \begin{DoxyVerb}git clone https://github.com/ToonWeyens/PB3D.git
+\end{DoxyVerb}
+
+
+The commands below use two shell variables. {\ttfamily PB3\+D\+\_\+\+SRC} is the directory of this clone, and {\ttfamily DEPS} is a directory in which the dependencies that are built by hand are kept. \begin{DoxyVerb}export PB3D_SRC=$PWD/PB3D
+export DEPS=$HOME/pb3d-deps
+mkdir -p $DEPS
+\end{DoxyVerb}
+\hypertarget{page_installation_installation_requirements}{}\doxysection{\texorpdfstring{Requirements}{Requirements}}\label{page_installation_installation_requirements}
+The build needs the following tools:
 \begin{DoxyItemize}
-\item Including the headers of all the libraries in the compilation of the object files:\+
-\begin{DoxyItemize}
-\item This is done using {\ttfamily -\/I\+[path\+\_\+to\+\_\+library]\+}.
-\item Make sure you add the {\ttfamily -\/o} option to create only object files.
+\item A Fortran compiler, and a C and a C++ compiler. The builds that are tested use GNU Fortran 13, 14.\+2 and 16. {\ttfamily CMake\+Lists.\+txt} also contains flags for the Intel Fortran compiler.
+\item CMake 3.\+18 or later. With PETSc 3.\+25, use CMake 4 (see \doxysectlink{page_installation_installation_problems}{Known problems}{1}).
+\item An MPI library with Fortran, C and C++ bindings, such as Open\+MPI.
+\item pkg-\/config. CMake finds PETSc, SLEPc and Net\+CDF-\/\+Fortran through pkg-\/config, and Sca\+LAPACK through pkg-\/config or by the library name.
+\item xz, to decompress the equilibrium files of the regression tests.
+\item Optionally Python 3 with h5py and scipy, for the checks of the regression tests that read the HDF5 output.
 \end{DoxyItemize}
-\item Linking with the actual libraries
+
+PETSc must be built with complex scalars and double precision. The PETSc versions that are tested are 3.\+19, with SLEPc 3.\+19, and 3.\+25.\+3, with SLEPc 3.\+25.\+1. PETSc and SLEPc must have the same minor version.\hypertarget{page_installation_installation_dependencies}{}\doxysection{\texorpdfstring{Dependencies}{Dependencies}}\label{page_installation_installation_dependencies}
+PETSc, SLEPc, HDF5, Net\+CDF-\/\+Fortran and Sca\+LAPACK can come from the packages of a Linux distribution (\doxysectlink{page_installation_installation_deps_apt}{Ubuntu packages}{2}), from Spack (\doxysectlink{page_installation_installation_deps_spack}{Spack}{2}), or from a build from source, which is the usual route on a cluster (\doxysectlink{page_installation_installation_deps_source}{PETSc and SLEPc from source}{2}). PSPLINE and LIBSTELL are built by hand in all cases, with the scripts in the directory {\ttfamily Libraries} of the code (\doxysectlink{page_installation_installation_pspline}{PSPLINE}{2} and \doxysectlink{page_installation_installation_libstell}{LIBSTELL}{2}).\hypertarget{page_installation_installation_deps_apt}{}\doxysubsection{\texorpdfstring{Ubuntu packages}{Ubuntu packages}}\label{page_installation_installation_deps_apt}
+On Ubuntu 24.\+04, which the continuous integration of PB3D uses, the packages are installed with \begin{DoxyVerb}sudo apt-get install gfortran g++ cmake pkg-config xz-utils \
+    libopenmpi-dev openmpi-bin \
+    libpetsc-complex3.19-dev libslepc-complex3.19-dev \
+    libhdf5-openmpi-dev libnetcdff-dev \
+    liblapack-dev libblas-dev libscalapack-openmpi-dev
+export PETSC_DIR=/usr/lib/petscdir/petsc3.19/x86_64-linux-gnu-complex
+export SLEPC_DIR=/usr/lib/slepcdir/slepc3.19/x86_64-linux-gnu-complex
+export PKG_CONFIG_PATH=$PETSC_DIR/lib/pkgconfig:$SLEPC_DIR/lib/pkgconfig
+export NETCDF_FORTRAN_DIR=/usr
+\end{DoxyVerb}
+ The parallel HDF5 of these packages is selected at the configuration of PB3D with {\ttfamily -\/DHDF5\+\_\+\+ROOT=/\+usr/\+lib/\+x86\+\_\+64-\/linux-\/gnu/\+hdf5/\+openmpi}. The continuous integration solves the eigenvalue problem with these packages on one process only. Whether a PETSc has MUMPS can be checked in the file {\ttfamily petscconf.\+h} of PETSc, which defines {\ttfamily PETSC\+\_\+\+HAVE\+\_\+\+MUMPS} if it has: \begin{DoxyVerb}grep PETSC_HAVE_MUMPS $PETSC_DIR/include/petscconf.h
+\end{DoxyVerb}
+\hypertarget{page_installation_installation_deps_spack}{}\doxysubsection{\texorpdfstring{Spack}{Spack}}\label{page_installation_installation_deps_spack}
+The file {\ttfamily spack.\+yaml} in the code describes a \href{https://spack.readthedocs.io/}{\texttt{Spack}} environment with PETSc 3.\+25 (complex scalars), SLEPc 3.\+25, parallel HDF5 with Fortran bindings, Net\+CDF-\/\+Fortran, Sca\+LAPACK and pkg-\/config. It was tested with GCC 16 and Open\+MPI 5 on mac\+OS (Apple Silicon). On mac\+OS, Apple Clang has no Fortran compiler, so GCC has to be installed first, for example with Homebrew ({\ttfamily brew install gcc}). The environment is created and built with \begin{DoxyVerb}git clone https://github.com/spack/spack.git $DEPS/spack
+. $DEPS/spack/share/spack/setup-env.sh
+spack compiler find
+spack external find cmake openmpi gmake perl python
+cd $PB3D_SRC
+spack env create pb3d-env spack.yaml
+spack env activate pb3d-env
+spack concretize -f
+spack install
+export NETCDF_FORTRAN_DIR=$(spack location -i netcdf-fortran)
+\end{DoxyVerb}
+ The command {\ttfamily spack external find} lets Spack use the MPI library and the tools that are already installed instead of building them. The first {\ttfamily spack install} takes a long time, because it builds PETSc and SLEPc with their dependencies. With the environment active, pkg-\/config and CMake find the libraries of the environment. The PETSc of {\ttfamily spack.\+yaml} has no MUMPS, so PB3D runs with it on one process only.\hypertarget{page_installation_installation_deps_source}{}\doxysubsection{\texorpdfstring{PETSc and SLEPc from source}{PETSc and SLEPc from source}}\label{page_installation_installation_deps_source}
+A build from source is needed when no PETSc with complex scalars is available, which is often the case on clusters, or when PB3D has to run on more than one process and the available PETSc has no MUMPS. The compilers, MPI, BLAS/\+\+LAPACK, Sca\+LAPACK, parallel HDF5 and Net\+CDF-\/\+Fortran then come from the system, for example from its environment modules. The following recipe was tested with PETSc 3.\+25.\+3, which downloads and builds MUMPS, Par\+METIS and METIS itself, and SLEPc 3.\+25.\+1. The options {\ttfamily --with-\/blaslapack-\/lib} and {\ttfamily --with-\/scalapack-\/lib} must point to the libraries of the system; the values below are examples. \begin{DoxyVerb}cd $DEPS
+curl -L -O https://web.cels.anl.gov/projects/petsc/download/release-snapshots/petsc-3.25.3.tar.gz
+tar xzf petsc-3.25.3.tar.gz
+cd petsc-3.25.3
+export PETSC_DIR=$PWD PETSC_ARCH=arch-complex-opt
+./configure --prefix=$DEPS/petsc \
+    --with-scalar-type=complex --with-precision=double --with-debugging=0 \
+    --with-cc=mpicc --with-cxx=mpicxx --with-fc=mpif90 \
+    --with-blaslapack-lib="-L/path/to/blas/lib -lopenblas" \
+    --with-scalapack-lib="-L/path/to/scalapack/lib -lscalapack" \
+    --download-mumps --download-parmetis --download-metis \
+    --with-fortran-bindings=1 --with-shared-libraries=1 --with-x=0 \
+    COPTFLAGS=-O2 CXXOPTFLAGS=-O2 FOPTFLAGS=-O2
+make all
+make install
+
+cd $DEPS
+curl -L -O https://slepc.upv.es/download/distrib/slepc-3.25.1.tar.gz
+tar xzf slepc-3.25.1.tar.gz
+cd slepc-3.25.1
+export PETSC_DIR=$DEPS/petsc SLEPC_DIR=$PWD
+unset PETSC_ARCH
+./configure --prefix=$DEPS/slepc
+make
+make install
+
+export PKG_CONFIG_PATH=$DEPS/petsc/lib/pkgconfig:$DEPS/slepc/lib/pkgconfig:$PKG_CONFIG_PATH
+\end{DoxyVerb}
+ PETSc then uses MUMPS for the distributed LU factorization without any setting in PB3D. The build of PETSc with MUMPS takes about half an hour on 16 cores. The code contains the scripts that build PB3D in this way on one cluster, in the directory {\ttfamily scripts/\+snellius}; their paths and modules are those of that cluster.\hypertarget{page_installation_installation_pspline}{}\doxysubsection{\texorpdfstring{PSPLINE}{PSPLINE}}\label{page_installation_installation_pspline}
+The script {\ttfamily Libraries/\+build\+\_\+pspline.\+sh} builds PSPLINE with gfortran, without Net\+CDF, from a clone of \href{https://github.com/ilonster/pspline}{\texttt{github.\+com/\+ilonster/\+pspline}}. It first applies the patch {\ttfamily Libraries/\+pspline-\/r8genxpkg-\/nx3.\+patch}, which has to lie next to the script. The patch stops the routine {\ttfamily r8genxpkg} from writing 8 bytes past the end of its array for three unevenly spaced points; PB3D calls it with such points, and without the patch about every other run crashes on mac\+OS. The script is copied into the clone and run there: \begin{DoxyVerb}git clone --depth 1 https://github.com/ilonster/pspline.git $DEPS/pspline
+cp $PB3D_SRC/Libraries/build_pspline.sh $PB3D_SRC/Libraries/pspline-r8genxpkg-nx3.patch $DEPS/pspline/
+$DEPS/pspline/build_pspline.sh
+export PSPLINE_DIR=$DEPS/pspline/install
+\end{DoxyVerb}
+ The library and the module files are then in {\ttfamily \$\+DEPS/\+pspline/\+install/\+lib} and {\ttfamily \$\+DEPS/\+pspline/\+install/\+include}.\hypertarget{page_installation_installation_libstell}{}\doxysubsection{\texorpdfstring{LIBSTELL}{LIBSTELL}}\label{page_installation_installation_libstell}
+PB3D uses only the module {\ttfamily read\+\_\+wout\+\_\+mod} of LIBSTELL. The script {\ttfamily Libraries/\+build\+\_\+libstell\+\_\+min.\+sh} compiles this module and the modules it depends on from a clone of STELLOPT into a small static library. It needs {\ttfamily mpif90} and Net\+CDF-\/\+Fortran; {\ttfamily NETCDF\+\_\+\+FORTRAN\+\_\+\+DIR} is the installation directory of Net\+CDF-\/\+Fortran, which contains {\ttfamily include/\+netcdf.\+inc}. \begin{DoxyVerb}git clone --depth 1 https://github.com/PrincetonUniversity/STELLOPT.git $DEPS/stellopt
+STELLOPT_SRC=$DEPS/stellopt NETCDF_FORTRAN_DIR=$NETCDF_FORTRAN_DIR \
+    $PB3D_SRC/Libraries/build_libstell_min.sh $DEPS/libstell-min
+export LIBSTELL_DIR=$DEPS/libstell-min
+\end{DoxyVerb}
+ The last argument of the script is the installation directory. It should always be given, because the default of the script assumes that the code lies in {\ttfamily \$\+HOME/\+\+Code/\+\+PB3D}. Both scripts put {\ttfamily /\+opt/\+homebrew/\+bin} at the front of {\ttfamily PATH}, so on mac\+OS they use the compilers of Homebrew. A full LIBSTELL, built with the build system of STELLOPT, works as well. CMake looks under {\ttfamily LIBSTELL\+\_\+\+DIR} (or {\ttfamily STELLOPT\+\_\+\+DIR}) for the library {\ttfamily libstell} and for the module file {\ttfamily vsvd0.\+mod} or {\ttfamily vmec\+\_\+input.\+mod}.\hypertarget{page_installation_installation_strumpack}{}\doxysubsection{\texorpdfstring{STRUMPACK-\/\+Dense (optional)}{STRUMPACK-\/\+Dense (optional)}}\label{page_installation_installation_strumpack}
+Without STRUMPACK, PB3D solves the boundary-\/element system of the vacuum with the LU factorization of Sca\+LAPACK ({\ttfamily pdgetrf} and {\ttfamily pdgetrs}). The continuous integration and the cluster builds use this solver. PB3D can use the old STRUMPACK-\/\+Dense 1.\+1.\+1 instead, through its Fortran module {\ttfamily strumpackdensepackage}, which the newer STRUMPACK 7 does not have. The source, {\ttfamily STRUMPACK-\/\+Dense-\/1.\+1.\+1.\+tar.\+gz}, comes from {\ttfamily portal.\+nersc.\+gov/\+project/\+sparse/\+strumpack}, which is not always reachable. In the directory {\ttfamily src} of the unpacked package, the two sources are compiled into a library: \begin{DoxyVerb}mpic++ -O3 -std=gnu++11 -I. -c StrumpackDensePackage_C.cpp -o StrumpackDensePackage_C.o
+mpif90 -O3 -c StrumpackDensePackage.F90 -o StrumpackDensePackage.o
+ar -rcs libstrumpack.a StrumpackDensePackage_C.o StrumpackDensePackage.o
+\end{DoxyVerb}
+ The MPI C++ compiler must use the GNU C++ compiler (for Open\+MPI, with {\ttfamily OMPI\+\_\+\+CXX=g++}), because PB3D links with {\ttfamily -\/lstdc++}. CMake looks for {\ttfamily libstrumpack.\+a} in the subdirectory {\ttfamily lib} or {\ttfamily src} of {\ttfamily STRUMPACK\+\_\+\+DIR}, and for {\ttfamily strumpackdensepackage.\+mod} in the subdirectory {\ttfamily inc} or {\ttfamily examples}. Links in {\ttfamily lib} and {\ttfamily inc} of the package directory to the two files in {\ttfamily src} satisfy this, and {\ttfamily STRUMPACK\+\_\+\+DIR} is then the package directory.\hypertarget{page_installation_installation_compilation}{}\doxysection{\texorpdfstring{Compilation with CMake}{Compilation with CMake}}\label{page_installation_installation_compilation}
+When all dependencies are available, PB3D is configured and compiled in a separate build directory: \begin{DoxyVerb}cmake -S $PB3D_SRC -B $PB3D_SRC/build \
+    -DCMAKE_BUILD_TYPE=Release \
+    -DPSPLINE_DIR=$PSPLINE_DIR \
+    -DLIBSTELL_DIR=$LIBSTELL_DIR
+cmake --build $PB3D_SRC/build -j
+\end{DoxyVerb}
+ With the Ubuntu packages, the configuration also needs {\ttfamily -\/DHDF5\+\_\+\+ROOT=/\+usr/\+lib/\+x86\+\_\+64-\/linux-\/gnu/\+hdf5/\+openmpi}. At the end of the configuration, CMake prints a summary of the dependencies it found, including whether it found STRUMPACK. The executables {\ttfamily PB3D} and {\ttfamily POST} are created in the build directory. {\ttfamily cmake --install \$\+PB3\+D\+\_\+\+SRC/\+build --prefix DIR} copies them into {\ttfamily DIR/\+bin}.
+
+A debug build, which has the debug code of PB3D and the runtime checks of the compiler, is made in a second build directory: \begin{DoxyVerb}cmake -S $PB3D_SRC -B $PB3D_SRC/build-debug \
+    -DCMAKE_BUILD_TYPE=Debug -DPB3D_ENABLE_DEBUG=ON \
+    -DPSPLINE_DIR=$PSPLINE_DIR -DLIBSTELL_DIR=$LIBSTELL_DIR
+cmake --build $PB3D_SRC/build-debug -j
+\end{DoxyVerb}
+
+
+The following options and variables are passed to CMake with {\ttfamily -\/D}:
+
+\hypertarget{page_installation_installation_cmake_tab}{}
+
+\begin{DoxyTable}{3}{Table 1. CMake options and variables}{page_installation_installation_cmake_tab}{1}
+\SetCell{bg=\tableheadbgcolor,font=\bfseries}name &\SetCell{bg=\tableheadbgcolor,font=\bfseries}default &\SetCell{bg=\tableheadbgcolor,font=\bfseries}explanation \\
+{\ttfamily CMAKE\+\_\+\+BUILD\+\_\+\+TYPE} &{\ttfamily Release} &compiler flags: {\ttfamily Release} optimizes with {\ttfamily -\/O3}, {\ttfamily Debug} compiles with {\ttfamily -\/O0} {\ttfamily -\/g} and the runtime checks of the compiler, {\ttfamily Rel\+With\+Deb\+Info} uses {\ttfamily -\/O2} {\ttfamily -\/g} \\
+{\ttfamily PB3\+D\+\_\+\+ENABLE\+\_\+\+DEBUG} &{\ttfamily OFF} &defines the preprocessor flag {\ttfamily ldebug}, which compiles the debug code of PB3D: the command-\/line options {\ttfamily test}, {\ttfamily mem\+\_\+info} and {\ttfamily invert\+\_\+top\+\_\+bottom\+\_\+H} (see \doxysectlink{page_inputs}{Input variables}{0}), and additional checks and output; it is independent of {\ttfamily CMAKE\+\_\+\+BUILD\+\_\+\+TYPE} \\
+{\ttfamily PB3\+D\+\_\+\+ENABLE\+\_\+\+INFINIBAND} &{\ttfamily OFF} &defines the preprocessor flag {\ttfamily l\+IB}, which switches off data sieving for reading and writing (the ROMIO hints {\ttfamily romio\+\_\+ds\+\_\+read} and {\ttfamily romio\+\_\+ds\+\_\+write}) when PB3D opens its HDF5 files through MPI-\/\+IO \\
+{\ttfamily PB3\+D\+\_\+\+BUILD\+\_\+\+EXECUTABLES} &{\ttfamily ON} &with {\ttfamily OFF}, only the core library of PB3D that needs no external library is built, with its unit tests \\
+{\ttfamily BUILD\+\_\+\+TESTING} &{\ttfamily ON} &builds the test suite (see \doxysectlink{page_installation_installation_tests}{Tests}{1}) \\
+{\ttfamily PSPLINE\+\_\+\+DIR} &none &installation directory of PSPLINE; {\ttfamily PSPLINE\+\_\+\+ROOT} and the environment variables {\ttfamily PSPLINE\+\_\+\+DIR} and {\ttfamily PSPLINE\+\_\+\+ROOT} work as well \\
+{\ttfamily LIBSTELL\+\_\+\+DIR} &none &installation directory of LIBSTELL; {\ttfamily LIBSTELL\+\_\+\+ROOT}, {\ttfamily STELLOPT\+\_\+\+DIR} and the environment variables of the same names work as well \\
+{\ttfamily STRUMPACK\+\_\+\+DIR} &{\ttfamily \$\+HOME/\+\+Code/\+\+STRUMPACK-\/\+Dense-\/1.1.\+1} &directory of a STRUMPACK-\/\+Dense 1.\+1.\+1 build; if CMake finds no library there, PB3D uses Sca\+LAPACK for the vacuum \\
+{\ttfamily HDF5\+\_\+\+ROOT} &none &standard CMake variable that selects the HDF5 installation; PB3D needs the parallel HDF5 \\
+{\ttfamily PB3\+D\+\_\+\+FIXTURE\+\_\+\+DIR} &{\ttfamily fixtures} in the build directory &directory with the equilibrium files of the regression tests; by default, CMake decompresses the files of {\ttfamily tests/\+fixtures} into it with xz \\
+{\ttfamily PB3\+D\+\_\+\+TEST\+\_\+\+MPI\+\_\+\+REGRESSION} &{\ttfamily OFF} &adds regression tests that run PB3D under {\ttfamily mpirun -\/n 2} and {\ttfamily -\/n 4} and require the eigenvalue to agree with the one-\/process run to $10^{-6}$; they need PETSc with MUMPS \\
+{\ttfamily Python3\+\_\+\+EXECUTABLE} &found by CMake &Python of the regression checks that read the HDF5 output; without h5py, these checks are skipped \\
+\end{DoxyTable}
+\hypertarget{page_installation_installation_tests}{}\doxysection{\texorpdfstring{Tests}{Tests}}\label{page_installation_installation_tests}
+The tests are run with CTest from the build directory: \begin{DoxyVerb}ctest --test-dir $PB3D_SRC/build --output-on-failure
+\end{DoxyVerb}
+ They are grouped in layers, which are selected by their labels, for example with {\ttfamily ctest -\/L unit}:
+
+\hypertarget{page_installation_installation_tests_tab}{}
+
+\begin{DoxyTable}{3}{Table 2. Test layers}{page_installation_installation_tests_tab}{1}
+\SetCell{bg=\tableheadbgcolor,font=\bfseries}label &\SetCell{bg=\tableheadbgcolor,font=\bfseries}needs &\SetCell{bg=\tableheadbgcolor,font=\bfseries}contents \\
+{\ttfamily unit} &a Fortran compiler (and LAPACK for some suites) &unit tests of the core library \\
+{\ttfamily smoke} &the executables &{\ttfamily PB3D} and {\ttfamily POST} print their usage message \\
+{\ttfamily fullstack} &the executables and all dependencies &tests of the modules against analytical and brute-\/force references, mainly of the vacuum; some also run under {\ttfamily mpirun -\/n 2} and {\ttfamily -\/n 4} \\
+{\ttfamily regression} &the executables and the equilibrium files &complete runs of {\ttfamily PB3D} on the equilibrium files of {\ttfamily tests/\+fixtures}, with the eigenvalues compared to recorded values; runs that check that PB3D refuses wrong inputs with a message; and {\ttfamily regression\+\_\+post\+\_\+checks}, which runs {\ttfamily POST} on the output of a run with three solutions \\
+\end{DoxyTable}
+
+
+The tests that run under {\ttfamily mpirun} carry the label {\ttfamily mpi} as well, and {\ttfamily ctest -\/LE mpi} leaves them out. The unit tests can also be built without any of the external libraries: \begin{DoxyVerb}cmake -S $PB3D_SRC -B $PB3D_SRC/build-tests -DPB3D_BUILD_EXECUTABLES=OFF
+cmake --build $PB3D_SRC/build-tests -j
+ctest --test-dir $PB3D_SRC/build-tests --output-on-failure
+\end{DoxyVerb}
+ CMake still looks for a C and a C++ compiler in this case, because the project declares these languages. The file {\ttfamily Documentation/\+testing.\+md} of the code describes every test and the recorded eigenvalues.\hypertarget{page_installation_installation_problems}{}\doxysection{\texorpdfstring{Known problems}{Known problems}}\label{page_installation_installation_problems}
+
 \begin{DoxyItemize}
-\item This is done using {\ttfamily -\/L\+[path\+\_\+to\+\_\+library]\+ -\/l\+[library\+\_\+name]\+}.
-\end{DoxyItemize}
-\end{DoxyItemize}\hypertarget{page_installation_installation_makefile}{}\doxysection{\texorpdfstring{Makefile Example}{Makefile Example}}\label{page_installation_installation_makefile}
-
-\begin{DoxyCodeInclude}{0}
-\DoxyCodeLine{00001\ \#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#}
-\DoxyCodeLine{00002\ \#}
-\DoxyCodeLine{00003\ \#\ \ \ Example\ makefile\ for\ the\ program\ PB3D\ (Peeling\ Ballooning\ in\ 3D)}
-\DoxyCodeLine{00004\ \#\ \ \ \(\backslash\)author\ Author:\ Toon\ Weyens}
-\DoxyCodeLine{00005\ \#}
-\DoxyCodeLine{00006\ \#\ \ \ Don't\ forget\ to\ set\ the\ directories:}
-\DoxyCodeLine{00007\ \#\ \ \ \ \ \ \ -\/\ LIBSTELL\_DIR}
-\DoxyCodeLine{00008\ \#\ \ \ \ \ \ \ -\/\ HDF5\_DIR}
-\DoxyCodeLine{00009\ \#\ \ \ \ \ \ \ -\/\ NETCDFF\_DIR\ (note:\ Fortran\ library)}
-\DoxyCodeLine{00010\ \#\ \ \ \ \ \ \ -\/\ PETSC\_DIR}
-\DoxyCodeLine{00011\ \#\ \ \ \ \ \ \ -\/\ SLEPC\_DIR}
-\DoxyCodeLine{00012\ \#\ \ \ \ \ \ \ -\/\ STRUMPACK\_DIR}
-\DoxyCodeLine{00013\ \#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#}
-\DoxyCodeLine{00014\ }
-\DoxyCodeLine{00015\ \#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#}
-\DoxyCodeLine{00016\ \#\ \ \ Include}
-\DoxyCodeLine{00017\ \#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#}
-\DoxyCodeLine{00018\ \#\#\ [PETSc\ and\ SLEPc\ trick]}
-\DoxyCodeLine{00019\ include\ \ \$(PETSC\_DIR)/lib/petsc/conf/variables}
-\DoxyCodeLine{00020\ include\ \ \$(SLEPC\_DIR)/lib/slepc/conf/slepc\_variables}
-\DoxyCodeLine{00021\ \#\#\ [PETSc\ and\ SLEPc\ trick]}
-\DoxyCodeLine{00022\ }
-\DoxyCodeLine{00023\ \#\#\ [PETSc\ and\ SLEPc\ trick\ inc]}
-\DoxyCodeLine{00024\ INCLUDE\ =\ \$(PETSC\_FC\_INCLUDES)\ \$(SLEPC\_INCLUDE)}
-\DoxyCodeLine{00025\ \#\#\ [PETSc\ and\ SLEPc\ trick\ inc]}
-\DoxyCodeLine{00026\ \#\#\ [Libstell\ special]}
-\DoxyCodeLine{00027\ INCLUDE\ +=\ -\/I\$(LIBSTELL\_DIR)/libstell\_dir}
-\DoxyCodeLine{00028\ \#\#\ [Libstell\ special]}
-\DoxyCodeLine{00029\ INCLUDE\ +=\ -\/I\$(STRUMPACK\_DIR)/include}
-\DoxyCodeLine{00030\ \#\#\ [PB3D\ include]}
-\DoxyCodeLine{00031\ INCLUDE\ +=\ -\/I\$(PB3D\_DIR)/include}
-\DoxyCodeLine{00032\ \#\#\ [PB3D\ include]}
-\DoxyCodeLine{00033\ INCLUDE\ +=\ -\/I/usr/include/hdf5/openmpi}
-\DoxyCodeLine{00034\ }
-\DoxyCodeLine{00035\ \#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#}
-\DoxyCodeLine{00036\ \#\ \ \ Link}
-\DoxyCodeLine{00037\ \#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#}
-\DoxyCodeLine{00038\ \#\#\ [PB3D\ libraries]}
-\DoxyCodeLine{00039\ LIB\_INTERNAL\ =\ libdfftpack.a\ libfoul.a\ libbspline.a}
-\DoxyCodeLine{00040\ \#\#\ [PB3D\ libraries]}
-\DoxyCodeLine{00041\ }
-\DoxyCodeLine{00042\ LINK\ :=\ \$(LIB\_INTERNAL)}
-\DoxyCodeLine{00043\ }
-\DoxyCodeLine{00044\ \#\#\ [PETSc\ and\ SLEPc\ trick\ lib]}
-\DoxyCodeLine{00045\ LINK\ +=\ \$(PETSC\_LIB)}
-\DoxyCodeLine{00046\ LINK\ +=\ \$(SLEPC\_LIB)}
-\DoxyCodeLine{00047\ \#\#\ [PETSc\ and\ SLEPc\ trick\ lib]}
-\DoxyCodeLine{00048\ LINK\ +=\ \$(LIBSTELL\_DIR)/libstell.a}
-\DoxyCodeLine{00049\ LINK\ +=\ -\/L\$(STRUMPACK\_DIR)/lib\ -\/lstrumpack}
-\DoxyCodeLine{00050\ LINK\ +=\ -\/L\$(HDF5\_DIR)\ -\/lhdf5\_fortran\ -\/lhdf5}
-\DoxyCodeLine{00051\ LINK\ +=\ -\/L\$(NETCDFF\_DIR)/lib\ -\/lnetcdff}
-\DoxyCodeLine{00052\ LINK\ +=\ -\/Wl,-\/R\$(NETCDFF\_DIR)/lib}
-\DoxyCodeLine{00053\ LINK\ +=\ -\/lscalapack\ -\/lblacs\ -\/lblas\ -\/lm}
-\DoxyCodeLine{00054\ LINK\ +=\ -\/lstdc++\ -\/lmpi\_cxx}
-\DoxyCodeLine{00055\ }
-\DoxyCodeLine{00056\ }
-\DoxyCodeLine{00057\ \#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#}
-\DoxyCodeLine{00058\ \#\ \ \ Compiler}
-\DoxyCodeLine{00059\ \#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#}
-\DoxyCodeLine{00060\ COMPILER=mpifort}
-\DoxyCodeLine{00061\ }
-\DoxyCodeLine{00062\ }
-\DoxyCodeLine{00063\ \#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#}
-\DoxyCodeLine{00064\ \#\ \ \ Linker}
-\DoxyCodeLine{00065\ \#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#}
-\DoxyCodeLine{00066\ LINKER=mpifort}
-\DoxyCodeLine{00067\ }
-\DoxyCodeLine{00068\ }
-\DoxyCodeLine{00069\ \#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#}
-\DoxyCodeLine{00070\ \#\ \ \ Compiler\ flags}
-\DoxyCodeLine{00071\ \#\ \ \ options\ (used\ with\ -\/D[name]):}
-\DoxyCodeLine{00072\ \#\ \ \ \ \ \ \ ldebug:\ debug}
-\DoxyCodeLine{00073\ \#\ \ \ \ \ \ \ lIB:\ infiniband}
-\DoxyCodeLine{00074\ \#\ \ \ \ \ \ \ lwith\_gnu:\ use\ GNU\ compiler\ [default]}
-\DoxyCodeLine{00075\ \#\ \ \ \ \ \ \ lwith\_intel:\ use\ INTEL\ compiler,\ (checked\ for\ version\ 12.0.2)}
-\DoxyCodeLine{00076\ \#\ \ \ note:\ INTEL\ warning\ 6536\ is\ suppressed,\ which\ informs\ about\ extra\ "{}USE"{}.}
-\DoxyCodeLine{00077\ \#\ \ \ note:\ INTEL\ warning\ 6843\ is\ suppressed,\ which\ informs\ about\ empty}
-\DoxyCodeLine{00078\ \#\ \ \ \ \ \ \ intent(out)\ variables}
-\DoxyCodeLine{00079\ \#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#}
-\DoxyCodeLine{00080\ COMP\_FLAGS\ =\ -\/finit-\/real=snan\ -\/g\ -\/Og\ -\/Wall\ -\/Wextra\ -\/pedantic\ \(\backslash\)}
-\DoxyCodeLine{00081\ \ \ \ \ -\/fimplicit-\/none\ -\/fbacktrace\ -\/fno-\/omit-\/frame-\/pointer\ \(\backslash\)}
-\DoxyCodeLine{00082\ \ \ \ \ -\/fcheck=all\ -\/cpp\ -\/Dldebug\#\ debug,\ profiling\ with\ gprof2dot,\ GCC}
-\DoxyCodeLine{00083\ \#COMP\_FLAGS\ =\ -\/O3\ -\/fbacktrace\ -\/g\ -\/fimplicit-\/none\ -\/fno-\/omit-\/frame-\/pointer\ \(\backslash\)}
-\DoxyCodeLine{00084\ \ \ \ \ \#-\/cpp\#\ optimized,\ GCC}
-\DoxyCodeLine{00085\ }
-\DoxyCodeLine{00086\ \#COMP\_FLAGS\ =\ -\/O0\ -\/DlIB\ -\/Dldebug\ -\/g\ -\/heap-\/arrays\ 100\ -\/recursive\ \(\backslash\)}
-\DoxyCodeLine{00087\ \ \ \ \ \#-\/ftrapuv\ -\/check\ bounds\ -\/check\ uninit\ -\/traceback\ -\/implicitnone\ \(\backslash\)}
-\DoxyCodeLine{00088\ \ \ \ \ \#-\/fno-\/omit-\/frame-\/pointer\ -\/cpp\ -\/Dlwith\_intel\ -\/diag-\/disable\ 6536\ \(\backslash\)}
-\DoxyCodeLine{00089\ \ \ \ \ \#-\/diag-\/disable\ 6843\#\ debug,\ profiling\ with\ gprof2dot,\ INTEL}
-\DoxyCodeLine{00090\ \#COMP\_FLAGS\ =\ -\/O3\ -\/DlIB\ -\/traceback\ -\/g\ -\/heap-\/arrays\ 100\ -\/recursive\ \(\backslash\)}
-\DoxyCodeLine{00091\ \ \ \ \ \#-\/implicitnone\ -\/fno-\/omit-\/frame-\/pointer\ -\/cpp\ -\/Dlwith\_intel\ \(\backslash\)}
-\DoxyCodeLine{00092\ \ \ \ \ \#-\/diag-\/disable\ 6536\ -\/diag-\/disable\ 6843\#\ optimized,\ INTEL}
-\DoxyCodeLine{00093\ }
-\DoxyCodeLine{00094\ COMP\_FLAGS\_EX=\ -\/O2\ -\/w}
-\DoxyCodeLine{00095\ }
-\DoxyCodeLine{00096\ COMP\_FLAGS\_F=\ -\/O2\ -\/funroll-\/loops\ -\/fexpensive-\/optimizations}
-\DoxyCodeLine{00097\ }
-\DoxyCodeLine{00098\ }
-\DoxyCodeLine{00099\ \#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#}
-\DoxyCodeLine{00100\ \#\ \ \ Link\ flags}
-\DoxyCodeLine{00101\ \#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#}
-\DoxyCodeLine{00102\ LINK\_FLAGS\ =\ -\/fPIC\ -\/finit-\/real=snan\#\ debug}
-\DoxyCodeLine{00103\ \#LINK\_FLAGS\ =\ -\/fPIC\#\ optimized}
-\DoxyCodeLine{00104\ }
-\DoxyCodeLine{00105\ }
-\DoxyCodeLine{00106\ \#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#}
-\DoxyCodeLine{00107\ \#\ \ \ Prepare}
-\DoxyCodeLine{00108\ \#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#}
-\DoxyCodeLine{00109\ \#\ Add\ "{}Modules"{}\ and\ "{}Libraries"{}\ to\ the\ search\ path\ for\ the\ prerequisites}
-\DoxyCodeLine{00110\ VPATH\ =\ Modules:Libraries}
-\DoxyCodeLine{00111\ }
-\DoxyCodeLine{00112\ \#\ Contains\ list\ of\ source\ files\ (.o)\ and\ dependencies}
-\DoxyCodeLine{00113\ DEPLIST\ =\ PB3D.dep}
-\DoxyCodeLine{00114\ OBJLIST\ =\ ObjectList\#\ defines\ "{}ObjectFiles"{}}
-\DoxyCodeLine{00115\ }
-\DoxyCodeLine{00116\ \#\ Includes\ source\ files\ and\ dependency\ list}
-\DoxyCodeLine{00117\ include\ \$(DEPLIST)\#\ Dependencies\ of\ all\ the\ objects}
-\DoxyCodeLine{00118\ include\ \$(OBJLIST)\#\ Names\ of\ all\ the\ objects}
-\DoxyCodeLine{00119\ }
-\DoxyCodeLine{00120\ }
-\DoxyCodeLine{00121\ \#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#}
-\DoxyCodeLine{00122\ \#\ \ \ Rules}
-\DoxyCodeLine{00123\ \#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#}
-\DoxyCodeLine{00124\ all:\ \ \ \ PB3D\ POST}
-\DoxyCodeLine{00125\ }
-\DoxyCodeLine{00126\ PB3D:\ \ \ \$(ObjectFiles)\ \$(LIB\_INTERNAL)\ PB3D.o}
-\DoxyCodeLine{00127\ \ \ \ \ \$(LINKER)\ -\/o\ \$@\ \$(ObjectFiles)\ PB3D.o\ \$(LINK)\ \$(LINK\_FLAGS)}
-\DoxyCodeLine{00128\ }
-\DoxyCodeLine{00129\ POST:\ \ \ \$(ObjectFiles)\ \$(LIB\_INTERNAL)\ POST.o}
-\DoxyCodeLine{00130\ \ \ \ \ \$(LINKER)\ -\/o\ \$@\ \$(ObjectFiles)\ POST.o\ \$(LINK)\ \$(LINK\_FLAGS)}
-\DoxyCodeLine{00131\ }
-\DoxyCodeLine{00132\ libdfftpack.a:\ \ dfft.o}
-\DoxyCodeLine{00133\ \ \ \ \ ar\ -\/rcs\ libdfftpack.a\ dfft.o}
-\DoxyCodeLine{00134\ }
-\DoxyCodeLine{00135\ libfoul.a:\ \ foul.o}
-\DoxyCodeLine{00136\ \ \ \ \ ar\ -\/rcs\ libfoul.a\ foul.o}
-\DoxyCodeLine{00137\ }
-\DoxyCodeLine{00138\ libbspline.a:\ \ \ bspline\_sub\_module.o}
-\DoxyCodeLine{00139\ \ \ \ \ ar\ -\/rcs\ libbspline.a\ bspline\_sub\_module.o}
-\DoxyCodeLine{00140\ }
-\DoxyCodeLine{00141\ \%.o:\ \%.f90}
-\DoxyCodeLine{00142\ \ \ \ \ \$(COMPILER)\ \$(INCLUDE)\ \$(COMP\_FLAGS)\ -\/c\ \$<}
-\DoxyCodeLine{00143\ }
-\DoxyCodeLine{00144\ \%.o:\ \%.f}
-\DoxyCodeLine{00145\ \ \ \ \ \$(COMPILER)\ \$(COMP\_FLAGS\_F)\ -\/c\ \$<}
-\DoxyCodeLine{00146\ }
-\DoxyCodeLine{00147\ dfft.o:\ dfft.f}
-\DoxyCodeLine{00148\ \ \ \ \ \$(COMPILER)\ \$(COMP\_FLAGS\_EX)\ -\/c\ \$<}
-\DoxyCodeLine{00149\ }
-\DoxyCodeLine{00150\ foul.o:\ foul.f90}
-\DoxyCodeLine{00151\ \ \ \ \ \$(COMPILER)\ \$(COMP\_FLAGS\_EX)\ -\/c\ \$<}
-\DoxyCodeLine{00152\ }
-\DoxyCodeLine{00153\ bspline\_sub\_module.o:\ bspline\_sub\_module.f90}
-\DoxyCodeLine{00154\ \ \ \ \ \$(COMPILER)\ \$(COMP\_FLAGS\_EX)\ -\/c\ \$<}
-\DoxyCodeLine{00155\ }
-\DoxyCodeLine{00156\ clean:}
-\DoxyCodeLine{00157\ \ \ \ \ @rm\ -\/f\ *.o\ *.a\ *.mod\ *\string~\ fort.*\ }
-\DoxyCodeLine{00158\ }
-\DoxyCodeLine{00159\ clean\_all:}
-\DoxyCodeLine{00160\ \ \ \ \ @rm\ -\/f\ *.o\ *.mod\ *\string~\ fort.*\ PB3D\ POST}
-
-\end{DoxyCodeInclude}
-
-
-\begin{DoxyNote}{Note}
-
-\begin{DoxyEnumerate}
-\item PETSc and SLEPc don\textquotesingle{}t like to be included in another makefile. The trick is to include two files:\+ 
-\begin{DoxyCodeInclude}{0}
-\DoxyCodeLine{00019\ include\ \ \$(PETSC\_DIR)/lib/petsc/conf/variables}
-\DoxyCodeLine{00020\ include\ \ \$(SLEPC\_DIR)/lib/slepc/conf/slepc\_variables}
-
-\end{DoxyCodeInclude}
- which will load the variables {\ttfamily PETSC\+\_\+\+FC\+\_\+\+INCLUDES} and {\ttfamily SLEPC\+\_\+\+INCLUDE}, used in 
-\begin{DoxyCodeInclude}{0}
-\DoxyCodeLine{00024\ INCLUDE\ =\ \$(PETSC\_FC\_INCLUDES)\ \$(SLEPC\_INCLUDE)}
-
-\end{DoxyCodeInclude}
- as well as the variables {\ttfamily PETSC\+\_\+\+LIB} and {\ttfamily SLEPC\+\_\+\+LIB}, used in 
-\begin{DoxyCodeInclude}{0}
-\DoxyCodeLine{00045\ LINK\ +=\ \$(PETSC\_LIB)}
-\DoxyCodeLine{00046\ LINK\ +=\ \$(SLEPC\_LIB)}
-
-\end{DoxyCodeInclude}
-
-\item There are versions of libstell that do not use the standard convention. In this case you have to look for the {\ttfamily \texorpdfstring{$\ast$}{*}.mod} files. In the example makefile this is done with 
-\begin{DoxyCodeInclude}{0}
-\DoxyCodeLine{00027\ INCLUDE\ +=\ -\/I\$(LIBSTELL\_DIR)/libstell\_dir}
-
-\end{DoxyCodeInclude}
- instead of the standard {\ttfamily inc} directory.
-\item In 
-\begin{DoxyCodeInclude}{0}
-\DoxyCodeLine{00031\ INCLUDE\ +=\ -\/I\$(PB3D\_DIR)/include}
-
-\end{DoxyCodeInclude}
- there are includefiles that contain macros and wrappers specifically for PB3D.
-\item In 
-\begin{DoxyCodeInclude}{0}
-\DoxyCodeLine{00039\ LIB\_INTERNAL\ =\ libdfftpack.a\ libfoul.a\ libbspline.a}
-
-\end{DoxyCodeInclude}
- linking is done with external libraries that are bundled with PB3D. 
-\end{DoxyEnumerate}
-\end{DoxyNote}
+\item With more than one MPI process, a PETSc without MUMPS stops the eigenvalue solver with the message "{}\+Could not locate a solver type for factorization type LU and matrix type mpibaij"{}, which PB3D reports as error code 92 from get\+\_\+solution(). The solver uses shift-\/invert, which needs an LU factorization of a distributed matrix, and the LU factorization of PETSc itself works on one process only.
+\item With PETSc 3.\+25, CMake 3.\+31 does not finish the dependency scan of the Fortran header files of PETSc. The scan runs for a quarter of an hour and uses 13 GB of memory before the compilation starts. CMake 4 does not have this problem.
+\item On mac\+OS with Open\+MPI 5 from Homebrew, {\ttfamily mpirun} itself can crash while it detects the hardware. PB3D then still runs on one process when the executable is called directly, without {\ttfamily mpirun}, and {\ttfamily ctest -\/LE mpi} skips the tests that use {\ttfamily mpirun}.
+\item GNU Fortran 14.\+2 and 14.\+3 compile the bounds check of an array subscript that contains a function call with an array-\/constructor argument wrongly. CMake therefore removes {\ttfamily -\/fcheck=bounds} from the flags of the debug build for every GNU Fortran 14.
+\item PB3D stores file names in strings of 120 characters, so the paths of the input and equilibrium files given on the command line must not be longer than that. A symbolic link with a short name helps.
+\item A PSPLINE built without the patch of \doxysectlink{page_installation_installation_pspline}{PSPLINE}{2} makes about every other run crash on mac\+OS, with a SIGTRAP or a failure of {\ttfamily H5\+Fcreate}.
+\end{DoxyItemize}\hypertarget{page_installation_installation_makefile}{}\doxysection{\texorpdfstring{Legacy Makefile}{Legacy Makefile}}\label{page_installation_installation_makefile}
+The code also contains a hand-\/written Makefile, {\ttfamily Makefile.\+legacy}, which is kept for reference. Its paths have to be edited by hand, and neither the tests nor the continuous integration use it. CMake is the supported way to build PB3D. 

@@ -12,15 +12,15 @@ Furthermore, a multitude of plots can be produced. This is the topic of section 
 Some of these files are opened in open\+\_\+output(), but others are opened afterwards.\hypertarget{page_outputs_output_file_log}{}\doxysubsection{\texorpdfstring{Log file}{Log file}}\label{page_outputs_output_file_log}
 Both PB3D and POST produce a log file, in addition to what is produced on the screen.
 
-These log files are called {\ttfamily PB3\+D\+\_\+out.\+txt} and {\ttfamily POST\+\_\+out.\+txt} and they contain the same information as the output on the screen, but without the special formatting provided by the foul library (see \doxysectlink{page_installation_installation_introduction}{Introduction}{1}).\hypertarget{page_outputs_output_file_shell}{}\doxysubsection{\texorpdfstring{Shell commands file}{Shell commands file}}\label{page_outputs_output_file_shell}
+These log files are called {\ttfamily PB3\+D\+\_\+out.\+txt} and {\ttfamily POST\+\_\+out.\+txt} and they contain the same information as the output on the screen, but without the special formatting provided by the foul library (see \doxysectlink{page_installation_installation_introduction}{Introduction}{1}). When PB3D continues from an earlier run ({\ttfamily rich\+\_\+restart\+\_\+lvl} larger than 1), it appends to {\ttfamily PB3\+D\+\_\+out.\+txt} instead of replacing it.\hypertarget{page_outputs_output_file_shell}{}\doxysubsection{\texorpdfstring{Shell commands file}{Shell commands file}}\label{page_outputs_output_file_shell}
 Some output routines make use of use\+\_\+execute\+\_\+command\+\_\+line() in order to execute shell commands. This can be, for example, the creation of a plot by calling Gnu\+Plot, among other things.
 
-However, this often does not work well by default (see \doxylink{page_inputs_fni30}{30} in \doxysectlink{page_inputs}{Input variables}{0}). In PB3D and POST, therefore, by default, these commands are not executed, but written to an output file. After execution of PB3D and POST has finished, this file can be made executed.
+However, this often does not work well by default (see \doxylink{page_inputs_fni30}{30} in \doxysectlink{page_inputs}{Input variables}{0}). In PB3D and POST, therefore, by default, these commands are not executed, but written to the output files {\ttfamily PB3\+D\+\_\+shell\+\_\+commands.\+sh} and {\ttfamily POST\+\_\+shell\+\_\+commands.\+sh}. After PB3D or POST has finished, this file can be executed.
 
 This behavior can be changed using the {\ttfamily --do\+\_\+execute\+\_\+command\+\_\+line} flag (see \doxysectlink{page_inputs}{Input variables}{0}).\hypertarget{page_outputs_output_file_HDF5}{}\doxysubsection{\texorpdfstring{HDF5 output file}{HDF5 output file}}\label{page_outputs_output_file_HDF5}
-PB3D writes variables to an HDF5 output file during execution, as shown in table \doxytablelink{page_outputs_output_file_HDF5_tab}{1}. Note that there is a difference between the equilibrium styles because of the way how the equilibrium codes provide output:\+
+PB3D writes variables to the HDF5 output file {\ttfamily PB3\+D\+\_\+out.\+h5} during execution, as shown in table \doxytablelink{page_outputs_output_file_HDF5_tab}{1}. Note that there is a difference between the equilibrium styles because of the way how the equilibrium codes provide output:
 \begin{DoxyItemize}
-\item VMEC ({\ttfamily eq\+\_\+style = 1}) produces double Fourier series:\+
+\item VMEC ({\ttfamily eq\+\_\+style = 1}) produces double Fourier series:
 \begin{DoxyItemize}
 \item This can be evaluated at arbitrary angular points.
 \item In PB3D, the equilibrium and perturbation variables are therefore already calculated on the field-\/aligned grid.
@@ -33,42 +33,47 @@ PB3D writes variables to an HDF5 output file during execution, as shown in table
 \end{DoxyItemize}
 \end{DoxyItemize}
 
+A group name that ends in {\ttfamily {\itshape R}\+[lvl]} is written for every Richardson level {\ttfamily \+[lvl]}. For the grids, a Richardson level above 1 only holds the parallel points that are new at that level, and POST combines the levels (see reconstruct\+\_\+pb3d\+\_\+grid()). The level {\ttfamily rich\+\_\+restart\+\_\+lvl} is 1 unless PB3D continues from an earlier run.
+
 \hypertarget{page_outputs_output_file_HDF5_tab}{}
 
 \begin{DoxyTable}{3}{Table 1. HDF5 output file}{page_outputs_output_file_HDF5_tab}{1}
-\SetCell{bg=\tableheadbgcolor,font=\bfseries}variable type &\SetCell{bg=\tableheadbgcolor,font=\bfseries}VMEC ({\ttfamily eq\+\_\+style = 1}) &\SetCell{bg=\tableheadbgcolor,font=\bfseries}HELENA ({\ttfamily eq\+\_\+style = 2}) \\
-\SetCell[r=1]{}inputs &\SetCell[c=2]{}in preliminary phase &\\
-\SetCell[r=10]{}grids of \doxylink{structgrid__vars_1_1grid__type}{grid\+\_\+vars.\+grid\+\_\+type} &\SetCell[c=2]{c}{\bfseries{equilibrium}} &\\
-&\SetCell[c=2]{}field-\/aligned-\/grid at every Richardson level&\\
-&&also output HELENA grid at first Richardson level\\
-&&used later for interpolation to field-\/aligned grid\\
-&\SetCell[c=2]{c}{\bfseries{perturbation}} &\\
-&\SetCell[c=2]{}field-\/aligned-\/grid at every Richardson level&\\
-&&also output HELENA grid at first Richardson level\\
-&&used later for interpolation to field-\/aligned grid\\
-&\SetCell[c=2]{c}{\bfseries{solution}} &\\
-&\SetCell[c=2]{}only at first Richardson level&\\
-\SetCell[r=1]{}flux equilibria of \doxylink{structeq__vars_1_1eq__1__type}{eq\+\_\+vars.\+eq\+\_\+1\+\_\+type} &\SetCell[c=2]{}only at first Richardson level &\\
-\SetCell[r=3]{}metric equilibria of \doxylink{structeq__vars_1_1eq__2__type}{eq\+\_\+vars.\+eq\+\_\+2\+\_\+type} &\SetCell[c=2]{}only at first Richardson level &\\
-&&also output HELENA grid at first Richardson level\\
-&&used later for interpolation to field-\/aligned grid\\
-\SetCell[r=1]{}vacuums of \doxylink{structvac__vars_1_1vac__type}{vac\+\_\+vars.\+vac\+\_\+type} &at every Richardson level &only at first Richardson level \\
-\SetCell[r=1]{}solutions of \doxylink{structsol__vars_1_1sol__type}{sol\+\_\+vars.\+sol\+\_\+type} &\SetCell[c=2]{}at every Richardson level &\\
+\SetCell{bg=\tableheadbgcolor,font=\bfseries}group &\SetCell{bg=\tableheadbgcolor,font=\bfseries}VMEC ({\ttfamily eq\+\_\+style = 1}) &\SetCell{bg=\tableheadbgcolor,font=\bfseries}HELENA ({\ttfamily eq\+\_\+style = 2}) \\
+{\ttfamily in}: input variables and equilibrium code output (see print\+\_\+output\+\_\+in()) &\SetCell[c=2]{}written once, in the input driver, if {\ttfamily rich\+\_\+restart\+\_\+lvl = 1}; for VMEC it includes the Fourier coefficients on both the main and the Nyquist mode lists ({\ttfamily mn\+\_\+V} and {\ttfamily mn\+\_\+\+V\+\_\+nyq}) &\\
+{\ttfamily grid\+\_\+eq}: equilibrium grid of \doxylink{structgrid__vars_1_1grid__type}{grid\+\_\+vars.\+grid\+\_\+type} &{\ttfamily grid\+\_\+eq\+\_\+\+R\_\+[lvl]}, field-\/aligned, at every Richardson level &{\ttfamily grid\+\_\+eq}, the HELENA output grid, written once at the level {\ttfamily rich\+\_\+restart\+\_\+lvl} \\
+{\ttfamily grid\+\_\+eq\+\_\+B}: field-\/aligned equilibrium grid &not written: the equilibrium grid is field-\/aligned &{\ttfamily grid\+\_\+eq\+\_\+\+B\+\_\+\+R\_\+[lvl]}, at every Richardson level \\
+{\ttfamily grid\+\_\+X}: perturbation grid &{\ttfamily grid\+\_\+\+X\+\_\+\+R\_\+[lvl]}, field-\/aligned, at every Richardson level &{\ttfamily grid\+\_\+X}, in the HELENA output grid, written once at the level {\ttfamily rich\+\_\+restart\+\_\+lvl} \\
+{\ttfamily grid\+\_\+\+X\+\_\+B}: field-\/aligned perturbation grid &not written: the perturbation grid is field-\/aligned &{\ttfamily grid\+\_\+\+X\+\_\+\+B\+\_\+\+R\_\+[lvl]}, at every Richardson level \\
+{\ttfamily grid\+\_\+sol}: solution grid &\SetCell[c=2]{}written once, at Richardson level 1 &\\
+{\ttfamily eq\+\_\+1}: flux equilibrium quantities of \doxylink{structeq__vars_1_1eq__1__type}{eq\+\_\+vars.\+eq\+\_\+1\+\_\+type} &\SetCell[c=2]{}written once, at Richardson level 1 &\\
+{\ttfamily eq\+\_\+2}: metric equilibrium quantities of \doxylink{structeq__vars_1_1eq__2__type}{eq\+\_\+vars.\+eq\+\_\+2\+\_\+type} &not written: POST calculates them again from the Fourier series &written once, at Richardson level 1, in the HELENA output grid; used later for interpolation to the field-\/aligned grid \\
+{\ttfamily X\+\_\+1}: vectorial perturbation quantities of \doxylink{structx__vars_1_1x__1__type}{x\+\_\+vars.\+x\+\_\+1\+\_\+type} &not written: POST calculates them again &written once, at the level {\ttfamily rich\+\_\+restart\+\_\+lvl}, in the HELENA output grid; used later for interpolation to the field-\/aligned grid \\
+{\ttfamily X\+\_\+2\+\_\+int}: magnetic integrals of the tensorial perturbation quantities of \doxylink{structx__vars_1_1x__2__type}{x\+\_\+vars.\+x\+\_\+2\+\_\+type} &\SetCell[c=2]{}{\ttfamily X\+\_\+2\+\_\+int\+\_\+\+R\_\+[lvl]}, at every Richardson level, after the last equilibrium job &\\
+{\ttfamily vac}: vacuum quantities of \doxylink{structvac__vars_1_1vac__type}{vac\+\_\+vars.\+vac\+\_\+type}, among which the vacuum response {\ttfamily RE\+\_\+res}, {\ttfamily IM\+\_\+res} (only if {\ttfamily BC\+\_\+style(2)} is not 1) &{\ttfamily vac\+\_\+\+R\_\+[lvl]}, at every Richardson level &{\ttfamily vac}, written once at the level {\ttfamily rich\+\_\+restart\+\_\+lvl} \\
+{\ttfamily sol}: solution of \doxylink{structsol__vars_1_1sol__type}{sol\+\_\+vars.\+sol\+\_\+type} &\SetCell[c=2]{}{\ttfamily sol\+\_\+\+R\_\+[lvl]}, at every Richardson level &\\
 \end{DoxyTable}
 
 
-This data is used for Richardson restart (see variable {\ttfamily rich\+\_\+restart\+\_\+lvl} in \doxysectlink{page_inputs}{Input variables}{0}).
+The matrices $\overline{\text{G}}$ and $\overline{\text{H}}$ of the vacuum boundary-\/element method are not written; PB3D calculates them again when it continues from an earlier run (see print\+\_\+output\+\_\+vac()).
 
-In the post-\/processing phase, POST reads this data as well.\hypertarget{page_outputs_output_file_EV}{}\doxysubsection{\texorpdfstring{Eigenvalue summary file}{Eigenvalue summary file}}\label{page_outputs_output_file_EV}
-In each Richardson extrapolation level, after the solution of the eigenvalue system of equations, eigenvalues are stored in PB3D.
+This data is used for Richardson restart (see variable {\ttfamily rich\+\_\+restart\+\_\+lvl} in \doxysectlink{page_inputs}{Input variables}{0}) and for {\ttfamily --jump\+\_\+to\+\_\+sol}.
+
+In the post-\/processing phase, POST reads this data as well.
+
+POST, and PB3D when it continues from an earlier run, check the version of PB3D that wrote the file. If that version is older than the minimum version set by {\ttfamily min\+\_\+\+PB3\+D\+\_\+version} in \doxylink{namespacenum__vars}{num\+\_\+vars}, they stop with the message {\ttfamily The output is from PB3D version \+[version]: need at least version \+[min\+\_\+\+PB3\+D\+\_\+version]} (see reconstruct\+\_\+pb3d\+\_\+in()).\hypertarget{page_outputs_output_file_EV}{}\doxysubsection{\texorpdfstring{Eigenvalue summary file}{Eigenvalue summary file}}\label{page_outputs_output_file_EV}
+In each Richardson extrapolation level, after the solution of the eigenvalue system of equations, PB3D writes the eigenvalues to the text file {\ttfamily PB3\+D\+\_\+out\+\_\+\+EV\+\_\+\+R\_\+[lvl].txt}, where {\ttfamily \+[lvl]} is the Richardson level. This is done in the procedure store\+\_\+results():
 \begin{DoxyItemize}
-\item For SLEPC, the results are saved in the procedure store\+\_\+results():\+
-\begin{DoxyItemize}
-\item If normalization is used, the normalization time scale is also stored.
-\item If an unphysical complex eigenvalue is detected, this is indicated. See {\ttfamily option} retain\+\_\+all\+\_\+sol in \doxysectlink{page_inputs_inputs_PB3D_file}{Input file}{2}.
-\end{DoxyItemize}
+\item The header says whether the eigenvalues are normalized. For VMEC it gives the normalization frequency in Hz, for HELENA it refers to the MISHKA normalization.
+\item Every line holds the index of the eigenvalue, its real part, its imaginary part and the relative error that SLEPc gives for it.
+\item An eigenvalue is marked by a {\ttfamily \#} at the start of its line, followed by a warning line, in three cases. The first case is an unphysical complex eigenvalue: the absolute value of the ratio of its imaginary part to its real part is larger than 10 times the SLEPc tolerance {\ttfamily tol\+\_\+\+SLEPC} of that Richardson level. The second case is an eigenvalue that lies within a relative distance of $10^{-3}$ from the artificial eigenvalue {\ttfamily EV\+\_\+\+BC} that the boundary conditions introduce. The third case is an eigenvalue larger than $10^{40}$ in absolute value; all the following eigenvalues are then discarded as well.
+\item The marked eigenvalues are removed from the solution, unless the option {\ttfamily retain\+\_\+all\+\_\+sol} is set (see \doxysectlink{page_inputs_inputs_PB3D_file}{Input file}{2}).
 \end{DoxyItemize}\hypertarget{page_outputs_output_file_E_rec}{}\doxysubsection{\texorpdfstring{Energy reconstruction file}{Energy reconstruction file}}\label{page_outputs_output_file_E_rec}
-If energy reconstruction is performed by POST (see {\ttfamily plot\+\_\+\+E\+\_\+rec} in \doxysectlink{page_inputs}{Input variables}{0}), the individual terms that make up the perturbed potential energy as well as the kinetic energy of the perturbation are calculated and plot. (\doxylink{page_outputs_fno3}{3}) Furthermore, the integration of these quantities over the whole volume, is returned in an output file.
+If energy reconstruction is performed by POST (see {\ttfamily plot\+\_\+\+E\+\_\+rec} in \doxysectlink{page_inputs}{Input variables}{0}), the individual terms that make up the perturbed potential energy as well as the kinetic energy of the perturbation are calculated and plotted. (\doxylink{page_outputs_fno3}{3}) Furthermore, the integrals of these quantities over the whole volume are written to the text file {\ttfamily POST\+\_\+out\+\_\+\+EN\+\_\+R\+[lvl].txt}, where {\ttfamily \+[lvl]} is the Richardson level of the PB3D output that POST uses. For every eigenvalue, the file holds a line with the index of the eigenvalue, followed by three pairs of lines; the first line of a pair holds the real parts and the second line the imaginary parts of:
+\begin{DoxyItemize}
+\item the eigenvalue, the ratio $E_\text{pot}/E_\text{kin}$, $E_\text{pot}$ and $E_\text{kin}$,
+\item the normal and geodesic kinetic terms,
+\item the normal and geodesic line bending terms, the normal and geodesic ballooning terms, the normal and geodesic kink terms, and the vacuum term.
+\end{DoxyItemize}
 
 In table \doxytablelink{page_outputs_e_rec_tab}{2}, an overview is given of the different terms. Here, $\rho$ is the density, $\sigma = \frac{\vec{B}\cdot\vec{J}}{B^2}$ is the parallel current and $\kappa = \frac{\vec{B}}{B} \cdot \nabla \frac{\vec{B}}{B}$ is the magnetic curvature. See calc\+\_\+e().
 
@@ -79,46 +84,49 @@ In table \doxytablelink{page_outputs_e_rec_tab}{2}, an overview is given of the 
 
 \begin{DoxyItemize}
 \item normal line bending term $\frac{1}{\left|\nabla\psi\right|^2 }\left(\frac{\nabla \psi}{\left|\nabla \psi\right|^2}\cdot \vec{Q}\right)^2$  
-\item gedesic line bending term $\mathcal{J}^2\frac{\left|\nabla \psi\right|^2}{B^2} \left( \frac{\nabla \psi \times \vec{B}}{B^2}\cdot \vec{Q} \right)^2$  
+\item geodesic line bending term $\mathcal{J}^2\frac{\left|\nabla \psi\right|^2}{B^2} \left( \frac{\nabla \psi \times \vec{B}}{B^2}\cdot \vec{Q} \right)^2$  
 \item normal ballooning term $-2 p\textnormal{\textquotesingle} \left(\nabla \psi \cdot \vec{\xi}\right)^2 \left(\nabla \psi \cdot \vec{\kappa}\right)$  
 \item geodesic ballooning term $-2 p\textnormal{\textquotesingle} \left( \nabla \psi \cdot \vec{\xi} \right) \left( \frac{\nabla \psi \times \vec{B}}{\left|\nabla \psi \right|^2} \cdot \vec{\xi}\right)^* \left(\frac{\nabla \psi \times \vec{B}}{\left|\nabla \psi \right|^2} \cdot \vec{\kappa}\right)$  
 \item normal kink term $-2 \sigma \left(\nabla \psi \cdot \vec{\xi}\right)^* \left(\frac{\nabla \psi \times \vec{B}}{B^2}\cdot \vec{Q} \right)$  
 \item geodesic kink term $ 2 \sigma \left(\frac{\nabla \psi \times \vec{B}}{B^2} \cdot \vec{\xi}\right)^* \left(\nabla \psi\cdot \vec{Q} \right)$  
+\item vacuum term $\vec{X}_\text{e}^\dagger \overline{\text{R}} \vec{X}_\text{e}$, where $\vec{X}_\text{e}$ holds the Fourier coefficients of the eigenvector at the last point of the solution grid and $\overline{\text{R}}$ is the vacuum response matrix in the {\ttfamily vac} group of the HDF5 output; this term is zero for a fixed boundary ({\ttfamily BC\+\_\+style(2) = 1})  
 \end{DoxyItemize}&
 \begin{DoxyItemize}
 \item normal kinetic term $\frac{1}{\left|\nabla\psi\right|^2 }\left(\frac{\nabla \psi}{\left|\nabla \psi\right|^2}\cdot \vec{\xi}\right)^2$  
-\item gedesic kinetic term $\mathcal{J}^2\frac{\left|\nabla \psi\right|^2}{B^2} \left( \frac{\nabla \psi \times \vec{B}}{B^2}\cdot \vec{\xi} \right)^2$  
+\item geodesic kinetic term $\mathcal{J}^2\frac{\left|\nabla \psi\right|^2}{B^2} \left( \frac{\nabla \psi \times \vec{B}}{B^2}\cdot \vec{\xi} \right)^2$; this term is zero for {\ttfamily K\+\_\+style = 2}  
 \end{DoxyItemize}\\
 \end{DoxyTable}
 \hypertarget{page_outputs_output_file_mem}{}\doxysubsection{\texorpdfstring{Memory usage file}{Memory usage file}}\label{page_outputs_output_file_mem}
-The memory usage of PB3D and POST can be monitored using the optional input argument {\ttfamily --mem\+\_\+info} (see \doxysectlink{page_inputs_inputs_PB3D_cmd}{Command-\/line inputs}{2}).
+The memory usage of PB3D and POST can be monitored using the optional input argument {\ttfamily --mem\+\_\+info} (see \doxysectlink{page_inputs_inputs_PB3D_cmd}{Command-\/line inputs}{2}). The memory usage is then written to the files {\ttfamily PB3\+D\+\_\+mem\+\_\+usage.\+dat} and {\ttfamily POST\+\_\+mem\+\_\+usage.\+dat}, with for every entry the MPI rank, a counter, the time, the memory usage and the maximum total and perturbation memory.
 
-This is a rather crude implementation and more advance profiling methods should be used, such as \href{http://www.scalasca.org/}{\texttt{Scalasca}} on top of \href{http://www.vi-hps.org/projects/score-p/}{\texttt{Score-\/P}}.
+This is a rather crude implementation and more advanced profiling methods should be used, such as \href{http://www.scalasca.org/}{\texttt{Scalasca}} on top of \href{http://www.vi-hps.org/projects/score-p/}{\texttt{Score-\/P}}.
 
 \begin{DoxyNote}{Note}
 Debug version only
 \end{DoxyNote}
-\hypertarget{page_outputs_output_plots}{}\doxysection{\texorpdfstring{Output Plots}{Output Plots}}\label{page_outputs_output_plots}
+\hypertarget{page_outputs_output_file_check_vac}{}\doxysubsection{\texorpdfstring{Vacuum check output}{Vacuum check output}}\label{page_outputs_output_file_check_vac}
+If the PB3D input {\ttfamily check\+\_\+vac} is set for a free boundary, calc\+\_\+vac\+\_\+res() tests the assembled vacuum operators with potentials whose boundary values are known exactly, before it solves for the vacuum response (see check\+\_\+vac\+\_\+exact()). The results are written to the log file, on lines that start with {\ttfamily CHECKVAC}. The values per boundary point are written to the files {\ttfamily check\+\_\+vac\+\_\+\texorpdfstring{$\ast$}{*}.dat} in the run directory, with the index of the point, its index along the field line, the index of the field line, its position and the value. The values of the exterior potential away from the boundary are written to {\ttfamily check\+\_\+vac\+\_\+exterior.\+dat}.\hypertarget{page_outputs_output_plots}{}\doxysection{\texorpdfstring{Output Plots}{Output Plots}}\label{page_outputs_output_plots}
 A multitude of plots can be produced by PB3D and POST.
 
 POST can produce all the plots that PB3D can, and some more.
 
-The plots themselves fall in two categories:\+
+The plots themselves fall in two categories:
 \begin{DoxyItemize}
 \item Plots using an external program.
 \begin{DoxyItemize}
 \item Produced by \doxylink{interfaceoutput__ops_1_1print__ex__2d}{output\+\_\+ops.\+print\+\_\+ex\+\_\+2d()} or \doxylink{interfaceoutput__ops_1_1print__ex__3d}{output\+\_\+ops.\+print\+\_\+ex\+\_\+3d()} combined with draw\+\_\+ex().
 \item A list of external programs is given in draw\+\_\+ex().
+\item The data files are written in {\ttfamily Data/}, the scripts in {\ttfamily Scripts/} and the resulting plots in {\ttfamily Plots/}.
 \item These plots require a shell command to be run, which is disabled by default and the commands are stored in a \doxysectlink{page_outputs_output_file_shell}{Shell commands file}{2}.
 \item The produced plots can be 2-\/D or 3-\/D, and they can be interactive or not, depending on the {\ttfamily ex\+\_\+plot\+\_\+style} (see \doxysectlink{page_inputs}{Input variables}{0}).
 \end{DoxyItemize}
-\item Data files that can be used to produce plots with visualization software:\+
+\item Data files that can be used to produce plots with visualization software:
 \begin{DoxyItemize}
 \item The software used here was \href{https://visit.llnl.gov/}{\texttt{Vis\+It}}, based on personal preference, but \href{https://www.paraview.org/}{\texttt{Para\+View}} or other VTK-\/based solutions should work equally well.
-\item Every plot creates two output files:\+ one heavy-\/data HDF5 file and one \href{www.xdmf.org/}{\texttt{XDMF}} file that contains specifics about the HDF5 file.
+\item Every plot creates two output files in {\ttfamily Data/}: one heavy-\/data HDF5 file and one \href{https://www.xdmf.org/}{\texttt{XDMF}} file that contains specifics about the HDF5 file.
 \item This is necessary, as HDF5 itself is too general a format for general visualization tools to interpret easily.
 \item The XDMF file that accompanies each HDF5 file basically contains information about the saved variables, such as whether they are vectors or scalars, and on which grid type they are defined.
-\item This is the file that should be opened by the visualzation software.
+\item This is the file that should be opened by the visualization software.
 \item The dimensions of these plots can be 2-\/D or 3-\/D, depending on {\ttfamily eq\+\_\+style}. See \doxylink{page_inputs_fni19}{19} and \doxylink{page_inputs_fni20}{20} in \doxysectlink{page_inputs}{Input variables}{0}.
 \end{DoxyItemize}
 \end{DoxyItemize}
@@ -147,9 +155,11 @@ An overview of possible plots is now given in table \doxytablelink{page_outputs_
 \SetCell[r=1]{}magnetic field $\vec{B}$ ({\ttfamily plot\+\_\+B}) &&co-\/ and contravariant components of magnetic field, as well as magnitude and vector plot \\
 \SetCell[r=1]{}current density $\vec{J}$ ({\ttfamily plot\+\_\+J}) &&co-\/ and contravariant components of current density, as well as magnitude and vector plot \\
 \SetCell[r=1]{}magnetic curvature $\vec{\kappa}$ ({\ttfamily plot\+\_\+kappa}) &&co-\/ and contravariant components of magnetic curvature, as well as magnitude and vector plot \\
-\SetCell[r=1]{}solution normal mode $\vec{\xi}$ ({\ttfamily plot\+\_\+sol\+\_\+xi}) &&real and imaginary part and phase of perturbation of position, as well as vector plot \\
-\SetCell[r=1]{}perturbated magnetic field due to solution normal mode $\vec{Q}$ ({\ttfamily plot\+\_\+sol\+\_\+Q}) &&real and imaginary part and phase of perturbation of magnetic field, as well as vector plot \\
+\SetCell[r=1]{}eigenvalues and Fourier harmonics (POST, if one of {\ttfamily plot\+\_\+sol\+\_\+xi}, {\ttfamily plot\+\_\+sol\+\_\+Q}, {\ttfamily plot\+\_\+\+E\+\_\+rec} or {\ttfamily plot\+\_\+vac\+\_\+pot} is set) &the eigenvalues (see plot\+\_\+sol\+\_\+vals()), and for every plotted eigenvector the real part, imaginary part and phase of its Fourier harmonics as a function of the normal coordinate (see plot\+\_\+harmonics()) &\\
+\SetCell[r=1]{}plasma displacement of the solution $\vec{\xi}$ ({\ttfamily plot\+\_\+sol\+\_\+xi}) &&real and imaginary part and phase of the plasma displacement, as well as vector plot \\
+\SetCell[r=1]{}perturbed magnetic field of the solution $\vec{Q}$ ({\ttfamily plot\+\_\+sol\+\_\+Q}) &&real and imaginary part and phase of perturbation of magnetic field, as well as vector plot \\
 \SetCell[r=1]{}energy reconstruction ({\ttfamily plot\+\_\+\+E\+\_\+rec}) &&different components of energy reconstruction, integrated as well as profiles (\doxylink{page_outputs_fno2}{2}) \\
+\SetCell[r=1]{}vacuum potential ({\ttfamily plot\+\_\+vac\+\_\+pot}, POST, only for a free boundary) &the boundary points with their normal data and potential, for every plotted eigenvector, in {\ttfamily Data/\+[id]\+\_\+vac\+\_\+bnd.\+dat} (data file only) &real and imaginary part of the vacuum potential of every plotted eigenvector outside the plasma, in planes of constant toroidal angle ({\ttfamily \+[id]\+\_\+vac\+\_\+pot\+\_\+\+RE}, {\ttfamily \+[id]\+\_\+vac\+\_\+pot\+\_\+\+IM}), and the region inside the plasma ({\ttfamily vac\+\_\+in\+\_\+plasma}); see vac\+\_\+pot\+\_\+plot() \\
 \end{DoxyTable}
 
 

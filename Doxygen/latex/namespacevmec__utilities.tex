@@ -14,7 +14,7 @@ interface \doxymbox{\hyperlink{interfacevmec__utilities_1_1fourier2real}{fourier
 \begin{DoxyCompactItemize}
 \item 
 integer function, public \doxymbox{\hyperlink{namespacevmec__utilities_ac699116fc25fdea3e28e488513d97c87}{calc\+\_\+trigon\+\_\+factors}} (theta, zeta, trigon\+\_\+factors)
-\begin{DoxyCompactList}\small\item\em Calculate the trigonometric cosine and sine factors. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Calculate the trigonometric cosine and sine basis. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsubsection*{Variables}
 \begin{DoxyCompactItemize}
 \item 
@@ -25,7 +25,7 @@ logical, public \doxymbox{\hyperlink{namespacevmec__utilities_abeb2bf5595170bdf2
 \doxysubsection{Detailed Description}
 Numerical utilities related to the output of VMEC. 
 
-\label{doc-func-members}
+\label{namespacevmec__utilities_doc-func-members}
 \Hypertarget{namespacevmec__utilities_doc-func-members}
 \doxysubsection{Function/\+\+Subroutine Documentation}
 \Hypertarget{namespacevmec__utilities_ac699116fc25fdea3e28e488513d97c87}\index{vmec\_utilities@{vmec\_utilities}!calc\_trigon\_factors@{calc\_trigon\_factors}}
@@ -36,15 +36,22 @@ integer function, public vmec\+\_\+utilities::\+calc\+\_\+trigon\+\_\+factors (\
 
 
 
-Calculate the trigonometric cosine and sine factors. 
+Calculate the trigonometric cosine and sine basis. 
 
-This is done on a grid {\ttfamily (1:\+mnmax\+\_\+V)} at given 3D arrays for the (VMEC) E(quilibrium) angles $\theta_\text{E}$ and $\zeta_\text{E}$.
+The basis holds, at given 3-\/D arrays for the (VMEC) E(quilibrium) angles $\theta_\text{E}$ and $\zeta_\text{E}$,
+\begin{DoxyItemize}
+\item $\cos(m \theta)$ and $\sin(m \theta)$ for  $m = 0 \ldots
+         \mathrm{mpol\_tf}-1$ at index $m+1$,
+\item $\cos(n N_\text{fp} \zeta)$ and $\sin(n N_\text{fp} \zeta)$ for $n = -\mathrm{ntor\_tf} \ldots \mathrm{ntor\_tf}$ at index  $\mathrm{mpol\_tf}
+         + \mathrm{ntor\_tf} + 1 + n$,
+\end{DoxyItemize}
 
-The dimensions of the output array are
+so that the dimensions of the output array are
 
-{\ttfamily (1:\+mnmax\+\_\+V,1:\+n\+\_\+ang\+\_\+1,1:\+n\+\_\+ang\+\_\+2,1:\+n\+\_\+r,1:\+2)}
+{\ttfamily (1:n\+\_\+ang\+\_\+1,1:n\+\_\+ang\+\_\+2,1:n\+\_\+r,1:mpol\+\_\+tf+2\texorpdfstring{$\ast$}{*}ntor\+\_\+tf+1,1:2)}
 
-where {\ttfamily mnmax\+\_\+V} is the number of modes in VMEC {\ttfamily n\+\_\+r} is the total number of normal points.
+where the last index selects cosine (1) or sine (2) and {\ttfamily n\+\_\+r} is the total number of normal points; the points come first so that one basis function is contiguous over the grid. fourier2real() forms  $\cos(m \theta  - n
+        \zeta)$ and $\sin(m \theta - n \zeta)$ from the basis per mode, so the same basis serves the main VMEC mode set and the Nyquist set of the Jacobian, $|B|$ and $B_i$: {\ttfamily mpol\+\_\+tf} and {\ttfamily ntor\+\_\+tf} cover both (see VMEC\+\_\+ops.\+read\+\_\+\+VMEC()).
 
 \begin{DoxySeeAlso}{See also}
 See \doxylink{structgrid__vars_1_1grid__type}{grid\+\_\+vars.\+grid\+\_\+type} for a discussion on {\ttfamily ang\+\_\+1} and {\ttfamily ang\+\_\+2}.
@@ -58,21 +65,23 @@ ierr
 \hline
 \doxymbox{\texttt{in}}  & {\em zeta} & toroidal angles in equilibrium coords. \\
 \hline
-\doxymbox{\texttt{in,out}}  & {\em trigon\+\_\+factors} & trigonometric factor cosine and sine at these angles \\
+\doxymbox{\texttt{in,out}}  & {\em trigon\+\_\+factors} & trigonometric basis at these angles \\
 \hline
 \end{DoxyParams}
 
 
-Definition at line \doxymbox{\hyperlink{VMEC__utilities_8f90_source_l00273}{273}} of file \doxymbox{\hyperlink{VMEC__utilities_8f90_source}{VMEC\+\_\+utilities.\+f90}}.
+Definition at line \doxymbox{\hyperlink{VMEC__utilities_8f90_source_l00278}{278}} of file \doxymbox{\hyperlink{VMEC__utilities_8f90_source}{VMEC\+\_\+utilities.\+f90}}.
 
-Here is the call graph for this function:\+\nopagebreak
+Here is the call graph for this function:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{namespacevmec__utilities_ac699116fc25fdea3e28e488513d97c87_cgraph}
 \end{center}
 \end{figure}
-Here is the caller graph for this function:\+\nopagebreak
+Here is the caller graph for this function:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -81,7 +90,7 @@ Here is the caller graph for this function:\+\nopagebreak
 \end{figure}
 
 
-\label{doc-var-members}
+\label{namespacevmec__utilities_doc-var-members}
 \Hypertarget{namespacevmec__utilities_doc-var-members}
 \doxysubsection{Variable Documentation}
 \Hypertarget{namespacevmec__utilities_abeb2bf5595170bdf2dd07a6f2bfa89ff}\index{vmec\_utilities@{vmec\_utilities}!debug\_calc\_trigon\_factors@{debug\_calc\_trigon\_factors}}

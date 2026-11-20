@@ -1,18 +1,18 @@
 \chapter{General code structure }
 \hypertarget{page_overview}{}\label{page_overview}\index{General code structure@{General code structure}}
 This page describes the general code structure of PB3D, as well as its accompanying post-\/process program POST. It is more complete than the documentation that can be found in \DoxyCite{weyens2017pb3d}{number}{1}.\hypertarget{page_overview_overview_PB3D_flowchart}{}\doxysection{\texorpdfstring{PB3D flowchart}{PB3D flowchart}}\label{page_overview_overview_PB3D_flowchart}
-In \doxylink{page_overview_flowchart_fig}{figure 1}, the top-\/level flowchart of PB3D is shown (adapted from \DoxyCite{weyens2017pb3d}{number}{1}):\+
+In \doxylink{page_overview_flowchart_fig}{figure 1}, the top-\/level flowchart of PB3D is shown (adapted from \DoxyCite{weyens2017pb3d}{number}{1}):
 
 \label{page_overview_flowchart_fig}%
 \Hypertarget{page_overview_flowchart_fig}%
  
 \begin{DoxyImage}%
 \includegraphics[width=0.7\textwidth]{flowchart}%
-\doxyfigcaption{{\bfseries{Figure}} {\bfseries{1}} {\bfseries{}}:\+ basic PB3D flowchart}%
+\doxyfigcaption{{\bfseries{Figure}} {\bfseries{1}} {\bfseries{}}: basic PB3D flowchart}%
 \end{DoxyImage}
 
 
-Roughly speaking, the main body of the code is taken up by four driver routines:\+
+Roughly speaking, the main body of the code is taken up by four driver routines:
 \begin{DoxyItemize}
 \item input driver
 \item equilibrium driver
@@ -28,21 +28,21 @@ The {\bfseries{equilibrium driver}} uses these input variables to set up equilib
 \item On the other hand, they consist of metric equilibrium quantities (stored in a \doxylink{structeq__vars_1_1eq__2__type}{eq\+\_\+vars.\+eq\+\_\+2\+\_\+type}) that depend on the angular position as well, such as the metric quantities of the grid $g_{ij} = \vec{e}_i \cdot \vec{e}_j$ and $h_{ij} = \nabla u^i \cdot \nabla u^j$, as well as derived quantities such as the parallel current $\sigma = \frac{\vec{B}\cdot\vec{J}}{B^2}$, etc. \DoxyCite{weyens2014theory}{number}{1}
 \end{DoxyItemize}
 
-The {\bfseries{perturbation driver}} uses both types of equation variables to calculate perturbation quantites. Again, there are two types.
+The {\bfseries{perturbation driver}} uses both types of equilibrium variables to calculate perturbation quantities. Again, there are two types.
 \begin{DoxyItemize}
-\item The first type of variables are the vectorial perturbation quantities (stored in a \doxylink{structx__vars_1_1x__1__type}{x\+\_\+vars.\+x\+\_\+1\+\_\+type}), which contains the geodesic component of the perturbation $U = \frac{\nabla \times \vec{B}}{\left|\nabla \psi\right|^2} \cdot \vec{\xi}$ where $\vec{\xi}$ is the perturbation. Also the parallel derivatives of these quantities are calculated.
-\item The other type re the tensorial perturbation quantities (stored in a \doxylink{structx__vars_1_1x__2__type}{x\+\_\+vars.\+x\+\_\+2\+\_\+type}), and it combines the vectorial perturbation quantities with the equilibrium quantities to form the tensorial quantities $\widetilde{PV}_{k,m}^i$ and $\widetilde{KV}_{k,m}^i$ that represent the perturbed potential energy as well as the kinetic energy of the perturbation \DoxyCite{weyens2014theory}{number}{1}.
+\item The first type of variables are the vectorial perturbation quantities (stored in a \doxylink{structx__vars_1_1x__1__type}{x\+\_\+vars.\+x\+\_\+1\+\_\+type}), which contain the geodesic component of the perturbation $U = \frac{\nabla \psi \times \vec{B}}{\left|\nabla \psi\right|^2} \cdot \vec{\xi}$ where $\vec{\xi}$ is the plasma displacement. Also the parallel derivatives of these quantities are calculated.
+\item The other type are the tensorial perturbation quantities (stored in a \doxylink{structx__vars_1_1x__2__type}{x\+\_\+vars.\+x\+\_\+2\+\_\+type}), which combine the vectorial perturbation quantities with the equilibrium quantities to form the tensorial quantities $\widetilde{PV}_{k,m}^i$ and $\widetilde{KV}_{k,m}^i$ that represent the perturbed potential energy as well as the kinetic energy of the perturbation \DoxyCite{weyens2014theory}{number}{1}.
 \end{DoxyItemize}
-
-These are also complemented by $\delta_{k,m}^\text{vac}$, the vacuum contribution to the perturbed potential energy (\doxylink{page_overview_fng1}{1}).
 
 After integrating them along the magnetic field lines, these magnetic integrals form the building blocks of the discretized matrices $\overline{\text{A}}$ and $\overline{\text{B}}$ in the generalized system of eigenvalue equations $\overline{\text{A}} \vec{X} = \lambda \overline{\text{B}}\vec{X}$.
 
-These matrices are set up in the {\bfseries{solution driver}}, which currently works with the SLEPc library that is build on the PETSc library for sparse linear algebra. After solution, the eigenvalues and -\/vectors are stored appropriately.
+For a free boundary ({\ttfamily BC\+\_\+style(2) = 2}), the vacuum outside the plasma adds a term at the plasma edge to the perturbed potential energy. PB3D computes this vacuum response in calc\+\_\+vac\+\_\+res(), in the solution driver, and only when {\ttfamily BC\+\_\+style(2)} is not 1; it is added to $\overline{\text{A}}$ in the block of the last normal grid point (see set\+\_\+bc()). The equilibrium code determines the method: a 3-\/D boundary-\/element method along the magnetic field lines for VMEC, and an axisymmetric boundary-\/element method for HELENA. The page \doxysectlink{page_vacuum}{Vacuum response}{0} describes this calculation step by step.
 
-Finally, it is checked whether another Richardson level should be attempted or not in {\bfseries{Richardson converged?}}, and if so, the number of parallel grid points is doubled.\hypertarget{page_overview_overview_jobs}{}\doxysection{\texorpdfstring{Equilibrium \& Perturbation Jobs}{Equilibrium \& Perturbation Jobs}}\label{page_overview_overview_jobs}
+The matrices are set up in the {\bfseries{solution driver}}, which works with the SLEPc library that is built on the PETSc library for sparse linear algebra. After solution, the eigenvalues and eigenvectors are stored appropriately.
+
+Finally, PB3D checks in {\bfseries{Richardson converged?}} whether another Richardson level should be attempted. This happens only when {\ttfamily max\+\_\+it\+\_\+rich} is larger than 1. If another level is attempted, the number of parallel grid points $n$ of the previous level becomes $2n-1$, and the equilibrium, perturbation and solution drivers run again.\hypertarget{page_overview_overview_jobs}{}\doxysection{\texorpdfstring{Equilibrium \& Perturbation Jobs}{Equilibrium \& Perturbation Jobs}}\label{page_overview_overview_jobs}
 The general code structure explained in \doxysectlink{page_overview_overview_PB3D_flowchart}{PB3D flowchart}{1} basically comes down to setting up the matrices to be solved for the eigenvalues and eigenvectors. In general, the dimensions of these variables are too large (see the grids in \doxysectlink{page_overview_detail_PB3D}{Detailed PB3D Flowchart}{1}) for them to fit in memory. A structure of two nested loops is therefore employed in PB3D, called {\bfseries{jobs}}, to keep the memory requirements under a user-\/defined maximum (see {\ttfamily max\+\_\+tot\+\_\+mem} in \doxysectlink{page_inputs}{Input variables}{0}).\hypertarget{page_overview_overview_jobs_X}{}\doxysubsection{\texorpdfstring{Perturbation jobs}{Perturbation jobs}}\label{page_overview_overview_jobs_X}
-{\bfseries{perturbation jobs}} are used to divided the calculation of the tensorial perturbation quantities, which come in pairs of mode numbers. These combinations are blocked, where each block fits in memory. These blocks are the perturbation jobs.
+{\bfseries{Perturbation jobs}} are used to divide the calculation of the tensorial perturbation quantities, which come in pairs of mode numbers. These combinations are blocked, where each block fits in memory. These blocks are the perturbation jobs.
 
 They form the inner loop.
 
@@ -50,68 +50,80 @@ They form the inner loop.
 See divide\+\_\+x\+\_\+jobs().
 \end{DoxySeeAlso}
 \hypertarget{page_overview_overview_jobs_eq}{}\doxysubsection{\texorpdfstring{Equilibrium jobs}{Equilibrium jobs}}\label{page_overview_overview_jobs_eq}
-As a result the memory still needs to hold all the relevant equilibrium and vectorial perturbation quantities necessary for the individual perturbation jobs during the whole time these jobs are being calculated. {\bfseries{equilibrium jobs}} are therefore employed in an outer loop to divide these equilibrium and vectorial perturbation quantities in manageable chunks.
+As a result the memory still needs to hold all the relevant equilibrium and vectorial perturbation quantities necessary for the individual perturbation jobs during the whole time these jobs are being calculated. {\bfseries{Equilibrium jobs}} are therefore employed in an outer loop to divide these equilibrium and vectorial perturbation quantities in manageable chunks.
 
 To be more precise, the parallel range over which variables are to be integrated in the magnetic integrals (see \doxysectlink{page_overview_detail_PB3D}{Detailed PB3D Flowchart}{1}), is cut in pieces. The advantage here is that only the results from the sub-\/integrals have to be saved and updated, not the function values themselves.
+
+For HELENA, there is always a single equilibrium job, so that the quantities that are interpolated in all Richardson levels are calculated in the HELENA grid in one go (see start\+\_\+rich\+\_\+lvl()).
 
 \begin{DoxySeeAlso}{See also}
 See divide\+\_\+eq\+\_\+jobs().
 \end{DoxySeeAlso}
 \hypertarget{page_overview_detail_PB3D}{}\doxysection{\texorpdfstring{Detailed PB3D Flowchart}{Detailed PB3D Flowchart}}\label{page_overview_detail_PB3D}
-The different blocks if figure \doxylink{page_overview_flowchart_fig}{1} are expanded in table \doxytablelink{page_overview_flowchart_PB3D_tab}{1}. The cells that are typeset in light blue are only performed for the first equilibrium job of either the restart Richardson level, or the first Richardson level if this is not provided. \hypertarget{page_overview_flowchart_PB3D_tab}{}
+The different blocks of figure \doxylink{page_overview_flowchart_fig}{1} are expanded in table \doxytablelink{page_overview_flowchart_PB3D_tab}{1}. The cells that are typeset in light blue are only performed at the Richardson level {\ttfamily rich\+\_\+restart\+\_\+lvl} (which is 1 unless the run continues from an earlier run) and, in the equilibrium and perturbation drivers, only for the first equilibrium job. Other conditions are written in the cells themselves. All other cells are performed at every Richardson level and, in the equilibrium and perturbation drivers, for every equilibrium job. \hypertarget{page_overview_flowchart_PB3D_tab}{}
 
 \begin{DoxyTable}{3}{Table 1. detailed PB3D flowchart}{page_overview_flowchart_PB3D_tab}{1}
-\SetCell{bg=\tableheadbgcolor,font=\bfseries}variable type &\SetCell{bg=\tableheadbgcolor,font=\bfseries}VMEC ({\ttfamily eq\+\_\+style = 1}) &\SetCell{bg=\tableheadbgcolor,font=\bfseries}HELENA ({\ttfamily eq\+\_\+style = 2}) \\
-\SetCell[r=1]{}{\bfseries{ PB3D initialize }}&\SetCell[c=2]{}the PB3D structure is set up, such as the MPI communicator, etc. &\\
+\SetCell{bg=\tableheadbgcolor,font=\bfseries}block &\SetCell{bg=\tableheadbgcolor,font=\bfseries}VMEC ({\ttfamily eq\+\_\+style = 1}) &\SetCell{bg=\tableheadbgcolor,font=\bfseries}HELENA ({\ttfamily eq\+\_\+style = 2}) \\
+\SetCell[r=1]{}{\bfseries{ PB3D initialize }}&\SetCell[c=2]{}MPI is started (see start\+\_\+mpi()), and the output, file and HDF5 utilities are initialized &\\
 \SetCell[r=8]{}{\bfseries{ input driver }}&\SetCell[c=2]{}The arguments are parsed (see parse\+\_\+args()) &\\
 &\SetCell[c=2]{}The input files are opened (see open\+\_\+input() and \doxysectlink{page_inputs}{Input variables}{0}) &\\
-&\SetCell[c=2]{}The user inputs are processed (see read\+\_\+input\+\_\+opts()) &\\
-&\SetCell[c=2]{}The equilibrium code output is read and converted to the internal PB3D format (see read\+\_\+input\+\_\+eq()) &\\
-&\SetCell[c=2]{}Normalization constants are calculated (see calc\+\_\+normalization\+\_\+const()) and the input is normalized (see normalize\+\_\+input()) &\\
-&\SetCell[c=2]{}Output files are opened (see open\+\_\+output() and \doxysectlink{page_outputs}{Code outputs}{0}) &\\
-&\SetCell[c=2]{}Input variables are written to HDF5 output (see print\+\_\+output\+\_\+in())&\\
-&\SetCell[c=2]{}Some other variables are broadcasted directly to all the processes using MPI (see broadcast\+\_\+input\+\_\+opts()) &\\
-\SetCell[r=14]{}{\bfseries{ equilibrium driver }}&normal part of equilibrium grid is set up, as for the angular part, the field-\/lines are necessary which are not yet calculated &the equilibrium grid is set up equal to the HELENA output grid \\
+&\SetCell[c=2]{}The user inputs are read and checked (see read\+\_\+input\+\_\+opts()) &\\
+&\SetCell[c=2]{}Only if {\ttfamily rich\+\_\+restart\+\_\+lvl = 1}: the equilibrium code output is read and converted to the internal PB3D format (see read\+\_\+input\+\_\+eq()) &\\
+&\SetCell[c=2]{}Only if {\ttfamily rich\+\_\+restart\+\_\+lvl = 1}: normalization constants are calculated (see calc\+\_\+normalization\+\_\+const()) and the input is normalized (see normalize\+\_\+input()) &\\
+&\SetCell[c=2]{}Output files are opened (see open\+\_\+output() and \doxysectlink{page_outputs}{Code outputs}{0}). A new HDF5 output file is created only if {\ttfamily rich\+\_\+restart\+\_\+lvl = 1} and {\ttfamily --jump\+\_\+to\+\_\+sol} is not used. &\\
+&\SetCell[c=2]{}Only if {\ttfamily rich\+\_\+restart\+\_\+lvl = 1}: input variables are written to HDF5 output (see print\+\_\+output\+\_\+in()) &\\
+&\SetCell[c=2]{}The input options are broadcast to all the processes using MPI (see broadcast\+\_\+input\+\_\+opts()) &\\
+\SetCell[r=2]{}{\bfseries{ Richardson level }}&\SetCell[c=2]{}Once, before the first level: the input variables are read back from the HDF5 output and, if {\ttfamily rich\+\_\+restart\+\_\+lvl} is larger than 1, the eigenvalues of the earlier levels as well (see init\+\_\+rich()) &\\
+&At the start of every level: the number of parallel points is set ({\ttfamily min\+\_\+n\+\_\+par\+\_\+X} at level 1, $2n-1$ for $n$ points at the previous level) and the parallel range is divided into equilibrium jobs (see start\+\_\+rich\+\_\+lvl() and divide\+\_\+eq\+\_\+jobs()) &At the start of every level: the number of parallel points is set as for VMEC, and there is a single equilibrium job (see start\+\_\+rich\+\_\+lvl()) \\
+\SetCell[r=13]{}{\bfseries{ equilibrium driver }}&the normal range is divided over the processes (see calc\+\_\+norm\+\_\+range()) and the normal part of the equilibrium grid is set up (see setup\+\_\+grid\+\_\+eq()); the angular part needs the field lines, which are not yet calculated &the normal range is divided over the processes (see calc\+\_\+norm\+\_\+range()) and the equilibrium grid is set up equal to the HELENA output grid (see setup\+\_\+grid\+\_\+eq()) \\
 &\SetCell[c=2]{}flux equilibrium quantities (see \doxylink{structeq__vars_1_1eq__1__type}{eq\+\_\+vars.\+eq\+\_\+1\+\_\+type}) are calculated (see \doxylink{interfaceeq__ops_1_1calc__eq}{eq\+\_\+ops.\+calc\+\_\+eq()}) &\\
-&\SetCell[c=2]{}flux equilibrium quantities are written to HDF5 output (see \doxylink{interfaceeq__ops_1_1print__output__eq}{eq\+\_\+ops.\+print\+\_\+output\+\_\+eq()}) &\\
-&equilibrium grid is completed by tracing the field lines (see calc\+\_\+ang\+\_\+grid\+\_\+eq\+\_\+b()) &an additional, field-\/aligned equilibrium grid is set up by tracing the field lines (see setup\+\_\+grid\+\_\+eq\+\_\+b()), and it is written to HDF5 output (see print\+\_\+output\+\_\+grid()) \\
-&the equilibrium grid is written to output &the equilibrium grid is written to the output\\
+&\SetCell[c=2]{}Only at Richardson level 1, first equilibrium job: flux equilibrium quantities are written to HDF5 output (see \doxylink{interfaceeq__ops_1_1print__output__eq}{eq\+\_\+ops.\+print\+\_\+output\+\_\+eq()}), and plotted if {\ttfamily plot\+\_\+flux\+\_\+q} is set (see flux\+\_\+q\+\_\+plot()) &\\
+&the angular part of the equilibrium grid is calculated by tracing the field lines (see calc\+\_\+ang\+\_\+grid\+\_\+eq\+\_\+b()) &an additional, field-\/aligned equilibrium grid is set up by tracing the field lines (see setup\+\_\+grid\+\_\+eq\+\_\+b()), and it is written to HDF5 output (see print\+\_\+output\+\_\+grid()) \\
+&the equilibrium grid is written to HDF5 output (see print\+\_\+output\+\_\+grid()) &the equilibrium grid is written to HDF5 output (see print\+\_\+output\+\_\+grid()) \\
 &the metric equilibrium variables (see \doxylink{structeq__vars_1_1eq__2__type}{eq\+\_\+vars.\+eq\+\_\+2\+\_\+type}) are calculated (see \doxylink{interfaceeq__ops_1_1calc__eq}{eq\+\_\+ops.\+calc\+\_\+eq()}) &the metric equilibrium variables (see \doxylink{structeq__vars_1_1eq__2__type}{eq\+\_\+vars.\+eq\+\_\+2\+\_\+type}) are calculated (see \doxylink{interfaceeq__ops_1_1calc__eq}{eq\+\_\+ops.\+calc\+\_\+eq()})\\
-&&the metric equilibrium variables are written to the output (see \doxylink{interfaceeq__ops_1_1print__output__eq}{eq\+\_\+ops.\+print\+\_\+output\+\_\+eq()})\\
-&store equilibrium quantities necessary for vacuum calculation (see store\+\_\+vac()) &store equilibrium quantities necessary for vacuum calculation (see store\+\_\+vac()) \\
-&possible plot of magnetic field, current density and/\+or curvature in (field-\/aligned) equilibrium grid (see b\+\_\+plot(), j\+\_\+plot(), kappa\+\_\+plot()) &possible plot of magnetic field, current density and/\+or curvature in (HELENA) equilibrium grid (see b\+\_\+plot(), j\+\_\+plot(), kappa\+\_\+plot())\\
-&redistribute the equilibrium grid (see redistribute\+\_\+output\+\_\+grid()) &redistribute the equilibrium grid (see redistribute\+\_\+output\+\_\+grid())\\
-&\SetCell[c=2]{}redistribute the flux equilibrium quantities (see \doxylink{interfaceeq__ops_1_1redistribute__output__eq}{eq\+\_\+ops.\+redistribute\+\_\+output\+\_\+eq()}) &\\
-&redistribute the metric equilibrium quantities (see \doxylink{interfaceeq__ops_1_1redistribute__output__eq}{eq\+\_\+ops.\+redistribute\+\_\+output\+\_\+eq()}) &redistribute the metric equilibrium quantities (see \doxylink{interfaceeq__ops_1_1redistribute__output__eq}{eq\+\_\+ops.\+redistribute\+\_\+output\+\_\+eq()}) \\
-&&The field-\/aligned equilibrium grid is redistributed (see redistribute\+\_\+output\+\_\+grid()) \\
-&\SetCell[c=2]{}possible plot of magnetic field lines in flux surfaces (see magn\+\_\+grid\+\_\+plot()) if last equilibrium job &\\
-\SetCell[r=11]{}{\bfseries{ perturbation driver }}&&the metric equilibrium quantities are inerpolated in the field-\/aligned equilibrium grid (see interp\+\_\+hel\+\_\+on\+\_\+grid()) \\
-&determine perturbation grid (see setup\+\_\+grid\+\_\+x()) and write it to HDF5 ouput (see print\+\_\+output\+\_\+grid()) &determine perturbation grid (see setup\+\_\+grid\+\_\+x()) and write it to HDF5 ouput (see print\+\_\+output\+\_\+grid()) \\
-&&set up field-\/aligned perturbation grid and write to output\\
-&\SetCell[c=2]{}set up mode number information (see setup\+\_\+nm\+\_\+x()) and check them (see check\+\_\+x\+\_\+modes()) if first perturbation job&\\
-&\SetCell[c=2]{}possibly plot resonance (see resonance\+\_\+plot()) if first perturbation job&\\
+&&only at Richardson level 1: the metric equilibrium variables are written to HDF5 output (see \doxylink{interfaceeq__ops_1_1print__output__eq}{eq\+\_\+ops.\+print\+\_\+output\+\_\+eq()})\\
+&only if {\ttfamily BC\+\_\+style(2)} is not 1: the equilibrium quantities at the plasma edge that the vacuum calculation needs are stored (see store\+\_\+vac()) &only if {\ttfamily BC\+\_\+style(2)} is not 1: the equilibrium quantities at the plasma edge that the vacuum calculation needs are stored (see store\+\_\+vac()) \\
+&the equilibrium grid is copied to the output grid, or redistributed for {\ttfamily X\+\_\+grid\+\_\+style = 2} (see redistribute\+\_\+output\+\_\+grid()) &the equilibrium grid is copied to the output grid, or redistributed for {\ttfamily X\+\_\+grid\+\_\+style = 2} (see redistribute\+\_\+output\+\_\+grid()) \\
+&\SetCell[c=2]{}the flux equilibrium quantities are copied, or redistributed for {\ttfamily X\+\_\+grid\+\_\+style = 2} (see \doxylink{interfaceeq__ops_1_1redistribute__output__eq}{eq\+\_\+ops.\+redistribute\+\_\+output\+\_\+eq()}) &\\
+&the metric equilibrium quantities are copied, or redistributed for {\ttfamily X\+\_\+grid\+\_\+style = 2} (see \doxylink{interfaceeq__ops_1_1redistribute__output__eq}{eq\+\_\+ops.\+redistribute\+\_\+output\+\_\+eq()}) &the metric equilibrium quantities are copied, or redistributed for {\ttfamily X\+\_\+grid\+\_\+style = 2} (see \doxylink{interfaceeq__ops_1_1redistribute__output__eq}{eq\+\_\+ops.\+redistribute\+\_\+output\+\_\+eq()}) \\
+&the magnetic field, current density and/\+or curvature are plotted in the equilibrium grid if requested (see b\+\_\+plot(), j\+\_\+plot(), kappa\+\_\+plot()); the equilibrium grid is field-\/aligned for VMEC &the field-\/aligned equilibrium grid is copied, or redistributed for {\ttfamily X\+\_\+grid\+\_\+style = 2} (see redistribute\+\_\+output\+\_\+grid()); only at Richardson level 1: the magnetic field, current density and/\+or curvature are plotted in the HELENA equilibrium grid if requested (see b\+\_\+plot(), j\+\_\+plot(), kappa\+\_\+plot()) \\
+&\SetCell[c=2]{}only at the last equilibrium job: the magnetic field lines in the flux surfaces are plotted if {\ttfamily plot\+\_\+magn\+\_\+grid} is set (see magn\+\_\+grid\+\_\+plot()) &\\
+\SetCell[r=14]{}{\bfseries{ perturbation driver }}&\SetCell[c=2]{}the normal points of the perturbation grid are calculated and divided over the processes (see calc\+\_\+norm\+\_\+range()) &\\
+&&the metric equilibrium quantities are interpolated in the field-\/aligned equilibrium grid (see interp\+\_\+hel\+\_\+on\+\_\+grid()) \\
+&the perturbation grid is set up (see setup\+\_\+grid\+\_\+x()) and written to HDF5 output (see print\+\_\+output\+\_\+grid()) &the perturbation grid is set up (see setup\+\_\+grid\+\_\+x()) and written to HDF5 output (see print\+\_\+output\+\_\+grid()) \\
+&&the field-\/aligned perturbation grid is set up (see setup\+\_\+grid\+\_\+x()) and written to HDF5 output (see print\+\_\+output\+\_\+grid()) \\
+&\SetCell[c=2]{}the mode numbers are initialized (see init\+\_\+modes()) and set up on the perturbation grid (see setup\+\_\+modes()), and they are checked (see check\+\_\+x\+\_\+modes()) &\\
+&\SetCell[c=2]{}only at Richardson level 1, first equilibrium job: the resonances are plotted if {\ttfamily plot\+\_\+resonance} is set (see resonance\+\_\+plot()) &\\
 &the vectorial perturbation variables (see \doxylink{structx__vars_1_1x__1__type}{x\+\_\+vars.\+x\+\_\+1\+\_\+type}) are calculated (see \doxylink{interfacex__ops_1_1calc__x}{x\+\_\+ops.\+calc\+\_\+x()}) &the vectorial perturbation variables (see \doxylink{structx__vars_1_1x__1__type}{x\+\_\+vars.\+x\+\_\+1\+\_\+type}) are calculated (see \doxylink{interfacex__ops_1_1calc__x}{x\+\_\+ops.\+calc\+\_\+x()}) \\
-&&write vectorial perturbation variables to output (see \doxylink{interfacex__ops_1_1print__output__x}{x\+\_\+ops.\+print\+\_\+output\+\_\+x()}) \\
-&&interpolate vectorial perturbation variables on field-\/aligned grid (see interp\+\_\+hel\+\_\+on\+\_\+grid()) \\
-&\SetCell[c=2]{}calculate tensorial perturbation variables (see \doxylink{interfacex__ops_1_1calc__x}{x\+\_\+ops.\+calc\+\_\+x()}) &\\
-&\SetCell[c=2]{}calculate magnetic integrals (see calc\+\_\+magn\+\_\+ints()) &\\
-&\SetCell[c=2]{}write magnetic integrals to output (see \doxylink{interfacex__ops_1_1print__output__x}{x\+\_\+ops.\+print\+\_\+output\+\_\+x()}) &\\
-\SetCell[r=3]{}{\bfseries{ solution driver }}&calculate vacuum (see calc\+\_\+vac()) &calculate vacuum (see calc\+\_\+vac()) \\
-&\SetCell[c=2]{}set up the solution grid (see setup\+\_\+grid\+\_\+sol()) and write to HDF5 output (see print\+\_\+output\+\_\+grid()) &\\
-&\SetCell[c=2]{}solve system of equations (see solve\+\_\+ev\+\_\+system\+\_\+slepc()) &\\
-\SetCell[r=1]{}{\bfseries{ Richardson converged? }}&\SetCell[c=2]{}check for convergence of Richardson levels by comparing solution eigenvalues (see check\+\_\+conv()) &\\
-\SetCell[r=1]{}{\bfseries{ PB3D finalize }}&\SetCell[c=2]{}clean up &\\
+&&the vectorial perturbation variables are written to HDF5 output (see \doxylink{interfacex__ops_1_1print__output__x}{x\+\_\+ops.\+print\+\_\+output\+\_\+x()}) \\
+&\SetCell[c=2]{}the mode number pairs are divided into perturbation jobs (see divide\+\_\+x\+\_\+jobs()) &\\
+&\SetCell[c=2]{}the integrated tensorial perturbation variables are set to zero at Richardson level 1, or read back from the HDF5 output of the previous level if {\ttfamily rich\+\_\+restart\+\_\+lvl} is larger than 1; at the other levels, they are kept in memory from the previous level &\\
+&&for every perturbation job: the vectorial perturbation variables are interpolated in the field-\/aligned perturbation grid (see interp\+\_\+hel\+\_\+on\+\_\+grid()) \\
+&\SetCell[c=2]{}for every perturbation job: the tensorial perturbation variables are calculated (see \doxylink{interfacex__ops_1_1calc__x}{x\+\_\+ops.\+calc\+\_\+x()}) &\\
+&\SetCell[c=2]{}for every perturbation job: the magnetic integrals are calculated and added to those of the earlier equilibrium jobs; at the first equilibrium job of a Richardson level above 1, the integrals of the previous level are halved first, as the new level only adds the new parallel points (see calc\+\_\+magn\+\_\+ints()) &\\
+&\SetCell[c=2]{}only at the last equilibrium job: the magnetic integrals are written to HDF5 output (see \doxylink{interfacex__ops_1_1print__output__x}{x\+\_\+ops.\+print\+\_\+output\+\_\+x()}) &\\
+\SetCell[r=6]{}{\bfseries{ solution driver }}&\SetCell[c=2]{}the normal points of the solution grid are calculated and divided over the processes (see calc\+\_\+norm\+\_\+range()); at Richardson level 1, the solution grid is set up (see setup\+\_\+grid\+\_\+sol()) and written to HDF5 output (see print\+\_\+output\+\_\+grid()), at a higher level it is read back from the HDF5 output together with the solution of the previous level; the mode numbers are set up on the solution grid (see setup\+\_\+modes()) &\\
+&only if {\ttfamily BC\+\_\+style(2)} is not 1: the vacuum response is calculated (see calc\+\_\+vac\+\_\+res()) and written to HDF5 output (see print\+\_\+output\+\_\+vac()) &only if {\ttfamily BC\+\_\+style(2)} is not 1: the vacuum response is calculated (see calc\+\_\+vac\+\_\+res()) and written to HDF5 output (see print\+\_\+output\+\_\+vac()) \\
+&\SetCell[c=2]{}the magnetic integrals are redistributed over the processes (see redistribute\+\_\+output\+\_\+x()) and interpolated in the solution grid for {\ttfamily X\+\_\+grid\+\_\+style} 1 and 3, or copied for {\ttfamily X\+\_\+grid\+\_\+style = 2} &\\
+&\SetCell[c=2]{}the system of equations is set up with its boundary conditions (see set\+\_\+bc()) and solved, and the eigenvalues are written to the eigenvalue file (see solve\+\_\+ev\+\_\+system\+\_\+slepc() and store\+\_\+results()) &\\
+&\SetCell[c=2]{}the solution is written to HDF5 output (see \doxylink{namespacesol__ops_a06eb95d55da45ff2a1f830a380e0cf80}{sol\+\_\+ops.\+print\+\_\+output\+\_\+sol()}) &\\
+&\SetCell[c=2]{}the Richardson extrapolation of the eigenvalues is updated (see calc\+\_\+rich\+\_\+ex()) &\\
+\SetCell[r=1]{}{\bfseries{ Richardson converged? }}&\SetCell[c=2]{}only if {\ttfamily max\+\_\+it\+\_\+rich} is larger than 1: the convergence of the Richardson levels is checked by comparing the extrapolated eigenvalues with those of the previous level, and it is decided whether the solution is used as a guess for the next level (see stop\+\_\+rich\+\_\+lvl()) &\\
+\SetCell[r=1]{}{\bfseries{ PB3D finalize }}&\SetCell[c=2]{}the Richardson summary is written (see term\+\_\+rich()), the variables are deallocated, MPI is stopped (see stop\+\_\+mpi()) and the output files are closed (see close\+\_\+output()) &\\
 \end{DoxyTable}
-\hypertarget{page_overview_overview_POST}{}\doxysection{\texorpdfstring{POST Overview}{POST Overview}}\label{page_overview_overview_POST}
+
+
+With the command-\/line option {\ttfamily --jump\+\_\+to\+\_\+sol}, at the level {\ttfamily rich\+\_\+restart\+\_\+lvl}, the equilibrium and perturbation drivers read the grids, the flux equilibrium quantities (and, for HELENA, the metric equilibrium quantities and the vectorial perturbation quantities) and the magnetic integrals back from the HDF5 output, instead of calculating them. The solution driver then reads the vacuum response back as well, for a free boundary. The magnetic integrals of that level have to be present in the HDF5 output; otherwise PB3D stops (see open\+\_\+output()).\hypertarget{page_overview_overview_POST}{}\doxysection{\texorpdfstring{POST Overview}{POST Overview}}\label{page_overview_overview_POST}
 The POST program for post-\/processing of PB3D results consists of just one driver.
 \begin{DoxyItemize}
-\item In the first part, everything is set up (see init\+\_\+post()):\+
+\item In the first part, everything is set up (see init\+\_\+post()):
 \begin{DoxyItemize}
-\item This includes initializing the variables written to HDF5 in PB3D.
-\item Furthermore, the output grids are created
-\item Also, 1-\/D flux plots are produced, which are part of the plots that PB3D is able to produce (see {\ttfamily plot\+\_\+flux\+\_\+q}, {\ttfamily plot\+\_\+resonance} and {\ttfamily plot\+\_\+magn\+\_\+grid} in table \doxytablelink{page_outputs_output_plots_tab}{3} in \doxysectlink{page_outputs}{Code outputs}{0}) can be created here.
+\item This includes reading the variables written to HDF5 by PB3D, among which the vacuum response for a free boundary.
+\item Furthermore, the output grids are created.
+\item Also, 1-\/D flux plots are produced, which are part of the plots that PB3D is able to produce (see {\ttfamily plot\+\_\+flux\+\_\+q}, {\ttfamily plot\+\_\+resonance} and {\ttfamily plot\+\_\+magn\+\_\+grid} in table \doxytablelink{page_outputs_output_plots_tab}{3} in \doxysectlink{page_outputs}{Code outputs}{0}).
+\item If the solution is needed, the eigenvalues and the Fourier harmonics of the eigenvectors are plotted, and, for a free boundary, the vacuum potential (see {\ttfamily plot\+\_\+vac\+\_\+pot} in table \doxytablelink{page_outputs_output_plots_tab}{3} in \doxysectlink{page_outputs}{Code outputs}{0}).
 \end{DoxyItemize}
-\item After that, new outputs are calculated and plot (see run\+\_\+driver\+\_\+post()):\+
+\item After that, new outputs are calculated and plotted (see run\+\_\+driver\+\_\+post()):
 \begin{DoxyItemize}
 \item Quantities are calculated on the output grids.
 \item Using these, plots are first produced that do not depend on the solution vector from PB3D, and are also part of the plots that PB3D is able to produce (see {\ttfamily plot\+\_\+B}, {\ttfamily plot\+\_\+J}, {\ttfamily plot\+\_\+kappa} in table \doxytablelink{page_outputs_output_plots_tab}{3} in \doxysectlink{page_outputs}{Code outputs}{0}).
@@ -119,13 +131,4 @@ The POST program for post-\/processing of PB3D results consists of just one driv
 \end{DoxyItemize}
 \end{DoxyItemize}
 
-POST also knows the concept of equilibrium jobs, but not that of perturbation jobs (see \doxysectlink{page_overview_overview_jobs}{Equilibrium \& Perturbation Jobs}{1}). This is necessary for larger outputs that quickly overflow memory. The HDF5 output files are updated at every equilibrium job, but, with reasonable safety, they can already be looked at in a visualizer.
-
-\begin{DoxyNote}{Note}
-
-\begin{DoxyEnumerate}
-\item \label{page_overview_fng1}%
-\Hypertarget{page_overview_fng1}%
-This is not yet implemented. 
-\end{DoxyEnumerate}
-\end{DoxyNote}
+POST also knows the concept of equilibrium jobs, but not that of perturbation jobs (see \doxysectlink{page_overview_overview_jobs}{Equilibrium \& Perturbation Jobs}{1}). This is necessary for larger outputs that quickly overflow memory. The HDF5 output files are updated at every equilibrium job, but, with reasonable safety, they can already be looked at in a visualizer. 

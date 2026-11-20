@@ -26,7 +26,7 @@ subroutine, public \doxymbox{\hyperlink{namespaceoutput__ops_a0fbe9a10388ec66746
 \doxysubsection{Detailed Description}
 Operations concerning giving output, on the screen as well as in output files. 
 
-\label{doc-func-members}
+\label{namespaceoutput__ops_doc-func-members}
 \Hypertarget{namespaceoutput__ops_doc-func-members}
 \doxysubsection{Function/\+\+Subroutine Documentation}
 \Hypertarget{namespaceoutput__ops_a50bfbb88cc91805469353c3ff47b3e2e}\index{output\_ops@{output\_ops}!draw\_ex@{draw\_ex}}
@@ -39,15 +39,15 @@ subroutine, public output\+\_\+ops::\+draw\+\_\+ex (\begin{DoxyParamCaption}\ite
 
 Use external program to draw a plot. 
 
-The external programs used are determined by {\ttfamily ex\+\_\+plot\+\_\+style:\+} 
+The external programs used are determined by {\ttfamily ex\+\_\+plot\+\_\+style:} 
 \begin{DoxyItemize}
-\item {\ttfamily ex\+\_\+plot\+\_\+style} = 1:\+ Use Gnu\+Plot for 2-\/D and 3-\/D
-\item {\ttfamily ex\+\_\+plot\+\_\+style} = 1:\+ Use Bokeh in 2-\/D and Mayavi in 3-\/D
+\item {\ttfamily ex\+\_\+plot\+\_\+style} = 1: Use Gnu\+Plot for 2-\/D and 3-\/D
+\item {\ttfamily ex\+\_\+plot\+\_\+style} = 1: Use Bokeh in 2-\/D and Mayavi in 3-\/D
 \end{DoxyItemize}
 
-The output is saved in a file {\ttfamily \+[draw\+\_\+name]\+.\+[ext]\+} where the extension depends on the plotting style and the dimension, or on the screen, depending on {\ttfamily plot\+\_\+on\+\_\+screen}.
+The output is saved in a file {\ttfamily \+[draw\+\_\+name].\+[ext]} where the extension depends on the plotting style and the dimension, or on the screen, depending on {\ttfamily plot\+\_\+on\+\_\+screen}.
 
-If not specified otherwise through data\+\_\+name, it is assumed that the datafile to be plot is situated in {\ttfamily \+[draw\+\_\+name]\+.dat}.
+If not specified otherwise through data\+\_\+name, it is assumed that the datafile to be plot is situated in {\ttfamily \+[draw\+\_\+name].dat}.
 
 The title(s) of the plot(s) are provided through {\ttfamily var\+\_\+names} and the number of plots through {\ttfamily nplt}. If there are less names than the number of plots, the first one is taken and appended by the plot number.
 
@@ -56,11 +56,11 @@ Furthermore, {\ttfamily draw\+\_\+dim} determines whether the plot is to be 2-\/
 Also, an optional command {\ttfamily extra\+\_\+ops} can be provided, to provide overal options, as well as draw\+\_\+ops that specifies the line style for the plots from the file. If {\ttfamily less} draw\+\_\+ops are provided than plots, they will be cycled.
 
 Finally, there is an option to provide animated plots, but is only available in 2-\/D. Also, for external plot style 1, no on-\/screen view is possible. Animations can take optional ranges arguments as well as delay. \begin{DoxyNote}{Note}
-{\ttfamily About} draw\+\_\+dim:\+
+{\ttfamily About} draw\+\_\+dim:
 \begin{DoxyItemize}
-\item {\ttfamily draw\+\_\+dim} = 1:\+ 2-\/D plot; should be called with the output of \doxylink{interfaceoutput__ops_1_1print__ex__2d}{output\+\_\+ops.\+print\+\_\+ex\+\_\+2d()}, {\ttfamily nplt} should be correctly set.
-\item {\ttfamily draw\+\_\+dim} = 2:\+ 3-\/D plot; should be called with the output of print\+\_\+ex\+\_\+3D. For GNUPlot, {\ttfamily nplt} is ignored, but not for Mayavi, as it needs this information to be able to reconstruct 2D arrays for X, Y and Z.
-\item {\ttfamily draw\+\_\+dim} = 3:\+ 2-\/D plot in 3-\/D slices; should be called with the output of \doxylink{interfaceoutput__ops_1_1print__ex__2d}{output\+\_\+ops.\+print\+\_\+ex\+\_\+2d()}, {\ttfamily nplt} should be correctly set. 
+\item {\ttfamily draw\+\_\+dim} = 1: 2-\/D plot; should be called with the output of \doxylink{interfaceoutput__ops_1_1print__ex__2d}{output\+\_\+ops.\+print\+\_\+ex\+\_\+2d()}, {\ttfamily nplt} should be correctly set.
+\item {\ttfamily draw\+\_\+dim} = 2: 3-\/D plot; should be called with the output of print\+\_\+ex\+\_\+3D. For GNUPlot, {\ttfamily nplt} is ignored, but not for Mayavi, as it needs this information to be able to reconstruct 2D arrays for X, Y and Z.
+\item {\ttfamily draw\+\_\+dim} = 3: 2-\/D plot in 3-\/D slices; should be called with the output of \doxylink{interfaceoutput__ops_1_1print__ex__2d}{output\+\_\+ops.\+print\+\_\+ex\+\_\+2d()}, {\ttfamily nplt} should be correctly set. 
 \end{DoxyItemize}
 \end{DoxyNote}
 
@@ -71,7 +71,7 @@ Finally, there is an option to provide animated plots, but is only available in 
 \hline
 \doxymbox{\texttt{in}}  & {\em nplt} & number of plots \\
 \hline
-\doxymbox{\texttt{in}}  & {\em draw\+\_\+dim} & 1:\+ 2-\/D, 2:\+ 3-\/D, 3:\+ decoupled 3-\/D \\
+\doxymbox{\texttt{in}}  & {\em draw\+\_\+dim} & 1: 2-\/D, 2: 3-\/D, 3: decoupled 3-\/D \\
 \hline
 \doxymbox{\texttt{in}}  & {\em plot\+\_\+on\+\_\+screen} & True if on screen, false if in file \\
 \hline
@@ -96,14 +96,16 @@ Finally, there is an option to provide animated plots, but is only available in 
 
 Definition at line \doxymbox{\hyperlink{output__ops_8f90_source_l01076}{1076}} of file \doxymbox{\hyperlink{output__ops_8f90_source}{output\+\_\+ops.\+f90}}.
 
-Here is the call graph for this function:\+\nopagebreak
+Here is the call graph for this function:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{namespaceoutput__ops_a50bfbb88cc91805469353c3ff47b3e2e_cgraph}
 \end{center}
 \end{figure}
-Here is the caller graph for this function:\+\nopagebreak
+Here is the caller graph for this function:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -143,14 +145,16 @@ Optionally, an output message can be displayed on screen with the maximum relati
 
 Definition at line \doxymbox{\hyperlink{output__ops_8f90_source_l01763}{1763}} of file \doxymbox{\hyperlink{output__ops_8f90_source}{output\+\_\+ops.\+f90}}.
 
-Here is the call graph for this function:\+\nopagebreak
+Here is the call graph for this function:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{namespaceoutput__ops_a0fbe9a10388ec667461c6ac858f7caaa_cgraph}
 \end{center}
 \end{figure}
-Here is the caller graph for this function:\+\nopagebreak
+Here is the caller graph for this function:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode

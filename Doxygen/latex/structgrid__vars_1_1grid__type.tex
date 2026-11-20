@@ -1,4 +1,4 @@
-\doxysection{grid\+\_\+vars::\+grid\+\_\+type Type Reference}
+\doxysection{grid\+\_\+vars::grid\+\_\+type Type Reference}
 \hypertarget{structgrid__vars_1_1grid__type}{}\label{structgrid__vars_1_1grid__type}\index{grid\_vars::grid\_type@{grid\_vars::grid\_type}}
 
 
@@ -8,7 +8,7 @@ Type for grids.
 \doxysubsubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-procedure \doxymbox{\hyperlink{structgrid__vars_1_1grid__type_af354f19ccb41d04bd5dedc816a19ae33}{init}} (grid, \doxymbox{\hyperlink{structgrid__vars_1_1grid__type_a6c7d0e3483a15c2c8019fc3c00504686}{n}}, i\+\_\+lim, \doxymbox{\hyperlink{structgrid__vars_1_1grid__type_ac4e6680c60d5a7ef4b776e5df5410f8a}{divided}})
+procedure \doxymbox{\hyperlink{structgrid__vars_1_1grid__type_af354f19ccb41d04bd5dedc816a19ae33}{init}} (grid, n, i\+\_\+lim, divided)
 \begin{DoxyCompactList}\small\item\em initialize \end{DoxyCompactList}\item 
 procedure \doxymbox{\hyperlink{structgrid__vars_1_1grid__type_a3ca2502d4adda8d46063bb17b0050997}{copy}} (grid\+\_\+i, grid\+\_\+o)
 \begin{DoxyCompactList}\small\item\em copy \end{DoxyCompactList}\item 
@@ -44,7 +44,7 @@ real(dp), dimension(:\+,:\+,:\+), pointer \doxymbox{\hyperlink{structgrid__vars_
 real(dp), dimension(:\+,:\+,:\+), pointer \doxymbox{\hyperlink{structgrid__vars_1_1grid__type_a839dff9cce6047247918fd47a87ef1fc}{zeta\+\_\+f}} =$>$ null()
 \begin{DoxyCompactList}\small\item\em F(lux) coord. values of second angle at n points in 3-\/D. \end{DoxyCompactList}\item 
 real(dp), dimension(:\+,:\+,:\+,:\+,:\+), allocatable \doxymbox{\hyperlink{structgrid__vars_1_1grid__type_adebef5699de49c33289e03cda2875232}{trigon\+\_\+factors}}
-\begin{DoxyCompactList}\small\item\em trigonometric factor cosine for the inverse fourier transf. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em trigonometric basis for the inverse Fourier transform: cos and sin of m theta and of n nfp zeta (see VMEC\+\_\+utilities.\+calc\+\_\+trigon\+\_\+factors()) \end{DoxyCompactList}\item 
 real(dp) \doxymbox{\hyperlink{structgrid__vars_1_1grid__type_a18ae7f2f277c6aea8402fdc81a7d58f6}{estim\+\_\+mem\+\_\+usage}}
 \begin{DoxyCompactList}\small\item\em estimated memory usage \end{DoxyCompactList}\end{DoxyCompactItemize}
 
@@ -52,7 +52,7 @@ real(dp) \doxymbox{\hyperlink{structgrid__vars_1_1grid__type_a18ae7f2f277c6aea84
 \doxysubsection{Detailed Description}
 Type for grids. 
 
-The grids are saved in the following format:\+ {\ttfamily (angle\+\_\+1,angle\+\_\+2,r)}, where {\ttfamily angle\+\_\+1} and {\ttfamily angle\+\_\+2} can be any angle that completely describe a flux surface.
+The grids are saved in the following format: {\ttfamily (angle\+\_\+1,angle\+\_\+2,r)}, where {\ttfamily angle\+\_\+1} and {\ttfamily angle\+\_\+2} can be any angle that completely describe a flux surface.
 
 For example, they can refer to a grid of $\theta$ and $\zeta$ values, but they can also refer to (Modified) flux coordinates with a parallel angle and a field line coordinate ( $\alpha$).
 
@@ -68,7 +68,7 @@ Definition at line \doxymbox{\hyperlink{grid__vars_8f90_source_l00059}{59}} of f
 
 
 
-\label{doc-func-members}
+\label{structgrid__vars_1_1grid__type_doc-func-members}
 \Hypertarget{structgrid__vars_1_1grid__type_doc-func-members}
 \doxysubsection{Member Function/\+\+Subroutine Documentation}
 \Hypertarget{structgrid__vars_1_1grid__type_a3ca2502d4adda8d46063bb17b0050997}\index{grid\_vars::grid\_type@{grid\_vars::grid\_type}!copy@{copy}}
@@ -138,11 +138,11 @@ ierr
 \begin{DoxyParams}[1]{Parameters}
 \doxymbox{\texttt{in,out}}  & {\em grid} & grid to be initialized \\
 \hline
-\doxymbox{\texttt{in}}  & {\em \doxylink{structgrid__vars_1_1grid__type_a6c7d0e3483a15c2c8019fc3c00504686}{n}} & tot. nr. of points (par,r,alpha) \\
+\doxymbox{\texttt{in}}  & {\em n} & tot. nr. of points (par,r,alpha) \\
 \hline
 \doxymbox{\texttt{in}}  & {\em i\+\_\+lim} & min. and max. local normal index \\
 \hline
-\doxymbox{\texttt{in}}  & {\em \doxylink{structgrid__vars_1_1grid__type_ac4e6680c60d5a7ef4b776e5df5410f8a}{divided}} & divided grid or not \\
+\doxymbox{\texttt{in}}  & {\em divided} & divided grid or not \\
 \hline
 \end{DoxyParams}
 
@@ -151,7 +151,7 @@ Definition at line \doxymbox{\hyperlink{grid__vars_8f90_source_l00079}{79}} of f
 
 
 
-\label{doc-variable-members}
+\label{structgrid__vars_1_1grid__type_doc-variable-members}
 \Hypertarget{structgrid__vars_1_1grid__type_doc-variable-members}
 \doxysubsection{Member Data Documentation}
 \Hypertarget{structgrid__vars_1_1grid__type_ac4e6680c60d5a7ef4b776e5df5410f8a}\index{grid\_vars::grid\_type@{grid\_vars::grid\_type}!divided@{divided}}
@@ -333,7 +333,7 @@ real(dp), dimension(:\+,:\+,:\+,:\+,:\+), allocatable grid\+\_\+vars::\+grid\+\_
 
 
 
-trigonometric factor cosine for the inverse fourier transf. 
+trigonometric basis for the inverse Fourier transform: cos and sin of m theta and of n nfp zeta (see VMEC\+\_\+utilities.\+calc\+\_\+trigon\+\_\+factors()) 
 
 
 

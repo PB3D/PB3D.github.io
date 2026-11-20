@@ -39,6 +39,7 @@ doc:
 	@echo 'PROJECT_NUMBER = [$(PB3D_version)]' >> temp_user_vars
 	@echo 'ALIASES += min_nm_X="$(MIN_NM_X)"' >> temp_user_vars
 	@echo 'ALIASES += doxy_version="$(DOXY_version)"' >> temp_user_vars
+	@echo 'STRIP_FROM_PATH = "$(PB3D_dir)" "$(CURDIR)"' >> temp_user_vars
 	( cat Doxyfile temp_user_vars ) | doxygen -
 	@rm -f temp_user_vars
 	@./Scripts/clean_html_and_latex.sh

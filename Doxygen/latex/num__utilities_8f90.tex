@@ -1,5 +1,5 @@
-\doxysection{/\+\+Users/\+toonweyens/\+\+Code/\+\+PB3\+D/\+\+Modules/\+num\+\_\+utilities.f90 File Reference}
-\hypertarget{num__utilities_8f90}{}\label{num__utilities_8f90}\index{/Users/toonweyens/Code/PB3D/Modules/num\_utilities.f90@{/Users/toonweyens/Code/PB3D/Modules/num\_utilities.f90}}
+\doxysection{Modules/\+num\+\_\+utilities.f90 File Reference}
+\hypertarget{num__utilities_8f90}{}\label{num__utilities_8f90}\index{Modules/num\_utilities.f90@{Modules/num\_utilities.f90}}
 \doxysubsubsection*{Interfaces and Types}
 \begin{DoxyCompactItemize}
 \item 
@@ -26,9 +26,7 @@ interface \doxymbox{\hyperlink{interfacenum__utilities_1_1con}{num\+\_\+utilitie
 interface \doxymbox{\hyperlink{interfacenum__utilities_1_1bubble__sort}{num\+\_\+utilities::\+bubble\+\_\+sort}}
 \begin{DoxyCompactList}\small\item\em Sorting with the bubble sort routine. \end{DoxyCompactList}\item 
 interface \doxymbox{\hyperlink{interfacenum__utilities_1_1order__per__fun}{num\+\_\+utilities::\+order\+\_\+per\+\_\+fun}}
-\begin{DoxyCompactList}\small\item\em Order a periodic function to include $0\ldots 2\pi$ and an overlap. \end{DoxyCompactList}\item 
-interface \doxymbox{\hyperlink{interfacenum__utilities_1_1spline}{num\+\_\+utilities::\+spline}}
-\begin{DoxyCompactList}\small\item\em Wrapper to the pspline library, making it easier to use for 1-\/D applications where speed is not the main priority. If spline representations are to be reused, manually use the library. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Order a periodic function to include $0\ldots 2\pi$ and an overlap. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsubsection*{Modules}
 \begin{DoxyCompactItemize}
 \item 
@@ -37,8 +35,6 @@ module \doxymbox{\hyperlink{namespacenum__utilities}{num\+\_\+utilities}}
 \doxysubsubsection*{Functions/\+\+Subroutines}
 \begin{DoxyCompactItemize}
 \item 
-integer function \doxymbox{\hyperlink{num__utilities_8f90_a41f0ec23e08348e7498587997f483a00}{setup\+\_\+lim\+\_\+vals}} (xb, lim\+\_\+vals)
-\begin{DoxyCompactList}\small\item\em /\+private set up limit values \end{DoxyCompactList}\item 
 subroutine, public \doxymbox{\hyperlink{namespacenum__utilities_af461ae4c95a7a45da875dcf311e323f5}{num\+\_\+utilities::\+calc\+\_\+aux\+\_\+utilities}} (n\+\_\+mod)
 \begin{DoxyCompactList}\small\item\em Initialize utilities for fast future reference, depending on program style. \end{DoxyCompactList}\item 
 integer function, dimension(:\+,:\+), allocatable, public \doxymbox{\hyperlink{namespacenum__utilities_ac827c18dd05a9b5a06675eac942f3b51}{num\+\_\+utilities::\+derivs}} (order, dims)
@@ -49,6 +45,8 @@ integer function, public \doxymbox{\hyperlink{namespacenum__utilities_a2d5d9c66d
 \begin{DoxyCompactList}\small\item\em Extrapolates a function. \end{DoxyCompactList}\item 
 integer function, public \doxymbox{\hyperlink{namespacenum__utilities_a4dffe3beba7165dd17cff19a99a9e2ac}{num\+\_\+utilities::\+calc\+\_\+coeff\+\_\+fin\+\_\+diff}} (deriv, nr, ind, coeff)
 \begin{DoxyCompactList}\small\item\em Calculate the coefficients for finite differences. \end{DoxyCompactList}\item 
+integer function, public \doxymbox{\hyperlink{namespacenum__utilities_ad2f180cb684bc4bb965e3e07b26a92dc}{num\+\_\+utilities::\+calc\+\_\+end\+\_\+weights}} (ord, w)
+\begin{DoxyCompactList}\small\item\em Calculate the weights of the last points of a sum over an equidistant grid that belong to left finite differences of order {\ttfamily ord}. \end{DoxyCompactList}\item 
 integer function, public \doxymbox{\hyperlink{namespacenum__utilities_a5ee3fbd1fe67d0deefc7194631389f2a}{num\+\_\+utilities::\+c}} (ij, sym, n, lim\+\_\+n)
 \begin{DoxyCompactList}\small\item\em Convert 2-\/D coordinates (i,j) to the storage convention used in matrices. \end{DoxyCompactList}\item 
 recursive integer function, public \doxymbox{\hyperlink{namespacenum__utilities_a43ab60f9e202b55221373286a5bbb954}{num\+\_\+utilities::\+fac}} (n)
@@ -59,7 +57,7 @@ recursive integer function, public \doxymbox{\hyperlink{namespacenum__utilities_
 \begin{DoxyCompactList}\small\item\em Returns common multiple using the Euclid\textquotesingle{}s algorithm. \end{DoxyCompactList}\item 
 recursive integer function, public \doxymbox{\hyperlink{namespacenum__utilities_a3d0d04a582b3a528fc7f9975d5d2a807}{num\+\_\+utilities::\+gcd}} (u, v)
 \begin{DoxyCompactList}\small\item\em Returns least denominator using the GCD. \end{DoxyCompactList}\item 
-subroutine, public \doxymbox{\hyperlink{namespacenum__utilities_ac4791eac36bca5cfa2e30de02a09f95b}{num\+\_\+utilities::\+shift\+\_\+f}} (al, bl, cl, a, b, \doxymbox{\hyperlink{namespacenum__utilities_a5ee3fbd1fe67d0deefc7194631389f2a}{c}})
+subroutine, public \doxymbox{\hyperlink{namespacenum__utilities_ac4791eac36bca5cfa2e30de02a09f95b}{num\+\_\+utilities::\+shift\+\_\+f}} (al, bl, cl, a, b, c)
 \begin{DoxyCompactList}\small\item\em Calculate multiplication through shifting of fourier modes A and B into C. \end{DoxyCompactList}\item 
 subroutine, public \doxymbox{\hyperlink{namespacenum__utilities_a54c65e345182e2e7e13ac14a0ba3647a}{num\+\_\+utilities::\+solve\+\_\+vand}} (n, a, b, x, transp)
 \begin{DoxyCompactList}\small\item\em Solve a Vandermonde system $\overline{\text{A}} \ \vec{X} = \vec{B}$. \end{DoxyCompactList}\item 
@@ -78,29 +76,3 @@ logical, public \doxymbox{\hyperlink{namespacenum__utilities_ab7138a230a3c494c7a
 \begin{DoxyCompactList}\small\item\em plot debug information for con2dis\+\_\+reg() \end{DoxyCompactList}\item 
 logical, public \doxymbox{\hyperlink{namespacenum__utilities_ae20985c8049d39f987fa23d728688cbc}{num\+\_\+utilities::\+debug\+\_\+calc\+\_\+coeff\+\_\+fin\+\_\+diff}} = .false.
 \begin{DoxyCompactList}\small\item\em plot debug information for \doxylink{namespacenum__utilities_a4dffe3beba7165dd17cff19a99a9e2ac}{calc\+\_\+coeff\+\_\+fin\+\_\+diff()} \end{DoxyCompactList}\end{DoxyCompactItemize}
-
-
-\label{doc-func-members}
-\Hypertarget{num__utilities_8f90_doc-func-members}
-\doxysubsection{Function/\+\+Subroutine Documentation}
-\Hypertarget{num__utilities_8f90_a41f0ec23e08348e7498587997f483a00}\index{num\_utilities.f90@{num\_utilities.f90}!setup\_lim\_vals@{setup\_lim\_vals}}
-\index{setup\_lim\_vals@{setup\_lim\_vals}!num\_utilities.f90@{num\_utilities.f90}}
-\doxysubsubsection{\texorpdfstring{setup\_lim\_vals()}{setup\_lim\_vals()}}
-{\footnotesize\ttfamily \label{num__utilities_8f90_a41f0ec23e08348e7498587997f483a00} 
-integer function spline\+\_\+real::\+setup\+\_\+lim\+\_\+vals (\begin{DoxyParamCaption}\item[{real(dp), intent(in)}]{xb}{, }\item[{real(dp), dimension(0:\+3), intent(out)}]{lim\+\_\+vals}{}\end{DoxyParamCaption})}
-
-
-
-/\+private set up limit values 
-
-Makes use of f\+\_\+spl 
-
-Definition at line \doxymbox{\hyperlink{num__utilities_8f90_source_l01937}{1937}} of file \doxymbox{\hyperlink{num__utilities_8f90_source}{num\+\_\+utilities.\+f90}}.
-
-Here is the caller graph for this function:\+\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=350pt]{num__utilities_8f90_a41f0ec23e08348e7498587997f483a00_icgraph}
-\end{center}
-\end{figure}

@@ -19,7 +19,7 @@ subroutine, public \doxymbox{\hyperlink{namespacedriver__post_a71f9fb1935222111e
 \doxysubsection{Detailed Description}
 Main driver of Post\+Processing of program Peeling Ballooning in 3D. 
 
-\label{doc-func-members}
+\label{namespacedriver__post_doc-func-members}
 \Hypertarget{namespacedriver__post_doc-func-members}
 \doxysubsection{Function/\+\+Subroutine Documentation}
 \Hypertarget{namespacedriver__post_af527706d4e696d4e507443d2f74194ef}\index{driver\_post@{driver\_post}!init\_post@{init\_post}}
@@ -40,10 +40,10 @@ Initializes the POST driver.
 \item read grids (full)
 \item {\ttfamily eq\+\_\+1} (full) and {\ttfamily n} \& {\ttfamily m} (full)
 \end{DoxyItemize}
-\item set up output grids:\+
+\item set up output grids:
 \begin{DoxyItemize}
-\item {\ttfamily  POST\+\_\+style = 1}:\+ extended grid
-\item {\ttfamily  POST\+\_\+style = 2}:\+ field-\/aligned grid
+\item {\ttfamily  POST\+\_\+style = 1}: extended grid
+\item {\ttfamily  POST\+\_\+style = 2}: field-\/aligned grid
 \end{DoxyItemize}
 \item clean up
 \item set up final variables
@@ -77,14 +77,16 @@ ierr
 
 Definition at line \doxymbox{\hyperlink{driver__POST_8f90_source_l00076}{76}} of file \doxymbox{\hyperlink{driver__POST_8f90_source}{driver\+\_\+\+POST.\+f90}}.
 
-Here is the call graph for this function:\+\nopagebreak
+Here is the call graph for this function:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[height=550pt]{namespacedriver__post_af527706d4e696d4e507443d2f74194ef_cgraph}
 \end{center}
 \end{figure}
-Here is the caller graph for this function:\+\nopagebreak
+Here is the caller graph for this function:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -102,25 +104,25 @@ integer function, public driver\+\_\+post::\+run\+\_\+driver\+\_\+post}
 The main driver routine for postprocessing. 
 
 \begin{DoxyNote}{Note}
-The PB3D output is given on different grids for different styles of the equilibrium model:\+
+The PB3D output is given on different grids for different styles of the equilibrium model:
 \begin{DoxyItemize}
-\item VMEC:\+ field-\/aligned grid on which EV problem has been solved.
-\item HELENA:\+ output grid on which equilibrium and metric variables are tabulated.
+\item VMEC: field-\/aligned grid on which EV problem has been solved.
+\item HELENA: output grid on which equilibrium and metric variables are tabulated.
 \end{DoxyItemize}
 \end{DoxyNote}
 Furthermore, if Richardson extrapolation is used, the VMEC grids and variables are contained in multiple HDF5 variables. These variables are needed here both in a field-\/aligned and a plot grid.
 
 A consequence of the above is that for VMEC the field-\/aligned output is already given, but the output on the plot grid has to be calculated from scratch, while for HELENA both outputs have to be interpolated from the output tables.
 
-The general workflow is as follows:\+
+The general workflow is as follows:
 \begin{DoxyItemize}
 \item take a subset of the output grids for the current equilibrium job.
-\item for {\ttfamily POST\+\_\+style = 1} (extended grid):\+
+\item for {\ttfamily POST\+\_\+style = 1} (extended grid):
 \begin{DoxyItemize}
-\item VMEC:\+ recalculate variables
-\item HEL:\+ interpolate variables for {\ttfamily POST\+\_\+style = 2} (B-\/aligned grid):\+
-\item VMEC:\+ read subset of variables
-\item HEL:\+ interpolate variables
+\item VMEC: recalculate variables
+\item HEL: interpolate variables for {\ttfamily POST\+\_\+style = 2} (B-\/aligned grid):
+\item VMEC: read subset of variables
+\item HEL: interpolate variables
 \end{DoxyItemize}
 \item create helper variables
 \item create plots and outputs
@@ -131,16 +133,18 @@ ierr
 \end{DoxyReturn}
 
 
-Definition at line \doxymbox{\hyperlink{driver__POST_8f90_source_l00541}{541}} of file \doxymbox{\hyperlink{driver__POST_8f90_source}{driver\+\_\+\+POST.\+f90}}.
+Definition at line \doxymbox{\hyperlink{driver__POST_8f90_source_l00544}{544}} of file \doxymbox{\hyperlink{driver__POST_8f90_source}{driver\+\_\+\+POST.\+f90}}.
 
-Here is the call graph for this function:\+\nopagebreak
+Here is the call graph for this function:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{namespacedriver__post_a33b3c6f9018a0ddc92dce77394b8ab37_cgraph}
 \end{center}
 \end{figure}
-Here is the caller graph for this function:\+\nopagebreak
+Here is the caller graph for this function:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -159,16 +163,18 @@ Cleans up main driver for postprocessing.
 
 
 
-Definition at line \doxymbox{\hyperlink{driver__POST_8f90_source_l00815}{815}} of file \doxymbox{\hyperlink{driver__POST_8f90_source}{driver\+\_\+\+POST.\+f90}}.
+Definition at line \doxymbox{\hyperlink{driver__POST_8f90_source_l00822}{822}} of file \doxymbox{\hyperlink{driver__POST_8f90_source}{driver\+\_\+\+POST.\+f90}}.
 
-Here is the call graph for this function:\+\nopagebreak
+Here is the call graph for this function:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{namespacedriver__post_a71f9fb1935222111e1c7cfc15c5d0269_cgraph}
 \end{center}
 \end{figure}
-Here is the caller graph for this function:\+\nopagebreak
+Here is the caller graph for this function:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode

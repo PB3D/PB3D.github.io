@@ -47,11 +47,11 @@ Operations that use SLEPC (and PETSC) routines.
 The routines here require a {\bfseries{TRIMMED}} solution grid! 
 \end{DoxyNote}
 \begin{DoxySeeAlso}{See also}
-References:\+ \DoxyCite{hernandez2005slepc}{number}{1} 
+References: \DoxyCite{hernandez2005slepc}{number}{1} 
 \end{DoxySeeAlso}
 
 
-\label{doc-func-members}
+\label{namespaceslepc__ops_doc-func-members}
 \Hypertarget{namespaceslepc__ops_doc-func-members}
 \doxysubsection{Function/\+\+Subroutine Documentation}
 \Hypertarget{namespaceslepc__ops_aabe2aef90f039316bf3f03e651a6e7e0}\index{slepc\_ops@{slepc\_ops}!get\_solution@{get\_solution}}
@@ -69,16 +69,18 @@ ierr
 \end{DoxyReturn}
 
 
-Definition at line \doxymbox{\hyperlink{SLEPC__ops_8f90_source_l01533}{1533}} of file \doxymbox{\hyperlink{SLEPC__ops_8f90_source}{SLEPC\+\_\+ops.\+f90}}.
+Definition at line \doxymbox{\hyperlink{SLEPC__ops_8f90_source_l01390}{1390}} of file \doxymbox{\hyperlink{SLEPC__ops_8f90_source}{SLEPC\+\_\+ops.\+f90}}.
 
-Here is the call graph for this function:\+\nopagebreak
+Here is the call graph for this function:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{namespaceslepc__ops_aabe2aef90f039316bf3f03e651a6e7e0_cgraph}
 \end{center}
 \end{figure}
-Here is the caller graph for this function:\+\nopagebreak
+Here is the caller graph for this function:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -95,33 +97,21 @@ integer function, public slepc\+\_\+ops::\+set\+\_\+bc (\begin{DoxyParamCaption}
 
 Sets the boundary conditions deep in the plasma (1) and at the edge (2). 
 
-Through {\ttfamily norm\+\_\+disc\+\_\+style\+\_\+sol} it can be chosen whether the finite differences are:\+
-\begin{DoxyEnumerate}
-\item central finite differences
-\item left finite differences
-\end{DoxyEnumerate}
+The radial derivative is a left finite difference: the point itself and the {\ttfamily norm\+\_\+disc\+\_\+prec\+\_\+sol} points to its left.
 
-Possibilities for {\ttfamily BC\+\_\+style:\+} 
+Possibilities for {\ttfamily BC\+\_\+style:} 
 \begin{DoxyEnumerate}
-\item Set to zero:\+
+\item Set to zero (fixed boundary):
 \begin{DoxyItemize}
 \item An artificial Eigenvalue {\ttfamily EV\+\_\+\+BC} is introduced by setting the diagonal components of A to EV\+\_\+\+BC and of B to 1, and the off-\/diagonal elements to zero.
 \end{DoxyItemize}
-\item Minimization of surface energy through asymmetric fin. differences:\+
+\item Free boundary, through the energy:
 \begin{DoxyItemize}
-\item For symmetric finite differences, the last {\ttfamily ndps} grid points are treated asymmetrically in order not go over the edge and the vacuum term is added to the edge element.
-\item For left differences, this is already standard, so the method becomes identical to 2.
-\end{DoxyItemize}
-\item Minimization of surface energy through extension of grid:\+
-\begin{DoxyItemize}
-\item For symmetric finite differences, {\ttfamily ndps} extra grid points are introduced after the edge and the vacuum term is added to the edge element.
-\item For left finite differences, the vacuum term is just added to the edge element, so this method becomes idential to 3.
-\end{DoxyItemize}
-\item Explicit introduction of the surface energy minimization:\+
-\begin{DoxyItemize}
-\item The equation due to the minimization of the vacuum term is introduced explicitely as an asymmetric finite difference equation in the last row. -\/This is done using left finite differences.
+\item The natural boundary condition is not written into the matrix. The edge row is assembled like any other row, and the vacuum term is added to the edge diagonal block. This keeps A and B Hermitian. For orders 2 and 3 the last points get the weights of \doxylink{namespacenum__utilities_ad2f180cb684bc4bb965e3e07b26a92dc}{num\+\_\+utilities::\+calc\+\_\+end\+\_\+weights} in the normal integral. The last row is then the natural boundary condition, written with the left finite difference, plus the contribution of the last point to the Euler equation, which is smaller by a factor of the order of the step size (see Documentation/\+testing.\+md).
 \end{DoxyItemize}
 \end{DoxyEnumerate}
+
+The inner end takes style 1 only.
 
 Makes use of n\+\_\+r.
 
@@ -141,16 +131,18 @@ ierr
 \end{DoxyParams}
 
 
-Definition at line \doxymbox{\hyperlink{SLEPC__ops_8f90_source_l00932}{932}} of file \doxymbox{\hyperlink{SLEPC__ops_8f90_source}{SLEPC\+\_\+ops.\+f90}}.
+Definition at line \doxymbox{\hyperlink{SLEPC__ops_8f90_source_l00950}{950}} of file \doxymbox{\hyperlink{SLEPC__ops_8f90_source}{SLEPC\+\_\+ops.\+f90}}.
 
-Here is the call graph for this function:\+\nopagebreak
+Here is the call graph for this function:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{namespaceslepc__ops_a4f092f050bd0e5cc83575ea7b7871efb_cgraph}
 \end{center}
 \end{figure}
-Here is the caller graph for this function:\+\nopagebreak
+Here is the caller graph for this function:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -177,16 +169,18 @@ ierr
 \end{DoxyParams}
 
 
-Definition at line \doxymbox{\hyperlink{SLEPC__ops_8f90_source_l01452}{1452}} of file \doxymbox{\hyperlink{SLEPC__ops_8f90_source}{SLEPC\+\_\+ops.\+f90}}.
+Definition at line \doxymbox{\hyperlink{SLEPC__ops_8f90_source_l01309}{1309}} of file \doxymbox{\hyperlink{SLEPC__ops_8f90_source}{SLEPC\+\_\+ops.\+f90}}.
 
-Here is the call graph for this function:\+\nopagebreak
+Here is the call graph for this function:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{namespaceslepc__ops_a25621e09977bb8f0df239a395d5cca01_cgraph}
 \end{center}
 \end{figure}
-Here is the caller graph for this function:\+\nopagebreak
+Here is the caller graph for this function:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -220,16 +214,18 @@ ierr
 \end{DoxyParams}
 
 
-Definition at line \doxymbox{\hyperlink{SLEPC__ops_8f90_source_l00408}{408}} of file \doxymbox{\hyperlink{SLEPC__ops_8f90_source}{SLEPC\+\_\+ops.\+f90}}.
+Definition at line \doxymbox{\hyperlink{SLEPC__ops_8f90_source_l00410}{410}} of file \doxymbox{\hyperlink{SLEPC__ops_8f90_source}{SLEPC\+\_\+ops.\+f90}}.
 
-Here is the call graph for this function:\+\nopagebreak
+Here is the call graph for this function:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{namespaceslepc__ops_a500b46d275e7dda76ed46db7e2515b24_cgraph}
 \end{center}
 \end{figure}
-Here is the caller graph for this function:\+\nopagebreak
+Here is the caller graph for this function:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -256,16 +252,18 @@ ierr
 \end{DoxyParams}
 
 
-Definition at line \doxymbox{\hyperlink{SLEPC__ops_8f90_source_l01325}{1325}} of file \doxymbox{\hyperlink{SLEPC__ops_8f90_source}{SLEPC\+\_\+ops.\+f90}}.
+Definition at line \doxymbox{\hyperlink{SLEPC__ops_8f90_source_l01182}{1182}} of file \doxymbox{\hyperlink{SLEPC__ops_8f90_source}{SLEPC\+\_\+ops.\+f90}}.
 
-Here is the call graph for this function:\+\nopagebreak
+Here is the call graph for this function:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{namespaceslepc__ops_af991c38546b8d7ca2b0a61f5fa93592c_cgraph}
 \end{center}
 \end{figure}
-Here is the caller graph for this function:\+\nopagebreak
+Here is the caller graph for this function:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -305,14 +303,16 @@ ierr
 
 Definition at line \doxymbox{\hyperlink{SLEPC__ops_8f90_source_l00060}{60}} of file \doxymbox{\hyperlink{SLEPC__ops_8f90_source}{SLEPC\+\_\+ops.\+f90}}.
 
-Here is the call graph for this function:\+\nopagebreak
+Here is the call graph for this function:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{namespaceslepc__ops_ad5a8b4c450e66604733f3c04e7ef2bf9_cgraph}
 \end{center}
 \end{figure}
-Here is the caller graph for this function:\+\nopagebreak
+Here is the caller graph for this function:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -339,16 +339,18 @@ ierr
 \end{DoxyParams}
 
 
-Definition at line \doxymbox{\hyperlink{SLEPC__ops_8f90_source_l00332}{332}} of file \doxymbox{\hyperlink{SLEPC__ops_8f90_source}{SLEPC\+\_\+ops.\+f90}}.
+Definition at line \doxymbox{\hyperlink{SLEPC__ops_8f90_source_l00334}{334}} of file \doxymbox{\hyperlink{SLEPC__ops_8f90_source}{SLEPC\+\_\+ops.\+f90}}.
 
-Here is the call graph for this function:\+\nopagebreak
+Here is the call graph for this function:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{namespaceslepc__ops_a9cec5d9e8abc41d0d7ffb14352112040_cgraph}
 \end{center}
 \end{figure}
-Here is the caller graph for this function:\+\nopagebreak
+Here is the caller graph for this function:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -370,16 +372,18 @@ ierr
 \end{DoxyReturn}
 
 
-Definition at line \doxymbox{\hyperlink{SLEPC__ops_8f90_source_l02053}{2053}} of file \doxymbox{\hyperlink{SLEPC__ops_8f90_source}{SLEPC\+\_\+ops.\+f90}}.
+Definition at line \doxymbox{\hyperlink{SLEPC__ops_8f90_source_l01918}{1918}} of file \doxymbox{\hyperlink{SLEPC__ops_8f90_source}{SLEPC\+\_\+ops.\+f90}}.
 
-Here is the call graph for this function:\+\nopagebreak
+Here is the call graph for this function:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{namespaceslepc__ops_ae4204b9f599aee68ce8c259cec6ed041_cgraph}
 \end{center}
 \end{figure}
-Here is the caller graph for this function:\+\nopagebreak
+Here is the caller graph for this function:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -410,16 +414,18 @@ ierr
 \end{DoxyParams}
 
 
-Definition at line \doxymbox{\hyperlink{SLEPC__ops_8f90_source_l01632}{1632}} of file \doxymbox{\hyperlink{SLEPC__ops_8f90_source}{SLEPC\+\_\+ops.\+f90}}.
+Definition at line \doxymbox{\hyperlink{SLEPC__ops_8f90_source_l01489}{1489}} of file \doxymbox{\hyperlink{SLEPC__ops_8f90_source}{SLEPC\+\_\+ops.\+f90}}.
 
-Here is the call graph for this function:\+\nopagebreak
+Here is the call graph for this function:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{namespaceslepc__ops_a0edf7e300f161391955a2b1c4c76d12c_cgraph}
 \end{center}
 \end{figure}
-Here is the caller graph for this function:\+\nopagebreak
+Here is the caller graph for this function:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -441,16 +447,18 @@ ierr
 \end{DoxyReturn}
 
 
-Definition at line \doxymbox{\hyperlink{SLEPC__ops_8f90_source_l01563}{1563}} of file \doxymbox{\hyperlink{SLEPC__ops_8f90_source}{SLEPC\+\_\+ops.\+f90}}.
+Definition at line \doxymbox{\hyperlink{SLEPC__ops_8f90_source_l01420}{1420}} of file \doxymbox{\hyperlink{SLEPC__ops_8f90_source}{SLEPC\+\_\+ops.\+f90}}.
 
-Here is the call graph for this function:\+\nopagebreak
+Here is the call graph for this function:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{namespaceslepc__ops_a4cbeed85f05511e8219aef693c84dc3e_cgraph}
 \end{center}
 \end{figure}
-Here is the caller graph for this function:\+\nopagebreak
+Here is the caller graph for this function:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -459,7 +467,7 @@ Here is the caller graph for this function:\+\nopagebreak
 \end{figure}
 
 
-\label{doc-var-members}
+\label{namespaceslepc__ops_doc-var-members}
 \Hypertarget{namespaceslepc__ops_doc-var-members}
 \doxysubsection{Variable Documentation}
 \Hypertarget{namespaceslepc__ops_ad57b5fd70608c1b97454963bdd1c4f5b}\index{slepc\_ops@{slepc\_ops}!debug\_set\_bc@{debug\_set\_bc}}

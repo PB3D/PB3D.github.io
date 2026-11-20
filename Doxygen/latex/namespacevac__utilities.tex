@@ -8,7 +8,7 @@ Numerical utilities related to the vacuum response.
 \doxysubsubsection*{Functions/\+\+Subroutines}
 \begin{DoxyCompactItemize}
 \item 
-subroutine, public \doxymbox{\hyperlink{namespacevac__utilities_a167cd4d3bee273c153bd18c0904cf468}{calc\+\_\+gh\+\_\+int\+\_\+1}} (g, h, x\+\_\+s, x\+\_\+in, norm\+\_\+s, h\+\_\+fac\+\_\+in, step\+\_\+size, tol)
+subroutine, public \doxymbox{\hyperlink{namespacevac__utilities_a3b2836606e5331d38278bd3551c9bb75}{calc\+\_\+gh\+\_\+int\+\_\+1}} (g, h, x\+\_\+s, x\+\_\+in, norm\+\_\+s, h\+\_\+fac\+\_\+in, step\+\_\+size, tol, i\+\_\+int, use\+\_\+near)
 \begin{DoxyCompactList}\small\item\em Calculate G\+\_\+ij and H\+\_\+ij on an interval for field line aligned configurations. \end{DoxyCompactList}\item 
 subroutine, public \doxymbox{\hyperlink{namespacevac__utilities_a000076e068b91103036aeb8fffeca33a}{calc\+\_\+gh\+\_\+int\+\_\+2}} (g, h, t\+\_\+s, t\+\_\+in, x\+\_\+s, x\+\_\+in, norm\+\_\+s, norm\+\_\+in, aij, ql, tol, b\+\_\+coeff, n\+\_\+tor)
 \begin{DoxyCompactList}\small\item\em Calculate G\+\_\+ij and H\+\_\+ij on an interval for axisymmetric configurations. \end{DoxyCompactList}\item 
@@ -17,7 +17,36 @@ integer function, public \doxymbox{\hyperlink{namespacevac__utilities_a05e8e1f24
 integer function, public \doxymbox{\hyperlink{namespacevac__utilities_ae70e8a1fc132ba79a9a4f49f4944a352}{mat\+\_\+dis2loc}} (ctxt, mat\+\_\+dis, lims\+\_\+r, lims\+\_\+c, mat\+\_\+loc, proc)
 \begin{DoxyCompactList}\small\item\em Gathers a distributed vector on a single process. \end{DoxyCompactList}\item 
 integer function, public \doxymbox{\hyperlink{namespacevac__utilities_a8e7889688701f6ac2fd2c60cdee2b96a}{interlaced\+\_\+vac\+\_\+copy}} (vac\+\_\+old, vac)
-\begin{DoxyCompactList}\small\item\em Copies vacuum variables of a previous level into the appropriate, interlaced place of a next level. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Copies vacuum variables of a previous level into the appropriate, interlaced place of a next level. \end{DoxyCompactList}\item 
+integer function, public \doxymbox{\hyperlink{namespacevac__utilities_a69626f2c48bb9b457bdd83011379b4e1}{n\+\_\+col1\+\_\+loc}} (vac)
+\begin{DoxyCompactList}\small\item\em Number of local columns this process owns of a global column vector: the single column sits in the first block, owned by process column 0. \end{DoxyCompactList}\item 
+subroutine, public \doxymbox{\hyperlink{namespacevac__utilities_ab1118f6840ac23fb771f4bb6b3c8f4ce}{vec\+\_\+glob2dis}} (vac, x\+\_\+glob, x\+\_\+dis)
+\begin{DoxyCompactList}\small\item\em Scatter a global column vector into its local block-\/cyclic rows. \end{DoxyCompactList}\item 
+integer function, public \doxymbox{\hyperlink{namespacevac__utilities_a6e538c4419e87d8b4d73a5d25f381cbc}{dis\+\_\+matvec}} (vac, a, desc\+\_\+a, x\+\_\+glob, y\+\_\+glob)
+\begin{DoxyCompactList}\small\item\em Distributed matrix-\/vector product y = A x. \end{DoxyCompactList}\item 
+subroutine, public \doxymbox{\hyperlink{namespacevac__utilities_abc6ea224f7a8b897e3af84c6664f302b}{vac\+\_\+steps}} (dpar, dalpha)
+\begin{DoxyCompactList}\small\item\em Step sizes of the field-\/line grid in the parallel coordinate and in the field-\/line label, as used by the field-\/line vacuum: the parallel points include both ends, the field lines exclude the end point in alpha (\doxylink{namespacerich__ops}{rich\+\_\+ops}). \end{DoxyCompactList}\item 
+pure real(dp) function, dimension(3), public \doxymbox{\hyperlink{namespacevac__utilities_a13a76cbe206a6ebe6585193406e5fcb1}{cross3}} (u, v)
+\begin{DoxyCompactList}\small\item\em Cross product of two 3-\/vectors. \end{DoxyCompactList}\item 
+pure subroutine, public \doxymbox{\hyperlink{namespacevac__utilities_aa328b578696f4e3c3757fa9f79a8755c}{solid\+\_\+angle\+\_\+node}} (u, n\+\_\+hat, omega)
+\begin{DoxyCompactList}\small\item\em Solid angle at a node of the mesh, on the side of {\ttfamily n\+\_\+hat}. \end{DoxyCompactList}\item 
+pure subroutine, public \doxymbox{\hyperlink{namespacevac__utilities_a417d6c8e3b25f43341db35da8eb82249}{h\+\_\+sing\+\_\+node}} (norm0, g, dd, dpar, dalpha, i\+\_\+sing)
+\begin{DoxyCompactList}\small\item\em Integral of the H kernel over the cell of a node of the field-\/line mesh. \end{DoxyCompactList}\item 
+integer function, public \doxymbox{\hyperlink{namespacevac__utilities_a3c3d0d491021b5c7ebb76c977eaf1da2}{calc\+\_\+diag\+\_\+direct}} (vac, dpar, dalpha, diag\+\_\+direct, diag\+\_\+facet, i\+\_\+sing, omega\+\_\+v, avail)
+\begin{DoxyCompactList}\small\item\em Direct diagonals of H for the field-\/line vacuum. \end{DoxyCompactList}\item 
+integer function, public \doxymbox{\hyperlink{namespacevac__utilities_acbb1dd4bf17dad7f8332fe211af6492c}{dis\+\_\+diag}} (vac, a, diag\+\_\+glob)
+\begin{DoxyCompactList}\small\item\em Gathers the diagonal of a distributed matrix on all processes. \end{DoxyCompactList}\item 
+integer function, public \doxymbox{\hyperlink{namespacevac__utilities_aa2cd312350e1c3f53293a13d94f23654}{fit\+\_\+diag}} (vac, phi, dphi, c\+\_\+free, fit\+\_\+h, fit\+\_\+g, dh, dg)
+\begin{DoxyCompactList}\small\item\em Fits diagonal entries of H and G to Green\textquotesingle{}s identity for potentials whose boundary values and normal data are known. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+integer, parameter \doxymbox{\hyperlink{namespacevac__utilities_a10cde0c309c1b810eb2fb6dd54e87b7b}{n\+\_\+gl16}} = 16
+\begin{DoxyCompactList}\small\item\em number of points \end{DoxyCompactList}\item 
+real(dp), dimension(\doxymbox{\hyperlink{namespacevac__utilities_a10cde0c309c1b810eb2fb6dd54e87b7b}{n\+\_\+gl16}}), parameter \doxymbox{\hyperlink{namespacevac__utilities_ad9f479331f1d097095e9d50eb58a2629}{gl16\+\_\+x}} = \+[-\/0.\+9894009349916499\+\_\+dp, -\/0.\+9445750230732326\+\_\+dp, -\/0.\+8656312023878316\+\_\+dp, -\/0.\+7554044083550031\+\_\+dp, -\/0.\+6178762444026438\+\_\+dp, -\/0.\+4580167776572274\+\_\+dp, -\/0.\+2816035507792589\+\_\+dp, -\/0.\+0950125098376374\+\_\+dp, 0.\+0950125098376374\+\_\+dp, 0.\+2816035507792589\+\_\+dp, 0.\+4580167776572274\+\_\+dp, 0.\+6178762444026438\+\_\+dp, 0.\+7554044083550031\+\_\+dp, 0.\+8656312023878316\+\_\+dp, 0.\+9445750230732326\+\_\+dp, 0.\+9894009349916499\+\_\+dp]
+\begin{DoxyCompactList}\small\item\em abscissas \end{DoxyCompactList}\item 
+real(dp), dimension(\doxymbox{\hyperlink{namespacevac__utilities_a10cde0c309c1b810eb2fb6dd54e87b7b}{n\+\_\+gl16}}), parameter \doxymbox{\hyperlink{namespacevac__utilities_a6b32be38dc5dbcfea100ec8aaec304bd}{gl16\+\_\+w}} = \+[0.\+0271524594117541\+\_\+dp, 0.\+0622535239386476\+\_\+dp, 0.\+0951585116824930\+\_\+dp, 0.\+1246289712555339\+\_\+dp, 0.\+1495959888165767\+\_\+dp, 0.\+1691565193950026\+\_\+dp, 0.\+1826034150449236\+\_\+dp, 0.\+1894506104550686\+\_\+dp, 0.\+1894506104550686\+\_\+dp, 0.\+1826034150449236\+\_\+dp, 0.\+1691565193950026\+\_\+dp, 0.\+1495959888165767\+\_\+dp, 0.\+1246289712555339\+\_\+dp, 0.\+0951585116824930\+\_\+dp, 0.\+0622535239386476\+\_\+dp, 0.\+0271524594117541\+\_\+dp]
+\begin{DoxyCompactList}\small\item\em weights \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
@@ -28,50 +57,123 @@ Numerical utilities related to the vacuum response.
 \end{DoxySeeAlso}
 
 
-\label{doc-func-members}
+\label{namespacevac__utilities_doc-func-members}
 \Hypertarget{namespacevac__utilities_doc-func-members}
 \doxysubsection{Function/\+\+Subroutine Documentation}
-\Hypertarget{namespacevac__utilities_a167cd4d3bee273c153bd18c0904cf468}\index{vac\_utilities@{vac\_utilities}!calc\_gh\_int\_1@{calc\_gh\_int\_1}}
+\Hypertarget{namespacevac__utilities_a3c3d0d491021b5c7ebb76c977eaf1da2}\index{vac\_utilities@{vac\_utilities}!calc\_diag\_direct@{calc\_diag\_direct}}
+\index{calc\_diag\_direct@{calc\_diag\_direct}!vac\_utilities@{vac\_utilities}}
+\doxysubsubsection{\texorpdfstring{calc\_diag\_direct()}{calc\_diag\_direct()}}
+{\footnotesize\ttfamily \label{namespacevac__utilities_a3c3d0d491021b5c7ebb76c977eaf1da2} 
+integer function, public vac\+\_\+utilities::\+calc\+\_\+diag\+\_\+direct (\begin{DoxyParamCaption}\item[{type(\doxymbox{\hyperlink{structvac__vars_1_1vac__type}{vac\+\_\+type}}), intent(in)}]{vac}{, }\item[{real(dp), intent(in)}]{dpar}{, }\item[{real(dp), intent(in)}]{dalpha}{, }\item[{real(dp), dimension(:\+), intent(out)}]{diag\+\_\+direct}{, }\item[{real(dp), dimension(:\+), intent(out)}]{diag\+\_\+facet}{, }\item[{real(dp), dimension(:\+), intent(out)}]{i\+\_\+sing}{, }\item[{real(dp), dimension(:\+), intent(out)}]{omega\+\_\+v}{, }\item[{logical, dimension(:\+), intent(out)}]{avail}{}\end{DoxyParamCaption})}
+
+
+
+Direct diagonals of H for the field-\/line vacuum. 
+
+Two variants, both with the cell integral of the kernel (H\+\_\+sing\+\_\+node):
+\begin{DoxyItemize}
+\item smooth: $-2\pi$ for the corner term, the solid angle of the vacuum at a point of the smooth surface, consistent with the kernels of calc\+\_\+\+GH\+\_\+int\+\_\+1, which are evaluated on the smooth surface;
+\item faceted: minus the vacuum\textquotesingle{}s solid angle at the node of the faceted surface, eq. (45) of the 2019 manuscript (solid\+\_\+angle\+\_\+node), which belongs to a discretization with flat elements; on a skewed mesh, such as the field-\/aligned one, the facets tilt strongly (erratum E6) and this value is far from $2\pi$. The four edges run to the neighbours along the field line and on the neighbouring lines (periodic in the field-\/line label). The second derivatives of the position come from second differences of the stored points. The end points of the field lines have only three edges and half a cell, and are left out ({\ttfamily avail} false). 
+\begin{DoxyParams}[1]{Parameters}
+\doxymbox{\texttt{in}}  & {\em vac} & vacuum variables \\
+\hline
+\doxymbox{\texttt{in}}  & {\em dpar} & parallel step \\
+\hline
+\doxymbox{\texttt{in}}  & {\em dalpha} & step in the field-\/line label \\
+\hline
+\doxymbox{\texttt{out}}  & {\em diag\+\_\+direct} & direct diagonal of H for the smooth surface: -\/2 pi plus the cell integral \\
+\hline
+\doxymbox{\texttt{out}}  & {\em diag\+\_\+facet} & the same for the faceted surface: minus the vacuum\textquotesingle{}s solid angle at the node plus the cell integral \\
+\hline
+\doxymbox{\texttt{out}}  & {\em i\+\_\+sing} & its cell-\/integral part \\
+\hline
+\doxymbox{\texttt{out}}  & {\em omega\+\_\+v} & the vacuum\textquotesingle{}s solid angle at the node \\
+\hline
+\doxymbox{\texttt{out}}  & {\em avail} & whether the point has a direct value \\
+\hline
+\end{DoxyParams}
+
+\end{DoxyItemize}
+
+Definition at line \doxymbox{\hyperlink{vac__utilities_8f90_source_l00899}{899}} of file \doxymbox{\hyperlink{vac__utilities_8f90_source}{vac\+\_\+utilities.\+f90}}.
+
+Here is the call graph for this function:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespacevac__utilities_a3c3d0d491021b5c7ebb76c977eaf1da2_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespacevac__utilities_a3c3d0d491021b5c7ebb76c977eaf1da2_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{namespacevac__utilities_a3b2836606e5331d38278bd3551c9bb75}\index{vac\_utilities@{vac\_utilities}!calc\_gh\_int\_1@{calc\_gh\_int\_1}}
 \index{calc\_gh\_int\_1@{calc\_gh\_int\_1}!vac\_utilities@{vac\_utilities}}
 \doxysubsubsection{\texorpdfstring{calc\_gh\_int\_1()}{calc\_gh\_int\_1()}}
-{\footnotesize\ttfamily \label{namespacevac__utilities_a167cd4d3bee273c153bd18c0904cf468} 
-subroutine, public vac\+\_\+utilities::\+calc\+\_\+gh\+\_\+int\+\_\+1 (\begin{DoxyParamCaption}\item[{real(dp), dimension(2), intent(inout)}]{g}{, }\item[{real(dp), dimension(2), intent(inout)}]{h}{, }\item[{real(dp), dimension(2,3), intent(in)}]{x\+\_\+s}{, }\item[{real(dp), dimension(3), intent(in)}]{x\+\_\+in}{, }\item[{real(dp), dimension(2,3), intent(in)}]{norm\+\_\+s}{, }\item[{real(dp), dimension(4), intent(in)}]{h\+\_\+fac\+\_\+in}{, }\item[{real(dp), dimension(2), intent(in)}]{step\+\_\+size}{, }\item[{real(dp), intent(in)}]{tol}{}\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \label{namespacevac__utilities_a3b2836606e5331d38278bd3551c9bb75} 
+subroutine, public vac\+\_\+utilities::\+calc\+\_\+gh\+\_\+int\+\_\+1 (\begin{DoxyParamCaption}\item[{real(dp), dimension(2), intent(inout)}]{g}{, }\item[{real(dp), dimension(2), intent(inout)}]{h}{, }\item[{real(dp), dimension(4,3), intent(in)}]{x\+\_\+s}{, }\item[{real(dp), dimension(3), intent(in)}]{x\+\_\+in}{, }\item[{real(dp), dimension(4,3), intent(in)}]{norm\+\_\+s}{, }\item[{real(dp), dimension(3), intent(in)}]{h\+\_\+fac\+\_\+in}{, }\item[{real(dp), dimension(2), intent(in)}]{step\+\_\+size}{, }\item[{real(dp), intent(in)}]{tol}{, }\item[{integer, intent(in)}]{i\+\_\+int}{, }\item[{logical, intent(in), optional}]{use\+\_\+near}{}\end{DoxyParamCaption})}
 
 
 
 Calculate G\+\_\+ij and H\+\_\+ij on an interval for field line aligned configurations. 
 
-The indices for the source variables are {\ttfamily \+[left:\+right,dim]\+} where {\ttfamily dim} is the Cartesian dimension. The same holds for {\ttfamily ql}.
+The source variables are given on a stencil of four consecutive points of the field line, {\ttfamily \+[1:4,dim]} with {\ttfamily dim} the Cartesian dimension; the interval is the one between stencil points {\ttfamily i\+\_\+int} and {\ttfamily i\+\_\+int+1}. Each endpoint receives the kernel integrated over its half of the interval, normalized to the half-\/cell weight  $\Delta p  \Delta a /
+        2$ that calc\+\_\+\+GH\+\_\+1 applies, so that a constant kernel returns its value.
 
-For subintegrals close to the singularity, the procedure uses the analytical approximation.
+Far from the influence point, more than {\ttfamily n\+\_\+near} interval lengths away, the kernel value at the endpoint is used, which amounts to the trapezoidal rule along the field line. Closer, the kernel is integrated over the half-\/interval with 8-\/point Gauss-\/\+Legendre on the cubic interpolant of position and normal through the stencil. This resolves the variation of the kernel along a neighbouring field line: where the field lines run almost toroidally, as at the bean tips of W7-\/X, they are packed far closer (0.\+007 $R_0$) than the points along them (0.\+06 $R_0$), the kernel seen along the neighbouring line is a peak much narrower than the point spacing, and sampling it at the points gives errors of order one whose sign depends on how the points of neighbouring lines happen to line up. The stencil and the Gauss points lie on one field line, so this rule changes the integral along the line only; across the field lines calc\+\_\+\+GH\+\_\+1 keeps the sum with the weight $\Delta a$ per field line.
+
+For subintegrals adjacent to the singularity (i.\+e. with the influence point as one of their endpoints), the contribution of the singular endpoint is replaced by the analytical integral of the kernel over its grid half-\/cell. In field-\/aligned coordinates, with $\delta p$ along the field line (metric $g_{\theta\theta}$ = {\ttfamily h\+\_\+fac(3)}) and $\delta a$ the field line label (metric $g_{\alpha\alpha}$ = {\ttfamily h\+\_\+fac(1)}, coupling $g_{\alpha\theta}$ = {\ttfamily h\+\_\+fac(2)}), the squared distance near the singular point is the quadratic form  $ g_{\theta\theta} \delta p^2 + 2 g_{\alpha\theta} \delta p \delta a
+         + g_{\alpha\alpha} \delta a^2 $, and with the metric-\/normalized half-\/cell sizes  $U = \sqrt{g_{\theta
+        \theta}} \Delta p/2$, $V = \sqrt{g_{\alpha\alpha}} \Delta a/2$ and nonorthogonality  $s  = g_{\alpha\theta}  /  \sqrt{g_{\alpha\alpha}
+        g_{\theta\theta}}$, the exact primitive is     \[ \int_0^U \int_{-V}^{V} \frac{\text{d}u \text{d}v}
+         {\sqrt{u^2+2suv+v^2}} =
+         U \ln\left(\frac{V+sU+D_+}{-V+sU+D_-}\right) +
+         V \ln\left(\frac{U+sV+D_+}{-U+sV+D_-}\right), \quad
+         D_\pm = \sqrt{U^2 \pm 2sUV + V^2}. \] In the same units as the regular kernel values, the singular endpoint contribution is then  $-2 F / (\Delta p \Delta a \sqrt{g_{\alpha\alpha} g_{\theta\theta}})
+$.
+
+(Verified against brute-\/force quadrature in the full-\/stack tests.)
 
 \begin{DoxyNote}{Note}
-This routine does not calculate the contribution $2\beta$. 
+This routine does not calculate the contribution $2\beta$ nor the cell integral of the H kernel at the singular point: \doxylink{namespacevac__ops_a8d70ea940b7548e4a2f397699c694b67}{vac\+\_\+ops.\+calc\+\_\+gh()} sets the diagonals afterwards. By default both come from the identities of vac\+\_\+ops.\+diag\+\_\+indirect(), which replace the half-\/cell value of G computed here; with {\ttfamily vac\+\_\+diag\+\_\+style} 2 the diagonal of H comes from \doxylink{namespacevac__utilities_a3c3d0d491021b5c7ebb76c977eaf1da2}{calc\+\_\+diag\+\_\+direct()} and G keeps the half-\/cell value.
+
+With {\ttfamily use\+\_\+near} false the near-\/field rule is not used. For points off the boundary (\doxylink{namespacevac__ops_a33bf7285ead934fa8e4242c708542d92}{vac\+\_\+ops.\+eval\+\_\+pot\+\_\+ext()}) it pays only within about an interval length of the boundary: farther out the trapezoidal rule along the lines and across them is more accurate, because the errors of the trapezoidal rule at the ends of the lines cancel between the lines, whose ends interleave, while the edge of the near-\/field zone leaves an error of second order in the step along the lines (on the circular VMEC twin at 64 lines of 100 points: 1e-\/3 of the potential at half a minor radius from the boundary, against 1e-\/7 with the trapezoidal rule alone). 
 \end{DoxyNote}
 
 \begin{DoxyParams}[1]{Parameters}
-\doxymbox{\texttt{in}}  & {\em x\+\_\+s} & position vector at left and right limit of source interval \\
+\doxymbox{\texttt{in}}  & {\em x\+\_\+s} & position vector at the four stencil points \\
 \hline
 \doxymbox{\texttt{in}}  & {\em x\+\_\+in} & position vector at which to calculate influence \\
 \hline
-\doxymbox{\texttt{in}}  & {\em norm\+\_\+s} & normal vector at left and right limit of source interval \\
+\doxymbox{\texttt{in}}  & {\em norm\+\_\+s} & normal vector at the four stencil points \\
 \hline
-\doxymbox{\texttt{in}}  & {\em h\+\_\+fac\+\_\+in} & metric factors at which to calculate influence \\
+\doxymbox{\texttt{in}}  & {\em h\+\_\+fac\+\_\+in} & metric factors g\+\_\+aa, g\+\_\+at, g\+\_\+tt at the influence point \\
 \hline
 \doxymbox{\texttt{in}}  & {\em step\+\_\+size} & step sizes in parallel direction and alpha \\
 \hline
-\doxymbox{\texttt{in}}  & {\em tol} & tolerance on distance between points \\
+\doxymbox{\texttt{in}}  & {\em tol} & tolerance on the squared distance between an endpoint and the influence point \\
+\hline
+\doxymbox{\texttt{in}}  & {\em i\+\_\+int} & stencil index of the left point of the interval (1, 2 or 3) \\
+\hline
+\doxymbox{\texttt{in}}  & {\em use\+\_\+near} & whether the near-\/field rule may be used (default true) \\
 \hline
 \end{DoxyParams}
 
 
-Definition at line \doxymbox{\hyperlink{vac__utilities_8f90_source_l00032}{32}} of file \doxymbox{\hyperlink{vac__utilities_8f90_source}{vac\+\_\+utilities.\+f90}}.
+Definition at line \doxymbox{\hyperlink{vac__utilities_8f90_source_l00114}{114}} of file \doxymbox{\hyperlink{vac__utilities_8f90_source}{vac\+\_\+utilities.\+f90}}.
 
-Here is the caller graph for this function:\+\nopagebreak
+Here is the caller graph for this function:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=350pt]{namespacevac__utilities_a167cd4d3bee273c153bd18c0904cf468_icgraph}
+\includegraphics[width=350pt]{namespacevac__utilities_a3b2836606e5331d38278bd3551c9bb75_icgraph}
 \end{center}
 \end{figure}
 \Hypertarget{namespacevac__utilities_a000076e068b91103036aeb8fffeca33a}\index{vac\_utilities@{vac\_utilities}!calc\_gh\_int\_2@{calc\_gh\_int\_2}}
@@ -84,12 +186,12 @@ subroutine, public vac\+\_\+utilities::\+calc\+\_\+gh\+\_\+int\+\_\+2 (\begin{Do
 
 Calculate G\+\_\+ij and H\+\_\+ij on an interval for axisymmetric configurations. 
 
-The indices for the source variables are {\ttfamily \+[left:\+right,dim]\+} where {\ttfamily dim} is the Cartesian dimension. The same holds for {\ttfamily ql}.
+The indices for the source variables are {\ttfamily \+[left:right,dim]} where {\ttfamily dim} is the Cartesian dimension. The same holds for {\ttfamily ql}.
 
 For subintegrals close to the singularity (i.\+e. where the tolerance is no being met), the routine approximates the toroidal functions with the analytical approximation. If one of the boundaries of the subintegral is far enough from the singularity, there is an additional contribution due to the difference between the actual toroidal function and the approximation. This contribution is zero if both boundaries are close, because in this case it is assumed that the entire integral is given by the analytical approximation.
 
 \begin{DoxyNote}{Note}
-This routine does not calculate the contribution $2\beta$. 
+The kernels are those of eqs. (130)-\/(131) of the 2019 manuscript with the sign of H reversed (the leading minus signs of the three H formulas): the normal derivative is taken along the stored normal $-\mathcal{J}\nabla\psi$, out of the vacuum, for both vacuum styles (erratum E1 of that manuscript). This routine does not calculate the corner term: calc\+\_\+\+GH\+\_\+2 adds $-2\beta$ to the diagonal of H, with $\beta$ the vacuum\textquotesingle{}s internal angle on the vacuum side. 
 \end{DoxyNote}
 
 \begin{DoxyParams}[1]{Parameters}
@@ -118,13 +220,221 @@ This routine does not calculate the contribution $2\beta$.
 \end{DoxyParams}
 
 
-Definition at line \doxymbox{\hyperlink{vac__utilities_8f90_source_l00097}{97}} of file \doxymbox{\hyperlink{vac__utilities_8f90_source}{vac\+\_\+utilities.\+f90}}.
+Definition at line \doxymbox{\hyperlink{vac__utilities_8f90_source_l00221}{221}} of file \doxymbox{\hyperlink{vac__utilities_8f90_source}{vac\+\_\+utilities.\+f90}}.
 
-Here is the caller graph for this function:\+\nopagebreak
+Here is the caller graph for this function:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{namespacevac__utilities_a000076e068b91103036aeb8fffeca33a_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{namespacevac__utilities_a13a76cbe206a6ebe6585193406e5fcb1}\index{vac\_utilities@{vac\_utilities}!cross3@{cross3}}
+\index{cross3@{cross3}!vac\_utilities@{vac\_utilities}}
+\doxysubsubsection{\texorpdfstring{cross3()}{cross3()}}
+{\footnotesize\ttfamily \label{namespacevac__utilities_a13a76cbe206a6ebe6585193406e5fcb1} 
+pure real(dp) function, dimension(3), public vac\+\_\+utilities::\+cross3 (\begin{DoxyParamCaption}\item[{real(dp), dimension(3), intent(in)}]{u}{, }\item[{real(dp), dimension(3), intent(in)}]{v}{}\end{DoxyParamCaption})}
+
+
+
+Cross product of two 3-\/vectors. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\doxymbox{\texttt{in}}  & {\em v} & vectors \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+their cross product 
+\end{DoxyReturn}
+
+
+Definition at line \doxymbox{\hyperlink{vac__utilities_8f90_source_l00718}{718}} of file \doxymbox{\hyperlink{vac__utilities_8f90_source}{vac\+\_\+utilities.\+f90}}.
+
+Here is the caller graph for this function:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespacevac__utilities_a13a76cbe206a6ebe6585193406e5fcb1_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{namespacevac__utilities_acbb1dd4bf17dad7f8332fe211af6492c}\index{vac\_utilities@{vac\_utilities}!dis\_diag@{dis\_diag}}
+\index{dis\_diag@{dis\_diag}!vac\_utilities@{vac\_utilities}}
+\doxysubsubsection{\texorpdfstring{dis\_diag()}{dis\_diag()}}
+{\footnotesize\ttfamily \label{namespacevac__utilities_acbb1dd4bf17dad7f8332fe211af6492c} 
+integer function, public vac\+\_\+utilities::\+dis\+\_\+diag (\begin{DoxyParamCaption}\item[{type(\doxymbox{\hyperlink{structvac__vars_1_1vac__type}{vac\+\_\+type}}), intent(in)}]{vac}{, }\item[{real(dp), dimension(:\+,:\+), intent(in)}]{a}{, }\item[{real(dp), dimension(:\+), intent(out)}]{diag\+\_\+glob}{}\end{DoxyParamCaption})}
+
+
+
+Gathers the diagonal of a distributed matrix on all processes. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\doxymbox{\texttt{in}}  & {\em vac} & vacuum variables \\
+\hline
+\doxymbox{\texttt{in}}  & {\em a} & local part of distributed matrix \\
+\hline
+\doxymbox{\texttt{out}}  & {\em diag\+\_\+glob} & its diagonal, global \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \doxymbox{\hyperlink{vac__utilities_8f90_source_l00982}{982}} of file \doxymbox{\hyperlink{vac__utilities_8f90_source}{vac\+\_\+utilities.\+f90}}.
+
+Here is the call graph for this function:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespacevac__utilities_acbb1dd4bf17dad7f8332fe211af6492c_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespacevac__utilities_acbb1dd4bf17dad7f8332fe211af6492c_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{namespacevac__utilities_a6e538c4419e87d8b4d73a5d25f381cbc}\index{vac\_utilities@{vac\_utilities}!dis\_matvec@{dis\_matvec}}
+\index{dis\_matvec@{dis\_matvec}!vac\_utilities@{vac\_utilities}}
+\doxysubsubsection{\texorpdfstring{dis\_matvec()}{dis\_matvec()}}
+{\footnotesize\ttfamily \label{namespacevac__utilities_a6e538c4419e87d8b4d73a5d25f381cbc} 
+integer function, public vac\+\_\+utilities::\+dis\+\_\+matvec (\begin{DoxyParamCaption}\item[{type(\doxymbox{\hyperlink{structvac__vars_1_1vac__type}{vac\+\_\+type}}), intent(in)}]{vac}{, }\item[{real(dp), dimension(:\+,:\+), intent(in)}]{a}{, }\item[{integer, dimension(blacsctxtsize), intent(in)}]{desc\+\_\+a}{, }\item[{real(dp), dimension(:\+), intent(in)}]{x\+\_\+glob}{, }\item[{real(dp), dimension(:\+), intent(out)}]{y\+\_\+glob}{}\end{DoxyParamCaption})}
+
+
+
+Distributed matrix-\/vector product y = A x. 
+
+{\ttfamily A} is a local part of a distributed n\+\_\+bnd x n\+\_\+bnd matrix with descriptor {\ttfamily desc\+\_\+A} (e.\+g. vacH with vacdesc\+\_\+H), {\ttfamily x\+\_\+glob} is globally replicated, and {\ttfamily y\+\_\+glob} is returned complete on all processes in the context (zero outside it). Used by the exact-\/potential checks of the vacuum operators (vac\+\_\+ops.\+check\+\_\+vac\+\_\+exact() and the full-\/stack tests). 
+\begin{DoxyParams}[1]{Parameters}
+\doxymbox{\texttt{in}}  & {\em vac} & vacuum variables \\
+\hline
+\doxymbox{\texttt{in}}  & {\em a} & local part of distributed matrix \\
+\hline
+\doxymbox{\texttt{in}}  & {\em desc\+\_\+a} & descriptor of A \\
+\hline
+\doxymbox{\texttt{in}}  & {\em x\+\_\+glob} & global input vector \\
+\hline
+\doxymbox{\texttt{out}}  & {\em y\+\_\+glob} & global result vector \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \doxymbox{\hyperlink{vac__utilities_8f90_source_l00667}{667}} of file \doxymbox{\hyperlink{vac__utilities_8f90_source}{vac\+\_\+utilities.\+f90}}.
+
+Here is the call graph for this function:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespacevac__utilities_a6e538c4419e87d8b4d73a5d25f381cbc_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespacevac__utilities_a6e538c4419e87d8b4d73a5d25f381cbc_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{namespacevac__utilities_aa2cd312350e1c3f53293a13d94f23654}\index{vac\_utilities@{vac\_utilities}!fit\_diag@{fit\_diag}}
+\index{fit\_diag@{fit\_diag}!vac\_utilities@{vac\_utilities}}
+\doxysubsubsection{\texorpdfstring{fit\_diag()}{fit\_diag()}}
+{\footnotesize\ttfamily \label{namespacevac__utilities_aa2cd312350e1c3f53293a13d94f23654} 
+integer function, public vac\+\_\+utilities::\+fit\+\_\+diag (\begin{DoxyParamCaption}\item[{type(\doxymbox{\hyperlink{structvac__vars_1_1vac__type}{vac\+\_\+type}}), intent(in)}]{vac}{, }\item[{real(dp), dimension(:\+,:\+), intent(in)}]{phi}{, }\item[{real(dp), dimension(:\+,:\+), intent(in)}]{dphi}{, }\item[{real(dp), dimension(:\+), intent(in)}]{c\+\_\+free}{, }\item[{logical, intent(in)}]{fit\+\_\+h}{, }\item[{logical, intent(in)}]{fit\+\_\+g}{, }\item[{real(dp), dimension(:\+), intent(inout)}]{dh}{, }\item[{real(dp), dimension(:\+), intent(inout)}]{dg}{}\end{DoxyParamCaption})}
+
+
+
+Fits diagonal entries of H and G to Green\textquotesingle{}s identity for potentials whose boundary values and normal data are known. 
+
+For a potential $\phi_k$ with normal data $\phi\textnormal{\textquotesingle}_k$, row $i$ of the identity is  \[ H_{ii}\phi_{k,i} - G_{ii}\phi\textnormal{\textquotesingle}_{k,i} = c_k\phi_{k,i}
+         - \sum_{j\ne i} H_{ij}\phi_{k,j} + \sum_{j\ne i} G_{ij}\phi\textnormal{\textquotesingle}_{k,j} , \] where the free term $c_k$ is $-4\pi$ for a potential that is harmonic inside the boundary and $0$ for one that is harmonic outside it and decays. This routine solves these equations for each row, in the least-\/squares sense over the potentials, for the entries that {\ttfamily fit\+\_\+H} and {\ttfamily fit\+\_\+G} select. An entry that is not fitted keeps the value that {\ttfamily dH} or {\ttfamily dG} holds on input, and the routine moves its term to the right-\/hand side. The off-\/diagonal sums are the products with the full matrices minus their current diagonals, so the matrices are not changed. 
+\begin{DoxyParams}[1]{Parameters}
+\doxymbox{\texttt{in}}  & {\em vac} & vacuum variables \\
+\hline
+\doxymbox{\texttt{in}}  & {\em phi} & potentials at the boundary points, one column per potential \\
+\hline
+\doxymbox{\texttt{in}}  & {\em dphi} & their normal data \\
+\hline
+\doxymbox{\texttt{in}}  & {\em c\+\_\+free} & free term of the identity of each potential \\
+\hline
+\doxymbox{\texttt{in}}  & {\em fit\+\_\+h} & fit the diagonal of H \\
+\hline
+\doxymbox{\texttt{in}}  & {\em fit\+\_\+g} & fit the diagonal of G \\
+\hline
+\doxymbox{\texttt{in,out}}  & {\em dh} & diagonal of H (global): known on input, or fitted on output \\
+\hline
+\doxymbox{\texttt{in,out}}  & {\em dg} & diagonal of G (global): known on input, or fitted on output \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \doxymbox{\hyperlink{vac__utilities_8f90_source_l01026}{1026}} of file \doxymbox{\hyperlink{vac__utilities_8f90_source}{vac\+\_\+utilities.\+f90}}.
+
+Here is the call graph for this function:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespacevac__utilities_aa2cd312350e1c3f53293a13d94f23654_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespacevac__utilities_aa2cd312350e1c3f53293a13d94f23654_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{namespacevac__utilities_a417d6c8e3b25f43341db35da8eb82249}\index{vac\_utilities@{vac\_utilities}!h\_sing\_node@{h\_sing\_node}}
+\index{h\_sing\_node@{h\_sing\_node}!vac\_utilities@{vac\_utilities}}
+\doxysubsubsection{\texorpdfstring{h\_sing\_node()}{h\_sing\_node()}}
+{\footnotesize\ttfamily \label{namespacevac__utilities_a417d6c8e3b25f43341db35da8eb82249} 
+pure subroutine, public vac\+\_\+utilities::\+h\+\_\+sing\+\_\+node (\begin{DoxyParamCaption}\item[{real(dp), dimension(3), intent(in)}]{norm0}{, }\item[{real(dp), dimension(3), intent(in)}]{g}{, }\item[{real(dp), dimension(3,3), intent(in)}]{dd}{, }\item[{real(dp), intent(in)}]{dpar}{, }\item[{real(dp), intent(in)}]{dalpha}{, }\item[{real(dp), intent(out)}]{i\+\_\+sing}{}\end{DoxyParamCaption})}
+
+
+
+Integral of the H kernel over the cell of a node of the field-\/line mesh. 
+
+The kernel  $\mathbf{n}(\mathbf{r})\cdot(\mathbf{r}-\mathbf{r}_0)/
+        |\mathbf{r}-\mathbf{r}_0|^3$ (with $\mathbf{n}$ the stored normal $-\mathcal{J}\nabla\psi$ at the source) is bounded on the surface near its own node, because the surface leaves its tangent plane at second order: to leading order   $\mathbf{n}(\mathbf{r})\cdot
+        (\mathbf{r}-\mathbf{r}_0) = -\tfrac12\, \mathbf{n}_0\cdot\partial_j
+        \mathbf{e}_k\, \Delta u^j \Delta u^k$ ( $j,k$ the parallel and field-\/line coordinates). Over the cell of the node,  $|\theta-\theta_0|
+        \le \Delta\theta/2$, $|\alpha-\alpha_0| \le \Delta\alpha/2$, in the local polar coordinates of eqs. (49)-\/(72) of the 2019 manuscript (with $A = g_{\alpha\theta}/|\mathbf{n}|$,  $B = g_{\alpha\alpha}/
+        |\mathbf{n}|$ and $\rho(\beta)$ the radius of the cell), the integral is    \[ I = -\frac{\sqrt{g_{\alpha\alpha}}}{2|\mathbf{n}|^2}
+         \int_{-\pi/2}^{\pi/2} q(\beta)\,\rho(\beta)\,\mathrm{d}\beta, \quad
+         q = \mathbf{n}_0\cdot\partial_j\mathbf{e}_k\, t^j t^k, \quad
+         t = \left(\cos\beta, \frac{\sin\beta - A\cos\beta}{B}\right), \] (with $A$ and $B$ taken positive: the mirror cell, the frame of the opposite orientation, is an isometric image and gives the same integral), which is the corrected eq. (69) of the manuscript (erratum E22: the printed one has a wrong factor and only the umbilic part of the second fundamental form). The half-\/cell of the manuscript equals the full cell of the node for this kernel. Verified against direct integration on sphere and torus nodes (first-\/order convergence), and by the full-\/stack test {\ttfamily H\+\_\+sing\+\_\+node}. 
+\begin{DoxyParams}[1]{Parameters}
+\doxymbox{\texttt{in}}  & {\em norm0} & stored normal at the node \\
+\hline
+\doxymbox{\texttt{in}}  & {\em g} & metric factors g\+\_\+aa, g\+\_\+at, g\+\_\+tt at the node \\
+\hline
+\doxymbox{\texttt{in}}  & {\em dd} & second derivatives of the position: d\+\_\+t e\+\_\+t, d\+\_\+t e\+\_\+a, d\+\_\+a e\+\_\+a (rows) \\
+\hline
+\doxymbox{\texttt{in}}  & {\em dpar} & parallel step \\
+\hline
+\doxymbox{\texttt{in}}  & {\em dalpha} & step in the field-\/line label \\
+\hline
+\doxymbox{\texttt{out}}  & {\em i\+\_\+sing} & integral of the kernel over the cell \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \doxymbox{\hyperlink{vac__utilities_8f90_source_l00833}{833}} of file \doxymbox{\hyperlink{vac__utilities_8f90_source}{vac\+\_\+utilities.\+f90}}.
+
+Here is the caller graph for this function:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespacevac__utilities_a417d6c8e3b25f43341db35da8eb82249_icgraph}
 \end{center}
 \end{figure}
 \Hypertarget{namespacevac__utilities_a8e7889688701f6ac2fd2c60cdee2b96a}\index{vac\_utilities@{vac\_utilities}!interlaced\_vac\_copy@{interlaced\_vac\_copy}}
@@ -152,16 +462,18 @@ This is done by multiplying left by $\overline{\text{T}}$ and right by $\overlin
 \end{DoxyParams}
 
 
-Definition at line \doxymbox{\hyperlink{vac__utilities_8f90_source_l00354}{354}} of file \doxymbox{\hyperlink{vac__utilities_8f90_source}{vac\+\_\+utilities.\+f90}}.
+Definition at line \doxymbox{\hyperlink{vac__utilities_8f90_source_l00468}{468}} of file \doxymbox{\hyperlink{vac__utilities_8f90_source}{vac\+\_\+utilities.\+f90}}.
 
-Here is the call graph for this function:\+\nopagebreak
+Here is the call graph for this function:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{namespacevac__utilities_a8e7889688701f6ac2fd2c60cdee2b96a_cgraph}
 \end{center}
 \end{figure}
-Here is the caller graph for this function:\+\nopagebreak
+Here is the caller graph for this function:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -198,20 +510,126 @@ See \doxylink{namespacevac__utilities_a05e8e1f24569b4bff05e61a867268fc3}{vec\+\_
 \end{DoxyParams}
 
 
-Definition at line \doxymbox{\hyperlink{vac__utilities_8f90_source_l00275}{275}} of file \doxymbox{\hyperlink{vac__utilities_8f90_source}{vac\+\_\+utilities.\+f90}}.
+Definition at line \doxymbox{\hyperlink{vac__utilities_8f90_source_l00391}{391}} of file \doxymbox{\hyperlink{vac__utilities_8f90_source}{vac\+\_\+utilities.\+f90}}.
 
-Here is the call graph for this function:\+\nopagebreak
+Here is the call graph for this function:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{namespacevac__utilities_ae70e8a1fc132ba79a9a4f49f4944a352_cgraph}
 \end{center}
 \end{figure}
-Here is the caller graph for this function:\+\nopagebreak
+Here is the caller graph for this function:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{namespacevac__utilities_ae70e8a1fc132ba79a9a4f49f4944a352_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{namespacevac__utilities_a69626f2c48bb9b457bdd83011379b4e1}\index{vac\_utilities@{vac\_utilities}!n\_col1\_loc@{n\_col1\_loc}}
+\index{n\_col1\_loc@{n\_col1\_loc}!vac\_utilities@{vac\_utilities}}
+\doxysubsubsection{\texorpdfstring{n\_col1\_loc()}{n\_col1\_loc()}}
+{\footnotesize\ttfamily \label{namespacevac__utilities_a69626f2c48bb9b457bdd83011379b4e1} 
+integer function, public vac\+\_\+utilities::\+n\+\_\+col1\+\_\+loc (\begin{DoxyParamCaption}\item[{type(\doxymbox{\hyperlink{structvac__vars_1_1vac__type}{vac\+\_\+type}}), intent(in)}]{vac}{}\end{DoxyParamCaption})}
+
+
+
+Number of local columns this process owns of a global column vector: the single column sits in the first block, owned by process column 0. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\doxymbox{\texttt{in}}  & {\em vac} & vacuum variables \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \doxymbox{\hyperlink{vac__utilities_8f90_source_l00626}{626}} of file \doxymbox{\hyperlink{vac__utilities_8f90_source}{vac\+\_\+utilities.\+f90}}.
+
+Here is the call graph for this function:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespacevac__utilities_a69626f2c48bb9b457bdd83011379b4e1_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespacevac__utilities_a69626f2c48bb9b457bdd83011379b4e1_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{namespacevac__utilities_aa328b578696f4e3c3757fa9f79a8755c}\index{vac\_utilities@{vac\_utilities}!solid\_angle\_node@{solid\_angle\_node}}
+\index{solid\_angle\_node@{solid\_angle\_node}!vac\_utilities@{vac\_utilities}}
+\doxysubsubsection{\texorpdfstring{solid\_angle\_node()}{solid\_angle\_node()}}
+{\footnotesize\ttfamily \label{namespacevac__utilities_aa328b578696f4e3c3757fa9f79a8755c} 
+pure subroutine, public vac\+\_\+utilities::\+solid\+\_\+angle\+\_\+node (\begin{DoxyParamCaption}\item[{real(dp), dimension(4,3), intent(in)}]{u}{, }\item[{real(dp), dimension(3), intent(in)}]{n\+\_\+hat}{, }\item[{real(dp), intent(out)}]{omega}{}\end{DoxyParamCaption})}
+
+
+
+Solid angle at a node of the mesh, on the side of {\ttfamily n\+\_\+hat}. 
+
+The surface of the mesh at a node is the cone of four flat facets, one between each pair of edges that are consecutive in azimuth about {\ttfamily n\+\_\+hat}. The solid angle of the region on the {\ttfamily n\+\_\+hat} side of all four facets is eq. (45) of the 2019 manuscript on the vacuum energy (exact; not its small-\/tilt form (46), which fails on skewed meshes, erratum E6): with the facet normals $\mathbf{a}_i$ tilted by $\beta_i$ from {\ttfamily n\+\_\+hat} towards the azimuth $\bar\varphi_i$, and $\varphi_i$ the azimuths of the edges,  \[ \Omega = 2\pi + \sum_{i=1}^4 \left[\sin^{-1}\left(\sin\beta_i
+         \sin(\varphi-\bar\varphi_i)\right)\right]_{\varphi_i}^{\varphi_{i+1}} . \] The edges may be given in any order. With {\ttfamily n\+\_\+hat} the unit normal into the plasma, the result is the plasma\textquotesingle{}s solid angle $\Omega_p$ and the vacuum\textquotesingle{}s is $4\pi - \Omega_p$. 
+\begin{DoxyParams}[1]{Parameters}
+\doxymbox{\texttt{in}}  & {\em u} & the four edge vectors from the node to its neighbours \\
+\hline
+\doxymbox{\texttt{in}}  & {\em n\+\_\+hat} & unit normal of the side whose solid angle is returned \\
+\hline
+\doxymbox{\texttt{out}}  & {\em omega} & solid angle on that side \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \doxymbox{\hyperlink{vac__utilities_8f90_source_l00741}{741}} of file \doxymbox{\hyperlink{vac__utilities_8f90_source}{vac\+\_\+utilities.\+f90}}.
+
+Here is the call graph for this function:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespacevac__utilities_aa328b578696f4e3c3757fa9f79a8755c_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespacevac__utilities_aa328b578696f4e3c3757fa9f79a8755c_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{namespacevac__utilities_abc6ea224f7a8b897e3af84c6664f302b}\index{vac\_utilities@{vac\_utilities}!vac\_steps@{vac\_steps}}
+\index{vac\_steps@{vac\_steps}!vac\_utilities@{vac\_utilities}}
+\doxysubsubsection{\texorpdfstring{vac\_steps()}{vac\_steps()}}
+{\footnotesize\ttfamily \label{namespacevac__utilities_abc6ea224f7a8b897e3af84c6664f302b} 
+subroutine, public vac\+\_\+utilities::\+vac\+\_\+steps (\begin{DoxyParamCaption}\item[{real(dp), intent(out)}]{dpar}{, }\item[{real(dp), intent(out)}]{dalpha}{}\end{DoxyParamCaption})}
+
+
+
+Step sizes of the field-\/line grid in the parallel coordinate and in the field-\/line label, as used by the field-\/line vacuum: the parallel points include both ends, the field lines exclude the end point in alpha (\doxylink{namespacerich__ops}{rich\+\_\+ops}). 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\doxymbox{\texttt{out}}  & {\em dpar} & step in the parallel coordinate \\
+\hline
+\doxymbox{\texttt{out}}  & {\em dalpha} & step in the field-\/line label \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \doxymbox{\hyperlink{vac__utilities_8f90_source_l00705}{705}} of file \doxymbox{\hyperlink{vac__utilities_8f90_source}{vac\+\_\+utilities.\+f90}}.
+
+Here is the caller graph for this function:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespacevac__utilities_abc6ea224f7a8b897e3af84c6664f302b_icgraph}
 \end{center}
 \end{figure}
 \Hypertarget{namespacevac__utilities_a05e8e1f24569b4bff05e61a867268fc3}\index{vac\_utilities@{vac\_utilities}!vec\_dis2loc@{vec\_dis2loc}}
@@ -246,19 +664,107 @@ By default, the result lands on the master process, but this can be changed usin
 \end{DoxyParams}
 
 
-Definition at line \doxymbox{\hyperlink{vac__utilities_8f90_source_l00222}{222}} of file \doxymbox{\hyperlink{vac__utilities_8f90_source}{vac\+\_\+utilities.\+f90}}.
+Definition at line \doxymbox{\hyperlink{vac__utilities_8f90_source_l00340}{340}} of file \doxymbox{\hyperlink{vac__utilities_8f90_source}{vac\+\_\+utilities.\+f90}}.
 
-Here is the call graph for this function:\+\nopagebreak
+Here is the call graph for this function:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{namespacevac__utilities_a05e8e1f24569b4bff05e61a867268fc3_cgraph}
 \end{center}
 \end{figure}
-Here is the caller graph for this function:\+\nopagebreak
+Here is the caller graph for this function:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{namespacevac__utilities_a05e8e1f24569b4bff05e61a867268fc3_icgraph}
 \end{center}
 \end{figure}
+\Hypertarget{namespacevac__utilities_ab1118f6840ac23fb771f4bb6b3c8f4ce}\index{vac\_utilities@{vac\_utilities}!vec\_glob2dis@{vec\_glob2dis}}
+\index{vec\_glob2dis@{vec\_glob2dis}!vac\_utilities@{vac\_utilities}}
+\doxysubsubsection{\texorpdfstring{vec\_glob2dis()}{vec\_glob2dis()}}
+{\footnotesize\ttfamily \label{namespacevac__utilities_ab1118f6840ac23fb771f4bb6b3c8f4ce} 
+subroutine, public vac\+\_\+utilities::\+vec\+\_\+glob2dis (\begin{DoxyParamCaption}\item[{type(\doxymbox{\hyperlink{structvac__vars_1_1vac__type}{vac\+\_\+type}}), intent(in)}]{vac}{, }\item[{real(dp), dimension(:\+), intent(in)}]{x\+\_\+glob}{, }\item[{real(dp), dimension(:\+), intent(out)}]{x\+\_\+dis}{}\end{DoxyParamCaption})}
+
+
+
+Scatter a global column vector into its local block-\/cyclic rows. 
+
+{\ttfamily x\+\_\+dis} is the flattened local array of size n\+\_\+loc(1) \texorpdfstring{$\ast$}{*} \doxylink{namespacevac__utilities_a69626f2c48bb9b457bdd83011379b4e1}{n\+\_\+col1\+\_\+loc()}; processes that do not own the column receive nothing. 
+\begin{DoxyParams}[1]{Parameters}
+\doxymbox{\texttt{in}}  & {\em vac} & vacuum variables \\
+\hline
+\doxymbox{\texttt{in}}  & {\em x\+\_\+glob} & global vector \\
+\hline
+\doxymbox{\texttt{out}}  & {\em x\+\_\+dis} & local part (flattened) \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \doxymbox{\hyperlink{vac__utilities_8f90_source_l00642}{642}} of file \doxymbox{\hyperlink{vac__utilities_8f90_source}{vac\+\_\+utilities.\+f90}}.
+
+Here is the call graph for this function:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespacevac__utilities_ab1118f6840ac23fb771f4bb6b3c8f4ce_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespacevac__utilities_ab1118f6840ac23fb771f4bb6b3c8f4ce_icgraph}
+\end{center}
+\end{figure}
+
+
+\label{namespacevac__utilities_doc-var-members}
+\Hypertarget{namespacevac__utilities_doc-var-members}
+\doxysubsection{Variable Documentation}
+\Hypertarget{namespacevac__utilities_a6b32be38dc5dbcfea100ec8aaec304bd}\index{vac\_utilities@{vac\_utilities}!gl16\_w@{gl16\_w}}
+\index{gl16\_w@{gl16\_w}!vac\_utilities@{vac\_utilities}}
+\doxysubsubsection{\texorpdfstring{gl16\_w}{gl16\_w}}
+{\footnotesize\ttfamily \label{namespacevac__utilities_a6b32be38dc5dbcfea100ec8aaec304bd} 
+real(dp), dimension(\doxymbox{\hyperlink{namespacevac__utilities_a10cde0c309c1b810eb2fb6dd54e87b7b}{n\+\_\+gl16}}), parameter vac\+\_\+utilities::\+gl16\+\_\+w = \+[0.\+0271524594117541\+\_\+dp, 0.\+0622535239386476\+\_\+dp, 0.\+0951585116824930\+\_\+dp, 0.\+1246289712555339\+\_\+dp, 0.\+1495959888165767\+\_\+dp, 0.\+1691565193950026\+\_\+dp, 0.\+1826034150449236\+\_\+dp, 0.\+1894506104550686\+\_\+dp, 0.\+1894506104550686\+\_\+dp, 0.\+1826034150449236\+\_\+dp, 0.\+1691565193950026\+\_\+dp, 0.\+1495959888165767\+\_\+dp, 0.\+1246289712555339\+\_\+dp, 0.\+0951585116824930\+\_\+dp, 0.\+0622535239386476\+\_\+dp, 0.\+0271524594117541\+\_\+dp]}
+
+
+
+weights 
+
+
+
+Definition at line \doxymbox{\hyperlink{vac__utilities_8f90_source_l00028}{28}} of file \doxymbox{\hyperlink{vac__utilities_8f90_source}{vac\+\_\+utilities.\+f90}}.
+
+\Hypertarget{namespacevac__utilities_ad9f479331f1d097095e9d50eb58a2629}\index{vac\_utilities@{vac\_utilities}!gl16\_x@{gl16\_x}}
+\index{gl16\_x@{gl16\_x}!vac\_utilities@{vac\_utilities}}
+\doxysubsubsection{\texorpdfstring{gl16\_x}{gl16\_x}}
+{\footnotesize\ttfamily \label{namespacevac__utilities_ad9f479331f1d097095e9d50eb58a2629} 
+real(dp), dimension(\doxymbox{\hyperlink{namespacevac__utilities_a10cde0c309c1b810eb2fb6dd54e87b7b}{n\+\_\+gl16}}), parameter vac\+\_\+utilities::\+gl16\+\_\+x = \+[-\/0.\+9894009349916499\+\_\+dp, -\/0.\+9445750230732326\+\_\+dp, -\/0.\+8656312023878316\+\_\+dp, -\/0.\+7554044083550031\+\_\+dp, -\/0.\+6178762444026438\+\_\+dp, -\/0.\+4580167776572274\+\_\+dp, -\/0.\+2816035507792589\+\_\+dp, -\/0.\+0950125098376374\+\_\+dp, 0.\+0950125098376374\+\_\+dp, 0.\+2816035507792589\+\_\+dp, 0.\+4580167776572274\+\_\+dp, 0.\+6178762444026438\+\_\+dp, 0.\+7554044083550031\+\_\+dp, 0.\+8656312023878316\+\_\+dp, 0.\+9445750230732326\+\_\+dp, 0.\+9894009349916499\+\_\+dp]}
+
+
+
+abscissas 
+
+
+
+Definition at line \doxymbox{\hyperlink{vac__utilities_8f90_source_l00019}{19}} of file \doxymbox{\hyperlink{vac__utilities_8f90_source}{vac\+\_\+utilities.\+f90}}.
+
+\Hypertarget{namespacevac__utilities_a10cde0c309c1b810eb2fb6dd54e87b7b}\index{vac\_utilities@{vac\_utilities}!n\_gl16@{n\_gl16}}
+\index{n\_gl16@{n\_gl16}!vac\_utilities@{vac\_utilities}}
+\doxysubsubsection{\texorpdfstring{n\_gl16}{n\_gl16}}
+{\footnotesize\ttfamily \label{namespacevac__utilities_a10cde0c309c1b810eb2fb6dd54e87b7b} 
+integer, parameter vac\+\_\+utilities::\+n\+\_\+gl16 = 16}
+
+
+
+number of points 
+
+
+
+Definition at line \doxymbox{\hyperlink{vac__utilities_8f90_source_l00018}{18}} of file \doxymbox{\hyperlink{vac__utilities_8f90_source}{vac\+\_\+utilities.\+f90}}.
+

@@ -1,4 +1,4 @@
-\doxysection{mpi\+\_\+vars::\+lock\+\_\+type Type Reference}
+\doxysection{mpi\+\_\+vars::lock\+\_\+type Type Reference}
 \hypertarget{structmpi__vars_1_1lock__type}{}\label{structmpi__vars_1_1lock__type}\index{mpi\_vars::lock\_type@{mpi\_vars::lock\_type}}
 
 
@@ -8,7 +8,7 @@ lock type
 \doxysubsubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-procedure \doxymbox{\hyperlink{structmpi__vars_1_1lock__type_a6227b4a9250ac98f66bb365d0f86cf5b}{init}} (lock\+\_\+loc, \doxymbox{\hyperlink{structmpi__vars_1_1lock__type_ae13a02ff3985d06c3455b2ae29210cc4}{wu\+\_\+tag}})
+procedure \doxymbox{\hyperlink{structmpi__vars_1_1lock__type_a6227b4a9250ac98f66bb365d0f86cf5b}{init}} (lock\+\_\+loc, wu\+\_\+tag)
 \begin{DoxyCompactList}\small\item\em initialize \end{DoxyCompactList}\item 
 procedure \doxymbox{\hyperlink{structmpi__vars_1_1lock__type_a2c029c67853e6ab25916cb422de22b85}{dealloc}} (lock\+\_\+loc)
 \begin{DoxyCompactList}\small\item\em deallocate \end{DoxyCompactList}\end{DoxyCompactItemize}
@@ -41,14 +41,14 @@ The advantage of prefering BL processes after finishing a process is that this w
 \begin{DoxyNote}{Note}
 Every process in the waiting queue will eventually receive a notification.
 \end{DoxyNote}
-Scheme:\+ 
+Scheme: 
 \begin{DoxyTable}{4}{}{}{1}
 \SetCell{bg=\tableheadbgcolor,font=\bfseries}&\SetCell{bg=\tableheadbgcolor,font=\bfseries}request access &\SetCell{bg=\tableheadbgcolor,font=\bfseries}gain acces &\SetCell{bg=\tableheadbgcolor,font=\bfseries}return access \\
 \SetCell{bg=\tableheadbgcolor,font=\bfseries}BL &
 \begin{DoxyItemize}
 \item add to queue 
 \item wait 
-\end{DoxyItemize}&if direct:\+ 
+\end{DoxyItemize}&if direct: 
 \begin{DoxyItemize}
 \item activate 
 \end{DoxyItemize}&
@@ -62,17 +62,17 @@ Scheme:\+
 \begin{DoxyItemize}
 \item add to queue 
 \item wait 
-\end{DoxyItemize}&if direct:\+ 
+\end{DoxyItemize}&if direct: 
 \begin{DoxyItemize}
 \item find next NB 
-\end{DoxyItemize}for all next NB:\+ 
+\end{DoxyItemize}for all next NB: 
 \begin{DoxyItemize}
 \item notify 
 \item activate 
-\end{DoxyItemize}&always:\+ 
+\end{DoxyItemize}&always: 
 \begin{DoxyItemize}
 \item remove from queue 
-\end{DoxyItemize}if last NB:\+ 
+\end{DoxyItemize}if last NB: 
 \begin{DoxyItemize}
 \item find next BL/\+\+NB 
 \item notify 
@@ -90,7 +90,7 @@ Definition at line \doxymbox{\hyperlink{MPI__vars_8f90_source_l00063}{63}} of fi
 
 
 
-\label{doc-func-members}
+\label{structmpi__vars_1_1lock__type_doc-func-members}
 \Hypertarget{structmpi__vars_1_1lock__type_doc-func-members}
 \doxysubsection{Member Function/\+\+Subroutine Documentation}
 \Hypertarget{structmpi__vars_1_1lock__type_a2c029c67853e6ab25916cb422de22b85}\index{mpi\_vars::lock\_type@{mpi\_vars::lock\_type}!dealloc@{dealloc}}
@@ -123,7 +123,7 @@ Definition at line \doxymbox{\hyperlink{MPI__vars_8f90_source_l00070}{70}} of fi
 
 
 
-\label{doc-variable-members}
+\label{structmpi__vars_1_1lock__type_doc-variable-members}
 \Hypertarget{structmpi__vars_1_1lock__type_doc-variable-members}
 \doxysubsection{Member Data Documentation}
 \Hypertarget{structmpi__vars_1_1lock__type_a53ce091d52f98ca430a9e97f8bf0c0f4}\index{mpi\_vars::lock\_type@{mpi\_vars::lock\_type}!blocking@{blocking}}

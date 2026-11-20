@@ -4,22 +4,28 @@
     \textit{\scriptsize Footnotes are situated at the end of the chapter}
 
 
-This page describes the various input variables that PB3D and POST can take.
+This page describes the input variables of PB3D and POST.
 
-Inputs are generally done through the input file, but there are some inputs that are provided on runtime, using the command-\/line with {\ttfamily --\+[option\+\_\+name]\+} format. \begin{DoxySeeAlso}{See also}
-See init\+\_\+files().
+Most inputs are read from the user input file, which holds the Fortran namelist {\ttfamily inputdata\+\_\+\+PB3D} for PB3D or {\ttfamily inputdata\+\_\+\+POST} for POST. Every variable that is not set in the file keeps its default value. A name in the file that is not part of the namelist stops the program with the error "{}\+Cannot read user-\/provided file"{}. The other inputs are options on the command line. PB3D and POST are called as \begin{DoxyVerb}PB3D USER_INPUT EQUILIBRIUM_INPUT [OPTIONS]
+POST USER_INPUT PB3D_OUTPUT [OPTIONS]
+\end{DoxyVerb}
+ where the options take the form {\ttfamily --\+[option\+\_\+name]}, sometimes followed by values. If the user input file cannot be opened, the program uses the defaults for all variables. \begin{DoxySeeAlso}{See also}
+See init\+\_\+files() and open\+\_\+input().
 \end{DoxySeeAlso}
-For both PB3D and POST, both types are discussed.
+For both PB3D and POST, both types of input are discussed.
 
-Some general remarks:\+
+Some general remarks:
 \begin{DoxyItemize}
-\item There is some fault detection built into the routines. These distinguish between minor faults, that trigger a warning but do not stop execution, and major faults, that trigger an error that stop execution. \begin{DoxySeeAlso}{See also}
+\item There is some fault detection built into the routines. These distinguish between minor faults, which trigger a warning but do not stop execution, and major faults, which trigger an error that stops execution. \begin{DoxySeeAlso}{See also}
 See writo().
 \end{DoxySeeAlso}
 
-\item The data type {\ttfamily real} refers to double precision real, defined by \doxylink{namespacenum__vars_a03802aa2bd86439d7a9370836fabf3f2}{num\+\_\+vars.\+dp}. For integers, standard precision is used.
-\item There are hard-\/coded {\ttfamily min\+\_\+tol} and {\ttfamily max\+\_\+tol} in read\+\_\+input\+\_\+opts(), which are used to limit the tolerances {\ttfamily tol\+\_\+rich}, {\ttfamily tol\+\_\+zero} and {\ttfamily tol\+\_\+\+SLEPC}. This could be changed if needed.
+\item The data type {\ttfamily real} refers to double precision real, defined by \doxylink{namespacenum__vars_a03802aa2bd86439d7a9370836fabf3f2}{num\+\_\+vars.\+dp}. For integers, standard precision is used. A type such as {\ttfamily int(2)} is an array of two values, given in the input file as two numbers separated by a space.
+\item Angles are given in units of $\pi$, marked $\left[\pi\right]$.
+\item PB3D takes a file with the extension {\ttfamily .nc} as a VMEC file, which gives {\ttfamily eq\+\_\+style = 1}, and a file that starts with an integer as a HELENA file, which gives {\ttfamily eq\+\_\+style = 2}. Several defaults depend on {\ttfamily eq\+\_\+style}. POST reads {\ttfamily eq\+\_\+style} from the PB3D output.
+\item PB3D limits the tolerances {\ttfamily tol\+\_\+rich}, {\ttfamily tol\+\_\+zero} and {\ttfamily tol\+\_\+\+SLEPC} to the range from {\ttfamily min\+\_\+tol} $= 10^{-12}$ to {\ttfamily max\+\_\+tol} $= 10^{-3}$, which are hard-\/coded in read\+\_\+input\+\_\+opts().
 \item If {\ttfamily eq\+\_\+style = 2} (i.\+e. HELENA), the total maximum memory available must be enough to perform the first Richardson level in a single equilibrium job (see \doxysectlink{page_overview}{General code structure}{0}).
+\item PB3D computes the vacuum response only for a free boundary, {\ttfamily BC\+\_\+style(2) = 2}. No input chooses the vacuum style. PB3D takes the field-\/line 3-\/D style for a VMEC equilibrium and the axisymmetric style for a HELENA equilibrium (see \doxylink{page_inputs_fni37}{37}).
 \end{DoxyItemize}\hypertarget{page_inputs_inputs_PB3D}{}\doxysection{\texorpdfstring{PB3D Inputs}{PB3D Inputs}}\label{page_inputs_inputs_PB3D}
 \hypertarget{page_inputs_inputs_PB3D_file}{}\doxysubsection{\texorpdfstring{Input file}{Input file}}\label{page_inputs_inputs_PB3D_file}
 \hypertarget{page_inputs_inputs_PB3D_file_tab}{}
@@ -27,1550 +33,143 @@ See writo().
 \begin{DoxyTable}{5}{Table 1. PB3D input file}{page_inputs_inputs_PB3D_file_tab}{1}
 \SetCell{bg=\tableheadbgcolor,font=\bfseries}input parameter &\SetCell{bg=\tableheadbgcolor,font=\bfseries}explanation &\SetCell{bg=\tableheadbgcolor,font=\bfseries}default value &\SetCell{bg=\tableheadbgcolor,font=\bfseries}data type &\SetCell{bg=\tableheadbgcolor,font=\bfseries}note \\
 \SetCell[c=5]{c}{\bfseries{concerning solution}} &&&&\\
-{\ttfamily n\+\_\+r\+\_\+sol} &number of points in solution grid &$ 100$ &{\ttfamily int} &\\
+{\ttfamily n\+\_\+r\+\_\+sol} &number of points in the normal direction of the solution grid &$100$ &{\ttfamily int} &(\doxylink{page_inputs_fni44}{44}) \\
 {\ttfamily min\+\_\+r\+\_\+sol} &minimum normalized flux of computational domain $\left(0\ldots 1\right)$ &$0.1$ &{\ttfamily real} &(\doxylink{page_inputs_fni1}{1}) \\
 {\ttfamily max\+\_\+r\+\_\+sol} &maximum normalized flux of computational domain $\left(0\ldots 1\right)$ &$1.0$ &{\ttfamily real} &(\doxylink{page_inputs_fni1}{1}) \\
-{\ttfamily tol\+\_\+norm} &tolerance for normal range &$0.05$ &{\ttfamily real} &(\doxylink{page_inputs_fni2}{2}) \\
-{\ttfamily EV\+\_\+style} &style for EV calculation:\+ \begin{DoxyTableNested}{2}{0}
+{\ttfamily tol\+\_\+norm} &tolerance for the normal range in which a mode resonates, for {\ttfamily X\+\_\+style} 1 $\left(0\ldots 1\right)$ &$0.05$ &{\ttfamily real} &(\doxylink{page_inputs_fni2}{2}) \\
+{\ttfamily EV\+\_\+style} &style for EV calculation: \begin{DoxyTableNested}{2}{0}
 $1$&SLEPC solver\\
 \end{DoxyTableNested}
-~\newline
- &$1$ &{\ttfamily int} &\\
+&$1$ &{\ttfamily int} &\\
 \SetCell[c=5]{c}{\bfseries{concerning field line}} &&&&\\
-{\ttfamily alpha\+\_\+style} &style for alpha:\+ \begin{DoxyTableNested}{2}{0}
+{\ttfamily alpha\+\_\+style} &style for alpha: \begin{DoxyTableNested}{2}{0}
 $1$&one field line, many turns\\
 $2$&many field lines, one turn\\
 \end{DoxyTableNested}
-~\newline
- &$2$ (VMEC), $1$ (HELENA) &{\ttfamily int} &\\
-{\ttfamily n\+\_\+alpha} &number of field lines for {\ttfamily alpha\+\_\+style} $2$ &$10$ (VMEC) &{\ttfamily int} &\\
-{\ttfamily alpha} &field line label $\left[\pi\right]$ for {\ttfamily alpha\+\_\+style} $1$ &$0$ &{\ttfamily real} &\\
-{\ttfamily min\+\_\+alpha} &minimum field line label $\alpha$ $\left[\pi\right]$ for {\ttfamily alpha\+\_\+style} $2$ &$0$ &{\ttfamily int} &\\
-{\ttfamily max\+\_\+alpha} &maximum field line label $\alpha$ $\left[\pi\right]$ for {\ttfamily alpha\+\_\+style} $2$ &$2$ &&\\
-\end{DoxyTable}
-
-
-{\ttfamily  int}
-
-{\ttfamily }
-
-{\ttfamily  }
-
-{\ttfamily }
-
-{\ttfamily }
-
-{\ttfamily  }
-
-{\ttfamily  {\bfseries{concerning perturbation}} }
-
-{\ttfamily  }
-
-{\ttfamily  }
-
-{\ttfamily  }
-
-{\ttfamily  {\ttfamily min\+\_\+n\+\_\+par\+\_\+X} }
-
-{\ttfamily }
-
-{\ttfamily  minimum number of parallel points for integration }
-
-{\ttfamily }
-
-{\ttfamily  $20$ }
-
-{\ttfamily }
-
-{\ttfamily {\ttfamily int} }
-
-{\ttfamily }
-
-{\ttfamily  (\doxylink{page_inputs_fni3}{3})}
-
-{\ttfamily  }
-
-{\ttfamily  }
-
-{\ttfamily  }
-
-{\ttfamily  {\ttfamily min\+\_\+par\+\_\+X} }
-
-{\ttfamily }
-
-{\ttfamily  minimum parallel angle $\left[\pi\right]$ for integration }
-
-{\ttfamily }
-
-{\ttfamily  $-4$ }
-
-{\ttfamily }
-
-{\ttfamily {\ttfamily int} }
-
-{\ttfamily }
-
-{\ttfamily }
-
-{\ttfamily  }
-
-{\ttfamily  }
-
-{\ttfamily  }
-
-{\ttfamily  {\ttfamily max\+\_\+par\+\_\+X} }
-
-{\ttfamily }
-
-{\ttfamily  maximum parallel angle $\left[\pi\right]$ for integration }
-
-{\ttfamily }
-
-{\ttfamily  $4$ }
-
-{\ttfamily }
-
-{\ttfamily }
-
-{\ttfamily {\ttfamily int} }
-
-{\ttfamily }
-
-{\ttfamily  }
-
-{\ttfamily  }
-
-{\ttfamily  }
-
-{\ttfamily  {\ttfamily prim\+\_\+X} }
-
-{\ttfamily }
-
-{\ttfamily  primary mode number in geodesic direction }
-
-{\ttfamily }
-
-{\ttfamily  $20$ }
-
-{\ttfamily }
-
-{\ttfamily {\ttfamily int} }
-
-{\ttfamily }
-
-{\ttfamily  (\doxylink{page_inputs_fni4}{4})}
-
-{\ttfamily  }
-
-{\ttfamily  }
-
-{\ttfamily  }
-
-{\ttfamily  {\ttfamily min\+\_\+sec\+\_\+X} }
-
-{\ttfamily }
-
-{\ttfamily  minimum secondary mode number in parallel direction }
-
-{\ttfamily }
-
-{\ttfamily  }
-
-{\ttfamily }
-
-{\ttfamily {\ttfamily int} }
-
-{\ttfamily }
-
-{\ttfamily  (\doxylink{page_inputs_fni4}{4}, \doxylink{page_inputs_fni5}{5})}
-
-{\ttfamily  }
-
-{\ttfamily  }
-
-{\ttfamily  }
-
-{\ttfamily  {\ttfamily max\+\_\+sec\+\_\+X} }
-
-{\ttfamily }
-
-{\ttfamily  maximum secondary mode number in parallel direction }
-
-{\ttfamily }
-
-{\ttfamily  }
-
-{\ttfamily }
-
-{\ttfamily {\ttfamily int} }
-
-{\ttfamily }
-
-{\ttfamily  (\doxylink{page_inputs_fni4}{4}, \doxylink{page_inputs_fni5}{5})}
-
-{\ttfamily  }
-
-{\ttfamily  }
-
-{\ttfamily  }
-
-{\ttfamily  {\ttfamily n\+\_\+mod\+\_\+X} }
-
-{\ttfamily }
-
-{\ttfamily  number of secondary modes in parallel direction }
-
-{\ttfamily }
-
-{\ttfamily  $20$ }
-
-{\ttfamily }
-
-{\ttfamily {\ttfamily int} }
-
-{\ttfamily }
-
-{\ttfamily  (\doxylink{page_inputs_fni4}{4}, \doxylink{page_inputs_fni5}{5})}
-
-{\ttfamily  }
-
-{\ttfamily  }
-
-{\ttfamily  }
-
-{\ttfamily  {\ttfamily use\+\_\+pol\+\_\+flux\+\_\+F} }
-
-{\ttfamily }
-
-{\ttfamily  on which flux to base the normal coordinate. 
-\begin{DoxyTable}{2}{}{}{0}
+&$2$ (VMEC), $1$ (HELENA) &{\ttfamily int} &(\doxylink{page_inputs_fni43}{43}) \\
+{\ttfamily n\+\_\+alpha} &number of field lines for {\ttfamily alpha\+\_\+style} $2$ &$10$ (VMEC), $1$ (HELENA) &{\ttfamily int} &(\doxylink{page_inputs_fni43}{43}) \\
+{\ttfamily alpha} &field line label $\left[\pi\right]$ for {\ttfamily alpha\+\_\+style} $1$ &$0$ &{\ttfamily real} &(\doxylink{page_inputs_fni43}{43}) \\
+\SetCell[c=5]{c}{\bfseries{concerning perturbation}} &&&&\\
+{\ttfamily min\+\_\+n\+\_\+par\+\_\+X} &number of parallel points for the integrals along the magnetic field at the first Richardson level &$20$ &{\ttfamily int} &(\doxylink{page_inputs_fni3}{3}) \\
+{\ttfamily min\+\_\+par\+\_\+X} &minimum parallel angle $\left[\pi\right]$ for integration &$0$ &{\ttfamily real} &(\doxylink{page_inputs_fni43}{43}) \\
+{\ttfamily max\+\_\+par\+\_\+X} &maximum parallel angle $\left[\pi\right]$ for integration &$2$ &{\ttfamily real} &(\doxylink{page_inputs_fni43}{43}) \\
+{\ttfamily prim\+\_\+X} &primary mode number: the toroidal mode number $n$ for the poloidal flux, the poloidal mode number $m$ for the toroidal flux &$20$ &{\ttfamily int} &(\doxylink{page_inputs_fni4}{4}) \\
+{\ttfamily min\+\_\+sec\+\_\+X} &minimum secondary mode number: the poloidal mode number $m$ for the poloidal flux, the toroidal mode number $n$ for the toroidal flux &not set &{\ttfamily int} &(\doxylink{page_inputs_fni4}{4}, \doxylink{page_inputs_fni5}{5}) \\
+{\ttfamily max\+\_\+sec\+\_\+X} &maximum secondary mode number &not set &{\ttfamily int} &(\doxylink{page_inputs_fni4}{4}, \doxylink{page_inputs_fni5}{5}) \\
+{\ttfamily n\+\_\+mod\+\_\+X} &number of secondary modes at every normal position &$10$ &{\ttfamily int} &(\doxylink{page_inputs_fni4}{4}, \doxylink{page_inputs_fni5}{5}) \\
+{\ttfamily use\+\_\+pol\+\_\+flux\+\_\+F} &on which flux to base the normal coordinate. \begin{DoxyTableNested}{2}{0}
 {\ttfamily  .true.} &rescaled poloidal flux $\frac{\Psi_\text{pol}}{2 \pi}$ \\
 {\ttfamily  .false.} &rescaled toroidal flux $\frac{\Psi_\text{tor}}{2 \pi}$ \\
-\end{DoxyTable}
-~\newline
- }
-
-{\ttfamily }
-
-{\ttfamily {\ttfamily .true.} }
-
-{\ttfamily }
-
-{\ttfamily {\ttfamily log} }
-
-{\ttfamily }
-
-{\ttfamily  (\doxylink{page_inputs_fni35}{35})}
-
-{\ttfamily  }
-
-{\ttfamily }
-
-{\ttfamily }
-
-{\ttfamily  }
-
-{\ttfamily  {\bfseries{concerning normalization}} }
-
-{\ttfamily  }
-
-{\ttfamily  }
-
-{\ttfamily  }
-
-{\ttfamily  {\ttfamily rho\+\_\+0} }
-
-{\ttfamily }
-
-{\ttfamily  Normalization factor for density $\rho$ $\frac{kg}{m^3}$ }
-
-{\ttfamily }
-
-{\ttfamily  $10^{-7}$ }
-
-{\ttfamily }
-
-{\ttfamily {\ttfamily real} }
-
-{\ttfamily  }
-
-{\ttfamily }
-
-{\ttfamily  }
-
-{\ttfamily  }
-
-{\ttfamily  }
-
-{\ttfamily  {\ttfamily R\+\_\+0} }
-
-{\ttfamily }
-
-{\ttfamily  Normalization factor for length scale $R$ $m$ }
-
-{\ttfamily }
-
-{\ttfamily  }
-
-{\ttfamily }
-
-{\ttfamily {\ttfamily real} }
-
-{\ttfamily  }
-
-{\ttfamily  (\doxylink{page_inputs_fni6}{6})}
-
-{\ttfamily  }
-
-{\ttfamily  }
-
-{\ttfamily  }
-
-{\ttfamily  {\ttfamily pres\+\_\+0} }
-
-{\ttfamily }
-
-{\ttfamily  Normalization factor for pressure $p$ $Pa$ }
-
-{\ttfamily }
-
-{\ttfamily  }
-
-{\ttfamily }
-
-{\ttfamily {\ttfamily real} }
-
-{\ttfamily  }
-
-{\ttfamily  (\doxylink{page_inputs_fni6}{6})}
-
-{\ttfamily  }
-
-{\ttfamily  }
-
-{\ttfamily  }
-
-{\ttfamily  {\ttfamily psi\+\_\+0} }
-
-{\ttfamily }
-
-{\ttfamily  Normalization factor for flux $\Psi$ $T m^2$ }
-
-{\ttfamily }
-
-{\ttfamily  }
-
-{\ttfamily }
-
-{\ttfamily {\ttfamily real} }
-
-{\ttfamily  }
-
-{\ttfamily  (\doxylink{page_inputs_fni6}{6})}
-
-{\ttfamily  }
-
-{\ttfamily  }
-
-{\ttfamily  }
-
-{\ttfamily  {\ttfamily B\+\_\+0} }
-
-{\ttfamily }
-
-{\ttfamily  Normalization factor for magnetic field $\vec{B}$ $T$ }
-
-{\ttfamily }
-
-{\ttfamily  }
-
-{\ttfamily }
-
-{\ttfamily {\ttfamily real} }
-
-{\ttfamily  }
-
-{\ttfamily  (\doxylink{page_inputs_fni6}{6})}
-
-{\ttfamily  }
-
-{\ttfamily  }
-
-{\ttfamily  }
-
-{\ttfamily  {\ttfamily T\+\_\+0} }
-
-{\ttfamily }
-
-{\ttfamily  Normalization factor for time $s$ }
-
-{\ttfamily }
-
-{\ttfamily  }
-
-{\ttfamily }
-
-{\ttfamily {\ttfamily real} }
-
-{\ttfamily  }
-
-{\ttfamily  (\doxylink{page_inputs_fni6}{6})}
-
-{\ttfamily  }
-
-{\ttfamily }
-
-{\ttfamily }
-
-{\ttfamily  }
-
-{\ttfamily  {\bfseries{concerning input and output}} }
-
-{\ttfamily  }
-
-{\ttfamily  }
-
-{\ttfamily  }
-
-{\ttfamily  {\ttfamily n\+\_\+sol\+\_\+requested} }
-
-{\ttfamily }
-
-{\ttfamily  number of solutions requested }
-
-{\ttfamily }
-
-{\ttfamily  $1$ }
-
-{\ttfamily }
-
-{\ttfamily {\ttfamily int} }
-
-{\ttfamily }
-
-{\ttfamily }
-
-{\ttfamily  }
-
-{\ttfamily  }
-
-{\ttfamily  }
-
-{\ttfamily  {\ttfamily retain\+\_\+all\+\_\+sol} }
-
-{\ttfamily }
-
-{\ttfamily  retain all solutions 
-\begin{DoxyTable}{2}{}{}{0}
+\end{DoxyTableNested}
+&{\ttfamily .true.} &{\ttfamily log} &(\doxylink{page_inputs_fni35}{35}) \\
+\SetCell[c=5]{c}{\bfseries{concerning normalization}} &&&&\\
+{\ttfamily rho\+\_\+0} &normalization factor for the mass density $\rho$ $\left[\frac{kg}{m^3}\right]$ &$10^{-7}$ &{\ttfamily real} &\\
+{\ttfamily R\+\_\+0} &normalization factor for length $\left[m\right]$ &computed &{\ttfamily real} &(\doxylink{page_inputs_fni6}{6}) \\
+{\ttfamily pres\+\_\+0} &normalization factor for pressure $p$ $\left[Pa\right]$ &computed &{\ttfamily real} &(\doxylink{page_inputs_fni6}{6}) \\
+{\ttfamily psi\+\_\+0} &normalization factor for flux $\Psi$ $\left[T m^2\right]$ &computed &{\ttfamily real} &(\doxylink{page_inputs_fni6}{6}) \\
+{\ttfamily B\+\_\+0} &normalization factor for magnetic field $\vec{B}$ $\left[T\right]$ &computed &{\ttfamily real} &(\doxylink{page_inputs_fni6}{6}) \\
+{\ttfamily T\+\_\+0} &normalization factor for time, the Alfv\'{e}n time $T_0 = \sqrt{\mu_0 \rho_0} R_0 / B_0$ $\left[s\right]$ &computed &{\ttfamily real} &(\doxylink{page_inputs_fni6}{6}) \\
+\SetCell[c=5]{c}{\bfseries{concerning vacuum}} &&&&\\
+{\ttfamily check\+\_\+vac} &check the vacuum operators on the plasma boundary with potentials whose boundary data are exact, and print the results &{\ttfamily .false.} &{\ttfamily log} &(\doxylink{page_inputs_fni37}{37}, \doxylink{page_inputs_fni38}{38}) \\
+{\ttfamily vac\+\_\+diag\+\_\+style} &how the diagonals of the vacuum operators $\overline{\text{H}}$ and $\overline{\text{G}}$ are set, for both vacuum styles \begin{DoxyTableNested}{2}{0}
+$1$ &indirect: from the identities that the discrete operators must satisfy for known potentials \\
+$2$ &direct: corner term and integral of the kernel over the cell of the node (a diagnostic) \\
+\end{DoxyTableNested}
+&$1$ &{\ttfamily int} &(\doxylink{page_inputs_fni37}{37}, \doxylink{page_inputs_fni39}{39}) \\
+\SetCell[c=5]{c}{\bfseries{concerning input and output}} &&&&\\
+{\ttfamily n\+\_\+sol\+\_\+requested} &number of solutions requested &$1$ &{\ttfamily int} &\\
+{\ttfamily retain\+\_\+all\+\_\+sol} &retain all solutions \begin{DoxyTableNested}{2}{0}
 {\ttfamily  .true.} &unphysical eigenvalues are also retained \\
 {\ttfamily  .false.} &unphysical eigenvalues are left out \\
-\end{DoxyTable}
-~\newline
- }
-
-{\ttfamily }
-
-{\ttfamily  $2$ }
-
-{\ttfamily }
-
-{\ttfamily {\ttfamily log} }
-
-{\ttfamily }
-
-{\ttfamily  (\doxylink{page_inputs_fni7}{7})}
-
-{\ttfamily  }
-
-{\ttfamily  }
-
-{\ttfamily  }
-
-{\ttfamily  {\ttfamily plot\+\_\+resonance} }
-
-{\ttfamily }
-
-{\ttfamily  plot the safety factor (poloidal flux) or rotational transform (toroidal flux) and the resonant values }
-
-{\ttfamily }
-
-{\ttfamily  {\ttfamily .false.} }
-
-{\ttfamily }
-
-{\ttfamily {\ttfamily log} }
-
-{\ttfamily }
-
-{\ttfamily (\doxylink{page_inputs_fni13}{13})}
-
-{\ttfamily  }
-
-{\ttfamily  }
-
-{\ttfamily  }
-
-{\ttfamily  {\ttfamily plot\+\_\+magn\+\_\+grid} }
-
-{\ttfamily }
-
-{\ttfamily  plot magnetic field lines in the flux surfaces in 3-\/D geometry as an animation }
-
-{\ttfamily }
-
-{\ttfamily  {\ttfamily .false.} }
-
-{\ttfamily }
-
-{\ttfamily {\ttfamily log} }
-
-{\ttfamily }
-
-{\ttfamily (\doxylink{page_inputs_fni14}{14})}
-
-{\ttfamily  }
-
-{\ttfamily  }
-
-{\ttfamily  }
-
-{\ttfamily  {\ttfamily plot\+\_\+B} }
-
-{\ttfamily }
-
-{\ttfamily  plot magnetic field $\vec{B} = \nabla \alpha \times \nabla \psi $ $\left[T\right]$ }
-
-{\ttfamily }
-
-{\ttfamily  {\ttfamily .false.} }
-
-{\ttfamily }
-
-{\ttfamily {\ttfamily log} }
-
-{\ttfamily }
-
-{\ttfamily (\doxylink{page_inputs_fni15}{15})}
-
-{\ttfamily  }
-
-{\ttfamily  }
-
-{\ttfamily  }
-
-{\ttfamily  {\ttfamily plot\+\_\+J} }
-
-{\ttfamily }
-
-{\ttfamily  plot current $\vec{J} = \mu_0^{-1} \nabla \times \left(\nabla \alpha \times \nabla \psi\right) $ $\left[\frac{A}{m^2}\right]$ }
-
-{\ttfamily }
-
-{\ttfamily  {\ttfamily .false.} }
-
-{\ttfamily }
-
-{\ttfamily {\ttfamily log} }
-
-{\ttfamily }
-
-{\ttfamily (\doxylink{page_inputs_fni16}{16})}
-
-{\ttfamily  }
-
-{\ttfamily  }
-
-{\ttfamily  }
-
-{\ttfamily  {\ttfamily plot\+\_\+kappa} }
-
-{\ttfamily }
-
-{\ttfamily  plot curvature $\vec{\kappa} = \frac{\vec{B}}{B} \cdot \nabla \frac{\vec{B}}{B}$ $\left[\frac{1}{m}\right]$ and its components $  \kappa_n = \frac{\nabla \psi}{\left|\nabla \psi\right|^2} \cdot \vec{\kappa} $ $\left[\frac{1}{T m^2}\right]$ and $ \kappa_g = \frac{\nabla \psi \times \vec{B}}{B^2} \cdot \vec{\kappa} $ $\left[\phantom{\cdot}\right]$ }
-
-{\ttfamily }
-
-{\ttfamily  {\ttfamily .false.} }
-
-{\ttfamily }
-
-{\ttfamily {\ttfamily log} }
-
-{\ttfamily }
-
-{\ttfamily (\doxylink{page_inputs_fni17}{17})}
-
-{\ttfamily  }
-
-{\ttfamily  }
-
-{\ttfamily  }
-
-{\ttfamily  {\ttfamily plot\+\_\+flux\+\_\+q} }
-
-{\ttfamily }
-
-{\ttfamily  plot flux quantities $q$, $\iota$, $p$ $\left[Pa\right]$, $\Psi_\text{pol}$ $\left[T m^2\right]$ and $\Psi_\text{tor}$ $\left[T m^2\right]$ }
-
-{\ttfamily }
-
-{\ttfamily  {\ttfamily .false.} }
-
-{\ttfamily }
-
-{\ttfamily {\ttfamily log} }
-
-{\ttfamily }
-
-{\ttfamily (\doxylink{page_inputs_fni18}{18})}
-
-{\ttfamily  }
-
-{\ttfamily  }
-
-{\ttfamily  }
-
-{\ttfamily  {\ttfamily n\+\_\+theta\+\_\+plot} }
-
-{\ttfamily }
-
-{\ttfamily  number of points in plots in $\theta$ direction }
-
-{\ttfamily }
-
-{\ttfamily  }
-
-{\ttfamily }
-
-{\ttfamily {\ttfamily int} }
-
-{\ttfamily }
-
-{\ttfamily (\doxylink{page_inputs_fni19}{19})}
-
-{\ttfamily  }
-
-{\ttfamily  }
-
-{\ttfamily  }
-
-{\ttfamily  {\ttfamily n\+\_\+zeta\+\_\+plot} }
-
-{\ttfamily }
-
-{\ttfamily  number of points in plots in $\zeta$ direction }
-
-{\ttfamily }
-
-{\ttfamily  }
-
-{\ttfamily }
-
-{\ttfamily {\ttfamily int} }
-
-{\ttfamily }
-
-{\ttfamily (\doxylink{page_inputs_fni19}{19})}
-
-{\ttfamily  }
-
-{\ttfamily  }
-
-{\ttfamily  }
-
-{\ttfamily  {\ttfamily min\+\_\+theta\+\_\+plot} }
-
-{\ttfamily }
-
-{\ttfamily  minimum of $\theta$ range for plots }
-
-{\ttfamily }
-
-{\ttfamily  }
-
-{\ttfamily  $1$}
-
-{\ttfamily {\ttfamily int} }
-
-{\ttfamily }
-
-{\ttfamily }
-
-{\ttfamily  }
-
-{\ttfamily  }
-
-{\ttfamily  }
-
-{\ttfamily  {\ttfamily max\+\_\+theta\+\_\+plot} }
-
-{\ttfamily }
-
-{\ttfamily  minimum of $\theta$ range for plots }
-
-{\ttfamily }
-
-{\ttfamily  }
-
-{\ttfamily  $3$}
-
-{\ttfamily {\ttfamily int} }
-
-{\ttfamily }
-
-{\ttfamily }
-
-{\ttfamily  }
-
-{\ttfamily  }
-
-{\ttfamily  }
-
-{\ttfamily  {\ttfamily min\+\_\+zeta\+\_\+plot} }
-
-{\ttfamily }
-
-{\ttfamily  minimum of $\zeta$ range for plots }
-
-{\ttfamily }
-
-{\ttfamily  }
-
-{\ttfamily }
-
-{\ttfamily {\ttfamily int} }
-
-{\ttfamily }
-
-{\ttfamily  (\doxylink{page_inputs_fni20}{20})}
-
-{\ttfamily  }
-
-{\ttfamily  }
-
-{\ttfamily  }
-
-{\ttfamily  {\ttfamily max\+\_\+zeta\+\_\+plot} }
-
-{\ttfamily }
-
-{\ttfamily  minimum of $\zeta$ range for plots }
-
-{\ttfamily }
-
-{\ttfamily  }
-
-{\ttfamily }
-
-{\ttfamily {\ttfamily int} }
-
-{\ttfamily }
-
-{\ttfamily  (\doxylink{page_inputs_fni20}{20})}
-
-{\ttfamily  }
-
-{\ttfamily  }
-
-{\ttfamily  }
-
-{\ttfamily  {\ttfamily plot\+\_\+size} }
-
-{\ttfamily }
-
-{\ttfamily  size of 2-\/D plots in inch by inch }
-
-{\ttfamily }
-
-{\ttfamily  $\left[10,5\right]$ }
-
-{\ttfamily }
-
-{\ttfamily  {\ttfamily int(2)} }
-
-{\ttfamily  }
-
-{\ttfamily }
-
-{\ttfamily  }
-
-{\ttfamily  }
-
-{\ttfamily  }
-
-{\ttfamily  {\ttfamily ex\+\_\+plot\+\_\+style} }
-
-{\ttfamily }
-
-{\ttfamily  style how external plots are made 
-\begin{DoxyTable}{2}{}{}{0}
+\end{DoxyTableNested}
+&{\ttfamily .false.} &{\ttfamily log} &(\doxylink{page_inputs_fni7}{7}) \\
+{\ttfamily plot\+\_\+resonance} &plot the safety factor (poloidal flux) or rotational transform (toroidal flux) and the resonant values &{\ttfamily .false.} &{\ttfamily log} &(\doxylink{page_inputs_fni13}{13}) \\
+{\ttfamily plot\+\_\+magn\+\_\+grid} &plot magnetic field lines in the flux surfaces in 3-\/D geometry as an animation &{\ttfamily .false.} &{\ttfamily log} &(\doxylink{page_inputs_fni14}{14}) \\
+{\ttfamily plot\+\_\+B} &plot magnetic field $\vec{B} = \nabla \alpha \times \nabla \psi $ $\left[T\right]$ &{\ttfamily .false.} &{\ttfamily log} &(\doxylink{page_inputs_fni15}{15}) \\
+{\ttfamily plot\+\_\+J} &plot current $\vec{J} = \mu_0^{-1} \nabla \times \left(\nabla \alpha \times \nabla \psi\right) $ $\left[\frac{A}{m^2}\right]$ &{\ttfamily .false.} &{\ttfamily log} &(\doxylink{page_inputs_fni16}{16}) \\
+{\ttfamily plot\+\_\+kappa} &plot curvature $\vec{\kappa} = \frac{\vec{B}}{B} \cdot \nabla \frac{\vec{B}}{B}$ $\left[\frac{1}{m}\right]$ and its components $  \kappa_n = \frac{\nabla \psi}{\left|\nabla \psi\right|^2} \cdot \vec{\kappa} $ $\left[\frac{1}{T m^2}\right]$ and $ \kappa_g = \frac{\nabla \psi \times \vec{B}}{B^2} \cdot \vec{\kappa} $ $\left[\phantom{\cdot}\right]$ &{\ttfamily .false.} &{\ttfamily log} &(\doxylink{page_inputs_fni17}{17}) \\
+{\ttfamily plot\+\_\+flux\+\_\+q} &plot flux quantities $q$, $\iota$, $p$ $\left[Pa\right]$, $\Psi_\text{pol}$ $\left[T m^2\right]$ and $\Psi_\text{tor}$ $\left[T m^2\right]$ &{\ttfamily .false.} &{\ttfamily log} &(\doxylink{page_inputs_fni18}{18}) \\
+{\ttfamily n\+\_\+theta\+\_\+plot} &number of points in plots in $\theta$ direction &$201$ (VMEC), $501$ (HELENA) &{\ttfamily int} &(\doxylink{page_inputs_fni19}{19}) \\
+{\ttfamily n\+\_\+zeta\+\_\+plot} &number of points in plots in $\zeta$ direction &$51$ (VMEC), $1$ (HELENA) &{\ttfamily int} &(\doxylink{page_inputs_fni19}{19}) \\
+{\ttfamily min\+\_\+theta\+\_\+plot} &minimum of $\theta$ range for plots $\left[\pi\right]$ &$1$ &{\ttfamily real} &\\
+{\ttfamily max\+\_\+theta\+\_\+plot} &maximum of $\theta$ range for plots $\left[\pi\right]$ &$3$ &{\ttfamily real} &\\
+{\ttfamily min\+\_\+zeta\+\_\+plot} &minimum of $\zeta$ range for plots $\left[\pi\right]$ &$0$ &{\ttfamily real} &(\doxylink{page_inputs_fni20}{20}) \\
+{\ttfamily max\+\_\+zeta\+\_\+plot} &maximum of $\zeta$ range for plots $\left[\pi\right]$ &$2$ (VMEC), $0$ (HELENA) &{\ttfamily real} &(\doxylink{page_inputs_fni20}{20}) \\
+{\ttfamily plot\+\_\+size} &size of 2-\/D plots in inch by inch &$\left[10,5\right]$ &{\ttfamily int(2)} &\\
+{\ttfamily ex\+\_\+plot\+\_\+style} &style how external plots are made \begin{DoxyTableNested}{2}{0}
 $1$ &Gnu\+Plot \\
 $2$ &Bokeh for 2-\/D and Mayavi for 3-\/D \\
-\end{DoxyTable}
-~\newline
- }
-
-{\ttfamily }
-
-{\ttfamily  $1$ }
-
-{\ttfamily }
-
-{\ttfamily  {\ttfamily int} }
-
-{\ttfamily  }
-
-{\ttfamily (\doxylink{page_inputs_fni21}{21})}
-
-{\ttfamily  }
-
-{\ttfamily }
-
-{\ttfamily }
-
-{\ttfamily  }
-
-{\ttfamily  {\bfseries{concerning Richardson extrapolation}} }
-
-{\ttfamily  }
-
-{\ttfamily  }
-
-{\ttfamily  }
-
-{\ttfamily  {\ttfamily max\+\_\+it\+\_\+rich} }
-
-{\ttfamily }
-
-{\ttfamily  maximum number of Richardson extrapolations }
-
-{\ttfamily }
-
-{\ttfamily  $1$ }
-
-{\ttfamily }
-
-{\ttfamily {\ttfamily int} }
-
-{\ttfamily }
-
-{\ttfamily }
-
-{\ttfamily  }
-
-{\ttfamily  }
-
-{\ttfamily  }
-
-{\ttfamily  {\ttfamily tol\+\_\+rich} }
-
-{\ttfamily }
-
-{\ttfamily  tolerance for convergence of Richardson extrapolations }
-
-{\ttfamily }
-
-{\ttfamily  $1^{-4}$ }
-
-{\ttfamily }
-
-{\ttfamily {\ttfamily real} }
-
-{\ttfamily }
-
-{\ttfamily }
-
-{\ttfamily  }
-
-{\ttfamily  }
-
-{\ttfamily  }
-
-{\ttfamily  {\ttfamily rich\+\_\+restart\+\_\+lvl} }
-
-{\ttfamily }
-
-{\ttfamily  Richardson level at which to restart a previous simulation }
-
-{\ttfamily }
-
-{\ttfamily  $1$ }
-
-{\ttfamily }
-
-{\ttfamily {\ttfamily int} }
-
-{\ttfamily }
-
-{\ttfamily  (\doxylink{page_inputs_fni8}{8})}
-
-{\ttfamily  }
-
-{\ttfamily }
-
-{\ttfamily }
-
-{\ttfamily  }
-
-{\ttfamily  {\bfseries{concerning finding zeros}} }
-
-{\ttfamily  }
-
-{\ttfamily  }
-
-{\ttfamily  }
-
-{\ttfamily  {\ttfamily max\+\_\+it\+\_\+zero} }
-
-{\ttfamily }
-
-{\ttfamily  maximum number of iterations in \doxylink{interfacenum__ops_1_1calc__zero__hh}{num\+\_\+ops.\+calc\+\_\+zero\+\_\+hh()} and calc\+\_\+zero\+\_\+zhang() }
-
-{\ttfamily }
-
-{\ttfamily  $100$ }
-
-{\ttfamily }
-
-{\ttfamily {\ttfamily int} }
-
-{\ttfamily }
-
-{\ttfamily  (\doxylink{page_inputs_fni9}{9})}
-
-{\ttfamily  }
-
-{\ttfamily  }
-
-{\ttfamily  }
-
-{\ttfamily  {\ttfamily tol\+\_\+zero} }
-
-{\ttfamily }
-
-{\ttfamily  tolerance for zero finding }
-
-{\ttfamily }
-
-{\ttfamily  $1^{-10}$ }
-
-{\ttfamily }
-
-{\ttfamily {\ttfamily real} }
-
-{\ttfamily }
-
-{\ttfamily  (\doxylink{page_inputs_fni9}{9})}
-
-{\ttfamily  }
-
-{\ttfamily  }
-
-{\ttfamily  }
-
-{\ttfamily  {\ttfamily max\+\_\+nr\+\_\+backtracks\+\_\+\+HH} }
-
-{\ttfamily }
-
-{\ttfamily  maximum number of times the correction can be relaxed by half in a backtrack for the Householder methods }
-
-{\ttfamily }
-
-{\ttfamily  $20$ }
-
-{\ttfamily }
-
-{\ttfamily {\ttfamily int} }
-
-{\ttfamily }
-
-{\ttfamily  (\doxylink{page_inputs_fni9}{9})}
-
-{\ttfamily  }
-
-{\ttfamily  }
-
-{\ttfamily  }
-
-{\ttfamily  {\bfseries{concerning runtime}} }
-
-{\ttfamily  }
-
-{\ttfamily  }
-
-{\ttfamily  }
-
-{\ttfamily  {\ttfamily use\+\_\+normalization} }
-
-{\ttfamily }
-
-{\ttfamily  use normalization for the internal calculations }
-
-{\ttfamily }
-
-{\ttfamily  {\ttfamily .true.} }
-
-{\ttfamily }
-
-{\ttfamily {\ttfamily log} }
-
-{\ttfamily }
-
-{\ttfamily  (\doxylink{page_inputs_fni6}{6})}
-
-{\ttfamily  }
-
-{\ttfamily  }
-
-{\ttfamily  }
-
-{\ttfamily  {\ttfamily max\+\_\+tot\+\_\+mem} }
-
-{\ttfamily }
-
-{\ttfamily  maximum total memory available to the simulation $\left[kB\right]$ }
-
-{\ttfamily }
-
-{\ttfamily  {\ttfamily 6000} }
-
-{\ttfamily }
-
-{\ttfamily {\ttfamily real} }
-
-{\ttfamily }
-
-{\ttfamily  }
-
-{\ttfamily  }
-
-{\ttfamily  }
-
-{\ttfamily  }
-
-{\ttfamily  {\ttfamily sol\+\_\+n\+\_\+procs} }
-
-{\ttfamily }
-
-{\ttfamily  Number of processes available for SLEPC solution $(1\ldots N)$ where $N$ is the number of MPI processes }
-
-{\ttfamily }
-
-{\ttfamily  {\ttfamily N} }
-
-{\ttfamily }
-
-{\ttfamily {\ttfamily int} }
-
-{\ttfamily }
-
-{\ttfamily  }
-
-{\ttfamily  }
-
-{\ttfamily  }
-
-{\ttfamily  }
-
-{\ttfamily  {\ttfamily norm\+\_\+disc\+\_\+prec\+\_\+eq} }
-
-{\ttfamily }
-
-{\ttfamily  normal discretization precision for equilibrium quantities }
-
-{\ttfamily }
-
-{\ttfamily  $3$ }
-
-{\ttfamily }
-
-{\ttfamily {\ttfamily int} }
-
-{\ttfamily }
-
-{\ttfamily  }
-
-{\ttfamily  }
-
-{\ttfamily  }
-
-{\ttfamily  }
-
-{\ttfamily  {\ttfamily norm\+\_\+disc\+\_\+prec\+\_\+X} }
-
-{\ttfamily }
-
-{\ttfamily  normal discretization precision for perturbation quantities }
-
-{\ttfamily }
-
-{\ttfamily  $3$ }
-
-{\ttfamily }
-
-{\ttfamily {\ttfamily int} }
-
-{\ttfamily }
-
-{\ttfamily  }
-
-{\ttfamily  }
-
-{\ttfamily  }
-
-{\ttfamily  }
-
-{\ttfamily  {\ttfamily norm\+\_\+disc\+\_\+prec\+\_\+sol} }
-
-{\ttfamily }
-
-{\ttfamily  normal discretization precision for solution quantities }
-
-{\ttfamily }
-
-{\ttfamily  $3$ }
-
-{\ttfamily }
-
-{\ttfamily {\ttfamily int} }
-
-{\ttfamily }
-
-{\ttfamily  }
-
-{\ttfamily  }
-
-{\ttfamily  }
-
-{\ttfamily  }
-
-{\ttfamily  {\ttfamily norm\+\_\+disc\+\_\+style\+\_\+sol} }
-
-{\ttfamily }
-
-{\ttfamily  style how solution quantities are discretized 
-\begin{DoxyTable}{2}{}{}{0}
-$1$ &central finite differences \\
-$2$ &left finite differences \\
-\end{DoxyTable}
-~\newline
- }
-
-{\ttfamily }
-
-{\ttfamily  $2$ }
-
-{\ttfamily }
-
-{\ttfamily {\ttfamily int} }
-
-{\ttfamily }
-
-{\ttfamily  }
-
-{\ttfamily  }
-
-{\ttfamily  }
-
-{\ttfamily  }
-
-{\ttfamily  {\ttfamily magn\+\_\+int\+\_\+style} }
-
-{\ttfamily }
-
-{\ttfamily  style how magnetic integrals are calculated 
-\begin{DoxyTable}{2}{}{}{0}
+\end{DoxyTableNested}
+&$1$ &{\ttfamily int} &(\doxylink{page_inputs_fni21}{21}) \\
+\SetCell[c=5]{c}{\bfseries{concerning Richardson extrapolation}} &&&&\\
+{\ttfamily max\+\_\+it\+\_\+rich} &maximum number of Richardson levels ( $1$ means no extrapolation) &$1$ &{\ttfamily int} &\\
+{\ttfamily tol\+\_\+rich} &tolerance for convergence of Richardson extrapolations &$10^{-4}$ &{\ttfamily real} &\\
+{\ttfamily rich\+\_\+restart\+\_\+lvl} &Richardson level at which to restart a previous simulation &$1$ &{\ttfamily int} &(\doxylink{page_inputs_fni8}{8}) \\
+\SetCell[c=5]{c}{\bfseries{concerning finding zeros}} &&&&\\
+{\ttfamily max\+\_\+it\+\_\+zero} &maximum number of iterations in \doxylink{interfacenum__ops_1_1calc__zero__hh}{num\+\_\+ops.\+calc\+\_\+zero\+\_\+hh()} and calc\+\_\+zero\+\_\+zhang() &$100$ &{\ttfamily int} &(\doxylink{page_inputs_fni9}{9}) \\
+{\ttfamily tol\+\_\+zero} &tolerance for zero finding &$10^{-10}$ &{\ttfamily real} &(\doxylink{page_inputs_fni9}{9}) \\
+{\ttfamily max\+\_\+nr\+\_\+backtracks\+\_\+\+HH} &maximum number of times the correction can be relaxed by half in a backtrack for the Householder methods &$20$ &{\ttfamily int} &(\doxylink{page_inputs_fni9}{9}) \\
+\SetCell[c=5]{c}{\bfseries{concerning runtime}} &&&&\\
+{\ttfamily use\+\_\+normalization} &use normalization for the internal calculations &{\ttfamily .true.} &{\ttfamily log} &(\doxylink{page_inputs_fni6}{6}) \\
+{\ttfamily max\+\_\+tot\+\_\+mem} &maximum total memory available to the simulation, for all processes together $\left[MB\right]$ &$6000$ &{\ttfamily real} &\\
+{\ttfamily sol\+\_\+n\+\_\+procs} &number of processes used for the SLEPC solution $(1\ldots N)$, where $N$ is the number of MPI processes &$N$ &{\ttfamily int} &(\doxylink{page_inputs_fni45}{45}) \\
+{\ttfamily norm\+\_\+disc\+\_\+prec\+\_\+eq} &order of the normal discretization of the equilibrium quantities (only $3$ is accepted) &$3$ &{\ttfamily int} &\\
+{\ttfamily norm\+\_\+disc\+\_\+prec\+\_\+X} &order of the normal discretization of the perturbation quantities $\left(1\ldots 3\right)$ &$3$ &{\ttfamily int} &\\
+{\ttfamily norm\+\_\+disc\+\_\+prec\+\_\+sol} &order of the normal discretization of the solution $\left(1\ldots 3\right)$: the normal derivative is a left finite difference over the point and the {\ttfamily norm\+\_\+disc\+\_\+prec\+\_\+sol} points to its left &$3$ &{\ttfamily int} &(\doxylink{page_inputs_fni44}{44}) \\
+{\ttfamily magn\+\_\+int\+\_\+style} &style how magnetic integrals are calculated \begin{DoxyTableNested}{2}{0}
 $1$ &trapezoidal rule \\
 $2$ &Simpson 3/\+8 rule \\
-\end{DoxyTable}
-~\newline
- }
-
-{\ttfamily }
-
-{\ttfamily  $1$ }
-
-{\ttfamily }
-
-{\ttfamily {\ttfamily int} }
-
-{\ttfamily }
-
-{\ttfamily  }
-
-{\ttfamily  }
-
-{\ttfamily  }
-
-{\ttfamily  }
-
-{\ttfamily  {\ttfamily X\+\_\+grid\+\_\+style} }
-
-{\ttfamily }
-
-{\ttfamily  style how perturbation grid is set up 
-\begin{DoxyTable}{2}{}{}{0}
+\end{DoxyTableNested}
+&$1$ &{\ttfamily int} &(\doxylink{page_inputs_fni3}{3}) \\
+{\ttfamily X\+\_\+grid\+\_\+style} &style how perturbation grid is set up \begin{DoxyTableNested}{2}{0}
 $1$ &identical to equilibrium grid \\
 $2$ &identical to solution grid \\
 $3$ &enriched version of equilibrium grid (see {\ttfamily max\+\_\+njq\+\_\+change}) \\
-\end{DoxyTable}
-~\newline
- }
-
-{\ttfamily }
-
-{\ttfamily  $1$ ({\ttfamily X\+\_\+style} 1), $2$ ({\ttfamily X\+\_\+style} 2) }
-
-{\ttfamily }
-
-{\ttfamily {\ttfamily int} }
-
-{\ttfamily }
-
-{\ttfamily (\doxylink{page_inputs_fni5}{5}, \doxylink{page_inputs_fni36}{36}) }
-
-{\ttfamily  }
-
-{\ttfamily  }
-
-{\ttfamily  }
-
-{\ttfamily  {\ttfamily max\+\_\+njq\+\_\+change} }
-
-{\ttfamily }
-
-{\ttfamily  maximum change of resonant mode numbers for {\ttfamily X\+\_\+grid\+\_\+style} $3$ }
-
-{\ttfamily }
-
-{\ttfamily  $0.49$ }
-
-{\ttfamily }
-
-{\ttfamily {\ttfamily real} }
-
-{\ttfamily }
-
-{\ttfamily (\doxylink{page_inputs_fni36}{36})}
-
-{\ttfamily  }
-
-{\ttfamily  }
-
-{\ttfamily  }
-
-{\ttfamily  {\ttfamily max\+\_\+it\+\_\+\+SLEPC} }
-
-{\ttfamily }
-
-{\ttfamily  maximum number of iterations in SLEPC calculation to find eigenvalue }
-
-{\ttfamily }
-
-{\ttfamily  $1000$ }
-
-{\ttfamily }
-
-{\ttfamily {\ttfamily int} }
-
-{\ttfamily }
-
-{\ttfamily }
-
-{\ttfamily  }
-
-{\ttfamily  }
-
-{\ttfamily  }
-
-{\ttfamily  {\ttfamily EV\+\_\+\+BC} }
-
-{\ttfamily }
-
-{\ttfamily  eigenvalue used in boundary condition of style {\ttfamily BC\+\_\+style} = 1 }
-
-{\ttfamily }
-
-{\ttfamily  $1$ }
-
-{\ttfamily }
-
-{\ttfamily {\ttfamily real} }
-
-{\ttfamily }
-
-{\ttfamily  (\doxylink{page_inputs_fni10}{10})}
-
-{\ttfamily  }
-
-{\ttfamily  }
-
-{\ttfamily  }
-
-{\ttfamily  {\ttfamily EV\+\_\+guess} }
-
-{\ttfamily }
-
-{\ttfamily  target guess for eigenvalue }
-
-{\ttfamily }
-
-{\ttfamily  $-0.3$ }
-
-{\ttfamily }
-
-{\ttfamily {\ttfamily real} }
-
-{\ttfamily }
-
-{\ttfamily }
-
-{\ttfamily  }
-
-{\ttfamily  }
-
-{\ttfamily  }
-
-{\ttfamily  {\ttfamily tol\+\_\+\+SLEPC} }
-
-{\ttfamily }
-
-{\ttfamily  tolerance used in SLEPC for different Richardson levels }
-
-{\ttfamily }
-
-{\ttfamily  $[1^{-5},\ldots]$ }
-
-{\ttfamily }
-
-{\ttfamily {\ttfamily real(max\+\_\+it\+\_\+rich)} }
-
-{\ttfamily }
-
-{\ttfamily  }
-
-{\ttfamily  }
-
-{\ttfamily  }
-
-{\ttfamily  }
-
-{\ttfamily  {\ttfamily rho\+\_\+style} }
-
-{\ttfamily }
-
-{\ttfamily  style how the density $\rho$ is calculated 
-\begin{DoxyTable}{2}{}{}{0}
+\end{DoxyTableNested}
+&$1$ ({\ttfamily X\+\_\+style} 1), $3$ ({\ttfamily X\+\_\+style} 2) &{\ttfamily int} &(\doxylink{page_inputs_fni5}{5}, \doxylink{page_inputs_fni36}{36}) \\
+{\ttfamily max\+\_\+njq\+\_\+change} &maximum change of $n q$ (poloidal flux) or $m \iota$ (toroidal flux) between two normal points for {\ttfamily X\+\_\+grid\+\_\+style} $3$ &$0.49$ &{\ttfamily real} &(\doxylink{page_inputs_fni36}{36}) \\
+{\ttfamily max\+\_\+it\+\_\+\+SLEPC} &maximum number of iterations in SLEPC calculation to find eigenvalue &$1000$ &{\ttfamily int} &\\
+{\ttfamily EV\+\_\+\+BC} &artificial eigenvalue in the rows of the points where the perturbation is set to zero ({\ttfamily BC\+\_\+style} $1$) &$1$ &{\ttfamily real} &(\doxylink{page_inputs_fni10}{10}) \\
+{\ttfamily EV\+\_\+guess} &target of the eigenvalue solver: SLEPC looks for the eigenvalues closest to it &$-0.3$ &{\ttfamily real} &\\
+{\ttfamily tol\+\_\+\+SLEPC} &tolerance used in SLEPC, one value for each Richardson level &$10^{-5}$ for every level &{\ttfamily real(max\+\_\+it\+\_\+rich)} &(\doxylink{page_inputs_fni46}{46}) \\
+{\ttfamily rho\+\_\+style} &style how the density $\rho$ is calculated \begin{DoxyTableNested}{2}{0}
 $1$ &constant {\ttfamily rho\+\_\+0} \\
-\end{DoxyTable}
-~\newline
- }
-
-{\ttfamily }
-
-{\ttfamily  $1$ }
-
-{\ttfamily }
-
-{\ttfamily {\ttfamily int} }
-
-{\ttfamily }
-
-{\ttfamily }
-
-{\ttfamily  }
-
-{\ttfamily  }
-
-{\ttfamily  }
-
-{\ttfamily  {\ttfamily U\+\_\+style} }
-
-{\ttfamily }
-
-{\ttfamily  style how to calculate geodesical perturbation $U = \vec{\xi} \cdot \frac{\nabla \psi \times \vec{B}}{\left|\nabla \psi\right|^2}$ is calculated 
-\begin{DoxyTable}{2}{}{}{0}
+\end{DoxyTableNested}
+&$1$ &{\ttfamily int} &\\
+{\ttfamily U\+\_\+style} &style how to calculate the geodesic perturbation $U = \vec{\xi} \cdot \frac{\nabla \psi \times \vec{B}}{\left|\nabla \psi\right|^2}$ \begin{DoxyTableNested}{2}{0}
 $1$ &up to order $ \sim \frac{1}{n} $ \\
 $2$ &up to order $ \sim \left(\frac{1}{n}\right)^2 $ \\
 $3$ &up to order $ \sim \left(\frac{1}{n}\right)^3 $ \\
-\end{DoxyTable}
-~\newline
- }
-
-{\ttfamily }
-
-{\ttfamily  $3$ }
-
-{\ttfamily }
-
-{\ttfamily {\ttfamily int} }
-
-{\ttfamily }
-
-{\ttfamily }
-
-{\ttfamily  }
-
-{\ttfamily  }
-
-{\ttfamily  }
-
-{\ttfamily  {\ttfamily K\+\_\+style} }
-
-{\ttfamily }
-
-{\ttfamily  style how to calculate kinetic energy $K = \int \left|\vec{\xi}\right|^2 d \text{V}$ 
-\begin{DoxyTable}{2}{}{}{0}
+\end{DoxyTableNested}
+&$3$ &{\ttfamily int} &\\
+{\ttfamily K\+\_\+style} &style how to calculate kinetic energy $K = \int \left|\vec{\xi}\right|^2 d \text{V}$ \begin{DoxyTableNested}{2}{0}
 $1$ &normalization of full perpendicular component \\
 $2$ &normalization of only normal component \\
-\end{DoxyTable}
-~\newline
- }
-
-{\ttfamily }
-
-{\ttfamily  $1$ }
-
-{\ttfamily }
-
-{\ttfamily {\ttfamily int} }
-
-{\ttfamily }
-
-{\ttfamily }
-
-{\ttfamily  }
-
-{\ttfamily  }
-
-{\ttfamily  }
-
-{\ttfamily  {\ttfamily BC\+\_\+style} }
-
-{\ttfamily }
-
-{\ttfamily  style how boundary conditions are applied for left and right boundary 
-\begin{DoxyTable}{2}{}{}{0}
-$1$ &set to zero \\
-$2$ &minimization of surface energy through asymmetric finite differences \\
-$3$ &minization through extension of grid \\
-$4$ &explicit introduction of the surface energy minimization \\
-\end{DoxyTable}
-~\newline
- }
-
-{\ttfamily }
-
-{\ttfamily  $[1,2]$ }
-
-{\ttfamily }
-
-{\ttfamily {\ttfamily int(2)} }
-
-{\ttfamily }
-
-{\ttfamily  (\doxylink{page_inputs_fni10}{10})}
-
-{\ttfamily  }
-
-{\ttfamily  }
-
-{\ttfamily  }
-
-{\ttfamily  {\ttfamily norm\+\_\+style} }
-
-{\ttfamily }
-
-{\ttfamily  style how to calculate normalization 
-\begin{DoxyTable}{2}{}{}{0}
+\end{DoxyTableNested}
+&$1$ &{\ttfamily int} &\\
+{\ttfamily BC\+\_\+style} &style of the boundary conditions at the inner end (first value) and at the edge (second value) \begin{DoxyTableNested}{2}{0}
+$1$ &perturbation set to zero (fixed boundary); the only value accepted at the inner end \\
+$2$ &free boundary: the vacuum energy is added to the edge block, and the matrices stay Hermitian; only at the edge \\
+\end{DoxyTableNested}
+&$[1,2]$ &{\ttfamily int(2)} &(\doxylink{page_inputs_fni10}{10}, \doxylink{page_inputs_fni37}{37}) \\
+{\ttfamily norm\+\_\+style} &style how to calculate normalization \begin{DoxyTableNested}{2}{0}
 $1$ &MISHKA normalization with magnetic field on axis \\
 $2$ &COBRA normalization with pressure on axis \\
-\end{DoxyTable}
-~\newline
- }
-
-{\ttfamily }
-
-{\ttfamily  $1$ }
-
-{\ttfamily }
-
-{\ttfamily {\ttfamily int} }
-
-{\ttfamily }
-
-{\ttfamily (\doxylink{page_inputs_fni11}{11})}
-
-{\ttfamily  }
-
-{\ttfamily  }
-
-{\ttfamily  }
-
-{\ttfamily  {\ttfamily solver\+\_\+\+SLEPC\+\_\+style} }
-
-{\ttfamily }
-
-{\ttfamily  style used in SLEPC to solve the eigenvalue equation 
-\begin{DoxyTable}{2}{}{}{0}
+\end{DoxyTableNested}
+&$1$ &{\ttfamily int} &(\doxylink{page_inputs_fni11}{11}) \\
+{\ttfamily solver\+\_\+\+SLEPC\+\_\+style} &style used in SLEPC to solve the eigenvalue equation \begin{DoxyTableNested}{2}{0}
 $1$ &Krylov-\/\+Schur with shift-\/invert \\
 $2$ &generalized Davidson with preconditioner \\
-\end{DoxyTable}
-~\newline
- }
-
-{\ttfamily }
-
-{\ttfamily  $1$ }
-
-{\ttfamily }
-
-{\ttfamily {\ttfamily int} }
-
-{\ttfamily }
-
-{\ttfamily }
-
-{\ttfamily  }
-
-{\ttfamily  }
-
-{\ttfamily  }
-
-{\ttfamily  {\ttfamily matrix\+\_\+\+SLEPC\+\_\+style} }
-
-{\ttfamily }
-
-{\ttfamily  style used for SLEPC matrices 
-\begin{DoxyTable}{2}{}{}{0}
+\end{DoxyTableNested}
+&$1$ &{\ttfamily int} &\\
+{\ttfamily matrix\+\_\+\+SLEPC\+\_\+style} &style used for SLEPC matrices \begin{DoxyTableNested}{2}{0}
 $1$ &sparse matrices \\
 $2$ &shell matrices \\
+\end{DoxyTableNested}
+&$1$ &{\ttfamily int} &(\doxylink{page_inputs_fni12}{12}) \\
 \end{DoxyTable}
-~\newline
- }
-
-{\ttfamily }
-
-{\ttfamily  $1$ }
-
-{\ttfamily }
-
-{\ttfamily {\ttfamily int} }
-
-{\ttfamily }
-
-{\ttfamily (\doxylink{page_inputs_fni12}{12})}
-
-{\ttfamily  }
-
-{\ttfamily  }
-
-{\ttfamily }
-
-{\ttfamily }\hypertarget{page_inputs_inputs_PB3D_cmd}{}\doxysubsection{\texorpdfstring{{\ttfamily Command-\/line inputs}}{{\ttfamily Command-\/line inputs}}}\label{page_inputs_inputs_PB3D_cmd}
-{\ttfamily }
-
-{\ttfamily \hypertarget{page_inputs_inputs_PB3D_cmd_tab}{}
+\hypertarget{page_inputs_inputs_PB3D_cmd}{}\doxysubsection{\texorpdfstring{Command-\/line inputs}{Command-\/line inputs}}\label{page_inputs_inputs_PB3D_cmd}
+\hypertarget{page_inputs_inputs_PB3D_cmd_tab}{}
 
 \begin{DoxyTable}{4}{Table 2. PB3D command-\/line options}{page_inputs_inputs_PB3D_cmd_tab}{1}
 \SetCell{bg=\tableheadbgcolor,font=\bfseries}input parameter &\SetCell{bg=\tableheadbgcolor,font=\bfseries}explanation &\SetCell{bg=\tableheadbgcolor,font=\bfseries}argument &\SetCell{bg=\tableheadbgcolor,font=\bfseries}note \\
@@ -1579,406 +178,86 @@ Debug version only
 \end{DoxyNote}
 &&(\doxylink{page_inputs_fni28}{28}) \\
 {\ttfamily no\+\_\+plots} &do not produce any output plots &&\\
-{\ttfamily no\+\_\+outputs} &do not produce text output &&(\doxylink{page_inputs_fni29}{29}) \\
+{\ttfamily no\+\_\+output} &do not write the messages of writo() &&(\doxylink{page_inputs_fni29}{29}) \\
 {\ttfamily do\+\_\+execute\+\_\+command\+\_\+line} &run the external command line shell commands during execution &&(\doxylink{page_inputs_fni30}{30}) \\
 {\ttfamily mem\+\_\+info} &produce memory profiles for each process \begin{DoxyNote}{Note}
 Debug version only 
 \end{DoxyNote}
 &&(\doxylink{page_inputs_fni31}{31}) \\
-{\ttfamily no\+\_\+guess} &do not use a guess&&\\
-{\ttfamily jump\+\_\+to\+\_\+sol} &jump straight to the solution for the Richardson level at which the simulationes are (re)started, possibly for different solution grid parameters such as {\ttfamily n\+\_\+r\+\_\+sol} &&(\doxylink{page_inputs_fni33}{33}) \\
+{\ttfamily no\+\_\+guess} &do not use the eigenvectors of the previous Richardson level as a guess &&\\
+{\ttfamily jump\+\_\+to\+\_\+sol} &jump straight to the solution for the Richardson level at which the simulation is (re)started, possibly for different solution grid parameters such as {\ttfamily n\+\_\+r\+\_\+sol} &&(\doxylink{page_inputs_fni33}{33}) \\
 {\ttfamily export\+\_\+\+HEL} &create a VMEC input file from HELENA variables, possibly adding a toroidal ripple &&(\doxylink{page_inputs_fni34}{34}) \\
-{\ttfamily plot\+\_\+\+VMEC\+\_\+modes} &plot decay of VMEC modes &&\\
+{\ttfamily plot\+\_\+\+VMEC\+\_\+modes} &plot decay of VMEC modes (VMEC only) &&\\
 {\ttfamily invert\+\_\+top\+\_\+bottom\+\_\+H} &invert top and bottom of HELENA equilibrium \begin{DoxyNote}{Note}
 Debug version only 
 \end{DoxyNote}
 &&\\
+{\ttfamily -\/eps\+\_\+type}, {\ttfamily -\/eps\+\_\+tol}, {\ttfamily -\/eps\+\_\+ncv}, {\ttfamily -\/eps\+\_\+mpd}, {\ttfamily -\/st\+\_\+type}, {\ttfamily -\/st\+\_\+pc\+\_\+type}, {\ttfamily -\/st\+\_\+ksp\+\_\+type}, {\ttfamily -\/st\+\_\+pc\+\_\+factor\+\_\+shift\+\_\+type}, {\ttfamily -\/st\+\_\+pc\+\_\+factor\+\_\+mat\+\_\+solver\+\_\+type} &options of SLEPC and PETSc for the eigenvalue solver &one value &(\doxylink{page_inputs_fni42}{42}) \\
+{\ttfamily -\/eps\+\_\+monitor}, {\ttfamily -\/eps\+\_\+view}, {\ttfamily -\/log\+\_\+view} &options of SLEPC and PETSc for output of the eigenvalue solver &&(\doxylink{page_inputs_fni42}{42}) \\
 \end{DoxyTable}
-}
-
-{\ttfamily }\hypertarget{page_inputs_inputs_POST}{}\doxysection{\texorpdfstring{{\ttfamily POST Inputs}}{{\ttfamily POST Inputs}}}\label{page_inputs_inputs_POST}
-{\ttfamily }
-
-{\ttfamily }\hypertarget{page_inputs_inputs_POST_file}{}\doxysubsection{\texorpdfstring{{\ttfamily Input file}}{{\ttfamily Input file}}}\label{page_inputs_inputs_POST_file}
-{\ttfamily }
-
-{\ttfamily \hypertarget{page_inputs_inputs_POST_file_tab}{}
+\hypertarget{page_inputs_inputs_POST}{}\doxysection{\texorpdfstring{POST Inputs}{POST Inputs}}\label{page_inputs_inputs_POST}
+\hypertarget{page_inputs_inputs_POST_file}{}\doxysubsection{\texorpdfstring{Input file}{Input file}}\label{page_inputs_inputs_POST_file}
+\hypertarget{page_inputs_inputs_POST_file_tab}{}
 
 \begin{DoxyTable}{5}{Table 3. POST input file}{page_inputs_inputs_POST_file_tab}{1}
 \SetCell{bg=\tableheadbgcolor,font=\bfseries}input parameter &\SetCell{bg=\tableheadbgcolor,font=\bfseries}explanation &\SetCell{bg=\tableheadbgcolor,font=\bfseries}default value &\SetCell{bg=\tableheadbgcolor,font=\bfseries}data type &\SetCell{bg=\tableheadbgcolor,font=\bfseries}note \\
 \SetCell[c=5]{c}{\bfseries{concerning solution}} &&&&\\
-{\ttfamily min\+\_\+r\+\_\+plot} &minimum normalized flux of output domain $\left(0\ldots 1\right)$ &&{\ttfamily real} &(\doxylink{page_inputs_fni24}{24}) \\
-{\ttfamily max\+\_\+r\+\_\+plot} &maximum normalized flux of output domain $\left(0\ldots 1\right)$ &&{\ttfamily real} &(\doxylink{page_inputs_fni24}{24}) \\
+{\ttfamily min\+\_\+r\+\_\+plot} &minimum normalized flux of output domain $\left(0\ldots 1\right)$ &$0$ &{\ttfamily real} &(\doxylink{page_inputs_fni24}{24}) \\
+{\ttfamily max\+\_\+r\+\_\+plot} &maximum normalized flux of output domain $\left(0\ldots 1\right)$ &$1$ &{\ttfamily real} &(\doxylink{page_inputs_fni24}{24}) \\
 \SetCell[c=5]{c}{\bfseries{concerning input and output}} &&&&\\
-{\ttfamily n\+\_\+sol\+\_\+plotted} &number of solutions plotted &{\ttfamily n\+\_\+sol\+\_\+requested} &{\ttfamily int} &\\
-{\ttfamily pert\+\_\+mult\+\_\+factor\+\_\+\+POST} &factor by which the grid can be perturbed, with respect to the maximum perturbation of each solution independently &$0$ &{\ttfamily real} &(\doxylink{page_inputs_fni25}{25})\\
-{\ttfamily plot\+\_\+resonance} &plot the safety factor (poloidal flux) or rotational transform (toroidal flux) and the resonant values &{\ttfamily .false.} &{\ttfamily log} &(\doxylink{page_inputs_fni13}{13})\\
-{\ttfamily plot\+\_\+magn\+\_\+grid} &plot magnetic field lines in the flux surfaces in 3-\/D geometry as an animation &{\ttfamily .false.} &{\ttfamily log} &(\doxylink{page_inputs_fni14}{14})\\
-{\ttfamily plot\+\_\+B} &plot magnetic field $\vec{B} = \nabla \alpha \times \nabla \psi $ $\left[T\right]$ &{\ttfamily .false.} &{\ttfamily log} &(\doxylink{page_inputs_fni15}{15})\\
-{\ttfamily plot\+\_\+J} &plot current $\vec{J} = \mu_0^{-1} \nabla \times \left(\nabla \alpha \times \nabla \psi\right) $ $\left[\frac{A}{m^2}\right]$ &{\ttfamily .false.} &{\ttfamily log} &(\doxylink{page_inputs_fni16}{16})\\
-{\ttfamily plot\+\_\+kappa} &plot curvature $\vec{\kappa} = \frac{\vec{B}}{B} \cdot \nabla \frac{\vec{B}}{B}$ $\left[\frac{1}{m}\right]$ and its components $  \kappa_n = \frac{\nabla \psi}{\left|\nabla \psi\right|^2} \cdot \vec{\kappa} $ $\left[\frac{1}{T m^2}\right]$ and $ \kappa_g = \frac{\nabla \psi \times \vec{B}}{B^2} \cdot \vec{\kappa} $ $\left[\phantom{\cdot}\right]$ &{\ttfamily .false.} &{\ttfamily log} &(\doxylink{page_inputs_fni17}{17})\\
-{\ttfamily plot\+\_\+flux\+\_\+q} &plot flux quantities $q$, $\iota$, $p$ $\left[Pa\right]$, $\Psi_\text{pol}$ $\left[T m^2\right]$ and $\Psi_\text{tor}$ $\left[T m^2\right]$ &{\ttfamily .false.} &{\ttfamily log} &(\doxylink{page_inputs_fni18}{18})\\
-{\ttfamily plot\+\_\+sol\+\_\+xi} &plot normal mode $\vec{\xi}$ $\left[m\right]$ and its components $  X = \frac{\nabla \psi}{B^2} \cdot \vec{\xi} $ $\left[\frac{m^2}{T}\right]$ and $ U = \frac{\nabla \psi \times \vec{B}}{\left|\nabla \psi\right|^2} \cdot \vec{\xi} $ $\left[\phantom{\cdot}\right]$ &{\ttfamily .false.} &{\ttfamily log} &(\doxylink{page_inputs_fni26}{26})\\
-{\ttfamily plot\+\_\+sol\+\_\+Q} &plot magnetic field perturbation due to the normal mode $\vec{Q} = \nabla \times \left(\vec{\xi} \times \vec{B}\right) $ $\left[T\right]$ and its components $  Q_n = \frac{\nabla \psi}{B^2} \cdot \vec{Q} $ $\left[m\right]$ and $ Q_g = \frac{\nabla \psi \times \vec{B}}{\left|\nabla \psi\right|^2} \cdot \vec{Q} $ $\left[\frac{T}{m}\right]$ &{\ttfamily .false.} &{\ttfamily log} &(\doxylink{page_inputs_fni26}{26})\\
-{\ttfamily plot\+\_\+\+E\+\_\+rec} &plot energy reconstruction &{\ttfamily .false.} &{\ttfamily log} &(\doxylink{page_inputs_fni27}{27})\\
-{\ttfamily n\+\_\+theta\+\_\+plot} &number of points in plots in $\theta$ direction &&{\ttfamily int} &(\doxylink{page_inputs_fni19}{19})\\
-{\ttfamily n\+\_\+zeta\+\_\+plot} &number of points in plots in $\zeta$ direction &&{\ttfamily int} &(\doxylink{page_inputs_fni19}{19})\\
-{\ttfamily min\+\_\+theta\+\_\+plot} &minimum of $\theta$ range for plots &&\\
-\end{DoxyTable}
-}
-
-{\ttfamily $<$\+\_\+form$>$}
-
-{\ttfamily {\ttfamily int} }
-
-{\ttfamily }
-
-{\ttfamily }
-
-{\ttfamily  }
-
-{\ttfamily  }
-
-{\ttfamily  }
-
-{\ttfamily  {\ttfamily max\+\_\+theta\+\_\+plot} }
-
-{\ttfamily }
-
-{\ttfamily  minimum of $\theta$ range for plots }
-
-{\ttfamily }
-
-{\ttfamily  }
-
-{\ttfamily  $3$}
-
-{\ttfamily {\ttfamily int} }
-
-{\ttfamily }
-
-{\ttfamily }
-
-{\ttfamily  }
-
-{\ttfamily  }
-
-{\ttfamily  }
-
-{\ttfamily  {\ttfamily min\+\_\+zeta\+\_\+plot} }
-
-{\ttfamily }
-
-{\ttfamily  minimum of $\zeta$ range for plots }
-
-{\ttfamily }
-
-{\ttfamily  }
-
-{\ttfamily }
-
-{\ttfamily {\ttfamily int} }
-
-{\ttfamily }
-
-{\ttfamily  (\doxylink{page_inputs_fni20}{20})}
-
-{\ttfamily  }
-
-{\ttfamily  }
-
-{\ttfamily  }
-
-{\ttfamily  {\ttfamily max\+\_\+zeta\+\_\+plot} }
-
-{\ttfamily }
-
-{\ttfamily  minimum of $\zeta$ range for plots }
-
-{\ttfamily }
-
-{\ttfamily  }
-
-{\ttfamily }
-
-{\ttfamily {\ttfamily int} }
-
-{\ttfamily }
-
-{\ttfamily  (\doxylink{page_inputs_fni20}{20})}
-
-{\ttfamily  }
-
-{\ttfamily  }
-
-{\ttfamily  }
-
-{\ttfamily  {\ttfamily plot\+\_\+size} }
-
-{\ttfamily }
-
-{\ttfamily  size of 2-\/D plots in inch by inch }
-
-{\ttfamily }
-
-{\ttfamily  $\left[10,5\right]$ }
-
-{\ttfamily }
-
-{\ttfamily  {\ttfamily int(2)} }
-
-{\ttfamily  }
-
-{\ttfamily }
-
-{\ttfamily  }
-
-{\ttfamily  }
-
-{\ttfamily  }
-
-{\ttfamily  {\ttfamily ex\+\_\+plot\+\_\+style} }
-
-{\ttfamily }
-
-{\ttfamily  style how external plots are made 
-\begin{DoxyTable}{2}{}{}{0}
+{\ttfamily n\+\_\+sol\+\_\+plotted} &numbers of solutions plotted: the first and the last unstable ones, the first and the last stable ones &$\left[-1,-1,-1,-1\right]$ (all) &{\ttfamily int(4)} &(\doxylink{page_inputs_fni41}{41}) \\
+{\ttfamily pert\+\_\+mult\+\_\+factor\+\_\+\+POST} &factor by which the grid can be perturbed, with respect to the maximum perturbation of each solution independently &$0$ &{\ttfamily real} &(\doxylink{page_inputs_fni25}{25}) \\
+{\ttfamily plot\+\_\+resonance} &plot the safety factor (poloidal flux) or rotational transform (toroidal flux) and the resonant values &{\ttfamily .true.} &{\ttfamily log} &(\doxylink{page_inputs_fni13}{13}) \\
+{\ttfamily plot\+\_\+magn\+\_\+grid} &plot magnetic field lines in the flux surfaces in 3-\/D geometry as an animation &{\ttfamily .true.} &{\ttfamily log} &(\doxylink{page_inputs_fni14}{14}) \\
+{\ttfamily plot\+\_\+B} &plot magnetic field $\vec{B} = \nabla \alpha \times \nabla \psi $ $\left[T\right]$ &{\ttfamily .true.} &{\ttfamily log} &(\doxylink{page_inputs_fni15}{15}) \\
+{\ttfamily plot\+\_\+J} &plot current $\vec{J} = \mu_0^{-1} \nabla \times \left(\nabla \alpha \times \nabla \psi\right) $ $\left[\frac{A}{m^2}\right]$ &{\ttfamily .true.} &{\ttfamily log} &(\doxylink{page_inputs_fni16}{16}) \\
+{\ttfamily plot\+\_\+kappa} &plot curvature $\vec{\kappa} = \frac{\vec{B}}{B} \cdot \nabla \frac{\vec{B}}{B}$ $\left[\frac{1}{m}\right]$ and its components $  \kappa_n = \frac{\nabla \psi}{\left|\nabla \psi\right|^2} \cdot \vec{\kappa} $ $\left[\frac{1}{T m^2}\right]$ and $ \kappa_g = \frac{\nabla \psi \times \vec{B}}{B^2} \cdot \vec{\kappa} $ $\left[\phantom{\cdot}\right]$ &{\ttfamily .true.} &{\ttfamily log} &(\doxylink{page_inputs_fni17}{17}) \\
+{\ttfamily plot\+\_\+flux\+\_\+q} &plot flux quantities $q$, $\iota$, $p$ $\left[Pa\right]$, $\Psi_\text{pol}$ $\left[T m^2\right]$ and $\Psi_\text{tor}$ $\left[T m^2\right]$ &{\ttfamily .true.} &{\ttfamily log} &(\doxylink{page_inputs_fni18}{18}) \\
+{\ttfamily plot\+\_\+sol\+\_\+xi} &plot the plasma displacement $\vec{\xi}$ $\left[m\right]$ of the solution and its components $  X = \frac{\nabla \psi}{B^2} \cdot \vec{\xi} $ $\left[\frac{m^2}{T}\right]$ and $ U = \frac{\nabla \psi \times \vec{B}}{\left|\nabla \psi\right|^2} \cdot \vec{\xi} $ $\left[\phantom{\cdot}\right]$ &{\ttfamily .true.} &{\ttfamily log} &(\doxylink{page_inputs_fni26}{26}) \\
+{\ttfamily plot\+\_\+sol\+\_\+Q} &plot the magnetic field perturbation of the solution $\vec{Q} = \nabla \times \left(\vec{\xi} \times \vec{B}\right) $ $\left[T\right]$ and its components $  Q_n = \frac{\nabla \psi}{B^2} \cdot \vec{Q} $ $\left[m\right]$ and $ Q_g = \frac{\nabla \psi \times \vec{B}}{\left|\nabla \psi\right|^2} \cdot \vec{Q} $ $\left[\frac{T}{m}\right]$ &{\ttfamily .true.} &{\ttfamily log} &(\doxylink{page_inputs_fni26}{26}) \\
+{\ttfamily plot\+\_\+\+E\+\_\+rec} &plot energy reconstruction &{\ttfamily .true.} &{\ttfamily log} &(\doxylink{page_inputs_fni27}{27}) \\
+{\ttfamily n\+\_\+theta\+\_\+plot} &number of points in plots in $\theta$ direction &$201$ (VMEC), $501$ (HELENA) &{\ttfamily int} &(\doxylink{page_inputs_fni19}{19}) \\
+{\ttfamily n\+\_\+zeta\+\_\+plot} &number of points in plots in $\zeta$ direction &$51$ (VMEC), $1$ (HELENA) &{\ttfamily int} &(\doxylink{page_inputs_fni19}{19}) \\
+{\ttfamily min\+\_\+theta\+\_\+plot} &minimum of $\theta$ range for plots $\left[\pi\right]$ &$1$ &{\ttfamily real} &\\
+{\ttfamily max\+\_\+theta\+\_\+plot} &maximum of $\theta$ range for plots $\left[\pi\right]$ &$3$ &{\ttfamily real} &\\
+{\ttfamily min\+\_\+zeta\+\_\+plot} &minimum of $\zeta$ range for plots $\left[\pi\right]$ &$0$ &{\ttfamily real} &(\doxylink{page_inputs_fni20}{20}) \\
+{\ttfamily max\+\_\+zeta\+\_\+plot} &maximum of $\zeta$ range for plots $\left[\pi\right]$ &$2$ (VMEC), $0$ (HELENA) &{\ttfamily real} &(\doxylink{page_inputs_fni20}{20}) \\
+{\ttfamily plot\+\_\+size} &size of 2-\/D plots in inch by inch &$\left[10,5\right]$ &{\ttfamily int(2)} &\\
+{\ttfamily ex\+\_\+plot\+\_\+style} &style how external plots are made \begin{DoxyTableNested}{2}{0}
 $1$ &Gnu\+Plot \\
 $2$ &Bokeh for 2-\/D and Mayavi for 3-\/D \\
-\end{DoxyTable}
-~\newline
- }
-
-{\ttfamily }
-
-{\ttfamily  $1$ }
-
-{\ttfamily }
-
-{\ttfamily  {\ttfamily int} }
-
-{\ttfamily  }
-
-{\ttfamily (\doxylink{page_inputs_fni21}{21})}
-
-{\ttfamily  }
-
-{\ttfamily }
-
-{\ttfamily }
-
-{\ttfamily  }
-
-{\ttfamily  {\bfseries{concerning Richardson extrapolation}} }
-
-{\ttfamily  }
-
-{\ttfamily  }
-
-{\ttfamily  }
-
-{\ttfamily  {\ttfamily PB3\+D\+\_\+rich\+\_\+lvl} }
-
-{\ttfamily }
-
-{\ttfamily  Richardson level at which to perform post-\/processing }
-
-{\ttfamily }
-
-{\ttfamily {\ttfamily int} }
-
-{\ttfamily }
-
-{\ttfamily  (\doxylink{page_inputs_fni22}{22})}
-
-{\ttfamily  }
-
-{\ttfamily }
-
-{\ttfamily }
-
-{\ttfamily  }
-
-{\ttfamily  {\bfseries{concerning finding zeros}} }
-
-{\ttfamily  }
-
-{\ttfamily  }
-
-{\ttfamily  }
-
-{\ttfamily  {\ttfamily max\+\_\+it\+\_\+zero} }
-
-{\ttfamily }
-
-{\ttfamily  maximum number of iterations in \doxylink{interfacenum__ops_1_1calc__zero__hh}{num\+\_\+ops.\+calc\+\_\+zero\+\_\+hh()} and calc\+\_\+zero\+\_\+zhang() }
-
-{\ttfamily }
-
-{\ttfamily  $100$ }
-
-{\ttfamily }
-
-{\ttfamily {\ttfamily int} }
-
-{\ttfamily }
-
-{\ttfamily  (\doxylink{page_inputs_fni9}{9})}
-
-{\ttfamily  }
-
-{\ttfamily  }
-
-{\ttfamily  }
-
-{\ttfamily  {\ttfamily tol\+\_\+zero} }
-
-{\ttfamily }
-
-{\ttfamily  tolerance for zero finding }
-
-{\ttfamily }
-
-{\ttfamily  $1^{-10}$ }
-
-{\ttfamily }
-
-{\ttfamily {\ttfamily real} }
-
-{\ttfamily }
-
-{\ttfamily  (\doxylink{page_inputs_fni9}{9})}
-
-{\ttfamily  }
-
-{\ttfamily  }
-
-{\ttfamily  }
-
-{\ttfamily  {\ttfamily max\+\_\+nr\+\_\+backtracks\+\_\+\+HH} }
-
-{\ttfamily }
-
-{\ttfamily  maximum number of times the correction can be relaxed by half in a backtrack for the Householder methods }
-
-{\ttfamily }
-
-{\ttfamily  $20$ }
-
-{\ttfamily }
-
-{\ttfamily {\ttfamily int} }
-
-{\ttfamily }
-
-{\ttfamily  (\doxylink{page_inputs_fni9}{9})}
-
-{\ttfamily  }
-
-{\ttfamily }
-
-{\ttfamily }
-
-{\ttfamily  }
-
-{\ttfamily  {\bfseries{concerning runtime}} }
-
-{\ttfamily  }
-
-{\ttfamily  }
-
-{\ttfamily  }
-
-{\ttfamily  {\ttfamily max\+\_\+tot\+\_\+mem} }
-
-{\ttfamily }
-
-{\ttfamily  maximum total memory available to the simulation $\left[kB\right]$ }
-
-{\ttfamily }
-
-{\ttfamily  {\ttfamily 6000} }
-
-{\ttfamily }
-
-{\ttfamily {\ttfamily real} }
-
-{\ttfamily }
-
-{\ttfamily  }
-
-{\ttfamily  }
-
-{\ttfamily  }
-
-{\ttfamily  }
-
-{\ttfamily  {\ttfamily POST\+\_\+style} }
-
-{\ttfamily }
-
-{\ttfamily  style how post-\/processing is done 
-\begin{DoxyTable}{2}{}{}{0}
+\end{DoxyTableNested}
+&$1$ &{\ttfamily int} &(\doxylink{page_inputs_fni21}{21}) \\
+\SetCell[c=5]{c}{\bfseries{concerning vacuum}} &&&&\\
+{\ttfamily plot\+\_\+vac\+\_\+pot} &plot the vacuum potential of the solutions outside the plasma &{\ttfamily .true.} &{\ttfamily log} &(\doxylink{page_inputs_fni40}{40}) \\
+{\ttfamily min\+\_\+\+Rvac\+\_\+plot} &minimum of the $R$ range of the vacuum plot $\left[m\right]$ &$0$ (range from the boundary) &{\ttfamily real} &(\doxylink{page_inputs_fni40}{40}) \\
+{\ttfamily max\+\_\+\+Rvac\+\_\+plot} &maximum of the $R$ range of the vacuum plot $\left[m\right]$ &$0$ (range from the boundary) &{\ttfamily real} &(\doxylink{page_inputs_fni40}{40}) \\
+{\ttfamily min\+\_\+\+Zvac\+\_\+plot} &minimum of the $Z$ range of the vacuum plot $\left[m\right]$ &$0$ (range from the boundary) &{\ttfamily real} &(\doxylink{page_inputs_fni40}{40}) \\
+{\ttfamily max\+\_\+\+Zvac\+\_\+plot} &maximum of the $Z$ range of the vacuum plot $\left[m\right]$ &$0$ (range from the boundary) &{\ttfamily real} &(\doxylink{page_inputs_fni40}{40}) \\
+{\ttfamily n\+\_\+vac\+\_\+plot} &number of points of the vacuum plot in $R$ and in $Z$ (at least $2$ each) &$\left[101,101\right]$ &{\ttfamily int(2)} &(\doxylink{page_inputs_fni40}{40}) \\
+\SetCell[c=5]{c}{\bfseries{concerning Richardson extrapolation}} &&&&\\
+{\ttfamily PB3\+D\+\_\+rich\+\_\+lvl} &Richardson level at which to perform post-\/processing &highest level found &{\ttfamily int} &(\doxylink{page_inputs_fni22}{22}) \\
+\SetCell[c=5]{c}{\bfseries{concerning finding zeros}} &&&&\\
+{\ttfamily max\+\_\+it\+\_\+zero} &maximum number of iterations in \doxylink{interfacenum__ops_1_1calc__zero__hh}{num\+\_\+ops.\+calc\+\_\+zero\+\_\+hh()} and calc\+\_\+zero\+\_\+zhang() &$200$ &{\ttfamily int} &(\doxylink{page_inputs_fni9}{9}) \\
+{\ttfamily tol\+\_\+zero} &tolerance for zero finding &$10^{-8}$ &{\ttfamily real} &(\doxylink{page_inputs_fni9}{9}) \\
+{\ttfamily max\+\_\+nr\+\_\+backtracks\+\_\+\+HH} &maximum number of times the correction can be relaxed by half in a backtrack for the Householder methods &$20$ &{\ttfamily int} &(\doxylink{page_inputs_fni9}{9}) \\
+\SetCell[c=5]{c}{\bfseries{concerning runtime}} &&&&\\
+{\ttfamily max\+\_\+tot\+\_\+mem} &maximum total memory available to the simulation, for all processes together $\left[MB\right]$ &$6000$ &{\ttfamily real} &\\
+{\ttfamily POST\+\_\+style} &style how post-\/processing is done \begin{DoxyTableNested}{2}{0}
 $1$ &extended rectangular grid in $\theta$ and $\zeta$ \\
 $2$ &field-\/aligned grid used internally by PB3D \\
-\end{DoxyTable}
-~\newline
- }
-
-{\ttfamily }
-
-{\ttfamily  $1$ }
-
-{\ttfamily }
-
-{\ttfamily {\ttfamily int} }
-
-{\ttfamily }
-
-{\ttfamily (\doxylink{page_inputs_fni23}{23})}
-
-{\ttfamily  }
-
-{\ttfamily  }
-
-{\ttfamily  }
-
-{\ttfamily  {\ttfamily plot\+\_\+grid\+\_\+style} }
-
-{\ttfamily }
-
-{\ttfamily  style used for output plotting 
-\begin{DoxyTable}{2}{}{}{0}
+\end{DoxyTableNested}
+&$1$ &{\ttfamily int} &(\doxylink{page_inputs_fni23}{23}) \\
+{\ttfamily plot\+\_\+grid\+\_\+style} &style used for output plotting \begin{DoxyTableNested}{2}{0}
 $0$ &3-\/D plots \\
-$1$ &slab plots:\+ $\theta$ and $\zeta$ are sides of a slab \\
+$1$ &slab plots: $\theta$ and $\zeta$ are sides of a slab \\
 $2$ &slab plots with folding of fundamental interval $0\ldots 2 \pi$ \\
-$3$ &straight cylinder geometry:\+ $\zeta$ is straightened \\
+$3$ &unwrapped torus: the major radius $R$, the toroidal angle and $Z$ are the three axes \\
+\end{DoxyTableNested}
+&$0$ &{\ttfamily int} &(\doxylink{page_inputs_fni23}{23}) \\
 \end{DoxyTable}
-~\newline
- }
-
-{\ttfamily }
-
-{\ttfamily  $0$ }
-
-{\ttfamily }
-
-{\ttfamily {\ttfamily int} }
-
-{\ttfamily }
-
-{\ttfamily (\doxylink{page_inputs_fni23}{23})}
-
-{\ttfamily  }
-
-{\ttfamily  }
-
-{\ttfamily }
-
-{\ttfamily }\hypertarget{page_inputs_inputs_POST_cmd}{}\doxysubsection{\texorpdfstring{{\ttfamily Command-\/line inputs}}{{\ttfamily Command-\/line inputs}}}\label{page_inputs_inputs_POST_cmd}
-{\ttfamily }
-
-{\ttfamily \hypertarget{page_inputs_inputs_POST_cmd_tab}{}
+\hypertarget{page_inputs_inputs_POST_cmd}{}\doxysubsection{\texorpdfstring{Command-\/line inputs}{Command-\/line inputs}}\label{page_inputs_inputs_POST_cmd}
+\hypertarget{page_inputs_inputs_POST_cmd_tab}{}
 
 \begin{DoxyTable}{4}{Table 4. POST command-\/line options}{page_inputs_inputs_POST_cmd_tab}{1}
 \SetCell{bg=\tableheadbgcolor,font=\bfseries}input parameter &\SetCell{bg=\tableheadbgcolor,font=\bfseries}explanation &\SetCell{bg=\tableheadbgcolor,font=\bfseries}argument &\SetCell{bg=\tableheadbgcolor,font=\bfseries}note \\
@@ -1987,63 +266,53 @@ Debug version only
 \end{DoxyNote}
 &&(\doxylink{page_inputs_fni28}{28}) \\
 {\ttfamily no\+\_\+plots} &do not produce any output plots &&\\
-{\ttfamily no\+\_\+outputs} &do not produce text output &&(\doxylink{page_inputs_fni29}{29}) \\
+{\ttfamily no\+\_\+output} &do not write the messages of writo() &&(\doxylink{page_inputs_fni29}{29}) \\
 {\ttfamily do\+\_\+execute\+\_\+command\+\_\+line} &run the external command line shell commands during execution &&(\doxylink{page_inputs_fni30}{30}) \\
 {\ttfamily mem\+\_\+info} &produce memory profiles for each process \begin{DoxyNote}{Note}
 Debug version only 
 \end{DoxyNote}
 &&(\doxylink{page_inputs_fni31}{31}) \\
-{\ttfamily swap\+\_\+angles} &swap $\theta$ and $\zeta$ of output grid in {\ttfamily POST\+\_\+style = 2} &&\\
-{\ttfamily compare\+\_\+tor\+\_\+pos} &compare $\vec{B}$, $\vec{J}$ and $\vec{\kappa}$ from {\ttfamily plot\+\_\+B}, {\ttfamily plot\+\_\+J} and {\ttfamily plot\+\_\+kappa} at different toroidal positions, as well as the difference in position &&\\
+{\ttfamily swap\+\_\+angles} &swap $\theta$ and $\zeta$ of the slab plots ({\ttfamily plot\+\_\+grid\+\_\+style} $1$ or $2$) for {\ttfamily POST\+\_\+style = 2} &&\\
+{\ttfamily compare\+\_\+tor\+\_\+pos} &compare $\vec{B}$, $\vec{J}$ and $\vec{\kappa}$ from {\ttfamily plot\+\_\+B}, {\ttfamily plot\+\_\+J} and {\ttfamily plot\+\_\+kappa} at different toroidal positions, as well as the difference in position &$R$ and $Z$ of the origin of the geometrical poloidal angle ({\ttfamily RZ\+\_\+0(2)}) &(\doxylink{page_inputs_fni32}{32}) \\
 \end{DoxyTable}
-}
 
-{\ttfamily {\ttfamily RZ\+\_\+0(2)} }
 
-{\ttfamily (\doxylink{page_inputs_fni32}{32}) }
-
-{\ttfamily  }
-
-{\ttfamily  }
-
-{\ttfamily }
-
-{\ttfamily \begin{DoxyNote}{Note}
+\begin{DoxyNote}{Note}
 
 \begin{DoxyEnumerate}
 \item \label{page_inputs_fni1}%
 \Hypertarget{page_inputs_fni1}%
-The normalized flux is either the poloidal ({\ttfamily use\+\_\+pol\+\_\+flux\+\_\+F = .true.}) or toroidal ({\ttfamily use\+\_\+pol\+\_\+flux\+\_\+F = .false.}), divided by its value at the boundary.
+The normalized flux is either the poloidal ({\ttfamily use\+\_\+pol\+\_\+flux\+\_\+F = .true.}) or toroidal ({\ttfamily use\+\_\+pol\+\_\+flux\+\_\+F = .false.}), divided by its value at the boundary. PB3D raises a negative {\ttfamily min\+\_\+r\+\_\+sol} to 0 and lowers a {\ttfamily max\+\_\+r\+\_\+sol} above 1 to 1, and it stops if {\ttfamily min\+\_\+r\+\_\+sol} is not below {\ttfamily max\+\_\+r\+\_\+sol}. For VMEC, PB3D warns when {\ttfamily min\+\_\+r\+\_\+sol} reaches the magnetic axis.
 \item \label{page_inputs_fni2}%
 \Hypertarget{page_inputs_fni2}%
-Is used in check\+\_\+x\+\_\+modes() whether there exists a range in which each of the modes resonates.
+check\+\_\+\+X\+\_\+modes() uses {\ttfamily tol\+\_\+norm} for {\ttfamily X\+\_\+style} 1, when it checks whether there exists a normal range in which each of the modes resonates. PB3D limits {\ttfamily tol\+\_\+norm} to the range from 0 to 1.
 \item \label{page_inputs_fni3}%
 \Hypertarget{page_inputs_fni3}%
-This is the number for the first Richardson level. It is doubled for every next level.
+This is the number of parallel points at the first Richardson level. At every next level, the number of intervals is doubled, so that $n$ points become $2n-1$. PB3D raises {\ttfamily min\+\_\+n\+\_\+par\+\_\+X} to 20 if it is smaller. For {\ttfamily magn\+\_\+int\+\_\+style = 2} (Simpson 3/\+8 rule), PB3D raises it to the next number of the form $4 + 3k$.
 \item \label{page_inputs_fni4}%
 \Hypertarget{page_inputs_fni4}%
-Should satisfy the high-\/ $n$ approximation, currently set to \texorpdfstring{$>$}{>} 5 .
+The absolute value of {\ttfamily prim\+\_\+X} must be at least 5 ({\ttfamily min\+\_\+nm\+\_\+X} in X\+\_\+vars), because PB3D uses an expansion for high mode numbers.
 \item \label{page_inputs_fni5}%
 \Hypertarget{page_inputs_fni5}%
-If {\ttfamily min\+\_\+sec\+\_\+X} and {\ttfamily max\+\_\+sec\+\_\+X} is set, the user prescribes the secondary mode number range ({\ttfamily X\+\_\+style} = 1). If {\ttfamily n\+\_\+mod\+\_\+X} is set, on the other hand, the user prescribes the size of the range, which is automatically chosen ({\ttfamily X\+\_\+style} = 2). They cannot be both chosen.
+{\ttfamily X\+\_\+style} is not an input. PB3D derives it from the other inputs. If {\ttfamily min\+\_\+sec\+\_\+X} and {\ttfamily max\+\_\+sec\+\_\+X} are set, the user prescribes the range of secondary mode numbers, and PB3D sets {\ttfamily X\+\_\+style = 1} (prescribed). If neither is set, PB3D sets {\ttfamily X\+\_\+style = 2} (fast), and at every normal position it uses the {\ttfamily n\+\_\+mod\+\_\+X} secondary modes that are closest to resonance. Setting only one of {\ttfamily min\+\_\+sec\+\_\+X} and {\ttfamily max\+\_\+sec\+\_\+X}, or setting either of them together with {\ttfamily n\+\_\+mod\+\_\+X}, stops PB3D with an error. With {\ttfamily X\+\_\+style = 2}, a mode that leaves the range of modes at one normal position and a mode that enters it are not coupled, so the solution should be checked by doubling {\ttfamily n\+\_\+mod\+\_\+X} once.
 \item \label{page_inputs_fni6}%
 \Hypertarget{page_inputs_fni6}%
-Normalization constants, with exception of {\ttfamily rho\+\_\+0} are set in the routine calc\+\_\+normalization\+\_\+const().
+PB3D computes the normalization constants, with the exception of {\ttfamily rho\+\_\+0}, in the routine calc\+\_\+normalization\+\_\+const(). A value given in the input file replaces the computed value. For HELENA equilibria, PB3D always uses normalization, and it sets {\ttfamily use\+\_\+normalization} to {\ttfamily .true.} with a warning.
 \item \label{page_inputs_fni7}%
 \Hypertarget{page_inputs_fni7}%
-In store\+\_\+results(), it is decided whether the eigenvalue is physical or not, by considering the ratio between real and imaginary part.
+In store\+\_\+results(), PB3D marks an eigenvalue $\lambda$ as unphysical if the ratio $\left|\mathrm{Im}\,\lambda / \mathrm{Re}\,\lambda\right|$ exceeds 10 times {\ttfamily tol\+\_\+\+SLEPC}, if $\mathrm{Re}\,\lambda$ lies within a relative distance $10^{-3}$ of {\ttfamily EV\+\_\+\+BC}, or if $\left|\lambda\right| > 10^{40}$ (this eigenvalue and all following ones). Without {\ttfamily retain\+\_\+all\+\_\+sol}, PB3D leaves these eigenvalues out. With {\ttfamily retain\+\_\+all\+\_\+sol}, it keeps them and comments them out in the eigenvalue output file, with the reason.
 \item \label{page_inputs_fni8}%
 \Hypertarget{page_inputs_fni8}%
-This needs to be between 1 and the maximum level that was obtained in a previous solution, plus 1. For technical HDF5 reasons, if Richardson restart is used, the same input fil parameters should be used for {\ttfamily max\+\_\+tot\+\_\+mem} and the same number of processes should be used. Furthermore, it should not exceed {\ttfamily max\+\_\+it\+\_\+rich}.
+This needs to be between 1 and the maximum level that was obtained in a previous solution, plus 1, and it should not exceed {\ttfamily max\+\_\+it\+\_\+rich}. For technical HDF5 reasons, if Richardson restart is used, the same input file parameters should be used for {\ttfamily max\+\_\+tot\+\_\+mem} and the same number of processes should be used. PB3D stops if the output it continues from was written by a version older than {\ttfamily min\+\_\+\+PB3\+D\+\_\+version} (\doxylink{namespacenum__vars}{num\+\_\+vars}).
 \item \label{page_inputs_fni9}%
 \Hypertarget{page_inputs_fni9}%
 For the case of \doxylink{interfacenum__ops_1_1calc__zero__hh}{num\+\_\+ops.\+calc\+\_\+zero\+\_\+hh()}, at every iteration it is checked whether the correction approximation is better than the original one. If it is not, the correction is relaxed by a factor half. This is done {\ttfamily max\+\_\+nr\+\_\+backtracks\+\_\+\+HH} times.
 \item \label{page_inputs_fni10}%
 \Hypertarget{page_inputs_fni10}%
-See set\+\_\+bc().
+See set\+\_\+\+BC(). The inner end accepts only {\ttfamily BC\+\_\+style(1) = 1}, and the edge accepts {\ttfamily BC\+\_\+style(2) = 1} (fixed boundary) or {\ttfamily BC\+\_\+style(2) = 2} (free boundary). Any other value stops PB3D with an error message. For the points where the perturbation is set to zero, PB3D sets the diagonal of $\overline{\text{A}}$ to {\ttfamily EV\+\_\+\+BC}, the diagonal of $\overline{\text{B}}$ to 1 and the other elements of their rows to zero, so that these rows give eigenvalues equal to {\ttfamily EV\+\_\+\+BC}.
 \item \label{page_inputs_fni11}%
 \Hypertarget{page_inputs_fni11}%
-See calc\+\_\+normalization\+\_\+const().
+See calc\+\_\+normalization\+\_\+const(). The choice applies to VMEC equilibria only; HELENA equilibria always use the MISHKA normalization.
 \item \label{page_inputs_fni12}%
 \Hypertarget{page_inputs_fni12}%
 See solve\+\_\+ev\+\_\+system\+\_\+slepc()
@@ -2067,34 +336,34 @@ See kappa\+\_\+plot(). The output is done in various coordinate system, as expla
 See flux\+\_\+q\+\_\+plot().
 \item \label{page_inputs_fni19}%
 \Hypertarget{page_inputs_fni19}%
-For {\ttfamily eq\+\_\+style = 1}, the equilibrium is axisymmetric, so by default {\ttfamily n\+\_\+theta\+\_\+plot = 501} and {\ttfamily n\+\_\+zeta\+\_\+plot = 1}; for {\ttfamily eq\+\_\+style = 2}, the equilibrium can be 3-\/D, so {\ttfamily n\+\_\+theta\+\_\+plot = 201} and {\ttfamily n\+\_\+zeta\+\_\+plot = 51}
+For {\ttfamily eq\+\_\+style = 1} (VMEC), the equilibrium can be 3-\/D, so by default {\ttfamily n\+\_\+theta\+\_\+plot = 201} and {\ttfamily n\+\_\+zeta\+\_\+plot = 51}. For {\ttfamily eq\+\_\+style = 2} (HELENA), the equilibrium is axisymmetric, so by default {\ttfamily n\+\_\+theta\+\_\+plot = 501} and {\ttfamily n\+\_\+zeta\+\_\+plot = 1}. If {\ttfamily n\+\_\+theta\+\_\+plot} is 1, {\ttfamily max\+\_\+theta\+\_\+plot} is set to {\ttfamily min\+\_\+theta\+\_\+plot}. If {\ttfamily n\+\_\+zeta\+\_\+plot} is 1, {\ttfamily min\+\_\+zeta\+\_\+plot} and {\ttfamily max\+\_\+zeta\+\_\+plot} are both set to their average.
 \item \label{page_inputs_fni20}%
 \Hypertarget{page_inputs_fni20}%
-For {\ttfamily eq\+\_\+style = 1}, the equilibrium is axisymmetric, so by default {\ttfamily min\+\_\+zeta\+\_\+plot = max\+\_\+zeta\+\_\+plot 0}; for {\ttfamily eq\+\_\+style = 2}, the equilibrium can be 3-\/D, so {\ttfamily min\+\_\+zeta\+\_\+plot = 0} and {\ttfamily max\+\_\+zeta\+\_\+plot = 2}.
+For {\ttfamily eq\+\_\+style = 1} (VMEC), the equilibrium can be 3-\/D, so by default {\ttfamily min\+\_\+zeta\+\_\+plot = 0} and {\ttfamily max\+\_\+zeta\+\_\+plot = 2}. For {\ttfamily eq\+\_\+style = 2} (HELENA), the equilibrium is axisymmetric, so by default {\ttfamily min\+\_\+zeta\+\_\+plot = max\+\_\+zeta\+\_\+plot = 0}.
 \item \label{page_inputs_fni21}%
 \Hypertarget{page_inputs_fni21}%
-This refers to the external plots, which are complimentary to the HDF5 plots. See draw\+\_\+ex().
+This refers to the external plots, which are complementary to the HDF5 plots. See draw\+\_\+ex(). Another value than 1 or 2 is replaced by 1, with a warning.
 \item \label{page_inputs_fni22}%
 \Hypertarget{page_inputs_fni22}%
-If output is done that requires a solution, this needs to be between 1 and the maximum level that was obtained in PB3D. See find\+\_\+max\+\_\+rich\+\_\+lvl(). If no solution is found, some of the outputs that do not depend on this still work.\+Optionally, this can be forced by choosing {\ttfamily PB3\+D\+\_\+rich\+\_\+lvl} not positive.
+By default, POST treats the highest Richardson level found in the PB3D output (see find\+\_\+max\+\_\+rich\+\_\+lvl()). A requested level above it stops POST with an error that names the highest level found, and a level below it gives a warning. A value below 1, or an output that holds no solution, makes POST produce only the output that does not depend on the solution: it switches off {\ttfamily plot\+\_\+sol\+\_\+xi}, {\ttfamily plot\+\_\+sol\+\_\+Q} and {\ttfamily plot\+\_\+\+E\+\_\+rec}. POST stops if the PB3D output was written by a version older than {\ttfamily min\+\_\+\+PB3\+D\+\_\+version} (\doxylink{namespacenum__vars}{num\+\_\+vars}).
 \item \label{page_inputs_fni23}%
 \Hypertarget{page_inputs_fni23}%
 The {\ttfamily POST\+\_\+style} determines whether the post-\/processing is done on an extended, new grid, or on the PB3D internal grid. On top of this, through {\ttfamily plot\+\_\+grid\+\_\+style} the user can set the output grid for the post-\/processing. Note that some combinations of styles do not make sense.
 \item \label{page_inputs_fni24}%
 \Hypertarget{page_inputs_fni24}%
-By default, the plot normal range is chosen equal to the solution normal range from {\ttfamily min\+\_\+r\+\_\+sol} and {\ttfamily max\+\_\+r\+\_\+sol}, but it can be restricted. This is useful, for example, to reduce computation time.
+The plot range in the normal direction is the part of the solution range of PB3D, from {\ttfamily min\+\_\+r\+\_\+sol} to {\ttfamily max\+\_\+r\+\_\+sol}, that lies between {\ttfamily min\+\_\+r\+\_\+plot} and {\ttfamily max\+\_\+r\+\_\+plot}. With the defaults 0 and 1, it is the whole solution range. Restricting it is useful, for example, to reduce computation time.
 \item \label{page_inputs_fni25}%
 \Hypertarget{page_inputs_fni25}%
-The Cartesian components of the result of the division of {\ttfamily pert\+\_\+mult\+\_\+factor\+\_\+\+POST} by the maximum value of the solution normal mode amplitude is added to the equilibrium Cartesian grid components to illustrate the perturbation in 3-\/D. This is done for each solution independently and sequentially. If it is not positive, it is ignored. Note that {\ttfamily plot\+\_\+sol\+\_\+xi = .true.} is necessary for this to be used.
+For each solution independently and sequentially, POST divides {\ttfamily pert\+\_\+mult\+\_\+factor\+\_\+\+POST} by the maximum amplitude of the normal displacement of the solution, multiplies the Cartesian components of the displacement by the result, and adds them to the equilibrium Cartesian grid to show the perturbation in 3-\/D. POST ignores a factor whose absolute value is below {\ttfamily tol\+\_\+zero}. The factor acts when {\ttfamily plot\+\_\+sol\+\_\+xi} or {\ttfamily plot\+\_\+sol\+\_\+Q} is {\ttfamily .true.}, and POST then also plots $\vec{\xi}$.
 \item \label{page_inputs_fni26}%
 \Hypertarget{page_inputs_fni26}%
-These quantities are calculated in \doxylink{interfacesol__utilities_1_1calc__xuq}{sol\+\_\+utilities.\+calc\+\_\+xuq()}. This is done for a time sequene, currently hard-\/coded in plot\+\_\+sol\+\_\+vec(), depending on whether the solution is stable or unstable.
+These quantities are calculated in \doxylink{interfacesol__utilities_1_1calc__xuq}{sol\+\_\+utilities.\+calc\+\_\+xuq()}. This is done for a time sequence, currently hard-\/coded in plot\+\_\+sol\+\_\+vec(), depending on whether the solution is stable or unstable.
 \item \label{page_inputs_fni27}%
 \Hypertarget{page_inputs_fni27}%
-The energy reconstruction is performed in calc\+\_\+e() if either one of {\ttfamily plot\+\_\+sol\+\_\+xi}, {\ttfamily plot\+\_\+sol\+\_\+Q} or {\ttfamily plot\+\_\+\+E\+\_\+rec} is true.
+POST performs the energy reconstruction in calc\+\_\+e(), through decompose\+\_\+energy(), when {\ttfamily plot\+\_\+\+E\+\_\+rec} is {\ttfamily .true.}.
 \item \label{page_inputs_fni28}%
 \Hypertarget{page_inputs_fni28}%
-Equivalent use is through {\ttfamily -\/t}. If this is used, {\ttfamily do\+\_\+execute\+\_\+command\+\_\+line} should be set to true as well. See generic\+\_\+tests().
+Equivalent use is through {\ttfamily -\/t}. This option works only in a debug build (see \doxysectlink{page_installation}{Installation}{0}); otherwise the program prints a warning and ignores it. If this is used, {\ttfamily do\+\_\+execute\+\_\+command\+\_\+line} should be set to true as well. See generic\+\_\+tests().
 \item \label{page_inputs_fni29}%
 \Hypertarget{page_inputs_fni29}%
 This is used internally as well, to suppress certain output. See run\+\_\+driver\+\_\+x() and run\+\_\+driver\+\_\+post().
@@ -2103,22 +372,51 @@ This is used internally as well, to suppress certain output. See run\+\_\+driver
 This can fail on local systems, and generally works badly on computational clusters, where the computational nodes often don\textquotesingle{}t have the external tools (see {\ttfamily ex\+\_\+plot\+\_\+style}) installed. By default, an output file is created for the shell commands, which can be executed afterwards. See \doxysectlink{page_outputs_output_file_shell}{Shell commands file}{2}.
 \item \label{page_inputs_fni31}%
 \Hypertarget{page_inputs_fni31}%
-This is done by calling get\+\_\+mem\+\_\+usage() and storing the result at every allocation and deallocation of an {\ttfamily eq\+\_\+1\+\_\+type}, {\ttfamily eq\+\_\+2\+\_\+type}, {\ttfamily X\+\_\+1\+\_\+type}, {\ttfamily X\+\_\+2\+\_\+type}, {\ttfamily vac\+\_\+type} or {\ttfamily sol\+\_\+type}, as well as for input quantities. Furthermore at every user output with writo(), this is also done, and the output is prepended to the output string. Also, the output is written to a file. See \doxysectlink{page_outputs_output_file_mem}{Memory usage file}{2}.
+This option works only in a debug build. It calls get\+\_\+mem\+\_\+usage() and stores the result at every allocation and deallocation of an {\ttfamily eq\+\_\+1\+\_\+type}, {\ttfamily eq\+\_\+2\+\_\+type}, {\ttfamily X\+\_\+1\+\_\+type}, {\ttfamily X\+\_\+2\+\_\+type}, {\ttfamily vac\+\_\+type} or {\ttfamily sol\+\_\+type}, as well as for input quantities. Furthermore at every user output with writo(), this is also done, and the output is prepended to the output string. Also, the output is written to a file. See \doxysectlink{page_outputs_output_file_mem}{Memory usage file}{2}.
 \item \label{page_inputs_fni32}%
 \Hypertarget{page_inputs_fni32}%
-This is useful to calculate the ripple in these quantities. To use this, it is necessary to have an output grid of only 3 points, where the poloidal projection of the middle point should be the in the middle between the poloidal projections of the two others. Also, you have to provide through {\ttfamily RZ\+\_\+0} the $R$ and $Z$ value of the origin of the geometrical poloidal angle that is used to calculate distances. See \doxylink{interfacegrid__utilities_1_1calc__tor__diff}{grid\+\_\+utilities.\+calc\+\_\+tor\+\_\+diff()}.
+This is useful to calculate the ripple in these quantities. The option takes two numbers, the $R$ and $Z$ value of the origin of the geometrical poloidal angle that is used to calculate distances, for example {\ttfamily --compare\+\_\+tor\+\_\+pos 3.\+0 0.\+0}. POST stops with an error unless {\ttfamily n\+\_\+zeta\+\_\+plot = 3}, {\ttfamily POST\+\_\+style = 1}, {\ttfamily min\+\_\+r\+\_\+plot} is positive, {\ttfamily max\+\_\+r\+\_\+plot = 1}, {\ttfamily min\+\_\+theta\+\_\+plot = 0} and {\ttfamily max\+\_\+theta\+\_\+plot = 2}. The poloidal projection of the middle toroidal point should lie in the middle between the poloidal projections of the two others. See \doxylink{interfacegrid__utilities_1_1calc__tor__diff}{grid\+\_\+utilities.\+calc\+\_\+tor\+\_\+diff()}.
 \item \label{page_inputs_fni33}%
 \Hypertarget{page_inputs_fni33}%
 Jumping straight to the solution is useful if a simulation already calculated all the necessary quantities to set up the solution matrices $\overline{\text{A}}$ and $\overline{\text{B}}$ in $\overline{\text{A}} \vec{X} = \lambda \overline{\text{B}} \vec{X}$ and the solution needs to be redone, for example because a calculation was attempted with a method that did not converge.
 \item \label{page_inputs_fni34}%
 \Hypertarget{page_inputs_fni34}%
-This is a rather complicated procedure with many possibilities that is intended for expert use. See create\+\_\+vmec\+\_\+input().
+This is a rather complicated procedure with many possibilities that is intended for expert use. It works only for HELENA equilibria and with one process. See create\+\_\+vmec\+\_\+input().
 \item \label{page_inputs_fni35}%
 \Hypertarget{page_inputs_fni35}%
-Using the toroidal flux is {\bfseries{experimental}} and {\bfseries{untested}}.
+Using the toroidal flux is {\bfseries{experimental}} and {\bfseries{untested}}. For HELENA equilibria, PB3D always uses the poloidal flux, and it sets {\ttfamily use\+\_\+pol\+\_\+flux\+\_\+F} to {\ttfamily .true.} with a warning.
 \item \label{page_inputs_fni36}%
 \Hypertarget{page_inputs_fni36}%
-Have a look in calc\+\_\+norm\+\_\+range(). {\ttfamily X\+\_\+grid\+\_\+style} $1$ is generally too coarse while {\ttfamily X\+\_\+grid\+\_\+style} $2$ is too fine. {\ttfamily X\+\_\+grid\+\_\+style} $3$ was designed to have the both of best world. It only makes sense for {\ttfamily X\+\_\+style} 2 (fast), though, as in the enrichment process the fast secondary mode range is used to limit the maximum amount the quantity $n q$ (when using poloidal flux) or $m \iota$ (when using toroidal flux) to {\ttfamily max\+\_\+njq\+\_\+change} between two normal grid points. 
+Have a look in calc\+\_\+norm\+\_\+range(). {\ttfamily X\+\_\+grid\+\_\+style} $1$ is generally too coarse, while {\ttfamily X\+\_\+grid\+\_\+style} $2$ is too fine. {\ttfamily X\+\_\+grid\+\_\+style} $3$ is a compromise between the two. It only makes sense for {\ttfamily X\+\_\+style} 2 (fast), and PB3D stops with an error if it is combined with {\ttfamily X\+\_\+style} 1. In the enrichment, PB3D adds normal points to the equilibrium grid until the quantity $n q$ (when using poloidal flux) or $m \iota$ (when using toroidal flux) changes by at most {\ttfamily max\+\_\+njq\+\_\+change} between two neighbouring points.
+\item \label{page_inputs_fni37}%
+\Hypertarget{page_inputs_fni37}%
+PB3D computes the vacuum response, in calc\+\_\+vac\+\_\+res(), only for a free boundary, {\ttfamily BC\+\_\+style(2) = 2}; with {\ttfamily BC\+\_\+style(2) = 1}, it skips the vacuum. The vacuum style follows from the equilibrium. For a VMEC equilibrium, PB3D uses the field-\/line 3-\/D style (style 1): a boundary-\/element method on the points of the field lines on the plasma boundary. It needs several field lines, so a free-\/boundary VMEC run with {\ttfamily alpha\+\_\+style = 1} stops with an error; PB3D computes the vacuum at every Richardson level. For a HELENA equilibrium, PB3D uses the axisymmetric style (style 2), with toroidal functions on the boundary of the poloidal cross-\/section, and it computes the vacuum once, at the first Richardson level of the run ({\ttfamily rich\+\_\+restart\+\_\+lvl}). PB3D solves the boundary-\/element system with STRUMPACK if it was built with STRUMPACK, and with the Sca\+LAPACK LU factorization otherwise (see \doxysectlink{page_installation}{Installation}{0}).
+\item \label{page_inputs_fni38}%
+\Hypertarget{page_inputs_fni38}%
+The check runs inside calc\+\_\+vac\+\_\+res(), so only when PB3D computes the vacuum (see \doxylink{page_inputs_fni37}{37}). check\+\_\+vac\+\_\+exact() tests the boundary-\/element matrices on the plasma boundary of the equilibrium with potentials that are harmonic inside the boundary (the constant, the Cartesian coordinates $x$, $y$, $z$, and $x^2 - y^2$) and with potentials that are harmonic outside it and decay (a point source on the magnetic axis and a ring of point sources along the axis). It prints the residuals of the Green identities, the errors of the exterior solution and the differences between the assembled diagonals and the alternative ones on lines of the log that start with {\ttfamily CHECKVAC}. It also writes the values at the boundary points to files {\ttfamily check\+\_\+vac\+\_\+\texorpdfstring{$\ast$}{*}.dat} in the run directory.
+\item \label{page_inputs_fni39}%
+\Hypertarget{page_inputs_fni39}%
+For the field-\/line style, the indirect diagonals follow from the row sums for the constant and the linear interior harmonics; for the axisymmetric style, they follow from a least-\/squares fit to known potentials (diag\+\_\+indirect()). The direct diagonals use the corner term and the integral of the kernel over the cell of the node (calc\+\_\+diag\+\_\+direct() for the field-\/line style). Style 1 is the more accurate of the two, and PB3D prints a warning that style 2 is a diagnostic, not meant for production runs, when it is used with a free boundary. With {\ttfamily check\+\_\+vac}, PB3D reports the difference between the assembled diagonal and the other one at every point. A value other than 1 or 2 stops PB3D with an error message.
+\item \label{page_inputs_fni40}%
+\Hypertarget{page_inputs_fni40}%
+POST plots the vacuum potential only for a free boundary; for a fixed boundary it switches {\ttfamily plot\+\_\+vac\+\_\+pot} off. It evaluates the potential in the planes of constant $\zeta$ of the plasma plots ({\ttfamily n\+\_\+zeta\+\_\+plot} planes from {\ttfamily min\+\_\+zeta\+\_\+plot} to {\ttfamily max\+\_\+zeta\+\_\+plot}), on a grid of {\ttfamily n\+\_\+vac\+\_\+plot(1)} by {\ttfamily n\+\_\+vac\+\_\+plot(2)} points in $R$ and $Z$. If {\ttfamily max\+\_\+\+Rvac\+\_\+plot} is not larger than {\ttfamily min\+\_\+\+Rvac\+\_\+plot}, which is the case for the defaults, the range in $R$ is the range of the boundary points widened on both sides by half the larger of the widths of the boundary in $R$ and in $Z$, and it starts at no less than 0.\+1 times the smallest $R$ of the boundary; the same rule with {\ttfamily min\+\_\+\+Zvac\+\_\+plot} and {\ttfamily max\+\_\+\+Zvac\+\_\+plot} sets the range in $Z$. A range given by the user must have a positive {\ttfamily min\+\_\+\+Rvac\+\_\+plot}. The limits are in metres. For a HELENA equilibrium without a user-\/given {\ttfamily R\+\_\+0}, PB3D sets {\ttfamily R\+\_\+0 = 1}, and the limits are then in units of the length scale of the HELENA equilibrium. See vac\+\_\+pot\+\_\+plot() for the output.
+\item \label{page_inputs_fni41}%
+\Hypertarget{page_inputs_fni41}%
+The four values are the number of the first unstable solutions, of the last unstable solutions, of the first stable solutions and of the last stable solutions that POST plots. A negative value means all solutions of that range. See find\+\_\+stab\+\_\+ranges().
+\item \label{page_inputs_fni42}%
+\Hypertarget{page_inputs_fni42}%
+PB3D recognizes these PETSc and SLEPC options so that it does not warn about them. PETSc and SLEPC read them from the command line themselves; SLEPC reads the solver options in EPSSet\+From\+Options(), which get\+\_\+solution() calls after the solver has been set up, so that they override the settings of {\ttfamily solver\+\_\+\+SLEPC\+\_\+style}, {\ttfamily tol\+\_\+\+SLEPC} and {\ttfamily max\+\_\+it\+\_\+\+SLEPC}. These options start with a single dash.
+\item \label{page_inputs_fni43}%
+\Hypertarget{page_inputs_fni43}%
+For {\ttfamily alpha\+\_\+style = 1}, PB3D follows the single field line with label {\ttfamily alpha} from {\ttfamily min\+\_\+par\+\_\+X} to {\ttfamily max\+\_\+par\+\_\+X}, and it sets {\ttfamily n\+\_\+alpha} to 1. For {\ttfamily alpha\+\_\+style = 2}, PB3D uses {\ttfamily n\+\_\+alpha} field lines with the labels $\alpha_j = 2\pi (j-1)/n_\alpha$, $j = 1 \ldots n_\alpha$, ignores {\ttfamily alpha}, and resets {\ttfamily min\+\_\+par\+\_\+X} and {\ttfamily max\+\_\+par\+\_\+X} to 0 and 2 if they do not span one poloidal turn. A free boundary with a VMEC equilibrium needs {\ttfamily alpha\+\_\+style = 2}. PB3D warns when {\ttfamily n\+\_\+alpha} and the number of field periods $N_\text{fp}$ of the VMEC equilibrium have a common factor, because the sum over the field lines then adds the toroidal harmonic of order $\mathrm{LCM}(n_\alpha, N_\text{fp})$ of the equilibrium to the average; {\ttfamily n\+\_\+alpha} should be chosen coprime to $N_\text{fp}$. For the field-\/line 3-\/D vacuum, the convergence studies in README.\+md of the code recommend at least 128 field lines and about 36 parallel points per poloidal wavelength of the perturbation. For HELENA equilibria, which are axisymmetric, PB3D warns if {\ttfamily n\+\_\+alpha} is larger than 1 or if {\ttfamily min\+\_\+par\+\_\+X} and {\ttfamily max\+\_\+par\+\_\+X} do not span exactly one poloidal turn.
+\item \label{page_inputs_fni44}%
+\Hypertarget{page_inputs_fni44}%
+PB3D raises {\ttfamily n\+\_\+r\+\_\+sol} to at least {\ttfamily 6 norm\+\_\+disc\+\_\+prec\+\_\+sol + 2}, and to at least {\ttfamily (2 norm\+\_\+disc\+\_\+prec\+\_\+sol + 1)} times the number of MPI processes. For a free boundary with {\ttfamily norm\+\_\+disc\+\_\+prec\+\_\+sol} 2 or 3, the last points of the solution grid carry the weights of \doxylink{namespacenum__utilities_ad2f180cb684bc4bb965e3e07b26a92dc}{num\+\_\+utilities.\+calc\+\_\+end\+\_\+weights()} in the normal integral.
+\item \label{page_inputs_fni45}%
+\Hypertarget{page_inputs_fni45}%
+A value below 1 is replaced by the number of MPI processes, and a value above the number of MPI processes is lowered to it, with a warning.
+\item \label{page_inputs_fni46}%
+\Hypertarget{page_inputs_fni46}%
+Up to 100 values can be given. If fewer values than {\ttfamily max\+\_\+it\+\_\+rich} are given, the remaining levels get $10^{-5}$; values beyond {\ttfamily max\+\_\+it\+\_\+rich} are discarded. 
 \end{DoxyEnumerate}
 \end{DoxyNote}
-}

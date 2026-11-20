@@ -20,36 +20,36 @@ Copied and adapted from the DTORH1 routine by Segura and Gil \DoxyCite{segura200
 \end{DoxyNote}
 
 
-\label{doc-func-members}
+\label{namespacedtorh_doc-func-members}
 \Hypertarget{namespacedtorh_doc-func-members}
 \doxysubsection{Function/\+\+Subroutine Documentation}
 \Hypertarget{namespacedtorh_af3f58b6705da916bfbaf7cc4ea05f610}\index{dtorh@{dtorh}!dtorh1@{dtorh1}}
 \index{dtorh1@{dtorh1}!dtorh@{dtorh}}
 \doxysubsubsection{\texorpdfstring{dtorh1()}{dtorh1()}}
 {\footnotesize\ttfamily \label{namespacedtorh_af3f58b6705da916bfbaf7cc4ea05f610} 
-integer function, public dtorh::\+dtorh1 (\begin{DoxyParamCaption}\item[{real(dp), intent(in)}]{z}{, }\item[{integer, intent(in)}]{m}{, }\item[{integer, intent(in)}]{nmax}{, }\item[{real(dp), dimension(0:\+nmax), intent(inout)}]{pl}{, }\item[{real(dp), dimension(0:\+nmax), intent(inout)}]{ql}{, }\item[{integer, intent(inout)}]{newn}{, }\item[{integer, intent(in), optional}]{mode}{, }\item[{integer, intent(in), optional}]{ipre}{}\end{DoxyParamCaption})}
+integer function, public dtorh::\+dtorh1 (\begin{DoxyParamCaption}\item[{real(dp), intent(in)}]{z}{, }\item[{integer, intent(in)}]{m}{, }\item[{integer, intent(in)}]{nmax}{, }\item[{real(dp), dimension(0:nmax), intent(inout)}]{pl}{, }\item[{real(dp), dimension(0:nmax), intent(inout)}]{ql}{, }\item[{integer, intent(inout)}]{newn}{, }\item[{integer, intent(in), optional}]{mode}{, }\item[{integer, intent(in), optional}]{ipre}{}\end{DoxyParamCaption})}
 
 
 
 Calculates toroidal harmonics of a fixed order {\ttfamily m} and degrees up to {\ttfamily nmax}. 
 
-Optionally, the {\ttfamily mode} can be specified to be different from 0 \+[default]\+
+Optionally, the {\ttfamily mode} can be specified to be different from 0 \+[default]
 \begin{DoxyItemize}
-\item if {\ttfamily mode=1}:\+
+\item if {\ttfamily mode=1}:
 \begin{DoxyItemize}
-\item The set of functions evaluated is:\+  \[\frac{P_{n-1/2}^m \left(z\right)}{\Gamma(m+1/2)} \ ,\quad 
+\item The set of functions evaluated is:  \[\frac{P_{n-1/2}^m \left(z\right)}{\Gamma(m+1/2)} \ ,\quad 
                  \frac{Q_{n-1/2}^m \left(z\right)}{\Gamma(m+1/2)},\] which are respectively stored in the arrays {\ttfamily pl(n)}, {\ttfamily ql(n)}.
 \item newn refers to this new set of functions.
 \item Note 1. and note 2. also apply in this case.
 \end{DoxyItemize}
-\item if {\ttfamily mode=2}:\+
+\item if {\ttfamily mode=2}:
 \begin{DoxyItemize}
 \item The code performs as for mode 1, but the restriction $ z<20 $.
 \item For the evaluation of the continued fraction is not considered.
 \end{DoxyItemize}
 \end{DoxyItemize}
 
-Also, the parameter {\ttfamily ipre} can be used to select a different precision:\+
+Also, the parameter {\ttfamily ipre} can be used to select a different precision:
 \begin{DoxyItemize}
 \item For {\ttfamily ipre=1}, the precision is $10^{-12}$, taking $\epsilon<10^{-12}$
 \item For {\ttfamily ipre=2}, the precision is $10^{-8}$, taking $\epsilon<10^{-8}$
@@ -95,14 +95,16 @@ ierr
 
 Definition at line \doxymbox{\hyperlink{dtorh_8f90_source_l00074}{74}} of file \doxymbox{\hyperlink{dtorh_8f90_source}{dtorh.\+f90}}.
 
-Here is the call graph for this function:\+\nopagebreak
+Here is the call graph for this function:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=346pt]{namespacedtorh_af3f58b6705da916bfbaf7cc4ea05f610_cgraph}
 \end{center}
 \end{figure}
-Here is the caller graph for this function:\+\nopagebreak
+Here is the caller graph for this function:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode

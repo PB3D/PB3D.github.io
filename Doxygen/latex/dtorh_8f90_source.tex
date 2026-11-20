@@ -1,5 +1,5 @@
 \doxysection{dtorh.\+f90}
-\hypertarget{dtorh_8f90_source}{}\label{dtorh_8f90_source}\index{/Users/toonweyens/Code/PB3D/Modules/dtorh.f90@{/Users/toonweyens/Code/PB3D/Modules/dtorh.f90}}
+\hypertarget{dtorh_8f90_source}{}\label{dtorh_8f90_source}\index{Modules/dtorh.f90@{Modules/dtorh.f90}}
 \doxymbox{\hyperlink{dtorh_8f90}{Go to the documentation of this file.}}
 \begin{DoxyCode}{0}
 \DoxyCodeLine{\Hypertarget{dtorh_8f90_source_l00001}00001\ \textcolor{comment}{!-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/!}\textcolor{comment}{}}
@@ -119,7 +119,7 @@
 \DoxyCodeLine{\Hypertarget{dtorh_8f90_source_l00115}00115\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\textcolor{keyword}{present}(ipre))\ ipre\_loc\ =\ ipre}
 \DoxyCodeLine{\Hypertarget{dtorh_8f90_source_l00116}00116\ \ \ \ \ \ \ \ \ }
 \DoxyCodeLine{\Hypertarget{dtorh_8f90_source_l00117}00117\ \ \ \ \ \ \ \ \ over=1.\_dp/tiny}
-\DoxyCodeLine{\Hypertarget{dtorh_8f90_source_l00118}00118\ \ \ \ \ \ \ \ \ tinysq=dsqrt(tiny)}
+\DoxyCodeLine{\Hypertarget{dtorh_8f90_source_l00118}00118\ \ \ \ \ \ \ \ \ tinysq=sqrt(tiny)}
 \DoxyCodeLine{\Hypertarget{dtorh_8f90_source_l00119}00119\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{IF}\ ((ipre\_loc.NE.1).AND.(ipre\_loc.NE.2))\ \textcolor{keywordflow}{THEN}}
 \DoxyCodeLine{\Hypertarget{dtorh_8f90_source_l00120}00120\ \ \ \ \ \ \ \ \ \ \ \ \ ierr\ =\ 1}
 \DoxyCodeLine{\Hypertarget{dtorh_8f90_source_l00121}00121\ \ \ \ \ \ \ \ \ \ \ \ \ err\_msg\ =\ \textcolor{stringliteral}{'IPRE\ MUST\ BE\ 1\ OR\ 2'}}
@@ -141,8 +141,8 @@
 \DoxyCodeLine{\Hypertarget{dtorh_8f90_source_l00137}00137\ \ \ \ \ \ \ \ \ \ \ \ \ chckerr(err\_msg)}
 \DoxyCodeLine{\Hypertarget{dtorh_8f90_source_l00138}00138\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ END\ IF}}
 \DoxyCodeLine{\Hypertarget{dtorh_8f90_source_l00139}00139\ \ \ \ \ \ \ \ \ qz=z}
-\DoxyCodeLine{\Hypertarget{dtorh_8f90_source_l00140}00140\ \ \ \ \ \ \ \ \ pisq=dsqrt(\doxymbox{\hyperlink{namespacenum__vars_a26f47310576a3414135b3d3fcc079709}{pi}})}
-\DoxyCodeLine{\Hypertarget{dtorh_8f90_source_l00141}00141\ \ \ \ \ \ \ \ \ \textcolor{comment}{!DPPI=DSQRT(2.\_dp)/PISQ\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !\ Is\ never\ used?}}
+\DoxyCodeLine{\Hypertarget{dtorh_8f90_source_l00140}00140\ \ \ \ \ \ \ \ \ pisq=sqrt(\doxymbox{\hyperlink{namespacenum__vars_a26f47310576a3414135b3d3fcc079709}{pi}})}
+\DoxyCodeLine{\Hypertarget{dtorh_8f90_source_l00141}00141\ \ \ \ \ \ \ \ \ \textcolor{comment}{!DPPI=sqrt(2.\_dp)/PISQ\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !\ Is\ never\ used?}}
 \DoxyCodeLine{\Hypertarget{dtorh_8f90_source_l00142}00142\ \ \ \ \ \ \ \ \ fl=m/2.\_dp}
 \DoxyCodeLine{\Hypertarget{dtorh_8f90_source_l00143}00143\ \ \ \ \ \ \ \ \ cc=abs(float(int(fl))-\/fl)}
 \DoxyCodeLine{\Hypertarget{dtorh_8f90_source_l00144}00144\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{IF}\ (cc.LT.0.4\_dp)\ \textcolor{keywordflow}{THEN}}
@@ -199,16 +199,16 @@
 \DoxyCodeLine{\Hypertarget{dtorh_8f90_source_l00195}00195\ \ \ \ \ \ \ \ \ ierr\ =\ frac(z,m,0,eps,tinysq,fc)}
 \DoxyCodeLine{\Hypertarget{dtorh_8f90_source_l00196}00196\ \ \ \ \ \ \ \ \ chckerr(\textcolor{stringliteral}{''})}
 \DoxyCodeLine{\Hypertarget{dtorh_8f90_source_l00197}00197\ \ \ \ \ \ \ \ \ qdc1=qz*qz-\/1.\_dp}
-\DoxyCodeLine{\Hypertarget{dtorh_8f90_source_l00198}00198\ \ \ \ \ \ \ \ \ qargu=qz/dsqrt(qdc1)}
+\DoxyCodeLine{\Hypertarget{dtorh_8f90_source_l00198}00198\ \ \ \ \ \ \ \ \ qargu=qz/sqrt(qdc1)}
 \DoxyCodeLine{\Hypertarget{dtorh_8f90_source_l00199}00199\ \ \ \ \ \ \ \ \ \textcolor{comment}{!DFAC1=DPPI*GAMMA/PI\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !\ Is\ never\ used?}}
 \DoxyCodeLine{\Hypertarget{dtorh_8f90_source_l00200}00200\ \ \ \ \ \ \ \ \ \textcolor{comment}{!DFAC2=GAMMA/DPPI\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !\ Is\ never\ used?}}
 \DoxyCodeLine{\Hypertarget{dtorh_8f90_source_l00201}00201\ \ \ \ \ \ \ \ \ \textcolor{comment}{!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!}}
 \DoxyCodeLine{\Hypertarget{dtorh_8f90_source_l00202}00202\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ \ \ WE\ EVALUATE\ Q\_\{-\/1/2\},Q\string^\{1\}\_\{-\/1/2\}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !}}
 \DoxyCodeLine{\Hypertarget{dtorh_8f90_source_l00203}00203\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ \ \ USING\ SLATEC\ ROUTINES\ FOR\ ELLIPTIC\ FUNCTIONS\ \ \ \ !}}
 \DoxyCodeLine{\Hypertarget{dtorh_8f90_source_l00204}00204\ \ \ \ \ \ \ \ \ \textcolor{comment}{!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!}}
-\DoxyCodeLine{\Hypertarget{dtorh_8f90_source_l00205}00205\ \ \ \ \ \ \ \ \ argu1=dsqrt(2.\_dp/(z+1.\_dp))}
+\DoxyCodeLine{\Hypertarget{dtorh_8f90_source_l00205}00205\ \ \ \ \ \ \ \ \ argu1=sqrt(2.\_dp/(z+1.\_dp))}
 \DoxyCodeLine{\Hypertarget{dtorh_8f90_source_l00206}00206\ \ \ \ \ \ \ \ \ qlmm(0)=argu1*ellip1(argu1)}
-\DoxyCodeLine{\Hypertarget{dtorh_8f90_source_l00207}00207\ \ \ \ \ \ \ \ \ qlmm(1)=-\/1.\_dp/dsqrt(2.\_dp*(qz-\/1.\_dp))*ellip2(argu1)}
+\DoxyCodeLine{\Hypertarget{dtorh_8f90_source_l00207}00207\ \ \ \ \ \ \ \ \ qlmm(1)=-\/1.\_dp/sqrt(2.\_dp*(qz-\/1.\_dp))*ellip2(argu1)}
 \DoxyCodeLine{\Hypertarget{dtorh_8f90_source_l00208}00208\ \ \ \ \ \ \ \ \ \textcolor{comment}{!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!}}
 \DoxyCodeLine{\Hypertarget{dtorh_8f90_source_l00209}00209\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ \ \ WE\ APPLY\ FORWARD\ RECURRENCE\ IN\ M\ FOR\ Q'S\ \ !}}
 \DoxyCodeLine{\Hypertarget{dtorh_8f90_source_l00210}00210\ \ \ \ \ \ \ \ \ \textcolor{comment}{!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!}}
@@ -257,7 +257,7 @@
 \DoxyCodeLine{\Hypertarget{dtorh_8f90_source_l00253}00253\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ fcp=fcp/dd}
 \DoxyCodeLine{\Hypertarget{dtorh_8f90_source_l00254}00254\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ dfacqs=dfacqs/dd}
 \DoxyCodeLine{\Hypertarget{dtorh_8f90_source_l00255}00255\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ \ \ \ \ END\ IF}}
-\DoxyCodeLine{\Hypertarget{dtorh_8f90_source_l00256}00256\ \ \ \ \ \ \ \ \ \ \ \ \ pl\_loc(0)=dfacqs/dsqrt(qdc1)/(1.\_dp-\/fcp*qlmm(m)/qlmm(m+1))}
+\DoxyCodeLine{\Hypertarget{dtorh_8f90_source_l00256}00256\ \ \ \ \ \ \ \ \ \ \ \ \ pl\_loc(0)=dfacqs/sqrt(qdc1)/(1.\_dp-\/fcp*qlmm(m)/qlmm(m+1))}
 \DoxyCodeLine{\Hypertarget{dtorh_8f90_source_l00257}00257\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{ELSE}}
 \DoxyCodeLine{\Hypertarget{dtorh_8f90_source_l00258}00258\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{CALL\ }expan(z,mode\_loc,ipre\_loc,over,qargu,m,pl0)}
 \DoxyCodeLine{\Hypertarget{dtorh_8f90_source_l00259}00259\ \ \ \ \ \ \ \ \ \ \ \ \ pl\_loc(0)=pl0}
@@ -330,9 +330,9 @@
 \DoxyCodeLine{\Hypertarget{dtorh_8f90_source_l00326}00326\ \ \ \ \ \ \ \ \ c0=fc}
 \DoxyCodeLine{\Hypertarget{dtorh_8f90_source_l00327}00327\ \ \ \ \ \ \ \ \ d0=0.\_dp}
 \DoxyCodeLine{\Hypertarget{dtorh_8f90_source_l00328}00328\ \ \ \ \ \ 81\ d0=b+a*d0}
-\DoxyCodeLine{\Hypertarget{dtorh_8f90_source_l00329}00329\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{IF}\ (dabs(d0).LT.tinysq)\ d0=tinysq}
+\DoxyCodeLine{\Hypertarget{dtorh_8f90_source_l00329}00329\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{IF}\ (abs(d0).LT.tinysq)\ d0=tinysq}
 \DoxyCodeLine{\Hypertarget{dtorh_8f90_source_l00330}00330\ \ \ \ \ \ \ \ \ c0=b+a/c0}
-\DoxyCodeLine{\Hypertarget{dtorh_8f90_source_l00331}00331\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{IF}\ (dabs(c0).LT.tinysq)\ c0=tinysq}
+\DoxyCodeLine{\Hypertarget{dtorh_8f90_source_l00331}00331\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{IF}\ (abs(c0).LT.tinysq)\ c0=tinysq}
 \DoxyCodeLine{\Hypertarget{dtorh_8f90_source_l00332}00332\ \ \ \ \ \ \ \ \ d0=1.\_dp/d0}
 \DoxyCodeLine{\Hypertarget{dtorh_8f90_source_l00333}00333\ \ \ \ \ \ \ \ \ delta=c0*d0}
 \DoxyCodeLine{\Hypertarget{dtorh_8f90_source_l00334}00334\ \ \ \ \ \ \ \ \ fc=fc*delta}
@@ -340,7 +340,7 @@
 \DoxyCodeLine{\Hypertarget{dtorh_8f90_source_l00336}00336\ \ \ \ \ \ \ \ \ a=-\/(1.d0+dn4/(dn3+mm))\ \ }
 \DoxyCodeLine{\Hypertarget{dtorh_8f90_source_l00337}00337\ \ \ \ \ \ \ \ \ b=dz2*(dn1+mm)/(dn2+mm)}
 \DoxyCodeLine{\Hypertarget{dtorh_8f90_source_l00338}00338\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{IF}\ (mm.LT.1000000)\ \textcolor{keywordflow}{THEN}}
-\DoxyCodeLine{\Hypertarget{dtorh_8f90_source_l00339}00339\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{IF}\ (dabs(delta-\/1.d0).GT.eps)\ \textcolor{keywordflow}{GOTO}\ 81}
+\DoxyCodeLine{\Hypertarget{dtorh_8f90_source_l00339}00339\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{IF}\ (abs(delta-\/1.d0).GT.eps)\ \textcolor{keywordflow}{GOTO}\ 81}
 \DoxyCodeLine{\Hypertarget{dtorh_8f90_source_l00340}00340\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ END\ IF}}
 \DoxyCodeLine{\Hypertarget{dtorh_8f90_source_l00341}00341\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{IF}\ (mm.EQ.1000000)\ \textcolor{keywordflow}{then}}
 \DoxyCodeLine{\Hypertarget{dtorh_8f90_source_l00342}00342\ \ \ \ \ \ \ \ \ \ \ \ \ ierr\ =1}
@@ -368,9 +368,9 @@
 \DoxyCodeLine{\Hypertarget{dtorh_8f90_source_l00364}00364\ \ \ \ \ \ \ \ \ c0=fc}
 \DoxyCodeLine{\Hypertarget{dtorh_8f90_source_l00365}00365\ \ \ \ \ \ \ \ \ d0=0.\_dp}
 \DoxyCodeLine{\Hypertarget{dtorh_8f90_source_l00366}00366\ \ \ \ \ \ 82\ d0=b+a*d0}
-\DoxyCodeLine{\Hypertarget{dtorh_8f90_source_l00367}00367\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{IF}\ (dabs(d0).LT.tinysq)\ d0=tinysq}
+\DoxyCodeLine{\Hypertarget{dtorh_8f90_source_l00367}00367\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{IF}\ (abs(d0).LT.tinysq)\ d0=tinysq}
 \DoxyCodeLine{\Hypertarget{dtorh_8f90_source_l00368}00368\ \ \ \ \ \ \ \ \ c0=b+a/c0}
-\DoxyCodeLine{\Hypertarget{dtorh_8f90_source_l00369}00369\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{IF}\ (dabs(c0).LT.tinysq)\ c0=tinysq}
+\DoxyCodeLine{\Hypertarget{dtorh_8f90_source_l00369}00369\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{IF}\ (abs(c0).LT.tinysq)\ c0=tinysq}
 \DoxyCodeLine{\Hypertarget{dtorh_8f90_source_l00370}00370\ \ \ \ \ \ \ \ \ d0=1.\_dp/d0}
 \DoxyCodeLine{\Hypertarget{dtorh_8f90_source_l00371}00371\ \ \ \ \ \ \ \ \ delta=c0*d0}
 \DoxyCodeLine{\Hypertarget{dtorh_8f90_source_l00372}00372\ \ \ \ \ \ \ \ \ fc=fc*delta}
@@ -546,8 +546,8 @@
 \DoxyCodeLine{\Hypertarget{dtorh_8f90_source_l00542}00542\ \ \ \ \ \ \ \ \ }
 \DoxyCodeLine{\Hypertarget{dtorh_8f90_source_l00543}00543\ \ \ \ \ \ \ \ \ preci(1)=1.e-\/13\_dp}
 \DoxyCodeLine{\Hypertarget{dtorh_8f90_source_l00544}00544\ \ \ \ \ \ \ \ \ preci(2)=1.e-\/9\_dp}
-\DoxyCodeLine{\Hypertarget{dtorh_8f90_source_l00545}00545\ \ \ \ \ \ \ \ \ pisq=dsqrt(pi)}
-\DoxyCodeLine{\Hypertarget{dtorh_8f90_source_l00546}00546\ \ \ \ \ \ \ \ \ db=2.\_dp*dlog(2.\_dp)}
+\DoxyCodeLine{\Hypertarget{dtorh_8f90_source_l00545}00545\ \ \ \ \ \ \ \ \ pisq=sqrt(pi)}
+\DoxyCodeLine{\Hypertarget{dtorh_8f90_source_l00546}00546\ \ \ \ \ \ \ \ \ db=2.\_dp*log(2.\_dp)}
 \DoxyCodeLine{\Hypertarget{dtorh_8f90_source_l00547}00547\ \ \ \ \ \ \ \ \ fl=m/2.}
 \DoxyCodeLine{\Hypertarget{dtorh_8f90_source_l00548}00548\ \ \ \ \ \ \ \ \ cc=abs(float(int(fl))-\/fl)}
 \DoxyCodeLine{\Hypertarget{dtorh_8f90_source_l00549}00549\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{IF}\ (cc.LT.0.4\_dp)\ \textcolor{keywordflow}{THEN}}
@@ -565,8 +565,8 @@
 \DoxyCodeLine{\Hypertarget{dtorh_8f90_source_l00561}00561\ \ \ \ \ \ \ \ \ \ \ \ \ gamma=ar}
 \DoxyCodeLine{\Hypertarget{dtorh_8f90_source_l00562}00562\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ END\ IF}}
 \DoxyCodeLine{\Hypertarget{dtorh_8f90_source_l00563}00563\ \ \ \ \ \ \ \ \ dfac=2.\_dp/pi*dz*gamma/pisq}
-\DoxyCodeLine{\Hypertarget{dtorh_8f90_source_l00564}00564\ \ \ \ \ \ \ \ \ df1=dlog(2.\_dp*z)}
-\DoxyCodeLine{\Hypertarget{dtorh_8f90_source_l00565}00565\ \ \ \ \ \ \ \ \ a0=1.\_dp/dsqrt(2.\_dp*z)}
+\DoxyCodeLine{\Hypertarget{dtorh_8f90_source_l00564}00564\ \ \ \ \ \ \ \ \ df1=log(2.\_dp*z)}
+\DoxyCodeLine{\Hypertarget{dtorh_8f90_source_l00565}00565\ \ \ \ \ \ \ \ \ a0=1.\_dp/sqrt(2.\_dp*z)}
 \DoxyCodeLine{\Hypertarget{dtorh_8f90_source_l00566}00566\ \ \ \ \ \ \ \ \ z2i=1.\_dp/(z*z)}
 \DoxyCodeLine{\Hypertarget{dtorh_8f90_source_l00567}00567\ \ \ \ \ \ \ \ \ delta=1.\_dp}
 \DoxyCodeLine{\Hypertarget{dtorh_8f90_source_l00568}00568\ \ \ \ \ \ \ \ \ sum=0.\_dp}

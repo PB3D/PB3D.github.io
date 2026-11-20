@@ -8,7 +8,9 @@
 
 This page contains the technical documentation of the {\bfseries{PB3D}} project. A pdf version can be downloaded \href{https://pb3d.github.io/PB3D_manual.pdf}{\texttt{here}}.
 
-It contains a general overview of the code in \doxysectlink{page_overview}{General code structure}{0}, which is much more detailed than what can be found in \DoxyCite{weyens2017pb3d}{number}{1}.
+PB3D calculates the linear ideal MHD stability at high toroidal mode number $n$ of 3-\/D equilibria from VMEC and of axisymmetric equilibria from HELENA. The plasma edge can be a fixed boundary ({\ttfamily BC\+\_\+style(2) = 1}) or a free boundary ({\ttfamily BC\+\_\+style(2) = 2}, the default). For a free boundary, PB3D calculates the vacuum response with a boundary-\/element method: a 3-\/D method along the magnetic field lines for VMEC, and an axisymmetric method for HELENA (see \doxysectlink{page_vacuum}{Vacuum response}{0}). The post-\/processing program POST plots, among other things, the vacuum potential outside the plasma (see \doxysectlink{page_outputs}{Code outputs}{0}).
+
+This documentation contains a general overview of the code in \doxysectlink{page_overview}{General code structure}{0}, which is much more detailed than what can be found in \DoxyCite{weyens2017pb3d}{number}{1}.
 
 To get started, for installation instructions, please see \doxysectlink{page_installation}{Installation}{0} instructions.
 
@@ -24,4 +26,4 @@ For a list of frequently asked questions and frequently encountered problems, co
 Finally, the various modules of which the program consists can be explored in detail in the appendices pages, as well as the procedures and the variables.
 
 
-\begin{center}{\itshape —this documentation was created with \href{http://www.doxygen.org/index.html}{\texttt{Doxygen 1.\+16.\+1}}—}\end{center}  
+\begin{center}{\itshape —this documentation was created with \href{http://www.doxygen.org/index.html}{\texttt{Doxygen}} 1.\+18.\+0—}\end{center}  

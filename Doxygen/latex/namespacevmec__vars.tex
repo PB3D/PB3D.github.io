@@ -13,10 +13,18 @@ subroutine, public \doxymbox{\hyperlink{namespacevmec__vars_afe14ec328664d93b93c
 \doxysubsubsection*{Variables}
 \begin{DoxyCompactItemize}
 \item 
-integer, dimension(:\+,:\+), allocatable, public \doxymbox{\hyperlink{namespacevmec__vars_a4b9a64bc60d45f2b10e03f624ade3e82}{mn\+\_\+v}}
+integer, dimension(:\+,:\+), allocatable, target, public \doxymbox{\hyperlink{namespacevmec__vars_a00697202d4f8fc19965188a9b5ddc7e9}{mn\+\_\+v}}
 \begin{DoxyCompactList}\small\item\em m and n of modes \end{DoxyCompactList}\item 
+integer, dimension(:\+,:\+), allocatable, target, public \doxymbox{\hyperlink{namespacevmec__vars_a2c3b8c979957fd6dca6909d2b0bdee05}{mn\+\_\+v\+\_\+nyq}}
+\begin{DoxyCompactList}\small\item\em m and n of the Nyquist mode set, on which VMEC stores the Jacobian, \texorpdfstring{$\vert$}{|}\+B\texorpdfstring{$\vert$}{|} and B\+\_\+i \end{DoxyCompactList}\item 
+integer, public \doxymbox{\hyperlink{namespacevmec__vars_a54cace62b89eb50a74db99ed7e578d93}{mnmax\+\_\+nyq\+\_\+v}}
+\begin{DoxyCompactList}\small\item\em number of modes of the Nyquist set \end{DoxyCompactList}\item 
+integer, public \doxymbox{\hyperlink{namespacevmec__vars_a3ad89240d8ad171f16423d1d514a1ca8}{mpol\+\_\+tf}}
+\begin{DoxyCompactList}\small\item\em poloidal extent of the trigonometric basis: m = 0 .. mpol\+\_\+tf-\/1 (covers both mode sets) \end{DoxyCompactList}\item 
+integer, public \doxymbox{\hyperlink{namespacevmec__vars_af767ee8089760054f9d1943e25857a47}{ntor\+\_\+tf}}
+\begin{DoxyCompactList}\small\item\em toroidal extent of the trigonometric basis: n = -\/ntor\+\_\+tf .. ntor\+\_\+tf \end{DoxyCompactList}\item 
 real(dp), public \doxymbox{\hyperlink{namespacevmec__vars_a71e1a738f0e423fe6c284f8ea636008e}{b\+\_\+0\+\_\+v}}
-\begin{DoxyCompactList}\small\item\em the magnitude of B at the magnetic axis, $\theta = \zeta = 0$ \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em \texorpdfstring{$\vert$}{|}\+B\texorpdfstring{$\vert$}{|} on the magnetic axis: its (m,n) = (0,0) Fourier component, the average over $\theta$ and $\zeta$ \end{DoxyCompactList}\item 
 real(dp), dimension(:\+,:\+), allocatable, public \doxymbox{\hyperlink{namespacevmec__vars_ac246a5937702b1ac4c7f9bd92d286766}{flux\+\_\+t\+\_\+v}}
 \begin{DoxyCompactList}\small\item\em toroidal flux \end{DoxyCompactList}\item 
 real(dp), dimension(:\+,:\+), allocatable, public \doxymbox{\hyperlink{namespacevmec__vars_aeac5e1262f419b7ae674586f576dc928}{flux\+\_\+p\+\_\+v}}
@@ -58,7 +66,7 @@ real(dp), dimension(:\+,:\+), allocatable, public \doxymbox{\hyperlink{namespace
 \doxysubsection{Detailed Description}
 Variables that concern the output of VMEC. 
 
-\label{doc-func-members}
+\label{namespacevmec__vars_doc-func-members}
 \Hypertarget{namespacevmec__vars_doc-func-members}
 \doxysubsection{Function/\+\+Subroutine Documentation}
 \Hypertarget{namespacevmec__vars_afe14ec328664d93b93c6dbda69df9175}\index{vmec\_vars@{vmec\_vars}!dealloc\_vmec@{dealloc\_vmec}}
@@ -73,16 +81,18 @@ Deallocates VMEC quantities that are not used anymore.
 
 
 
-Definition at line \doxymbox{\hyperlink{VMEC__vars_8f90_source_l00056}{56}} of file \doxymbox{\hyperlink{VMEC__vars_8f90_source}{VMEC\+\_\+vars.\+f90}}.
+Definition at line \doxymbox{\hyperlink{VMEC__vars_8f90_source_l00061}{61}} of file \doxymbox{\hyperlink{VMEC__vars_8f90_source}{VMEC\+\_\+vars.\+f90}}.
 
-Here is the call graph for this function:\+\nopagebreak
+Here is the call graph for this function:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{namespacevmec__vars_afe14ec328664d93b93c6dbda69df9175_cgraph}
 \end{center}
 \end{figure}
-Here is the caller graph for this function:\+\nopagebreak
+Here is the caller graph for this function:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -91,7 +101,7 @@ Here is the caller graph for this function:\+\nopagebreak
 \end{figure}
 
 
-\label{doc-var-members}
+\label{namespacevmec__vars_doc-var-members}
 \Hypertarget{namespacevmec__vars_doc-var-members}
 \doxysubsection{Variable Documentation}
 \Hypertarget{namespacevmec__vars_a71e1a738f0e423fe6c284f8ea636008e}\index{vmec\_vars@{vmec\_vars}!b\_0\_v@{b\_0\_v}}
@@ -102,11 +112,11 @@ real(dp), public vmec\+\_\+vars::\+b\+\_\+0\+\_\+v}
 
 
 
-the magnitude of B at the magnetic axis, $\theta = \zeta = 0$ 
+\texorpdfstring{$\vert$}{|}\+B\texorpdfstring{$\vert$}{|} on the magnetic axis: its (m,n) = (0,0) Fourier component, the average over $\theta$ and $\zeta$ 
 
 
 
-Definition at line \doxymbox{\hyperlink{VMEC__vars_8f90_source_l00033}{33}} of file \doxymbox{\hyperlink{VMEC__vars_8f90_source}{VMEC\+\_\+vars.\+f90}}.
+Definition at line \doxymbox{\hyperlink{VMEC__vars_8f90_source_l00038}{38}} of file \doxymbox{\hyperlink{VMEC__vars_8f90_source}{VMEC\+\_\+vars.\+f90}}.
 
 \Hypertarget{namespacevmec__vars_ad6833cc726863147b8fed188d3a28f5d}\index{vmec\_vars@{vmec\_vars}!b\_v\_c@{b\_v\_c}}
 \index{b\_v\_c@{b\_v\_c}!vmec\_vars@{vmec\_vars}}
@@ -123,7 +133,7 @@ Debug version only
 \end{DoxyNote}
 
 
-Definition at line \doxymbox{\hyperlink{VMEC__vars_8f90_source_l00050}{50}} of file \doxymbox{\hyperlink{VMEC__vars_8f90_source}{VMEC\+\_\+vars.\+f90}}.
+Definition at line \doxymbox{\hyperlink{VMEC__vars_8f90_source_l00055}{55}} of file \doxymbox{\hyperlink{VMEC__vars_8f90_source}{VMEC\+\_\+vars.\+f90}}.
 
 \Hypertarget{namespacevmec__vars_ab2aa43fe35401e8f2b7ffb2facad7109}\index{vmec\_vars@{vmec\_vars}!b\_v\_s@{b\_v\_s}}
 \index{b\_v\_s@{b\_v\_s}!vmec\_vars@{vmec\_vars}}
@@ -140,7 +150,7 @@ Debug version only
 \end{DoxyNote}
 
 
-Definition at line \doxymbox{\hyperlink{VMEC__vars_8f90_source_l00051}{51}} of file \doxymbox{\hyperlink{VMEC__vars_8f90_source}{VMEC\+\_\+vars.\+f90}}.
+Definition at line \doxymbox{\hyperlink{VMEC__vars_8f90_source_l00056}{56}} of file \doxymbox{\hyperlink{VMEC__vars_8f90_source}{VMEC\+\_\+vars.\+f90}}.
 
 \Hypertarget{namespacevmec__vars_a2e07a2b5bd2384e16e8af8ca4f5b50d6}\index{vmec\_vars@{vmec\_vars}!b\_v\_sub\_c@{b\_v\_sub\_c}}
 \index{b\_v\_sub\_c@{b\_v\_sub\_c}!vmec\_vars@{vmec\_vars}}
@@ -157,7 +167,7 @@ Debug version only
 \end{DoxyNote}
 
 
-Definition at line \doxymbox{\hyperlink{VMEC__vars_8f90_source_l00047}{47}} of file \doxymbox{\hyperlink{VMEC__vars_8f90_source}{VMEC\+\_\+vars.\+f90}}.
+Definition at line \doxymbox{\hyperlink{VMEC__vars_8f90_source_l00052}{52}} of file \doxymbox{\hyperlink{VMEC__vars_8f90_source}{VMEC\+\_\+vars.\+f90}}.
 
 \Hypertarget{namespacevmec__vars_aac5e249f0f14cf1e542f881d1777b730}\index{vmec\_vars@{vmec\_vars}!b\_v\_sub\_s@{b\_v\_sub\_s}}
 \index{b\_v\_sub\_s@{b\_v\_sub\_s}!vmec\_vars@{vmec\_vars}}
@@ -174,7 +184,7 @@ Debug version only
 \end{DoxyNote}
 
 
-Definition at line \doxymbox{\hyperlink{VMEC__vars_8f90_source_l00048}{48}} of file \doxymbox{\hyperlink{VMEC__vars_8f90_source}{VMEC\+\_\+vars.\+f90}}.
+Definition at line \doxymbox{\hyperlink{VMEC__vars_8f90_source_l00053}{53}} of file \doxymbox{\hyperlink{VMEC__vars_8f90_source}{VMEC\+\_\+vars.\+f90}}.
 
 \Hypertarget{namespacevmec__vars_aeac5e1262f419b7ae674586f576dc928}\index{vmec\_vars@{vmec\_vars}!flux\_p\_v@{flux\_p\_v}}
 \index{flux\_p\_v@{flux\_p\_v}!vmec\_vars@{vmec\_vars}}
@@ -188,7 +198,7 @@ poloidal flux
 
 
 
-Definition at line \doxymbox{\hyperlink{VMEC__vars_8f90_source_l00035}{35}} of file \doxymbox{\hyperlink{VMEC__vars_8f90_source}{VMEC\+\_\+vars.\+f90}}.
+Definition at line \doxymbox{\hyperlink{VMEC__vars_8f90_source_l00040}{40}} of file \doxymbox{\hyperlink{VMEC__vars_8f90_source}{VMEC\+\_\+vars.\+f90}}.
 
 \Hypertarget{namespacevmec__vars_ac246a5937702b1ac4c7f9bd92d286766}\index{vmec\_vars@{vmec\_vars}!flux\_t\_v@{flux\_t\_v}}
 \index{flux\_t\_v@{flux\_t\_v}!vmec\_vars@{vmec\_vars}}
@@ -202,7 +212,7 @@ toroidal flux
 
 
 
-Definition at line \doxymbox{\hyperlink{VMEC__vars_8f90_source_l00034}{34}} of file \doxymbox{\hyperlink{VMEC__vars_8f90_source}{VMEC\+\_\+vars.\+f90}}.
+Definition at line \doxymbox{\hyperlink{VMEC__vars_8f90_source_l00039}{39}} of file \doxymbox{\hyperlink{VMEC__vars_8f90_source}{VMEC\+\_\+vars.\+f90}}.
 
 \Hypertarget{namespacevmec__vars_aa822a336e5823876fea884b07857389c}\index{vmec\_vars@{vmec\_vars}!j\_v\_sup\_int@{j\_v\_sup\_int}}
 \index{j\_v\_sup\_int@{j\_v\_sup\_int}!vmec\_vars@{vmec\_vars}}
@@ -219,7 +229,7 @@ Debug version only
 \end{DoxyNote}
 
 
-Definition at line \doxymbox{\hyperlink{VMEC__vars_8f90_source_l00052}{52}} of file \doxymbox{\hyperlink{VMEC__vars_8f90_source}{VMEC\+\_\+vars.\+f90}}.
+Definition at line \doxymbox{\hyperlink{VMEC__vars_8f90_source_l00057}{57}} of file \doxymbox{\hyperlink{VMEC__vars_8f90_source}{VMEC\+\_\+vars.\+f90}}.
 
 \Hypertarget{namespacevmec__vars_a1cc9293ec589081fb212b88f4e5592f0}\index{vmec\_vars@{vmec\_vars}!jac\_v\_c@{jac\_v\_c}}
 \index{jac\_v\_c@{jac\_v\_c}!vmec\_vars@{vmec\_vars}}
@@ -233,7 +243,7 @@ Coeff. of $\mathcal{J}$ in sine series (HM and FM) and norm. deriv.
 
 
 
-Definition at line \doxymbox{\hyperlink{VMEC__vars_8f90_source_l00045}{45}} of file \doxymbox{\hyperlink{VMEC__vars_8f90_source}{VMEC\+\_\+vars.\+f90}}.
+Definition at line \doxymbox{\hyperlink{VMEC__vars_8f90_source_l00050}{50}} of file \doxymbox{\hyperlink{VMEC__vars_8f90_source}{VMEC\+\_\+vars.\+f90}}.
 
 \Hypertarget{namespacevmec__vars_a82168b3717cf13d2d8a50f5cfc19fded}\index{vmec\_vars@{vmec\_vars}!jac\_v\_s@{jac\_v\_s}}
 \index{jac\_v\_s@{jac\_v\_s}!vmec\_vars@{vmec\_vars}}
@@ -247,7 +257,7 @@ Coeff. of $\mathcal{J}$ in cosine series (HM and FM) and norm. deriv.
 
 
 
-Definition at line \doxymbox{\hyperlink{VMEC__vars_8f90_source_l00046}{46}} of file \doxymbox{\hyperlink{VMEC__vars_8f90_source}{VMEC\+\_\+vars.\+f90}}.
+Definition at line \doxymbox{\hyperlink{VMEC__vars_8f90_source_l00051}{51}} of file \doxymbox{\hyperlink{VMEC__vars_8f90_source}{VMEC\+\_\+vars.\+f90}}.
 
 \Hypertarget{namespacevmec__vars_acf90dcedfaae39a8a6778fbf75a90a40}\index{vmec\_vars@{vmec\_vars}!l\_v\_c@{l\_v\_c}}
 \index{l\_v\_c@{l\_v\_c}!vmec\_vars@{vmec\_vars}}
@@ -261,7 +271,7 @@ Coeff. of $\lambda$ in sine series (HM) and norm. deriv.
 
 
 
-Definition at line \doxymbox{\hyperlink{VMEC__vars_8f90_source_l00043}{43}} of file \doxymbox{\hyperlink{VMEC__vars_8f90_source}{VMEC\+\_\+vars.\+f90}}.
+Definition at line \doxymbox{\hyperlink{VMEC__vars_8f90_source_l00048}{48}} of file \doxymbox{\hyperlink{VMEC__vars_8f90_source}{VMEC\+\_\+vars.\+f90}}.
 
 \Hypertarget{namespacevmec__vars_a5d1de7879021fa8c1d8c10bbef01f9c7}\index{vmec\_vars@{vmec\_vars}!l\_v\_s@{l\_v\_s}}
 \index{l\_v\_s@{l\_v\_s}!vmec\_vars@{vmec\_vars}}
@@ -275,13 +285,13 @@ Coeff. of $\lambda$ in cosine series (HM) and norm. deriv.
 
 
 
-Definition at line \doxymbox{\hyperlink{VMEC__vars_8f90_source_l00044}{44}} of file \doxymbox{\hyperlink{VMEC__vars_8f90_source}{VMEC\+\_\+vars.\+f90}}.
+Definition at line \doxymbox{\hyperlink{VMEC__vars_8f90_source_l00049}{49}} of file \doxymbox{\hyperlink{VMEC__vars_8f90_source}{VMEC\+\_\+vars.\+f90}}.
 
-\Hypertarget{namespacevmec__vars_a4b9a64bc60d45f2b10e03f624ade3e82}\index{vmec\_vars@{vmec\_vars}!mn\_v@{mn\_v}}
+\Hypertarget{namespacevmec__vars_a00697202d4f8fc19965188a9b5ddc7e9}\index{vmec\_vars@{vmec\_vars}!mn\_v@{mn\_v}}
 \index{mn\_v@{mn\_v}!vmec\_vars@{vmec\_vars}}
 \doxysubsubsection{\texorpdfstring{mn\_v}{mn\_v}}
-{\footnotesize\ttfamily \label{namespacevmec__vars_a4b9a64bc60d45f2b10e03f624ade3e82} 
-integer, dimension(:\+,:\+), allocatable, public vmec\+\_\+vars::\+mn\+\_\+v}
+{\footnotesize\ttfamily \label{namespacevmec__vars_a00697202d4f8fc19965188a9b5ddc7e9} 
+integer, dimension(:\+,:\+), allocatable, target, public vmec\+\_\+vars::\+mn\+\_\+v}
 
 
 
@@ -289,7 +299,63 @@ m and n of modes
 
 
 
-Definition at line \doxymbox{\hyperlink{VMEC__vars_8f90_source_l00032}{32}} of file \doxymbox{\hyperlink{VMEC__vars_8f90_source}{VMEC\+\_\+vars.\+f90}}.
+Definition at line \doxymbox{\hyperlink{VMEC__vars_8f90_source_l00033}{33}} of file \doxymbox{\hyperlink{VMEC__vars_8f90_source}{VMEC\+\_\+vars.\+f90}}.
+
+\Hypertarget{namespacevmec__vars_a2c3b8c979957fd6dca6909d2b0bdee05}\index{vmec\_vars@{vmec\_vars}!mn\_v\_nyq@{mn\_v\_nyq}}
+\index{mn\_v\_nyq@{mn\_v\_nyq}!vmec\_vars@{vmec\_vars}}
+\doxysubsubsection{\texorpdfstring{mn\_v\_nyq}{mn\_v\_nyq}}
+{\footnotesize\ttfamily \label{namespacevmec__vars_a2c3b8c979957fd6dca6909d2b0bdee05} 
+integer, dimension(:\+,:\+), allocatable, target, public vmec\+\_\+vars::\+mn\+\_\+v\+\_\+nyq}
+
+
+
+m and n of the Nyquist mode set, on which VMEC stores the Jacobian, \texorpdfstring{$\vert$}{|}\+B\texorpdfstring{$\vert$}{|} and B\+\_\+i 
+
+
+
+Definition at line \doxymbox{\hyperlink{VMEC__vars_8f90_source_l00034}{34}} of file \doxymbox{\hyperlink{VMEC__vars_8f90_source}{VMEC\+\_\+vars.\+f90}}.
+
+\Hypertarget{namespacevmec__vars_a54cace62b89eb50a74db99ed7e578d93}\index{vmec\_vars@{vmec\_vars}!mnmax\_nyq\_v@{mnmax\_nyq\_v}}
+\index{mnmax\_nyq\_v@{mnmax\_nyq\_v}!vmec\_vars@{vmec\_vars}}
+\doxysubsubsection{\texorpdfstring{mnmax\_nyq\_v}{mnmax\_nyq\_v}}
+{\footnotesize\ttfamily \label{namespacevmec__vars_a54cace62b89eb50a74db99ed7e578d93} 
+integer, public vmec\+\_\+vars::\+mnmax\+\_\+nyq\+\_\+v}
+
+
+
+number of modes of the Nyquist set 
+
+
+
+Definition at line \doxymbox{\hyperlink{VMEC__vars_8f90_source_l00035}{35}} of file \doxymbox{\hyperlink{VMEC__vars_8f90_source}{VMEC\+\_\+vars.\+f90}}.
+
+\Hypertarget{namespacevmec__vars_a3ad89240d8ad171f16423d1d514a1ca8}\index{vmec\_vars@{vmec\_vars}!mpol\_tf@{mpol\_tf}}
+\index{mpol\_tf@{mpol\_tf}!vmec\_vars@{vmec\_vars}}
+\doxysubsubsection{\texorpdfstring{mpol\_tf}{mpol\_tf}}
+{\footnotesize\ttfamily \label{namespacevmec__vars_a3ad89240d8ad171f16423d1d514a1ca8} 
+integer, public vmec\+\_\+vars::\+mpol\+\_\+tf}
+
+
+
+poloidal extent of the trigonometric basis: m = 0 .. mpol\+\_\+tf-\/1 (covers both mode sets) 
+
+
+
+Definition at line \doxymbox{\hyperlink{VMEC__vars_8f90_source_l00036}{36}} of file \doxymbox{\hyperlink{VMEC__vars_8f90_source}{VMEC\+\_\+vars.\+f90}}.
+
+\Hypertarget{namespacevmec__vars_af767ee8089760054f9d1943e25857a47}\index{vmec\_vars@{vmec\_vars}!ntor\_tf@{ntor\_tf}}
+\index{ntor\_tf@{ntor\_tf}!vmec\_vars@{vmec\_vars}}
+\doxysubsubsection{\texorpdfstring{ntor\_tf}{ntor\_tf}}
+{\footnotesize\ttfamily \label{namespacevmec__vars_af767ee8089760054f9d1943e25857a47} 
+integer, public vmec\+\_\+vars::\+ntor\+\_\+tf}
+
+
+
+toroidal extent of the trigonometric basis: n = -\/ntor\+\_\+tf .. ntor\+\_\+tf 
+
+
+
+Definition at line \doxymbox{\hyperlink{VMEC__vars_8f90_source_l00037}{37}} of file \doxymbox{\hyperlink{VMEC__vars_8f90_source}{VMEC\+\_\+vars.\+f90}}.
 
 \Hypertarget{namespacevmec__vars_a958baf9fece8a4a001b6d8d767b48179}\index{vmec\_vars@{vmec\_vars}!pres\_v@{pres\_v}}
 \index{pres\_v@{pres\_v}!vmec\_vars@{vmec\_vars}}
@@ -303,7 +369,7 @@ pressure
 
 
 
-Definition at line \doxymbox{\hyperlink{VMEC__vars_8f90_source_l00036}{36}} of file \doxymbox{\hyperlink{VMEC__vars_8f90_source}{VMEC\+\_\+vars.\+f90}}.
+Definition at line \doxymbox{\hyperlink{VMEC__vars_8f90_source_l00041}{41}} of file \doxymbox{\hyperlink{VMEC__vars_8f90_source}{VMEC\+\_\+vars.\+f90}}.
 
 \Hypertarget{namespacevmec__vars_a08f3862b0bb940623a416a056f03b092}\index{vmec\_vars@{vmec\_vars}!q\_saf\_v@{q\_saf\_v}}
 \index{q\_saf\_v@{q\_saf\_v}!vmec\_vars@{vmec\_vars}}
@@ -317,7 +383,7 @@ safety factor
 
 
 
-Definition at line \doxymbox{\hyperlink{VMEC__vars_8f90_source_l00038}{38}} of file \doxymbox{\hyperlink{VMEC__vars_8f90_source}{VMEC\+\_\+vars.\+f90}}.
+Definition at line \doxymbox{\hyperlink{VMEC__vars_8f90_source_l00043}{43}} of file \doxymbox{\hyperlink{VMEC__vars_8f90_source}{VMEC\+\_\+vars.\+f90}}.
 
 \Hypertarget{namespacevmec__vars_a8307a4a411dadf5b9be24f8aafac5f39}\index{vmec\_vars@{vmec\_vars}!r\_v\_c@{r\_v\_c}}
 \index{r\_v\_c@{r\_v\_c}!vmec\_vars@{vmec\_vars}}
@@ -331,7 +397,7 @@ Coeff. of $R$ in sine series (FM) and norm. deriv.
 
 
 
-Definition at line \doxymbox{\hyperlink{VMEC__vars_8f90_source_l00039}{39}} of file \doxymbox{\hyperlink{VMEC__vars_8f90_source}{VMEC\+\_\+vars.\+f90}}.
+Definition at line \doxymbox{\hyperlink{VMEC__vars_8f90_source_l00044}{44}} of file \doxymbox{\hyperlink{VMEC__vars_8f90_source}{VMEC\+\_\+vars.\+f90}}.
 
 \Hypertarget{namespacevmec__vars_ac6cdafd632e37856533c42e8ab34a680}\index{vmec\_vars@{vmec\_vars}!r\_v\_s@{r\_v\_s}}
 \index{r\_v\_s@{r\_v\_s}!vmec\_vars@{vmec\_vars}}
@@ -345,7 +411,7 @@ Coeff. of $R$ in cosine series (FM) and norm. deriv.
 
 
 
-Definition at line \doxymbox{\hyperlink{VMEC__vars_8f90_source_l00040}{40}} of file \doxymbox{\hyperlink{VMEC__vars_8f90_source}{VMEC\+\_\+vars.\+f90}}.
+Definition at line \doxymbox{\hyperlink{VMEC__vars_8f90_source_l00045}{45}} of file \doxymbox{\hyperlink{VMEC__vars_8f90_source}{VMEC\+\_\+vars.\+f90}}.
 
 \Hypertarget{namespacevmec__vars_a676475bc7e07d96fc91c2773c8d2c84a}\index{vmec\_vars@{vmec\_vars}!rot\_t\_v@{rot\_t\_v}}
 \index{rot\_t\_v@{rot\_t\_v}!vmec\_vars@{vmec\_vars}}
@@ -359,7 +425,7 @@ rotational transform
 
 
 
-Definition at line \doxymbox{\hyperlink{VMEC__vars_8f90_source_l00037}{37}} of file \doxymbox{\hyperlink{VMEC__vars_8f90_source}{VMEC\+\_\+vars.\+f90}}.
+Definition at line \doxymbox{\hyperlink{VMEC__vars_8f90_source_l00042}{42}} of file \doxymbox{\hyperlink{VMEC__vars_8f90_source}{VMEC\+\_\+vars.\+f90}}.
 
 \Hypertarget{namespacevmec__vars_a66130a0eb0bc39ae0294f008f283efcd}\index{vmec\_vars@{vmec\_vars}!z\_v\_c@{z\_v\_c}}
 \index{z\_v\_c@{z\_v\_c}!vmec\_vars@{vmec\_vars}}
@@ -373,7 +439,7 @@ Coeff. of $Z$ in sine series (FM) and norm. deriv.
 
 
 
-Definition at line \doxymbox{\hyperlink{VMEC__vars_8f90_source_l00041}{41}} of file \doxymbox{\hyperlink{VMEC__vars_8f90_source}{VMEC\+\_\+vars.\+f90}}.
+Definition at line \doxymbox{\hyperlink{VMEC__vars_8f90_source_l00046}{46}} of file \doxymbox{\hyperlink{VMEC__vars_8f90_source}{VMEC\+\_\+vars.\+f90}}.
 
 \Hypertarget{namespacevmec__vars_ac6a5f1ccefd4c0337189c09166558bb1}\index{vmec\_vars@{vmec\_vars}!z\_v\_s@{z\_v\_s}}
 \index{z\_v\_s@{z\_v\_s}!vmec\_vars@{vmec\_vars}}
@@ -387,5 +453,5 @@ Coeff. of $Z$ in cosine series (FM) and norm. deriv.
 
 
 
-Definition at line \doxymbox{\hyperlink{VMEC__vars_8f90_source_l00042}{42}} of file \doxymbox{\hyperlink{VMEC__vars_8f90_source}{VMEC\+\_\+vars.\+f90}}.
+Definition at line \doxymbox{\hyperlink{VMEC__vars_8f90_source_l00047}{47}} of file \doxymbox{\hyperlink{VMEC__vars_8f90_source}{VMEC\+\_\+vars.\+f90}}.
 

@@ -1,5 +1,5 @@
-\doxysection{/\+\+Users/\+toonweyens/\+\+Code/\+\+PB3\+D/\+\+Modules/\+vac\+\_\+ops.f90 File Reference}
-\hypertarget{vac__ops_8f90}{}\label{vac__ops_8f90}\index{/Users/toonweyens/Code/PB3D/Modules/vac\_ops.f90@{/Users/toonweyens/Code/PB3D/Modules/vac\_ops.f90}}
+\doxysection{Modules/\+vac\+\_\+ops.f90 File Reference}
+\hypertarget{vac__ops_8f90}{}\label{vac__ops_8f90}\index{Modules/vac\_ops.f90@{Modules/vac\_ops.f90}}
 \doxysubsubsection*{Modules}
 \begin{DoxyCompactItemize}
 \item 
@@ -10,17 +10,19 @@ module \doxymbox{\hyperlink{namespacevac__ops}{vac\+\_\+ops}}
 \item 
 integer function, public \doxymbox{\hyperlink{namespacevac__ops_a37220702fbf378626a0f2c12f446e0aa}{vac\+\_\+ops::\+store\+\_\+vac}} (grid, eq\+\_\+1, eq\+\_\+2, vac)
 \begin{DoxyCompactList}\small\item\em Stores calculation of the vacuum response by storing the necessary variables. \end{DoxyCompactList}\item 
+integer function, public \doxymbox{\hyperlink{namespacevac__ops_a8d70ea940b7548e4a2f397699c694b67}{vac\+\_\+ops::\+calc\+\_\+gh}} (vac, n\+\_\+r\+\_\+in, lims\+\_\+r\+\_\+in, x\+\_\+vec\+\_\+in, g\+\_\+in, h\+\_\+in)
+\begin{DoxyCompactList}\small\item\em Calculate the matrices {\ttfamily G} and {\ttfamily H}. \end{DoxyCompactList}\item 
 integer function \doxymbox{\hyperlink{namespacevac__ops_aa0e2983daefe876c0eb16be9af046a97}{vac\+\_\+ops::\+calc\+\_\+gh\+\_\+1}} (vac, n\+\_\+r\+\_\+in, lims\+\_\+r\+\_\+in, x\+\_\+vec\+\_\+in, g\+\_\+in, h\+\_\+in, ext\+\_\+in)
 \begin{DoxyCompactList}\small\item\em Calculates matrices {\ttfamily G} and {\ttfamily H} in 3-\/D configuration. \end{DoxyCompactList}\item 
-logical function \doxymbox{\hyperlink{vac__ops_8f90_a3d8bbdba782171b063ad415370c8be48}{on\+\_\+field\+\_\+line}} (cd, kd, n\+\_\+ang)
-\item 
 integer function \doxymbox{\hyperlink{namespacevac__ops_a6fb02475c7ef2da9408952cf6f1cca8b}{vac\+\_\+ops::\+calc\+\_\+gh\+\_\+2}} (vac, n\+\_\+r\+\_\+in, lims\+\_\+r\+\_\+in, x\+\_\+vec\+\_\+in, g\+\_\+in, h\+\_\+in, ext\+\_\+in)
 \begin{DoxyCompactList}\small\item\em Calculates matrices {\ttfamily G} and {\ttfamily H} in axisymmetric configurations. \end{DoxyCompactList}\item 
 integer function, public \doxymbox{\hyperlink{namespacevac__ops_a5e5a8322b3aa2e3704b1050426f06d9d}{vac\+\_\+ops::\+calc\+\_\+vac\+\_\+res}} (mds, vac)
 \begin{DoxyCompactList}\small\item\em Calculates the vacuum response. \end{DoxyCompactList}\item 
-integer function, public \doxymbox{\hyperlink{namespacevac__ops_a76c87e7676f6ea8d72fabbbf6a631c6a}{vac\+\_\+ops::\+vac\+\_\+pot\+\_\+plot}} (grid\+\_\+sol, vac, sol, x\+\_\+id)
-\begin{DoxyCompactList}\small\item\em Calculate vacuum potential at some positions that are not resonant. \end{DoxyCompactList}\item 
-integer function \doxymbox{\hyperlink{namespacevac__ops_ad70bf1a119f4645f5653ff287a476190}{vac\+\_\+ops::\+solve\+\_\+phi\+\_\+bem}} (vac, r, phi, n\+\_\+rphi, n\+\_\+loc\+\_\+rphi, lims\+\_\+c\+\_\+rphi, desc\+\_\+rphi)
+integer function, public \doxymbox{\hyperlink{namespacevac__ops_a33bf7285ead934fa8e4242c708542d92}{vac\+\_\+ops::\+eval\+\_\+pot\+\_\+ext}} (vac, x\+\_\+ext, phi\+\_\+s, d\+\_\+s, desc\+\_\+s, pot)
+\begin{DoxyCompactList}\small\item\em Potential at points off the boundary, from its values and its normal data on the boundary. \end{DoxyCompactList}\item 
+integer function, public \doxymbox{\hyperlink{namespacevac__ops_a8bcc01cfc5c1022f767b5479c7739ea0}{vac\+\_\+ops::\+vac\+\_\+pot\+\_\+plot}} (grid\+\_\+sol, vac, sol, x\+\_\+ids)
+\begin{DoxyCompactList}\small\item\em Plots the vacuum potential of computed eigenmodes outside the plasma. \end{DoxyCompactList}\item 
+integer function, public \doxymbox{\hyperlink{namespacevac__ops_afb0bbf55ee22e8831b31bef1be85a741}{vac\+\_\+ops::\+solve\+\_\+phi\+\_\+bem}} (vac, r, phi, n\+\_\+rphi, n\+\_\+loc\+\_\+rphi, lims\+\_\+c\+\_\+rphi, desc\+\_\+rphi)
 \begin{DoxyCompactList}\small\item\em Calculates potential {\ttfamily Phi} on boundary of BEM in terms of some right-\/hand side . \end{DoxyCompactList}\item 
 integer function, public \doxymbox{\hyperlink{namespacevac__ops_a78969bf43f80f0df3acf23c47edf7aff}{vac\+\_\+ops::\+print\+\_\+output\+\_\+vac}} (vac, data\+\_\+name, rich\+\_\+lvl)
 \begin{DoxyCompactList}\small\item\em Print vacuum quantities of a certain order to an output file. \end{DoxyCompactList}\end{DoxyCompactItemize}
@@ -32,26 +34,4 @@ logical, public \doxymbox{\hyperlink{namespacevac__ops_a9c1d2227ea0118cb9158f7e0
 logical, public \doxymbox{\hyperlink{namespacevac__ops_a6b99f921f077f63f641d5a9c86d88eaf}{vac\+\_\+ops::\+debug\+\_\+calc\+\_\+vac\+\_\+res}} = .false.
 \begin{DoxyCompactList}\small\item\em plot debug information for \doxylink{namespacevac__ops_a5e5a8322b3aa2e3704b1050426f06d9d}{calc\+\_\+vac\+\_\+res()} \end{DoxyCompactList}\item 
 logical, public \doxymbox{\hyperlink{namespacevac__ops_a1afb20e30f5f99547fc8df4ace204ee9}{vac\+\_\+ops::\+debug\+\_\+vac\+\_\+pot\+\_\+plot}} = .false.
-\begin{DoxyCompactList}\small\item\em plot debug information for \doxylink{namespacevac__ops_a76c87e7676f6ea8d72fabbbf6a631c6a}{vac\+\_\+pot\+\_\+plot()} \end{DoxyCompactList}\end{DoxyCompactItemize}
-
-
-\label{doc-func-members}
-\Hypertarget{vac__ops_8f90_doc-func-members}
-\doxysubsection{Function/\+\+Subroutine Documentation}
-\Hypertarget{vac__ops_8f90_a3d8bbdba782171b063ad415370c8be48}\index{vac\_ops.f90@{vac\_ops.f90}!on\_field\_line@{on\_field\_line}}
-\index{on\_field\_line@{on\_field\_line}!vac\_ops.f90@{vac\_ops.f90}}
-\doxysubsubsection{\texorpdfstring{on\_field\_line()}{on\_field\_line()}}
-{\footnotesize\ttfamily \label{vac__ops_8f90_a3d8bbdba782171b063ad415370c8be48} 
-logical function calc\+\_\+gh\+\_\+1::\+on\+\_\+field\+\_\+line (\begin{DoxyParamCaption}\item[{integer, intent(in)}]{cd}{, }\item[{integer, intent(in)}]{kd}{, }\item[{integer, intent(in)}]{n\+\_\+ang}{}\end{DoxyParamCaption})}
-
-
-
-Definition at line \doxymbox{\hyperlink{vac__ops_8f90_source_l00964}{964}} of file \doxymbox{\hyperlink{vac__ops_8f90_source}{vac\+\_\+ops.\+f90}}.
-
-Here is the caller graph for this function:\+\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=350pt]{vac__ops_8f90_a3d8bbdba782171b063ad415370c8be48_icgraph}
-\end{center}
-\end{figure}
+\begin{DoxyCompactList}\small\item\em plot debug information for \doxylink{namespacevac__ops_a8bcc01cfc5c1022f767b5479c7739ea0}{vac\+\_\+pot\+\_\+plot()} \end{DoxyCompactList}\end{DoxyCompactItemize}

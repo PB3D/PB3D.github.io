@@ -18,7 +18,7 @@ subroutine, public \doxymbox{\hyperlink{namespacex__utilities_a5d3e0cc44d78b9c18
 logical function, public \doxymbox{\hyperlink{namespacex__utilities_adef8eab82f0fd670a7795c754cf9a8f9}{do\+\_\+x}} ()
 \begin{DoxyCompactList}\small\item\em Tests whether this perturbatino job should be done. \end{DoxyCompactList}\item 
 logical function, public \doxymbox{\hyperlink{namespacex__utilities_a6bb9570c66954d37a27f04f12fa65cc9}{is\+\_\+necessary\+\_\+x}} (sym, sec\+\_\+x\+\_\+id, lim\+\_\+sec\+\_\+x)
-\begin{DoxyCompactList}\small\item\em Determines whether a variable needs to be considered:\+ \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Determines whether a variable needs to be considered: \end{DoxyCompactList}\item 
 integer function, public \doxymbox{\hyperlink{namespacex__utilities_a4d18921da77463d069346f1c7322b451}{calc\+\_\+memory\+\_\+x}} (ord, arr\+\_\+size, n\+\_\+mod, mem\+\_\+size)
 \begin{DoxyCompactList}\small\item\em Calculate memory in MB necessary for X variables. \end{DoxyCompactList}\item 
 integer function, public \doxymbox{\hyperlink{namespacex__utilities_afde797341c5056abecc7a9221dbd345e}{trim\+\_\+modes}} (mds\+\_\+i, mds\+\_\+o, id\+\_\+lim\+\_\+i, id\+\_\+lim\+\_\+o)
@@ -28,7 +28,7 @@ integer function, public \doxymbox{\hyperlink{namespacex__utilities_afde797341c5
 \doxysubsection{Detailed Description}
 Numerical utilities related to perturbation operations. 
 
-\label{doc-func-members}
+\label{namespacex__utilities_doc-func-members}
 \Hypertarget{namespacex__utilities_doc-func-members}
 \doxysubsection{Function/\+\+Subroutine Documentation}
 \Hypertarget{namespacex__utilities_a4d18921da77463d069346f1c7322b451}\index{x\_utilities@{x\_utilities}!calc\_memory\_x@{calc\_memory\_x}}
@@ -41,18 +41,18 @@ integer function, public x\+\_\+utilities::\+calc\+\_\+memory\+\_\+x (\begin{Dox
 
 Calculate memory in MB necessary for X variables. 
 
-This depends on the order:\+
+This depends on the order:
 \begin{DoxyItemize}
-\item order 1:\+
+\item order 1:
 \begin{DoxyItemize}
 \item {\ttfamily 4x n\+\_\+par\+\_\+X x n\+\_\+geo x loc\+\_\+n\+\_\+r x n\+\_\+mod}
 \end{DoxyItemize}
-\item order 2:\+
+\item order 2:
 \begin{DoxyItemize}
 \item {\ttfamily 2x n\+\_\+par\+\_\+X x n\+\_\+geo x loc\+\_\+n\+\_\+r x n\+\_\+mod\texorpdfstring{$^\wedge$}{\string^}2}
 \item {\ttfamily 4x n\+\_\+par\+\_\+X x n\+\_\+geo x loc\+\_\+n\+\_\+r x n\+\_\+mod(n\+\_\+mod+1)/\+2}
 \end{DoxyItemize}
-\item higher order:\+ not used
+\item higher order: not used
 \end{DoxyItemize}
 
 where {\ttfamily n\+\_\+par\+\_\+X x n\+\_\+geo x loc\+\_\+n\+\_\+r} should be passed as {\ttfamily arr\+\_\+size} and {\ttfamily n\+\_\+mod} as well.
@@ -75,14 +75,16 @@ ierr
 
 Definition at line \doxymbox{\hyperlink{X__utilities_8f90_source_l00235}{235}} of file \doxymbox{\hyperlink{X__utilities_8f90_source}{X\+\_\+utilities.\+f90}}.
 
-Here is the call graph for this function:\+\nopagebreak
+Here is the call graph for this function:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{namespacex__utilities_a4d18921da77463d069346f1c7322b451_cgraph}
 \end{center}
 \end{figure}
-Here is the caller graph for this function:\+\nopagebreak
+Here is the caller graph for this function:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -103,14 +105,16 @@ Also increments {\ttfamily X\+\_\+job\+\_\+nr}
 
 Definition at line \doxymbox{\hyperlink{X__utilities_8f90_source_l00178}{178}} of file \doxymbox{\hyperlink{X__utilities_8f90_source}{X\+\_\+utilities.\+f90}}.
 
-Here is the call graph for this function:\+\nopagebreak
+Here is the call graph for this function:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=198pt]{namespacex__utilities_adef8eab82f0fd670a7795c754cf9a8f9_cgraph}
 \end{center}
 \end{figure}
-Here is the caller graph for this function:\+\nopagebreak
+Here is the caller graph for this function:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -129,7 +133,7 @@ Gets one of the the local ranges of contiguous tensorial perturbation variables 
 
 More specifically, a range of indices {\ttfamily k} in the first dimension is given for every value of the indices {\ttfamily m} in the second dimension.
 
-An example is now given for the subrange {\ttfamily \+[2:\+3,2:\+5]\+} of a the total range {\ttfamily \+[1:\+5, 1:\+5]\+}. For asymmetric variables the situation is simple:\+ The {\ttfamily k} range is {\ttfamily \+[2:\+3]\+} for all 5 values of {\ttfamily m}. However, for symmetric variables, the upper diagonal values are not stored, which gives {\ttfamily k} ranges {\ttfamily \+[2:\+3]\+}, {\ttfamily \+[3:\+3]\+} and no range for {\ttfamily m} = 4 and 5.
+An example is now given for the subrange {\ttfamily \+[2:3,2:5]} of a the total range {\ttfamily \+[1:5, 1:5]}. For asymmetric variables the situation is simple: The {\ttfamily k} range is {\ttfamily \+[2:3]} for all 5 values of {\ttfamily m}. However, for symmetric variables, the upper diagonal values are not stored, which gives {\ttfamily k} ranges {\ttfamily \+[2:3]}, {\ttfamily \+[3:3]} and no range for {\ttfamily m} = 4 and 5.
 
 This routine then translates these ranges to the corresponding 1-\/D ranges that are used in the actual variables. For above example, the total indices are           \[             \left(\begin{array}{ccccc}
                  1 &  6 & 11 & 16 & 21 \\
@@ -153,13 +157,13 @@ This routine then translates these ranges to the corresponding 1-\/D ranges that
 
 These can then related to the local indices for the variables in this perturbation job.
 
-For above example, the results are:\+
+For above example, the results are:
 
-{\ttfamily \+[1:\+2]\+, \+[3:\+4]\+, \+[5:\+6]\+ and \+[7:\+8]\+},
+{\ttfamily \+[1:2], \+[3:4], \+[5:6] and \+[7:8]},
 
 for asymmetric variables and
 
-{\ttfamily \+[1:\+2]\+, \+[3:\+3]\+, \+[:\+]\+ and \+[:\+]\+},
+{\ttfamily \+[1:2], \+[3:3], \+[:] and \+[:]},
 
 for symmetric variables.
 
@@ -182,14 +186,16 @@ The procedure outputs both the local and total ranges.
 
 Definition at line \doxymbox{\hyperlink{X__utilities_8f90_source_l00127}{127}} of file \doxymbox{\hyperlink{X__utilities_8f90_source}{X\+\_\+utilities.\+f90}}.
 
-Here is the call graph for this function:\+\nopagebreak
+Here is the call graph for this function:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{namespacex__utilities_a5d3e0cc44d78b9c18e93ee5457a49bb5_cgraph}
 \end{center}
 \end{figure}
-Here is the caller graph for this function:\+\nopagebreak
+Here is the caller graph for this function:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -204,9 +210,9 @@ logical function, public x\+\_\+utilities::\+is\+\_\+necessary\+\_\+x (\begin{Do
 
 
 
-Determines whether a variable needs to be considered:\+ 
+Determines whether a variable needs to be considered: 
 
-This depends on whether the quantity is symmetric or not:\+
+This depends on whether the quantity is symmetric or not:
 \begin{DoxyItemize}
 \item Only if it is on or below the diagonal for symmetric quantities.
 \item Always for asymmetric quantities 
@@ -223,7 +229,8 @@ This depends on whether the quantity is symmetric or not:\+
 
 Definition at line \doxymbox{\hyperlink{X__utilities_8f90_source_l00196}{196}} of file \doxymbox{\hyperlink{X__utilities_8f90_source}{X\+\_\+utilities.\+f90}}.
 
-Here is the caller graph for this function:\+\nopagebreak
+Here is the caller graph for this function:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -255,7 +262,8 @@ Limit input mode range to output mode range.
 
 Definition at line \doxymbox{\hyperlink{X__utilities_8f90_source_l00292}{292}} of file \doxymbox{\hyperlink{X__utilities_8f90_source}{X\+\_\+utilities.\+f90}}.
 
-Here is the caller graph for this function:\+\nopagebreak
+Here is the caller graph for this function:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode

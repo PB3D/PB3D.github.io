@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.18.0"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>PB3D: /Users/toonweyens/Code/PB3D/Modules/vac_ops.f90 Source File</title>
+<title>PB3D: Modules/vac_ops.f90 Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="dynsections.js"></script>
 <script type="text/javascript" src="codefolding.js"></script>
@@ -24,7 +24,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">PB3D<span id="projectnumber">&#160;[2.50]</span>
+   <div id="projectname">PB3D<span id="projectnumber">&#160;[2.51]</span>
    </div>
    <div id="projectbrief">Ideal linear high-n MHD stability in 3-D</div>
   </td>
@@ -94,7 +94,7 @@ document.addEventListener('DOMContentLoaded', codefold.init);
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><a href="dir_abd866f922fda2a610a7ae3b578a9cb5.html">PB3D</a></li><li class="navelem"><a href="dir_c08747878f0308ef1ee4ad272e6068b4.html">Modules</a></li>  </ul>
+<li class="navelem"><a href="dir_7f0d4d145c63f1d5d9490dfb52c5702e.html">Modules</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div id="doc-content">
@@ -178,28 +178,28 @@ document.addEventListener('DOMContentLoaded', codefold.init);
 <div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span><span class="comment">    !! VMEC:</span></div>
 <div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span><span class="comment">    !! @dot</span></div>
 <div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span><span class="comment">    !! digraph G {</span></div>
-<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span><span class="comment">    !!  eq_job -&gt; restart [label=&quot;yes&quot;]</span></div>
-<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span><span class="comment">    !!  eq_job -&gt; store [label=&quot;no&quot;]</span></div>
-<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span><span class="comment">    !!  restart -&gt; jump [label=&quot;yes&quot;]</span></div>
-<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span><span class="comment">    !!  restart -&gt; copy [label=&quot;no&quot;]</span></div>
-<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span><span class="comment">    !!  jump -&gt; reconstructcur [label=&quot;yes&quot;]</span></div>
-<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span><span class="comment">    !!  jump -&gt; restartone [label=&quot;no&quot;]</span></div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span><span class="comment">    !!  eq_job -&gt; restart [label=&lt;yes&gt;]</span></div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span><span class="comment">    !!  eq_job -&gt; store [label=&lt;no&gt;]</span></div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span><span class="comment">    !!  restart -&gt; jump [label=&lt;yes&gt;]</span></div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span><span class="comment">    !!  restart -&gt; copy [label=&lt;no&gt;]</span></div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span><span class="comment">    !!  jump -&gt; reconstructcur [label=&lt;yes&gt;]</span></div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span><span class="comment">    !!  jump -&gt; restartone [label=&lt;no&gt;]</span></div>
 <div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span><span class="comment">    !!  reconstructcur -&gt; return</span></div>
-<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span><span class="comment">    !!  restartone -&gt; reconstruct [label=&quot;no&quot;]</span></div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span><span class="comment">    !!  restartone -&gt; reconstruct [label=&lt;no&gt;]</span></div>
 <div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span><span class="comment">    !!  copy -&gt; store</span></div>
 <div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span><span class="comment">    !!  reconstruct -&gt; store</span></div>
-<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span><span class="comment">    !!  restartone -&gt; store [label=&quot;yes&quot;]</span></div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span><span class="comment">    !!  restartone -&gt; store [label=&lt;yes&gt;]</span></div>
 <div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span><span class="comment">    !!  store -&gt; return</span></div>
 <div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span><span class="comment">    !!  </span></div>
-<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span><span class="comment">    !!  eq_job [shape=diamond,label=&quot;eq_job = 1&quot;]</span></div>
-<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span><span class="comment">    !!  store [label=&quot;store new vec, res&quot;]</span></div>
-<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span><span class="comment">    !!  restart [shape=diamond,label=&quot;restart&quot;]</span></div>
-<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span><span class="comment">    !!  jump [shape=diamond,label=&quot;jump&quot;]</span></div>
-<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span><span class="comment">    !!  copy [label=&quot;copy previous level&quot;]</span></div>
-<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span><span class="comment">    !!  reconstructcur [label=&quot;reconstruct current level&quot;]</span></div>
-<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span><span class="comment">    !!  return [label=&quot;return&quot;]</span></div>
-<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span><span class="comment">    !!  restartone [shape=diamond,label=&quot;restart = 1&quot;]</span></div>
-<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span><span class="comment">    !!  reconstruct [label=&quot;reconstruct previous level&quot;]</span></div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span><span class="comment">    !!  eq_job [shape=diamond,label=&lt;eq_job = 1&gt;]</span></div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span><span class="comment">    !!  store [label=&lt;store new vec, res&gt;]</span></div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span><span class="comment">    !!  restart [shape=diamond,label=&lt;restart&gt;]</span></div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span><span class="comment">    !!  jump [shape=diamond,label=&lt;jump&gt;]</span></div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span><span class="comment">    !!  copy [label=&lt;copy previous level&gt;]</span></div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span><span class="comment">    !!  reconstructcur [label=&lt;reconstruct current level&gt;]</span></div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span><span class="comment">    !!  return [label=&lt;return&gt;]</span></div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span><span class="comment">    !!  restartone [shape=diamond,label=&lt;restart = 1&gt;]</span></div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span><span class="comment">    !!  reconstruct [label=&lt;reconstruct previous level&gt;]</span></div>
 <div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span><span class="comment">    !! }</span></div>
 <div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span><span class="comment">    !! @enddot</span></div>
 <div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span><span class="comment">    !!</span></div>
@@ -4054,8 +4054,8 @@ document.addEventListener('DOMContentLoaded', codefold.init);
 <div class="ttc" id="anamespacehelena__vars_html_a41e897edb2a8b34fa7bde28ff57d012a"><div class="ttname"><a href="namespacehelena__vars.html#a41e897edb2a8b34fa7bde28ff57d012a">helena_vars::z_h</a></div><div class="ttdeci">real(dp), dimension(:,:), allocatable, public z_h</div><div class="ttdoc">height  (yout)</div><div class="ttdef"><b>Definition</b> <a href="HELENA__vars_8f90_source.html#l00034">HELENA_vars.f90:34</a></div></div>
 <div class="ttc" id="anamespacehelena__vars_html_aaaa83af362a93836b4dc74bdfa715d1a"><div class="ttname"><a href="namespacehelena__vars.html#aaaa83af362a93836b4dc74bdfa715d1a">helena_vars::chi_h</a></div><div class="ttdeci">real(dp), dimension(:), allocatable, public chi_h</div><div class="ttdoc">poloidal angle</div><div class="ttdef"><b>Definition</b> <a href="HELENA__vars_8f90_source.html#l00023">HELENA_vars.f90:23</a></div></div>
 <div class="ttc" id="anamespacemessages_html"><div class="ttname"><a href="namespacemessages.html">messages</a></div><div class="ttdoc">Numerical utilities related to giving output.</div><div class="ttdef"><b>Definition</b> <a href="messages_8f90_source.html#l00004">messages.f90:4</a></div></div>
-<div class="ttc" id="anamespacemessages_html_a6e6bfb084063e4cc91ee86e542043302"><div class="ttname"><a href="namespacemessages.html#a6e6bfb084063e4cc91ee86e542043302">messages::lvl_ud</a></div><div class="ttdeci">subroutine, public lvl_ud(inc)</div><div class="ttdoc">Increases/decreases lvl of output.</div><div class="ttdef"><b>Definition</b> <a href="messages_8f90_source.html#l00253">messages.f90:254</a></div></div>
-<div class="ttc" id="anamespacemessages_html_aa4a8d01563e92558e8a0875b075ec54c"><div class="ttname"><a href="namespacemessages.html#aa4a8d01563e92558e8a0875b075ec54c">messages::writo</a></div><div class="ttdeci">subroutine, public writo(input_str, persistent, error, warning, alert)</div><div class="ttdoc">Write output to file identified by output_i.</div><div class="ttdef"><b>Definition</b> <a href="messages_8f90_source.html#l00274">messages.f90:275</a></div></div>
+<div class="ttc" id="anamespacemessages_html_a6e6bfb084063e4cc91ee86e542043302"><div class="ttname"><a href="namespacemessages.html#a6e6bfb084063e4cc91ee86e542043302">messages::lvl_ud</a></div><div class="ttdeci">subroutine, public lvl_ud(inc)</div><div class="ttdoc">Increases/decreases lvl of output.</div><div class="ttdef"><b>Definition</b> <a href="messages_8f90_source.html#l00255">messages.f90:256</a></div></div>
+<div class="ttc" id="anamespacemessages_html_aa4a8d01563e92558e8a0875b075ec54c"><div class="ttname"><a href="namespacemessages.html#aa4a8d01563e92558e8a0875b075ec54c">messages::writo</a></div><div class="ttdeci">subroutine, public writo(input_str, persistent, error, warning, alert)</div><div class="ttdoc">Write output to file identified by output_i.</div><div class="ttdef"><b>Definition</b> <a href="messages_8f90_source.html#l00276">messages.f90:277</a></div></div>
 <div class="ttc" id="anamespacempi__utilities_html"><div class="ttname"><a href="namespacempi__utilities.html">mpi_utilities</a></div><div class="ttdoc">Numerical utilities related to MPI.</div><div class="ttdef"><b>Definition</b> <a href="MPI__utilities_8f90_source.html#l00020">MPI_utilities.f90:20</a></div></div>
 <div class="ttc" id="anamespacenum__ops_html"><div class="ttname"><a href="namespacenum__ops.html">num_ops</a></div><div class="ttdoc">Numerical operations.</div><div class="ttdef"><b>Definition</b> <a href="num__ops_8f90_source.html#l00004">num_ops.f90:4</a></div></div>
 <div class="ttc" id="anamespacenum__ops_html_adcc4eacf15c931744316a004f4448b90"><div class="ttname"><a href="namespacenum__ops.html#adcc4eacf15c931744316a004f4448b90">num_ops::calc_zero_zhang</a></div><div class="ttdeci">character(len=max_str_ln) function, public calc_zero_zhang(zero, fun, x_int_in)</div><div class="ttdoc">Finds the zero of a function using Zhang&#39;s method, which is simpler than Brent&#39;s method.</div><div class="ttdef"><b>Definition</b> <a href="num__ops_8f90_source.html#l00463">num_ops.f90:464</a></div></div>

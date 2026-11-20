@@ -11,7 +11,7 @@ Operations on the equilibrium variables.
 interface \doxymbox{\hyperlink{interfaceeq__ops_1_1calc__eq}{calc\+\_\+eq}}
 \begin{DoxyCompactList}\small\item\em Calculate the equilibrium quantities on a grid determined by straight field lines. \end{DoxyCompactList}\item 
 interface \doxymbox{\hyperlink{interfaceeq__ops_1_1print__output__eq}{print\+\_\+output\+\_\+eq}}
-\begin{DoxyCompactList}\small\item\em Print equilibrium quantities to an output file:\+ \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Print equilibrium quantities to an output file: \end{DoxyCompactList}\item 
 interface \doxymbox{\hyperlink{interfaceeq__ops_1_1redistribute__output__eq}{redistribute\+\_\+output\+\_\+eq}}
 \begin{DoxyCompactList}\small\item\em Redistribute the equilibrium variables, but only the Flux variables are saved. \end{DoxyCompactList}\item 
 interface \doxymbox{\hyperlink{interfaceeq__ops_1_1calc__rzl}{calc\+\_\+rzl}}
@@ -73,7 +73,7 @@ logical, public \doxymbox{\hyperlink{namespaceeq__ops_a07ca60790a262e20bc8632be1
 \doxysubsection{Detailed Description}
 Operations on the equilibrium variables. 
 
-\label{doc-func-members}
+\label{namespaceeq__ops_doc-func-members}
 \Hypertarget{namespaceeq__ops_doc-func-members}
 \doxysubsection{Function/\+\+Subroutine Documentation}
 \Hypertarget{namespaceeq__ops_aaa2bcf52f2e9595ec31a996063fff0b0}\index{eq\_ops@{eq\_ops}!b\_plot@{b\_plot}}
@@ -122,16 +122,18 @@ ierr
 \end{DoxyParams}
 
 
-Definition at line \doxymbox{\hyperlink{eq__ops_8f90_source_l05698}{5698}} of file \doxymbox{\hyperlink{eq__ops_8f90_source}{eq\+\_\+ops.\+f90}}.
+Definition at line \doxymbox{\hyperlink{eq__ops_8f90_source_l05716}{5716}} of file \doxymbox{\hyperlink{eq__ops_8f90_source}{eq\+\_\+ops.\+f90}}.
 
-Here is the call graph for this function:\+\nopagebreak
+Here is the call graph for this function:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{namespaceeq__ops_aaa2bcf52f2e9595ec31a996063fff0b0_cgraph}
 \end{center}
 \end{figure}
-Here is the caller graph for this function:\+\nopagebreak
+Here is the caller graph for this function:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -162,7 +164,7 @@ This is an important issue as these derived equilbrium quantities are important 
 
 The general formulas are derived under the first section, VMEC. For axisymmetric HELENA, however, simplified equations are possible and these are presented afterwards.\hypertarget{namespaceeq__ops_autotoc_md0}{}\doxysubsection{\texorpdfstring{VMEC}{VMEC}}\label{namespaceeq__ops_autotoc_md0}
 \hypertarget{namespaceeq__ops_autotoc_md1}{}\doxysubsubsection{\texorpdfstring{The shear}{The shear}}\label{namespaceeq__ops_autotoc_md1}
-The local shear $S$ is calculated using equation 3.\+22 from \DoxyCite{weyens3d}{number}{1} :\+
+The local shear $S$ is calculated using equation 3.\+22 from \DoxyCite{weyens3d}{number}{1} :
 
 $S = - \frac{1}{\mathcal{J}} \frac{\partial}{\partial \theta}
          \left(\frac{ h^{\psi\alpha}}{ h^{\psi \psi}}\right)$
@@ -221,20 +223,20 @@ The steps used in this routine are therefore
 \end{DoxyEnumerate}
 
 An advantage of using this formulation is that no normal derivatives are needed, so that nothing has to implicitely cancel out.\hypertarget{namespaceeq__ops_autotoc_md3}{}\doxysubsubsection{\texorpdfstring{The parallel current}{The parallel current}}\label{namespaceeq__ops_autotoc_md3}
-The parallel current is calculated from the shear with the help of equation 3.\+29 of \DoxyCite{weyens3d}{number}{1} :\+
+The parallel current is calculated from the shear with the help of equation 3.\+29 of \DoxyCite{weyens3d}{number}{1} :
 
 $\mu_0 \sigma = -\frac{1}{B_\theta} \left[
          2 \frac{\nabla \psi \times \vec{B}}{\left|\nabla \psi\right|^2} \cdot 
          \frac{\partial \left(\nabla \psi\right)}{\partial \theta} +
          \mathcal{J} \left|\nabla \psi\right|^2 S \right]$ .
 
-where a similar technique can be used as above, for the calculation of the curvature:\+ As
+where a similar technique can be used as above, for the calculation of the curvature: As
 
 $\frac{\nabla \psi \times \vec{B}}{\left|\nabla \psi\right|^2}
          = \frac{B_\theta \vec{e}_\alpha - B_\alpha \vec{e}_\theta}
          {\mathcal{J} \left|\nabla\psi\right|^2}$ ,
 
-The parallel derivative of $\nabla \psi$ can be rewritten in terms of contravariant components of derivatives of covariant basis vectors:\+
+The parallel derivative of $\nabla \psi$ can be rewritten in terms of contravariant components of derivatives of covariant basis vectors:
 
 $\left\{ \begin{aligned}
          \vec{e}_\alpha  \cdot \frac{\partial \left(\nabla \psi\right)}{\partial\theta}
@@ -243,7 +245,7 @@ $\left\{ \begin{aligned}
          = - \nabla \psi \cdot \frac{\partial \vec{e}_\theta}{\partial \theta} \\
         \end{aligned}\right. $ ,
 
-so that the result is:\+
+so that the result is:
 
 $\frac{\nabla \psi \times \vec{B}}{\left|\nabla \psi\right|^2} \cdot 
          \frac{\partial \left(\nabla \psi\right)}{\partial \theta}
@@ -259,7 +261,7 @@ In debug mode, it can be checked whether the current is indeed divergence-\/free
 $ -2 p\textnormal{\textquotesingle} \int_{\theta_0}^\theta \mathcal{J} \kappa_g \text{d}{\theta} = 
              \sigma\left(\theta\right) - \sigma_0$
 
-and whether a direct, naive implementation of the parallel current from equation 3.\+26 of \DoxyCite{weyens3d}{number}{1} agrees with the more accurate results used here:\+
+and whether a direct, naive implementation of the parallel current from equation 3.\+26 of \DoxyCite{weyens3d}{number}{1} agrees with the more accurate results used here:
 
 $\mu_0 \sigma = \frac{\partial B_\psi}{\partial \alpha} - 
              \frac{\partial B_\alpha}{\partial \psi} -
@@ -272,9 +274,9 @@ As $B_\alpha = F\left(\psi\right)$ and $\vec{e}_{\alpha,\text{F}}  =   \vec{e}_{
 $\sigma = -F\textnormal{\textquotesingle} - \mu_0 p\textnormal{\textquotesingle} \frac{F}{B^2}$ ,
 
 which can be used like that.\hypertarget{namespaceeq__ops_autotoc_md6}{}\doxysubsubsection{\texorpdfstring{The shear}{The shear}}\label{namespaceeq__ops_autotoc_md6}
-The calculate the local shear $S$ is looks like it is best to use equation 3.\+22 from \DoxyCite{weyens3d}{number}{1} , just as in the VMEC case:\+
+The calculate the local shear $S$ is looks like it is best to use equation 3.\+22 from \DoxyCite{weyens3d}{number}{1} , just as in the VMEC case:
 
-As a test, however, equation 3.\+29 of \DoxyCite{weyens3d}{number}{1} can be used in stead:\+
+As a test, however, equation 3.\+29 of \DoxyCite{weyens3d}{number}{1} can be used in stead:
 
 $\mathcal{J}\left|\nabla \psi\right|^2 S + \mu_0 \mathcal{J}B^2 \sigma
         = - 2 \frac{F}{R} \left( \frac{Z_\theta}{R} +
@@ -330,16 +332,18 @@ $\kappa_g = q R
 \end{DoxyParams}
 
 
-Definition at line \doxymbox{\hyperlink{eq__ops_8f90_source_l04286}{4286}} of file \doxymbox{\hyperlink{eq__ops_8f90_source}{eq\+\_\+ops.\+f90}}.
+Definition at line \doxymbox{\hyperlink{eq__ops_8f90_source_l04293}{4293}} of file \doxymbox{\hyperlink{eq__ops_8f90_source}{eq\+\_\+ops.\+f90}}.
 
-Here is the call graph for this function:\+\nopagebreak
+Here is the call graph for this function:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{namespaceeq__ops_a087e08ce6d8ad381b5bac8fc51148d50_cgraph}
 \end{center}
 \end{figure}
-Here is the caller graph for this function:\+\nopagebreak
+Here is the caller graph for this function:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -356,7 +360,7 @@ integer function, public eq\+\_\+ops::\+calc\+\_\+eq\+\_\+jobs\+\_\+lims (\begin
 
 Calculate {\ttfamily eq\+\_\+jobs\+\_\+lims}. 
 
-Take into account that every job has to start and end at the start and end of a fundamental integration interval, as discussed in \doxylink{namespaceeq__ops_a6811942aeb421cf1495a65e639199975}{divide\+\_\+eq\+\_\+jobs()}:\+
+Take into account that every job has to start and end at the start and end of a fundamental integration interval, as discussed in \doxylink{namespaceeq__ops_a6811942aeb421cf1495a65e639199975}{divide\+\_\+eq\+\_\+jobs()}:
 \begin{DoxyItemize}
 \item for {\ttfamily magn\+\_\+int\+\_\+style=1} (trapezoidal), this is 1 point,
 \item for {\ttfamily magn\+\_\+int\+\_\+style=2} (Simpson 3/\+8), this is 3 points.
@@ -379,16 +383,18 @@ ierr
 \end{DoxyParams}
 
 
-Definition at line \doxymbox{\hyperlink{eq__ops_8f90_source_l06700}{6700}} of file \doxymbox{\hyperlink{eq__ops_8f90_source}{eq\+\_\+ops.\+f90}}.
+Definition at line \doxymbox{\hyperlink{eq__ops_8f90_source_l06718}{6718}} of file \doxymbox{\hyperlink{eq__ops_8f90_source}{eq\+\_\+ops.\+f90}}.
 
-Here is the call graph for this function:\+\nopagebreak
+Here is the call graph for this function:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{namespaceeq__ops_a6f509d7becf29b4f201a871bf4441d49_cgraph}
 \end{center}
 \end{figure}
-Here is the caller graph for this function:\+\nopagebreak
+Here is the caller graph for this function:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -407,27 +413,27 @@ Sets up normalization constants.
 
 
 \begin{DoxyItemize}
-\item VMEC version ({\ttfamily eq\+\_\+style=1}):\+~\newline
- Normalization depends on {\ttfamily norm\+\_\+style:\+} 
+\item VMEC version ({\ttfamily eq\+\_\+style=1}):~\newline
+ Normalization depends on {\ttfamily norm\+\_\+style:} 
 \begin{DoxyEnumerate}
 \item MISHKA
 \begin{DoxyItemize}
-\item R\+\_\+0:\+ major radius (= average magnetic axis)
-\item B\+\_\+0:\+ B on magnetic axis (theta = zeta = 0)
-\item pres\+\_\+0:\+ reference pressure (= B\+\_\+0\texorpdfstring{$^\wedge$}{\string^}2/\+mu\+\_\+0)
-\item psi\+\_\+0:\+ reference flux (= R\+\_\+0\texorpdfstring{$^\wedge$}{\string^}2 B\+\_\+0)
-\item rho\+\_\+0:\+ reference mass density
+\item R\+\_\+0: major radius (= average magnetic axis)
+\item B\+\_\+0: B on magnetic axis (theta = zeta = 0)
+\item pres\+\_\+0: reference pressure (= B\+\_\+0\texorpdfstring{$^\wedge$}{\string^}2/\+mu\+\_\+0)
+\item psi\+\_\+0: reference flux (= R\+\_\+0\texorpdfstring{$^\wedge$}{\string^}2 B\+\_\+0)
+\item rho\+\_\+0: reference mass density
 \end{DoxyItemize}
 \item COBRA
 \begin{DoxyItemize}
-\item R\+\_\+0:\+ major radius (= average geometric axis)
-\item pres\+\_\+0:\+ pressure on magnetic axis
-\item B\+\_\+0:\+ reference magnetic field (= sqrt(2pres\+\_\+0mu\+\_\+0 /\+ beta))
-\item psi\+\_\+0:\+ reference flux (= R\+\_\+0\texorpdfstring{$^\wedge$}{\string^}2 B\+\_\+0 /\+ aspr\texorpdfstring{$^\wedge$}{\string^}2)
-\item rho\+\_\+0:\+ reference mass density where aspr (aspect ratio) and beta are given by VMEC.
+\item R\+\_\+0: major radius (= average geometric axis)
+\item pres\+\_\+0: pressure on magnetic axis
+\item B\+\_\+0: reference magnetic field (= sqrt(2pres\+\_\+0mu\+\_\+0 / beta))
+\item psi\+\_\+0: reference flux (= R\+\_\+0\texorpdfstring{$^\wedge$}{\string^}2 B\+\_\+0 / aspr\texorpdfstring{$^\wedge$}{\string^}2)
+\item rho\+\_\+0: reference mass density where aspr (aspect ratio) and beta are given by VMEC.
 \end{DoxyItemize}
 \end{DoxyEnumerate}
-\item HELENA version ({\ttfamily eq\+\_\+style=2}):\+~\newline
+\item HELENA version ({\ttfamily eq\+\_\+style=2}):~\newline
  MISHKA Normalization is used by default and does not depend on {\ttfamily norm\+\_\+style} 
 \end{DoxyItemize}
 
@@ -442,16 +448,18 @@ ierr
 \end{DoxyReturn}
 
 
-Definition at line \doxymbox{\hyperlink{eq__ops_8f90_source_l05404}{5404}} of file \doxymbox{\hyperlink{eq__ops_8f90_source}{eq\+\_\+ops.\+f90}}.
+Definition at line \doxymbox{\hyperlink{eq__ops_8f90_source_l05422}{5422}} of file \doxymbox{\hyperlink{eq__ops_8f90_source}{eq\+\_\+ops.\+f90}}.
 
-Here is the call graph for this function:\+\nopagebreak
+Here is the call graph for this function:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{namespaceeq__ops_a7cd38586e386e1bc684a327ebcc4c1de_cgraph}
 \end{center}
 \end{figure}
-Here is the caller graph for this function:\+\nopagebreak
+Here is the caller graph for this function:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -493,16 +501,18 @@ ierr
 \end{DoxyParams}
 
 
-Definition at line \doxymbox{\hyperlink{eq__ops_8f90_source_l06171}{6171}} of file \doxymbox{\hyperlink{eq__ops_8f90_source}{eq\+\_\+ops.\+f90}}.
+Definition at line \doxymbox{\hyperlink{eq__ops_8f90_source_l06189}{6189}} of file \doxymbox{\hyperlink{eq__ops_8f90_source}{eq\+\_\+ops.\+f90}}.
 
-Here is the call graph for this function:\+\nopagebreak
+Here is the call graph for this function:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{namespaceeq__ops_a45303921478f07c074b598f65a26b2ec_cgraph}
 \end{center}
 \end{figure}
-Here is the caller graph for this function:\+\nopagebreak
+Here is the caller graph for this function:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -523,7 +533,7 @@ For PB3D, the entire parallel range has to be calculated, but due to memory limi
 
 The equilibrium variables have to be operated on to calculate them, which translates to a scale factor {\ttfamily mem\+\_\+scale\+\_\+fac}. However, in the perturbation phase, when they are just used, this scale factor is not needed.
 
-In its most extreme form, the division in equilibrium jobs would be the individual calculation on a fundamental integration integral of the parallel points:\+
+In its most extreme form, the division in equilibrium jobs would be the individual calculation on a fundamental integration integral of the parallel points:
 \begin{DoxyItemize}
 \item for {\ttfamily magn\+\_\+int\+\_\+style=1} (trapezoidal), this is 1 point,
 \item for {\ttfamily magn\+\_\+int\+\_\+style=2} (Simpson 3/\+8), this is 3 points.
@@ -533,9 +543,9 @@ For HELENA, the parallel derivatives are calculated discretely, the equilibrium 
 
 This procedure does the job of dividing the grids setting the global variables {\ttfamily eq\+\_\+jobs\+\_\+lims}.
 
-The integration of the tensorial perturbation variables is adjusted:\+
+The integration of the tensorial perturbation variables is adjusted:
 \begin{DoxyItemize}
-\item If the first job of the parallel jobs and not the first Richardson level:\+ add half of the integrated tensorial perturbation quantities of the previous level.
+\item If the first job of the parallel jobs and not the first Richardson level: add half of the integrated tensorial perturbation quantities of the previous level.
 \item If not the first job of the parallel jobs, add the integrated tensorial perturbation quantities to those of the previous parallel job, same Richardson level.
 \end{DoxyItemize}
 
@@ -568,16 +578,18 @@ ierr
 \end{DoxyParams}
 
 
-Definition at line \doxymbox{\hyperlink{eq__ops_8f90_source_l06564}{6564}} of file \doxymbox{\hyperlink{eq__ops_8f90_source}{eq\+\_\+ops.\+f90}}.
+Definition at line \doxymbox{\hyperlink{eq__ops_8f90_source_l06582}{6582}} of file \doxymbox{\hyperlink{eq__ops_8f90_source}{eq\+\_\+ops.\+f90}}.
 
-Here is the call graph for this function:\+\nopagebreak
+Here is the call graph for this function:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{namespaceeq__ops_a6811942aeb421cf1495a65e639199975_cgraph}
 \end{center}
 \end{figure}
-Here is the caller graph for this function:\+\nopagebreak
+Here is the caller graph for this function:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -615,16 +627,18 @@ ierr
 \end{DoxyParams}
 
 
-Definition at line \doxymbox{\hyperlink{eq__ops_8f90_source_l03809}{3809}} of file \doxymbox{\hyperlink{eq__ops_8f90_source}{eq\+\_\+ops.\+f90}}.
+Definition at line \doxymbox{\hyperlink{eq__ops_8f90_source_l03816}{3816}} of file \doxymbox{\hyperlink{eq__ops_8f90_source}{eq\+\_\+ops.\+f90}}.
 
-Here is the call graph for this function:\+\nopagebreak
+Here is the call graph for this function:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{namespaceeq__ops_af0effe20188d46a44680c2648e4572e9_cgraph}
 \end{center}
 \end{figure}
-Here is the caller graph for this function:\+\nopagebreak
+Here is the caller graph for this function:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -645,7 +659,7 @@ If multiple equilibrium parallel jobs, every job does its piece, and the results
 
 The outputs are given in contra-\/ and covariant components and magnitude in multiple coordinate systems, as indicated in calc\+\_\+vec\+\_\+comp().
 
-The starting point is the pressure balance \[ \nabla p = \vec{J} \times \vec{B}, \] which, using $\vec{B} = \frac{\vec{e}_{\theta}}{\mathcal{J}}$, reduces to \[J^\alpha = -p\textnormal{\textquotesingle}. \] Furthermore, the current has to lie in the magnetic flux surfaces:\+ \[J^\psi = 0. \] Finally, the parallel current $\sigma$ gives an expression for the last contravariant component:\+  \[J^\theta =
+The starting point is the pressure balance \[ \nabla p = \vec{J} \times \vec{B}, \] which, using $\vec{B} = \frac{\vec{e}_{\theta}}{\mathcal{J}}$, reduces to \[J^\alpha = -p\textnormal{\textquotesingle}. \] Furthermore, the current has to lie in the magnetic flux surfaces: \[J^\psi = 0. \] Finally, the parallel current $\sigma$ gives an expression for the last contravariant component:  \[J^\theta =
              \frac{\sigma}{\mathcal{J}} + p\textnormal{\textquotesingle} \frac{B_\alpha}{B_\theta}. \] From these, the contravariant components can be calculated as \[J_i = J^\alpha g_{\alpha,i} + J^\theta g_{\theta,i}. \]
 
 These are then all be transformed to the other coordinate systems. \begin{DoxyNote}{Note}
@@ -675,16 +689,18 @@ ierr
 \end{DoxyParams}
 
 
-Definition at line \doxymbox{\hyperlink{eq__ops_8f90_source_l05801}{5801}} of file \doxymbox{\hyperlink{eq__ops_8f90_source}{eq\+\_\+ops.\+f90}}.
+Definition at line \doxymbox{\hyperlink{eq__ops_8f90_source_l05819}{5819}} of file \doxymbox{\hyperlink{eq__ops_8f90_source}{eq\+\_\+ops.\+f90}}.
 
-Here is the call graph for this function:\+\nopagebreak
+Here is the call graph for this function:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{namespaceeq__ops_aa16cc7b5d17f3e3b65b045f12b40540d_cgraph}
 \end{center}
 \end{figure}
-Here is the caller graph for this function:\+\nopagebreak
+Here is the caller graph for this function:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -736,16 +752,18 @@ ierr
 \end{DoxyParams}
 
 
-Definition at line \doxymbox{\hyperlink{eq__ops_8f90_source_l05969}{5969}} of file \doxymbox{\hyperlink{eq__ops_8f90_source}{eq\+\_\+ops.\+f90}}.
+Definition at line \doxymbox{\hyperlink{eq__ops_8f90_source_l05987}{5987}} of file \doxymbox{\hyperlink{eq__ops_8f90_source}{eq\+\_\+ops.\+f90}}.
 
-Here is the call graph for this function:\+\nopagebreak
+Here is the call graph for this function:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{namespaceeq__ops_a55917387e2d5511f49396a2b7f9f2b5a_cgraph}
 \end{center}
 \end{figure}
-Here is the caller graph for this function:\+\nopagebreak
+Here is the caller graph for this function:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -767,16 +785,18 @@ Normalize input quantities.
 \end{DoxySeeAlso}
 
 
-Definition at line \doxymbox{\hyperlink{eq__ops_8f90_source_l05642}{5642}} of file \doxymbox{\hyperlink{eq__ops_8f90_source}{eq\+\_\+ops.\+f90}}.
+Definition at line \doxymbox{\hyperlink{eq__ops_8f90_source_l05660}{5660}} of file \doxymbox{\hyperlink{eq__ops_8f90_source}{eq\+\_\+ops.\+f90}}.
 
-Here is the call graph for this function:\+\nopagebreak
+Here is the call graph for this function:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{namespaceeq__ops_a1b4c764da73624722d7e76498a2b80a9_cgraph}
 \end{center}
 \end{figure}
-Here is the caller graph for this function:\+\nopagebreak
+Here is the caller graph for this function:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -785,7 +805,7 @@ Here is the caller graph for this function:\+\nopagebreak
 \end{figure}
 
 
-\label{doc-var-members}
+\label{namespaceeq__ops_doc-var-members}
 \Hypertarget{namespaceeq__ops_doc-var-members}
 \doxysubsection{Variable Documentation}
 \Hypertarget{namespaceeq__ops_a1b6609a8d8b427d9133bf323e732f209}\index{eq\_ops@{eq\_ops}!debug\_calc\_derived\_q@{debug\_calc\_derived\_q}}

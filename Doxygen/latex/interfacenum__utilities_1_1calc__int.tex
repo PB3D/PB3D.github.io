@@ -1,4 +1,4 @@
-\doxysection{num\+\_\+utilities::\+calc\+\_\+int Interface Reference}
+\doxysection{num\+\_\+utilities::calc\+\_\+int Interface Reference}
 \hypertarget{interfacenum__utilities_1_1calc__int}{}\label{interfacenum__utilities_1_1calc__int}\index{num\_utilities::calc\_int@{num\_utilities::calc\_int}}
 
 
@@ -11,13 +11,13 @@ Integrates a function using the trapezoidal rule.
 integer function \doxymbox{\hyperlink{interfacenum__utilities_1_1calc__int_a7092121850ec336bfb00da92981bcfc7}{calc\+\_\+int\+\_\+eqd}} (var, step\+\_\+size, var\+\_\+int)
 \begin{DoxyCompactList}\small\item\em equidistant version \end{DoxyCompactList}\item 
 integer function \doxymbox{\hyperlink{interfacenum__utilities_1_1calc__int_af8120d958ad202477f2ad33369591d45}{calc\+\_\+int\+\_\+reg}} (var, x, var\+\_\+int)
-\begin{DoxyCompactList}\small\item\em regular version \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Wrapper to the pspline library, making it easier to use for 1-\/D applications where speed is not the main priority. If spline representations are to be reused, manually use the library. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
 Integrates a function using the trapezoidal rule. 
 
-This function can be defined on an equidistant grid or a regular one:\+
+This function can be defined on an equidistant grid or a regular one:
 \begin{DoxyItemize}
 \item For an equidistant grid,  \[\int_1^n f(x) dx = \sum_{k=1}^{n-1}
                  {\left(f(k+1)+f(k)\right) \frac{\Delta_x}{2}},\] is used, with $n$ the number of points, which are assumed to be equidistant with a given step size $Delta_x$.
@@ -26,7 +26,7 @@ This function can be defined on an equidistant grid or a regular one:\+
 \begin{DoxyItemize}
 \item Therefore, $n$ points have to be specified as well as $n$ values for the function to be integrated.
 \item They have to be given in ascending order but the step size does not have to be constant.
-\item This yields the following difference formula:\+  \[\int_1^n f(x) dx = \int_1^{n-1} f(x) dx +
+\item This yields the following difference formula:  \[\int_1^n f(x) dx = \int_1^{n-1} f(x) dx +
                  \left(f(n)+f(n-1)\right) \frac{x(n)-x(n-1)}{2},\] which is used here
 \end{DoxyItemize}
 \end{DoxyItemize}
@@ -43,7 +43,7 @@ Definition at line \doxymbox{\hyperlink{num__utilities_8f90_source_l00160}{160}}
 
 
 
-\label{doc-func-members}
+\label{interfacenum__utilities_1_1calc__int_doc-func-members}
 \Hypertarget{interfacenum__utilities_1_1calc__int_doc-func-members}
 \doxysubsection{Member Function/\+\+Subroutine Documentation}
 \Hypertarget{interfacenum__utilities_1_1calc__int_a7092121850ec336bfb00da92981bcfc7}\index{num\_utilities::calc\_int@{num\_utilities::calc\_int}!calc\_int\_eqd@{calc\_int\_eqd}}
@@ -67,9 +67,10 @@ equidistant version
 \end{DoxyParams}
 
 
-Definition at line \doxymbox{\hyperlink{num__utilities_8f90_source_l00326}{326}} of file \doxymbox{\hyperlink{num__utilities_8f90_source}{num\+\_\+utilities.\+f90}}.
+Definition at line \doxymbox{\hyperlink{num__utilities_8f90_source_l00320}{320}} of file \doxymbox{\hyperlink{num__utilities_8f90_source}{num\+\_\+utilities.\+f90}}.
 
-Here is the call graph for this function:\+\nopagebreak
+Here is the call graph for this function:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -84,8 +85,29 @@ integer function num\+\_\+utilities::\+calc\+\_\+int::\+calc\+\_\+int\+\_\+reg (
 
 
 
-regular version 
+Wrapper to the pspline library, making it easier to use for 1-\/D applications where speed is not the main priority. If spline representations are to be reused, manually use the library. 
 
+Order 1 (linear), 2 (akima hermite) or 3 (cubic) possible. Boundary conditions are possible:
+\begin{DoxyItemize}
+\item -\/1: periodic
+\item 0: not-\/a-\/knot
+\item 1: prescribe first derivative
+\item 2: prescribe second derivative
+\end{DoxyItemize}
+
+However, for order 2 boundary condition 2 is not available and for order 1 none of them.
+
+Furthermore, derivatives can be specified:
+\begin{DoxyItemize}
+\item up to 1 for order 1 and 2
+\item up to 2 for order 3
+\end{DoxyItemize}
+
+Finally, extrapolation can be performed as well.
+
+\begin{DoxyReturn}{Returns}
+ierr regular version 
+\end{DoxyReturn}
 
 \begin{DoxyParams}[1]{Parameters}
 \doxymbox{\texttt{in,out}}  & {\em var\+\_\+int} & integrated variable \\
@@ -97,9 +119,10 @@ regular version
 \end{DoxyParams}
 
 
-Definition at line \doxymbox{\hyperlink{num__utilities_8f90_source_l00285}{285}} of file \doxymbox{\hyperlink{num__utilities_8f90_source}{num\+\_\+utilities.\+f90}}.
+Definition at line \doxymbox{\hyperlink{num__utilities_8f90_source_l00279}{279}} of file \doxymbox{\hyperlink{num__utilities_8f90_source}{num\+\_\+utilities.\+f90}}.
 
-Here is the call graph for this function:\+\nopagebreak
+Here is the call graph for this function:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
