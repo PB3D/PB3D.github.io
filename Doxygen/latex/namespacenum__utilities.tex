@@ -31,9 +31,7 @@ interface \doxymbox{\hyperlink{interfacenum__utilities_1_1con}{con}}
 interface \doxymbox{\hyperlink{interfacenum__utilities_1_1bubble__sort}{bubble\+\_\+sort}}
 \begin{DoxyCompactList}\small\item\em Sorting with the bubble sort routine. \end{DoxyCompactList}\item 
 interface \doxymbox{\hyperlink{interfacenum__utilities_1_1order__per__fun}{order\+\_\+per\+\_\+fun}}
-\begin{DoxyCompactList}\small\item\em Order a periodic function to include $0\ldots 2\pi$ and an overlap. \end{DoxyCompactList}\item 
-interface \doxymbox{\hyperlink{interfacenum__utilities_1_1spline}{spline}}
-\begin{DoxyCompactList}\small\item\em Wrapper to the pspline library, making it easier to use for 1-\/D applications where speed is not the main priority. If spline representations are to be reused, manually use the library. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Order a periodic function to include $0\ldots 2\pi$ and an overlap. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsubsection*{Functions/\+\+Subroutines}
 \begin{DoxyCompactItemize}
 \item 
@@ -47,6 +45,8 @@ integer function, public \doxymbox{\hyperlink{namespacenum__utilities_a2d5d9c66d
 \begin{DoxyCompactList}\small\item\em Extrapolates a function. \end{DoxyCompactList}\item 
 integer function, public \doxymbox{\hyperlink{namespacenum__utilities_a4dffe3beba7165dd17cff19a99a9e2ac}{calc\+\_\+coeff\+\_\+fin\+\_\+diff}} (deriv, nr, ind, coeff)
 \begin{DoxyCompactList}\small\item\em Calculate the coefficients for finite differences. \end{DoxyCompactList}\item 
+integer function, public \doxymbox{\hyperlink{namespacenum__utilities_ad2f180cb684bc4bb965e3e07b26a92dc}{calc\+\_\+end\+\_\+weights}} (ord, w)
+\begin{DoxyCompactList}\small\item\em Calculate the weights of the last points of a sum over an equidistant grid that belong to left finite differences of order {\ttfamily ord}. \end{DoxyCompactList}\item 
 integer function, public \doxymbox{\hyperlink{namespacenum__utilities_a5ee3fbd1fe67d0deefc7194631389f2a}{c}} (ij, sym, n, lim\+\_\+n)
 \begin{DoxyCompactList}\small\item\em Convert 2-\/D coordinates (i,j) to the storage convention used in matrices. \end{DoxyCompactList}\item 
 recursive integer function, public \doxymbox{\hyperlink{namespacenum__utilities_a43ab60f9e202b55221373286a5bbb954}{fac}} (n)
@@ -57,7 +57,7 @@ recursive integer function, public \doxymbox{\hyperlink{namespacenum__utilities_
 \begin{DoxyCompactList}\small\item\em Returns common multiple using the Euclid\textquotesingle{}s algorithm. \end{DoxyCompactList}\item 
 recursive integer function, public \doxymbox{\hyperlink{namespacenum__utilities_a3d0d04a582b3a528fc7f9975d5d2a807}{gcd}} (u, v)
 \begin{DoxyCompactList}\small\item\em Returns least denominator using the GCD. \end{DoxyCompactList}\item 
-subroutine, public \doxymbox{\hyperlink{namespacenum__utilities_ac4791eac36bca5cfa2e30de02a09f95b}{shift\+\_\+f}} (al, bl, cl, a, b, \doxymbox{\hyperlink{namespacenum__utilities_a5ee3fbd1fe67d0deefc7194631389f2a}{c}})
+subroutine, public \doxymbox{\hyperlink{namespacenum__utilities_ac4791eac36bca5cfa2e30de02a09f95b}{shift\+\_\+f}} (al, bl, cl, a, b, c)
 \begin{DoxyCompactList}\small\item\em Calculate multiplication through shifting of fourier modes A and B into C. \end{DoxyCompactList}\item 
 subroutine, public \doxymbox{\hyperlink{namespacenum__utilities_a54c65e345182e2e7e13ac14a0ba3647a}{solve\+\_\+vand}} (n, a, b, x, transp)
 \begin{DoxyCompactList}\small\item\em Solve a Vandermonde system $\overline{\text{A}} \ \vec{X} = \vec{B}$. \end{DoxyCompactList}\item 
@@ -81,7 +81,7 @@ logical, public \doxymbox{\hyperlink{namespacenum__utilities_ae20985c8049d39f987
 \doxysubsection{Detailed Description}
 Numerical utilities. 
 
-\label{doc-func-members}
+\label{namespacenum__utilities_doc-func-members}
 \Hypertarget{namespacenum__utilities_doc-func-members}
 \doxysubsection{Function/\+\+Subroutine Documentation}
 \Hypertarget{namespacenum__utilities_a5ee3fbd1fe67d0deefc7194631389f2a}\index{num\_utilities@{num\_utilities}!c@{c}}
@@ -94,7 +94,7 @@ integer function, public num\+\_\+utilities::\+c (\begin{DoxyParamCaption}\item[
 
 Convert 2-\/D coordinates (i,j) to the storage convention used in matrices. 
 
-Their size is by default taken to be 3:\+          \[             \left(\begin{array}{ccc}
+Their size is by default taken to be 3:          \[             \left(\begin{array}{ccc}
                  1 & 4 & 7 \\ 2 & 5 & 8 \\ 3 & 6 & 9
              \end{array}\right)
              \ \text{or} \
@@ -109,15 +109,15 @@ The value of $c$ is then given by \[c = (j-1) n + i\] for non-\/symmetric matric
              c &= (i-1)n + j - (i-1)\frac{i}{2} &  \text{if} \ j > i
          \end{aligned}\] since $\sum_{k=1}^{j-1} k = \frac{(j-1)j}{2}$.
 
-For local indices in submatrices, the limits in both dimensions have to be passed. The results for the full matrix are then subtracted by amount corresponding to the left, above and below parts with respect to the submatrix:\+
+For local indices in submatrices, the limits in both dimensions have to be passed. The results for the full matrix are then subtracted by amount corresponding to the left, above and below parts with respect to the submatrix:
 \begin{DoxyItemize}
-\item left:\+  \[\sum_{i=1}^{m(2)-1} n-i+1 =
+\item left:  \[\sum_{i=1}^{m(2)-1} n-i+1 =
                  (m(2)-1) \left(n+1-\frac{m(2)}{2}\right) \]
-\item above (if positive):\+    \[\sum_{i=1}^j \left(m(1)-m(2)+1-i\right) =
+\item above (if positive):    \[\sum_{i=1}^j \left(m(1)-m(2)+1-i\right) =
                  j \left(m(1)-m(2)+\frac{1}{2} -
                  \frac{j^*}{2}\right) \ , \ \text{with} \ j^* =
                  \text{min}\left(0,j,m(1)-m(2)+1\right) \]
-\item below:\+  \[\sum_{i=1}^{j-1} n-M(1) =
+\item below:  \[\sum_{i=1}^{j-1} n-M(1) =
                  \left(n-M(1)\right) \left(j-1\right) \]
 \end{DoxyItemize}
 
@@ -143,16 +143,18 @@ where $m$ = {\ttfamily min} and $M$ = {\ttfamily max}.
 \end{DoxyParams}
 
 
-Definition at line \doxymbox{\hyperlink{num__utilities_8f90_source_l02555}{2555}} of file \doxymbox{\hyperlink{num__utilities_8f90_source}{num\+\_\+utilities.\+f90}}.
+Definition at line \doxymbox{\hyperlink{num__utilities_8f90_source_l02255}{2255}} of file \doxymbox{\hyperlink{num__utilities_8f90_source}{num\+\_\+utilities.\+f90}}.
 
-Here is the call graph for this function:\+\nopagebreak
+Here is the call graph for this function:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=192pt]{namespacenum__utilities_a5ee3fbd1fe67d0deefc7194631389f2a_cgraph}
 \end{center}
 \end{figure}
-Here is the caller graph for this function:\+\nopagebreak
+Here is the caller graph for this function:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -169,7 +171,7 @@ subroutine, public num\+\_\+utilities::\+calc\+\_\+aux\+\_\+utilities (\begin{Do
 
 Initialize utilities for fast future reference, depending on program style. 
 
-Utilities initialized:\+
+Utilities initialized:
 \begin{DoxyItemize}
 \item derivatives
 \item metrics
@@ -183,16 +185,18 @@ If Fourier modes are also initialized, the quantity {\ttfamily n\+\_\+mod} has t
 \end{DoxyParams}
 
 
-Definition at line \doxymbox{\hyperlink{num__utilities_8f90_source_l02062}{2062}} of file \doxymbox{\hyperlink{num__utilities_8f90_source}{num\+\_\+utilities.\+f90}}.
+Definition at line \doxymbox{\hyperlink{num__utilities_8f90_source_l01674}{1674}} of file \doxymbox{\hyperlink{num__utilities_8f90_source}{num\+\_\+utilities.\+f90}}.
 
-Here is the call graph for this function:\+\nopagebreak
+Here is the call graph for this function:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{namespacenum__utilities_af461ae4c95a7a45da875dcf311e323f5_cgraph}
 \end{center}
 \end{figure}
-Here is the caller graph for this function:\+\nopagebreak
+Here is the caller graph for this function:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -221,15 +225,15 @@ where $i$ = {\ttfamily ind}, $n$ = {\ttfamily nr} and $c$ = {\ttfamily coeff}
 \begin{DoxyNote}{Note}
 They need to be divided by the step size before usage.
 \end{DoxyNote}
-Examples:\+
+Examples:
 \begin{DoxyItemize}
-\item symmetric finite differences for derivative {\ttfamily deriv} of order {\ttfamily ord:\+} 
+\item symmetric finite differences for derivative {\ttfamily deriv} of order {\ttfamily ord:} 
 \begin{DoxyItemize}
 \item $m = \text{ceiling}(\frac{p+d}{2})$ to guarantee the order
 \item $n   = 1+2m$
 \item $i  = 1+m$
 \end{DoxyItemize}
-\item left finite differences for derivative {\ttfamily deriv} of order {\ttfamily ord:\+} 
+\item left finite differences for derivative {\ttfamily deriv} of order {\ttfamily ord:} 
 \begin{DoxyItemize}
 \item $n   = 1+d+p $
 \item $i  = m$ where $p$ = {\ttfamily ord}, $d$ = {\ttfamily deriv} and $m$ = {\ttfamily nr\+\_\+2}.
@@ -252,16 +256,18 @@ ierr
 \end{DoxyParams}
 
 
-Definition at line \doxymbox{\hyperlink{num__utilities_8f90_source_l02448}{2448}} of file \doxymbox{\hyperlink{num__utilities_8f90_source}{num\+\_\+utilities.\+f90}}.
+Definition at line \doxymbox{\hyperlink{num__utilities_8f90_source_l02060}{2060}} of file \doxymbox{\hyperlink{num__utilities_8f90_source}{num\+\_\+utilities.\+f90}}.
 
-Here is the call graph for this function:\+\nopagebreak
+Here is the call graph for this function:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{namespacenum__utilities_a4dffe3beba7165dd17cff19a99a9e2ac_cgraph}
 \end{center}
 \end{figure}
-Here is the caller graph for this function:\+\nopagebreak
+Here is the caller graph for this function:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -287,13 +293,13 @@ with $s\left(k>M\right) = 0$ and $\left(k=N\right) = 1$.
 
 for a given $N$.
 
-For {\ttfamily style} 1, central differences are used:\+
+For {\ttfamily style} 1, central differences are used:
 
 $\frac{\partial^2 y}{\partial x^2} \approx \frac{1}{2^{N-3}} 
          \left(\sum_{k=1}^M \alpha_k \left(y_k + y_{-k} \right) -
          2 y_0 \sum_{k=1}^M \alpha_k \right)$
 
-and for {\ttfamily style} 2, backward differences:\+
+and for {\ttfamily style} 2, backward differences:
 
 $\frac{\partial^2 y}{\partial x^2} \approx \frac{1}{2^{N-3}} 
          \left(\sum_{k=1}^M \beta_k \left(y_{-M+k} + y_{-M-k} \right) -
@@ -317,13 +323,69 @@ $\begin{aligned}
 \end{DoxyParams}
 
 
-Definition at line \doxymbox{\hyperlink{num__utilities_8f90_source_l02828}{2828}} of file \doxymbox{\hyperlink{num__utilities_8f90_source}{num\+\_\+utilities.\+f90}}.
+Definition at line \doxymbox{\hyperlink{num__utilities_8f90_source_l02528}{2528}} of file \doxymbox{\hyperlink{num__utilities_8f90_source}{num\+\_\+utilities.\+f90}}.
 
-Here is the caller graph for this function:\+\nopagebreak
+Here is the caller graph for this function:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{namespacenum__utilities_a950e921668f60ea426cc26d0fb683992_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{namespacenum__utilities_ad2f180cb684bc4bb965e3e07b26a92dc}\index{num\_utilities@{num\_utilities}!calc\_end\_weights@{calc\_end\_weights}}
+\index{calc\_end\_weights@{calc\_end\_weights}!num\_utilities@{num\_utilities}}
+\doxysubsubsection{\texorpdfstring{calc\_end\_weights()}{calc\_end\_weights()}}
+{\footnotesize\ttfamily \label{namespacenum__utilities_ad2f180cb684bc4bb965e3e07b26a92dc} 
+integer function, public num\+\_\+utilities::\+calc\+\_\+end\+\_\+weights (\begin{DoxyParamCaption}\item[{integer, intent(in)}]{ord}{, }\item[{real(dp), dimension(:\+), intent(inout), allocatable}]{w}{}\end{DoxyParamCaption})}
+
+
+
+Calculate the weights of the last points of a sum over an equidistant grid that belong to left finite differences of order {\ttfamily ord}. 
+
+An integral over a grid of points $i = 0 \ldots  N$ with step size $h$ is approximated by a sum over the points, \[\int f \, dx \approx h \sum_i w_i f_i \ , \] and the derivatives in $f$ are left finite differences over {\ttfamily ord} 
+\begin{DoxyItemize}
+\item 1 points, \[\left(D X\right)_i = \frac{1}{h} \sum_{m=0}^{p} c_m X_{i-m} \ , \] with $p$ = {\ttfamily ord} and $c_m$ from \doxylink{namespacenum__utilities_a4dffe3beba7165dd17cff19a99a9e2ac}{calc\+\_\+coeff\+\_\+fin\+\_\+diff()}.
+\end{DoxyItemize}
+
+The weights returned here are the ones for which the sum of the finite difference of any grid function gives back its value at the last point, \[h \sum_i w_i \left(D X\right)_i = X_N \ , \] if $X$ vanishes at the first $p$ points. This is the discrete form of $\int  X\textnormal{\textquotesingle}  dx =  X(x_N) -  X(x_0)$, which the integration by parts of an energy integral uses. With trapezoidal weights, $w_N =  1/2$ and the others 1, it does not hold: the left stencils of the points beyond $N$ do not exist, so the last $p$ + 1 values of $X$ appear in fewer stencils than the others.
+
+Collecting the terms in $X_{N-k}$ gives the weights from the last point inwards:  \[c_0 w_N = 1 \ , \quad
+             \sum_{m=0}^{\min(p,k)} c_m w_{N-k+m} = 0 \ \text{for} \ k \ge 1 \ .\] They tend to 1; for {\ttfamily ord} = 3 they are 6/\+11, 108/\+121, 1.\+0143, 1.\+0286, 1.\+0156, $\ldots$ and the difference from 1 falls by a factor 0.\+43 per point. Their sum differs from that of unit weights by -\/1/\+2, as for the trapezoidal rule.
+
+{\ttfamily w(1)} is the weight of the last point, {\ttfamily w(2)} that of the point before it, and so on. The points before those have weight 1 to within 1E-\/12.
+
+\begin{DoxyNote}{Note}
+For {\ttfamily ord} = 1 all weights are 1.
+\end{DoxyNote}
+\begin{DoxyReturn}{Returns}
+ierr 
+\end{DoxyReturn}
+
+\begin{DoxyParams}[1]{Parameters}
+\doxymbox{\texttt{in}}  & {\em ord} & order of the left finite differences \\
+\hline
+\doxymbox{\texttt{in,out}}  & {\em w} & weights, starting from the last point \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \doxymbox{\hyperlink{num__utilities_8f90_source_l02157}{2157}} of file \doxymbox{\hyperlink{num__utilities_8f90_source}{num\+\_\+utilities.\+f90}}.
+
+Here is the call graph for this function:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespacenum__utilities_ad2f180cb684bc4bb965e3e07b26a92dc_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespacenum__utilities_ad2f180cb684bc4bb965e3e07b26a92dc_icgraph}
 \end{center}
 \end{figure}
 \Hypertarget{namespacenum__utilities_a2d5d9c66db19fb6edeeb50db6182397f}\index{num\_utilities@{num\_utilities}!calc\_ext\_var@{calc\_ext\_var}}
@@ -340,7 +402,7 @@ This is done using linear or quadratic interpolation, depending on the number of
 
 The data should be given sorted, in ascending order, without duplicate points in var\+\_\+points.
 
-It uses the following solution:\+ \[\overline{\text{A}} \ \vec{b} = \vec{c}\] which is written out to              \[\left(\begin{array}{cccc}
+It uses the following solution: \[\overline{\text{A}} \ \vec{b} = \vec{c}\] which is written out to              \[\left(\begin{array}{cccc}
                  x_1^0  & x_1^1  & x_1^2  & \ldots \\
                  x_2^0  & x_2^1  & x_2^2  & \ldots \\
                  x_3^0  & x_3^1  & x_3^2  & \ldots \\
@@ -379,7 +441,7 @@ ierr
 \end{DoxyParams}
 
 
-Definition at line \doxymbox{\hyperlink{num__utilities_8f90_source_l02323}{2323}} of file \doxymbox{\hyperlink{num__utilities_8f90_source}{num\+\_\+utilities.\+f90}}.
+Definition at line \doxymbox{\hyperlink{num__utilities_8f90_source_l01935}{1935}} of file \doxymbox{\hyperlink{num__utilities_8f90_source}{num\+\_\+utilities.\+f90}}.
 
 \Hypertarget{namespacenum__utilities_a00f4cfe18a734eaa5d66f529e52f7c31}\index{num\_utilities@{num\_utilities}!check\_deriv@{check\_deriv}}
 \index{check\_deriv@{check\_deriv}!num\_utilities@{num\_utilities}}
@@ -405,9 +467,10 @@ ierr
 \end{DoxyParams}
 
 
-Definition at line \doxymbox{\hyperlink{num__utilities_8f90_source_l02259}{2259}} of file \doxymbox{\hyperlink{num__utilities_8f90_source}{num\+\_\+utilities.\+f90}}.
+Definition at line \doxymbox{\hyperlink{num__utilities_8f90_source_l01871}{1871}} of file \doxymbox{\hyperlink{num__utilities_8f90_source}{num\+\_\+utilities.\+f90}}.
 
-Here is the caller graph for this function:\+\nopagebreak
+Here is the caller graph for this function:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -436,9 +499,10 @@ array of all unique derivatives
 \end{DoxyReturn}
 
 
-Definition at line \doxymbox{\hyperlink{num__utilities_8f90_source_l02245}{2245}} of file \doxymbox{\hyperlink{num__utilities_8f90_source}{num\+\_\+utilities.\+f90}}.
+Definition at line \doxymbox{\hyperlink{num__utilities_8f90_source_l01857}{1857}} of file \doxymbox{\hyperlink{num__utilities_8f90_source}{num\+\_\+utilities.\+f90}}.
 
-Here is the caller graph for this function:\+\nopagebreak
+Here is the caller graph for this function:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -465,16 +529,18 @@ output
 \end{DoxyReturn}
 
 
-Definition at line \doxymbox{\hyperlink{num__utilities_8f90_source_l02608}{2608}} of file \doxymbox{\hyperlink{num__utilities_8f90_source}{num\+\_\+utilities.\+f90}}.
+Definition at line \doxymbox{\hyperlink{num__utilities_8f90_source_l02308}{2308}} of file \doxymbox{\hyperlink{num__utilities_8f90_source}{num\+\_\+utilities.\+f90}}.
 
-Here is the call graph for this function:\+\nopagebreak
+Here is the call graph for this function:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=204pt]{namespacenum__utilities_a43ab60f9e202b55221373286a5bbb954_cgraph}
 \end{center}
 \end{figure}
-Here is the caller graph for this function:\+\nopagebreak
+Here is the caller graph for this function:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -506,16 +572,18 @@ result
 \end{DoxyReturn}
 
 
-Definition at line \doxymbox{\hyperlink{num__utilities_8f90_source_l02668}{2668}} of file \doxymbox{\hyperlink{num__utilities_8f90_source}{num\+\_\+utilities.\+f90}}.
+Definition at line \doxymbox{\hyperlink{num__utilities_8f90_source_l02368}{2368}} of file \doxymbox{\hyperlink{num__utilities_8f90_source}{num\+\_\+utilities.\+f90}}.
 
-Here is the call graph for this function:\+\nopagebreak
+Here is the call graph for this function:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=204pt]{namespacenum__utilities_a3d0d04a582b3a528fc7f9975d5d2a807_cgraph}
 \end{center}
 \end{figure}
-Here is the caller graph for this function:\+\nopagebreak
+Here is the caller graph for this function:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -546,9 +614,10 @@ ierr
 \end{DoxyParams}
 
 
-Definition at line \doxymbox{\hyperlink{num__utilities_8f90_source_l02625}{2625}} of file \doxymbox{\hyperlink{num__utilities_8f90_source}{num\+\_\+utilities.\+f90}}.
+Definition at line \doxymbox{\hyperlink{num__utilities_8f90_source_l02325}{2325}} of file \doxymbox{\hyperlink{num__utilities_8f90_source}{num\+\_\+utilities.\+f90}}.
 
-Here is the caller graph for this function:\+\nopagebreak
+Here is the caller graph for this function:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -580,16 +649,18 @@ result
 \end{DoxyReturn}
 
 
-Definition at line \doxymbox{\hyperlink{num__utilities_8f90_source_l02656}{2656}} of file \doxymbox{\hyperlink{num__utilities_8f90_source}{num\+\_\+utilities.\+f90}}.
+Definition at line \doxymbox{\hyperlink{num__utilities_8f90_source_l02356}{2356}} of file \doxymbox{\hyperlink{num__utilities_8f90_source}{num\+\_\+utilities.\+f90}}.
 
-Here is the call graph for this function:\+\nopagebreak
+Here is the call graph for this function:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{namespacenum__utilities_a33fc1483c840d5d3f9b12acfce21cad1_cgraph}
 \end{center}
 \end{figure}
-Here is the caller graph for this function:\+\nopagebreak
+Here is the caller graph for this function:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -600,7 +671,7 @@ Here is the caller graph for this function:\+\nopagebreak
 \index{shift\_f@{shift\_f}!num\_utilities@{num\_utilities}}
 \doxysubsubsection{\texorpdfstring{shift\_f()}{shift\_f()}}
 {\footnotesize\ttfamily \label{namespacenum__utilities_ac4791eac36bca5cfa2e30de02a09f95b} 
-subroutine, public num\+\_\+utilities::\+shift\+\_\+f (\begin{DoxyParamCaption}\item[{integer, dimension(2), intent(in)}]{al}{, }\item[{integer, dimension(2), intent(in)}]{bl}{, }\item[{integer, dimension(2), intent(in)}]{cl}{, }\item[{real(dp), dimension(al(1):\+al(2),2), intent(in)}]{a}{, }\item[{real(dp), dimension(bl(1):\+bl(2),2), intent(in)}]{b}{, }\item[{real(dp), dimension(cl(1):\+cl(2),2), intent(inout)}]{c}{}\end{DoxyParamCaption})}
+subroutine, public num\+\_\+utilities::\+shift\+\_\+f (\begin{DoxyParamCaption}\item[{integer, dimension(2), intent(in)}]{al}{, }\item[{integer, dimension(2), intent(in)}]{bl}{, }\item[{integer, dimension(2), intent(in)}]{cl}{, }\item[{real(dp), dimension(al(1):al(2),2), intent(in)}]{a}{, }\item[{real(dp), dimension(bl(1):bl(2),2), intent(in)}]{b}{, }\item[{real(dp), dimension(cl(1):cl(2),2), intent(inout)}]{c}{}\end{DoxyParamCaption})}
 
 
 
@@ -629,21 +700,23 @@ Modes that are larger than what C can hold are thrown away.
 \hline
 \doxymbox{\texttt{in}}  & {\em b} & input \\
 \hline
-\doxymbox{\texttt{in,out}}  & {\em \doxylink{namespacenum__utilities_a5ee3fbd1fe67d0deefc7194631389f2a}{c}} & result \\
+\doxymbox{\texttt{in,out}}  & {\em c} & result \\
 \hline
 \end{DoxyParams}
 
 
-Definition at line \doxymbox{\hyperlink{num__utilities_8f90_source_l02695}{2695}} of file \doxymbox{\hyperlink{num__utilities_8f90_source}{num\+\_\+utilities.\+f90}}.
+Definition at line \doxymbox{\hyperlink{num__utilities_8f90_source_l02395}{2395}} of file \doxymbox{\hyperlink{num__utilities_8f90_source}{num\+\_\+utilities.\+f90}}.
 
-Here is the call graph for this function:\+\nopagebreak
+Here is the call graph for this function:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{namespacenum__utilities_ac4791eac36bca5cfa2e30de02a09f95b_cgraph}
 \end{center}
 \end{figure}
-Here is the caller graph for this function:\+\nopagebreak
+Here is the caller graph for this function:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -686,9 +759,10 @@ Adapted from two routines {\ttfamily dvand} and {\ttfamily pvand} in \href{https
 \end{DoxyParams}
 
 
-Definition at line \doxymbox{\hyperlink{num__utilities_8f90_source_l02750}{2750}} of file \doxymbox{\hyperlink{num__utilities_8f90_source}{num\+\_\+utilities.\+f90}}.
+Definition at line \doxymbox{\hyperlink{num__utilities_8f90_source_l02450}{2450}} of file \doxymbox{\hyperlink{num__utilities_8f90_source}{num\+\_\+utilities.\+f90}}.
 
-Here is the caller graph for this function:\+\nopagebreak
+Here is the caller graph for this function:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -697,7 +771,7 @@ Here is the caller graph for this function:\+\nopagebreak
 \end{figure}
 
 
-\label{doc-var-members}
+\label{namespacenum__utilities_doc-var-members}
 \Hypertarget{namespacenum__utilities_doc-var-members}
 \doxysubsection{Variable Documentation}
 \Hypertarget{namespacenum__utilities_a763215553acfcc054b1ec1bc207a1793}\index{num\_utilities@{num\_utilities}!d@{d}}

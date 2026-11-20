@@ -1,4 +1,4 @@
-\doxysection{output\+\_\+ops::\+plot\+\_\+hdf5 Interface Reference}
+\doxysection{output\+\_\+ops::plot\+\_\+hdf5 Interface Reference}
 \hypertarget{interfaceoutput__ops_1_1plot__hdf5}{}\label{interfaceoutput__ops_1_1plot__hdf5}\index{output\_ops::plot\_hdf5@{output\_ops::plot\_hdf5}}
 
 
@@ -23,12 +23,12 @@ The plot is generally 3-\/D, but if one of the dimensions provided is equal to 1
 
 Optionally, the (curvilinear) grid can be provided through {\ttfamily X}, {\ttfamily Y} and {\ttfamily Z}. If not, the grid is assumed to be Cartesian with discrete indices where {\ttfamily X} corresponds to the first dimensions, {\ttfamily Y} to the second and {\ttfamily Z} to the third.
 
-Additionally, the total grid size and local offset can be provided in {\ttfamily tot\+\_\+dim} and {\ttfamily loc\+\_\+offset} to run this routine in parallel automatically. Optionally, one of the dimensions ({\ttfamily col\+\_\+id}, default 4) can be associated to a collection dimension using {\ttfamily col} different from 1:\+
+Additionally, the total grid size and local offset can be provided in {\ttfamily tot\+\_\+dim} and {\ttfamily loc\+\_\+offset} to run this routine in parallel automatically. Optionally, one of the dimensions ({\ttfamily col\+\_\+id}, default 4) can be associated to a collection dimension using {\ttfamily col} different from 1:
 \begin{DoxyItemize}
-\item {\ttfamily col} = 1:\+ no collection, just plots of different variables
-\item {\ttfamily col} = 2:\+ time collection
-\item {\ttfamily col} = 3:\+ spatial collection
-\item {\ttfamily col} = 4:\+ vector field
+\item {\ttfamily col} = 1: no collection, just plots of different variables
+\item {\ttfamily col} = 2: time collection
+\item {\ttfamily col} = 3: spatial collection
+\item {\ttfamily col} = 4: vector field
 \end{DoxyItemize}
 
 Furthermore, using the variable {\ttfamily cont\+\_\+plot}, a plot can be (over-\/)written in multiple writes. By this is meant that there should be an initial plot, with collection type 1, 2, 3 or 4, which can then be followed by an arbitrary number of additional writes. As these additional writes currently cannot modify the plot structure, nor the XDMF variables, their collection dimension should be complete from the start.
@@ -43,12 +43,12 @@ Subsequent writes with {\ttfamily cont\+\_\+plot} can then, for instance, write 
 \item For a vector field, the number of variables has to be 2 for 2-\/D plots or 3 for 3-\/D plots. This should be rewritten in the future, so that collections can be used for vectors as well.
 \item In order to merge collections in their collection dimension, the XDMF files can always easily be joined.
 \item If necessary, a lock system should be used when multiple processes are writing the same file, including continued writes.
-\item To plot this with Vis\+It, use:\+
+\item To plot this with Vis\+It, use:
 \begin{DoxyItemize}
-\item for temporal collections:\+ pseudocolor using the variable name (other names are ignored).
-\item for spatial collections:\+ subset of blocks or pseudocolor using the variable name (other names are ignored).
-\item for vector plot:\+ Vector plot.
-\item for without collections:\+ pseudocolor using the variable names.
+\item for temporal collections: pseudocolor using the variable name (other names are ignored).
+\item for spatial collections: subset of blocks or pseudocolor using the variable name (other names are ignored).
+\item for vector plot: Vector plot.
+\item for without collections: pseudocolor using the variable names.
 \end{DoxyItemize}
 \item Currently all of possibly multiple processes that write data have to cover the entire range of the variables in the dimension indicated by {\ttfamily col\+\_\+id}. (This could be implemented by changing how n\+\_\+plot is defined and selectively letting each processer write in the main loop at its corresponding indices.)
 \item To project the data to 2-\/D in Vis\+It, use the projection tool under Operators \texorpdfstring{$>$}{>} Transform 
@@ -60,7 +60,7 @@ Definition at line \doxymbox{\hyperlink{output__ops_8f90_source_l00137}{137}} of
 
 
 
-\label{doc-func-members}
+\label{interfaceoutput__ops_1_1plot__hdf5_doc-func-members}
 \Hypertarget{interfaceoutput__ops_1_1plot__hdf5_doc-func-members}
 \doxysubsection{Member Function/\+\+Subroutine Documentation}
 \Hypertarget{interfaceoutput__ops_1_1plot__hdf5_ac9a174c29215fad868ebba54a5d51499}\index{output\_ops::plot\_hdf5@{output\_ops::plot\_hdf5}!plot\_hdf5\_arr@{plot\_hdf5\_arr}}
@@ -95,7 +95,7 @@ array version
 \hline
 \doxymbox{\texttt{in}}  & {\em col} & whether a collection is made \\
 \hline
-\doxymbox{\texttt{in}}  & {\em sym\+\_\+type} & type of symmetry (1:\+ no symmetry, 2:\+ toroidal, 3:\+ poloidal) \\
+\doxymbox{\texttt{in}}  & {\em sym\+\_\+type} & type of symmetry (1: no symmetry, 2: toroidal, 3: poloidal) \\
 \hline
 \doxymbox{\texttt{in}}  & {\em cont\+\_\+plot} & continued plot \\
 \hline
@@ -106,7 +106,8 @@ array version
 
 Definition at line \doxymbox{\hyperlink{output__ops_8f90_source_l00433}{433}} of file \doxymbox{\hyperlink{output__ops_8f90_source}{output\+\_\+ops.\+f90}}.
 
-Here is the call graph for this function:\+\nopagebreak
+Here is the call graph for this function:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode

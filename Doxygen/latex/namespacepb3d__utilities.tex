@@ -8,7 +8,7 @@ Numerical utilities related to PB3D operations.
 \doxysubsubsection*{Interfaces and Types}
 \begin{DoxyCompactItemize}
 \item 
-interface \doxymbox{\hyperlink{interfacepb3d__utilities_1_1conv__1d2nd}{conv\+\_\+1d2nd}}
+interface \doxymbox{\hyperlink{interfacepb3d__utilities_1_1conv__flat2nd}{conv\+\_\+flat2nd}}
 \begin{DoxyCompactList}\small\item\em Converts 1-\/D to n-\/D variables. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsubsection*{Functions/\+\+Subroutines}
 \begin{DoxyCompactItemize}
@@ -22,7 +22,7 @@ integer function, dimension(2), public \doxymbox{\hyperlink{namespacepb3d__utili
 \doxysubsection{Detailed Description}
 Numerical utilities related to PB3D operations. 
 
-\label{doc-func-members}
+\label{namespacepb3d__utilities_doc-func-members}
 \Hypertarget{namespacepb3d__utilities_doc-func-members}
 \doxysubsection{Function/\+\+Subroutine Documentation}
 \Hypertarget{namespacepb3d__utilities_ad047cd7b197aae821e2565933faccfa3}\index{pb3d\_utilities@{pb3d\_utilities}!setup\_par\_id@{setup\_par\_id}}
@@ -35,36 +35,36 @@ integer function, dimension(3), public pb3d\+\_\+utilities::\+setup\+\_\+par\+\_
 
 Setup parallel id. 
 
-The parallel id consists of:\+
+The parallel id consists of:
 \begin{DoxyItemize}
-\item {\ttfamily par\+\_\+id(1)}:\+ start index
-\item {\ttfamily par\+\_\+id(2)}:\+ end index
-\item {\ttfamily par\+\_\+id(3)}:\+ stride
+\item {\ttfamily par\+\_\+id(1)}: start index
+\item {\ttfamily par\+\_\+id(2)}: end index
+\item {\ttfamily par\+\_\+id(3)}: stride
 \end{DoxyItemize}
 
 These are set up by considering the transformation between a point  $r
-        \in  (1\ldots n)$ in the local variable, with corresponding indices $(a\ldots b)$ indicated by {\ttfamily par\+\_\+lim} in the HDF5 variable in memory, so that $n = b-a+1$:\+ \[p + k s = a + r - 1,\] where $k$ is an integer, $s$ is the stride for Richardson level $i$ (with max. level $I$):\+    \[\begin{aligned}
+        \in  (1\ldots n)$ in the local variable, with corresponding indices $(a\ldots b)$ indicated by {\ttfamily par\+\_\+lim} in the HDF5 variable in memory, so that $n = b-a+1$: \[p + k s = a + r - 1,\] where $k$ is an integer, $s$ is the stride for Richardson level $i$ (with max. level $I$):    \[\begin{aligned}
           s &= 2^{I-1}   \  \text{for} \ i = 1 \\
             &= 2^{I-i+1} \  \text{for} \ i > 1
-         \end{aligned}\] and where $p$ is the starting point in the HDF5 variables:\+    \[\begin{aligned}
+         \end{aligned}\] and where $p$ is the starting point in the HDF5 variables:    \[\begin{aligned}
           p &= 1         \  \text{for} \ i = 1 \\
             &= 1 + s/2   \  \text{for} \ i > 1
          \end{aligned}\]
 
-Therefore, the minimum possible $r$ lies in $(0..s-1)$:\+ \[\mod(r-1,s) = r_\text{min}-1, \] which leads to \[r_\text{min} = 1 + \mod(p-a,s). \]
+Therefore, the minimum possible $r$ lies in $(0..s-1)$: \[\mod(r-1,s) = r_\text{min}-1, \] which leads to \[r_\text{min} = 1 + \mod(p-a,s). \]
 
-The maximum possible $r$, then, lies in $(n-s+1..n)$, which leads to:\+ \[ r_\text{max} = n - s + 1 + \mod(p-b-1,s). \]
+The maximum possible $r$, then, lies in $(n-s+1..n)$, which leads to: \[ r_\text{max} = n - s + 1 + \mod(p-b-1,s). \]
 
 These limits and the strides are saved in {\ttfamily par\+\_\+id} =  $\vec{r} =
         \begin{pmatrix}r_\text{min}\\ r_\text{max}\end{pmatrix}$.
 
-If the optional indices $a$ and $b$ are not given they are assumed to be 1 and $n$, with $n = 1+ks$, which simplifies the equations to:\+    \[\begin{aligned}
+If the optional indices $a$ and $b$ are not given they are assumed to be 1 and $n$, with $n = 1+ks$, which simplifies the equations to:    \[\begin{aligned}
           r_\text{min} &= p \\
           r_\text{max} &= n-p+1 .
          \end{aligned}\]
 
 Optionally, the indices in the HDF5 arrays can also be returned in {\ttfamily par\+\_\+id\+\_\+mem} =  $\begin{pmatrix}R_\text{min}\\
-        R_\text{max}\end{pmatrix}$. These are equal to $k-1$, where $k$ is the integer refered to above:\+ \[\vec{R} = 1 + \frac{a-1-p+\vec{r}}{s}, \] where the addition between a vector and a scalar should be seen as the element-\/wise operation. 
+        R_\text{max}\end{pmatrix}$. These are equal to $k-1$, where $k$ is the integer refered to above: \[\vec{R} = 1 + \frac{a-1-p+\vec{r}}{s}, \] where the addition between a vector and a scalar should be seen as the element-\/wise operation. 
 \begin{DoxyParams}[1]{Parameters}
 \doxymbox{\texttt{in}}  & {\em rich\+\_\+lvl\+\_\+max} & maximum Richardson level \\
 \hline
@@ -84,7 +84,8 @@ parallel id
 
 Definition at line \doxymbox{\hyperlink{PB3D__utilities_8f90_source_l00179}{179}} of file \doxymbox{\hyperlink{PB3D__utilities_8f90_source}{PB3\+D\+\_\+utilities.\+f90}}.
 
-Here is the caller graph for this function:\+\nopagebreak
+Here is the caller graph for this function:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -101,10 +102,10 @@ integer function, dimension(2), public pb3d\+\_\+utilities::\+setup\+\_\+rich\+\
 
 Returns richardson id. 
 
-{\ttfamily rich\+\_\+id} has the following structure:\+
+{\ttfamily rich\+\_\+id} has the following structure:
 \begin{DoxyItemize}
-\item {\ttfamily rich\+\_\+id(1)}:\+ start Richardson level
-\item {\ttfamily rich\+\_\+id(2)}:\+ end Richardson level 
+\item {\ttfamily rich\+\_\+id(1)}: start Richardson level
+\item {\ttfamily rich\+\_\+id(2)}: end Richardson level 
 \begin{DoxyParams}[1]{Parameters}
 \doxymbox{\texttt{in}}  & {\em rich\+\_\+lvl\+\_\+max} & maximum Richardson level \\
 \hline
@@ -119,7 +120,8 @@ Richardson id
 
 Definition at line \doxymbox{\hyperlink{PB3D__utilities_8f90_source_l00233}{233}} of file \doxymbox{\hyperlink{PB3D__utilities_8f90_source}{PB3\+D\+\_\+utilities.\+f90}}.
 
-Here is the caller graph for this function:\+\nopagebreak
+Here is the caller graph for this function:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode

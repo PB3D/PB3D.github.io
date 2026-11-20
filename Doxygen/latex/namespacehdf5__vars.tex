@@ -12,12 +12,8 @@ type \doxymbox{\hyperlink{structhdf5__vars_1_1xml__str__type}{xml\+\_\+str\+\_\+
 \begin{DoxyCompactList}\small\item\em XML strings used in XDMF. \end{DoxyCompactList}\item 
 type \doxymbox{\hyperlink{structhdf5__vars_1_1hdf5__file__type}{hdf5\+\_\+file\+\_\+type}}
 \begin{DoxyCompactList}\small\item\em HDF5 data type, containing the information about HDF5 files. \end{DoxyCompactList}\item 
-type \doxymbox{\hyperlink{structhdf5__vars_1_1var__1d__type}{var\+\_\+1d\+\_\+type}}
-\begin{DoxyCompactList}\small\item\em 1D equivalent of multidimensional variables, used for internal HDF5 storage. \end{DoxyCompactList}\item 
 interface \doxymbox{\hyperlink{interfacehdf5__vars_1_1dealloc__xml__str}{dealloc\+\_\+xml\+\_\+str}}
-\begin{DoxyCompactList}\small\item\em Deallocates XML\+\_\+str\+\_\+type. \end{DoxyCompactList}\item 
-interface \doxymbox{\hyperlink{interfacehdf5__vars_1_1dealloc__var__1d}{dealloc\+\_\+var\+\_\+1d}}
-\begin{DoxyCompactList}\small\item\em Deallocates 1D variable. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Deallocates XML\+\_\+str\+\_\+type. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsubsection*{Functions/\+\+Subroutines}
 \begin{DoxyCompactItemize}
 \item 
@@ -28,8 +24,6 @@ subroutine, public \doxymbox{\hyperlink{namespacehdf5__vars_ab644703bcb67ce42373
 \item 
 character(len=6), public \doxymbox{\hyperlink{namespacehdf5__vars_ad8665a0387dde737161d1162565aefa9}{xmf\+\_\+fmt}} = \textquotesingle{}(999A)\textquotesingle{}
 \begin{DoxyCompactList}\small\item\em format to write the xmf file \end{DoxyCompactList}\item 
-integer, parameter, public \doxymbox{\hyperlink{namespacehdf5__vars_a69c36b36ad7f55ff124ebc328d18adb7}{max\+\_\+dim\+\_\+var\+\_\+1d}} = 100000
-\begin{DoxyCompactList}\small\item\em maximum dimension of var\+\_\+1D \end{DoxyCompactList}\item 
 character(len=max\+\_\+str\+\_\+ln), dimension(2), public \doxymbox{\hyperlink{namespacehdf5__vars_ad8c38b66b3e9b402f05e7e7a36415fb3}{xdmf\+\_\+num\+\_\+types}}
 \begin{DoxyCompactList}\small\item\em possible XDMF number types \end{DoxyCompactList}\item 
 character(len=max\+\_\+str\+\_\+ln), dimension(2), public \doxymbox{\hyperlink{namespacehdf5__vars_ab9c0d2270239bf1963c6294ab7198f8c}{xdmf\+\_\+format\+\_\+types}}
@@ -49,7 +43,7 @@ character(len=max\+\_\+str\+\_\+ln), dimension(3), public \doxymbox{\hyperlink{n
 \doxysubsection{Detailed Description}
 Variables pertaining to HDF5 and XDMF. 
 
-\label{doc-func-members}
+\label{namespacehdf5__vars_doc-func-members}
 \Hypertarget{namespacehdf5__vars_doc-func-members}
 \doxysubsection{Function/\+\+Subroutine Documentation}
 \Hypertarget{namespacehdf5__vars_ab644703bcb67ce423732e39ab56a4b63}\index{hdf5\_vars@{hdf5\_vars}!init\_hdf5@{init\_hdf5}}
@@ -64,9 +58,10 @@ Initializes the HDF5 types.
 
 Has to be called once. 
 
-Definition at line \doxymbox{\hyperlink{HDF5__vars_8f90_source_l00081}{81}} of file \doxymbox{\hyperlink{HDF5__vars_8f90_source}{HDF5\+\_\+vars.\+f90}}.
+Definition at line \doxymbox{\hyperlink{HDF5__vars_8f90_source_l00060}{60}} of file \doxymbox{\hyperlink{HDF5__vars_8f90_source}{HDF5\+\_\+vars.\+f90}}.
 
-Here is the caller graph for this function:\+\nopagebreak
+Here is the caller graph for this function:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -75,23 +70,9 @@ Here is the caller graph for this function:\+\nopagebreak
 \end{figure}
 
 
-\label{doc-var-members}
+\label{namespacehdf5__vars_doc-var-members}
 \Hypertarget{namespacehdf5__vars_doc-var-members}
 \doxysubsection{Variable Documentation}
-\Hypertarget{namespacehdf5__vars_a69c36b36ad7f55ff124ebc328d18adb7}\index{hdf5\_vars@{hdf5\_vars}!max\_dim\_var\_1d@{max\_dim\_var\_1d}}
-\index{max\_dim\_var\_1d@{max\_dim\_var\_1d}!hdf5\_vars@{hdf5\_vars}}
-\doxysubsubsection{\texorpdfstring{max\_dim\_var\_1d}{max\_dim\_var\_1d}}
-{\footnotesize\ttfamily \label{namespacehdf5__vars_a69c36b36ad7f55ff124ebc328d18adb7} 
-integer, parameter, public hdf5\+\_\+vars::\+max\+\_\+dim\+\_\+var\+\_\+1d = 100000}
-
-
-
-maximum dimension of var\+\_\+1D 
-
-
-
-Definition at line \doxymbox{\hyperlink{HDF5__vars_8f90_source_l00021}{21}} of file \doxymbox{\hyperlink{HDF5__vars_8f90_source}{HDF5\+\_\+vars.\+f90}}.
-
 \Hypertarget{namespacehdf5__vars_a43c511f4b84cd716387c39c78b2cfe54}\index{hdf5\_vars@{hdf5\_vars}!xdmf\_att\_types@{xdmf\_att\_types}}
 \index{xdmf\_att\_types@{xdmf\_att\_types}!hdf5\_vars@{hdf5\_vars}}
 \doxysubsubsection{\texorpdfstring{xdmf\_att\_types}{xdmf\_att\_types}}
@@ -202,5 +183,5 @@ format to write the xmf file
 
 
 
-Definition at line \doxymbox{\hyperlink{HDF5__vars_8f90_source_l00020}{20}} of file \doxymbox{\hyperlink{HDF5__vars_8f90_source}{HDF5\+\_\+vars.\+f90}}.
+Definition at line \doxymbox{\hyperlink{HDF5__vars_8f90_source_l00021}{21}} of file \doxymbox{\hyperlink{HDF5__vars_8f90_source}{HDF5\+\_\+vars.\+f90}}.
 

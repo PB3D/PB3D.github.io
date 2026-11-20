@@ -1,5 +1,5 @@
 \doxysection{MPI\+\_\+ops.\+f90}
-\hypertarget{MPI__ops_8f90_source}{}\label{MPI__ops_8f90_source}\index{/Users/toonweyens/Code/PB3D/Modules/MPI\_ops.f90@{/Users/toonweyens/Code/PB3D/Modules/MPI\_ops.f90}}
+\hypertarget{MPI__ops_8f90_source}{}\label{MPI__ops_8f90_source}\index{Modules/MPI\_ops.f90@{Modules/MPI\_ops.f90}}
 \doxymbox{\hyperlink{MPI__ops_8f90}{Go to the documentation of this file.}}
 \begin{DoxyCode}{0}
 \DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00001}00001\ \textcolor{comment}{!-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/!}\textcolor{comment}{}}
@@ -15,7 +15,7 @@
 \DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00011}00011\ \ \ \ \ }
 \DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00012}00012\ \ \ \ \ \textcolor{keywordtype}{implicit\ none}}
 \DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00013}00013\ \ \ \ \ \textcolor{keywordtype}{private}}
-\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00014}00014\ \ \ \ \ \textcolor{keywordtype}{public}\ \doxymbox{\hyperlink{namespacempi__ops_a804ec65ff711509de1f8873f97bdf967}{start\_mpi}},\ \doxymbox{\hyperlink{namespacempi__ops_a0028cc7df4fbd89dbd93de245ab3b2aa}{stop\_mpi}},\ \doxymbox{\hyperlink{namespacempi__ops_a54d9258ef985728345579e8e57dc8dfe}{abort\_mpi}},\ \doxymbox{\hyperlink{namespacempi__ops_a932eba1c998dd7a0f1191b55cd754be3}{broadcast\_input\_opts}},\ \&}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00014}00014\ \ \ \ \ \textcolor{keywordtype}{public}\ \doxymbox{\hyperlink{namespacempi__ops_a804ec65ff711509de1f8873f97bdf967}{start\_mpi}},\ \doxymbox{\hyperlink{namespacempi__ops_a0028cc7df4fbd89dbd93de245ab3b2aa}{stop\_mpi}},\ \doxymbox{\hyperlink{namespacempi__ops_ac7fffd36919e3546e52acd2aa91110d3}{abort\_mpi}},\ \doxymbox{\hyperlink{namespacempi__ops_a932eba1c998dd7a0f1191b55cd754be3}{broadcast\_input\_opts}},\ \&}
 \DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00015}00015\ \ \ \ \ \ \ \ \ \&\doxymbox{\hyperlink{namespacempi__ops_a40e8610357a9a5b075fef9dab1c3f24f}{sudden\_stop}}}
 \DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00016}00016\ \ \ \ \ }
 \DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00017}00017\ \textcolor{keyword}{contains}\textcolor{comment}{}}
@@ -226,290 +226,365 @@
 \DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00222}00222\ \ \ \ \ \textcolor{comment}{}}
 \DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00223}00223\ \textcolor{comment}{\ \ \ \ !>\ Abort\ MPI\ suddenly.}}
 \DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00224}00224\ \textcolor{comment}{\ \ \ \ !!}}
-\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00225}00225\ \textcolor{comment}{\ \ \ \ !!\ \(\backslash\)return\ ierr}}
-\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00226}\doxymbox{\hyperlink{namespacempi__ops_a54d9258ef985728345579e8e57dc8dfe}{00226}}\ \ \ \ \ \textcolor{keyword}{integer\ }\textcolor{keyword}{function\ }\doxymbox{\hyperlink{namespacempi__ops_a54d9258ef985728345579e8e57dc8dfe}{abort\_mpi}}()\ \textcolor{keyword}{result}(ierr)}
-\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00227}00227\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{character(*)},\ \textcolor{keywordtype}{parameter}\ ::\ rout\_name\ =\ \textcolor{stringliteral}{'abort\_MPI'}}
-\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00228}00228\ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00229}00229\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ initialize\ ierr}}
-\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00230}00230\ \ \ \ \ \ \ \ \ ierr\ =\ 0}
-\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00231}00231\ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00232}00232\ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }mpi\_abort(mpi\_comm\_world,0,ierr)}
-\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00233}00233\ \ \ \ \ \ \ \ \ chckerr(\textcolor{stringliteral}{'MPI\ abort\ failed'})}
-\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00234}00234\ \ \ \ \ \textcolor{keyword}{end\ function\ }\doxymbox{\hyperlink{namespacempi__ops_a54d9258ef985728345579e8e57dc8dfe}{abort\_mpi}}}
-\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00235}00235\ \ \ \ \ \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00236}00236\ \textcolor{comment}{\ \ \ \ !>\ Broadcasts\ options\ (e.g.\ user-\/prescribed)\ that\ are\ not\ passed\ through\ the}}
-\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00237}00237\ \textcolor{comment}{\ \ \ \ !!\ HDF5\ output\ file\ (i.e.\ \(\backslash\)c\ ltest,\ \(\backslash\)c\ no\_plots,\ ...).}}
-\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00238}00238\ \textcolor{comment}{\ \ \ \ !!}}
-\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00239}00239\ \textcolor{comment}{\ \ \ \ !!\ \(\backslash\)see\ read\_input\_opts()}}
-\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00240}00240\ \textcolor{comment}{\ \ \ \ !!}}
-\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00241}00241\ \textcolor{comment}{\ \ \ \ !!\ \(\backslash\)note\ Some\ \ variables\ (e.g.\ \(\backslash\)c\ \ eq\_style,\ ...)\ \ are\ not\ passed\ \ over\ MPI.}}
-\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00242}00242\ \textcolor{comment}{\ \ \ \ !!\ Every\ \ process\ should\ \ call\ \ its\ own\ \ reconstruct\_pb3d\_in()\ \ in\ order\ \ to}}
-\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00243}00243\ \textcolor{comment}{\ \ \ \ !!\ obtain\ them.}}
-\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00244}00244\ \textcolor{comment}{\ \ \ \ !!}}
-\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00245}00245\ \textcolor{comment}{\ \ \ \ !!\ \(\backslash\)return\ ierr}}
-\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00246}\doxymbox{\hyperlink{namespacempi__ops_a932eba1c998dd7a0f1191b55cd754be3}{00246}}\ \ \ \ \ \textcolor{keyword}{integer\ }\textcolor{keyword}{function\ }\doxymbox{\hyperlink{namespacempi__ops_a932eba1c998dd7a0f1191b55cd754be3}{broadcast\_input\_opts}}()\ \textcolor{keyword}{result}(ierr)}
-\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00247}00247\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{use\ }\doxymbox{\hyperlink{namespacenum__vars}{num\_vars}},\ \textcolor{keywordtype}{only}:\ \doxymbox{\hyperlink{namespacenum__vars_a3ff2bb983ee80a6735277d6789e6ce7c}{max\_str\_ln}},\ \doxymbox{\hyperlink{namespacenum__vars_a06597cae984d53aec80c150fc13d3e7f}{ltest}},\ \doxymbox{\hyperlink{namespacenum__vars_ad35971574ecb900c805b8d08745160e6}{max\_it\_zero}},\ \doxymbox{\hyperlink{namespacenum__vars_ab47aa91445feaedb05ac9d1a584664fe}{rank}},\ \&}
-\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00248}00248\ \ \ \ \ \ \ \ \ \ \ \ \ \&\doxymbox{\hyperlink{namespacenum__vars_afbd4cb9a4ef9e8a277aecfc41b09aa1d}{max\_it\_rich}},\ \doxymbox{\hyperlink{namespacenum__vars_ae2387f8182114da91104322ca3250d9a}{tol\_zero}},\ \doxymbox{\hyperlink{namespacenum__vars_a3a1f41c66c3d91fc749bcffd177b0662}{n\_procs}},\ \doxymbox{\hyperlink{namespacenum__vars_a3deb68d5c9cd3a99c9dd779e18c4d129}{n\_sol\_requested}},\ \doxymbox{\hyperlink{namespacenum__vars_aa0091a935b9502afef09a87c0f590e9d}{tol\_rich}},\ \&}
-\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00249}00249\ \ \ \ \ \ \ \ \ \ \ \ \ \&\doxymbox{\hyperlink{namespacenum__vars_aa77741498300b095e49a5d8344480b68}{max\_nr\_backtracks\_hh}},\ \doxymbox{\hyperlink{namespacenum__vars_a03373a7c9a040867e8108023f2ccf479}{sol\_n\_procs}},\ \&}
-\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00250}00250\ \ \ \ \ \ \ \ \ \ \ \ \ \&\doxymbox{\hyperlink{namespacenum__vars_adc6255c76bb27f763817adc8e2d80658}{retain\_all\_sol}},\ \doxymbox{\hyperlink{namespacenum__vars_a3b821da571f91f9ec665538209b995a6}{plot\_flux\_q}},\ \doxymbox{\hyperlink{namespacenum__vars_ad6bbee854ff7479d1d2ded83cda04699}{plot\_magn\_grid}},\ \doxymbox{\hyperlink{namespacenum__vars_a09ac710a02758a271706d96e50e5c1b1}{plot\_b}},\ \doxymbox{\hyperlink{namespacenum__vars_aa5519c9217b33a3a677e058723638fa9}{plot\_j}},\ \&}
-\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00251}00251\ \ \ \ \ \ \ \ \ \ \ \ \ \&\doxymbox{\hyperlink{namespacenum__vars_a15a00106d8f59e98ab924f905cf2ddac}{plot\_kappa}},\ \doxymbox{\hyperlink{namespacenum__vars_aca13a9c68dbf136ed2a2a8e0fa04c087}{plot\_sol\_xi}},\ \doxymbox{\hyperlink{namespacenum__vars_a478a829f8ec3af3e57e91bf48732a5e1}{plot\_sol\_q}},\ \doxymbox{\hyperlink{namespacenum__vars_ae90f876bc701020d565d6e77c4dc8c61}{plot\_e\_rec}},\ \doxymbox{\hyperlink{namespacenum__vars_afe223f0c9580de8bf52d2cedc2ab2ee8}{no\_plots}},\ \&}
-\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00252}00252\ \ \ \ \ \ \ \ \ \ \ \ \ \&\doxymbox{\hyperlink{namespacenum__vars_a0e40187c6517fb55cc756c5656327fb9}{plot\_grid\_style}},\ \doxymbox{\hyperlink{namespacenum__vars_a98df35edce5a42616685bb1ebd508c79}{n\_sol\_plotted}},\ \doxymbox{\hyperlink{namespacenum__vars_a0c3d2a6eea73c4d47f30df016475b585}{n\_theta\_plot}},\ \doxymbox{\hyperlink{namespacenum__vars_a657b74ac497053e3c848796f1afaca5f}{n\_zeta\_plot}},\ \&}
-\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00253}00253\ \ \ \ \ \ \ \ \ \ \ \ \ \&\doxymbox{\hyperlink{namespacenum__vars_a2085f22558c1b4a349b5ad1b6abfe09f}{min\_theta\_plot}},\ \doxymbox{\hyperlink{namespacenum__vars_ade6d14ac98ba7f573ef83194808f68b8}{max\_theta\_plot}},\ \doxymbox{\hyperlink{namespacenum__vars_a773a55cfd780f1f9db69887fdf48b0a5}{min\_zeta\_plot}},\ \doxymbox{\hyperlink{namespacenum__vars_a2c2f75ebac91c6e5e122e41a62b71b6d}{max\_zeta\_plot}},\ \&}
-\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00254}00254\ \ \ \ \ \ \ \ \ \ \ \ \ \&\doxymbox{\hyperlink{namespacenum__vars_ab3369f21aa4433cb6dc08957e477c015}{min\_r\_plot}},\ \doxymbox{\hyperlink{namespacenum__vars_a1f9d7347043448d30c6612558ae569e5}{max\_r\_plot}},\ \doxymbox{\hyperlink{namespacenum__vars_adaf8e128a1b232b8231305be41a55bdc}{swap\_angles}},\ \doxymbox{\hyperlink{namespacenum__vars_a70fd85a310da008203347f25b0043238}{plot\_resonance}},\ \doxymbox{\hyperlink{namespacenum__vars_acbfccf15a8af9fce37f9cb3f2c85be76}{tol\_slepc}},\ \&}
-\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00255}00255\ \ \ \ \ \ \ \ \ \ \ \ \ \&\doxymbox{\hyperlink{namespacenum__vars_a50245a345efb453eda46b3fe98b702e8}{prog\_style}},\ \doxymbox{\hyperlink{namespacenum__vars_a08dbb9f56d96f37c61cacb9d23d6e17f}{post\_style}},\ \doxymbox{\hyperlink{namespacenum__vars_acd9fb4b84728c986d5ecde709dcac940}{jump\_to\_sol}},\ \doxymbox{\hyperlink{namespacenum__vars_aa1342b6b43268bd10bb254fa9bf754f0}{export\_hel}},\ \doxymbox{\hyperlink{namespacenum__vars_a2f303733b113f96fad56bb8ceb337c85}{compare\_tor\_pos}},\ \&}
-\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00256}00256\ \ \ \ \ \ \ \ \ \ \ \ \ \&\doxymbox{\hyperlink{namespacenum__vars_a89067eb4dc3fcdcc85d7cf185d3774ea}{plot\_vmec\_modes}},\ \doxymbox{\hyperlink{namespacenum__vars_a4c19f47e50c92bfd52985761500a999e}{ev\_guess}},\ \doxymbox{\hyperlink{namespacenum__vars_aac52d1fda60883bea62738fe0ecd7527}{ex\_plot\_style}},\ \doxymbox{\hyperlink{namespacenum__vars_aff32519d88708f2f44f80d62cfb0e0f4}{solver\_slepc\_style}},\ \&}
-\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00257}00257\ \ \ \ \ \ \ \ \ \ \ \ \ \&\doxymbox{\hyperlink{namespacenum__vars_aa53d6f71e297c4d8be05907bb7dbffce}{pert\_mult\_factor\_post}},\ \doxymbox{\hyperlink{namespacenum__vars_a7d65e7e9a9c8d9882929fc014b81a81b}{post\_output\_full}},\ \doxymbox{\hyperlink{namespacenum__vars_a500deb6ae4c6ba1171c44513e1aac62b}{post\_output\_sol}},\ \&}
-\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00258}00258\ \ \ \ \ \ \ \ \ \ \ \ \ \&\doxymbox{\hyperlink{namespacenum__vars_a301b25f19135f2bee8ccce99257ae86c}{tol\_norm}},\ \doxymbox{\hyperlink{namespacenum__vars_a8855ce3cc66743410c56c1dfecbc6a1a}{max\_it\_slepc}},\ \doxymbox{\hyperlink{namespacenum__vars_a641ae7ad0ef7673f5a3f6966d311d8cc}{plot\_vac\_pot}},\ \doxymbox{\hyperlink{namespacenum__vars_a3bd355d04302c5d45685a0e1e3f6b1f6}{plot\_size}},\ \&}
-\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00259}00259\ \ \ \ \ \ \ \ \ \ \ \ \ \&\doxymbox{\hyperlink{namespacenum__vars_ae50396b7028248358850b4524cf84433}{max\_tot\_mem}},\ \doxymbox{\hyperlink{namespacenum__vars_af86827817455d27248f5660c3d616283}{max\_x\_mem}},\ \doxymbox{\hyperlink{namespacenum__vars_a9c579c39602d4a4761335866603aea5f}{invert\_top\_bottom\_h}},\ \&}
-\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00260}00260\ \ \ \ \ \ \ \ \ \ \ \ \ \&\doxymbox{\hyperlink{namespacenum__vars_ad5ba241cde0a99cdd5b3d6a6c0340e5c}{do\_execute\_command\_line}},\ \doxymbox{\hyperlink{namespacenum__vars_a28bf4f706f43af630ecc697dec01654c}{print\_mem\_usage}},\ \&}
-\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00261}00261\ \ \ \ \ \ \ \ \ \ \ \ \ \&\doxymbox{\hyperlink{namespacenum__vars_ac4bc885e8034c285bf0a9b76a832a738}{rich\_restart\_lvl}},\ \&}
-\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00262}00262\ \ \ \ \ \ \ \ \ \ \ \ \ \&\doxymbox{\hyperlink{namespacenum__vars_a8b3ab3b12cddc0c3e60c3430912b5f3c}{pb3d\_name}},\ \&}
-\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00263}00263\ \ \ \ \ \ \ \ \ \ \ \ \ \&\doxymbox{\hyperlink{namespacenum__vars_aac566d69891d40b90df6b90d18e16039}{rz\_0}},\ \&}
-\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00264}00264\ \ \ \ \ \ \ \ \ \ \ \ \ \&\doxymbox{\hyperlink{namespacenum__vars_a9f2ea40c94edef5e9f10f3b5d154c2a3}{min\_rvac\_plot}},\ \doxymbox{\hyperlink{namespacenum__vars_a6b703d539ded323851dce024a4b33df7}{max\_rvac\_plot}},\ \doxymbox{\hyperlink{namespacenum__vars_ab9fd7d4e9921ff8ceab88317f0c1ae5f}{min\_zvac\_plot}},\ \doxymbox{\hyperlink{namespacenum__vars_a6057251380bbdf0bf71cee48c49ab84c}{max\_zvac\_plot}},\ \&}
-\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00265}00265\ \ \ \ \ \ \ \ \ \ \ \ \ \&\doxymbox{\hyperlink{namespacenum__vars_a5331aef164e788f0e3aa354ea8059a01}{n\_vac\_plot}}}
-\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00266}00266\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{use\ }\doxymbox{\hyperlink{namespacegrid__vars}{grid\_vars}},\ \textcolor{keywordtype}{only}:\ \doxymbox{\hyperlink{namespacegrid__vars_a689c08cf03bc54338878f85c6429b856}{min\_par\_x}},\ \doxymbox{\hyperlink{namespacegrid__vars_acaa1fd21d0c728ad8f24591c0d2a5801}{max\_par\_x}}}
-\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00267}00267\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{use\ }\doxymbox{\hyperlink{namespacerich__vars}{rich\_vars}},\ \textcolor{keywordtype}{only}:\ \doxymbox{\hyperlink{namespacerich__vars_a167fe55b5d9c1a4566729da683466947}{no\_guess}},\ \doxymbox{\hyperlink{namespacerich__vars_a1b7734ba9ce6cc153b22387e638093c0}{rich\_lvl}},\ \doxymbox{\hyperlink{namespacerich__vars_a07841cccca6e6ee59aeb4e0661558eda}{min\_n\_par\_x}}}
-\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00268}00268\ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00269}00269\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{character(*)},\ \textcolor{keywordtype}{parameter}\ ::\ rout\_name\ =\ \textcolor{stringliteral}{'broadcast\_input\_opts'}}
-\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00270}00270\ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00271}00271\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ local\ variables}}
-\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00272}00272\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{character(len=max\_str\_ln)}\ ::\ err\_msg\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ error\ message}}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00225}00225\ \textcolor{comment}{\ \ \ \ !!\ \(\backslash\)c\ MPI\_Abort\ ends\ all\ the\ processes\ of\ the\ run.\ It\ hands\ \(\backslash\)c\ status\ to}}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00226}00226\ \textcolor{comment}{\ \ \ \ !!\ the\ launcher\ (\(\backslash\)c\ mpirun,\ \(\backslash\)c\ srun,\ ...),\ which\ returns\ it\ to\ the\ shell\ as}}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00227}00227\ \textcolor{comment}{\ \ \ \ !!\ its\ exit\ status.\ A\ process\ that\ was\ started\ without\ a\ launcher\ returns}}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00228}00228\ \textcolor{comment}{\ \ \ \ !!\ \(\backslash\)c\ status\ itself.}}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00229}00229\ \textcolor{comment}{\ \ \ \ !!}}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00230}00230\ \textcolor{comment}{\ \ \ \ !!\ \(\backslash\)see\ get\_exit\_status()\ for\ the\ value\ to\ pass.}}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00231}00231\ \textcolor{comment}{\ \ \ \ !!}}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00232}00232\ \textcolor{comment}{\ \ \ \ !!\ \(\backslash\)return\ ierr}}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00233}\doxymbox{\hyperlink{namespacempi__ops_ac7fffd36919e3546e52acd2aa91110d3}{00233}}\ \ \ \ \ \textcolor{keyword}{integer\ }\textcolor{keyword}{function\ }\doxymbox{\hyperlink{namespacempi__ops_ac7fffd36919e3546e52acd2aa91110d3}{abort\_mpi}}(status)\ \textcolor{keyword}{result}(ierr)}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00234}00234\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{character(*)},\ \textcolor{keywordtype}{parameter}\ ::\ rout\_name\ =\ \textcolor{stringliteral}{'abort\_MPI'}}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00235}00235\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00236}00236\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ input\ /\ output}}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00237}00237\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer},\ \textcolor{keywordtype}{intent(in)}\ ::\ status\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !<\ exit\ status\ with\ which\ the\ run\ ends}}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00238}00238\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00239}00239\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ initialize\ ierr}}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00240}00240\ \ \ \ \ \ \ \ \ ierr\ =\ 0}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00241}00241\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00242}00242\ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }mpi\_abort(mpi\_comm\_world,status,ierr)}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00243}00243\ \ \ \ \ \ \ \ \ chckerr(\textcolor{stringliteral}{'MPI\ abort\ failed'})}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00244}00244\ \ \ \ \ \textcolor{keyword}{end\ function\ }\doxymbox{\hyperlink{namespacempi__ops_ac7fffd36919e3546e52acd2aa91110d3}{abort\_mpi}}}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00245}00245\ \ \ \ \ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00246}00246\ \textcolor{comment}{\ \ \ \ !>\ Exit\ status\ with\ which\ the\ program\ ends\ after\ error\ code\ \(\backslash\)c\ ierr.}}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00247}00247\ \textcolor{comment}{\ \ \ \ !!}}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00248}00248\ \textcolor{comment}{\ \ \ \ !!\ The\ exit\ status\ is\ the\ number\ that\ the\ shell\ receives\ when\ the\ program}}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00249}00249\ \textcolor{comment}{\ \ \ \ !!\ ends,\ for\ example\ in\ <tt>\$?</tt>.\ Zero\ means\ that\ the\ program\ succeeded.}}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00250}00250\ \textcolor{comment}{\ \ \ \ !!\ The\ operating\ system\ keeps\ only\ the\ lowest\ eight\ bits,\ so\ that\ the\ exit}}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00251}00251\ \textcolor{comment}{\ \ \ \ !!\ status\ lies\ between\ 0\ and\ 255.}}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00252}00252\ \textcolor{comment}{\ \ \ \ !!}}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00253}00253\ \textcolor{comment}{\ \ \ \ !!\ The\ error\ codes\ of\ PB3D\ are\ integers\ of\ any\ size\ and\ sign:\ most\ errors\ set}}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00254}00254\ \textcolor{comment}{\ \ \ \ !!\ 1,\ HDF5\ and\ NetCDF\ return\ negative\ numbers,\ and\ a\ failed\ \(\backslash\)c\ open\ or}}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00255}00255\ \textcolor{comment}{\ \ \ \ !!\ \(\backslash\)c\ allocate\ returns\ the\ number\ of\ the\ compiler's\ run-\/time\ library.\ They}}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00256}00256\ \textcolor{comment}{\ \ \ \ !!\ are\ mapped\ as\ follows:}}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00257}00257\ \textcolor{comment}{\ \ \ \ !!\ \ -\/\ A\ code\ from\ 1\ to\ 125\ is\ the\ exit\ status\ itself.}}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00258}00258\ \textcolor{comment}{\ \ \ \ !!\ \ -\/\ Every\ other\ code\ gives\ the\ exit\ status\ 1.}}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00259}00259\ \textcolor{comment}{\ \ \ \ !!}}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00260}00260\ \textcolor{comment}{\ \ \ \ !!\ The\ second\ rule\ is\ there\ for\ three\ reasons.\ A\ negative\ code\ or\ a\ code}}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00261}00261\ \textcolor{comment}{\ \ \ \ !!\ above\ 255\ does\ not\ fit\ and\ would\ arrive\ as\ another\ number:\ -\/1\ as\ 255,}}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00262}00262\ \textcolor{comment}{\ \ \ \ !!\ and\ 256\ as\ 0,\ which\ means\ success.\ A\ shell\ uses\ 126\ and\ 127\ for\ a}}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00263}00263\ \textcolor{comment}{\ \ \ \ !!\ command\ that\ it\ could\ not\ start.\ A\ shell\ and\ \(\backslash\)c\ mpirun\ use\ 128\ +}}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00264}00264\ \textcolor{comment}{\ \ \ \ !!\ <em>s</em>\ for\ a\ process\ that\ was\ ended\ by\ signal\ <em>s</em>,\ for\ example}}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00265}00265\ \textcolor{comment}{\ \ \ \ !!\ 139\ for\ a\ segmentation\ fault.\ With\ this\ mapping\ an\ exit\ status\ above\ 125}}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00266}00266\ \textcolor{comment}{\ \ \ \ !!\ never\ comes\ from\ the\ error\ handling\ of\ PB3D.}}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00267}00267\ \textcolor{comment}{\ \ \ \ !!}}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00268}00268\ \textcolor{comment}{\ \ \ \ !!\ The\ exit\ status\ is\ therefore\ never\ zero.\ The\ error\ code\ itself\ is}}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00269}00269\ \textcolor{comment}{\ \ \ \ !!\ printed\ by\ sudden\_stop().}}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00270}00270\ \ \ \ \ \textcolor{keyword}{integer\ }\textcolor{keyword}{function\ }get\_exit\_status(ierr)\ \textcolor{keyword}{result}(status)}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00271}00271\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ input\ /\ output}}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00272}00272\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer},\ \textcolor{keywordtype}{intent(in)}\ ::\ ierr\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !<\ error\ code}}
 \DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00273}00273\ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00274}00274\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ initialize\ ierr}}
-\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00275}00275\ \ \ \ \ \ \ \ \ ierr\ =\ 0}
-\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00276}00276\ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00277}00277\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ set\ err\_msg}}
-\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00278}00278\ \ \ \ \ \ \ \ \ err\_msg\ =\ \textcolor{stringliteral}{'MPI\ broadcast\ failed'}}
-\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00279}00279\ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00280}00280\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\doxymbox{\hyperlink{namespacenum__vars_a3a1f41c66c3d91fc749bcffd177b0662}{n\_procs}}.gt.1)\ \textcolor{keywordflow}{then}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ need\ to\ broadcast\ from\ rank\ 0\ to\ other\ processes}}
-\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00281}00281\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ print\ message}}
-\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00282}00282\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_aa4a8d01563e92558e8a0875b075ec54c}{writo}}(\textcolor{stringliteral}{'Broadcasting\ input\ option\ variables'})}
-\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00283}00283\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_a6e6bfb084063e4cc91ee86e542043302}{lvl\_ud}}(1)}
-\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00284}00284\ \ \ \ \ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00285}00285\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ variables\ that\ are\ sent\ for\ every\ program\ style:}}
-\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00286}00286\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }mpi\_bcast(\doxymbox{\hyperlink{namespacenum__vars_a06597cae984d53aec80c150fc13d3e7f}{ltest}},1,mpi\_logical,0,mpi\_comm\_world,ierr)}
-\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00287}00287\ \ \ \ \ \ \ \ \ \ \ \ \ chckerr(err\_msg)}
-\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00288}00288\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }mpi\_bcast(\doxymbox{\hyperlink{namespacenum__vars_afe223f0c9580de8bf52d2cedc2ab2ee8}{no\_plots}},1,mpi\_logical,0,mpi\_comm\_world,ierr)}
-\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00289}00289\ \ \ \ \ \ \ \ \ \ \ \ \ chckerr(err\_msg)}
-\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00290}00290\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }mpi\_bcast(\doxymbox{\hyperlink{namespacenum__vars_ad5ba241cde0a99cdd5b3d6a6c0340e5c}{do\_execute\_command\_line}},1,mpi\_logical,0,\&}
-\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00291}00291\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&mpi\_comm\_world,ierr)}
-\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00292}00292\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }mpi\_bcast(\doxymbox{\hyperlink{namespacenum__vars_a28bf4f706f43af630ecc697dec01654c}{print\_mem\_usage}},1,mpi\_logical,0,mpi\_comm\_world,ierr)}
-\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00293}00293\ \ \ \ \ \ \ \ \ \ \ \ \ chckerr(err\_msg)}
-\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00294}00294\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }mpi\_bcast(\doxymbox{\hyperlink{namespacenum__vars_a3b821da571f91f9ec665538209b995a6}{plot\_flux\_q}},1,mpi\_logical,0,mpi\_comm\_world,ierr)}
-\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00295}00295\ \ \ \ \ \ \ \ \ \ \ \ \ chckerr(err\_msg)}
-\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00296}00296\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }mpi\_bcast(\doxymbox{\hyperlink{namespacenum__vars_a15a00106d8f59e98ab924f905cf2ddac}{plot\_kappa}},1,mpi\_logical,0,mpi\_comm\_world,ierr)}
-\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00297}00297\ \ \ \ \ \ \ \ \ \ \ \ \ chckerr(err\_msg)}
-\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00298}00298\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }mpi\_bcast(\doxymbox{\hyperlink{namespacenum__vars_ad6bbee854ff7479d1d2ded83cda04699}{plot\_magn\_grid}},1,mpi\_logical,0,mpi\_comm\_world,ierr)}
-\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00299}00299\ \ \ \ \ \ \ \ \ \ \ \ \ chckerr(err\_msg)}
-\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00300}00300\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }mpi\_bcast(\doxymbox{\hyperlink{namespacenum__vars_a09ac710a02758a271706d96e50e5c1b1}{plot\_b}},1,mpi\_logical,0,mpi\_comm\_world,ierr)}
-\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00301}00301\ \ \ \ \ \ \ \ \ \ \ \ \ chckerr(err\_msg)}
-\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00302}00302\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }mpi\_bcast(\doxymbox{\hyperlink{namespacenum__vars_aa5519c9217b33a3a677e058723638fa9}{plot\_j}},1,mpi\_logical,0,mpi\_comm\_world,ierr)}
-\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00303}00303\ \ \ \ \ \ \ \ \ \ \ \ \ chckerr(err\_msg)}
-\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00304}00304\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }mpi\_bcast(\doxymbox{\hyperlink{namespacenum__vars_a70fd85a310da008203347f25b0043238}{plot\_resonance}},1,mpi\_logical,0,mpi\_comm\_world,ierr)}
-\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00305}00305\ \ \ \ \ \ \ \ \ \ \ \ \ chckerr(err\_msg)}
-\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00306}00306\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }mpi\_bcast(\doxymbox{\hyperlink{namespacenum__vars_ae2387f8182114da91104322ca3250d9a}{tol\_zero}},1,mpi\_double\_precision,0,mpi\_comm\_world,\&}
-\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00307}00307\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&ierr)}
-\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00308}00308\ \ \ \ \ \ \ \ \ \ \ \ \ chckerr(err\_msg)}
-\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00309}00309\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }mpi\_bcast(\doxymbox{\hyperlink{namespacenum__vars_a2085f22558c1b4a349b5ad1b6abfe09f}{min\_theta\_plot}},1,mpi\_double\_precision,0,\&}
-\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00310}00310\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&mpi\_comm\_world,ierr)}
-\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00311}00311\ \ \ \ \ \ \ \ \ \ \ \ \ chckerr(err\_msg)}
-\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00312}00312\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }mpi\_bcast(\doxymbox{\hyperlink{namespacenum__vars_ade6d14ac98ba7f573ef83194808f68b8}{max\_theta\_plot}},1,mpi\_double\_precision,0,\&}
-\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00313}00313\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&mpi\_comm\_world,ierr)}
-\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00314}00314\ \ \ \ \ \ \ \ \ \ \ \ \ chckerr(err\_msg)}
-\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00315}00315\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }mpi\_bcast(\doxymbox{\hyperlink{namespacenum__vars_a773a55cfd780f1f9db69887fdf48b0a5}{min\_zeta\_plot}},1,mpi\_double\_precision,0,\&}
-\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00316}00316\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&mpi\_comm\_world,ierr)}
-\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00317}00317\ \ \ \ \ \ \ \ \ \ \ \ \ chckerr(err\_msg)}
-\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00318}00318\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }mpi\_bcast(\doxymbox{\hyperlink{namespacenum__vars_a2c2f75ebac91c6e5e122e41a62b71b6d}{max\_zeta\_plot}},1,mpi\_double\_precision,0,\&}
-\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00319}00319\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&mpi\_comm\_world,ierr)}
-\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00320}00320\ \ \ \ \ \ \ \ \ \ \ \ \ chckerr(err\_msg)}
-\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00321}00321\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }mpi\_bcast(\doxymbox{\hyperlink{namespacenum__vars_ab3369f21aa4433cb6dc08957e477c015}{min\_r\_plot}},1,mpi\_double\_precision,0,mpi\_comm\_world,\&}
-\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00322}00322\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&ierr)}
-\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00323}00323\ \ \ \ \ \ \ \ \ \ \ \ \ chckerr(err\_msg)}
-\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00324}00324\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }mpi\_bcast(\doxymbox{\hyperlink{namespacenum__vars_a1f9d7347043448d30c6612558ae569e5}{max\_r\_plot}},1,mpi\_double\_precision,0,mpi\_comm\_world,\&}
-\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00325}00325\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&ierr)}
-\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00326}00326\ \ \ \ \ \ \ \ \ \ \ \ \ chckerr(err\_msg)}
-\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00327}00327\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }mpi\_bcast(\doxymbox{\hyperlink{namespacenum__vars_ae50396b7028248358850b4524cf84433}{max\_tot\_mem}},1,mpi\_double\_precision,0,\&}
-\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00328}00328\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&mpi\_comm\_world,ierr)}
-\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00329}00329\ \ \ \ \ \ \ \ \ \ \ \ \ chckerr(err\_msg)}
-\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00330}00330\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }mpi\_bcast(\doxymbox{\hyperlink{namespacenum__vars_a03373a7c9a040867e8108023f2ccf479}{sol\_n\_procs}},1,mpi\_integer,0,mpi\_comm\_world,ierr)}
-\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00331}00331\ \ \ \ \ \ \ \ \ \ \ \ \ chckerr(err\_msg)}
-\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00332}00332\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }mpi\_bcast(\doxymbox{\hyperlink{namespacenum__vars_a0c3d2a6eea73c4d47f30df016475b585}{n\_theta\_plot}},1,mpi\_integer,0,mpi\_comm\_world,ierr)}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00274}00274\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (ierr.ge.1\ .and.\ ierr.le.125)\ \textcolor{keywordflow}{then}}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00275}00275\ \ \ \ \ \ \ \ \ \ \ \ \ status\ =\ ierr}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00276}00276\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00277}00277\ \ \ \ \ \ \ \ \ \ \ \ \ status\ =\ 1}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00278}00278\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ end\ if}}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00279}00279\ \ \ \ \ \textcolor{keyword}{end\ function\ }get\_exit\_status}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00280}00280\ \ \ \ \ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00281}00281\ \textcolor{comment}{\ \ \ \ !>\ Broadcasts\ options\ (e.g.\ user-\/prescribed)\ that\ are\ not\ passed\ through\ the}}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00282}00282\ \textcolor{comment}{\ \ \ \ !!\ HDF5\ output\ file\ (i.e.\ \(\backslash\)c\ ltest,\ \(\backslash\)c\ no\_plots,\ ...).}}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00283}00283\ \textcolor{comment}{\ \ \ \ !!}}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00284}00284\ \textcolor{comment}{\ \ \ \ !!\ \(\backslash\)see\ read\_input\_opts()}}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00285}00285\ \textcolor{comment}{\ \ \ \ !!}}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00286}00286\ \textcolor{comment}{\ \ \ \ !!\ \(\backslash\)note\ Some\ \ variables\ (e.g.\ \(\backslash\)c\ \ eq\_style,\ ...)\ \ are\ not\ passed\ \ over\ MPI.}}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00287}00287\ \textcolor{comment}{\ \ \ \ !!\ Every\ \ process\ should\ \ call\ \ its\ own\ \ reconstruct\_pb3d\_in()\ \ in\ order\ \ to}}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00288}00288\ \textcolor{comment}{\ \ \ \ !!\ obtain\ them.}}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00289}00289\ \textcolor{comment}{\ \ \ \ !!}}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00290}00290\ \textcolor{comment}{\ \ \ \ !!\ \(\backslash\)return\ ierr}}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00291}\doxymbox{\hyperlink{namespacempi__ops_a932eba1c998dd7a0f1191b55cd754be3}{00291}}\ \ \ \ \ \textcolor{keyword}{integer\ }\textcolor{keyword}{function\ }\doxymbox{\hyperlink{namespacempi__ops_a932eba1c998dd7a0f1191b55cd754be3}{broadcast\_input\_opts}}()\ \textcolor{keyword}{result}(ierr)}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00292}00292\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{use\ }\doxymbox{\hyperlink{namespacenum__vars}{num\_vars}},\ \textcolor{keywordtype}{only}:\ \doxymbox{\hyperlink{namespacenum__vars_a3ff2bb983ee80a6735277d6789e6ce7c}{max\_str\_ln}},\ \doxymbox{\hyperlink{namespacenum__vars_a06597cae984d53aec80c150fc13d3e7f}{ltest}},\ \doxymbox{\hyperlink{namespacenum__vars_a5f499e4a936adb4e779bdb2c3cf85b83}{check\_vac}},\ \doxymbox{\hyperlink{namespacenum__vars_ae3a84293bef25ace5487fc49edd1b036}{vac\_diag\_style}},\ \&}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00293}00293\ \ \ \ \ \ \ \ \ \ \ \ \ \&\doxymbox{\hyperlink{namespacenum__vars_ad35971574ecb900c805b8d08745160e6}{max\_it\_zero}},\ \doxymbox{\hyperlink{namespacenum__vars_ab47aa91445feaedb05ac9d1a584664fe}{rank}},\ \&}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00294}00294\ \ \ \ \ \ \ \ \ \ \ \ \ \&\doxymbox{\hyperlink{namespacenum__vars_afbd4cb9a4ef9e8a277aecfc41b09aa1d}{max\_it\_rich}},\ \doxymbox{\hyperlink{namespacenum__vars_ae2387f8182114da91104322ca3250d9a}{tol\_zero}},\ \doxymbox{\hyperlink{namespacenum__vars_a3a1f41c66c3d91fc749bcffd177b0662}{n\_procs}},\ \doxymbox{\hyperlink{namespacenum__vars_a3deb68d5c9cd3a99c9dd779e18c4d129}{n\_sol\_requested}},\ \doxymbox{\hyperlink{namespacenum__vars_aa0091a935b9502afef09a87c0f590e9d}{tol\_rich}},\ \&}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00295}00295\ \ \ \ \ \ \ \ \ \ \ \ \ \&\doxymbox{\hyperlink{namespacenum__vars_aa77741498300b095e49a5d8344480b68}{max\_nr\_backtracks\_hh}},\ \doxymbox{\hyperlink{namespacenum__vars_a03373a7c9a040867e8108023f2ccf479}{sol\_n\_procs}},\ \&}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00296}00296\ \ \ \ \ \ \ \ \ \ \ \ \ \&\doxymbox{\hyperlink{namespacenum__vars_adc6255c76bb27f763817adc8e2d80658}{retain\_all\_sol}},\ \doxymbox{\hyperlink{namespacenum__vars_a3b821da571f91f9ec665538209b995a6}{plot\_flux\_q}},\ \doxymbox{\hyperlink{namespacenum__vars_ad6bbee854ff7479d1d2ded83cda04699}{plot\_magn\_grid}},\ \doxymbox{\hyperlink{namespacenum__vars_a09ac710a02758a271706d96e50e5c1b1}{plot\_b}},\ \doxymbox{\hyperlink{namespacenum__vars_aa5519c9217b33a3a677e058723638fa9}{plot\_j}},\ \&}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00297}00297\ \ \ \ \ \ \ \ \ \ \ \ \ \&\doxymbox{\hyperlink{namespacenum__vars_a15a00106d8f59e98ab924f905cf2ddac}{plot\_kappa}},\ \doxymbox{\hyperlink{namespacenum__vars_aca13a9c68dbf136ed2a2a8e0fa04c087}{plot\_sol\_xi}},\ \doxymbox{\hyperlink{namespacenum__vars_a478a829f8ec3af3e57e91bf48732a5e1}{plot\_sol\_q}},\ \doxymbox{\hyperlink{namespacenum__vars_ae90f876bc701020d565d6e77c4dc8c61}{plot\_e\_rec}},\ \doxymbox{\hyperlink{namespacenum__vars_afe223f0c9580de8bf52d2cedc2ab2ee8}{no\_plots}},\ \&}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00298}00298\ \ \ \ \ \ \ \ \ \ \ \ \ \&\doxymbox{\hyperlink{namespacenum__vars_a0e40187c6517fb55cc756c5656327fb9}{plot\_grid\_style}},\ \doxymbox{\hyperlink{namespacenum__vars_a98df35edce5a42616685bb1ebd508c79}{n\_sol\_plotted}},\ \doxymbox{\hyperlink{namespacenum__vars_a0c3d2a6eea73c4d47f30df016475b585}{n\_theta\_plot}},\ \doxymbox{\hyperlink{namespacenum__vars_a657b74ac497053e3c848796f1afaca5f}{n\_zeta\_plot}},\ \&}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00299}00299\ \ \ \ \ \ \ \ \ \ \ \ \ \&\doxymbox{\hyperlink{namespacenum__vars_a2085f22558c1b4a349b5ad1b6abfe09f}{min\_theta\_plot}},\ \doxymbox{\hyperlink{namespacenum__vars_ade6d14ac98ba7f573ef83194808f68b8}{max\_theta\_plot}},\ \doxymbox{\hyperlink{namespacenum__vars_a773a55cfd780f1f9db69887fdf48b0a5}{min\_zeta\_plot}},\ \doxymbox{\hyperlink{namespacenum__vars_a2c2f75ebac91c6e5e122e41a62b71b6d}{max\_zeta\_plot}},\ \&}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00300}00300\ \ \ \ \ \ \ \ \ \ \ \ \ \&\doxymbox{\hyperlink{namespacenum__vars_ab3369f21aa4433cb6dc08957e477c015}{min\_r\_plot}},\ \doxymbox{\hyperlink{namespacenum__vars_a1f9d7347043448d30c6612558ae569e5}{max\_r\_plot}},\ \doxymbox{\hyperlink{namespacenum__vars_adaf8e128a1b232b8231305be41a55bdc}{swap\_angles}},\ \doxymbox{\hyperlink{namespacenum__vars_a70fd85a310da008203347f25b0043238}{plot\_resonance}},\ \doxymbox{\hyperlink{namespacenum__vars_acbfccf15a8af9fce37f9cb3f2c85be76}{tol\_slepc}},\ \&}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00301}00301\ \ \ \ \ \ \ \ \ \ \ \ \ \&\doxymbox{\hyperlink{namespacenum__vars_a50245a345efb453eda46b3fe98b702e8}{prog\_style}},\ \doxymbox{\hyperlink{namespacenum__vars_a08dbb9f56d96f37c61cacb9d23d6e17f}{post\_style}},\ \doxymbox{\hyperlink{namespacenum__vars_acd9fb4b84728c986d5ecde709dcac940}{jump\_to\_sol}},\ \doxymbox{\hyperlink{namespacenum__vars_aa1342b6b43268bd10bb254fa9bf754f0}{export\_hel}},\ \doxymbox{\hyperlink{namespacenum__vars_a2f303733b113f96fad56bb8ceb337c85}{compare\_tor\_pos}},\ \&}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00302}00302\ \ \ \ \ \ \ \ \ \ \ \ \ \&\doxymbox{\hyperlink{namespacenum__vars_a89067eb4dc3fcdcc85d7cf185d3774ea}{plot\_vmec\_modes}},\ \doxymbox{\hyperlink{namespacenum__vars_a4c19f47e50c92bfd52985761500a999e}{ev\_guess}},\ \doxymbox{\hyperlink{namespacenum__vars_aac52d1fda60883bea62738fe0ecd7527}{ex\_plot\_style}},\ \doxymbox{\hyperlink{namespacenum__vars_aff32519d88708f2f44f80d62cfb0e0f4}{solver\_slepc\_style}},\ \&}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00303}00303\ \ \ \ \ \ \ \ \ \ \ \ \ \&\doxymbox{\hyperlink{namespacenum__vars_aa53d6f71e297c4d8be05907bb7dbffce}{pert\_mult\_factor\_post}},\ \doxymbox{\hyperlink{namespacenum__vars_a7d65e7e9a9c8d9882929fc014b81a81b}{post\_output\_full}},\ \doxymbox{\hyperlink{namespacenum__vars_a500deb6ae4c6ba1171c44513e1aac62b}{post\_output\_sol}},\ \&}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00304}00304\ \ \ \ \ \ \ \ \ \ \ \ \ \&\doxymbox{\hyperlink{namespacenum__vars_a301b25f19135f2bee8ccce99257ae86c}{tol\_norm}},\ \doxymbox{\hyperlink{namespacenum__vars_a8855ce3cc66743410c56c1dfecbc6a1a}{max\_it\_slepc}},\ \doxymbox{\hyperlink{namespacenum__vars_a641ae7ad0ef7673f5a3f6966d311d8cc}{plot\_vac\_pot}},\ \doxymbox{\hyperlink{namespacenum__vars_a3bd355d04302c5d45685a0e1e3f6b1f6}{plot\_size}},\ \&}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00305}00305\ \ \ \ \ \ \ \ \ \ \ \ \ \&\doxymbox{\hyperlink{namespacenum__vars_ae50396b7028248358850b4524cf84433}{max\_tot\_mem}},\ \doxymbox{\hyperlink{namespacenum__vars_af86827817455d27248f5660c3d616283}{max\_x\_mem}},\ \doxymbox{\hyperlink{namespacenum__vars_a9c579c39602d4a4761335866603aea5f}{invert\_top\_bottom\_h}},\ \&}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00306}00306\ \ \ \ \ \ \ \ \ \ \ \ \ \&\doxymbox{\hyperlink{namespacenum__vars_ad5ba241cde0a99cdd5b3d6a6c0340e5c}{do\_execute\_command\_line}},\ \doxymbox{\hyperlink{namespacenum__vars_a28bf4f706f43af630ecc697dec01654c}{print\_mem\_usage}},\ \&}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00307}00307\ \ \ \ \ \ \ \ \ \ \ \ \ \&\doxymbox{\hyperlink{namespacenum__vars_ac4bc885e8034c285bf0a9b76a832a738}{rich\_restart\_lvl}},\ \&}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00308}00308\ \ \ \ \ \ \ \ \ \ \ \ \ \&\doxymbox{\hyperlink{namespacenum__vars_a8b3ab3b12cddc0c3e60c3430912b5f3c}{pb3d\_name}},\ \&}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00309}00309\ \ \ \ \ \ \ \ \ \ \ \ \ \&\doxymbox{\hyperlink{namespacenum__vars_aac566d69891d40b90df6b90d18e16039}{rz\_0}},\ \&}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00310}00310\ \ \ \ \ \ \ \ \ \ \ \ \ \&\doxymbox{\hyperlink{namespacenum__vars_a9f2ea40c94edef5e9f10f3b5d154c2a3}{min\_rvac\_plot}},\ \doxymbox{\hyperlink{namespacenum__vars_a6b703d539ded323851dce024a4b33df7}{max\_rvac\_plot}},\ \doxymbox{\hyperlink{namespacenum__vars_ab9fd7d4e9921ff8ceab88317f0c1ae5f}{min\_zvac\_plot}},\ \doxymbox{\hyperlink{namespacenum__vars_a6057251380bbdf0bf71cee48c49ab84c}{max\_zvac\_plot}},\ \&}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00311}00311\ \ \ \ \ \ \ \ \ \ \ \ \ \&\doxymbox{\hyperlink{namespacenum__vars_a5331aef164e788f0e3aa354ea8059a01}{n\_vac\_plot}}}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00312}00312\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{use\ }\doxymbox{\hyperlink{namespacegrid__vars}{grid\_vars}},\ \textcolor{keywordtype}{only}:\ \doxymbox{\hyperlink{namespacegrid__vars_a689c08cf03bc54338878f85c6429b856}{min\_par\_x}},\ \doxymbox{\hyperlink{namespacegrid__vars_acaa1fd21d0c728ad8f24591c0d2a5801}{max\_par\_x}}}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00313}00313\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{use\ }\doxymbox{\hyperlink{namespacerich__vars}{rich\_vars}},\ \textcolor{keywordtype}{only}:\ \doxymbox{\hyperlink{namespacerich__vars_a167fe55b5d9c1a4566729da683466947}{no\_guess}},\ \doxymbox{\hyperlink{namespacerich__vars_a1b7734ba9ce6cc153b22387e638093c0}{rich\_lvl}},\ \doxymbox{\hyperlink{namespacerich__vars_a07841cccca6e6ee59aeb4e0661558eda}{min\_n\_par\_x}}}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00314}00314\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00315}00315\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{character(*)},\ \textcolor{keywordtype}{parameter}\ ::\ rout\_name\ =\ \textcolor{stringliteral}{'broadcast\_input\_opts'}}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00316}00316\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00317}00317\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ local\ variables}}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00318}00318\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{character(len=max\_str\_ln)}\ ::\ err\_msg\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ error\ message}}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00319}00319\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00320}00320\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ initialize\ ierr}}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00321}00321\ \ \ \ \ \ \ \ \ ierr\ =\ 0}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00322}00322\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00323}00323\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ set\ err\_msg}}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00324}00324\ \ \ \ \ \ \ \ \ err\_msg\ =\ \textcolor{stringliteral}{'MPI\ broadcast\ failed'}}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00325}00325\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00326}00326\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\doxymbox{\hyperlink{namespacenum__vars_a3a1f41c66c3d91fc749bcffd177b0662}{n\_procs}}.gt.1)\ \textcolor{keywordflow}{then}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ need\ to\ broadcast\ from\ rank\ 0\ to\ other\ processes}}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00327}00327\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ print\ message}}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00328}00328\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_aa4a8d01563e92558e8a0875b075ec54c}{writo}}(\textcolor{stringliteral}{'Broadcasting\ input\ option\ variables'})}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00329}00329\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_a6e6bfb084063e4cc91ee86e542043302}{lvl\_ud}}(1)}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00330}00330\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00331}00331\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ variables\ that\ are\ sent\ for\ every\ program\ style:}}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00332}00332\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }mpi\_bcast(\doxymbox{\hyperlink{namespacenum__vars_a06597cae984d53aec80c150fc13d3e7f}{ltest}},1,mpi\_logical,0,mpi\_comm\_world,ierr)}
 \DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00333}00333\ \ \ \ \ \ \ \ \ \ \ \ \ chckerr(err\_msg)}
-\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00334}00334\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }mpi\_bcast(\doxymbox{\hyperlink{namespacenum__vars_a657b74ac497053e3c848796f1afaca5f}{n\_zeta\_plot}},1,mpi\_integer,0,mpi\_comm\_world,ierr)}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00334}00334\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }mpi\_bcast(\doxymbox{\hyperlink{namespacenum__vars_a5f499e4a936adb4e779bdb2c3cf85b83}{check\_vac}},1,mpi\_logical,0,mpi\_comm\_world,ierr)}
 \DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00335}00335\ \ \ \ \ \ \ \ \ \ \ \ \ chckerr(err\_msg)}
-\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00336}00336\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }mpi\_bcast(\doxymbox{\hyperlink{namespacenum__vars_afbd4cb9a4ef9e8a277aecfc41b09aa1d}{max\_it\_rich}},1,mpi\_integer,0,mpi\_comm\_world,ierr)}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00336}00336\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }mpi\_bcast(\doxymbox{\hyperlink{namespacenum__vars_ae3a84293bef25ace5487fc49edd1b036}{vac\_diag\_style}},1,mpi\_integer,0,mpi\_comm\_world,ierr)}
 \DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00337}00337\ \ \ \ \ \ \ \ \ \ \ \ \ chckerr(err\_msg)}
-\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00338}00338\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }mpi\_bcast(\doxymbox{\hyperlink{namespacenum__vars_ad35971574ecb900c805b8d08745160e6}{max\_it\_zero}},1,mpi\_integer,0,mpi\_comm\_world,ierr)}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00338}00338\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }mpi\_bcast(\doxymbox{\hyperlink{namespacenum__vars_afe223f0c9580de8bf52d2cedc2ab2ee8}{no\_plots}},1,mpi\_logical,0,mpi\_comm\_world,ierr)}
 \DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00339}00339\ \ \ \ \ \ \ \ \ \ \ \ \ chckerr(err\_msg)}
-\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00340}00340\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }mpi\_bcast(\doxymbox{\hyperlink{namespacenum__vars_aa77741498300b095e49a5d8344480b68}{max\_nr\_backtracks\_hh}},1,mpi\_integer,0,mpi\_comm\_world,\&}
-\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00341}00341\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&ierr)}
-\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00342}00342\ \ \ \ \ \ \ \ \ \ \ \ \ chckerr(err\_msg)}
-\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00343}00343\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }mpi\_bcast(\doxymbox{\hyperlink{namespacenum__vars_aac52d1fda60883bea62738fe0ecd7527}{ex\_plot\_style}},1,mpi\_integer,0,mpi\_comm\_world,ierr)}
-\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00344}00344\ \ \ \ \ \ \ \ \ \ \ \ \ chckerr(err\_msg)}
-\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00345}00345\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }mpi\_bcast(\doxymbox{\hyperlink{namespacenum__vars_a3bd355d04302c5d45685a0e1e3f6b1f6}{plot\_size}},2,mpi\_integer,0,mpi\_comm\_world,ierr)}
-\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00346}00346\ \ \ \ \ \ \ \ \ \ \ \ \ chckerr(err\_msg)}
-\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00347}00347\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }mpi\_bcast(\doxymbox{\hyperlink{namespacenum__vars_a8b3ab3b12cddc0c3e60c3430912b5f3c}{pb3d\_name}},len(\doxymbox{\hyperlink{namespacenum__vars_a8b3ab3b12cddc0c3e60c3430912b5f3c}{pb3d\_name}}),mpi\_character,0,\&}
-\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00348}00348\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&mpi\_comm\_world,ierr)}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00340}00340\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }mpi\_bcast(\doxymbox{\hyperlink{namespacenum__vars_ad5ba241cde0a99cdd5b3d6a6c0340e5c}{do\_execute\_command\_line}},1,mpi\_logical,0,\&}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00341}00341\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&mpi\_comm\_world,ierr)}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00342}00342\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }mpi\_bcast(\doxymbox{\hyperlink{namespacenum__vars_a28bf4f706f43af630ecc697dec01654c}{print\_mem\_usage}},1,mpi\_logical,0,mpi\_comm\_world,ierr)}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00343}00343\ \ \ \ \ \ \ \ \ \ \ \ \ chckerr(err\_msg)}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00344}00344\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }mpi\_bcast(\doxymbox{\hyperlink{namespacenum__vars_a3b821da571f91f9ec665538209b995a6}{plot\_flux\_q}},1,mpi\_logical,0,mpi\_comm\_world,ierr)}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00345}00345\ \ \ \ \ \ \ \ \ \ \ \ \ chckerr(err\_msg)}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00346}00346\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }mpi\_bcast(\doxymbox{\hyperlink{namespacenum__vars_a15a00106d8f59e98ab924f905cf2ddac}{plot\_kappa}},1,mpi\_logical,0,mpi\_comm\_world,ierr)}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00347}00347\ \ \ \ \ \ \ \ \ \ \ \ \ chckerr(err\_msg)}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00348}00348\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }mpi\_bcast(\doxymbox{\hyperlink{namespacenum__vars_ad6bbee854ff7479d1d2ded83cda04699}{plot\_magn\_grid}},1,mpi\_logical,0,mpi\_comm\_world,ierr)}
 \DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00349}00349\ \ \ \ \ \ \ \ \ \ \ \ \ chckerr(err\_msg)}
-\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00350}00350\ \ \ \ \ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00351}00351\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ select\ according\ to\ program\ style}}
-\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00352}00352\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{select\ case}\ (\doxymbox{\hyperlink{namespacenum__vars_a50245a345efb453eda46b3fe98b702e8}{prog\_style}})}
-\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00353}00353\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}(1)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ PB3D}}
-\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00354}00354\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }mpi\_bcast(\doxymbox{\hyperlink{namespacerich__vars_a167fe55b5d9c1a4566729da683466947}{no\_guess}},1,mpi\_logical,0,mpi\_comm\_world,ierr)}
-\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00355}00355\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ chckerr(err\_msg)}
-\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00356}00356\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }mpi\_bcast(\doxymbox{\hyperlink{namespacenum__vars_acd9fb4b84728c986d5ecde709dcac940}{jump\_to\_sol}},1,mpi\_logical,0,mpi\_comm\_world,\&}
-\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00357}00357\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&ierr)}
-\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00358}00358\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ chckerr(err\_msg)}
-\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00359}00359\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }mpi\_bcast(\doxymbox{\hyperlink{namespacenum__vars_aa1342b6b43268bd10bb254fa9bf754f0}{export\_hel}},1,mpi\_logical,0,mpi\_comm\_world,\&}
-\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00360}00360\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&ierr)}
-\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00361}00361\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ chckerr(err\_msg)}
-\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00362}00362\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }mpi\_bcast(\doxymbox{\hyperlink{namespacenum__vars_a89067eb4dc3fcdcc85d7cf185d3774ea}{plot\_vmec\_modes}},1,mpi\_logical,0,\&}
-\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00363}00363\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&mpi\_comm\_world,ierr)}
-\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00364}00364\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ chckerr(err\_msg)}
-\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00365}00365\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }mpi\_bcast(\doxymbox{\hyperlink{namespacenum__vars_a9c579c39602d4a4761335866603aea5f}{invert\_top\_bottom\_h}},1,mpi\_logical,0,\&}
-\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00366}00366\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&mpi\_comm\_world,ierr)}
-\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00367}00367\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ chckerr(err\_msg)}
-\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00368}00368\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }mpi\_bcast(\doxymbox{\hyperlink{namespacerich__vars_a07841cccca6e6ee59aeb4e0661558eda}{min\_n\_par\_x}},1,mpi\_integer,0,mpi\_comm\_world,\&}
-\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00369}00369\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&ierr)}
-\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00370}00370\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ chckerr(err\_msg)}
-\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00371}00371\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }mpi\_bcast(\doxymbox{\hyperlink{namespacenum__vars_aff32519d88708f2f44f80d62cfb0e0f4}{solver\_slepc\_style}},1,mpi\_integer,0,\&}
-\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00372}00372\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&mpi\_comm\_world,ierr)}
-\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00373}00373\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ chckerr(err\_msg)}
-\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00374}00374\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }mpi\_bcast(\doxymbox{\hyperlink{namespacenum__vars_a3deb68d5c9cd3a99c9dd779e18c4d129}{n\_sol\_requested}},1,mpi\_integer,0,\&}
-\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00375}00375\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&mpi\_comm\_world,ierr)}
-\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00376}00376\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ chckerr(err\_msg)}
-\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00377}00377\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }mpi\_bcast(\doxymbox{\hyperlink{namespacenum__vars_adc6255c76bb27f763817adc8e2d80658}{retain\_all\_sol}},1,mpi\_integer,0,\&}
-\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00378}00378\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&mpi\_comm\_world,ierr)}
-\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00379}00379\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ chckerr(err\_msg)}
-\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00380}00380\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }mpi\_bcast(\doxymbox{\hyperlink{namespacenum__vars_a8855ce3cc66743410c56c1dfecbc6a1a}{max\_it\_slepc}},1,mpi\_integer,0,mpi\_comm\_world,\&}
-\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00381}00381\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&ierr)}
-\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00382}00382\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ chckerr(err\_msg)}
-\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00383}00383\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }mpi\_bcast(\doxymbox{\hyperlink{namespacenum__vars_ac4bc885e8034c285bf0a9b76a832a738}{rich\_restart\_lvl}},1,mpi\_integer,0,\&}
-\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00384}00384\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&mpi\_comm\_world,ierr)}
-\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00385}00385\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ chckerr(err\_msg)}
-\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00386}00386\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }mpi\_bcast(\doxymbox{\hyperlink{namespacenum__vars_a4c19f47e50c92bfd52985761500a999e}{ev\_guess}},1,mpi\_double\_precision,0,\&}
-\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00387}00387\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&mpi\_comm\_world,ierr)}
-\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00388}00388\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ chckerr(err\_msg)}
-\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00389}00389\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }mpi\_bcast(\doxymbox{\hyperlink{namespacenum__vars_a301b25f19135f2bee8ccce99257ae86c}{tol\_norm}},1,mpi\_double\_precision,0,\&}
-\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00390}00390\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&mpi\_comm\_world,ierr)}
-\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00391}00391\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ chckerr(err\_msg)}
-\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00392}00392\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }mpi\_bcast(\doxymbox{\hyperlink{namespacegrid__vars_a689c08cf03bc54338878f85c6429b856}{min\_par\_x}},1,mpi\_double\_precision,0,\&}
-\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00393}00393\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&mpi\_comm\_world,ierr)}
-\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00394}00394\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ chckerr(err\_msg)}
-\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00395}00395\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }mpi\_bcast(\doxymbox{\hyperlink{namespacegrid__vars_acaa1fd21d0c728ad8f24591c0d2a5801}{max\_par\_x}},1,mpi\_double\_precision,0,\&}
-\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00396}00396\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&mpi\_comm\_world,ierr)}
-\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00397}00397\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ chckerr(err\_msg)}
-\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00398}00398\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }mpi\_bcast(\doxymbox{\hyperlink{namespacenum__vars_af86827817455d27248f5660c3d616283}{max\_x\_mem}},1,mpi\_double\_precision,\&}
-\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00399}00399\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&0,mpi\_comm\_world,ierr)}
-\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00400}00400\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ chckerr(err\_msg)}
-\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00401}00401\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }mpi\_bcast(\doxymbox{\hyperlink{namespacenum__vars_aa0091a935b9502afef09a87c0f590e9d}{tol\_rich}},1,mpi\_double\_precision,0,\&}
-\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00402}00402\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&mpi\_comm\_world,ierr)}
-\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00403}00403\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ chckerr(err\_msg)}
-\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00404}00404\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\doxymbox{\hyperlink{namespacenum__vars_ab47aa91445feaedb05ac9d1a584664fe}{rank}}.ne.0)\ \textcolor{keyword}{allocate}(\doxymbox{\hyperlink{namespacenum__vars_acbfccf15a8af9fce37f9cb3f2c85be76}{tol\_slepc}}(\doxymbox{\hyperlink{namespacenum__vars_afbd4cb9a4ef9e8a277aecfc41b09aa1d}{max\_it\_rich}}))}
-\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00405}00405\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }mpi\_bcast(\doxymbox{\hyperlink{namespacenum__vars_acbfccf15a8af9fce37f9cb3f2c85be76}{tol\_slepc}},\doxymbox{\hyperlink{namespacenum__vars_afbd4cb9a4ef9e8a277aecfc41b09aa1d}{max\_it\_rich}},mpi\_double\_precision,\&}
-\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00406}00406\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&0,mpi\_comm\_world,ierr)}
-\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00407}00407\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ chckerr(err\_msg)}
-\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00408}00408\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}(2)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ POST}}
-\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00409}00409\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }mpi\_bcast(\doxymbox{\hyperlink{namespacenum__vars_adaf8e128a1b232b8231305be41a55bdc}{swap\_angles}},1,mpi\_logical,0,mpi\_comm\_world,\&}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00350}00350\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }mpi\_bcast(\doxymbox{\hyperlink{namespacenum__vars_a09ac710a02758a271706d96e50e5c1b1}{plot\_b}},1,mpi\_logical,0,mpi\_comm\_world,ierr)}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00351}00351\ \ \ \ \ \ \ \ \ \ \ \ \ chckerr(err\_msg)}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00352}00352\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }mpi\_bcast(\doxymbox{\hyperlink{namespacenum__vars_aa5519c9217b33a3a677e058723638fa9}{plot\_j}},1,mpi\_logical,0,mpi\_comm\_world,ierr)}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00353}00353\ \ \ \ \ \ \ \ \ \ \ \ \ chckerr(err\_msg)}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00354}00354\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }mpi\_bcast(\doxymbox{\hyperlink{namespacenum__vars_a70fd85a310da008203347f25b0043238}{plot\_resonance}},1,mpi\_logical,0,mpi\_comm\_world,ierr)}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00355}00355\ \ \ \ \ \ \ \ \ \ \ \ \ chckerr(err\_msg)}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00356}00356\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }mpi\_bcast(\doxymbox{\hyperlink{namespacenum__vars_ae2387f8182114da91104322ca3250d9a}{tol\_zero}},1,mpi\_double\_precision,0,mpi\_comm\_world,\&}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00357}00357\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&ierr)}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00358}00358\ \ \ \ \ \ \ \ \ \ \ \ \ chckerr(err\_msg)}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00359}00359\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }mpi\_bcast(\doxymbox{\hyperlink{namespacenum__vars_a2085f22558c1b4a349b5ad1b6abfe09f}{min\_theta\_plot}},1,mpi\_double\_precision,0,\&}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00360}00360\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&mpi\_comm\_world,ierr)}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00361}00361\ \ \ \ \ \ \ \ \ \ \ \ \ chckerr(err\_msg)}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00362}00362\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }mpi\_bcast(\doxymbox{\hyperlink{namespacenum__vars_ade6d14ac98ba7f573ef83194808f68b8}{max\_theta\_plot}},1,mpi\_double\_precision,0,\&}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00363}00363\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&mpi\_comm\_world,ierr)}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00364}00364\ \ \ \ \ \ \ \ \ \ \ \ \ chckerr(err\_msg)}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00365}00365\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }mpi\_bcast(\doxymbox{\hyperlink{namespacenum__vars_a773a55cfd780f1f9db69887fdf48b0a5}{min\_zeta\_plot}},1,mpi\_double\_precision,0,\&}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00366}00366\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&mpi\_comm\_world,ierr)}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00367}00367\ \ \ \ \ \ \ \ \ \ \ \ \ chckerr(err\_msg)}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00368}00368\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }mpi\_bcast(\doxymbox{\hyperlink{namespacenum__vars_a2c2f75ebac91c6e5e122e41a62b71b6d}{max\_zeta\_plot}},1,mpi\_double\_precision,0,\&}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00369}00369\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&mpi\_comm\_world,ierr)}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00370}00370\ \ \ \ \ \ \ \ \ \ \ \ \ chckerr(err\_msg)}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00371}00371\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }mpi\_bcast(\doxymbox{\hyperlink{namespacenum__vars_ab3369f21aa4433cb6dc08957e477c015}{min\_r\_plot}},1,mpi\_double\_precision,0,mpi\_comm\_world,\&}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00372}00372\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&ierr)}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00373}00373\ \ \ \ \ \ \ \ \ \ \ \ \ chckerr(err\_msg)}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00374}00374\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }mpi\_bcast(\doxymbox{\hyperlink{namespacenum__vars_a1f9d7347043448d30c6612558ae569e5}{max\_r\_plot}},1,mpi\_double\_precision,0,mpi\_comm\_world,\&}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00375}00375\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&ierr)}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00376}00376\ \ \ \ \ \ \ \ \ \ \ \ \ chckerr(err\_msg)}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00377}00377\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }mpi\_bcast(\doxymbox{\hyperlink{namespacenum__vars_ae50396b7028248358850b4524cf84433}{max\_tot\_mem}},1,mpi\_double\_precision,0,\&}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00378}00378\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&mpi\_comm\_world,ierr)}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00379}00379\ \ \ \ \ \ \ \ \ \ \ \ \ chckerr(err\_msg)}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00380}00380\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }mpi\_bcast(\doxymbox{\hyperlink{namespacenum__vars_a03373a7c9a040867e8108023f2ccf479}{sol\_n\_procs}},1,mpi\_integer,0,mpi\_comm\_world,ierr)}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00381}00381\ \ \ \ \ \ \ \ \ \ \ \ \ chckerr(err\_msg)}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00382}00382\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }mpi\_bcast(\doxymbox{\hyperlink{namespacenum__vars_a0c3d2a6eea73c4d47f30df016475b585}{n\_theta\_plot}},1,mpi\_integer,0,mpi\_comm\_world,ierr)}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00383}00383\ \ \ \ \ \ \ \ \ \ \ \ \ chckerr(err\_msg)}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00384}00384\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }mpi\_bcast(\doxymbox{\hyperlink{namespacenum__vars_a657b74ac497053e3c848796f1afaca5f}{n\_zeta\_plot}},1,mpi\_integer,0,mpi\_comm\_world,ierr)}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00385}00385\ \ \ \ \ \ \ \ \ \ \ \ \ chckerr(err\_msg)}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00386}00386\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }mpi\_bcast(\doxymbox{\hyperlink{namespacenum__vars_afbd4cb9a4ef9e8a277aecfc41b09aa1d}{max\_it\_rich}},1,mpi\_integer,0,mpi\_comm\_world,ierr)}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00387}00387\ \ \ \ \ \ \ \ \ \ \ \ \ chckerr(err\_msg)}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00388}00388\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }mpi\_bcast(\doxymbox{\hyperlink{namespacenum__vars_ad35971574ecb900c805b8d08745160e6}{max\_it\_zero}},1,mpi\_integer,0,mpi\_comm\_world,ierr)}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00389}00389\ \ \ \ \ \ \ \ \ \ \ \ \ chckerr(err\_msg)}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00390}00390\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }mpi\_bcast(\doxymbox{\hyperlink{namespacenum__vars_aa77741498300b095e49a5d8344480b68}{max\_nr\_backtracks\_hh}},1,mpi\_integer,0,mpi\_comm\_world,\&}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00391}00391\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&ierr)}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00392}00392\ \ \ \ \ \ \ \ \ \ \ \ \ chckerr(err\_msg)}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00393}00393\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }mpi\_bcast(\doxymbox{\hyperlink{namespacenum__vars_aac52d1fda60883bea62738fe0ecd7527}{ex\_plot\_style}},1,mpi\_integer,0,mpi\_comm\_world,ierr)}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00394}00394\ \ \ \ \ \ \ \ \ \ \ \ \ chckerr(err\_msg)}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00395}00395\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }mpi\_bcast(\doxymbox{\hyperlink{namespacenum__vars_a3bd355d04302c5d45685a0e1e3f6b1f6}{plot\_size}},2,mpi\_integer,0,mpi\_comm\_world,ierr)}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00396}00396\ \ \ \ \ \ \ \ \ \ \ \ \ chckerr(err\_msg)}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00397}00397\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }mpi\_bcast(\doxymbox{\hyperlink{namespacenum__vars_a8b3ab3b12cddc0c3e60c3430912b5f3c}{pb3d\_name}},len(\doxymbox{\hyperlink{namespacenum__vars_a8b3ab3b12cddc0c3e60c3430912b5f3c}{pb3d\_name}}),mpi\_character,0,\&}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00398}00398\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&mpi\_comm\_world,ierr)}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00399}00399\ \ \ \ \ \ \ \ \ \ \ \ \ chckerr(err\_msg)}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00400}00400\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00401}00401\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ select\ according\ to\ program\ style}}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00402}00402\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{select\ case}\ (\doxymbox{\hyperlink{namespacenum__vars_a50245a345efb453eda46b3fe98b702e8}{prog\_style}})}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00403}00403\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}(1)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ PB3D}}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00404}00404\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }mpi\_bcast(\doxymbox{\hyperlink{namespacerich__vars_a167fe55b5d9c1a4566729da683466947}{no\_guess}},1,mpi\_logical,0,mpi\_comm\_world,ierr)}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00405}00405\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ chckerr(err\_msg)}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00406}00406\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }mpi\_bcast(\doxymbox{\hyperlink{namespacenum__vars_acd9fb4b84728c986d5ecde709dcac940}{jump\_to\_sol}},1,mpi\_logical,0,mpi\_comm\_world,\&}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00407}00407\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&ierr)}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00408}00408\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ chckerr(err\_msg)}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00409}00409\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }mpi\_bcast(\doxymbox{\hyperlink{namespacenum__vars_aa1342b6b43268bd10bb254fa9bf754f0}{export\_hel}},1,mpi\_logical,0,mpi\_comm\_world,\&}
 \DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00410}00410\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&ierr)}
 \DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00411}00411\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ chckerr(err\_msg)}
-\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00412}00412\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }mpi\_bcast(\doxymbox{\hyperlink{namespacenum__vars_a2f303733b113f96fad56bb8ceb337c85}{compare\_tor\_pos}},1,mpi\_logical,0,\&}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00412}00412\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }mpi\_bcast(\doxymbox{\hyperlink{namespacenum__vars_a89067eb4dc3fcdcc85d7cf185d3774ea}{plot\_vmec\_modes}},1,mpi\_logical,0,\&}
 \DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00413}00413\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&mpi\_comm\_world,ierr)}
 \DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00414}00414\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ chckerr(err\_msg)}
-\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00415}00415\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }mpi\_bcast(\doxymbox{\hyperlink{namespacenum__vars_aca13a9c68dbf136ed2a2a8e0fa04c087}{plot\_sol\_xi}},1,mpi\_logical,0,mpi\_comm\_world,\&}
-\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00416}00416\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&ierr)}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00415}00415\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }mpi\_bcast(\doxymbox{\hyperlink{namespacenum__vars_a9c579c39602d4a4761335866603aea5f}{invert\_top\_bottom\_h}},1,mpi\_logical,0,\&}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00416}00416\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&mpi\_comm\_world,ierr)}
 \DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00417}00417\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ chckerr(err\_msg)}
-\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00418}00418\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }mpi\_bcast(\doxymbox{\hyperlink{namespacenum__vars_a478a829f8ec3af3e57e91bf48732a5e1}{plot\_sol\_q}},1,mpi\_logical,0,mpi\_comm\_world,\&}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00418}00418\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }mpi\_bcast(\doxymbox{\hyperlink{namespacerich__vars_a07841cccca6e6ee59aeb4e0661558eda}{min\_n\_par\_x}},1,mpi\_integer,0,mpi\_comm\_world,\&}
 \DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00419}00419\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&ierr)}
 \DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00420}00420\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ chckerr(err\_msg)}
-\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00421}00421\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }mpi\_bcast(\doxymbox{\hyperlink{namespacenum__vars_a641ae7ad0ef7673f5a3f6966d311d8cc}{plot\_vac\_pot}},1,mpi\_logical,0,mpi\_comm\_world,\&}
-\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00422}00422\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&ierr)}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00421}00421\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }mpi\_bcast(\doxymbox{\hyperlink{namespacenum__vars_aff32519d88708f2f44f80d62cfb0e0f4}{solver\_slepc\_style}},1,mpi\_integer,0,\&}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00422}00422\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&mpi\_comm\_world,ierr)}
 \DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00423}00423\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ chckerr(err\_msg)}
-\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00424}00424\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }mpi\_bcast(\doxymbox{\hyperlink{namespacenum__vars_ae90f876bc701020d565d6e77c4dc8c61}{plot\_e\_rec}},1,mpi\_logical,0,mpi\_comm\_world,\&}
-\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00425}00425\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&ierr)}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00424}00424\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }mpi\_bcast(\doxymbox{\hyperlink{namespacenum__vars_a3deb68d5c9cd3a99c9dd779e18c4d129}{n\_sol\_requested}},1,mpi\_integer,0,\&}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00425}00425\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&mpi\_comm\_world,ierr)}
 \DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00426}00426\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ chckerr(err\_msg)}
-\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00427}00427\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }mpi\_bcast(\doxymbox{\hyperlink{namespacenum__vars_a7d65e7e9a9c8d9882929fc014b81a81b}{post\_output\_full}},1,mpi\_logical,0,\&}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00427}00427\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }mpi\_bcast(\doxymbox{\hyperlink{namespacenum__vars_adc6255c76bb27f763817adc8e2d80658}{retain\_all\_sol}},1,mpi\_integer,0,\&}
 \DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00428}00428\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&mpi\_comm\_world,ierr)}
 \DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00429}00429\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ chckerr(err\_msg)}
-\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00430}00430\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }mpi\_bcast(\doxymbox{\hyperlink{namespacenum__vars_a500deb6ae4c6ba1171c44513e1aac62b}{post\_output\_sol}},1,mpi\_logical,0,\&}
-\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00431}00431\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&mpi\_comm\_world,ierr)}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00430}00430\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }mpi\_bcast(\doxymbox{\hyperlink{namespacenum__vars_a8855ce3cc66743410c56c1dfecbc6a1a}{max\_it\_slepc}},1,mpi\_integer,0,mpi\_comm\_world,\&}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00431}00431\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&ierr)}
 \DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00432}00432\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ chckerr(err\_msg)}
-\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00433}00433\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }mpi\_bcast(\doxymbox{\hyperlink{namespacenum__vars_a5331aef164e788f0e3aa354ea8059a01}{n\_vac\_plot}},2,mpi\_integer,0,mpi\_comm\_world,\&}
-\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00434}00434\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&ierr)}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00433}00433\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }mpi\_bcast(\doxymbox{\hyperlink{namespacenum__vars_ac4bc885e8034c285bf0a9b76a832a738}{rich\_restart\_lvl}},1,mpi\_integer,0,\&}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00434}00434\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&mpi\_comm\_world,ierr)}
 \DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00435}00435\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ chckerr(err\_msg)}
-\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00436}00436\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }mpi\_bcast(\doxymbox{\hyperlink{namespacenum__vars_a0e40187c6517fb55cc756c5656327fb9}{plot\_grid\_style}},1,mpi\_integer,0,\&}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00436}00436\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }mpi\_bcast(\doxymbox{\hyperlink{namespacenum__vars_a4c19f47e50c92bfd52985761500a999e}{ev\_guess}},1,mpi\_double\_precision,0,\&}
 \DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00437}00437\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&mpi\_comm\_world,ierr)}
 \DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00438}00438\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ chckerr(err\_msg)}
-\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00439}00439\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }mpi\_bcast(\doxymbox{\hyperlink{namespacenum__vars_a98df35edce5a42616685bb1ebd508c79}{n\_sol\_plotted}},4,mpi\_integer,0,\&}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00439}00439\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }mpi\_bcast(\doxymbox{\hyperlink{namespacenum__vars_a301b25f19135f2bee8ccce99257ae86c}{tol\_norm}},1,mpi\_double\_precision,0,\&}
 \DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00440}00440\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&mpi\_comm\_world,ierr)}
 \DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00441}00441\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ chckerr(err\_msg)}
-\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00442}00442\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }mpi\_bcast(\doxymbox{\hyperlink{namespacerich__vars_a1b7734ba9ce6cc153b22387e638093c0}{rich\_lvl}},1,mpi\_integer,0,mpi\_comm\_world,ierr)}
-\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00443}00443\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ chckerr(err\_msg)}
-\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00444}00444\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }mpi\_bcast(\doxymbox{\hyperlink{namespacenum__vars_a08dbb9f56d96f37c61cacb9d23d6e17f}{post\_style}},1,mpi\_integer,0,mpi\_comm\_world,\&}
-\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00445}00445\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&ierr)}
-\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00446}00446\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ chckerr(err\_msg)}
-\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00447}00447\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }mpi\_bcast(\doxymbox{\hyperlink{namespacenum__vars_aa53d6f71e297c4d8be05907bb7dbffce}{pert\_mult\_factor\_post}},1,\&}
-\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00448}00448\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&mpi\_double\_precision,0,mpi\_comm\_world,ierr)}
-\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00449}00449\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ chckerr(err\_msg)}
-\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00450}00450\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }mpi\_bcast(\doxymbox{\hyperlink{namespacenum__vars_aac566d69891d40b90df6b90d18e16039}{rz\_0}},2,mpi\_double\_precision,0,\&}
-\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00451}00451\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&mpi\_comm\_world,ierr)}
-\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00452}00452\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ chckerr(err\_msg)}
-\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00453}00453\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }mpi\_bcast(\doxymbox{\hyperlink{namespacenum__vars_a9f2ea40c94edef5e9f10f3b5d154c2a3}{min\_rvac\_plot}},1,mpi\_double\_precision,0,\&}
-\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00454}00454\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&mpi\_comm\_world,ierr)}
-\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00455}00455\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ chckerr(err\_msg)}
-\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00456}00456\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }mpi\_bcast(\doxymbox{\hyperlink{namespacenum__vars_a6b703d539ded323851dce024a4b33df7}{max\_rvac\_plot}},1,mpi\_double\_precision,0,\&}
-\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00457}00457\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&mpi\_comm\_world,ierr)}
-\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00458}00458\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ chckerr(err\_msg)}
-\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00459}00459\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }mpi\_bcast(\doxymbox{\hyperlink{namespacenum__vars_ab9fd7d4e9921ff8ceab88317f0c1ae5f}{min\_zvac\_plot}},1,mpi\_double\_precision,0,\&}
-\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00460}00460\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&mpi\_comm\_world,ierr)}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00442}00442\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }mpi\_bcast(\doxymbox{\hyperlink{namespacegrid__vars_a689c08cf03bc54338878f85c6429b856}{min\_par\_x}},1,mpi\_double\_precision,0,\&}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00443}00443\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&mpi\_comm\_world,ierr)}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00444}00444\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ chckerr(err\_msg)}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00445}00445\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }mpi\_bcast(\doxymbox{\hyperlink{namespacegrid__vars_acaa1fd21d0c728ad8f24591c0d2a5801}{max\_par\_x}},1,mpi\_double\_precision,0,\&}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00446}00446\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&mpi\_comm\_world,ierr)}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00447}00447\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ chckerr(err\_msg)}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00448}00448\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }mpi\_bcast(\doxymbox{\hyperlink{namespacenum__vars_af86827817455d27248f5660c3d616283}{max\_x\_mem}},1,mpi\_double\_precision,\&}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00449}00449\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&0,mpi\_comm\_world,ierr)}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00450}00450\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ chckerr(err\_msg)}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00451}00451\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }mpi\_bcast(\doxymbox{\hyperlink{namespacenum__vars_aa0091a935b9502afef09a87c0f590e9d}{tol\_rich}},1,mpi\_double\_precision,0,\&}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00452}00452\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&mpi\_comm\_world,ierr)}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00453}00453\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ chckerr(err\_msg)}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00454}00454\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\doxymbox{\hyperlink{namespacenum__vars_ab47aa91445feaedb05ac9d1a584664fe}{rank}}.ne.0)\ \textcolor{keyword}{allocate}(\doxymbox{\hyperlink{namespacenum__vars_acbfccf15a8af9fce37f9cb3f2c85be76}{tol\_slepc}}(\doxymbox{\hyperlink{namespacenum__vars_afbd4cb9a4ef9e8a277aecfc41b09aa1d}{max\_it\_rich}}))}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00455}00455\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }mpi\_bcast(\doxymbox{\hyperlink{namespacenum__vars_acbfccf15a8af9fce37f9cb3f2c85be76}{tol\_slepc}},\doxymbox{\hyperlink{namespacenum__vars_afbd4cb9a4ef9e8a277aecfc41b09aa1d}{max\_it\_rich}},mpi\_double\_precision,\&}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00456}00456\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&0,mpi\_comm\_world,ierr)}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00457}00457\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ chckerr(err\_msg)}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00458}00458\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}(2)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ POST}}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00459}00459\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }mpi\_bcast(\doxymbox{\hyperlink{namespacenum__vars_adaf8e128a1b232b8231305be41a55bdc}{swap\_angles}},1,mpi\_logical,0,mpi\_comm\_world,\&}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00460}00460\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&ierr)}
 \DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00461}00461\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ chckerr(err\_msg)}
-\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00462}00462\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }mpi\_bcast(\doxymbox{\hyperlink{namespacenum__vars_a6057251380bbdf0bf71cee48c49ab84c}{max\_zvac\_plot}},1,mpi\_double\_precision,0,\&}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00462}00462\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }mpi\_bcast(\doxymbox{\hyperlink{namespacenum__vars_a2f303733b113f96fad56bb8ceb337c85}{compare\_tor\_pos}},1,mpi\_logical,0,\&}
 \DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00463}00463\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&mpi\_comm\_world,ierr)}
 \DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00464}00464\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ chckerr(err\_msg)}
-\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00465}00465\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ case\ default}}
-\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00466}00466\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ err\_msg\ =\ \textcolor{stringliteral}{'No\ program\ style\ associated\ with\ '}//\&}
-\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00467}00467\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&trim(\doxymbox{\hyperlink{namespacestr__utilities_a0b97e51770725a3e98ed393d26681414}{i2str}}(\doxymbox{\hyperlink{namespacenum__vars_a50245a345efb453eda46b3fe98b702e8}{prog\_style}}))}
-\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00468}00468\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ierr\ =\ 1}
-\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00469}00469\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ chckerr(err\_msg)}
-\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00470}00470\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ \ \ \ \ end\ select}}
-\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00471}00471\ \ \ \ \ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00472}00472\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_a6e6bfb084063e4cc91ee86e542043302}{lvl\_ud}}(-\/1)}
-\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00473}00473\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_aa4a8d01563e92558e8a0875b075ec54c}{writo}}(\textcolor{stringliteral}{'Input\ option\ variables\ broadcasted'})}
-\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00474}00474\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ end\ if}}
-\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00475}00475\ \ \ \ \ \textcolor{keyword}{end\ function\ }\doxymbox{\hyperlink{namespacempi__ops_a932eba1c998dd7a0f1191b55cd754be3}{broadcast\_input\_opts}}}
-\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00476}00476\ \ \ \ \ \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00477}00477\ \textcolor{comment}{\ \ \ \ !>\ Suddenly\ stops\ the\ computations,\ aborting\ MPI,\ etc.}}
-\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00478}00478\ \textcolor{comment}{\ \ \ \ !!}}
-\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00479}00479\ \textcolor{comment}{\ \ \ \ !!\ As\ a\ special\ case,\ if\ \(\backslash\)c\ ierr\ =\ 66,\ no\ error\ message\ is\ printed.}}
-\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00480}00480\ \textcolor{comment}{\ \ \ \ !!}}
-\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00481}00481\ \textcolor{comment}{\ \ \ \ !!\ \(\backslash\)return\ ierr}}
-\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00482}\doxymbox{\hyperlink{namespacempi__ops_a40e8610357a9a5b075fef9dab1c3f24f}{00482}}\ \ \ \ \ \textcolor{keyword}{subroutine\ }\doxymbox{\hyperlink{namespacempi__ops_a40e8610357a9a5b075fef9dab1c3f24f}{sudden\_stop}}(ierr)}
-\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00483}00483\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{use\ }\doxymbox{\hyperlink{namespacenum__vars}{num\_vars}},\ \textcolor{keywordtype}{only}:\ \doxymbox{\hyperlink{namespacenum__vars_ab47aa91445feaedb05ac9d1a584664fe}{rank}}}
-\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00484}00484\ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00485}00485\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ input\ /\ output}}
-\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00486}00486\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer},\ \textcolor{keywordtype}{intent(in)}\ ::\ ierr\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ error\ to\ output}}
-\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00487}00487\ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00488}00488\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ local\ variables}}
-\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00489}00489\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer}\ ::\ ierr\_abort\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ error\ to\ output}}
-\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00490}00490\ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00491}00491\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (ierr.ne.66)\ \textcolor{keywordflow}{then}}
-\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00492}00492\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_aa4a8d01563e92558e8a0875b075ec54c}{writo}}(\textcolor{stringliteral}{'>>\ calling\ routine:\ PB3D\ (main)\ of\ rank\ '}//\&}
-\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00493}00493\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&trim(\doxymbox{\hyperlink{namespacestr__utilities_a0b97e51770725a3e98ed393d26681414}{i2str}}(\doxymbox{\hyperlink{namespacenum__vars_ab47aa91445feaedb05ac9d1a584664fe}{rank}})),persistent=.true.)}
-\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00494}00494\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_aa4a8d01563e92558e8a0875b075ec54c}{writo}}(\textcolor{stringliteral}{'ERROR\ CODE\ '}//trim(\doxymbox{\hyperlink{namespacestr__utilities_a0b97e51770725a3e98ed393d26681414}{i2str}}(ierr))//\&}
-\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00495}00495\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&\textcolor{stringliteral}{'.\ Aborting\ MPI\ rank\ '}//trim(\doxymbox{\hyperlink{namespacestr__utilities_a0b97e51770725a3e98ed393d26681414}{i2str}}(\doxymbox{\hyperlink{namespacenum__vars_ab47aa91445feaedb05ac9d1a584664fe}{rank}})),\&}
-\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00496}00496\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&persistent=.true.)}
-\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00497}00497\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_a6e6bfb084063e4cc91ee86e542043302}{lvl\_ud}}(1)}
-\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00498}00498\ \ \ \ \ \ \ \ \ \ \ \ \ ierr\_abort\ =\ \doxymbox{\hyperlink{namespacempi__ops_a54d9258ef985728345579e8e57dc8dfe}{abort\_mpi}}()}
-\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00499}00499\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
-\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00500}00500\ \ \ \ \ \ \ \ \ \ \ \ \ ierr\_abort\ =\ \doxymbox{\hyperlink{namespacempi__ops_a0028cc7df4fbd89dbd93de245ab3b2aa}{stop\_mpi}}()}
-\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00501}00501\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ end\ if}}
-\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00502}00502\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (ierr\_abort.ne.0)\ \textcolor{keywordflow}{then}}
-\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00503}00503\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_aa4a8d01563e92558e8a0875b075ec54c}{writo}}(\textcolor{stringliteral}{'MPI\ cannot\ abort...'},persistent=.true.)}
-\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00504}00504\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_aa4a8d01563e92558e8a0875b075ec54c}{writo}}(\textcolor{stringliteral}{'Shutting\ down'},persistent=.true.)}
-\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00505}00505\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ end\ if}}
-\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00506}00506\ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_a6e6bfb084063e4cc91ee86e542043302}{lvl\_ud}}(-\/1)}
-\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00507}00507\ \ \ \ \ \ \ \ \ stop}
-\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00508}00508\ \ \ \ \ \textcolor{keyword}{end\ subroutine}}
-\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00509}00509\ \textcolor{keyword}{end\ module\ }\doxymbox{\hyperlink{namespacempi__ops}{mpi\_ops}}}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00465}00465\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }mpi\_bcast(\doxymbox{\hyperlink{namespacenum__vars_aca13a9c68dbf136ed2a2a8e0fa04c087}{plot\_sol\_xi}},1,mpi\_logical,0,mpi\_comm\_world,\&}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00466}00466\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&ierr)}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00467}00467\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ chckerr(err\_msg)}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00468}00468\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }mpi\_bcast(\doxymbox{\hyperlink{namespacenum__vars_a478a829f8ec3af3e57e91bf48732a5e1}{plot\_sol\_q}},1,mpi\_logical,0,mpi\_comm\_world,\&}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00469}00469\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&ierr)}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00470}00470\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ chckerr(err\_msg)}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00471}00471\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }mpi\_bcast(\doxymbox{\hyperlink{namespacenum__vars_a641ae7ad0ef7673f5a3f6966d311d8cc}{plot\_vac\_pot}},1,mpi\_logical,0,mpi\_comm\_world,\&}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00472}00472\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&ierr)}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00473}00473\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ chckerr(err\_msg)}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00474}00474\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }mpi\_bcast(\doxymbox{\hyperlink{namespacenum__vars_ae90f876bc701020d565d6e77c4dc8c61}{plot\_e\_rec}},1,mpi\_logical,0,mpi\_comm\_world,\&}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00475}00475\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&ierr)}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00476}00476\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ chckerr(err\_msg)}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00477}00477\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }mpi\_bcast(\doxymbox{\hyperlink{namespacenum__vars_a7d65e7e9a9c8d9882929fc014b81a81b}{post\_output\_full}},1,mpi\_logical,0,\&}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00478}00478\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&mpi\_comm\_world,ierr)}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00479}00479\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ chckerr(err\_msg)}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00480}00480\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }mpi\_bcast(\doxymbox{\hyperlink{namespacenum__vars_a500deb6ae4c6ba1171c44513e1aac62b}{post\_output\_sol}},1,mpi\_logical,0,\&}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00481}00481\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&mpi\_comm\_world,ierr)}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00482}00482\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ chckerr(err\_msg)}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00483}00483\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }mpi\_bcast(\doxymbox{\hyperlink{namespacenum__vars_a5331aef164e788f0e3aa354ea8059a01}{n\_vac\_plot}},2,mpi\_integer,0,mpi\_comm\_world,\&}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00484}00484\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&ierr)}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00485}00485\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ chckerr(err\_msg)}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00486}00486\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }mpi\_bcast(\doxymbox{\hyperlink{namespacenum__vars_a0e40187c6517fb55cc756c5656327fb9}{plot\_grid\_style}},1,mpi\_integer,0,\&}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00487}00487\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&mpi\_comm\_world,ierr)}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00488}00488\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ chckerr(err\_msg)}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00489}00489\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }mpi\_bcast(\doxymbox{\hyperlink{namespacenum__vars_a98df35edce5a42616685bb1ebd508c79}{n\_sol\_plotted}},4,mpi\_integer,0,\&}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00490}00490\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&mpi\_comm\_world,ierr)}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00491}00491\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ chckerr(err\_msg)}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00492}00492\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }mpi\_bcast(\doxymbox{\hyperlink{namespacerich__vars_a1b7734ba9ce6cc153b22387e638093c0}{rich\_lvl}},1,mpi\_integer,0,mpi\_comm\_world,ierr)}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00493}00493\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ chckerr(err\_msg)}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00494}00494\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }mpi\_bcast(\doxymbox{\hyperlink{namespacenum__vars_a08dbb9f56d96f37c61cacb9d23d6e17f}{post\_style}},1,mpi\_integer,0,mpi\_comm\_world,\&}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00495}00495\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&ierr)}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00496}00496\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ chckerr(err\_msg)}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00497}00497\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }mpi\_bcast(\doxymbox{\hyperlink{namespacenum__vars_aa53d6f71e297c4d8be05907bb7dbffce}{pert\_mult\_factor\_post}},1,\&}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00498}00498\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&mpi\_double\_precision,0,mpi\_comm\_world,ierr)}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00499}00499\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ chckerr(err\_msg)}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00500}00500\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }mpi\_bcast(\doxymbox{\hyperlink{namespacenum__vars_aac566d69891d40b90df6b90d18e16039}{rz\_0}},2,mpi\_double\_precision,0,\&}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00501}00501\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&mpi\_comm\_world,ierr)}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00502}00502\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ chckerr(err\_msg)}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00503}00503\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }mpi\_bcast(\doxymbox{\hyperlink{namespacenum__vars_a9f2ea40c94edef5e9f10f3b5d154c2a3}{min\_rvac\_plot}},1,mpi\_double\_precision,0,\&}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00504}00504\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&mpi\_comm\_world,ierr)}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00505}00505\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ chckerr(err\_msg)}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00506}00506\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }mpi\_bcast(\doxymbox{\hyperlink{namespacenum__vars_a6b703d539ded323851dce024a4b33df7}{max\_rvac\_plot}},1,mpi\_double\_precision,0,\&}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00507}00507\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&mpi\_comm\_world,ierr)}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00508}00508\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ chckerr(err\_msg)}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00509}00509\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }mpi\_bcast(\doxymbox{\hyperlink{namespacenum__vars_ab9fd7d4e9921ff8ceab88317f0c1ae5f}{min\_zvac\_plot}},1,mpi\_double\_precision,0,\&}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00510}00510\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&mpi\_comm\_world,ierr)}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00511}00511\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ chckerr(err\_msg)}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00512}00512\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }mpi\_bcast(\doxymbox{\hyperlink{namespacenum__vars_a6057251380bbdf0bf71cee48c49ab84c}{max\_zvac\_plot}},1,mpi\_double\_precision,0,\&}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00513}00513\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&mpi\_comm\_world,ierr)}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00514}00514\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ chckerr(err\_msg)}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00515}00515\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ case\ default}}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00516}00516\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ err\_msg\ =\ \textcolor{stringliteral}{'No\ program\ style\ associated\ with\ '}//\&}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00517}00517\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&trim(\doxymbox{\hyperlink{namespacestr__utilities_a0b97e51770725a3e98ed393d26681414}{i2str}}(\doxymbox{\hyperlink{namespacenum__vars_a50245a345efb453eda46b3fe98b702e8}{prog\_style}}))}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00518}00518\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ierr\ =\ 1}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00519}00519\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ chckerr(err\_msg)}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00520}00520\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ \ \ \ \ end\ select}}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00521}00521\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00522}00522\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_a6e6bfb084063e4cc91ee86e542043302}{lvl\_ud}}(-\/1)}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00523}00523\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_aa4a8d01563e92558e8a0875b075ec54c}{writo}}(\textcolor{stringliteral}{'Input\ option\ variables\ broadcasted'})}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00524}00524\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ end\ if}}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00525}00525\ \ \ \ \ \textcolor{keyword}{end\ function\ }\doxymbox{\hyperlink{namespacempi__ops_a932eba1c998dd7a0f1191b55cd754be3}{broadcast\_input\_opts}}}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00526}00526\ \ \ \ \ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00527}00527\ \textcolor{comment}{\ \ \ \ !>\ Suddenly\ stops\ the\ computations,\ aborting\ MPI,\ etc.}}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00528}00528\ \textcolor{comment}{\ \ \ \ !!}}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00529}00529\ \textcolor{comment}{\ \ \ \ !!\ The\ error\ code\ \(\backslash\)c\ ierr\ is\ printed\ and\ MPI\ is\ aborted\ with\ abort\_MPI().}}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00530}00530\ \textcolor{comment}{\ \ \ \ !!\ The\ program\ then\ ends\ with\ the\ exit\ status\ of\ get\_exit\_status(),\ which}}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00531}00531\ \textcolor{comment}{\ \ \ \ !!\ is\ not\ zero,\ so\ that\ a\ shell\ script,\ a\ batch\ system\ or\ a\ test\ sees\ that}}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00532}00532\ \textcolor{comment}{\ \ \ \ !!\ the\ run\ failed.}}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00533}00533\ \textcolor{comment}{\ \ \ \ !!}}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00534}00534\ \textcolor{comment}{\ \ \ \ !!\ Before\ the\ abort,\ the\ buffered\ output\ on\ the\ screen\ and\ in\ the\ output}}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00535}00535\ \textcolor{comment}{\ \ \ \ !!\ file\ is\ written\ out:\ \(\backslash\)c\ MPI\_Abort\ ends\ the\ process\ without\ doing\ this,}}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00536}00536\ \textcolor{comment}{\ \ \ \ !!\ and\ the\ error\ message\ would\ be\ lost\ when\ the\ output\ goes\ to\ a\ file\ or\ to}}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00537}00537\ \textcolor{comment}{\ \ \ \ !!\ a\ pipe.}}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00538}00538\ \textcolor{comment}{\ \ \ \ !!}}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00539}00539\ \textcolor{comment}{\ \ \ \ !!\ As\ a\ special\ case,\ if\ \(\backslash\)c\ ierr\ =\ 66,\ no\ error\ message\ is\ printed,\ MPI\ is}}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00540}00540\ \textcolor{comment}{\ \ \ \ !!\ stopped\ with\ stop\_MPI()\ and\ the\ exit\ status\ is\ zero.\ This\ is\ the\ stop}}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00541}00541\ \textcolor{comment}{\ \ \ \ !!\ after\ the\ usage\ or\ help\ message.}}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00542}\doxymbox{\hyperlink{namespacempi__ops_a40e8610357a9a5b075fef9dab1c3f24f}{00542}}\ \ \ \ \ \textcolor{keyword}{subroutine\ }\doxymbox{\hyperlink{namespacempi__ops_a40e8610357a9a5b075fef9dab1c3f24f}{sudden\_stop}}(ierr)}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00543}00543\ \ \ \ \ \ \ \ \ use,\ \textcolor{keywordtype}{intrinsic}\ ::\ iso\_fortran\_env,\ only:\ output\_unit}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00544}00544\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{use\ }\doxymbox{\hyperlink{namespacenum__vars}{num\_vars}},\ \textcolor{keywordtype}{only}:\ \doxymbox{\hyperlink{namespacenum__vars_ab47aa91445feaedb05ac9d1a584664fe}{rank}},\ \doxymbox{\hyperlink{namespacenum__vars_aec5ffb30114a8af11226208844d12998}{output\_i}}}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00545}00545\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00546}00546\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ input\ /\ output}}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00547}00547\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer},\ \textcolor{keywordtype}{intent(in)}\ ::\ ierr\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !<\ error\ to\ output}}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00548}00548\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00549}00549\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ local\ variables}}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00550}00550\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer}\ ::\ ierr\_abort\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ error\ of\ the\ abort\ or\ the\ stop}}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00551}00551\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer}\ ::\ status\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ exit\ status}}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00552}00552\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer}\ ::\ istat\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ status\ of\ flush}}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00553}00553\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{logical}\ ::\ output\_open\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ whether\ the\ output\ file\ is\ open}}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00554}00554\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00555}00555\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (ierr.ne.66)\ \textcolor{keywordflow}{then}}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00556}00556\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_aa4a8d01563e92558e8a0875b075ec54c}{writo}}(\textcolor{stringliteral}{'>>\ calling\ routine:\ PB3D\ (main)\ of\ rank\ '}//\&}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00557}00557\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&trim(\doxymbox{\hyperlink{namespacestr__utilities_a0b97e51770725a3e98ed393d26681414}{i2str}}(\doxymbox{\hyperlink{namespacenum__vars_ab47aa91445feaedb05ac9d1a584664fe}{rank}})),persistent=.true.)}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00558}00558\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_aa4a8d01563e92558e8a0875b075ec54c}{writo}}(\textcolor{stringliteral}{'ERROR\ CODE\ '}//trim(\doxymbox{\hyperlink{namespacestr__utilities_a0b97e51770725a3e98ed393d26681414}{i2str}}(ierr))//\&}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00559}00559\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&\textcolor{stringliteral}{'.\ Aborting\ MPI\ rank\ '}//trim(\doxymbox{\hyperlink{namespacestr__utilities_a0b97e51770725a3e98ed393d26681414}{i2str}}(\doxymbox{\hyperlink{namespacenum__vars_ab47aa91445feaedb05ac9d1a584664fe}{rank}})),\&}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00560}00560\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&persistent=.true.)}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00561}00561\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_a6e6bfb084063e4cc91ee86e542043302}{lvl\_ud}}(1)}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00562}00562\ \ \ \ \ \ \ \ \ \ \ \ \ status\ =\ get\_exit\_status(ierr)}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00563}00563\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00564}00564\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ write\ out\ the\ buffered\ output,\ as\ MPI\_Abort\ does\ not\ do\ this}}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00565}00565\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{flush}(output\_unit,iostat=istat)}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00566}00566\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{inquire}(unit=\doxymbox{\hyperlink{namespacenum__vars_aec5ffb30114a8af11226208844d12998}{output\_i}},opened=output\_open)}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00567}00567\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (output\_open)\ \textcolor{keyword}{flush}(\doxymbox{\hyperlink{namespacenum__vars_aec5ffb30114a8af11226208844d12998}{output\_i}},iostat=istat)}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00568}00568\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00569}00569\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ does\ not\ return,\ unless\ MPI\ cannot\ abort}}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00570}00570\ \ \ \ \ \ \ \ \ \ \ \ \ ierr\_abort\ =\ \doxymbox{\hyperlink{namespacempi__ops_ac7fffd36919e3546e52acd2aa91110d3}{abort\_mpi}}(status)}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00571}00571\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00572}00572\ \ \ \ \ \ \ \ \ \ \ \ \ status\ =\ 0}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00573}00573\ \ \ \ \ \ \ \ \ \ \ \ \ ierr\_abort\ =\ \doxymbox{\hyperlink{namespacempi__ops_a0028cc7df4fbd89dbd93de245ab3b2aa}{stop\_mpi}}()}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00574}00574\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (ierr\_abort.ne.0)\ status\ =\ get\_exit\_status(ierr\_abort)}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00575}00575\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ end\ if}}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00576}00576\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (ierr\_abort.ne.0)\ \textcolor{keywordflow}{then}}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00577}00577\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_aa4a8d01563e92558e8a0875b075ec54c}{writo}}(\textcolor{stringliteral}{'MPI\ cannot\ abort...'},persistent=.true.)}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00578}00578\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_aa4a8d01563e92558e8a0875b075ec54c}{writo}}(\textcolor{stringliteral}{'Shutting\ down'},persistent=.true.)}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00579}00579\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ end\ if}}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00580}00580\ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_a6e6bfb084063e4cc91ee86e542043302}{lvl\_ud}}(-\/1)}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00581}00581\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (status.ne.0)\ error\ stop\ status}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00582}00582\ \ \ \ \ \ \ \ \ stop}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00583}00583\ \ \ \ \ \textcolor{keyword}{end\ subroutine}}
+\DoxyCodeLine{\Hypertarget{MPI__ops_8f90_source_l00584}00584\ \textcolor{keyword}{end\ module\ }\doxymbox{\hyperlink{namespacempi__ops}{mpi\_ops}}}
 
 \end{DoxyCode}

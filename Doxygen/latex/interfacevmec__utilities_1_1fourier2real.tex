@@ -1,4 +1,4 @@
-\doxysection{vmec\+\_\+utilities::\+fourier2real Interface Reference}
+\doxysection{vmec\+\_\+utilities::fourier2real Interface Reference}
 \hypertarget{interfacevmec__utilities_1_1fourier2real}{}\label{interfacevmec__utilities_1_1fourier2real}\index{vmec\_utilities::fourier2real@{vmec\_utilities::fourier2real}}
 
 
@@ -8,10 +8,10 @@ Inverse Fourier transformation, from VMEC.
 \doxysubsubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-integer function \doxymbox{\hyperlink{interfacevmec__utilities_1_1fourier2real_a5e88c64e893bd56ad8e19f6c66c7f62a}{fourier2real\+\_\+1}} (varf\+\_\+c, varf\+\_\+s, trigon\+\_\+factors, varr, sym, deriv)
+integer function \doxymbox{\hyperlink{interfacevmec__utilities_1_1fourier2real_ae8b24560c89126ff4642241443aa4150}{fourier2real\+\_\+1}} (varf\+\_\+c, varf\+\_\+s, trigon\+\_\+factors, varr, sym, deriv, mn)
 \begin{DoxyCompactList}\small\item\em version with trigonometric factors \end{DoxyCompactList}\item 
-integer function \doxymbox{\hyperlink{interfacevmec__utilities_1_1fourier2real_a6fc4707ce8d461b9fdee24e63c9556ed}{fourier2real\+\_\+2}} (varf\+\_\+c, varf\+\_\+s, theta, zeta, varr, sym, deriv)
-\begin{DoxyCompactList}\small\item\em version with angles \end{DoxyCompactList}\end{DoxyCompactItemize}
+integer function \doxymbox{\hyperlink{interfacevmec__utilities_1_1fourier2real_aa8f9e050308b3e4e07f4f2f725387c46}{fourier2real\+\_\+2}} (varf\+\_\+c, varf\+\_\+s, theta, zeta, varr, sym, deriv, mn)
+\begin{DoxyCompactList}\small\item\em Angle version: the trigonometric basis is built here for the angles given (\doxylink{namespacevmec__utilities_ac699116fc25fdea3e28e488513d97c87}{calc\+\_\+trigon\+\_\+factors()}) and the table version does the rest, so both versions share one code path. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
@@ -21,13 +21,13 @@ Also calculates the poloidal or toroidal derivatives in VMEC coords., as indicat
 
 (The normal derivative is done on the variables in Fourier space, and should be provided here in {\ttfamily varf\+\_\+i} if needed).
 
-There are two variants:\+
+There are two variants:
 \begin{DoxyEnumerate}
 \item version using trigon\+\_\+factors, which is useful when the grid on which the trigonometric factors are defined is not regular and ideally when they are reused multiple times.
 \item version using $\theta$ and $\zeta$ directly, which is useful for small, unique calculations.
 \end{DoxyEnumerate}
 
-Both these versions make use of a factor that represents angular derivatives. For {\ttfamily deriv = \+[j,k]\+}, this is:\+
+Both these versions make use of a factor that represents angular derivatives. For {\ttfamily deriv = \+[j,k]}, this is:
 \begin{DoxyItemize}
 \item $m^j (-n)^k (-1)^{\frac{j+k+1}{2}}$ for {\ttfamily varf\+\_\+c},
 \item $m^j (-n)^k (-1)^{\frac{j+k}{2}}$ for {\ttfamily varf\+\_\+s},
@@ -46,47 +46,58 @@ Definition at line \doxymbox{\hyperlink{VMEC__utilities_8f90_source_l00056}{56}}
 
 
 
-\label{doc-func-members}
+\label{interfacevmec__utilities_1_1fourier2real_doc-func-members}
 \Hypertarget{interfacevmec__utilities_1_1fourier2real_doc-func-members}
 \doxysubsection{Member Function/\+\+Subroutine Documentation}
-\Hypertarget{interfacevmec__utilities_1_1fourier2real_a5e88c64e893bd56ad8e19f6c66c7f62a}\index{vmec\_utilities::fourier2real@{vmec\_utilities::fourier2real}!fourier2real\_1@{fourier2real\_1}}
+\Hypertarget{interfacevmec__utilities_1_1fourier2real_ae8b24560c89126ff4642241443aa4150}\index{vmec\_utilities::fourier2real@{vmec\_utilities::fourier2real}!fourier2real\_1@{fourier2real\_1}}
 \index{fourier2real\_1@{fourier2real\_1}!vmec\_utilities::fourier2real@{vmec\_utilities::fourier2real}}
 \doxysubsubsection{\texorpdfstring{fourier2real\_1()}{fourier2real\_1()}}
-{\footnotesize\ttfamily \label{interfacevmec__utilities_1_1fourier2real_a5e88c64e893bd56ad8e19f6c66c7f62a} 
-integer function vmec\+\_\+utilities::\+fourier2real::\+fourier2real\+\_\+1 (\begin{DoxyParamCaption}\item[{real(dp), dimension(:\+,:\+), intent(in)}]{varf\+\_\+c}{, }\item[{real(dp), dimension(:\+,:\+), intent(in)}]{varf\+\_\+s}{, }\item[{real(dp), dimension(:\+,:\+,:\+,:\+,:\+), intent(in)}]{trigon\+\_\+factors}{, }\item[{real(dp), dimension(:\+,:\+,:\+), intent(inout)}]{varr}{, }\item[{logical, dimension(2), intent(in), optional}]{sym}{, }\item[{integer, dimension(2), intent(in), optional}]{deriv}{}\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \label{interfacevmec__utilities_1_1fourier2real_ae8b24560c89126ff4642241443aa4150} 
+integer function vmec\+\_\+utilities::\+fourier2real::\+fourier2real\+\_\+1 (\begin{DoxyParamCaption}\item[{real(dp), dimension(:\+,:\+), intent(in)}]{varf\+\_\+c}{, }\item[{real(dp), dimension(:\+,:\+), intent(in)}]{varf\+\_\+s}{, }\item[{real(dp), dimension(:\+,:\+,:\+,:\+,:\+), intent(in)}]{trigon\+\_\+factors}{, }\item[{real(dp), dimension(:\+,:\+,:\+), intent(inout)}]{varr}{, }\item[{logical, dimension(2), intent(in), optional}]{sym}{, }\item[{integer, dimension(2), intent(in), optional}]{deriv}{, }\item[{integer, dimension(:\+,:\+), intent(in), optional}]{mn}{}\end{DoxyParamCaption})}
 
 
 
 version with trigonometric factors 
 
-
+The trigonometric factors are in basis form (see \doxylink{namespacevmec__utilities_ac699116fc25fdea3e28e488513d97c87}{calc\+\_\+trigon\+\_\+factors()}): the cosine and sine of $m \theta$ and of $n N_\text{fp} \zeta$, from which $\cos(m \theta  - n  \zeta)$ and  $\sin(m  \theta -  n
+        \zeta)$ are formed per mode. Any mode list within the basis can thus be evaluated: the main VMEC set {\ttfamily mn\+\_\+V} by default, or the Nyquist set {\ttfamily mn\+\_\+\+V\+\_\+nyq} of the Jacobian, $|B|$ and $B_i$ through {\ttfamily mn}. 
 \begin{DoxyParams}[1]{Parameters}
 \doxymbox{\texttt{in}}  & {\em varf\+\_\+c} & $\cos$ factor of variable in Fourier space \\
 \hline
 \doxymbox{\texttt{in}}  & {\em varf\+\_\+s} & $\sin$ factor of variable in Fourier space \\
 \hline
-\doxymbox{\texttt{in}}  & {\em trigon\+\_\+factors} & trigonometric factor cosine and sine at these angles (see \doxylink{namespacevmec__utilities_ac699116fc25fdea3e28e488513d97c87}{calc\+\_\+trigon\+\_\+factors()}) \\
+\doxymbox{\texttt{in}}  & {\em trigon\+\_\+factors} & trigonometric basis at these angles (see \doxylink{namespacevmec__utilities_ac699116fc25fdea3e28e488513d97c87}{calc\+\_\+trigon\+\_\+factors()}) \\
 \hline
 \doxymbox{\texttt{in,out}}  & {\em varr} & variable in real space \\
 \hline
-\doxymbox{\texttt{in}}  & {\em sym} & whether to use {\ttfamily varf\+\_\+c} (1) and /\+ or {\ttfamily varf\+\_\+s} (2) \\
+\doxymbox{\texttt{in}}  & {\em sym} & whether to use {\ttfamily varf\+\_\+c} (1) and / or {\ttfamily varf\+\_\+s} (2) \\
 \hline
 \doxymbox{\texttt{in}}  & {\em deriv} & optional derivatives in angular coordinates \\
+\hline
+\doxymbox{\texttt{in}}  & {\em mn} & mode numbers (m, n) of the Fourier coefficients (default: {\ttfamily mn\+\_\+V}) \\
 \hline
 \end{DoxyParams}
 
 
-Definition at line \doxymbox{\hyperlink{VMEC__utilities_8f90_source_l00065}{65}} of file \doxymbox{\hyperlink{VMEC__utilities_8f90_source}{VMEC\+\_\+utilities.\+f90}}.
+Definition at line \doxymbox{\hyperlink{VMEC__utilities_8f90_source_l00072}{72}} of file \doxymbox{\hyperlink{VMEC__utilities_8f90_source}{VMEC\+\_\+utilities.\+f90}}.
 
-\Hypertarget{interfacevmec__utilities_1_1fourier2real_a6fc4707ce8d461b9fdee24e63c9556ed}\index{vmec\_utilities::fourier2real@{vmec\_utilities::fourier2real}!fourier2real\_2@{fourier2real\_2}}
+Here is the call graph for this function:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{interfacevmec__utilities_1_1fourier2real_ae8b24560c89126ff4642241443aa4150_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{interfacevmec__utilities_1_1fourier2real_aa8f9e050308b3e4e07f4f2f725387c46}\index{vmec\_utilities::fourier2real@{vmec\_utilities::fourier2real}!fourier2real\_2@{fourier2real\_2}}
 \index{fourier2real\_2@{fourier2real\_2}!vmec\_utilities::fourier2real@{vmec\_utilities::fourier2real}}
 \doxysubsubsection{\texorpdfstring{fourier2real\_2()}{fourier2real\_2()}}
-{\footnotesize\ttfamily \label{interfacevmec__utilities_1_1fourier2real_a6fc4707ce8d461b9fdee24e63c9556ed} 
-integer function vmec\+\_\+utilities::\+fourier2real::\+fourier2real\+\_\+2 (\begin{DoxyParamCaption}\item[{real(dp), dimension(:\+,:\+), intent(in)}]{varf\+\_\+c}{, }\item[{real(dp), dimension(:\+,:\+), intent(in)}]{varf\+\_\+s}{, }\item[{real(dp), dimension(:\+,:\+,:\+), intent(in)}]{theta}{, }\item[{real(dp), dimension(:\+,:\+,:\+), intent(in)}]{zeta}{, }\item[{real(dp), dimension(:\+,:\+,:\+), intent(inout)}]{varr}{, }\item[{logical, dimension(2), intent(in), optional}]{sym}{, }\item[{integer, dimension(2), intent(in), optional}]{deriv}{}\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \label{interfacevmec__utilities_1_1fourier2real_aa8f9e050308b3e4e07f4f2f725387c46} 
+integer function vmec\+\_\+utilities::\+fourier2real::\+fourier2real\+\_\+2 (\begin{DoxyParamCaption}\item[{real(dp), dimension(:\+,:\+), intent(in)}]{varf\+\_\+c}{, }\item[{real(dp), dimension(:\+,:\+), intent(in)}]{varf\+\_\+s}{, }\item[{real(dp), dimension(:\+,:\+,:\+), intent(in)}]{theta}{, }\item[{real(dp), dimension(:\+,:\+,:\+), intent(in)}]{zeta}{, }\item[{real(dp), dimension(:\+,:\+,:\+), intent(inout)}]{varr}{, }\item[{logical, dimension(2), intent(in), optional}]{sym}{, }\item[{integer, dimension(2), intent(in), optional}]{deriv}{, }\item[{integer, dimension(:\+,:\+), intent(in), optional}]{mn}{}\end{DoxyParamCaption})}
 
 
 
-version with angles 
+Angle version: the trigonometric basis is built here for the angles given (\doxylink{namespacevmec__utilities_ac699116fc25fdea3e28e488513d97c87}{calc\+\_\+trigon\+\_\+factors()}) and the table version does the rest, so both versions share one code path. 
 
 
 \begin{DoxyParams}[1]{Parameters}
@@ -100,14 +111,24 @@ version with angles
 \hline
 \doxymbox{\texttt{in,out}}  & {\em varr} & variable in real space \\
 \hline
-\doxymbox{\texttt{in}}  & {\em sym} & whether to use {\ttfamily varf\+\_\+c} (1) and /\+ or {\ttfamily varf\+\_\+s} (2) \\
+\doxymbox{\texttt{in}}  & {\em sym} & whether to use {\ttfamily varf\+\_\+c} (1) and / or {\ttfamily varf\+\_\+s} (2) \\
 \hline
 \doxymbox{\texttt{in}}  & {\em deriv} & optional derivatives in angular coordinates \\
+\hline
+\doxymbox{\texttt{in}}  & {\em mn} & mode numbers (m, n) of the Fourier coefficients (default: {\ttfamily mn\+\_\+V}) \\
 \hline
 \end{DoxyParams}
 
 
-Definition at line \doxymbox{\hyperlink{VMEC__utilities_8f90_source_l00163}{163}} of file \doxymbox{\hyperlink{VMEC__utilities_8f90_source}{VMEC\+\_\+utilities.\+f90}}.
+Definition at line \doxymbox{\hyperlink{VMEC__utilities_8f90_source_l00229}{229}} of file \doxymbox{\hyperlink{VMEC__utilities_8f90_source}{VMEC\+\_\+utilities.\+f90}}.
 
+Here is the call graph for this function:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{interfacevmec__utilities_1_1fourier2real_aa8f9e050308b3e4e07f4f2f725387c46_cgraph}
+\end{center}
+\end{figure}
 
 

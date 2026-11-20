@@ -29,7 +29,7 @@ See \doxylink{namespacehdf5__ops}{hdf5\+\_\+ops} for notes on HDF5 and XDMF.
 \end{DoxySeeAlso}
 
 
-\label{doc-func-members}
+\label{namespacehdf5__utilities_doc-func-members}
 \Hypertarget{namespacehdf5__utilities_doc-func-members}
 \doxysubsection{Function/\+\+Subroutine Documentation}
 \Hypertarget{namespacehdf5__utilities_aa9d76166f970a7052cd0d96c8f3ee0be}\index{hdf5\_utilities@{hdf5\_utilities}!list\_all\_vars\_in\_group@{list\_all\_vars\_in\_group}}
@@ -57,14 +57,16 @@ ierr
 
 Definition at line \doxymbox{\hyperlink{HDF5__utilities_8f90_source_l00318}{318}} of file \doxymbox{\hyperlink{HDF5__utilities_8f90_source}{HDF5\+\_\+utilities.\+f90}}.
 
-Here is the call graph for this function:\+\nopagebreak
+Here is the call graph for this function:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{namespacehdf5__utilities_aa9d76166f970a7052cd0d96c8f3ee0be_cgraph}
 \end{center}
 \end{figure}
-Here is the caller graph for this function:\+\nopagebreak
+Here is the caller graph for this function:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -97,14 +99,16 @@ ierr
 
 Definition at line \doxymbox{\hyperlink{HDF5__utilities_8f90_source_l00249}{249}} of file \doxymbox{\hyperlink{HDF5__utilities_8f90_source}{HDF5\+\_\+utilities.\+f90}}.
 
-Here is the call graph for this function:\+\nopagebreak
+Here is the call graph for this function:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{namespacehdf5__utilities_ac0c7e6c4047b37031ac8ff7fdc271cf6_cgraph}
 \end{center}
 \end{figure}
-Here is the caller graph for this function:\+\nopagebreak
+Here is the caller graph for this function:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -121,11 +125,11 @@ integer function, public hdf5\+\_\+utilities::\+set\+\_\+1d\+\_\+vars (\begin{Do
 
 Sets up the chunk property list and/\+or the 1D hyperslabs that correspond to a local subset of {\ttfamily lim\+\_\+tot} given by the limits {\ttfamily lim\+\_\+loc}. 
 
-An example for the hyperslab is given in 3 dimensions with size n = 5,3,3:\+
+An example for the hyperslab is given in 3 dimensions with size n = 5,3,3:
 \begin{DoxyItemize}
-\item for dim = 1, limits:\+ 2..4
-\item for dim = 2, limits:\+ 3..3
-\item for dim = 3, limits:\+ 2..3.
+\item for dim = 1, limits: 2..4
+\item for dim = 2, limits: 3..3
+\item for dim = 3, limits: 2..3.
 \end{DoxyItemize}
 
 The 1D equivalent can be represented as 
@@ -133,29 +137,29 @@ The 1D equivalent can be represented as
 \DoxyCodeLine{[.....][.....][.....]\ |\ [.....][.....][.....]\ |\ [.....][.....][.....]}
 
 \end{DoxyCode}
- Now, dimension 1 will only allow for the following elements (given by {\ttfamily -\/}):\+ 
+ Now, dimension 1 will only allow for the following elements (given by {\ttfamily -\/}): 
 \begin{DoxyCode}{0}
 \DoxyCodeLine{[.-\/-\/-\/.][.-\/-\/-\/.][.-\/-\/-\/.]\ |\ [.-\/-\/-\/.][.-\/-\/-\/.][.-\/-\/-\/.]\ |\ [.-\/-\/-\/.][.-\/-\/-\/.][.-\/-\/-\/.]}
 
 \end{DoxyCode}
- dimension 2 will only allow for the following elements:\+ 
+ dimension 2 will only allow for the following elements: 
 \begin{DoxyCode}{0}
 \DoxyCodeLine{[.....][.....][-\/-\/-\/-\/-\/]\ |\ [.....][.....][-\/-\/-\/-\/-\/]\ |\ [.....][.....][-\/-\/-\/-\/-\/]}
 
 \end{DoxyCode}
- dimension 3 will only allow for the following elements:\+ 
+ dimension 3 will only allow for the following elements: 
 \begin{DoxyCode}{0}
 \DoxyCodeLine{[.....][.....][.....]\ |\ [-\/-\/-\/-\/-\/][-\/-\/-\/-\/-\/][-\/-\/-\/-\/-\/]\ |\ [-\/-\/-\/-\/-\/][-\/-\/-\/-\/-\/][-\/-\/-\/-\/-\/]}
 
 \end{DoxyCode}
- so that the total is given by:\+ 
+ so that the total is given by: 
 \begin{DoxyCode}{0}
 \DoxyCodeLine{[.....][.....][.....]\ |\ [.....][.....][.....]\ |\ [.....][.....][.-\/-\/-\/.]}
 
 \end{DoxyCode}
 
 
-In practice, it is easiest to work with a full selection, where for every dimension the ranges that do not correspond to the range of that dimension are taken away. Clearly, if a dimension has the full range, nothing will be taken out:\+
+In practice, it is easiest to work with a full selection, where for every dimension the ranges that do not correspond to the range of that dimension are taken away. Clearly, if a dimension has the full range, nothing will be taken out:
 \begin{DoxyItemize}
 \item {\ttfamily block\+\_\+i} = $n_1 n_2 \cdots n_{i-1} (b_i-a_{i+1}) $ ,
 \item {\ttfamily stride\+\_\+i} = $n_1 n_2 \cdots n_{i-1} (B_i-A_{i+1}) $ ,
@@ -185,7 +189,8 @@ ierr
 
 Definition at line \doxymbox{\hyperlink{HDF5__utilities_8f90_source_l00079}{79}} of file \doxymbox{\hyperlink{HDF5__utilities_8f90_source}{HDF5\+\_\+utilities.\+f90}}.
 
-Here is the caller graph for this function:\+\nopagebreak
+Here is the caller graph for this function:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -194,7 +199,7 @@ Here is the caller graph for this function:\+\nopagebreak
 \end{figure}
 
 
-\label{doc-var-members}
+\label{namespacehdf5__utilities_doc-var-members}
 \Hypertarget{namespacehdf5__utilities_doc-var-members}
 \doxysubsection{Variable Documentation}
 \Hypertarget{namespacehdf5__utilities_addf084b90450dc2a0cc614f2f5ac13fc}\index{hdf5\_utilities@{hdf5\_utilities}!debug\_set\_1d\_vars@{debug\_set\_1d\_vars}}

@@ -1,5 +1,5 @@
 \doxysection{SLEPC\+\_\+utilities.\+f90}
-\hypertarget{SLEPC__utilities_8f90_source}{}\label{SLEPC__utilities_8f90_source}\index{/Users/toonweyens/Code/PB3D/Modules/SLEPC\_utilities.f90@{/Users/toonweyens/Code/PB3D/Modules/SLEPC\_utilities.f90}}
+\hypertarget{SLEPC__utilities_8f90_source}{}\label{SLEPC__utilities_8f90_source}\index{Modules/SLEPC\_utilities.f90@{Modules/SLEPC\_utilities.f90}}
 \doxymbox{\hyperlink{SLEPC__utilities_8f90}{Go to the documentation of this file.}}
 \begin{DoxyCode}{0}
 \DoxyCodeLine{\Hypertarget{SLEPC__utilities_8f90_source_l00001}00001\ \textcolor{comment}{!-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/!}\textcolor{comment}{}}
@@ -100,18 +100,18 @@
 \DoxyCodeLine{\Hypertarget{SLEPC__utilities_8f90_source_l00096}00096\ \ \ \ \ \ \ \ \ petscint,\ \textcolor{keywordtype}{intent(in)}\ ::\ r\_id\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!<\ normal\ position\ of\ corresponding\ \(\backslash\)f\$\(\backslash\)widetilde\{V\}\string^0\(\backslash\)f\$\ (starting\ at\ 0)}}
 \DoxyCodeLine{\Hypertarget{SLEPC__utilities_8f90_source_l00097}00097\ \ \ \ \ \ \ \ \ petscint,\ \textcolor{keywordtype}{intent(in)}\ ::\ ind(2)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!<\ 2D\ index\ in\ matrix,\ relative\ to\ \(\backslash\)cr\_id}}
 \DoxyCodeLine{\Hypertarget{SLEPC__utilities_8f90_source_l00098}00098\ \ \ \ \ \ \ \ \ petscint,\ \textcolor{keywordtype}{intent(in)}\ ::\ n\_r\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!<\ number\ of\ grid\ points\ of\ solution\ grid}}
-\DoxyCodeLine{\Hypertarget{SLEPC__utilities_8f90_source_l00099}00099\ \ \ \ \ \ \ \ \ petscbool,\ \textcolor{keywordtype}{intent(in)},\ \textcolor{keywordtype}{optional}\ ::\ transp\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!<\ also\ set\ Hermitian\ transpose}}
-\DoxyCodeLine{\Hypertarget{SLEPC__utilities_8f90_source_l00100}00100\ \ \ \ \ \ \ \ \ petscbool,\ \textcolor{keywordtype}{intent(in)},\ \textcolor{keywordtype}{optional}\ ::\ overwrite\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!<\ overwrite}}
-\DoxyCodeLine{\Hypertarget{SLEPC__utilities_8f90_source_l00101}00101\ \ \ \ \ \ \ \ \ petscbool,\ \textcolor{keywordtype}{intent(in)},\ \textcolor{keywordtype}{optional}\ ::\ ind\_insert\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!<\ individual\ insert,\ only\ important\ for\ debugging}}
-\DoxyCodeLine{\Hypertarget{SLEPC__utilities_8f90_source_l00102}00102\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{SLEPC__utilities_8f90_source_l00099}00099\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{logical},\ \textcolor{keywordtype}{intent(in)},\ \textcolor{keywordtype}{optional}\ ::\ transp\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !<\ also\ set\ Hermitian\ transpose}}
+\DoxyCodeLine{\Hypertarget{SLEPC__utilities_8f90_source_l00100}00100\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{logical},\ \textcolor{keywordtype}{intent(in)},\ \textcolor{keywordtype}{optional}\ ::\ overwrite\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !<\ overwrite}}
+\DoxyCodeLine{\Hypertarget{SLEPC__utilities_8f90_source_l00101}00101\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{logical},\ \textcolor{keywordtype}{intent(in)},\ \textcolor{keywordtype}{optional}\ ::\ ind\_insert\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !<\ individual\ insert,\ only\ important\ for\ debugging}}
+\DoxyCodeLine{\Hypertarget{SLEPC__utilities_8f90_source_l00102}00102\ }
 \DoxyCodeLine{\Hypertarget{SLEPC__utilities_8f90_source_l00103}00103\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ local\ variables}}
 \DoxyCodeLine{\Hypertarget{SLEPC__utilities_8f90_source_l00104}00104\ \ \ \ \ \ \ \ \ petscint,\ \textcolor{keywordtype}{pointer}\ ::\ nm\_x(:,:)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ m\ (pol.\ flux)\ or\ n\ (tor.\ flux)}}
-\DoxyCodeLine{\Hypertarget{SLEPC__utilities_8f90_source_l00105}00105\ \ \ \ \ \ \ \ \ petscbool\ ::\ transp\_loc\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ local\ copy\ of\ transp}}
-\DoxyCodeLine{\Hypertarget{SLEPC__utilities_8f90_source_l00106}00106\ \ \ \ \ \ \ \ \ petscbool\ ::\ overwrite\_loc\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ local\ copy\ of\ overwrite}}
+\DoxyCodeLine{\Hypertarget{SLEPC__utilities_8f90_source_l00105}00105\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{logical}\ ::\ transp\_loc\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ local\ copy\ of\ transp}}
+\DoxyCodeLine{\Hypertarget{SLEPC__utilities_8f90_source_l00106}00106\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{logical}\ ::\ overwrite\_loc\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ local\ copy\ of\ overwrite}}
 \DoxyCodeLine{\Hypertarget{SLEPC__utilities_8f90_source_l00107}00107\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{character(len=max\_str\_ln)}\ ::\ err\_msg\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ error\ message}}
-\DoxyCodeLine{\Hypertarget{SLEPC__utilities_8f90_source_l00108}00108\ \ \ \ \ \ \ \ \ petscint\ ::\ operation\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ either\ ADD\_VALUES\ or\ INSERT\_VALUES}}
+\DoxyCodeLine{\Hypertarget{SLEPC__utilities_8f90_source_l00108}00108\ \ \ \ \ \ \ \ \ insertmode\ ::\ operation\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ either\ ADD\_VALUES\ or\ INSERT\_VALUES}}
 \DoxyCodeLine{\Hypertarget{SLEPC__utilities_8f90_source_l00109}00109\ \ \ \ \ \ \ \ \ petscscalar,\ \textcolor{keywordtype}{allocatable}\ ::\ block\_loc(:,:)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ local\ block,\ possibly\ shifted\ from\ block}}
-\DoxyCodeLine{\Hypertarget{SLEPC__utilities_8f90_source_l00110}00110\ \ \ \ \ \ \ \ \ petscbool\ ::\ ind\_insert\_loc\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ local\ ind\_insert}}
+\DoxyCodeLine{\Hypertarget{SLEPC__utilities_8f90_source_l00110}00110\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{logical}\ ::\ ind\_insert\_loc\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ local\ ind\_insert}}
 \DoxyCodeLine{\Hypertarget{SLEPC__utilities_8f90_source_l00111}00111\ \ \ \ \ \ \ \ \ }
 \DoxyCodeLine{\Hypertarget{SLEPC__utilities_8f90_source_l00112}00112\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ initialize\ ierr}}
 \DoxyCodeLine{\Hypertarget{SLEPC__utilities_8f90_source_l00113}00113\ \ \ \ \ \ \ \ \ ierr\ =\ 0}
@@ -162,98 +162,103 @@
 \DoxyCodeLine{\Hypertarget{SLEPC__utilities_8f90_source_l00158}00158\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{SLEPC__utilities_8f90_aa6315ddfeecf4956f5516f3bb5bdbc2b}{setup\_local\_block}}(nm\_x,r\_id,ind(1:2),block,block\_loc)}
 \DoxyCodeLine{\Hypertarget{SLEPC__utilities_8f90_source_l00159}00159\ \ \ \ \ \ \ \ \ \ \ \ \ }
 \DoxyCodeLine{\Hypertarget{SLEPC__utilities_8f90_source_l00160}00160\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ set\ values}}
-\DoxyCodeLine{\Hypertarget{SLEPC__utilities_8f90_source_l00161}00161\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }matsetvaluesblocked(mat,1,r\_id+ind(1),1,r\_id+ind(2),\&}
-\DoxyCodeLine{\Hypertarget{SLEPC__utilities_8f90_source_l00162}00162\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&transpose(block\_loc),operation,ierr)}
-\DoxyCodeLine{\Hypertarget{SLEPC__utilities_8f90_source_l00163}00163\ \ \ \ \ \ \ \ \ \ \ \ \ chckerr(err\_msg)}
-\DoxyCodeLine{\Hypertarget{SLEPC__utilities_8f90_source_l00164}00164\ \ \ \ \ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{\Hypertarget{SLEPC__utilities_8f90_source_l00165}00165\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ untransposed\ block}}
-\DoxyCodeLine{\Hypertarget{SLEPC__utilities_8f90_source_l00166}00166\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (transp\_loc)\ \textcolor{keywordflow}{then}}
-\DoxyCodeLine{\Hypertarget{SLEPC__utilities_8f90_source_l00167}00167\ \textcolor{preprocessor}{\#if\ ldebug}}
-\DoxyCodeLine{\Hypertarget{SLEPC__utilities_8f90_source_l00168}00168\ \textcolor{preprocessor}{}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\doxymbox{\hyperlink{namespaceslepc__utilities_a5cb92553633cb22ff703286298862ac7}{debug\_insert\_block\_mat}})\ \textcolor{keywordflow}{then}}
-\DoxyCodeLine{\Hypertarget{SLEPC__utilities_8f90_source_l00169}00169\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_aa4a8d01563e92558e8a0875b075ec54c}{writo}}(\textcolor{stringliteral}{'Also\ at\ the\ transposed\ place:'})}
-\DoxyCodeLine{\Hypertarget{SLEPC__utilities_8f90_source_l00170}00170\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ end\ if}}
-\DoxyCodeLine{\Hypertarget{SLEPC__utilities_8f90_source_l00171}00171\ \textcolor{preprocessor}{\#endif}}
-\DoxyCodeLine{\Hypertarget{SLEPC__utilities_8f90_source_l00172}00172\ \textcolor{preprocessor}{}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{\Hypertarget{SLEPC__utilities_8f90_source_l00173}00173\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ transposed\ block}}
-\DoxyCodeLine{\Hypertarget{SLEPC__utilities_8f90_source_l00174}00174\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{SLEPC__utilities_8f90_aa6315ddfeecf4956f5516f3bb5bdbc2b}{setup\_local\_block}}(nm\_x,r\_id,ind(2:1:-\/1),\&}
-\DoxyCodeLine{\Hypertarget{SLEPC__utilities_8f90_source_l00175}00175\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&transpose(conjg(block)),block\_loc)}
-\DoxyCodeLine{\Hypertarget{SLEPC__utilities_8f90_source_l00176}00176\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{\Hypertarget{SLEPC__utilities_8f90_source_l00177}00177\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }matsetvaluesblocked(mat,1,r\_id+ind(2),1,r\_id+ind(1),\&}
-\DoxyCodeLine{\Hypertarget{SLEPC__utilities_8f90_source_l00178}00178\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&transpose(block\_loc),operation,ierr)}
-\DoxyCodeLine{\Hypertarget{SLEPC__utilities_8f90_source_l00179}00179\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ chckerr(err\_msg)}
-\DoxyCodeLine{\Hypertarget{SLEPC__utilities_8f90_source_l00180}00180\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ \ \ \ \ end\ if}}
-\DoxyCodeLine{\Hypertarget{SLEPC__utilities_8f90_source_l00181}00181\ \ \ \ \ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{\Hypertarget{SLEPC__utilities_8f90_source_l00182}00182\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ clean\ up}}
-\DoxyCodeLine{\Hypertarget{SLEPC__utilities_8f90_source_l00183}00183\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{deallocate}(block\_loc)}
-\DoxyCodeLine{\Hypertarget{SLEPC__utilities_8f90_source_l00184}00184\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
-\DoxyCodeLine{\Hypertarget{SLEPC__utilities_8f90_source_l00185}00185\ \textcolor{preprocessor}{\#if\ ldebug}}
-\DoxyCodeLine{\Hypertarget{SLEPC__utilities_8f90_source_l00186}00186\ \textcolor{preprocessor}{}\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\doxymbox{\hyperlink{namespaceslepc__utilities_a5cb92553633cb22ff703286298862ac7}{debug\_insert\_block\_mat}})\ \&}
-\DoxyCodeLine{\Hypertarget{SLEPC__utilities_8f90_source_l00187}00187\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&\textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_aa4a8d01563e92558e8a0875b075ec54c}{writo}}(\textcolor{stringliteral}{'Due\ to\ out\ of\ range\ no\ local\ block\ is\ added'},\&}
-\DoxyCodeLine{\Hypertarget{SLEPC__utilities_8f90_source_l00188}00188\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&persistent=.true.)}
-\DoxyCodeLine{\Hypertarget{SLEPC__utilities_8f90_source_l00189}00189\ \textcolor{preprocessor}{\#endif}}
-\DoxyCodeLine{\Hypertarget{SLEPC__utilities_8f90_source_l00190}00190\ \textcolor{preprocessor}{}\textcolor{keywordflow}{\ \ \ \ \ \ \ \ end\ if}}
-\DoxyCodeLine{\Hypertarget{SLEPC__utilities_8f90_source_l00191}00191\ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{\Hypertarget{SLEPC__utilities_8f90_source_l00192}00192\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ clean\ up}}
-\DoxyCodeLine{\Hypertarget{SLEPC__utilities_8f90_source_l00193}00193\ \ \ \ \ \ \ \ \ \textcolor{keyword}{nullify}(nm\_x)}
-\DoxyCodeLine{\Hypertarget{SLEPC__utilities_8f90_source_l00194}00194\ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{\Hypertarget{SLEPC__utilities_8f90_source_l00195}00195\ \textcolor{preprocessor}{\#if\ ldebug}}
-\DoxyCodeLine{\Hypertarget{SLEPC__utilities_8f90_source_l00196}00196\ \textcolor{preprocessor}{}\ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\doxymbox{\hyperlink{namespaceslepc__utilities_a5cb92553633cb22ff703286298862ac7}{debug\_insert\_block\_mat}})\ \textcolor{keywordflow}{then}}
-\DoxyCodeLine{\Hypertarget{SLEPC__utilities_8f90_source_l00197}00197\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespaceinput__utilities_a71bd36f063d55ab62c7a37864aef1185}{pause\_prog}}(ind\_insert\_loc)}
-\DoxyCodeLine{\Hypertarget{SLEPC__utilities_8f90_source_l00198}00198\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_a6e6bfb084063e4cc91ee86e542043302}{lvl\_ud}}(-\/1)}
-\DoxyCodeLine{\Hypertarget{SLEPC__utilities_8f90_source_l00199}00199\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ endif}}
-\DoxyCodeLine{\Hypertarget{SLEPC__utilities_8f90_source_l00200}00200\ \textcolor{preprocessor}{\#endif}}
-\DoxyCodeLine{\Hypertarget{SLEPC__utilities_8f90_source_l00201}00201\ \textcolor{preprocessor}{}\ \ \ \ \textcolor{keyword}{contains}\textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{SLEPC__utilities_8f90_source_l00202}00202\ \textcolor{comment}{\ \ \ \ \ \ \ \ !>\ /private\ Set\ up\ local\ block,\ possibly\ translated\ for\ fast\ PB3D.}}
-\DoxyCodeLine{\Hypertarget{SLEPC__utilities_8f90_source_l00203}00203\ \textcolor{comment}{\ \ \ \ \ \ \ \ !!}}
-\DoxyCodeLine{\Hypertarget{SLEPC__utilities_8f90_source_l00204}00204\ \textcolor{comment}{\ \ \ \ \ \ \ \ !!\ \(\backslash\)note\ \ \ For\ \ BC\_style\ \ \ 3,\ \ there\ \ \ is\ \ a\ \ \ grid\ \ extension\ \ \ of\ \ n\_r}}
-\DoxyCodeLine{\Hypertarget{SLEPC__utilities_8f90_source_l00205}00205\ \textcolor{comment}{\ \ \ \ \ \ \ \ !!\ beyond\ \ the\ \ tabulated\ modes\ \ variables,\ \ which\ \ is\ \ why\ there\ \ is\ \ a}}
-\DoxyCodeLine{\Hypertarget{SLEPC__utilities_8f90_source_l00206}00206\ \textcolor{comment}{\ \ \ \ \ \ \ \ !!\ 'min(..,size(nm\_X,1))'\ here.}}
-\DoxyCodeLine{\Hypertarget{SLEPC__utilities_8f90_source_l00207}\doxymbox{\hyperlink{SLEPC__utilities_8f90_aa6315ddfeecf4956f5516f3bb5bdbc2b}{00207}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{subroutine\ }\doxymbox{\hyperlink{SLEPC__utilities_8f90_aa6315ddfeecf4956f5516f3bb5bdbc2b}{setup\_local\_block}}(nm\_X,r\_id,ind,block,block\_loc)}
-\DoxyCodeLine{\Hypertarget{SLEPC__utilities_8f90_source_l00208}00208\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{use\ }\doxymbox{\hyperlink{namespacex__vars}{x\_vars}},\ \textcolor{keywordtype}{only}:\ \doxymbox{\hyperlink{namespacex__vars_a2e8fe6c5fe1cf61704bf176925d2b02e}{n\_mod\_x}}}
-\DoxyCodeLine{\Hypertarget{SLEPC__utilities_8f90_source_l00209}00209\ \ \ \ \ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{\Hypertarget{SLEPC__utilities_8f90_source_l00210}00210\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ input\ /\ output}}
-\DoxyCodeLine{\Hypertarget{SLEPC__utilities_8f90_source_l00211}00211\ \ \ \ \ \ \ \ \ \ \ \ \ petscint,\ \textcolor{keywordtype}{intent(in)}\ ::\ nm\_x(:,:)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!<\ m\ (pol.\ flux)\ or\ n\ (tor.\ flux)}}
-\DoxyCodeLine{\Hypertarget{SLEPC__utilities_8f90_source_l00212}00212\ \ \ \ \ \ \ \ \ \ \ \ \ petscint,\ \textcolor{keywordtype}{intent(in)}\ ::\ r\_id\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!<\ normal\ position\ of\ corresponding\ \(\backslash\)f\$\(\backslash\)widetilde\{V\}\string^0\(\backslash\)f\$\ (starting\ at\ 0)}}
-\DoxyCodeLine{\Hypertarget{SLEPC__utilities_8f90_source_l00213}00213\ \ \ \ \ \ \ \ \ \ \ \ \ petscint,\ \textcolor{keywordtype}{intent(in)}\ ::\ ind(2)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!<\ 2D\ index\ in\ matrix,\ relative\ to\ \(\backslash\)cr\_id}}
-\DoxyCodeLine{\Hypertarget{SLEPC__utilities_8f90_source_l00214}00214\ \ \ \ \ \ \ \ \ \ \ \ \ petscscalar,\ \textcolor{keywordtype}{intent(in)}\ ::\ block(:,:)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!<\ n\_mod\_X\ x\ n\_mod\_X\ block}}
-\DoxyCodeLine{\Hypertarget{SLEPC__utilities_8f90_source_l00215}00215\ \ \ \ \ \ \ \ \ \ \ \ \ petscscalar,\ \textcolor{keywordtype}{intent(inout)}\ ::\ block\_loc(:,:)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!<\ adapted\ block}}
-\DoxyCodeLine{\Hypertarget{SLEPC__utilities_8f90_source_l00216}00216\ \ \ \ \ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{\Hypertarget{SLEPC__utilities_8f90_source_l00217}00217\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ local\ variables}}
-\DoxyCodeLine{\Hypertarget{SLEPC__utilities_8f90_source_l00218}00218\ \ \ \ \ \ \ \ \ \ \ \ \ petscint\ ::\ k,\ m\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ counters}}
-\DoxyCodeLine{\Hypertarget{SLEPC__utilities_8f90_source_l00219}00219\ \ \ \ \ \ \ \ \ \ \ \ \ petscint\ ::\ k\_loc,\ m\_loc\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ local\ k\ and\ m}}
-\DoxyCodeLine{\Hypertarget{SLEPC__utilities_8f90_source_l00220}00220\ \ \ \ \ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{\Hypertarget{SLEPC__utilities_8f90_source_l00221}00221\ \ \ \ \ \ \ \ \ \ \ \ \ block\_loc\ =\ 0.\_dp}
-\DoxyCodeLine{\Hypertarget{SLEPC__utilities_8f90_source_l00222}00222\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{do}\ m\ =\ 1,\doxymbox{\hyperlink{namespacex__vars_a2e8fe6c5fe1cf61704bf176925d2b02e}{n\_mod\_x}}}
-\DoxyCodeLine{\Hypertarget{SLEPC__utilities_8f90_source_l00223}00223\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{do}\ k\ =\ 1,\doxymbox{\hyperlink{namespacex__vars_a2e8fe6c5fe1cf61704bf176925d2b02e}{n\_mod\_x}}}
-\DoxyCodeLine{\Hypertarget{SLEPC__utilities_8f90_source_l00224}00224\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ k\_loc\ =\ k\ +\ nm\_x(r\_id+1,k)\ -\/\ \&}
-\DoxyCodeLine{\Hypertarget{SLEPC__utilities_8f90_source_l00225}00225\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&nm\_x(min(r\_id+1+ind(1),\textcolor{keyword}{size}(nm\_x,1)),k)}
-\DoxyCodeLine{\Hypertarget{SLEPC__utilities_8f90_source_l00226}00226\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_loc\ =\ m\ +\ nm\_x(r\_id+1,m)\ -\/\ \&}
-\DoxyCodeLine{\Hypertarget{SLEPC__utilities_8f90_source_l00227}00227\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&nm\_x(min(r\_id+1+ind(2),\textcolor{keyword}{size}(nm\_x,1)),m)}
-\DoxyCodeLine{\Hypertarget{SLEPC__utilities_8f90_source_l00228}00228\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (k\_loc.ge.1\ .and.\ m\_loc.ge.1\ .and.\ \&}
-\DoxyCodeLine{\Hypertarget{SLEPC__utilities_8f90_source_l00229}00229\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&k\_loc.le.\doxymbox{\hyperlink{namespacex__vars_a2e8fe6c5fe1cf61704bf176925d2b02e}{n\_mod\_x}}\ .and.\ m\_loc.le.\doxymbox{\hyperlink{namespacex__vars_a2e8fe6c5fe1cf61704bf176925d2b02e}{n\_mod\_x}})\ \&}
-\DoxyCodeLine{\Hypertarget{SLEPC__utilities_8f90_source_l00230}00230\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ block\_loc(k\_loc,m\_loc)\ =\ block(k,m)}
-\DoxyCodeLine{\Hypertarget{SLEPC__utilities_8f90_source_l00231}00231\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ end\ do}}
-\DoxyCodeLine{\Hypertarget{SLEPC__utilities_8f90_source_l00232}00232\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ \ \ \ \ end\ do}}
-\DoxyCodeLine{\Hypertarget{SLEPC__utilities_8f90_source_l00233}00233\ \ \ \ \ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{\Hypertarget{SLEPC__utilities_8f90_source_l00234}00234\ \textcolor{preprocessor}{\#if\ ldebug}}
-\DoxyCodeLine{\Hypertarget{SLEPC__utilities_8f90_source_l00235}00235\ \textcolor{preprocessor}{}\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\doxymbox{\hyperlink{namespaceslepc__utilities_a5cb92553633cb22ff703286298862ac7}{debug\_insert\_block\_mat}})\ \textcolor{keywordflow}{then}}
-\DoxyCodeLine{\Hypertarget{SLEPC__utilities_8f90_source_l00236}00236\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_aa4a8d01563e92558e8a0875b075ec54c}{writo}}(\textcolor{stringliteral}{'following\ local\ block\ is\ going\ to\ be\ added\ by\ \&}}
-\DoxyCodeLine{\Hypertarget{SLEPC__utilities_8f90_source_l00237}00237\ \textcolor{stringliteral}{}\textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&rank\ '}//trim(\doxymbox{\hyperlink{namespacestr__utilities_a0b97e51770725a3e98ed393d26681414}{i2str}}(\doxymbox{\hyperlink{namespacenum__vars_ab47aa91445feaedb05ac9d1a584664fe}{rank}}))//\textcolor{stringliteral}{':'},persistent=.true.)}
-\DoxyCodeLine{\Hypertarget{SLEPC__utilities_8f90_source_l00238}00238\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_aa4a8d01563e92558e8a0875b075ec54c}{writo}}(\textcolor{stringliteral}{'Re\ ='},persistent=.true.)}
-\DoxyCodeLine{\Hypertarget{SLEPC__utilities_8f90_source_l00239}00239\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_a80797cedef6112b8dccaeda431f0c610}{print\_ar\_2}}(rp(block\_loc))}
-\DoxyCodeLine{\Hypertarget{SLEPC__utilities_8f90_source_l00240}00240\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_aa4a8d01563e92558e8a0875b075ec54c}{writo}}(\textcolor{stringliteral}{'Im\ ='},persistent=.true.)}
-\DoxyCodeLine{\Hypertarget{SLEPC__utilities_8f90_source_l00241}00241\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_a80797cedef6112b8dccaeda431f0c610}{print\_ar\_2}}(ip(block\_loc))}
-\DoxyCodeLine{\Hypertarget{SLEPC__utilities_8f90_source_l00242}00242\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (overwrite\_loc)\ \textcolor{keywordflow}{then}}
-\DoxyCodeLine{\Hypertarget{SLEPC__utilities_8f90_source_l00243}00243\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_aa4a8d01563e92558e8a0875b075ec54c}{writo}}(\textcolor{stringliteral}{'(with\ operation\ INSERT\_VALUES)'},\&}
-\DoxyCodeLine{\Hypertarget{SLEPC__utilities_8f90_source_l00244}00244\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&persistent=.true.)}
-\DoxyCodeLine{\Hypertarget{SLEPC__utilities_8f90_source_l00245}00245\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
-\DoxyCodeLine{\Hypertarget{SLEPC__utilities_8f90_source_l00246}00246\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_aa4a8d01563e92558e8a0875b075ec54c}{writo}}(\textcolor{stringliteral}{'(with\ operation\ ADD\_VALUES)'},\&}
-\DoxyCodeLine{\Hypertarget{SLEPC__utilities_8f90_source_l00247}00247\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&persistent=.true.)}
-\DoxyCodeLine{\Hypertarget{SLEPC__utilities_8f90_source_l00248}00248\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ end\ if}}
-\DoxyCodeLine{\Hypertarget{SLEPC__utilities_8f90_source_l00249}00249\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ \ \ \ \ endif}}
-\DoxyCodeLine{\Hypertarget{SLEPC__utilities_8f90_source_l00250}00250\ \textcolor{preprocessor}{\#endif}}
-\DoxyCodeLine{\Hypertarget{SLEPC__utilities_8f90_source_l00251}00251\ \textcolor{preprocessor}{}\ \ \ \ \ \ \ \ \textcolor{keyword}{end\ subroutine\ }\doxymbox{\hyperlink{SLEPC__utilities_8f90_aa6315ddfeecf4956f5516f3bb5bdbc2b}{setup\_local\_block}}}
-\DoxyCodeLine{\Hypertarget{SLEPC__utilities_8f90_source_l00252}00252\ \ \ \ \ \textcolor{keyword}{end\ function\ }\doxymbox{\hyperlink{namespaceslepc__utilities_aa34aa361f0bfff9621ecba179f9ed0c6}{insert\_block\_mat}}}
-\DoxyCodeLine{\Hypertarget{SLEPC__utilities_8f90_source_l00253}00253\ \textcolor{keyword}{end\ module\ }\doxymbox{\hyperlink{namespaceslepc__utilities}{slepc\_utilities}}}
+\DoxyCodeLine{\Hypertarget{SLEPC__utilities_8f90_source_l00161}00161\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ (values\ flattened\ to\ 1-\/D\ in\ row-\/major\ order:\ the\ 2-\/D\ form\ is}}
+\DoxyCodeLine{\Hypertarget{SLEPC__utilities_8f90_source_l00162}00162\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ only\ accepted\ by\ the\ Fortran\ interface\ from\ PETSc\ >=\ 3.20)}}
+\DoxyCodeLine{\Hypertarget{SLEPC__utilities_8f90_source_l00163}00163\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }matsetvaluesblocked(mat,1,[r\_id+ind(1)],1,[r\_id+ind(2)],\&}
+\DoxyCodeLine{\Hypertarget{SLEPC__utilities_8f90_source_l00164}00164\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&reshape(transpose(block\_loc),[\textcolor{keyword}{size}(block\_loc)]),operation,\&}
+\DoxyCodeLine{\Hypertarget{SLEPC__utilities_8f90_source_l00165}00165\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&ierr)}
+\DoxyCodeLine{\Hypertarget{SLEPC__utilities_8f90_source_l00166}00166\ \ \ \ \ \ \ \ \ \ \ \ \ chckerr(err\_msg)}
+\DoxyCodeLine{\Hypertarget{SLEPC__utilities_8f90_source_l00167}00167\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{SLEPC__utilities_8f90_source_l00168}00168\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ untransposed\ block}}
+\DoxyCodeLine{\Hypertarget{SLEPC__utilities_8f90_source_l00169}00169\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (transp\_loc)\ \textcolor{keywordflow}{then}}
+\DoxyCodeLine{\Hypertarget{SLEPC__utilities_8f90_source_l00170}00170\ \textcolor{preprocessor}{\#if\ ldebug}}
+\DoxyCodeLine{\Hypertarget{SLEPC__utilities_8f90_source_l00171}00171\ \textcolor{preprocessor}{}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\doxymbox{\hyperlink{namespaceslepc__utilities_a5cb92553633cb22ff703286298862ac7}{debug\_insert\_block\_mat}})\ \textcolor{keywordflow}{then}}
+\DoxyCodeLine{\Hypertarget{SLEPC__utilities_8f90_source_l00172}00172\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_aa4a8d01563e92558e8a0875b075ec54c}{writo}}(\textcolor{stringliteral}{'Also\ at\ the\ transposed\ place:'})}
+\DoxyCodeLine{\Hypertarget{SLEPC__utilities_8f90_source_l00173}00173\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ end\ if}}
+\DoxyCodeLine{\Hypertarget{SLEPC__utilities_8f90_source_l00174}00174\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{SLEPC__utilities_8f90_source_l00175}00175\ \textcolor{preprocessor}{}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{SLEPC__utilities_8f90_source_l00176}00176\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ transposed\ block}}
+\DoxyCodeLine{\Hypertarget{SLEPC__utilities_8f90_source_l00177}00177\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{SLEPC__utilities_8f90_aa6315ddfeecf4956f5516f3bb5bdbc2b}{setup\_local\_block}}(nm\_x,r\_id,ind(2:1:-\/1),\&}
+\DoxyCodeLine{\Hypertarget{SLEPC__utilities_8f90_source_l00178}00178\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&transpose(conjg(block)),block\_loc)}
+\DoxyCodeLine{\Hypertarget{SLEPC__utilities_8f90_source_l00179}00179\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{SLEPC__utilities_8f90_source_l00180}00180\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }matsetvaluesblocked(mat,1,[r\_id+ind(2)],1,[r\_id+ind(1)],\&}
+\DoxyCodeLine{\Hypertarget{SLEPC__utilities_8f90_source_l00181}00181\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&reshape(transpose(block\_loc),[\textcolor{keyword}{size}(block\_loc)]),\&}
+\DoxyCodeLine{\Hypertarget{SLEPC__utilities_8f90_source_l00182}00182\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&operation,ierr)}
+\DoxyCodeLine{\Hypertarget{SLEPC__utilities_8f90_source_l00183}00183\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ chckerr(err\_msg)}
+\DoxyCodeLine{\Hypertarget{SLEPC__utilities_8f90_source_l00184}00184\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ \ \ \ \ end\ if}}
+\DoxyCodeLine{\Hypertarget{SLEPC__utilities_8f90_source_l00185}00185\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{SLEPC__utilities_8f90_source_l00186}00186\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ clean\ up}}
+\DoxyCodeLine{\Hypertarget{SLEPC__utilities_8f90_source_l00187}00187\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{deallocate}(block\_loc)}
+\DoxyCodeLine{\Hypertarget{SLEPC__utilities_8f90_source_l00188}00188\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{SLEPC__utilities_8f90_source_l00189}00189\ \textcolor{preprocessor}{\#if\ ldebug}}
+\DoxyCodeLine{\Hypertarget{SLEPC__utilities_8f90_source_l00190}00190\ \textcolor{preprocessor}{}\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\doxymbox{\hyperlink{namespaceslepc__utilities_a5cb92553633cb22ff703286298862ac7}{debug\_insert\_block\_mat}})\ \&}
+\DoxyCodeLine{\Hypertarget{SLEPC__utilities_8f90_source_l00191}00191\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&\textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_aa4a8d01563e92558e8a0875b075ec54c}{writo}}(\textcolor{stringliteral}{'Due\ to\ out\ of\ range\ no\ local\ block\ is\ added'},\&}
+\DoxyCodeLine{\Hypertarget{SLEPC__utilities_8f90_source_l00192}00192\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&persistent=.true.)}
+\DoxyCodeLine{\Hypertarget{SLEPC__utilities_8f90_source_l00193}00193\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{SLEPC__utilities_8f90_source_l00194}00194\ \textcolor{preprocessor}{}\textcolor{keywordflow}{\ \ \ \ \ \ \ \ end\ if}}
+\DoxyCodeLine{\Hypertarget{SLEPC__utilities_8f90_source_l00195}00195\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{SLEPC__utilities_8f90_source_l00196}00196\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ clean\ up}}
+\DoxyCodeLine{\Hypertarget{SLEPC__utilities_8f90_source_l00197}00197\ \ \ \ \ \ \ \ \ \textcolor{keyword}{nullify}(nm\_x)}
+\DoxyCodeLine{\Hypertarget{SLEPC__utilities_8f90_source_l00198}00198\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{SLEPC__utilities_8f90_source_l00199}00199\ \textcolor{preprocessor}{\#if\ ldebug}}
+\DoxyCodeLine{\Hypertarget{SLEPC__utilities_8f90_source_l00200}00200\ \textcolor{preprocessor}{}\ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\doxymbox{\hyperlink{namespaceslepc__utilities_a5cb92553633cb22ff703286298862ac7}{debug\_insert\_block\_mat}})\ \textcolor{keywordflow}{then}}
+\DoxyCodeLine{\Hypertarget{SLEPC__utilities_8f90_source_l00201}00201\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespaceinput__utilities_a71bd36f063d55ab62c7a37864aef1185}{pause\_prog}}(ind\_insert\_loc)}
+\DoxyCodeLine{\Hypertarget{SLEPC__utilities_8f90_source_l00202}00202\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_a6e6bfb084063e4cc91ee86e542043302}{lvl\_ud}}(-\/1)}
+\DoxyCodeLine{\Hypertarget{SLEPC__utilities_8f90_source_l00203}00203\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ endif}}
+\DoxyCodeLine{\Hypertarget{SLEPC__utilities_8f90_source_l00204}00204\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{SLEPC__utilities_8f90_source_l00205}00205\ \textcolor{preprocessor}{}\ \ \ \ \textcolor{keyword}{contains}\textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{SLEPC__utilities_8f90_source_l00206}00206\ \textcolor{comment}{\ \ \ \ \ \ \ \ !>\ /private\ Set\ up\ local\ block,\ possibly\ translated\ for\ fast\ PB3D.}}
+\DoxyCodeLine{\Hypertarget{SLEPC__utilities_8f90_source_l00207}00207\ \textcolor{comment}{\ \ \ \ \ \ \ \ !!}}
+\DoxyCodeLine{\Hypertarget{SLEPC__utilities_8f90_source_l00208}00208\ \textcolor{comment}{\ \ \ \ \ \ \ \ !!\ \(\backslash\)note\ The\ 'min(..,size(nm\_X,1))'\ does\ not\ change\ the\ index\ as\ long\ as}}
+\DoxyCodeLine{\Hypertarget{SLEPC__utilities_8f90_source_l00209}00209\ \textcolor{comment}{\ \ \ \ \ \ \ \ !!\ the\ modes\ variables\ are\ tabulated\ in\ the\ grid\ of\ the\ matrix,\ because}}
+\DoxyCodeLine{\Hypertarget{SLEPC__utilities_8f90_source_l00210}00210\ \textcolor{comment}{\ \ \ \ \ \ \ \ !!\ insert\_block\_mat()\ calls\ this\ routine\ only\ for\ blocks\ inside\ the}}
+\DoxyCodeLine{\Hypertarget{SLEPC__utilities_8f90_source_l00211}00211\ \textcolor{comment}{\ \ \ \ \ \ \ \ !!\ matrix.}}
+\DoxyCodeLine{\Hypertarget{SLEPC__utilities_8f90_source_l00212}\doxymbox{\hyperlink{SLEPC__utilities_8f90_aa6315ddfeecf4956f5516f3bb5bdbc2b}{00212}}\ \ \ \ \ \ \ \ \ \textcolor{keyword}{subroutine\ }\doxymbox{\hyperlink{SLEPC__utilities_8f90_aa6315ddfeecf4956f5516f3bb5bdbc2b}{setup\_local\_block}}(nm\_X,r\_id,ind,block,block\_loc)}
+\DoxyCodeLine{\Hypertarget{SLEPC__utilities_8f90_source_l00213}00213\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{use\ }\doxymbox{\hyperlink{namespacex__vars}{x\_vars}},\ \textcolor{keywordtype}{only}:\ \doxymbox{\hyperlink{namespacex__vars_a2e8fe6c5fe1cf61704bf176925d2b02e}{n\_mod\_x}}}
+\DoxyCodeLine{\Hypertarget{SLEPC__utilities_8f90_source_l00214}00214\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{SLEPC__utilities_8f90_source_l00215}00215\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ input\ /\ output}}
+\DoxyCodeLine{\Hypertarget{SLEPC__utilities_8f90_source_l00216}00216\ \ \ \ \ \ \ \ \ \ \ \ \ petscint,\ \textcolor{keywordtype}{intent(in)}\ ::\ nm\_x(:,:)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!<\ m\ (pol.\ flux)\ or\ n\ (tor.\ flux)}}
+\DoxyCodeLine{\Hypertarget{SLEPC__utilities_8f90_source_l00217}00217\ \ \ \ \ \ \ \ \ \ \ \ \ petscint,\ \textcolor{keywordtype}{intent(in)}\ ::\ r\_id\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!<\ normal\ position\ of\ corresponding\ \(\backslash\)f\$\(\backslash\)widetilde\{V\}\string^0\(\backslash\)f\$\ (starting\ at\ 0)}}
+\DoxyCodeLine{\Hypertarget{SLEPC__utilities_8f90_source_l00218}00218\ \ \ \ \ \ \ \ \ \ \ \ \ petscint,\ \textcolor{keywordtype}{intent(in)}\ ::\ ind(2)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!<\ 2D\ index\ in\ matrix,\ relative\ to\ \(\backslash\)cr\_id}}
+\DoxyCodeLine{\Hypertarget{SLEPC__utilities_8f90_source_l00219}00219\ \ \ \ \ \ \ \ \ \ \ \ \ petscscalar,\ \textcolor{keywordtype}{intent(in)}\ ::\ block(:,:)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!<\ n\_mod\_X\ x\ n\_mod\_X\ block}}
+\DoxyCodeLine{\Hypertarget{SLEPC__utilities_8f90_source_l00220}00220\ \ \ \ \ \ \ \ \ \ \ \ \ petscscalar,\ \textcolor{keywordtype}{intent(inout)}\ ::\ block\_loc(:,:)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!<\ adapted\ block}}
+\DoxyCodeLine{\Hypertarget{SLEPC__utilities_8f90_source_l00221}00221\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{SLEPC__utilities_8f90_source_l00222}00222\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ local\ variables}}
+\DoxyCodeLine{\Hypertarget{SLEPC__utilities_8f90_source_l00223}00223\ \ \ \ \ \ \ \ \ \ \ \ \ petscint\ ::\ k,\ m\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ counters}}
+\DoxyCodeLine{\Hypertarget{SLEPC__utilities_8f90_source_l00224}00224\ \ \ \ \ \ \ \ \ \ \ \ \ petscint\ ::\ k\_loc,\ m\_loc\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ local\ k\ and\ m}}
+\DoxyCodeLine{\Hypertarget{SLEPC__utilities_8f90_source_l00225}00225\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{SLEPC__utilities_8f90_source_l00226}00226\ \ \ \ \ \ \ \ \ \ \ \ \ block\_loc\ =\ 0.\_dp}
+\DoxyCodeLine{\Hypertarget{SLEPC__utilities_8f90_source_l00227}00227\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{do}\ m\ =\ 1,\doxymbox{\hyperlink{namespacex__vars_a2e8fe6c5fe1cf61704bf176925d2b02e}{n\_mod\_x}}}
+\DoxyCodeLine{\Hypertarget{SLEPC__utilities_8f90_source_l00228}00228\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{do}\ k\ =\ 1,\doxymbox{\hyperlink{namespacex__vars_a2e8fe6c5fe1cf61704bf176925d2b02e}{n\_mod\_x}}}
+\DoxyCodeLine{\Hypertarget{SLEPC__utilities_8f90_source_l00229}00229\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ k\_loc\ =\ k\ +\ nm\_x(r\_id+1,k)\ -\/\ \&}
+\DoxyCodeLine{\Hypertarget{SLEPC__utilities_8f90_source_l00230}00230\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&nm\_x(min(r\_id+1+ind(1),\textcolor{keyword}{size}(nm\_x,1)),k)}
+\DoxyCodeLine{\Hypertarget{SLEPC__utilities_8f90_source_l00231}00231\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ m\_loc\ =\ m\ +\ nm\_x(r\_id+1,m)\ -\/\ \&}
+\DoxyCodeLine{\Hypertarget{SLEPC__utilities_8f90_source_l00232}00232\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&nm\_x(min(r\_id+1+ind(2),\textcolor{keyword}{size}(nm\_x,1)),m)}
+\DoxyCodeLine{\Hypertarget{SLEPC__utilities_8f90_source_l00233}00233\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (k\_loc.ge.1\ .and.\ m\_loc.ge.1\ .and.\ \&}
+\DoxyCodeLine{\Hypertarget{SLEPC__utilities_8f90_source_l00234}00234\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&k\_loc.le.\doxymbox{\hyperlink{namespacex__vars_a2e8fe6c5fe1cf61704bf176925d2b02e}{n\_mod\_x}}\ .and.\ m\_loc.le.\doxymbox{\hyperlink{namespacex__vars_a2e8fe6c5fe1cf61704bf176925d2b02e}{n\_mod\_x}})\ \&}
+\DoxyCodeLine{\Hypertarget{SLEPC__utilities_8f90_source_l00235}00235\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ block\_loc(k\_loc,m\_loc)\ =\ block(k,m)}
+\DoxyCodeLine{\Hypertarget{SLEPC__utilities_8f90_source_l00236}00236\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ end\ do}}
+\DoxyCodeLine{\Hypertarget{SLEPC__utilities_8f90_source_l00237}00237\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ \ \ \ \ end\ do}}
+\DoxyCodeLine{\Hypertarget{SLEPC__utilities_8f90_source_l00238}00238\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{SLEPC__utilities_8f90_source_l00239}00239\ \textcolor{preprocessor}{\#if\ ldebug}}
+\DoxyCodeLine{\Hypertarget{SLEPC__utilities_8f90_source_l00240}00240\ \textcolor{preprocessor}{}\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\doxymbox{\hyperlink{namespaceslepc__utilities_a5cb92553633cb22ff703286298862ac7}{debug\_insert\_block\_mat}})\ \textcolor{keywordflow}{then}}
+\DoxyCodeLine{\Hypertarget{SLEPC__utilities_8f90_source_l00241}00241\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_aa4a8d01563e92558e8a0875b075ec54c}{writo}}(\textcolor{stringliteral}{'following\ local\ block\ is\ going\ to\ be\ added\ by\ \&}}
+\DoxyCodeLine{\Hypertarget{SLEPC__utilities_8f90_source_l00242}00242\ \textcolor{stringliteral}{}\textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&rank\ '}//trim(\doxymbox{\hyperlink{namespacestr__utilities_a0b97e51770725a3e98ed393d26681414}{i2str}}(\doxymbox{\hyperlink{namespacenum__vars_ab47aa91445feaedb05ac9d1a584664fe}{rank}}))//\textcolor{stringliteral}{':'},persistent=.true.)}
+\DoxyCodeLine{\Hypertarget{SLEPC__utilities_8f90_source_l00243}00243\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_aa4a8d01563e92558e8a0875b075ec54c}{writo}}(\textcolor{stringliteral}{'Re\ ='},persistent=.true.)}
+\DoxyCodeLine{\Hypertarget{SLEPC__utilities_8f90_source_l00244}00244\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_a80797cedef6112b8dccaeda431f0c610}{print\_ar\_2}}(rp(block\_loc))}
+\DoxyCodeLine{\Hypertarget{SLEPC__utilities_8f90_source_l00245}00245\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_aa4a8d01563e92558e8a0875b075ec54c}{writo}}(\textcolor{stringliteral}{'Im\ ='},persistent=.true.)}
+\DoxyCodeLine{\Hypertarget{SLEPC__utilities_8f90_source_l00246}00246\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_a80797cedef6112b8dccaeda431f0c610}{print\_ar\_2}}(ip(block\_loc))}
+\DoxyCodeLine{\Hypertarget{SLEPC__utilities_8f90_source_l00247}00247\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (overwrite\_loc)\ \textcolor{keywordflow}{then}}
+\DoxyCodeLine{\Hypertarget{SLEPC__utilities_8f90_source_l00248}00248\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_aa4a8d01563e92558e8a0875b075ec54c}{writo}}(\textcolor{stringliteral}{'(with\ operation\ INSERT\_VALUES)'},\&}
+\DoxyCodeLine{\Hypertarget{SLEPC__utilities_8f90_source_l00249}00249\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&persistent=.true.)}
+\DoxyCodeLine{\Hypertarget{SLEPC__utilities_8f90_source_l00250}00250\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{SLEPC__utilities_8f90_source_l00251}00251\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_aa4a8d01563e92558e8a0875b075ec54c}{writo}}(\textcolor{stringliteral}{'(with\ operation\ ADD\_VALUES)'},\&}
+\DoxyCodeLine{\Hypertarget{SLEPC__utilities_8f90_source_l00252}00252\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&persistent=.true.)}
+\DoxyCodeLine{\Hypertarget{SLEPC__utilities_8f90_source_l00253}00253\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ end\ if}}
+\DoxyCodeLine{\Hypertarget{SLEPC__utilities_8f90_source_l00254}00254\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ \ \ \ \ endif}}
+\DoxyCodeLine{\Hypertarget{SLEPC__utilities_8f90_source_l00255}00255\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{SLEPC__utilities_8f90_source_l00256}00256\ \textcolor{preprocessor}{}\ \ \ \ \ \ \ \ \textcolor{keyword}{end\ subroutine\ }\doxymbox{\hyperlink{SLEPC__utilities_8f90_aa6315ddfeecf4956f5516f3bb5bdbc2b}{setup\_local\_block}}}
+\DoxyCodeLine{\Hypertarget{SLEPC__utilities_8f90_source_l00257}00257\ \ \ \ \ \textcolor{keyword}{end\ function\ }\doxymbox{\hyperlink{namespaceslepc__utilities_aa34aa361f0bfff9621ecba179f9ed0c6}{insert\_block\_mat}}}
+\DoxyCodeLine{\Hypertarget{SLEPC__utilities_8f90_source_l00258}00258\ \textcolor{keyword}{end\ module\ }\doxymbox{\hyperlink{namespaceslepc__utilities}{slepc\_utilities}}}
 
 \end{DoxyCode}

@@ -1,5 +1,5 @@
 \doxysection{test.\+f90}
-\hypertarget{test_8f90_source}{}\label{test_8f90_source}\index{/Users/toonweyens/Code/PB3D/Modules/test.f90@{/Users/toonweyens/Code/PB3D/Modules/test.f90}}
+\hypertarget{test_8f90_source}{}\label{test_8f90_source}\index{Modules/test.f90@{Modules/test.f90}}
 \doxymbox{\hyperlink{test_8f90}{Go to the documentation of this file.}}
 \begin{DoxyCode}{0}
 \DoxyCodeLine{\Hypertarget{test_8f90_source_l00001}00001\ \textcolor{comment}{!-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/!}\textcolor{comment}{}}
@@ -189,7 +189,7 @@
 \DoxyCodeLine{\Hypertarget{test_8f90_source_l00185}00185\ \textcolor{comment}{\ \ \ \ !!}}
 \DoxyCodeLine{\Hypertarget{test_8f90_source_l00186}00186\ \textcolor{comment}{\ \ \ \ !!\ \(\backslash\)return\ ierr}}
 \DoxyCodeLine{\Hypertarget{test_8f90_source_l00187}00187\ \ \ \ \ \textcolor{keyword}{integer\ }\textcolor{keyword}{function\ }test\_splines()\ \textcolor{keyword}{result}(ierr)}
-\DoxyCodeLine{\Hypertarget{test_8f90_source_l00188}00188\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{use\ }\doxymbox{\hyperlink{namespacenum__utilities}{num\_utilities}},\ \textcolor{keywordtype}{only}:\ \doxymbox{\hyperlink{interfacenum__utilities_1_1spline}{spline}}}
+\DoxyCodeLine{\Hypertarget{test_8f90_source_l00188}00188\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{use\ }\doxymbox{\hyperlink{namespacespline__utilities}{spline\_utilities}},\ \textcolor{keywordtype}{only}:\ \doxymbox{\hyperlink{interfacespline__utilities_1_1spline}{spline}}}
 \DoxyCodeLine{\Hypertarget{test_8f90_source_l00189}00189\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{use\ }\doxymbox{\hyperlink{namespacenum__vars}{num\_vars}},\ \textcolor{keywordtype}{only}:\ \doxymbox{\hyperlink{namespacenum__vars_ae2387f8182114da91104322ca3250d9a}{tol\_zero}}}
 \DoxyCodeLine{\Hypertarget{test_8f90_source_l00190}00190\ \ \ \ \ \ \ \ \ }
 \DoxyCodeLine{\Hypertarget{test_8f90_source_l00191}00191\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{character(*)},\ \textcolor{keywordtype}{parameter}\ ::\ rout\_name\ =\ \textcolor{stringliteral}{'test\_splines'}}
@@ -297,7 +297,7 @@
 \DoxyCodeLine{\Hypertarget{test_8f90_source_l00293}00293\ \ \ \ \ \ \ \ \ \ \ \ \ }
 \DoxyCodeLine{\Hypertarget{test_8f90_source_l00294}00294\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ calculate\ spline\ and\ possibly\ plot}}
 \DoxyCodeLine{\Hypertarget{test_8f90_source_l00295}00295\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{do}\ id\ =\ 0,\doxymbox{\hyperlink{namespacenum__vars_a78f5aeea9d9c2f41e388bfcef9021e64}{max\_deriv}}}
-\DoxyCodeLine{\Hypertarget{test_8f90_source_l00296}00296\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ierr\ =\ \doxymbox{\hyperlink{interfacenum__utilities_1_1spline}{spline}}(x,y(:,0),x\_int,y\_int,ord=ord,deriv=id,bcs=bcs,\&}
+\DoxyCodeLine{\Hypertarget{test_8f90_source_l00296}00296\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ierr\ =\ \doxymbox{\hyperlink{interfacespline__utilities_1_1spline}{spline}}(x,y(:,0),x\_int,y\_int,ord=ord,deriv=id,bcs=bcs,\&}
 \DoxyCodeLine{\Hypertarget{test_8f90_source_l00297}00297\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&bcs\_val=bcs\_val,extrap=extrap)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ use\ y(0)}}
 \DoxyCodeLine{\Hypertarget{test_8f90_source_l00298}00298\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ chckerr(\textcolor{stringliteral}{''})}
 \DoxyCodeLine{\Hypertarget{test_8f90_source_l00299}00299\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{test_8f90_a197914f99b7e194fb4bca9ca3669e0e8}{plot\_y}}(x,x\_int,y(:,id),y\_int,id)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ use\ y(id)}}

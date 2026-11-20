@@ -10,15 +10,19 @@ Operations and variables pertaining to the vacuum response.
 \item 
 integer function, public \doxymbox{\hyperlink{namespacevac__ops_a37220702fbf378626a0f2c12f446e0aa}{store\+\_\+vac}} (grid, eq\+\_\+1, eq\+\_\+2, vac)
 \begin{DoxyCompactList}\small\item\em Stores calculation of the vacuum response by storing the necessary variables. \end{DoxyCompactList}\item 
+integer function, public \doxymbox{\hyperlink{namespacevac__ops_a8d70ea940b7548e4a2f397699c694b67}{calc\+\_\+gh}} (vac, n\+\_\+r\+\_\+in, lims\+\_\+r\+\_\+in, x\+\_\+vec\+\_\+in, g\+\_\+in, h\+\_\+in)
+\begin{DoxyCompactList}\small\item\em Calculate the matrices {\ttfamily G} and {\ttfamily H}. \end{DoxyCompactList}\item 
 integer function \doxymbox{\hyperlink{namespacevac__ops_aa0e2983daefe876c0eb16be9af046a97}{calc\+\_\+gh\+\_\+1}} (vac, n\+\_\+r\+\_\+in, lims\+\_\+r\+\_\+in, x\+\_\+vec\+\_\+in, g\+\_\+in, h\+\_\+in, ext\+\_\+in)
 \begin{DoxyCompactList}\small\item\em Calculates matrices {\ttfamily G} and {\ttfamily H} in 3-\/D configuration. \end{DoxyCompactList}\item 
 integer function \doxymbox{\hyperlink{namespacevac__ops_a6fb02475c7ef2da9408952cf6f1cca8b}{calc\+\_\+gh\+\_\+2}} (vac, n\+\_\+r\+\_\+in, lims\+\_\+r\+\_\+in, x\+\_\+vec\+\_\+in, g\+\_\+in, h\+\_\+in, ext\+\_\+in)
 \begin{DoxyCompactList}\small\item\em Calculates matrices {\ttfamily G} and {\ttfamily H} in axisymmetric configurations. \end{DoxyCompactList}\item 
 integer function, public \doxymbox{\hyperlink{namespacevac__ops_a5e5a8322b3aa2e3704b1050426f06d9d}{calc\+\_\+vac\+\_\+res}} (mds, vac)
 \begin{DoxyCompactList}\small\item\em Calculates the vacuum response. \end{DoxyCompactList}\item 
-integer function, public \doxymbox{\hyperlink{namespacevac__ops_a76c87e7676f6ea8d72fabbbf6a631c6a}{vac\+\_\+pot\+\_\+plot}} (grid\+\_\+sol, vac, sol, x\+\_\+id)
-\begin{DoxyCompactList}\small\item\em Calculate vacuum potential at some positions that are not resonant. \end{DoxyCompactList}\item 
-integer function \doxymbox{\hyperlink{namespacevac__ops_ad70bf1a119f4645f5653ff287a476190}{solve\+\_\+phi\+\_\+bem}} (vac, r, phi, n\+\_\+rphi, n\+\_\+loc\+\_\+rphi, lims\+\_\+c\+\_\+rphi, desc\+\_\+rphi)
+integer function, public \doxymbox{\hyperlink{namespacevac__ops_a33bf7285ead934fa8e4242c708542d92}{eval\+\_\+pot\+\_\+ext}} (vac, x\+\_\+ext, phi\+\_\+s, d\+\_\+s, desc\+\_\+s, pot)
+\begin{DoxyCompactList}\small\item\em Potential at points off the boundary, from its values and its normal data on the boundary. \end{DoxyCompactList}\item 
+integer function, public \doxymbox{\hyperlink{namespacevac__ops_a8bcc01cfc5c1022f767b5479c7739ea0}{vac\+\_\+pot\+\_\+plot}} (grid\+\_\+sol, vac, sol, x\+\_\+ids)
+\begin{DoxyCompactList}\small\item\em Plots the vacuum potential of computed eigenmodes outside the plasma. \end{DoxyCompactList}\item 
+integer function, public \doxymbox{\hyperlink{namespacevac__ops_afb0bbf55ee22e8831b31bef1be85a741}{solve\+\_\+phi\+\_\+bem}} (vac, r, phi, n\+\_\+rphi, n\+\_\+loc\+\_\+rphi, lims\+\_\+c\+\_\+rphi, desc\+\_\+rphi)
 \begin{DoxyCompactList}\small\item\em Calculates potential {\ttfamily Phi} on boundary of BEM in terms of some right-\/hand side . \end{DoxyCompactList}\item 
 integer function, public \doxymbox{\hyperlink{namespacevac__ops_a78969bf43f80f0df3acf23c47edf7aff}{print\+\_\+output\+\_\+vac}} (vac, data\+\_\+name, rich\+\_\+lvl)
 \begin{DoxyCompactList}\small\item\em Print vacuum quantities of a certain order to an output file. \end{DoxyCompactList}\end{DoxyCompactItemize}
@@ -30,7 +34,7 @@ logical, public \doxymbox{\hyperlink{namespacevac__ops_a9c1d2227ea0118cb9158f7e0
 logical, public \doxymbox{\hyperlink{namespacevac__ops_a6b99f921f077f63f641d5a9c86d88eaf}{debug\+\_\+calc\+\_\+vac\+\_\+res}} = .false.
 \begin{DoxyCompactList}\small\item\em plot debug information for \doxylink{namespacevac__ops_a5e5a8322b3aa2e3704b1050426f06d9d}{calc\+\_\+vac\+\_\+res()} \end{DoxyCompactList}\item 
 logical, public \doxymbox{\hyperlink{namespacevac__ops_a1afb20e30f5f99547fc8df4ace204ee9}{debug\+\_\+vac\+\_\+pot\+\_\+plot}} = .false.
-\begin{DoxyCompactList}\small\item\em plot debug information for \doxylink{namespacevac__ops_a76c87e7676f6ea8d72fabbbf6a631c6a}{vac\+\_\+pot\+\_\+plot()} \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em plot debug information for \doxylink{namespacevac__ops_a8bcc01cfc5c1022f767b5479c7739ea0}{vac\+\_\+pot\+\_\+plot()} \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
@@ -38,30 +42,104 @@ Operations and variables pertaining to the vacuum response.
 
 The vacuum response is calculated using the Boundary Element Method. There are two possibilities, indicated by the variable {\ttfamily style} in {\ttfamily \doxylink{namespacevac__vars}{vac\+\_\+vars}}.
 \begin{DoxyEnumerate}
-\item 3-\/D field aligned:\+
+\item 3-\/D field aligned:
 \begin{DoxyItemize}
 \item Makes use of the collocation method for the grid points along the magnetic field lines.
-\item The 3-\/D integrals are therefore integrated using Weyl\textquotesingle{}s theorem \DoxyCite{helander2014}{number}{1}, p. 5.
+\item The surface integrals are taken in the parallel coordinate and the field-\/line label, with the trapezoidal rule along every field line, refined near the influence point, and a sum with equal weights across the field lines, which together cover the surface once (see \doxylink{namespacevac__ops_aa0e2983daefe876c0eb16be9af046a97}{calc\+\_\+gh\+\_\+1()}).
+\item At least 2 field lines are required, with alpha\+\_\+style=2.
 \end{DoxyItemize}
-\item axisymmetric:\+
+\item axisymmetric:
 \begin{DoxyItemize}
 \item Makes use of an analytical expression for the toroidal integration of the Green\textquotesingle{}s functions, as shown in \DoxyCite{cohl1999}{number}{1}.
 \item The integration in the poloidal angle is done using the collocation method.
 \end{DoxyItemize}
 \end{DoxyEnumerate}
 
-The final matrix equation is solved through Strumpack \DoxyCite{meiser2016}{number}{1}.
+The final matrix equation is solved through Strumpack \DoxyCite{meiser2016}{number}{1}, or through Sca\+LAPACK when PB3D was built without Strumpack.
 
 \begin{DoxySeeAlso}{See also}
 See \DoxyCite{weyens3d}{number}{1}.
 \end{DoxySeeAlso}
 \begin{DoxyRefDesc}{Todo}
-\item[\doxymbox{\hyperlink{todo__todo000001}{Todo}}]The vacuum part of PB3D is still under construction and not usable yet. \end{DoxyRefDesc}
+\item[\doxymbox{\hyperlink{todo__todo000001}{Todo}}]Publish vacuum benchmarks and refer to them here. 
+
+Investigate Strumpack rather than inefficient scalapack \end{DoxyRefDesc}
 
 
-\label{doc-func-members}
+\label{namespacevac__ops_doc-func-members}
 \Hypertarget{namespacevac__ops_doc-func-members}
 \doxysubsection{Function/\+\+Subroutine Documentation}
+\Hypertarget{namespacevac__ops_a8d70ea940b7548e4a2f397699c694b67}\index{vac\_ops@{vac\_ops}!calc\_gh@{calc\_gh}}
+\index{calc\_gh@{calc\_gh}!vac\_ops@{vac\_ops}}
+\doxysubsubsection{\texorpdfstring{calc\_gh()}{calc\_gh()}}
+{\footnotesize\ttfamily \label{namespacevac__ops_a8d70ea940b7548e4a2f397699c694b67} 
+integer function, public vac\+\_\+ops::\+calc\+\_\+gh (\begin{DoxyParamCaption}\item[{type(\doxymbox{\hyperlink{structvac__vars_1_1vac__type}{vac\+\_\+type}}), intent(inout), target}]{vac}{, }\item[{integer, intent(in), optional}]{n\+\_\+r\+\_\+in}{, }\item[{integer, dimension(:\+,:\+), intent(in), optional, target}]{lims\+\_\+r\+\_\+in}{, }\item[{real(dp), dimension(:\+,:\+), intent(in), optional, target}]{x\+\_\+vec\+\_\+in}{, }\item[{real(dp), dimension(:\+,:\+), intent(in), optional, target}]{g\+\_\+in}{, }\item[{real(dp), dimension(:\+,:\+), intent(in), optional, target}]{h\+\_\+in}{}\end{DoxyParamCaption})}
+
+
+
+Calculate the matrices {\ttfamily G} and {\ttfamily H}. 
+
+This is done by iterating over the subintervals, calculating the contributions to the potential values on the left and right boundary of the interval, and adding these to the appropriate values in G and H.
+
+As each process in the blacs grid only has access to its own values, an extra interval is is calculated to the left and right of the internal process grid edges.
+
+Optionally, this procedure can be used to calculate the coefficients G and H with respect to other points, outside of the boundary. This is useful when the potential is to be calculated at external points.
+
+For external points no diagonal is set, and the points near the boundary are treated as follows:
+\begin{DoxyItemize}
+\item field-\/line style (\doxylink{namespacevac__ops_aa0e2983daefe876c0eb16be9af046a97}{calc\+\_\+gh\+\_\+1()}): the near-\/field rule along the field lines is used for an external point that lies closer to its nearest boundary point than that boundary point lies to its neighbour on the same field line. A point that coincides with a boundary point gets the analytical half-\/cell integral of G, with the metric factors of the left endpoint of the interval, which is the coinciding point or its neighbour on the field line.
+\item axisymmetric style (\doxylink{namespacevac__ops_a6fb02475c7ef2da9408952cf6f1cca8b}{calc\+\_\+gh\+\_\+2()}): a point that coincides with a boundary point gets the row that returns the boundary value, with $4\pi$ in the column of that point and zero elsewhere. Other points near the boundary get no special treatment.
+\end{DoxyItemize}
+
+Within a few grid spacings of the boundary the quadrature does not resolve the kernels (\doxylink{namespacevac__ops_a33bf7285ead934fa8e4242c708542d92}{eval\+\_\+pot\+\_\+ext()}).
+
+\begin{DoxyNote}{Note}
+Multiple field lines are stored sequentially, which implies that the integral between the last point on a field line and the first point on the next field lines needs to be left out.
+
+For style 1 the kernel is integrated along the field line within four interval lengths of the influence point (\doxylink{namespacevac__utilities_a3b2836606e5331d38278bd3551c9bb75}{vac\+\_\+utilities.\+calc\+\_\+gh\+\_\+int\+\_\+1}), because neighbouring field lines can lie much closer together than the points along them. The rule along and across the field lines is described in \doxylink{namespacevac__ops_aa0e2983daefe876c0eb16be9af046a97}{calc\+\_\+gh\+\_\+1()}.
+\end{DoxyNote}
+\begin{DoxyRefDesc}{Todo}
+\item[\doxymbox{\hyperlink{todo__todo000002}{Todo}}]For 3-\/D vacuums, step sizes are constant. Subsequent Richardson levels should therefore make use of the fact that the contribution to the points inherited from the previous levels can be just scaled by 1/\+2 and do not need to be recalculated. Currently, the copy is done correctly in interlaced\+\_\+vac\+\_\+copy(), but they are afterwards overwritten.\end{DoxyRefDesc}
+
+
+\begin{DoxyReturn}{Returns}
+ierr 
+\end{DoxyReturn}
+
+\begin{DoxyParams}[1]{Parameters}
+\doxymbox{\texttt{in,out}}  & {\em vac} & vacuum variables \\
+\hline
+\doxymbox{\texttt{in}}  & {\em n\+\_\+r\+\_\+in} & total number of rows of external poins of influence \\
+\hline
+\doxymbox{\texttt{in}}  & {\em lims\+\_\+r\+\_\+in} & row limits of external points of influence \\
+\hline
+\doxymbox{\texttt{in}}  & {\em x\+\_\+vec\+\_\+in} & external position of influence \\
+\hline
+\doxymbox{\texttt{in}}  & {\em g\+\_\+in} & external G \\
+\hline
+\doxymbox{\texttt{in}}  & {\em h\+\_\+in} & external H \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \doxymbox{\hyperlink{vac__ops_8f90_source_l00557}{557}} of file \doxymbox{\hyperlink{vac__ops_8f90_source}{vac\+\_\+ops.\+f90}}.
+
+Here is the call graph for this function:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespacevac__ops_a8d70ea940b7548e4a2f397699c694b67_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespacevac__ops_a8d70ea940b7548e4a2f397699c694b67_icgraph}
+\end{center}
+\end{figure}
 \Hypertarget{namespacevac__ops_aa0e2983daefe876c0eb16be9af046a97}\index{vac\_ops@{vac\_ops}!calc\_gh\_1@{calc\_gh\_1}}
 \index{calc\_gh\_1@{calc\_gh\_1}!vac\_ops@{vac\_ops}}
 \doxysubsubsection{\texorpdfstring{calc\_gh\_1()}{calc\_gh\_1()}}
@@ -72,8 +150,25 @@ integer function vac\+\_\+ops::\+calc\+\_\+gh\+\_\+1 (\begin{DoxyParamCaption}\i
 
 Calculates matrices {\ttfamily G} and {\ttfamily H} in 3-\/D configuration. 
 
+The boundary points lie on $n_\alpha$ field lines with the labels $\alpha_k = \alpha_\text{min} + (k-1)\Delta\alpha$, $k = 1,\ldots,n_\alpha$. Every field line has $n_p$ points $p_l = p_\text{min} + (l-1)\Delta p$, $l = 1,\ldots,n_p$, in the parallel coordinate $p$. The steps are $\Delta\alpha = (\alpha_\text{max}-\alpha_\text{min})/n_\alpha$ and $\Delta p = (p_\text{max}-p_\text{min})/(n_p-1)$ (\doxylink{namespacevac__utilities_abc6ea224f7a8b897e3af84c6664f302b}{vac\+\_\+utilities.\+vac\+\_\+steps()}): the grid in $\alpha$ leaves out $\alpha_\text{max}$, which is the field line at $\alpha_\text{min}$ again, while every field line includes both of its end points. The points are stored line by line: point $l$ of field line $k$ is column $j = (k-1)n_p + l$ of G and H.
+
+A row of G and H belongs to an influence point $\mathbf{r}_i$, the point at which the potential is evaluated. A column belongs to a boundary point $\mathbf{r}_j$, over which the surface integral runs.
+
+The surface integrals are taken in the coordinates $(p,\alpha)$. With alpha\+\_\+style 2 the parallel range is one turn, $p_\text{max}-p_\text{min} = 2\pi$, and the field lines have to cover one period of the label, $\alpha_\text{max}-\alpha_\text{min} = 2\pi$ (the default). The rectangle in $(p,\alpha)$ then covers the surface once. The stored normal $\mathbf{N} = -\mathcal{J}\nabla\psi$ ({\ttfamily vac\%norm}) has the length of the surface element per unit $p$ and per unit $\alpha$, $|\mathbf{N}| = |\partial_\alpha\mathbf{r}\times\partial_p\mathbf{r}|$, so the weights below contain no other Jacobian.
+
+Far from the influence point, the rule is    \[ \iint f \, \text{d}p \, \text{d}\alpha \approx
+         \sum_{k=1}^{n_\alpha} \Delta\alpha \sum_{l=1}^{n_p} c_l \, \Delta p \,
+         f(p_l,\alpha_k), \qquad c_1 = c_{n_p} = \tfrac{1}{2}, \quad
+         c_l = 1 \text{ otherwise}, \] where $f$ is the integrand of the G term or of the H term of row $i$.
+\begin{DoxyItemize}
+\item Along each field line this is the trapezoidal rule. The loop over the intervals $[p_l,p_{l+1}]$ multiplies the kernel at both end points of every interval by $\Delta p\,\Delta\alpha/2$ and adds it to their columns. A point inside a field line therefore collects the weight $\Delta p\,\Delta\alpha$, and the first and the last point of a field line collect $\Delta p\,\Delta\alpha/2$. The last point of one field line and the first point of the next are neighbours in the storage only, and the loop skips that pair.
+\item Across the field lines it is a sum with the equal weight $\Delta\alpha$, which is the trapezoidal rule for a function that is periodic in $\alpha$. The kernel is evaluated on the field lines only; nothing is interpolated between them.
+\end{DoxyItemize}
+
+Near the influence point, \doxylink{namespacevac__utilities_a3b2836606e5331d38278bd3551c9bb75}{vac\+\_\+utilities.\+calc\+\_\+gh\+\_\+int\+\_\+1()} changes the rule along the field line and leaves the sum across the field lines as it is. Within four interval lengths of the influence point it integrates the kernel over each half-\/interval with Gauss-\/\+Legendre points on the cubic through four points of the same field line; for the first and the last interval of a field line these four points lie on one side of the interval. For an influence point off the boundary this is done only if the point lies closer to its nearest boundary point than that boundary point lies to its neighbour on the same field line. At the singular point it uses the analytical integral over the half-\/cell, which reaches $\Delta\alpha/2$ to either side of the field line. That integral and the cell integral of the direct diagonal of H (\doxylink{namespacevac__utilities_a3c3d0d491021b5c7ebb76c977eaf1da2}{vac\+\_\+utilities.\+calc\+\_\+diag\+\_\+direct()}, only with {\ttfamily vac\+\_\+diag\+\_\+style} 2) are the only places where the kernel is integrated across the field lines.
+
 \begin{DoxySeeAlso}{See also}
-calc\+\_\+gh. 
+\doxylink{namespacevac__ops_a8d70ea940b7548e4a2f397699c694b67}{calc\+\_\+gh}. 
 \end{DoxySeeAlso}
 
 \begin{DoxyParams}[1]{Parameters}
@@ -94,16 +189,18 @@ calc\+\_\+gh.
 \end{DoxyParams}
 
 
-Definition at line \doxymbox{\hyperlink{vac__ops_8f90_source_l00777}{777}} of file \doxymbox{\hyperlink{vac__ops_8f90_source}{vac\+\_\+ops.\+f90}}.
+Definition at line \doxymbox{\hyperlink{vac__ops_8f90_source_l00795}{795}} of file \doxymbox{\hyperlink{vac__ops_8f90_source}{vac\+\_\+ops.\+f90}}.
 
-Here is the call graph for this function:\+\nopagebreak
+Here is the call graph for this function:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{namespacevac__ops_aa0e2983daefe876c0eb16be9af046a97_cgraph}
 \end{center}
 \end{figure}
-Here is the caller graph for this function:\+\nopagebreak
+Here is the caller graph for this function:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -123,7 +220,7 @@ Calculates matrices {\ttfamily G} and {\ttfamily H} in axisymmetric configuratio
 It makes use of toroidal functions.
 
 \begin{DoxySeeAlso}{See also}
-calc\+\_\+gh. 
+\doxylink{namespacevac__ops_a8d70ea940b7548e4a2f397699c694b67}{calc\+\_\+gh}. 
 \end{DoxySeeAlso}
 
 \begin{DoxyParams}[1]{Parameters}
@@ -144,16 +241,18 @@ calc\+\_\+gh.
 \end{DoxyParams}
 
 
-Definition at line \doxymbox{\hyperlink{vac__ops_8f90_source_l00981}{981}} of file \doxymbox{\hyperlink{vac__ops_8f90_source}{vac\+\_\+ops.\+f90}}.
+Definition at line \doxymbox{\hyperlink{vac__ops_8f90_source_l00951}{951}} of file \doxymbox{\hyperlink{vac__ops_8f90_source}{vac\+\_\+ops.\+f90}}.
 
-Here is the call graph for this function:\+\nopagebreak
+Here is the call graph for this function:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{namespacevac__ops_a6fb02475c7ef2da9408952cf6f1cca8b_cgraph}
 \end{center}
 \end{figure}
-Here is the caller graph for this function:\+\nopagebreak
+Here is the caller graph for this function:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -179,11 +278,9 @@ The non-\/square matrix $\overline{\text{E}}$ contains the exponents for differe
 
 In practice, the complex matrix $\overline{\text{E}}$ is split in the two components of a real matrix twice the width.
 
-For vacuum style 1, the poloidal grid points correspond to the paralell grid points and have to be provied by a {\ttfamily grid} variable.
+For vacuum style 1, the parallel coordinate and the field-\/line label of every boundary point follow from {\ttfamily min\+\_\+par\+\_\+X}, {\ttfamily min\+\_\+alpha} and the steps of \doxylink{namespacevac__utilities_abc6ea224f7a8b897e3af84c6664f302b}{vac\+\_\+utilities.\+vac\+\_\+steps()}; for vacuum style 2, the poloidal angles are those stored in {\ttfamily vac\%ang}.
 
 If {\ttfamily jump\+\_\+to\+\_\+sol} is used for the current Richardson level, the vacuum quantities are not calculated, but just restored.
-
-Currently, this procedure only works for vacuum style 2 (axisymmetric).
 
 \begin{DoxyReturn}{Returns}
 ierr 
@@ -197,20 +294,81 @@ ierr
 \end{DoxyParams}
 
 
-Definition at line \doxymbox{\hyperlink{vac__ops_8f90_source_l01416}{1416}} of file \doxymbox{\hyperlink{vac__ops_8f90_source}{vac\+\_\+ops.\+f90}}.
+Definition at line \doxymbox{\hyperlink{vac__ops_8f90_source_l01583}{1583}} of file \doxymbox{\hyperlink{vac__ops_8f90_source}{vac\+\_\+ops.\+f90}}.
 
-Here is the call graph for this function:\+\nopagebreak
+Here is the call graph for this function:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{namespacevac__ops_a5e5a8322b3aa2e3704b1050426f06d9d_cgraph}
 \end{center}
 \end{figure}
-Here is the caller graph for this function:\+\nopagebreak
+Here is the caller graph for this function:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{namespacevac__ops_a5e5a8322b3aa2e3704b1050426f06d9d_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{namespacevac__ops_a33bf7285ead934fa8e4242c708542d92}\index{vac\_ops@{vac\_ops}!eval\_pot\_ext@{eval\_pot\_ext}}
+\index{eval\_pot\_ext@{eval\_pot\_ext}!vac\_ops@{vac\_ops}}
+\doxysubsubsection{\texorpdfstring{eval\_pot\_ext()}{eval\_pot\_ext()}}
+{\footnotesize\ttfamily \label{namespacevac__ops_a33bf7285ead934fa8e4242c708542d92} 
+integer function, public vac\+\_\+ops::\+eval\+\_\+pot\+\_\+ext (\begin{DoxyParamCaption}\item[{type(\doxymbox{\hyperlink{structvac__vars_1_1vac__type}{vac\+\_\+type}}), intent(inout)}]{vac}{, }\item[{real(dp), dimension(:\+,:\+), intent(in)}]{x\+\_\+ext}{, }\item[{real(dp), dimension(:\+,:\+), intent(in)}]{phi\+\_\+s}{, }\item[{real(dp), dimension(:\+,:\+), intent(in)}]{d\+\_\+s}{, }\item[{integer, dimension(blacsctxtsize), intent(in)}]{desc\+\_\+s}{, }\item[{real(dp), dimension(:\+,:\+), intent(inout)}]{pot}{}\end{DoxyParamCaption})}
+
+
+
+Potential at points off the boundary, from its values and its normal data on the boundary. 
+
+The kernels are taken along the stored normal $-\mathcal{J}\nabla\psi$, which points out of the vacuum. Green\textquotesingle{}s second identity then gives, at a point $\vec{x}$ off the boundary,      \[ \sum_j \left( H(\vec{x},\vec{x}_j)\phi_j -
+         G(\vec{x},\vec{x}_j)\,\text{d}\phi_j \right) = \left\{
+         \begin{array}{ll}
+         4\pi\phi(\vec{x}) & \text{in the vacuum,} \\
+         0 & \text{in the plasma}
+         \end{array} \right. \] for a potential $\phi$ that is harmonic in the vacuum and decays at infinity, and $0$ in the vacuum and $-4\pi\phi(\vec{x})$ in the plasma for a potential harmonic inside the boundary (the constant for the field-\/line style, $R^{|n|}$ for the axisymmetric one). On the boundary the same sum, with the diagonal that calc\+\_\+\+GH() adds there, is the identity $\overline{\text{H}}\phi - \overline{\text{G}}\,\text{d}\phi = c\phi$ of solve\+\_\+\+Phi\+\_\+\+BEM(), $c = 0$ and $-4\pi$ for the two kinds.
+
+This routine returns the sum divided by $4\pi$ for every column of {\ttfamily Phi\+\_\+s} and {\ttfamily D\+\_\+s}. The rows of G and H are assembled by calc\+\_\+\+GH() for the external points (no diagonal; the trapezoidal rule with the near-\/field rule along the field lines for the field-\/line style, the toroidal-\/function kernels for the axisymmetric style), in chunks that bound the memory. Within a few grid spacings of the boundary the quadrature does not resolve the kernels.
+
+Every process of the BLACS grid of the vacuum has to call it.
+
+\begin{DoxyReturn}{Returns}
+ierr 
+\end{DoxyReturn}
+
+\begin{DoxyParams}[1]{Parameters}
+\doxymbox{\texttt{in,out}}  & {\em vac} & vacuum variables \\
+\hline
+\doxymbox{\texttt{in}}  & {\em x\+\_\+ext} & points: (R,Z) for the axisymmetric style, (x,y,z) for the field-\/line style; the same on every process \\
+\hline
+\doxymbox{\texttt{in}}  & {\em phi\+\_\+s} & local part of the boundary potential, n\+\_\+bnd by n\+\_\+col \\
+\hline
+\doxymbox{\texttt{in}}  & {\em d\+\_\+s} & local part of its normal data along the stored normal \\
+\hline
+\doxymbox{\texttt{in}}  & {\em desc\+\_\+s} & descriptor of {\ttfamily Phi\+\_\+s} and {\ttfamily D\+\_\+s} \\
+\hline
+\doxymbox{\texttt{in,out}}  & {\em pot} & potential at the points, n\+\_\+ext by n\+\_\+col, on every process of the BLACS grid \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \doxymbox{\hyperlink{vac__ops_8f90_source_l02657}{2657}} of file \doxymbox{\hyperlink{vac__ops_8f90_source}{vac\+\_\+ops.\+f90}}.
+
+Here is the call graph for this function:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespacevac__ops_a33bf7285ead934fa8e4242c708542d92_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespacevac__ops_a33bf7285ead934fa8e4242c708542d92_icgraph}
 \end{center}
 \end{figure}
 \Hypertarget{namespacevac__ops_a78969bf43f80f0df3acf23c47edf7aff}\index{vac\_ops@{vac\_ops}!print\_output\_vac@{print\_output\_vac}}
@@ -225,11 +383,12 @@ Print vacuum quantities of a certain order to an output file.
 
 
 \begin{DoxyItemize}
-\item vac:\+
+\item vac:
 \begin{DoxyItemize}
 \item {\ttfamily misc\+\_\+vac} 
 \item {\ttfamily norm} 
 \item {\ttfamily x\+\_\+vec} 
+\item {\ttfamily ang} 
 \item {\ttfamily vac\+\_\+res} 
 \end{DoxyItemize}
 \end{DoxyItemize}
@@ -241,7 +400,7 @@ If {\ttfamily rich\+\_\+lvl} is provided, {\ttfamily "{}\+\_\+\+R\+\_\+\+[rich\+
 \begin{DoxyEnumerate}
 \item This routine should be called by a single process, in contrast to the other output routines such as \doxylink{interfaceeq__ops_1_1print__output__eq}{eq\+\_\+ops.\+print\+\_\+output\+\_\+eq()}, print\+\_\+output\+\_\+sol(), ...
 \item This process should be the last one, as it will set the boundary contribution.
-\item This routine does not save the {\ttfamily H} and {\ttfamily G} matrices because they are large and foreseen to be saved directly as Hierarchical matrices in the future. They therefore need to be regenerated if Richardson restart is done, or when after a jump to solution, another Richardson level is attempted. In calc\+\_\+vac, it is checked when copying the vacuum variables from previous to current Richardson level, whether the {\ttfamily G} and {\ttfamily H} matrices are allocated and if not, they are calculated.
+\item This routine does not save the {\ttfamily H} and {\ttfamily G} matrices because they are large and foreseen to be saved directly as Hierarchical matrices in the future. \doxylink{namespacevac__ops_a5e5a8322b3aa2e3704b1050426f06d9d}{calc\+\_\+vac\+\_\+res()} computes them again with \doxylink{namespacevac__ops_a8d70ea940b7548e4a2f397699c694b67}{calc\+\_\+gh()} at every Richardson level, except at the restart level with {\ttfamily jump\+\_\+to\+\_\+sol}, where it reads the stored vacuum response back instead.
 \end{DoxyEnumerate}
 \end{DoxyNote}
 \begin{DoxyReturn}{Returns}
@@ -258,34 +417,42 @@ ierr
 \end{DoxyParams}
 
 
-Definition at line \doxymbox{\hyperlink{vac__ops_8f90_source_l02346}{2346}} of file \doxymbox{\hyperlink{vac__ops_8f90_source}{vac\+\_\+ops.\+f90}}.
+Definition at line \doxymbox{\hyperlink{vac__ops_8f90_source_l03745}{3745}} of file \doxymbox{\hyperlink{vac__ops_8f90_source}{vac\+\_\+ops.\+f90}}.
 
-Here is the call graph for this function:\+\nopagebreak
+Here is the call graph for this function:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{namespacevac__ops_a78969bf43f80f0df3acf23c47edf7aff_cgraph}
 \end{center}
 \end{figure}
-Here is the caller graph for this function:\+\nopagebreak
+Here is the caller graph for this function:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{namespacevac__ops_a78969bf43f80f0df3acf23c47edf7aff_icgraph}
 \end{center}
 \end{figure}
-\Hypertarget{namespacevac__ops_ad70bf1a119f4645f5653ff287a476190}\index{vac\_ops@{vac\_ops}!solve\_phi\_bem@{solve\_phi\_bem}}
+\Hypertarget{namespacevac__ops_afb0bbf55ee22e8831b31bef1be85a741}\index{vac\_ops@{vac\_ops}!solve\_phi\_bem@{solve\_phi\_bem}}
 \index{solve\_phi\_bem@{solve\_phi\_bem}!vac\_ops@{vac\_ops}}
 \doxysubsubsection{\texorpdfstring{solve\_phi\_bem()}{solve\_phi\_bem()}}
-{\footnotesize\ttfamily \label{namespacevac__ops_ad70bf1a119f4645f5653ff287a476190} 
-integer function vac\+\_\+ops::\+solve\+\_\+phi\+\_\+bem (\begin{DoxyParamCaption}\item[{type(\doxymbox{\hyperlink{structvac__vars_1_1vac__type}{vac\+\_\+type}}), intent(in), target}]{vac}{, }\item[{real(dp), dimension(:\+,:\+), intent(in)}]{r}{, }\item[{real(dp), dimension(:\+,:\+), intent(inout), target}]{phi}{, }\item[{integer, dimension(2), intent(in)}]{n\+\_\+rphi}{, }\item[{integer, dimension(2), intent(in)}]{n\+\_\+loc\+\_\+rphi}{, }\item[{integer, dimension(:\+,:\+), intent(in)}]{lims\+\_\+c\+\_\+rphi}{, }\item[{integer, dimension(blacsctxtsize), intent(in), target}]{desc\+\_\+rphi}{}\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \label{namespacevac__ops_afb0bbf55ee22e8831b31bef1be85a741} 
+integer function, public vac\+\_\+ops::\+solve\+\_\+phi\+\_\+bem (\begin{DoxyParamCaption}\item[{type(\doxymbox{\hyperlink{structvac__vars_1_1vac__type}{vac\+\_\+type}}), intent(in), target}]{vac}{, }\item[{real(dp), dimension(:\+,:\+), intent(in)}]{r}{, }\item[{real(dp), dimension(:\+,:\+), intent(inout), target}]{phi}{, }\item[{integer, dimension(2), intent(in)}]{n\+\_\+rphi}{, }\item[{integer, dimension(2), intent(in)}]{n\+\_\+loc\+\_\+rphi}{, }\item[{integer, dimension(:\+,:\+), intent(in)}]{lims\+\_\+c\+\_\+rphi}{, }\item[{integer, dimension(blacsctxtsize), intent(in), target}]{desc\+\_\+rphi}{}\end{DoxyParamCaption})}
 
 
 
 Calculates potential {\ttfamily Phi} on boundary of BEM in terms of some right-\/hand side . 
 
-This is done by solving with STRUMPack the system of equations  $\overline{\text{H}}\overline{\Phi} =
-         \overline{\text{G}}\overline{\text{R}}$, where $\overline{\text{R}}$ is the right-\/hand side, for example equal to $\overline{\text{E}}\overline{\text{P}}$ to solve in function of the individual Fourier modes. 
+This is done by solving the system of equations  $\overline{\text{H}}\overline{\Phi} =
+         \overline{\text{G}}\overline{\text{R}}$, where $\overline{\text{R}}$ is the right-\/hand side, for example equal to $\overline{\text{E}}\overline{\text{P}}$ to solve in function of the individual Fourier modes.
+
+Both vacuum styles assemble $\overline{\text{H}}$ in the vacuum-\/side convention: the kernels take the normal derivative along the stored normal $-\mathcal{J}\nabla\psi$, out of the vacuum, and the diagonal carries $-2\beta$ with $\beta$ the vacuum\textquotesingle{}s internal angle (the row-\/sum identity for the field-\/line style). Potentials that are harmonic in the vacuum and decay at infinity then satisfy  $\overline{\text{H}}\overline{\phi} =
+        \overline{\text{G}}\overline{\text{D}\phi}$, and potentials that are harmonic inside the boundary satisfy  $\overline{\text{H}}\overline{\phi} - \overline{\text{G}}\overline{\text{D}\phi}
+        = -4\pi\overline{\phi}$ (both verified in the full-\/stack tests). The corner term also makes the system nonsingular when the first and last points of a closed boundary coincide, as they do for HELENA: the two rows differ only in the column of that term.
+
+The linear system is solved with STRUMPack when PB3D was configured with it, and with Sca\+LAPACK LU ({\ttfamily pdgesv}) otherwise. 
 \begin{DoxyParams}[1]{Parameters}
 \doxymbox{\texttt{in}}  & {\em vac} & vacuum variables \\
 \hline
@@ -304,20 +471,22 @@ This is done by solving with STRUMPack the system of equations  $\overline{\text
 \end{DoxyParams}
 
 
-Definition at line \doxymbox{\hyperlink{vac__ops_8f90_source_l02161}{2161}} of file \doxymbox{\hyperlink{vac__ops_8f90_source}{vac\+\_\+ops.\+f90}}.
+Definition at line \doxymbox{\hyperlink{vac__ops_8f90_source_l03472}{3472}} of file \doxymbox{\hyperlink{vac__ops_8f90_source}{vac\+\_\+ops.\+f90}}.
 
-Here is the call graph for this function:\+\nopagebreak
+Here is the call graph for this function:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=350pt]{namespacevac__ops_ad70bf1a119f4645f5653ff287a476190_cgraph}
+\includegraphics[width=350pt]{namespacevac__ops_afb0bbf55ee22e8831b31bef1be85a741_cgraph}
 \end{center}
 \end{figure}
-Here is the caller graph for this function:\+\nopagebreak
+Here is the caller graph for this function:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=350pt]{namespacevac__ops_ad70bf1a119f4645f5653ff287a476190_icgraph}
+\includegraphics[width=350pt]{namespacevac__ops_afb0bbf55ee22e8831b31bef1be85a741_icgraph}
 \end{center}
 \end{figure}
 \Hypertarget{namespacevac__ops_a37220702fbf378626a0f2c12f446e0aa}\index{vac\_ops@{vac\_ops}!store\_vac@{store\_vac}}
@@ -332,13 +501,13 @@ Stores calculation of the vacuum response by storing the necessary variables.
 
 This is done by the last process, which is the one that contains the variables at the plasma edge, and then this is broadcasted to the other processes.
 
-The workings of this routine are summarized in the following diagram for VMEC:\+ 
+The workings of this routine are summarized in the following diagram for VMEC: 
 \begin{DoxyImageNoCaption}%
-  \doxymbox{\includegraphics[width=\textwidth,height=\textheight/2,keepaspectratio=true]{dot_inline_dotgraph_879b5646596fb485035502a86234bd43}}%
+  \doxymbox{\includegraphics[width=\textwidth,height=\textheight/2,keepaspectratio=true]{dot_inline_dotgraph_de6a7aa2fcd8c6b76028dd0e05ef87d2}}%
 \end{DoxyImageNoCaption}
 
 
-Before storing the new variables, the procedure checks the following things:\+
+Before storing the new variables, the procedure checks the following things:
 \begin{DoxyItemize}
 \item For the first equilibrium job, this routine copies the results from the previous Richardson level into the appropriate subranges of the new vacuum variables if no restart of Richardson levels was done.
 \item If a restart was done and the level is greater than one, there is a reconstruction of the previous level\textquotesingle{}s variables. But this will happen in \doxylink{namespacevac__ops_a5e5a8322b3aa2e3704b1050426f06d9d}{calc\+\_\+vac\+\_\+res()}, not in this procedure.
@@ -346,7 +515,7 @@ Before storing the new variables, the procedure checks the following things:\+
 
 If there is a jump straight to the solution, however, the procedure returns after reconstructing the current level\textquotesingle{}s variables.
 
-If the previous {\ttfamily G} and {\ttfamily H} variables are empty, they are regenerated later, in calc\+\_\+gh(). This indicates that a reconstruction happened, either because a Richardson restart was performed, or because a new Richardson level was started after a previous level in which it was jumped straight to the solution.
+If the previous {\ttfamily G} and {\ttfamily H} variables are empty, they are regenerated later, in \doxylink{namespacevac__ops_a8d70ea940b7548e4a2f397699c694b67}{calc\+\_\+gh()}. This indicates that a reconstruction happened, either because a Richardson restart was performed, or because a new Richardson level was started after a previous level in which it was jumped straight to the solution.
 
 For HELENA, there is only 1 equilibrium job at the first Richardson level, and the vacuum has to be calculated only once then. If there is a jump to solution or if there is Richardson restart, it only needs to be reconstructed.
 
@@ -366,43 +535,46 @@ ierr
 \end{DoxyParams}
 
 
-Definition at line \doxymbox{\hyperlink{vac__ops_8f90_source_l00112}{112}} of file \doxymbox{\hyperlink{vac__ops_8f90_source}{vac\+\_\+ops.\+f90}}.
+Definition at line \doxymbox{\hyperlink{vac__ops_8f90_source_l00126}{126}} of file \doxymbox{\hyperlink{vac__ops_8f90_source}{vac\+\_\+ops.\+f90}}.
 
-Here is the call graph for this function:\+\nopagebreak
+Here is the call graph for this function:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{namespacevac__ops_a37220702fbf378626a0f2c12f446e0aa_cgraph}
 \end{center}
 \end{figure}
-Here is the caller graph for this function:\+\nopagebreak
+Here is the caller graph for this function:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{namespacevac__ops_a37220702fbf378626a0f2c12f446e0aa_icgraph}
 \end{center}
 \end{figure}
-\Hypertarget{namespacevac__ops_a76c87e7676f6ea8d72fabbbf6a631c6a}\index{vac\_ops@{vac\_ops}!vac\_pot\_plot@{vac\_pot\_plot}}
+\Hypertarget{namespacevac__ops_a8bcc01cfc5c1022f767b5479c7739ea0}\index{vac\_ops@{vac\_ops}!vac\_pot\_plot@{vac\_pot\_plot}}
 \index{vac\_pot\_plot@{vac\_pot\_plot}!vac\_ops@{vac\_ops}}
 \doxysubsubsection{\texorpdfstring{vac\_pot\_plot()}{vac\_pot\_plot()}}
-{\footnotesize\ttfamily \label{namespacevac__ops_a76c87e7676f6ea8d72fabbbf6a631c6a} 
-integer function, public vac\+\_\+ops::\+vac\+\_\+pot\+\_\+plot (\begin{DoxyParamCaption}\item[{type(\doxymbox{\hyperlink{structgrid__vars_1_1grid__type}{grid\+\_\+type}}), intent(in)}]{grid\+\_\+sol}{, }\item[{type(\doxymbox{\hyperlink{structvac__vars_1_1vac__type}{vac\+\_\+type}}), intent(inout)}]{vac}{, }\item[{type(\doxymbox{\hyperlink{structsol__vars_1_1sol__type}{sol\+\_\+type}}), intent(in)}]{sol}{, }\item[{integer, intent(in)}]{x\+\_\+id}{}\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \label{namespacevac__ops_a8bcc01cfc5c1022f767b5479c7739ea0} 
+integer function, public vac\+\_\+ops::\+vac\+\_\+pot\+\_\+plot (\begin{DoxyParamCaption}\item[{type(\doxymbox{\hyperlink{structgrid__vars_1_1grid__type}{grid\+\_\+type}}), intent(in)}]{grid\+\_\+sol}{, }\item[{type(\doxymbox{\hyperlink{structvac__vars_1_1vac__type}{vac\+\_\+type}}), intent(inout)}]{vac}{, }\item[{type(\doxymbox{\hyperlink{structsol__vars_1_1sol__type}{sol\+\_\+type}}), intent(in)}]{sol}{, }\item[{integer, dimension(:\+), intent(in)}]{x\+\_\+ids}{}\end{DoxyParamCaption})}
 
 
 
-Calculate vacuum potential at some positions that are not resonant. 
+Plots the vacuum potential of computed eigenmodes outside the plasma. 
 
-This is done by using the relation between H and G on the plasma boundary,  $\overline{\text{H}}_\text{s} \overline{\Phi}_\text{s} =
-         \overline{\text{G}}_\text{s} \overline{\text{D}\phi}_\text{s}$, where $\overline{\text{D}\phi}_\text{s}$ is the normal derivative of the potential on the plasma edge. The matrices $\overline{\text{H}}$ and $\overline{\text{G}}$ have to be calculated in advance.
+For every eigenmode of {\ttfamily X\+\_\+ids} the normal data of the vacuum potential on the boundary are those of \doxylink{namespacevac__ops_a5e5a8322b3aa2e3704b1050426f06d9d}{calc\+\_\+vac\+\_\+res()}: along the stored normal $-\mathcal{J}\nabla\psi$, out of the vacuum,  $\text{d}\phi =
+        -\mathcal{J}\vec{B}\cdot\nabla X = -i(nq-m)X$, summed over the modes of the solution at the plasma edge with the basis  $e^{i(n\alpha +
+        (nq-m)\theta)} = e^{i(n\zeta_\text{F} - m\theta)}$ of the field-\/line style, or $e^{-im\theta}$ for the axisymmetric style, which splits off $e^{in\zeta_\text{F}}$. These data are $-\mathcal{J}Q_n$, with $Q_n$ the normal component of the magnetic perturbation that POST plots: the normal component of the perturbed field is continuous across the boundary. The boundary potential follows from the exterior system of solve\+\_\+\+Phi\+\_\+\+BEM(), the potential in the vacuum from Green\textquotesingle{}s representation (\doxylink{namespacevac__ops_a33bf7285ead934fa8e4242c708542d92}{eval\+\_\+pot\+\_\+ext()}): for the field-\/line style the complex potential at the 3-\/D points, for the axisymmetric style $\hat{\phi}(R,Z)$ times $e^{in\zeta_\text{F}}$.
 
-This relation is then used at different positions to calculate the potential at a different position through    $4 \pi \phi = \left[ - \overline{\text{H}} \overline{\text{I}}
-         \overline{\text{H}}_\text{s}^{-1} \overline{\text{G}}_\text{s}  +
-         \overline{\text{G}} \overline{\text{I}} \right]
-         \overline{\text{D}\phi}_\text{s}$, where $\overline{\text{I}}$ is an integration rule.
+The points lie in the planes of constant $\zeta_\text{F}$ of the plasma plots, {\ttfamily n\+\_\+zeta\+\_\+plot} values from {\ttfamily min\+\_\+zeta\+\_\+plot} to {\ttfamily max\+\_\+zeta\+\_\+plot} in units of $\pi$ (the geometrical angle is $-\zeta_\text{F}$ for VMEC and HELENA), on a grid of {\ttfamily n\+\_\+vac\+\_\+plot} points in $R$ and $Z$ from {\ttfamily min\+\_\+\+Rvac\+\_\+plot} to {\ttfamily max\+\_\+\+Rvac\+\_\+plot} and from {\ttfamily min\+\_\+\+Zvac\+\_\+plot} to {\ttfamily max\+\_\+\+Zvac\+\_\+plot}, in metres. Where a maximum does not exceed its minimum (the default), the range is that of the boundary points widened on both sides by half the larger of their widths in $R$ and $Z$.
 
-This system of equations contains one row per point at which the potential is to be calculated.
+Written for every eigenmode: the real and imaginary parts of the potential at time zero, {\ttfamily \+[id]\+\_\+vac\+\_\+pot\+\_\+\+RE} and {\ttfamily \+[id]\+\_\+vac\+\_\+pot\+\_\+\+IM} (HDF5), and the boundary points with their normal data and potential, {\ttfamily Data/\+[id]\+\_\+vac\+\_\+bnd.\+dat}. Written once: {\ttfamily vac\+\_\+in\+\_\+plasma}, 1 inside the plasma and 0 in the vacuum (for the field-\/line style the side of the normal of the nearest boundary point close to it and minus the representation of the constant farther out, for the axisymmetric style the boundary polygon); the potential is set to zero there. Near the boundary the quadrature does not resolve the kernels; sub\+\_\+nearest() removes the largest part of that error (check\+\_\+vac\+\_\+exact() prints the error against the distance, with and without it).
 
-Currently, this routine creates a 3-\/D regular grid that is equidistant in cylindrical coordinates, with {\ttfamily n\+\_\+vac\+\_\+plot} values in R and Z, and {\ttfamily n\+\_\+zeta\+\_\+plot} values in the cylindrical angle. The limits in these variables, furthermore, are given by {\ttfamily min\+\_\+\+Rvac\+\_\+plot}, {\ttfamily max\+\_\+\+Rvac\+\_\+plot}, {\ttfamily min\+\_\+\+Zvac\+\_\+plot}, {\ttfamily max\+\_\+\+Zvac\+\_\+plot}, {\ttfamily min\+\_\+zeta\+\_\+plot} and {\ttfamily max\+\_\+zeta\+\_\+plot}. 
+\begin{DoxyReturn}{Returns}
+ierr 
+\end{DoxyReturn}
+
 \begin{DoxyParams}[1]{Parameters}
 \doxymbox{\texttt{in}}  & {\em grid\+\_\+sol} & solution grid \\
 \hline
@@ -410,30 +582,32 @@ Currently, this routine creates a 3-\/D regular grid that is equidistant in cyli
 \hline
 \doxymbox{\texttt{in}}  & {\em sol} & solution variables \\
 \hline
-\doxymbox{\texttt{in}}  & {\em x\+\_\+id} & nr. of Eigenvalue \\
+\doxymbox{\texttt{in}}  & {\em x\+\_\+ids} & indices of the eigenmodes \\
 \hline
 \end{DoxyParams}
 
 
-Definition at line \doxymbox{\hyperlink{vac__ops_8f90_source_l01856}{1856}} of file \doxymbox{\hyperlink{vac__ops_8f90_source}{vac\+\_\+ops.\+f90}}.
+Definition at line \doxymbox{\hyperlink{vac__ops_8f90_source_l03068}{3068}} of file \doxymbox{\hyperlink{vac__ops_8f90_source}{vac\+\_\+ops.\+f90}}.
 
-Here is the call graph for this function:\+\nopagebreak
+Here is the call graph for this function:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=350pt]{namespacevac__ops_a76c87e7676f6ea8d72fabbbf6a631c6a_cgraph}
+\includegraphics[width=350pt]{namespacevac__ops_a8bcc01cfc5c1022f767b5479c7739ea0_cgraph}
 \end{center}
 \end{figure}
-Here is the caller graph for this function:\+\nopagebreak
+Here is the caller graph for this function:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=350pt]{namespacevac__ops_a76c87e7676f6ea8d72fabbbf6a631c6a_icgraph}
+\includegraphics[width=350pt]{namespacevac__ops_a8bcc01cfc5c1022f767b5479c7739ea0_icgraph}
 \end{center}
 \end{figure}
 
 
-\label{doc-var-members}
+\label{namespacevac__ops_doc-var-members}
 \Hypertarget{namespacevac__ops_doc-var-members}
 \doxysubsection{Variable Documentation}
 \Hypertarget{namespacevac__ops_a9c1d2227ea0118cb9158f7e08f41affc}\index{vac\_ops@{vac\_ops}!debug\_calc\_gh@{debug\_calc\_gh}}
@@ -451,7 +625,7 @@ Debug version only
 \end{DoxyNote}
 
 
-Definition at line \doxymbox{\hyperlink{vac__ops_8f90_source_l00046}{46}} of file \doxymbox{\hyperlink{vac__ops_8f90_source}{vac\+\_\+ops.\+f90}}.
+Definition at line \doxymbox{\hyperlink{vac__ops_8f90_source_l00060}{60}} of file \doxymbox{\hyperlink{vac__ops_8f90_source}{vac\+\_\+ops.\+f90}}.
 
 \Hypertarget{namespacevac__ops_a6b99f921f077f63f641d5a9c86d88eaf}\index{vac\_ops@{vac\_ops}!debug\_calc\_vac\_res@{debug\_calc\_vac\_res}}
 \index{debug\_calc\_vac\_res@{debug\_calc\_vac\_res}!vac\_ops@{vac\_ops}}
@@ -468,7 +642,7 @@ Debug version only
 \end{DoxyNote}
 
 
-Definition at line \doxymbox{\hyperlink{vac__ops_8f90_source_l00047}{47}} of file \doxymbox{\hyperlink{vac__ops_8f90_source}{vac\+\_\+ops.\+f90}}.
+Definition at line \doxymbox{\hyperlink{vac__ops_8f90_source_l00061}{61}} of file \doxymbox{\hyperlink{vac__ops_8f90_source}{vac\+\_\+ops.\+f90}}.
 
 \Hypertarget{namespacevac__ops_a1afb20e30f5f99547fc8df4ace204ee9}\index{vac\_ops@{vac\_ops}!debug\_vac\_pot\_plot@{debug\_vac\_pot\_plot}}
 \index{debug\_vac\_pot\_plot@{debug\_vac\_pot\_plot}!vac\_ops@{vac\_ops}}
@@ -478,12 +652,12 @@ logical, public vac\+\_\+ops::\+debug\+\_\+vac\+\_\+pot\+\_\+plot = .false.}
 
 
 
-plot debug information for \doxylink{namespacevac__ops_a76c87e7676f6ea8d72fabbbf6a631c6a}{vac\+\_\+pot\+\_\+plot()} 
+plot debug information for \doxylink{namespacevac__ops_a8bcc01cfc5c1022f767b5479c7739ea0}{vac\+\_\+pot\+\_\+plot()} 
 
 \begin{DoxyNote}{Note}
 Debug version only 
 \end{DoxyNote}
 
 
-Definition at line \doxymbox{\hyperlink{vac__ops_8f90_source_l00048}{48}} of file \doxymbox{\hyperlink{vac__ops_8f90_source}{vac\+\_\+ops.\+f90}}.
+Definition at line \doxymbox{\hyperlink{vac__ops_8f90_source_l00062}{62}} of file \doxymbox{\hyperlink{vac__ops_8f90_source}{vac\+\_\+ops.\+f90}}.
 

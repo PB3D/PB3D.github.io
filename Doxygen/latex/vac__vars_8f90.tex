@@ -1,5 +1,5 @@
-\doxysection{/\+\+Users/\+toonweyens/\+\+Code/\+\+PB3\+D/\+\+Modules/\+vac\+\_\+vars.f90 File Reference}
-\hypertarget{vac__vars_8f90}{}\label{vac__vars_8f90}\index{/Users/toonweyens/Code/PB3D/Modules/vac\_vars.f90@{/Users/toonweyens/Code/PB3D/Modules/vac\_vars.f90}}
+\doxysection{Modules/\+vac\+\_\+vars.f90 File Reference}
+\hypertarget{vac__vars_8f90}{}\label{vac__vars_8f90}\index{Modules/vac\_vars.f90@{Modules/vac\_vars.f90}}
 \doxysubsubsection*{Interfaces and Types}
 \begin{DoxyCompactItemize}
 \item 
@@ -17,6 +17,8 @@ integer function \doxymbox{\hyperlink{namespacevac__vars_a62f1cdc62a18ca5389f8c5
 \begin{DoxyCompactList}\small\item\em Initializes a vacuum type. \end{DoxyCompactList}\item 
 subroutine, public \doxymbox{\hyperlink{namespacevac__vars_a5bfa31e3a61464281d70a4e1a8246510}{vac\+\_\+vars::\+set\+\_\+loc\+\_\+lims}} (n\+\_\+loc, bs, ind\+\_\+p, n\+\_\+p, lims)
 \begin{DoxyCompactList}\small\item\em Calculates the limits in local index. \end{DoxyCompactList}\item 
+pure integer function, public \doxymbox{\hyperlink{namespacevac__vars_a17ee0aa4db79ca9724831df183ce07c9}{vac\+\_\+vars::\+loc\+\_\+idx}} (lims, i\+\_\+sub, glob)
+\begin{DoxyCompactList}\small\item\em Local index of a global row or column in the block-\/cyclic layout: global index {\ttfamily glob} in the subrow (or subcolumn) {\ttfamily i\+\_\+sub} with limits {\ttfamily lims} lands after the sizes of the previous subrows. \end{DoxyCompactList}\item 
 subroutine \doxymbox{\hyperlink{namespacevac__vars_aa6669ed787cf96e8f8fa665149bc83a3}{vac\+\_\+vars::\+dealloc\+\_\+vac}} (vac)
 \begin{DoxyCompactList}\small\item\em Deallocates vacuum variables. \end{DoxyCompactList}\item 
 integer function, public \doxymbox{\hyperlink{namespacevac__vars_a8da702035bfcc208bd810258f9944f6a}{vac\+\_\+vars::\+copy\+\_\+vac}} (vac, vac\+\_\+copy)
@@ -26,5 +28,7 @@ logical function, public \doxymbox{\hyperlink{namespacevac__vars_af0fd2f819434bf
 \doxysubsubsection*{Variables}
 \begin{DoxyCompactItemize}
 \item 
+integer, parameter, public \doxymbox{\hyperlink{namespacevac__vars_aabff8e7b28931ea0d029d8f2b8d73f73}{vac\+\_\+vars::\+blacsctxtsize}} = 9
+\begin{DoxyCompactList}\small\item\em length of a Sca\+LAPACK descriptor \end{DoxyCompactList}\item 
 integer, public \doxymbox{\hyperlink{namespacevac__vars_a48e085d21d3006e777a7052577e89a21}{vac\+\_\+vars::\+n\+\_\+alloc\+\_\+vacs}}
 \begin{DoxyCompactList}\small\item\em nr. of allocated vacs \end{DoxyCompactList}\end{DoxyCompactItemize}

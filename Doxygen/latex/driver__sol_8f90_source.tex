@@ -1,5 +1,5 @@
 \doxysection{driver\+\_\+sol.\+f90}
-\hypertarget{driver__sol_8f90_source}{}\label{driver__sol_8f90_source}\index{/Users/toonweyens/Code/PB3D/Modules/driver\_sol.f90@{/Users/toonweyens/Code/PB3D/Modules/driver\_sol.f90}}
+\hypertarget{driver__sol_8f90_source}{}\label{driver__sol_8f90_source}\index{Modules/driver\_sol.f90@{Modules/driver\_sol.f90}}
 \doxymbox{\hyperlink{driver__sol_8f90}{Go to the documentation of this file.}}
 \begin{DoxyCode}{0}
 \DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00001}00001\ \textcolor{comment}{!-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/!}\textcolor{comment}{}}
@@ -46,7 +46,7 @@
 \DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00042}00042\ \ \ \ \ \ \ \ \ \&result(ierr)}
 \DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00043}00043\ \ \ \ \ \ \ \ \ }
 \DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00044}00044\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{use\ }\doxymbox{\hyperlink{namespacenum__vars}{num\_vars}},\ \textcolor{keywordtype}{only}:\ \doxymbox{\hyperlink{namespacenum__vars_aae749d5063afce3b912a097ff0993d00}{ev\_style}},\ \doxymbox{\hyperlink{namespacenum__vars_a7d8763402037dbb80db19e2534ddf595}{eq\_style}},\ \doxymbox{\hyperlink{namespacenum__vars_ac4bc885e8034c285bf0a9b76a832a738}{rich\_restart\_lvl}},\ \doxymbox{\hyperlink{namespacenum__vars_ab47aa91445feaedb05ac9d1a584664fe}{rank}},\ \&}
-\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00045}00045\ \ \ \ \ \ \ \ \ \ \ \ \ \&\doxymbox{\hyperlink{namespacenum__vars_a3a1f41c66c3d91fc749bcffd177b0662}{n\_procs}},\ \doxymbox{\hyperlink{namespacenum__vars_a72c4ea80e13135b4c314f3f9d3bfdc81}{x\_grid\_style}},\ \doxymbox{\hyperlink{namespacenum__vars_acd9fb4b84728c986d5ecde709dcac940}{jump\_to\_sol}}}
+\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00045}00045\ \ \ \ \ \ \ \ \ \ \ \ \ \&\doxymbox{\hyperlink{namespacenum__vars_a3a1f41c66c3d91fc749bcffd177b0662}{n\_procs}},\ \doxymbox{\hyperlink{namespacenum__vars_a72c4ea80e13135b4c314f3f9d3bfdc81}{x\_grid\_style}},\ \doxymbox{\hyperlink{namespacenum__vars_acd9fb4b84728c986d5ecde709dcac940}{jump\_to\_sol}},\ \doxymbox{\hyperlink{namespacenum__vars_aabda06d22d0bad62383df3a0d977a82c}{bc\_style}}}
 \DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00046}00046\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{use\ }\doxymbox{\hyperlink{namespacegrid__vars}{grid\_vars}},\ \textcolor{keywordtype}{only}:\ \doxymbox{\hyperlink{namespacegrid__vars_ad998db12a656afb94d2d54a7d0eca642}{n\_r\_sol}},\ \doxymbox{\hyperlink{namespacegrid__vars_a83a6486b23c4a218822540da15904426}{n\_alpha}}}
 \DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00047}00047\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{use\ }\doxymbox{\hyperlink{namespacepb3d__ops}{pb3d\_ops}},\ \textcolor{keywordtype}{only}:\ \doxymbox{\hyperlink{namespacepb3d__ops_a4218b582c5029ff05893265fa329877b}{reconstruct\_pb3d\_grid}},\ \doxymbox{\hyperlink{namespacepb3d__ops_ae7afc544227f34f2877eb5a14d620823}{reconstruct\_pb3d\_sol}}}
 \DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00048}00048\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{use\ }\doxymbox{\hyperlink{namespaceslepc__ops}{slepc\_ops}},\ \textcolor{keywordtype}{only}:\ \doxymbox{\hyperlink{namespaceslepc__ops_ad5a8b4c450e66604733f3c04e7ef2bf9}{solve\_ev\_system\_slepc}}}
@@ -146,7 +146,7 @@
 \DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00142}00142\ \ \ \ \ \ \ \ \ }
 \DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00143}00143\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ set\ up\ \ whether\ Richardson\ level\ \ has\ to\ be\ \ appended\ to\ the\ \ name\ and}}
 \DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00144}00144\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ whether\ to\ do\ vacuum\ operations}}
-\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00145}00145\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{select\ case}\ (\doxymbox{\hyperlink{namespacenum__vars_a7d8763402037dbb80db19e2534ddf595}{eq\_style}})\ }
+\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00145}00145\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{select\ case}\ (\doxymbox{\hyperlink{namespacenum__vars_a7d8763402037dbb80db19e2534ddf595}{eq\_style}})}
 \DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00146}00146\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ (1)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ VMEC}}
 \DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00147}00147\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ rich\_lvl\_name\ =\ \doxymbox{\hyperlink{namespacerich__vars_a1b7734ba9ce6cc153b22387e638093c0}{rich\_lvl}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ append\ richardson\ level}}
 \DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00148}00148\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ do\_vac\_ops\ =\ .true.}
@@ -158,143 +158,143 @@
 \DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00154}00154\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ do\_vac\_ops\ =\ .false.}
 \DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00155}00155\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ end\ if}}
 \DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00156}00156\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ end\ select}}
-\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00157}00157\ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00158}00158\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (do\_vac\_ops)\ \textcolor{keywordflow}{then}}
-\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00159}00159\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ calculate\ vacuum}}
-\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00160}00160\ \ \ \ \ \ \ \ \ \ \ \ \ ierr\ =\ \doxymbox{\hyperlink{namespacevac__ops_a5e5a8322b3aa2e3704b1050426f06d9d}{calc\_vac\_res}}(\doxymbox{\hyperlink{namespacex__vars_ac74f59668de6caca7038decc7191c6a1}{mds\_sol}},vac)}
-\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00161}00161\ \ \ \ \ \ \ \ \ \ \ \ \ chckerr(\textcolor{stringliteral}{''})}
-\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00162}00162\ \ \ \ \ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00163}00163\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_aa4a8d01563e92558e8a0875b075ec54c}{writo}}(\textcolor{stringliteral}{'Write\ to\ output\ file'})}
-\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00164}00164\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_a6e6bfb084063e4cc91ee86e542043302}{lvl\_ud}}(1)}
-\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00165}00165\ \ \ \ \ \ \ \ \ \ \ \ \ chckerr(\textcolor{stringliteral}{''})}
-\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00166}00166\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\doxymbox{\hyperlink{namespacenum__vars_ab47aa91445feaedb05ac9d1a584664fe}{rank}}.eq.\doxymbox{\hyperlink{namespacenum__vars_a3a1f41c66c3d91fc749bcffd177b0662}{n\_procs}}-\/1)\ \textcolor{keywordflow}{then}}
-\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00167}00167\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ierr\ =\ \doxymbox{\hyperlink{namespacevac__ops_a78969bf43f80f0df3acf23c47edf7aff}{print\_output\_vac}}(vac,\textcolor{stringliteral}{'vac'},\doxymbox{\hyperlink{namespacerich__vars_a1b7734ba9ce6cc153b22387e638093c0}{rich\_lvl}}=rich\_lvl\_name)}
-\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00168}00168\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ chckerr(\textcolor{stringliteral}{''})}
-\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00169}00169\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ \ \ \ \ end\ if}}
-\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00170}00170\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_a6e6bfb084063e4cc91ee86e542043302}{lvl\_ud}}(-\/1)}
-\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00171}00171\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ end\ if}}
-\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00172}00172\ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00173}00173\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ initialize\ interpolated\ X}}
-\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00174}00174\ \ \ \ \ \ \ \ \ ierr\ =\ grid\_x\_sol\%init([1,\doxymbox{\hyperlink{namespacegrid__vars_a83a6486b23c4a218822540da15904426}{n\_alpha}},grid\_sol\%n(3)],\&}
-\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00175}00175\ \ \ \ \ \ \ \ \ \ \ \ \ \&[grid\_sol\%i\_min,grid\_sol\%i\_max],grid\_sol\%divided)}
-\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00176}00176\ \ \ \ \ \ \ \ \ chckerr(\textcolor{stringliteral}{''})}
-\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00177}00177\ \ \ \ \ \ \ \ \ grid\_x\_sol\%r\_F\ =\ grid\_sol\%r\_F}
-\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00178}00178\ \ \ \ \ \ \ \ \ grid\_x\_sol\%r\_E\ =\ grid\_sol\%r\_E}
-\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00179}00179\ \ \ \ \ \ \ \ \ grid\_x\_sol\%loc\_r\_F\ =\ grid\_sol\%loc\_r\_F}
-\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00180}00180\ \ \ \ \ \ \ \ \ grid\_x\_sol\%loc\_r\_E\ =\ grid\_sol\%loc\_r\_E}
-\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00181}00181\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00157}00157\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\doxymbox{\hyperlink{namespacenum__vars_aabda06d22d0bad62383df3a0d977a82c}{bc\_style}}(2).eq.1)\ do\_vac\_ops\ =\ .false.\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ fixed-\/boundary\ BC\ does\ not\ use\ the\ vacuum\ response}}
+\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00158}00158\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00159}00159\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (do\_vac\_ops)\ \textcolor{keywordflow}{then}}
+\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00160}00160\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ calculate\ vacuum}}
+\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00161}00161\ \ \ \ \ \ \ \ \ \ \ \ \ ierr\ =\ \doxymbox{\hyperlink{namespacevac__ops_a5e5a8322b3aa2e3704b1050426f06d9d}{calc\_vac\_res}}(\doxymbox{\hyperlink{namespacex__vars_ac74f59668de6caca7038decc7191c6a1}{mds\_sol}},vac)}
+\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00162}00162\ \ \ \ \ \ \ \ \ \ \ \ \ chckerr(\textcolor{stringliteral}{''})}
+\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00163}00163\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00164}00164\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_aa4a8d01563e92558e8a0875b075ec54c}{writo}}(\textcolor{stringliteral}{'Write\ to\ output\ file'})}
+\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00165}00165\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_a6e6bfb084063e4cc91ee86e542043302}{lvl\_ud}}(1)}
+\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00166}00166\ \ \ \ \ \ \ \ \ \ \ \ \ chckerr(\textcolor{stringliteral}{''})}
+\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00167}00167\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\doxymbox{\hyperlink{namespacenum__vars_ab47aa91445feaedb05ac9d1a584664fe}{rank}}.eq.\doxymbox{\hyperlink{namespacenum__vars_a3a1f41c66c3d91fc749bcffd177b0662}{n\_procs}}-\/1)\ \textcolor{keywordflow}{then}}
+\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00168}00168\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ierr\ =\ \doxymbox{\hyperlink{namespacevac__ops_a78969bf43f80f0df3acf23c47edf7aff}{print\_output\_vac}}(vac,\textcolor{stringliteral}{'vac'},\doxymbox{\hyperlink{namespacerich__vars_a1b7734ba9ce6cc153b22387e638093c0}{rich\_lvl}}=rich\_lvl\_name)}
+\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00169}00169\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ chckerr(\textcolor{stringliteral}{''})}
+\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00170}00170\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ \ \ \ \ end\ if}}
+\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00171}00171\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_a6e6bfb084063e4cc91ee86e542043302}{lvl\_ud}}(-\/1)}
+\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00172}00172\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ end\ if}}
+\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00173}00173\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00174}00174\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ initialize\ interpolated\ X}}
+\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00175}00175\ \ \ \ \ \ \ \ \ ierr\ =\ grid\_x\_sol\%init([1,\doxymbox{\hyperlink{namespacegrid__vars_a83a6486b23c4a218822540da15904426}{n\_alpha}},grid\_sol\%n(3)],\&}
+\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00176}00176\ \ \ \ \ \ \ \ \ \ \ \ \ \&[grid\_sol\%i\_min,grid\_sol\%i\_max],grid\_sol\%divided)}
+\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00177}00177\ \ \ \ \ \ \ \ \ chckerr(\textcolor{stringliteral}{''})}
+\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00178}00178\ \ \ \ \ \ \ \ \ grid\_x\_sol\%r\_F\ =\ grid\_sol\%r\_F}
+\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00179}00179\ \ \ \ \ \ \ \ \ grid\_x\_sol\%r\_E\ =\ grid\_sol\%r\_E}
+\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00180}00180\ \ \ \ \ \ \ \ \ grid\_x\_sol\%loc\_r\_F\ =\ grid\_sol\%loc\_r\_F}
+\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00181}00181\ \ \ \ \ \ \ \ \ grid\_x\_sol\%loc\_r\_E\ =\ grid\_sol\%loc\_r\_E}
 \DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00182}00182\ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00183}00183\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{select\ case}\ (\doxymbox{\hyperlink{namespacenum__vars_a72c4ea80e13135b4c314f3f9d3bfdc81}{x\_grid\_style}})}
-\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00184}00184\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ (1,3)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ equilibrium\ or\ enriched}}
-\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00185}00185\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ user\ output}}
-\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00186}00186\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_aa4a8d01563e92558e8a0875b075ec54c}{writo}}(\textcolor{stringliteral}{'Redistribute\ and\ interpolate\ the\ perturbation\ \&}}
-\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00187}00187\ \textcolor{stringliteral}{}\textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&variables\ to\ solution\ grid'})}
-\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00188}00188\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_a6e6bfb084063e4cc91ee86e542043302}{lvl\_ud}}(1)}
-\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00189}00189\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00190}00190\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ redistribute\ grid\ and\ X\ variables}}
-\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00191}00191\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ierr\ =\ \doxymbox{\hyperlink{namespacegrid__ops_ab10ef5b486ee3861df2da4e53bc22630}{redistribute\_output\_grid}}(grid\_x,grid\_x\_rdst)}
-\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00192}00192\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ chckerr(\textcolor{stringliteral}{''})}
-\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00193}00193\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ierr\ =\ \doxymbox{\hyperlink{interfacex__ops_1_1redistribute__output__x}{redistribute\_output\_x}}(\doxymbox{\hyperlink{namespacex__vars_a690d4228d2a81ec5a7a6cd13be3a56a1}{mds\_x}},grid\_x,grid\_x\_rdst,x,x\_rdst)}
-\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00194}00194\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ chckerr(\textcolor{stringliteral}{''})}
-\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00195}00195\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00196}00196\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ initialize}}
-\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00197}00197\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }x\_sol\%init(\doxymbox{\hyperlink{namespacex__vars_ac74f59668de6caca7038decc7191c6a1}{mds\_sol}},grid\_x\_sol,is\_field\_averaged=.true.)}
-\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00198}00198\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00199}00199\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ interpolate}}
-\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00200}00200\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ierr\ =\ \doxymbox{\hyperlink{namespacedriver__sol_a7e8f77792cb6ec5bc854ae07b4b44d9a}{interp\_v}}(\doxymbox{\hyperlink{namespacex__vars_a690d4228d2a81ec5a7a6cd13be3a56a1}{mds\_x}},grid\_x\_rdst,x\_rdst,\doxymbox{\hyperlink{namespacex__vars_ac74f59668de6caca7038decc7191c6a1}{mds\_sol}},grid\_x\_sol,\&}
-\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00201}00201\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&x\_sol)}
-\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00202}00202\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ chckerr(\textcolor{stringliteral}{''})}
-\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00203}00203\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00204}00204\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ clean\ up}}
-\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00205}00205\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }x\_rdst\%dealloc()}
-\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00206}00206\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }grid\_x\_rdst\%dealloc()}
-\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00207}00207\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00208}00208\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_a6e6bfb084063e4cc91ee86e542043302}{lvl\_ud}}(-\/1)}
-\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00209}00209\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ (2)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ solution}}
-\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00210}00210\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ user\ output}}
-\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00211}00211\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_aa4a8d01563e92558e8a0875b075ec54c}{writo}}(\textcolor{stringliteral}{'Copy\ the\ perturbation\ variables\ to\ solution\ grid'})}
-\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00212}00212\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_a6e6bfb084063e4cc91ee86e542043302}{lvl\_ud}}(1)}
-\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00213}00213\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00214}00214\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ copy}}
-\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00215}00215\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }x\%copy(\doxymbox{\hyperlink{namespacex__vars_ac74f59668de6caca7038decc7191c6a1}{mds\_sol}},grid\_x,x\_sol)}
-\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00216}00216\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00217}00217\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_a6e6bfb084063e4cc91ee86e542043302}{lvl\_ud}}(-\/1)}
-\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00218}00218\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ end\ select}}
-\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00219}00219\ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00220}00220\ \textcolor{preprocessor}{\#if\ ldebug}}
-\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00221}00221\ \textcolor{preprocessor}{}\ \ \ \ \ \ \ \ \textcolor{comment}{!\ write\ integrated\ \ field-\/aligned\ tensorial\ \ perturbation\ quantities}}
-\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00222}00222\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ to\ output\ and\ plot}}
-\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00223}00223\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (debug\_run\_driver\_sol)\ \textcolor{keywordflow}{then}}
-\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00224}00224\ \ \ \ \ \ \ \ \ \ \ \ \ ierr\ =\ \doxymbox{\hyperlink{namespacex__ops_ad7b07e5851eb44994a384363c86f35d6}{print\_debug\_x\_2}}(\doxymbox{\hyperlink{namespacex__vars_ac74f59668de6caca7038decc7191c6a1}{mds\_sol}},grid\_x\_sol,x\_sol)}
-\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00225}00225\ \ \ \ \ \ \ \ \ \ \ \ \ chckerr(\textcolor{stringliteral}{''})}
-\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00226}00226\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ end\ if}}
-\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00227}00227\ \textcolor{preprocessor}{\#endif}}
-\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00228}00228\ \textcolor{preprocessor}{}\ \ \ \ \ \ \ \ }
-\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00229}00229\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ clean\ up}}
-\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00230}00230\ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }grid\_x\_sol\%dealloc()}
-\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00231}00231\ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00232}00232\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ solve\ the\ system}}
-\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00233}00233\ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_aa4a8d01563e92558e8a0875b075ec54c}{writo}}(\textcolor{stringliteral}{'Solving\ the\ system'})}
-\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00234}00234\ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_a6e6bfb084063e4cc91ee86e542043302}{lvl\_ud}}(1)}
-\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00235}00235\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{select\ case}\ (\doxymbox{\hyperlink{namespacenum__vars_aae749d5063afce3b912a097ff0993d00}{ev\_style}})}
-\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00236}00236\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}(1)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ SLEPC\ solver\ for\ EV\ problem}}
-\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00237}00237\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ solve\ the\ system}}
-\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00238}00238\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ierr\ =\ \doxymbox{\hyperlink{namespaceslepc__ops_ad5a8b4c450e66604733f3c04e7ef2bf9}{solve\_ev\_system\_slepc}}(\doxymbox{\hyperlink{namespacex__vars_ac74f59668de6caca7038decc7191c6a1}{mds\_sol}},grid\_sol,x\_sol,vac,sol)}
-\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00239}00239\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ chckerr(\textcolor{stringliteral}{''})}
-\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00240}00240\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ \ \ \ \ case\ default}}
-\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00241}00241\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ err\_msg\ =\ \textcolor{stringliteral}{'No\ EV\ solver\ style\ associated\ with\ '}//\&}
-\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00242}00242\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&trim(\doxymbox{\hyperlink{namespacestr__utilities_a0b97e51770725a3e98ed393d26681414}{i2str}}(\doxymbox{\hyperlink{namespacenum__vars_aae749d5063afce3b912a097ff0993d00}{ev\_style}}))}
-\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00243}00243\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ierr\ =\ 1}
-\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00244}00244\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ chckerr(err\_msg)}
-\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00245}00245\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ end\ select}}
-\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00246}00246\ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_a6e6bfb084063e4cc91ee86e542043302}{lvl\_ud}}(-\/1)}
-\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00247}00247\ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_aa4a8d01563e92558e8a0875b075ec54c}{writo}}(\textcolor{stringliteral}{'System\ solved'})}
-\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00248}00248\ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00249}00249\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ write\ solution\ variables\ to\ output}}
-\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00250}00250\ \ \ \ \ \ \ \ \ ierr\ =\ \doxymbox{\hyperlink{namespacesol__ops_a06eb95d55da45ff2a1f830a380e0cf80}{print\_output\_sol}}(grid\_sol,sol,\textcolor{stringliteral}{'sol'},\doxymbox{\hyperlink{namespacerich__vars_a1b7734ba9ce6cc153b22387e638093c0}{rich\_lvl}}=\doxymbox{\hyperlink{namespacerich__vars_a1b7734ba9ce6cc153b22387e638093c0}{rich\_lvl}},\&}
-\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00251}00251\ \ \ \ \ \ \ \ \ \ \ \ \ \&remove\_previous\_arrs=\&}
-\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00252}00252\ \ \ \ \ \ \ \ \ \ \ \ \ \&(\doxymbox{\hyperlink{namespacenum__vars_acd9fb4b84728c986d5ecde709dcac940}{jump\_to\_sol}}.and.(\doxymbox{\hyperlink{namespacenum__vars_a72c4ea80e13135b4c314f3f9d3bfdc81}{x\_grid\_style}}.eq.1\ .or.\ \doxymbox{\hyperlink{namespacenum__vars_a72c4ea80e13135b4c314f3f9d3bfdc81}{x\_grid\_style}}.eq.3)))}
-\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00253}00253\ \ \ \ \ \ \ \ \ chckerr(\textcolor{stringliteral}{''})}
-\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00254}00254\ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00255}00255\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ calculate\ Richardson\ extrapolation\ factors\ if\ necessary}}
-\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00256}00256\ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacerich__ops_ad2717df0206a397d0d7845a96aa5da23}{calc\_rich\_ex}}(sol\%val)}
-\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00257}00257\ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00258}00258\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ clean\ up}}
-\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00259}00259\ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }x\_sol\%dealloc()}
-\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00260}00260\ \ \ \ \ \textcolor{keyword}{end\ function\ }\doxymbox{\hyperlink{namespacedriver__sol_a8dad197124fcba9c120e568f8f1b85c6}{run\_driver\_sol}}}
-\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00261}00261\ \ \ \ \ \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00262}00262\ \textcolor{comment}{\ \ \ \ !>\ \(\backslash\)public\ \ Interpolate\ \ tensorial\ \ perturbation\ \ quantities\ \ in\ \ the\ \ third}}
-\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00263}00263\ \textcolor{comment}{\ \ \ \ !!\ dimension.}}
-\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00264}00264\ \textcolor{comment}{\ \ \ \ !!}}
-\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00265}00265\ \textcolor{comment}{\ \ \ \ !!\ The\ input\ grid\ should\ not\ be\ divided,\ though\ the\ output\ grid\ can\ be.}}
-\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00266}00266\ \textcolor{comment}{\ \ \ \ !!}}
-\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00267}00267\ \textcolor{comment}{\ \ \ \ !!\ The\ procedure\ \ considers\ all\ \ possible\ mode\ \ number\ combinations.\ \ For\ \(\backslash\)c}}
-\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00268}00268\ \textcolor{comment}{\ \ \ \ !!\ X\_style\ 2\ \ (fast),\ each\ \ secondary\ mode\ \ only\ lives\ \ in\ a\ \ certain\ normal}}
-\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00269}00269\ \textcolor{comment}{\ \ \ \ !!\ range\ \ of\ the\ \ plasma.\ Therefore,\ \ each\ secondary\ \ mode\ pair\ \ also\ has\ \ a}}
-\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00270}00270\ \textcolor{comment}{\ \ \ \ !!\ limited\ normal\ range,\ given\ by\ the\ overlap\ of\ the\ ranges\ of\ the\ members.}}
-\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00271}00271\ \textcolor{comment}{\ \ \ \ !!}}
-\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00272}00272\ \textcolor{comment}{\ \ \ \ !!\ The\ interpolated\ mode\ number\ combinations\ \ have\ a\ normal\ range\ that\ might}}
-\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00273}00273\ \textcolor{comment}{\ \ \ \ !!\ slightly\ differ\ from\ the\ input\ ranges,\ in\ which\ case\ extrapolation\ can\ be}}
-\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00274}00274\ \textcolor{comment}{\ \ \ \ !!\ done\ if\ the\ method\ allows\ for\ it.}}
-\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00275}00275\ \textcolor{comment}{\ \ \ \ !!}}
-\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00276}00276\ \textcolor{comment}{\ \ \ \ !!\ \(\backslash\)note\ If\ the\ input\ grid\ is\ too\ \ coarse,\ but\ the\ interpolated\ grid\ is\ not,}}
-\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00277}00277\ \textcolor{comment}{\ \ \ \ !!\ it\ is\ in\ \ theory\ possible\ that\ there\ are\ mode\ \ numbers\ and\ therefore\ mode}}
-\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00278}00278\ \textcolor{comment}{\ \ \ \ !!\ number\ pairs\ \ that\ exist\ \ in\ the\ \ input\ grid,\ \ though\ they\ \ do\ so\ \ in\ the}}
-\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00279}00279\ \textcolor{comment}{\ \ \ \ !!\ interpolated\ \ grid.\ \ In\ \ this\ \ case,\ \ they\ \ can\ \ not\ \ be\ \ calculated\ \ and}}
-\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00280}00280\ \textcolor{comment}{\ \ \ \ !!\ are\ \ currently\ \ set\ \ to\ \ zero.\ However,\ \ the\ \ current\ \ implementation\ \ of}}
-\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00281}00281\ \textcolor{comment}{\ \ \ \ !!\ setup\_modes()\ \ produces\ an\ \ error\ if\ \ less\ than\ \ the\ full\ \ range\ of\ \ mode}}
-\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00282}00282\ \textcolor{comment}{\ \ \ \ !!\ numbers\ is\ accurately\ present.}}
-\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00283}\doxymbox{\hyperlink{namespacedriver__sol_a7e8f77792cb6ec5bc854ae07b4b44d9a}{00283}}\ \ \ \ \ \textcolor{keyword}{integer\ }\textcolor{keyword}{function\ }\doxymbox{\hyperlink{namespacedriver__sol_a7e8f77792cb6ec5bc854ae07b4b44d9a}{interp\_v}}(mds\_i,grid\_i,X\_i,mds\_o,grid\_o,X\_o)\ \textcolor{keyword}{result}(ierr)}
-\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00284}00284\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{use\ }\doxymbox{\hyperlink{namespacex__utilities}{x\_utilities}},\ \textcolor{keywordtype}{only}:\ \doxymbox{\hyperlink{namespacex__utilities_a6bb9570c66954d37a27f04f12fa65cc9}{is\_necessary\_x}},\ \doxymbox{\hyperlink{namespacex__utilities_afde797341c5056abecc7a9221dbd345e}{trim\_modes}}}
-\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00285}00285\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{use\ }\doxymbox{\hyperlink{namespacex__vars}{x\_vars}},\ \textcolor{keywordtype}{only}:\ \doxymbox{\hyperlink{namespacex__vars_a2e8fe6c5fe1cf61704bf176925d2b02e}{n\_mod\_x}}}
-\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00286}00286\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{use\ }\doxymbox{\hyperlink{namespacenum__vars}{num\_vars}},\ \textcolor{keywordtype}{only}:\ \doxymbox{\hyperlink{namespacenum__vars_ab47aa91445feaedb05ac9d1a584664fe}{rank}}}
-\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00287}00287\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{use\ }\doxymbox{\hyperlink{namespaceeq__vars}{eq\_vars}},\ \textcolor{keywordtype}{only}:\ \doxymbox{\hyperlink{namespaceeq__vars_a46c97bf2a6d6eca952ca5173fcf9cdcb}{max\_flux\_f}}}
-\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00288}00288\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{use\ }\doxymbox{\hyperlink{namespacenum__utilities}{num\_utilities}},\ \textcolor{keywordtype}{only}:\ \doxymbox{\hyperlink{namespacenum__utilities_a5ee3fbd1fe67d0deefc7194631389f2a}{c}}}
-\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00289}00289\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{use\ }\doxymbox{\hyperlink{namespacesol__utilities}{sol\_utilities}},\ \textcolor{keywordtype}{only}:\ \doxymbox{\hyperlink{namespacesol__utilities_a6bc8c29a0b3fc64f7f9b80635e95ec58}{interp\_v\_spline}}}
-\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00290}00290\ \textcolor{comment}{!\#if\ ldebug}}
-\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00291}00291\ \ \ \ \ \ \ \ \ \textcolor{comment}{!use\ num\_vars,\ only:\ ex\_plot\_style}}
-\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00292}00292\ \textcolor{comment}{!\#endif}}
-\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00293}00293\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00183}00183\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00184}00184\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{select\ case}\ (\doxymbox{\hyperlink{namespacenum__vars_a72c4ea80e13135b4c314f3f9d3bfdc81}{x\_grid\_style}})}
+\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00185}00185\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ (1,3)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ equilibrium\ or\ enriched}}
+\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00186}00186\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ user\ output}}
+\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00187}00187\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_aa4a8d01563e92558e8a0875b075ec54c}{writo}}(\textcolor{stringliteral}{'Redistribute\ and\ interpolate\ the\ perturbation\ \&}}
+\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00188}00188\ \textcolor{stringliteral}{}\textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&variables\ to\ solution\ grid'})}
+\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00189}00189\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_a6e6bfb084063e4cc91ee86e542043302}{lvl\_ud}}(1)}
+\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00190}00190\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00191}00191\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ redistribute\ grid\ and\ X\ variables}}
+\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00192}00192\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ierr\ =\ \doxymbox{\hyperlink{namespacegrid__ops_ab10ef5b486ee3861df2da4e53bc22630}{redistribute\_output\_grid}}(grid\_x,grid\_x\_rdst)}
+\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00193}00193\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ chckerr(\textcolor{stringliteral}{''})}
+\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00194}00194\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ierr\ =\ \doxymbox{\hyperlink{interfacex__ops_1_1redistribute__output__x}{redistribute\_output\_x}}(\doxymbox{\hyperlink{namespacex__vars_a690d4228d2a81ec5a7a6cd13be3a56a1}{mds\_x}},grid\_x,grid\_x\_rdst,x,x\_rdst)}
+\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00195}00195\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ chckerr(\textcolor{stringliteral}{''})}
+\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00196}00196\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00197}00197\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ initialize}}
+\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00198}00198\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }x\_sol\%init(\doxymbox{\hyperlink{namespacex__vars_ac74f59668de6caca7038decc7191c6a1}{mds\_sol}},grid\_x\_sol,is\_field\_averaged=.true.)}
+\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00199}00199\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00200}00200\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ interpolate}}
+\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00201}00201\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ierr\ =\ \doxymbox{\hyperlink{namespacedriver__sol_a7e8f77792cb6ec5bc854ae07b4b44d9a}{interp\_v}}(\doxymbox{\hyperlink{namespacex__vars_a690d4228d2a81ec5a7a6cd13be3a56a1}{mds\_x}},grid\_x\_rdst,x\_rdst,\doxymbox{\hyperlink{namespacex__vars_ac74f59668de6caca7038decc7191c6a1}{mds\_sol}},grid\_x\_sol,\&}
+\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00202}00202\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&x\_sol)}
+\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00203}00203\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ chckerr(\textcolor{stringliteral}{''})}
+\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00204}00204\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00205}00205\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ clean\ up}}
+\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00206}00206\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }x\_rdst\%dealloc()}
+\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00207}00207\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }grid\_x\_rdst\%dealloc()}
+\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00208}00208\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00209}00209\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_a6e6bfb084063e4cc91ee86e542043302}{lvl\_ud}}(-\/1)}
+\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00210}00210\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ (2)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ solution}}
+\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00211}00211\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ user\ output}}
+\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00212}00212\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_aa4a8d01563e92558e8a0875b075ec54c}{writo}}(\textcolor{stringliteral}{'Copy\ the\ perturbation\ variables\ to\ solution\ grid'})}
+\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00213}00213\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_a6e6bfb084063e4cc91ee86e542043302}{lvl\_ud}}(1)}
+\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00214}00214\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00215}00215\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ copy}}
+\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00216}00216\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }x\%copy(\doxymbox{\hyperlink{namespacex__vars_ac74f59668de6caca7038decc7191c6a1}{mds\_sol}},grid\_x,x\_sol)}
+\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00217}00217\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00218}00218\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_a6e6bfb084063e4cc91ee86e542043302}{lvl\_ud}}(-\/1)}
+\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00219}00219\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ end\ select}}
+\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00220}00220\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00221}00221\ \textcolor{preprocessor}{\#if\ ldebug}}
+\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00222}00222\ \textcolor{preprocessor}{}\ \ \ \ \ \ \ \ \textcolor{comment}{!\ write\ integrated\ \ field-\/aligned\ tensorial\ \ perturbation\ quantities}}
+\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00223}00223\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ to\ output\ and\ plot}}
+\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00224}00224\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (debug\_run\_driver\_sol)\ \textcolor{keywordflow}{then}}
+\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00225}00225\ \ \ \ \ \ \ \ \ \ \ \ \ ierr\ =\ \doxymbox{\hyperlink{namespacex__ops_ad7b07e5851eb44994a384363c86f35d6}{print\_debug\_x\_2}}(\doxymbox{\hyperlink{namespacex__vars_ac74f59668de6caca7038decc7191c6a1}{mds\_sol}},grid\_x\_sol,x\_sol)}
+\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00226}00226\ \ \ \ \ \ \ \ \ \ \ \ \ chckerr(\textcolor{stringliteral}{''})}
+\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00227}00227\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ end\ if}}
+\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00228}00228\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00229}00229\ \textcolor{preprocessor}{}\ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00230}00230\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ clean\ up}}
+\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00231}00231\ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }grid\_x\_sol\%dealloc()}
+\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00232}00232\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00233}00233\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ solve\ the\ system}}
+\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00234}00234\ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_aa4a8d01563e92558e8a0875b075ec54c}{writo}}(\textcolor{stringliteral}{'Solving\ the\ system'})}
+\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00235}00235\ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_a6e6bfb084063e4cc91ee86e542043302}{lvl\_ud}}(1)}
+\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00236}00236\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{select\ case}\ (\doxymbox{\hyperlink{namespacenum__vars_aae749d5063afce3b912a097ff0993d00}{ev\_style}})}
+\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00237}00237\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}(1)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ SLEPC\ solver\ for\ EV\ problem}}
+\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00238}00238\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ solve\ the\ system}}
+\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00239}00239\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ierr\ =\ \doxymbox{\hyperlink{namespaceslepc__ops_ad5a8b4c450e66604733f3c04e7ef2bf9}{solve\_ev\_system\_slepc}}(\doxymbox{\hyperlink{namespacex__vars_ac74f59668de6caca7038decc7191c6a1}{mds\_sol}},grid\_sol,x\_sol,vac,sol)}
+\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00240}00240\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ chckerr(\textcolor{stringliteral}{''})}
+\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00241}00241\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ \ \ \ \ case\ default}}
+\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00242}00242\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ err\_msg\ =\ \textcolor{stringliteral}{'No\ EV\ solver\ style\ associated\ with\ '}//\&}
+\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00243}00243\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&trim(\doxymbox{\hyperlink{namespacestr__utilities_a0b97e51770725a3e98ed393d26681414}{i2str}}(\doxymbox{\hyperlink{namespacenum__vars_aae749d5063afce3b912a097ff0993d00}{ev\_style}}))}
+\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00244}00244\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ierr\ =\ 1}
+\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00245}00245\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ chckerr(err\_msg)}
+\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00246}00246\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ end\ select}}
+\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00247}00247\ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_a6e6bfb084063e4cc91ee86e542043302}{lvl\_ud}}(-\/1)}
+\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00248}00248\ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_aa4a8d01563e92558e8a0875b075ec54c}{writo}}(\textcolor{stringliteral}{'System\ solved'})}
+\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00249}00249\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00250}00250\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ write\ solution\ variables\ to\ output}}
+\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00251}00251\ \ \ \ \ \ \ \ \ ierr\ =\ \doxymbox{\hyperlink{namespacesol__ops_a06eb95d55da45ff2a1f830a380e0cf80}{print\_output\_sol}}(grid\_sol,sol,\textcolor{stringliteral}{'sol'},\doxymbox{\hyperlink{namespacerich__vars_a1b7734ba9ce6cc153b22387e638093c0}{rich\_lvl}}=\doxymbox{\hyperlink{namespacerich__vars_a1b7734ba9ce6cc153b22387e638093c0}{rich\_lvl}},\&}
+\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00252}00252\ \ \ \ \ \ \ \ \ \ \ \ \ \&remove\_previous\_arrs=\&}
+\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00253}00253\ \ \ \ \ \ \ \ \ \ \ \ \ \&(\doxymbox{\hyperlink{namespacenum__vars_acd9fb4b84728c986d5ecde709dcac940}{jump\_to\_sol}}.and.(\doxymbox{\hyperlink{namespacenum__vars_a72c4ea80e13135b4c314f3f9d3bfdc81}{x\_grid\_style}}.eq.1\ .or.\ \doxymbox{\hyperlink{namespacenum__vars_a72c4ea80e13135b4c314f3f9d3bfdc81}{x\_grid\_style}}.eq.3)))}
+\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00254}00254\ \ \ \ \ \ \ \ \ chckerr(\textcolor{stringliteral}{''})}
+\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00255}00255\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00256}00256\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ calculate\ Richardson\ extrapolation\ factors\ if\ necessary}}
+\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00257}00257\ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacerich__ops_ad2717df0206a397d0d7845a96aa5da23}{calc\_rich\_ex}}(sol\%val)}
+\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00258}00258\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00259}00259\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ clean\ up}}
+\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00260}00260\ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }x\_sol\%dealloc()}
+\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00261}00261\ \ \ \ \ \textcolor{keyword}{end\ function\ }\doxymbox{\hyperlink{namespacedriver__sol_a8dad197124fcba9c120e568f8f1b85c6}{run\_driver\_sol}}}
+\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00262}00262\ \ \ \ \ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00263}00263\ \textcolor{comment}{\ \ \ \ !>\ \(\backslash\)public\ \ Interpolate\ \ tensorial\ \ perturbation\ \ quantities\ \ in\ \ the\ \ third}}
+\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00264}00264\ \textcolor{comment}{\ \ \ \ !!\ dimension.}}
+\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00265}00265\ \textcolor{comment}{\ \ \ \ !!}}
+\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00266}00266\ \textcolor{comment}{\ \ \ \ !!\ The\ input\ grid\ should\ not\ be\ divided,\ though\ the\ output\ grid\ can\ be.}}
+\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00267}00267\ \textcolor{comment}{\ \ \ \ !!}}
+\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00268}00268\ \textcolor{comment}{\ \ \ \ !!\ The\ procedure\ \ considers\ all\ \ possible\ mode\ \ number\ combinations.\ \ For\ \(\backslash\)c}}
+\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00269}00269\ \textcolor{comment}{\ \ \ \ !!\ X\_style\ 2\ \ (fast),\ each\ \ secondary\ mode\ \ only\ lives\ \ in\ a\ \ certain\ normal}}
+\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00270}00270\ \textcolor{comment}{\ \ \ \ !!\ range\ \ of\ the\ \ plasma.\ Therefore,\ \ each\ secondary\ \ mode\ pair\ \ also\ has\ \ a}}
+\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00271}00271\ \textcolor{comment}{\ \ \ \ !!\ limited\ normal\ range,\ given\ by\ the\ overlap\ of\ the\ ranges\ of\ the\ members.}}
+\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00272}00272\ \textcolor{comment}{\ \ \ \ !!}}
+\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00273}00273\ \textcolor{comment}{\ \ \ \ !!\ The\ interpolated\ mode\ number\ combinations\ \ have\ a\ normal\ range\ that\ might}}
+\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00274}00274\ \textcolor{comment}{\ \ \ \ !!\ slightly\ differ\ from\ the\ input\ ranges,\ in\ which\ case\ extrapolation\ can\ be}}
+\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00275}00275\ \textcolor{comment}{\ \ \ \ !!\ done\ if\ the\ method\ allows\ for\ it.}}
+\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00276}00276\ \textcolor{comment}{\ \ \ \ !!}}
+\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00277}00277\ \textcolor{comment}{\ \ \ \ !!\ \(\backslash\)note\ If\ the\ input\ grid\ is\ too\ \ coarse,\ but\ the\ interpolated\ grid\ is\ not,}}
+\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00278}00278\ \textcolor{comment}{\ \ \ \ !!\ it\ is\ in\ \ theory\ possible\ that\ there\ are\ mode\ \ numbers\ and\ therefore\ mode}}
+\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00279}00279\ \textcolor{comment}{\ \ \ \ !!\ number\ pairs\ \ that\ exist\ \ in\ the\ \ input\ grid,\ \ though\ they\ \ do\ so\ \ in\ the}}
+\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00280}00280\ \textcolor{comment}{\ \ \ \ !!\ interpolated\ \ grid.\ \ In\ \ this\ \ case,\ \ they\ \ can\ \ not\ \ be\ \ calculated\ \ and}}
+\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00281}00281\ \textcolor{comment}{\ \ \ \ !!\ are\ \ currently\ \ set\ \ to\ \ zero.\ However,\ \ the\ \ current\ \ implementation\ \ of}}
+\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00282}00282\ \textcolor{comment}{\ \ \ \ !!\ setup\_modes()\ \ produces\ an\ \ error\ if\ \ less\ than\ \ the\ full\ \ range\ of\ \ mode}}
+\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00283}00283\ \textcolor{comment}{\ \ \ \ !!\ numbers\ is\ accurately\ present.}}
+\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00284}\doxymbox{\hyperlink{namespacedriver__sol_a7e8f77792cb6ec5bc854ae07b4b44d9a}{00284}}\ \ \ \ \ \textcolor{keyword}{integer\ }\textcolor{keyword}{function\ }\doxymbox{\hyperlink{namespacedriver__sol_a7e8f77792cb6ec5bc854ae07b4b44d9a}{interp\_v}}(mds\_i,grid\_i,X\_i,mds\_o,grid\_o,X\_o)\ \textcolor{keyword}{result}(ierr)}
+\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00285}00285\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{use\ }\doxymbox{\hyperlink{namespacex__utilities}{x\_utilities}},\ \textcolor{keywordtype}{only}:\ \doxymbox{\hyperlink{namespacex__utilities_a6bb9570c66954d37a27f04f12fa65cc9}{is\_necessary\_x}},\ \doxymbox{\hyperlink{namespacex__utilities_afde797341c5056abecc7a9221dbd345e}{trim\_modes}}}
+\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00286}00286\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{use\ }\doxymbox{\hyperlink{namespacex__vars}{x\_vars}},\ \textcolor{keywordtype}{only}:\ \doxymbox{\hyperlink{namespacex__vars_a2e8fe6c5fe1cf61704bf176925d2b02e}{n\_mod\_x}}}
+\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00287}00287\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{use\ }\doxymbox{\hyperlink{namespacenum__utilities}{num\_utilities}},\ \textcolor{keywordtype}{only}:\ \doxymbox{\hyperlink{namespacenum__utilities_a5ee3fbd1fe67d0deefc7194631389f2a}{c}}}
+\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00288}00288\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{use\ }\doxymbox{\hyperlink{namespacesol__utilities}{sol\_utilities}},\ \textcolor{keywordtype}{only}:\ \doxymbox{\hyperlink{namespacesol__utilities_a6bc8c29a0b3fc64f7f9b80635e95ec58}{interp\_v\_spline}}}
+\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00289}00289\ \textcolor{preprocessor}{\#if\ ldebug}}
+\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00290}00290\ \textcolor{preprocessor}{}\ \ \ \ \ \ \ \ \textcolor{keywordtype}{use\ }\doxymbox{\hyperlink{namespacenum__vars}{num\_vars}},\ \textcolor{keywordtype}{only}:\ \doxymbox{\hyperlink{namespacenum__vars_ab47aa91445feaedb05ac9d1a584664fe}{rank}}}
+\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00291}00291\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{use\ }\doxymbox{\hyperlink{namespaceeq__vars}{eq\_vars}},\ \textcolor{keywordtype}{only}:\ \doxymbox{\hyperlink{namespaceeq__vars_a46c97bf2a6d6eca952ca5173fcf9cdcb}{max\_flux\_f}}}
+\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00292}00292\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00293}00293\ \textcolor{preprocessor}{}\ \ \ \ \ \ \ \ }
 \DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00294}00294\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{character(*)},\ \textcolor{keywordtype}{parameter}\ ::\ rout\_name\ =\ \textcolor{stringliteral}{'interp\_V'}}
 \DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00295}00295\ \ \ \ \ \ \ \ \ }
 \DoxyCodeLine{\Hypertarget{driver__sol_8f90_source_l00296}00296\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ input\ /\ output}}

@@ -1,5 +1,5 @@
-\doxysection{/\+\+Users/\+toonweyens/\+\+Code/\+\+PB3\+D/\+\+Modules/\+vac\+\_\+utilities.f90 File Reference}
-\hypertarget{vac__utilities_8f90}{}\label{vac__utilities_8f90}\index{/Users/toonweyens/Code/PB3D/Modules/vac\_utilities.f90@{/Users/toonweyens/Code/PB3D/Modules/vac\_utilities.f90}}
+\doxysection{Modules/\+vac\+\_\+utilities.f90 File Reference}
+\hypertarget{vac__utilities_8f90}{}\label{vac__utilities_8f90}\index{Modules/vac\_utilities.f90@{Modules/vac\_utilities.f90}}
 \doxysubsubsection*{Modules}
 \begin{DoxyCompactItemize}
 \item 
@@ -8,7 +8,7 @@ module \doxymbox{\hyperlink{namespacevac__utilities}{vac\+\_\+utilities}}
 \doxysubsubsection*{Functions/\+\+Subroutines}
 \begin{DoxyCompactItemize}
 \item 
-subroutine, public \doxymbox{\hyperlink{namespacevac__utilities_a167cd4d3bee273c153bd18c0904cf468}{vac\+\_\+utilities::\+calc\+\_\+gh\+\_\+int\+\_\+1}} (g, h, x\+\_\+s, x\+\_\+in, norm\+\_\+s, h\+\_\+fac\+\_\+in, step\+\_\+size, tol)
+subroutine, public \doxymbox{\hyperlink{namespacevac__utilities_a3b2836606e5331d38278bd3551c9bb75}{vac\+\_\+utilities::\+calc\+\_\+gh\+\_\+int\+\_\+1}} (g, h, x\+\_\+s, x\+\_\+in, norm\+\_\+s, h\+\_\+fac\+\_\+in, step\+\_\+size, tol, i\+\_\+int, use\+\_\+near)
 \begin{DoxyCompactList}\small\item\em Calculate G\+\_\+ij and H\+\_\+ij on an interval for field line aligned configurations. \end{DoxyCompactList}\item 
 subroutine, public \doxymbox{\hyperlink{namespacevac__utilities_a000076e068b91103036aeb8fffeca33a}{vac\+\_\+utilities::\+calc\+\_\+gh\+\_\+int\+\_\+2}} (g, h, t\+\_\+s, t\+\_\+in, x\+\_\+s, x\+\_\+in, norm\+\_\+s, norm\+\_\+in, aij, ql, tol, b\+\_\+coeff, n\+\_\+tor)
 \begin{DoxyCompactList}\small\item\em Calculate G\+\_\+ij and H\+\_\+ij on an interval for axisymmetric configurations. \end{DoxyCompactList}\item 
@@ -17,4 +17,33 @@ integer function, public \doxymbox{\hyperlink{namespacevac__utilities_a05e8e1f24
 integer function, public \doxymbox{\hyperlink{namespacevac__utilities_ae70e8a1fc132ba79a9a4f49f4944a352}{vac\+\_\+utilities::\+mat\+\_\+dis2loc}} (ctxt, mat\+\_\+dis, lims\+\_\+r, lims\+\_\+c, mat\+\_\+loc, proc)
 \begin{DoxyCompactList}\small\item\em Gathers a distributed vector on a single process. \end{DoxyCompactList}\item 
 integer function, public \doxymbox{\hyperlink{namespacevac__utilities_a8e7889688701f6ac2fd2c60cdee2b96a}{vac\+\_\+utilities::\+interlaced\+\_\+vac\+\_\+copy}} (vac\+\_\+old, vac)
-\begin{DoxyCompactList}\small\item\em Copies vacuum variables of a previous level into the appropriate, interlaced place of a next level. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Copies vacuum variables of a previous level into the appropriate, interlaced place of a next level. \end{DoxyCompactList}\item 
+integer function, public \doxymbox{\hyperlink{namespacevac__utilities_a69626f2c48bb9b457bdd83011379b4e1}{vac\+\_\+utilities::\+n\+\_\+col1\+\_\+loc}} (vac)
+\begin{DoxyCompactList}\small\item\em Number of local columns this process owns of a global column vector: the single column sits in the first block, owned by process column 0. \end{DoxyCompactList}\item 
+subroutine, public \doxymbox{\hyperlink{namespacevac__utilities_ab1118f6840ac23fb771f4bb6b3c8f4ce}{vac\+\_\+utilities::\+vec\+\_\+glob2dis}} (vac, x\+\_\+glob, x\+\_\+dis)
+\begin{DoxyCompactList}\small\item\em Scatter a global column vector into its local block-\/cyclic rows. \end{DoxyCompactList}\item 
+integer function, public \doxymbox{\hyperlink{namespacevac__utilities_a6e538c4419e87d8b4d73a5d25f381cbc}{vac\+\_\+utilities::\+dis\+\_\+matvec}} (vac, a, desc\+\_\+a, x\+\_\+glob, y\+\_\+glob)
+\begin{DoxyCompactList}\small\item\em Distributed matrix-\/vector product y = A x. \end{DoxyCompactList}\item 
+subroutine, public \doxymbox{\hyperlink{namespacevac__utilities_abc6ea224f7a8b897e3af84c6664f302b}{vac\+\_\+utilities::\+vac\+\_\+steps}} (dpar, dalpha)
+\begin{DoxyCompactList}\small\item\em Step sizes of the field-\/line grid in the parallel coordinate and in the field-\/line label, as used by the field-\/line vacuum: the parallel points include both ends, the field lines exclude the end point in alpha (\doxylink{namespacerich__ops}{rich\+\_\+ops}). \end{DoxyCompactList}\item 
+pure real(dp) function, dimension(3), public \doxymbox{\hyperlink{namespacevac__utilities_a13a76cbe206a6ebe6585193406e5fcb1}{vac\+\_\+utilities::\+cross3}} (u, v)
+\begin{DoxyCompactList}\small\item\em Cross product of two 3-\/vectors. \end{DoxyCompactList}\item 
+pure subroutine, public \doxymbox{\hyperlink{namespacevac__utilities_aa328b578696f4e3c3757fa9f79a8755c}{vac\+\_\+utilities::\+solid\+\_\+angle\+\_\+node}} (u, n\+\_\+hat, omega)
+\begin{DoxyCompactList}\small\item\em Solid angle at a node of the mesh, on the side of {\ttfamily n\+\_\+hat}. \end{DoxyCompactList}\item 
+pure subroutine, public \doxymbox{\hyperlink{namespacevac__utilities_a417d6c8e3b25f43341db35da8eb82249}{vac\+\_\+utilities::\+h\+\_\+sing\+\_\+node}} (norm0, g, dd, dpar, dalpha, i\+\_\+sing)
+\begin{DoxyCompactList}\small\item\em Integral of the H kernel over the cell of a node of the field-\/line mesh. \end{DoxyCompactList}\item 
+integer function, public \doxymbox{\hyperlink{namespacevac__utilities_a3c3d0d491021b5c7ebb76c977eaf1da2}{vac\+\_\+utilities::\+calc\+\_\+diag\+\_\+direct}} (vac, dpar, dalpha, diag\+\_\+direct, diag\+\_\+facet, i\+\_\+sing, omega\+\_\+v, avail)
+\begin{DoxyCompactList}\small\item\em Direct diagonals of H for the field-\/line vacuum. \end{DoxyCompactList}\item 
+integer function, public \doxymbox{\hyperlink{namespacevac__utilities_acbb1dd4bf17dad7f8332fe211af6492c}{vac\+\_\+utilities::\+dis\+\_\+diag}} (vac, a, diag\+\_\+glob)
+\begin{DoxyCompactList}\small\item\em Gathers the diagonal of a distributed matrix on all processes. \end{DoxyCompactList}\item 
+integer function, public \doxymbox{\hyperlink{namespacevac__utilities_aa2cd312350e1c3f53293a13d94f23654}{vac\+\_\+utilities::\+fit\+\_\+diag}} (vac, phi, dphi, c\+\_\+free, fit\+\_\+h, fit\+\_\+g, dh, dg)
+\begin{DoxyCompactList}\small\item\em Fits diagonal entries of H and G to Green\textquotesingle{}s identity for potentials whose boundary values and normal data are known. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+integer, parameter \doxymbox{\hyperlink{namespacevac__utilities_a10cde0c309c1b810eb2fb6dd54e87b7b}{vac\+\_\+utilities::\+n\+\_\+gl16}} = 16
+\begin{DoxyCompactList}\small\item\em number of points \end{DoxyCompactList}\item 
+real(dp), dimension(\doxymbox{\hyperlink{namespacevac__utilities_a10cde0c309c1b810eb2fb6dd54e87b7b}{n\+\_\+gl16}}), parameter \doxymbox{\hyperlink{namespacevac__utilities_ad9f479331f1d097095e9d50eb58a2629}{vac\+\_\+utilities::\+gl16\+\_\+x}} = \+[-\/0.\+9894009349916499\+\_\+dp, -\/0.\+9445750230732326\+\_\+dp, -\/0.\+8656312023878316\+\_\+dp, -\/0.\+7554044083550031\+\_\+dp, -\/0.\+6178762444026438\+\_\+dp, -\/0.\+4580167776572274\+\_\+dp, -\/0.\+2816035507792589\+\_\+dp, -\/0.\+0950125098376374\+\_\+dp, 0.\+0950125098376374\+\_\+dp, 0.\+2816035507792589\+\_\+dp, 0.\+4580167776572274\+\_\+dp, 0.\+6178762444026438\+\_\+dp, 0.\+7554044083550031\+\_\+dp, 0.\+8656312023878316\+\_\+dp, 0.\+9445750230732326\+\_\+dp, 0.\+9894009349916499\+\_\+dp]
+\begin{DoxyCompactList}\small\item\em abscissas \end{DoxyCompactList}\item 
+real(dp), dimension(\doxymbox{\hyperlink{namespacevac__utilities_a10cde0c309c1b810eb2fb6dd54e87b7b}{n\+\_\+gl16}}), parameter \doxymbox{\hyperlink{namespacevac__utilities_a6b32be38dc5dbcfea100ec8aaec304bd}{vac\+\_\+utilities::\+gl16\+\_\+w}} = \+[0.\+0271524594117541\+\_\+dp, 0.\+0622535239386476\+\_\+dp, 0.\+0951585116824930\+\_\+dp, 0.\+1246289712555339\+\_\+dp, 0.\+1495959888165767\+\_\+dp, 0.\+1691565193950026\+\_\+dp, 0.\+1826034150449236\+\_\+dp, 0.\+1894506104550686\+\_\+dp, 0.\+1894506104550686\+\_\+dp, 0.\+1826034150449236\+\_\+dp, 0.\+1691565193950026\+\_\+dp, 0.\+1495959888165767\+\_\+dp, 0.\+1246289712555339\+\_\+dp, 0.\+0951585116824930\+\_\+dp, 0.\+0622535239386476\+\_\+dp, 0.\+0271524594117541\+\_\+dp]
+\begin{DoxyCompactList}\small\item\em weights \end{DoxyCompactList}\end{DoxyCompactItemize}

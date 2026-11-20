@@ -1,0 +1,87 @@
+\doxysection{flat\+\_\+vars.\+f90}
+\hypertarget{flat__vars_8f90_source}{}\label{flat__vars_8f90_source}\index{Modules/flat\_vars.f90@{Modules/flat\_vars.f90}}
+\doxymbox{\hyperlink{flat__vars_8f90}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{flat__vars_8f90_source_l00001}00001\ \textcolor{comment}{!-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/!}\textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{flat__vars_8f90_source_l00002}00002\ \textcolor{comment}{!>\ The\ flattened\ variable\ type\ used\ for\ internal\ HDF5\ storage.}}
+\DoxyCodeLine{\Hypertarget{flat__vars_8f90_source_l00003}00003\ \textcolor{comment}{!!}}
+\DoxyCodeLine{\Hypertarget{flat__vars_8f90_source_l00004}00004\ \textcolor{comment}{!!\ It\ has\ its\ own\ module,\ without\ HDF5,\ so\ that\ modules\ whose\ only\ HDF5}}
+\DoxyCodeLine{\Hypertarget{flat__vars_8f90_source_l00005}00005\ \textcolor{comment}{!!\ connection\ is\ this\ type,\ such\ as\ PB3D\_utilities,\ can\ be\ compiled\ and}}
+\DoxyCodeLine{\Hypertarget{flat__vars_8f90_source_l00006}00006\ \textcolor{comment}{!!\ unit-\/tested\ without\ the\ HDF5\ library.}}
+\DoxyCodeLine{\Hypertarget{flat__vars_8f90_source_l00007}00007\ \textcolor{comment}{!-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/!}}
+\DoxyCodeLine{\Hypertarget{flat__vars_8f90_source_l00008}\doxymbox{\hyperlink{namespaceflat__vars}{00008}}\ \textcolor{keyword}{module}\ \doxymbox{\hyperlink{namespaceflat__vars}{flat\_vars}}}
+\DoxyCodeLine{\Hypertarget{flat__vars_8f90_source_l00009}00009\ \ \ \ \ \textcolor{keywordtype}{use\ }\doxymbox{\hyperlink{namespacenum__vars}{num\_vars}},\ \textcolor{keywordtype}{only}:\ \doxymbox{\hyperlink{namespacenum__vars_a03802aa2bd86439d7a9370836fabf3f2}{dp}},\ \doxymbox{\hyperlink{namespacenum__vars_a3ff2bb983ee80a6735277d6789e6ce7c}{max\_str\_ln}}}
+\DoxyCodeLine{\Hypertarget{flat__vars_8f90_source_l00010}00010\ }
+\DoxyCodeLine{\Hypertarget{flat__vars_8f90_source_l00011}00011\ \ \ \ \ \textcolor{keywordtype}{implicit\ none}}
+\DoxyCodeLine{\Hypertarget{flat__vars_8f90_source_l00012}00012\ \ \ \ \ \textcolor{keywordtype}{private}}
+\DoxyCodeLine{\Hypertarget{flat__vars_8f90_source_l00013}00013\ \ \ \ \ \textcolor{keywordtype}{public}\ \doxymbox{\hyperlink{interfaceflat__vars_1_1dealloc__var__flat}{dealloc\_var\_flat}},\ \doxymbox{\hyperlink{namespaceflat__vars_a876c965053478841a6d42f81b7733434}{max\_dim\_var\_flat}}}
+\DoxyCodeLine{\Hypertarget{flat__vars_8f90_source_l00014}00014\ }
+\DoxyCodeLine{\Hypertarget{flat__vars_8f90_source_l00015}00015\ \ \ \ \ \textcolor{comment}{!\ global\ variables}}
+\DoxyCodeLine{\Hypertarget{flat__vars_8f90_source_l00016}\doxymbox{\hyperlink{namespaceflat__vars_a876c965053478841a6d42f81b7733434}{00016}}\ \ \ \ \ \textcolor{keywordtype}{integer},\ \textcolor{keywordtype}{parameter}\ ::\ \doxymbox{\hyperlink{namespaceflat__vars_a876c965053478841a6d42f81b7733434}{max\_dim\_var\_flat}}\ =\ 100000\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !<\ maximum\ dimension\ of\ var\_flat}}
+\DoxyCodeLine{\Hypertarget{flat__vars_8f90_source_l00017}00017\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{flat__vars_8f90_source_l00018}00018\ \textcolor{comment}{\ \ \ \ !>\ 1D\ \ equivalent\ \ of\ multidimensional\ \ variables,\ \ used\ \ for\ internal\ \ HDF5}}
+\DoxyCodeLine{\Hypertarget{flat__vars_8f90_source_l00019}00019\ \textcolor{comment}{\ \ \ \ !!\ storage.}}
+\DoxyCodeLine{\Hypertarget{flat__vars_8f90_source_l00020}\doxymbox{\hyperlink{structflat__vars_1_1var__flat__type}{00020}}\ \ \ \ \ \textcolor{keyword}{type},\ \textcolor{keyword}{public}\ ::\ \doxymbox{\hyperlink{structflat__vars_1_1var__flat__type}{var\_flat\_type}}}
+\DoxyCodeLine{\Hypertarget{flat__vars_8f90_source_l00021}\doxymbox{\hyperlink{structflat__vars_1_1var__flat__type_a094a26489e1242e298843107981afd1b}{00021}}\ \textcolor{keywordtype}{\ \ \ \ \ \ \ \ real}(\doxymbox{\hyperlink{namespacenum__vars_a03802aa2bd86439d7a9370836fabf3f2}{dp}}),\ \textcolor{keywordtype}{allocatable}\ ::\ p(:)\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !<\ 1D\ equivalent\ of\ data\ of\ variable}}
+\DoxyCodeLine{\Hypertarget{flat__vars_8f90_source_l00022}\doxymbox{\hyperlink{structflat__vars_1_1var__flat__type_aa19e74069cb4ed740686e19f42998b9f}{00022}}\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer},\ \textcolor{keywordtype}{allocatable}\ ::\ tot\_i\_min(:)\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !<\ total\ min.of\ indices\ of\ variable}}
+\DoxyCodeLine{\Hypertarget{flat__vars_8f90_source_l00023}\doxymbox{\hyperlink{structflat__vars_1_1var__flat__type_af6625a9bd27e68fe45606be4d07c2f3e}{00023}}\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer},\ \textcolor{keywordtype}{allocatable}\ ::\ tot\_i\_max(:)\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !<\ total\ max.of\ indices\ of\ variable}}
+\DoxyCodeLine{\Hypertarget{flat__vars_8f90_source_l00024}\doxymbox{\hyperlink{structflat__vars_1_1var__flat__type_a2544d542df6c242de7be964dd9535c7d}{00024}}\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer},\ \textcolor{keywordtype}{allocatable}\ ::\ loc\_i\_min(:)\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !<\ group\ min.of\ indices\ of\ variable}}
+\DoxyCodeLine{\Hypertarget{flat__vars_8f90_source_l00025}\doxymbox{\hyperlink{structflat__vars_1_1var__flat__type_a560f28ff985734b58fb480b54500a70f}{00025}}\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer},\ \textcolor{keywordtype}{allocatable}\ ::\ loc\_i\_max(:)\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !<\ group\ max.of\ indices\ of\ variable}}
+\DoxyCodeLine{\Hypertarget{flat__vars_8f90_source_l00026}\doxymbox{\hyperlink{structflat__vars_1_1var__flat__type_ab73bfc2f5b42eee71f4b63736a23fecd}{00026}}\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{character(len=max\_str\_ln)}\ ::\ var\_name\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !<\ name\ of\ variable}}
+\DoxyCodeLine{\Hypertarget{flat__vars_8f90_source_l00027}00027\ \ \ \ \ \textcolor{keyword}{end\ type\ }\doxymbox{\hyperlink{structflat__vars_1_1var__flat__type}{var\_flat\_type}}}
+\DoxyCodeLine{\Hypertarget{flat__vars_8f90_source_l00028}00028\ }
+\DoxyCodeLine{\Hypertarget{flat__vars_8f90_source_l00029}00029\ \ \ \ \ \textcolor{comment}{!\ interfaces}}
+\DoxyCodeLine{\Hypertarget{flat__vars_8f90_source_l00030}00030\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{flat__vars_8f90_source_l00031}00031\ \textcolor{comment}{\ \ \ \ !>\ \(\backslash\)public\ Deallocates\ 1-\/D\ variables.}}
+\DoxyCodeLine{\Hypertarget{flat__vars_8f90_source_l00032}\doxymbox{\hyperlink{interfaceflat__vars_1_1dealloc__var__flat}{00032}}\ \ \ \ \ \textcolor{keyword}{interface}\ \doxymbox{\hyperlink{interfaceflat__vars_1_1dealloc__var__flat}{dealloc\_var\_flat}}\textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{flat__vars_8f90_source_l00033}00033\ \textcolor{comment}{\ \ \ \ \ \ \ \ !>\ \(\backslash\)public}}
+\DoxyCodeLine{\Hypertarget{flat__vars_8f90_source_l00034}00034\ \ \ \ \ \ \ \ \ \textcolor{keyword}{module\ procedure}\ dealloc\_var\_flat\_ind\textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{flat__vars_8f90_source_l00035}00035\ \textcolor{comment}{\ \ \ \ \ \ \ \ !>\ \(\backslash\)public}}
+\DoxyCodeLine{\Hypertarget{flat__vars_8f90_source_l00036}00036\ \ \ \ \ \ \ \ \ \textcolor{keyword}{module\ procedure}\ dealloc\_var\_flat\_arr\textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{flat__vars_8f90_source_l00037}00037\ \textcolor{comment}{\ \ \ \ \ \ \ \ !>\ \(\backslash\)public}}
+\DoxyCodeLine{\Hypertarget{flat__vars_8f90_source_l00038}00038\ \ \ \ \ \ \ \ \ \textcolor{keyword}{module\ procedure}\ dealloc\_var\_flat\_arr\_2}
+\DoxyCodeLine{\Hypertarget{flat__vars_8f90_source_l00039}00039\ \ \ \ \ \textcolor{keyword}{end\ interface}}
+\DoxyCodeLine{\Hypertarget{flat__vars_8f90_source_l00040}00040\ }
+\DoxyCodeLine{\Hypertarget{flat__vars_8f90_source_l00041}00041\ \textcolor{keyword}{contains}\textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{flat__vars_8f90_source_l00042}00042\ \textcolor{comment}{\ \ \ \ !>\ \(\backslash\)private\ rank\ 2\ array\ version}}
+\DoxyCodeLine{\Hypertarget{flat__vars_8f90_source_l00043}\doxymbox{\hyperlink{interfaceflat__vars_1_1dealloc__var__flat_af8cb633bd1914d5e794ba6a7138b7649}{00043}}\ \ \ \ \ \textcolor{keyword}{subroutine\ }dealloc\_var\_flat\_arr\_2(var\_flat)}
+\DoxyCodeLine{\Hypertarget{flat__vars_8f90_source_l00044}00044\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ input\ /\ output}}
+\DoxyCodeLine{\Hypertarget{flat__vars_8f90_source_l00045}00045\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{type}(\doxymbox{\hyperlink{structflat__vars_1_1var__flat__type}{var\_flat\_type}}),\ \textcolor{keywordtype}{intent(inout)},\ \textcolor{keywordtype}{allocatable}\ ::\ var\_flat(:,:)\textcolor{comment}{\ \ \ \ \ \ \ \ !<\ array\ of\ 1D\ variables\ to\ be\ deallocated}}
+\DoxyCodeLine{\Hypertarget{flat__vars_8f90_source_l00046}00046\ }
+\DoxyCodeLine{\Hypertarget{flat__vars_8f90_source_l00047}00047\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ local\ variables}}
+\DoxyCodeLine{\Hypertarget{flat__vars_8f90_source_l00048}00048\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer}\ ::\ id,\ jd\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ counters}}
+\DoxyCodeLine{\Hypertarget{flat__vars_8f90_source_l00049}00049\ }
+\DoxyCodeLine{\Hypertarget{flat__vars_8f90_source_l00050}00050\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ deallocate\ individual\ arrays}}
+\DoxyCodeLine{\Hypertarget{flat__vars_8f90_source_l00051}00051\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{do}\ jd\ =\ 1,\textcolor{keyword}{size}(var\_flat,2)}
+\DoxyCodeLine{\Hypertarget{flat__vars_8f90_source_l00052}00052\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{do}\ id\ =\ 1,\textcolor{keyword}{size}(var\_flat,1)}
+\DoxyCodeLine{\Hypertarget{flat__vars_8f90_source_l00053}00053\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }dealloc\_var\_flat\_ind(var\_flat(id,jd))}
+\DoxyCodeLine{\Hypertarget{flat__vars_8f90_source_l00054}00054\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ \ \ \ \ end\ do}}
+\DoxyCodeLine{\Hypertarget{flat__vars_8f90_source_l00055}00055\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ end\ do}}
+\DoxyCodeLine{\Hypertarget{flat__vars_8f90_source_l00056}00056\ }
+\DoxyCodeLine{\Hypertarget{flat__vars_8f90_source_l00057}00057\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ deallocate\ the\ array}}
+\DoxyCodeLine{\Hypertarget{flat__vars_8f90_source_l00058}00058\ \ \ \ \ \ \ \ \ \textcolor{keyword}{deallocate}(var\_flat)}
+\DoxyCodeLine{\Hypertarget{flat__vars_8f90_source_l00059}00059\ \ \ \ \ \textcolor{keyword}{end\ subroutine\ }dealloc\_var\_flat\_arr\_2\textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{flat__vars_8f90_source_l00060}00060\ \textcolor{comment}{\ \ \ \ !>\ \(\backslash\)private\ array\ version}}
+\DoxyCodeLine{\Hypertarget{flat__vars_8f90_source_l00061}\doxymbox{\hyperlink{interfaceflat__vars_1_1dealloc__var__flat_aa03fd7fa509c3383af09bc72ed3ad880}{00061}}\ \ \ \ \ \textcolor{keyword}{subroutine\ }dealloc\_var\_flat\_arr(var\_flat)}
+\DoxyCodeLine{\Hypertarget{flat__vars_8f90_source_l00062}00062\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ input\ /\ output}}
+\DoxyCodeLine{\Hypertarget{flat__vars_8f90_source_l00063}00063\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{type}(\doxymbox{\hyperlink{structflat__vars_1_1var__flat__type}{var\_flat\_type}}),\ \textcolor{keywordtype}{intent(inout)},\ \textcolor{keywordtype}{allocatable}\ ::\ var\_flat(:)\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ !<\ array\ of\ 1D\ variables\ to\ be\ deallocated}}
+\DoxyCodeLine{\Hypertarget{flat__vars_8f90_source_l00064}00064\ }
+\DoxyCodeLine{\Hypertarget{flat__vars_8f90_source_l00065}00065\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ local\ variables}}
+\DoxyCodeLine{\Hypertarget{flat__vars_8f90_source_l00066}00066\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer}\ ::\ id\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ counter}}
+\DoxyCodeLine{\Hypertarget{flat__vars_8f90_source_l00067}00067\ }
+\DoxyCodeLine{\Hypertarget{flat__vars_8f90_source_l00068}00068\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ deallocate\ individual\ arrays}}
+\DoxyCodeLine{\Hypertarget{flat__vars_8f90_source_l00069}00069\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{do}\ id\ =\ 1,\textcolor{keyword}{size}(var\_flat)}
+\DoxyCodeLine{\Hypertarget{flat__vars_8f90_source_l00070}00070\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }dealloc\_var\_flat\_ind(var\_flat(id))}
+\DoxyCodeLine{\Hypertarget{flat__vars_8f90_source_l00071}00071\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ end\ do}}
+\DoxyCodeLine{\Hypertarget{flat__vars_8f90_source_l00072}00072\ }
+\DoxyCodeLine{\Hypertarget{flat__vars_8f90_source_l00073}00073\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ deallocate\ the\ array}}
+\DoxyCodeLine{\Hypertarget{flat__vars_8f90_source_l00074}00074\ \ \ \ \ \ \ \ \ \textcolor{keyword}{deallocate}(var\_flat)}
+\DoxyCodeLine{\Hypertarget{flat__vars_8f90_source_l00075}00075\ \ \ \ \ \textcolor{keyword}{end\ subroutine\ }dealloc\_var\_flat\_arr\textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{flat__vars_8f90_source_l00076}00076\ \textcolor{comment}{\ \ \ \ !>\ \(\backslash\)private\ individual\ version}}
+\DoxyCodeLine{\Hypertarget{flat__vars_8f90_source_l00077}\doxymbox{\hyperlink{interfaceflat__vars_1_1dealloc__var__flat_ad2f9285b14b5eadb6b0191a2b5f22ae1}{00077}}\ \ \ \ \ \textcolor{keyword}{subroutine\ }dealloc\_var\_flat\_ind(var\_flat)}
+\DoxyCodeLine{\Hypertarget{flat__vars_8f90_source_l00078}00078\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ input\ /\ output}}
+\DoxyCodeLine{\Hypertarget{flat__vars_8f90_source_l00079}00079\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{type}(\doxymbox{\hyperlink{structflat__vars_1_1var__flat__type}{var\_flat\_type}}),\ \textcolor{keywordtype}{intent(out)}\ ::\ var\_flat\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !<\ 1D\ variable\ to\ be\ deallocated}}
+\DoxyCodeLine{\Hypertarget{flat__vars_8f90_source_l00080}00080\ \ \ \ \ \textcolor{keyword}{end\ subroutine\ }dealloc\_var\_flat\_ind}
+\DoxyCodeLine{\Hypertarget{flat__vars_8f90_source_l00081}00081\ \textcolor{keyword}{end\ module\ }\doxymbox{\hyperlink{namespaceflat__vars}{flat\_vars}}}
+
+\end{DoxyCode}

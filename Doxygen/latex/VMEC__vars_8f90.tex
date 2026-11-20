@@ -1,5 +1,5 @@
-\doxysection{/\+\+Users/\+toonweyens/\+\+Code/\+\+PB3\+D/\+\+Modules/\+\+VMEC\+\_\+vars.f90 File Reference}
-\hypertarget{VMEC__vars_8f90}{}\label{VMEC__vars_8f90}\index{/Users/toonweyens/Code/PB3D/Modules/VMEC\_vars.f90@{/Users/toonweyens/Code/PB3D/Modules/VMEC\_vars.f90}}
+\doxysection{Modules/\+\+VMEC\+\_\+vars.f90 File Reference}
+\hypertarget{VMEC__vars_8f90}{}\label{VMEC__vars_8f90}\index{Modules/VMEC\_vars.f90@{Modules/VMEC\_vars.f90}}
 \doxysubsubsection*{Modules}
 \begin{DoxyCompactItemize}
 \item 
@@ -13,10 +13,18 @@ subroutine, public \doxymbox{\hyperlink{namespacevmec__vars_afe14ec328664d93b93c
 \doxysubsubsection*{Variables}
 \begin{DoxyCompactItemize}
 \item 
-integer, dimension(:\+,:\+), allocatable, public \doxymbox{\hyperlink{namespacevmec__vars_a4b9a64bc60d45f2b10e03f624ade3e82}{vmec\+\_\+vars::\+mn\+\_\+v}}
+integer, dimension(:\+,:\+), allocatable, target, public \doxymbox{\hyperlink{namespacevmec__vars_a00697202d4f8fc19965188a9b5ddc7e9}{vmec\+\_\+vars::\+mn\+\_\+v}}
 \begin{DoxyCompactList}\small\item\em m and n of modes \end{DoxyCompactList}\item 
+integer, dimension(:\+,:\+), allocatable, target, public \doxymbox{\hyperlink{namespacevmec__vars_a2c3b8c979957fd6dca6909d2b0bdee05}{vmec\+\_\+vars::\+mn\+\_\+v\+\_\+nyq}}
+\begin{DoxyCompactList}\small\item\em m and n of the Nyquist mode set, on which VMEC stores the Jacobian, \texorpdfstring{$\vert$}{|}\+B\texorpdfstring{$\vert$}{|} and B\+\_\+i \end{DoxyCompactList}\item 
+integer, public \doxymbox{\hyperlink{namespacevmec__vars_a54cace62b89eb50a74db99ed7e578d93}{vmec\+\_\+vars::\+mnmax\+\_\+nyq\+\_\+v}}
+\begin{DoxyCompactList}\small\item\em number of modes of the Nyquist set \end{DoxyCompactList}\item 
+integer, public \doxymbox{\hyperlink{namespacevmec__vars_a3ad89240d8ad171f16423d1d514a1ca8}{vmec\+\_\+vars::\+mpol\+\_\+tf}}
+\begin{DoxyCompactList}\small\item\em poloidal extent of the trigonometric basis: m = 0 .. mpol\+\_\+tf-\/1 (covers both mode sets) \end{DoxyCompactList}\item 
+integer, public \doxymbox{\hyperlink{namespacevmec__vars_af767ee8089760054f9d1943e25857a47}{vmec\+\_\+vars::\+ntor\+\_\+tf}}
+\begin{DoxyCompactList}\small\item\em toroidal extent of the trigonometric basis: n = -\/ntor\+\_\+tf .. ntor\+\_\+tf \end{DoxyCompactList}\item 
 real(dp), public \doxymbox{\hyperlink{namespacevmec__vars_a71e1a738f0e423fe6c284f8ea636008e}{vmec\+\_\+vars::\+b\+\_\+0\+\_\+v}}
-\begin{DoxyCompactList}\small\item\em the magnitude of B at the magnetic axis, $\theta = \zeta = 0$ \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em \texorpdfstring{$\vert$}{|}\+B\texorpdfstring{$\vert$}{|} on the magnetic axis: its (m,n) = (0,0) Fourier component, the average over $\theta$ and $\zeta$ \end{DoxyCompactList}\item 
 real(dp), dimension(:\+,:\+), allocatable, public \doxymbox{\hyperlink{namespacevmec__vars_ac246a5937702b1ac4c7f9bd92d286766}{vmec\+\_\+vars::\+flux\+\_\+t\+\_\+v}}
 \begin{DoxyCompactList}\small\item\em toroidal flux \end{DoxyCompactList}\item 
 real(dp), dimension(:\+,:\+), allocatable, public \doxymbox{\hyperlink{namespacevmec__vars_aeac5e1262f419b7ae674586f576dc928}{vmec\+\_\+vars::\+flux\+\_\+p\+\_\+v}}

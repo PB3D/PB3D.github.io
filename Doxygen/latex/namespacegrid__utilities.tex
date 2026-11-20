@@ -15,7 +15,7 @@ interface \doxymbox{\hyperlink{interfacegrid__utilities_1_1coord__e2f}{coord\+\_
 interface \doxymbox{\hyperlink{interfacegrid__utilities_1_1calc__eqd__grid}{calc\+\_\+eqd\+\_\+grid}}
 \begin{DoxyCompactList}\small\item\em Calculate grid of equidistant points, where optionally the last point can be excluded. \end{DoxyCompactList}\item 
 interface \doxymbox{\hyperlink{interfacegrid__utilities_1_1calc__tor__diff}{calc\+\_\+tor\+\_\+diff}}
-\begin{DoxyCompactList}\small\item\em Calculates the toroidal difference for a magnitude calculated on three toroidal points:\+ two extremities and one in the middle. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Calculates the toroidal difference for a magnitude calculated on three toroidal points: two extremities and one in the middle. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsubsection*{Functions/\+\+Subroutines}
 \begin{DoxyCompactItemize}
 \item 
@@ -29,8 +29,6 @@ integer function, public \doxymbox{\hyperlink{namespacegrid__utilities_af08c7fe5
 \begin{DoxyCompactList}\small\item\em Calculates volume integral on a 3D grid. \end{DoxyCompactList}\item 
 integer function, public \doxymbox{\hyperlink{namespacegrid__utilities_a67001ff9bbcad707aacf17f90a748d90}{trim\+\_\+grid}} (grid\+\_\+in, grid\+\_\+out, norm\+\_\+id)
 \begin{DoxyCompactList}\small\item\em Trim a grid, removing any overlap between the different regions. \end{DoxyCompactList}\item 
-integer function, public \doxymbox{\hyperlink{namespacegrid__utilities_a4679f24af8e02793070f4e27b43e00b6}{untrim\+\_\+grid}} (grid\+\_\+in, grid\+\_\+out, size\+\_\+ghost)
-\begin{DoxyCompactList}\small\item\em Untrims a trimmed grid by introducing an asymmetric ghost regions at the right. \end{DoxyCompactList}\item 
 integer function, public \doxymbox{\hyperlink{namespacegrid__utilities_ad5b259a284efcf05eb3fd5deaca19662}{calc\+\_\+vec\+\_\+comp}} (grid, grid\+\_\+eq, eq\+\_\+1, eq\+\_\+2, v\+\_\+com, norm\+\_\+disc\+\_\+prec, v\+\_\+mag, base\+\_\+name, max\+\_\+transf, v\+\_\+flux\+\_\+tor, v\+\_\+flux\+\_\+pol, xyz, compare\+\_\+tor\+\_\+pos)
 \begin{DoxyCompactList}\small\item\em Calculates contra-\/ and covariant components of a vector in multiple coordinate systems. \end{DoxyCompactList}\item 
 integer function, public \doxymbox{\hyperlink{namespacegrid__utilities_a8b3114d164cbf016c0c6bb1232e6314e}{calc\+\_\+n\+\_\+par\+\_\+x\+\_\+rich}} (n\+\_\+par\+\_\+x\+\_\+rich, only\+\_\+half\+\_\+grid)
@@ -53,7 +51,7 @@ logical, public \doxymbox{\hyperlink{namespacegrid__utilities_ab420036236dc8a9a6
 \doxysubsection{Detailed Description}
 Numerical utilities related to the grids and different coordinate systems. 
 
-\label{doc-func-members}
+\label{namespacegrid__utilities_doc-func-members}
 \Hypertarget{namespacegrid__utilities_doc-func-members}
 \doxysubsection{Function/\+\+Subroutine Documentation}
 \Hypertarget{namespacegrid__utilities_affe51bbe076dd311eb565873be815407}\index{grid\_utilities@{grid\_utilities}!calc\_arc\_angle@{calc\_arc\_angle}}
@@ -91,9 +89,10 @@ ierr
 \end{DoxyParams}
 
 
-Definition at line \doxymbox{\hyperlink{grid__utilities_8f90_source_l03038}{3038}} of file \doxymbox{\hyperlink{grid__utilities_8f90_source}{grid\+\_\+utilities.\+f90}}.
+Definition at line \doxymbox{\hyperlink{grid__utilities_8f90_source_l02972}{2972}} of file \doxymbox{\hyperlink{grid__utilities_8f90_source}{grid\+\_\+utilities.\+f90}}.
 
-Here is the call graph for this function:\+\nopagebreak
+Here is the call graph for this function:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -120,7 +119,7 @@ A common case through which to understand this is the axisymmetric case where th
 
 Alternatively, there is the case of a grid-\/aligned set of coordinates $\theta$ and $\alpha$, where the first dimension corresponds to the direction along the magnetic field line, the second to the geodesical direction and the third to the normal direction. If the calculations for different field lines are decoupled, the variation in the second dimension is not taken into account and no integration happens along it.
 
-Internally, the angular variables and the normal variable are related to the coordinates $\left(x,y,z\right)$ that correspond to the three dimensions. They thus form a computational orthogonal grid to which the original coordinates are related through the transformation of Jacobians:\+      \[\mathcal{J}_{xyz} = \mathcal{J}_\text{F}
+Internally, the angular variables and the normal variable are related to the coordinates $\left(x,y,z\right)$ that correspond to the three dimensions. They thus form a computational orthogonal grid to which the original coordinates are related through the transformation of Jacobians:      \[\mathcal{J}_{xyz} = \mathcal{J}_\text{F}
              \frac{\partial r_\text{F}}{\partial z}
              \left(\frac{\partial \gamma_1}{\partial x}
              \frac{\gamma_2}{\partial y}-
@@ -166,16 +165,18 @@ ierr
 \end{DoxyParams}
 
 
-Definition at line \doxymbox{\hyperlink{grid__utilities_8f90_source_l01319}{1319}} of file \doxymbox{\hyperlink{grid__utilities_8f90_source}{grid\+\_\+utilities.\+f90}}.
+Definition at line \doxymbox{\hyperlink{grid__utilities_8f90_source_l01320}{1320}} of file \doxymbox{\hyperlink{grid__utilities_8f90_source}{grid\+\_\+utilities.\+f90}}.
 
-Here is the call graph for this function:\+\nopagebreak
+Here is the call graph for this function:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{namespacegrid__utilities_af08c7fe5a537be1a8fa3eba462c77e7e_cgraph}
 \end{center}
 \end{figure}
-Here is the caller graph for this function:\+\nopagebreak
+Here is the caller graph for this function:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -207,9 +208,10 @@ ierr
 \end{DoxyParams}
 
 
-Definition at line \doxymbox{\hyperlink{grid__utilities_8f90_source_l02861}{2861}} of file \doxymbox{\hyperlink{grid__utilities_8f90_source}{grid\+\_\+utilities.\+f90}}.
+Definition at line \doxymbox{\hyperlink{grid__utilities_8f90_source_l02794}{2794}} of file \doxymbox{\hyperlink{grid__utilities_8f90_source}{grid\+\_\+utilities.\+f90}}.
 
-Here is the caller graph for this function:\+\nopagebreak
+Here is the caller graph for this function:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -226,16 +228,16 @@ integer function, public grid\+\_\+utilities::\+calc\+\_\+vec\+\_\+comp (\begin{
 
 Calculates contra-\/ and covariant components of a vector in multiple coordinate systems. 
 
-Chain of coordinate systems considered:\+
+Chain of coordinate systems considered:
 \begin{DoxyEnumerate}
-\item Flux F:\+ $(\alpha,\psi,\theta)$,
-\item Magnetic M:\+ $(\psi,\theta,\zeta)$,
+\item Flux F: $(\alpha,\psi,\theta)$,
+\item Magnetic M: $(\psi,\theta,\zeta)$,
 \begin{DoxyItemize}
-\item H:\+ $(\psi,\theta,\phi)$ if HELENA is used,
-\item V:\+ $(r,\theta,\zeta)$ if VMEC is used,
+\item H: $(\psi,\theta,\phi)$ if HELENA is used,
+\item V: $(r,\theta,\zeta)$ if VMEC is used,
 \end{DoxyItemize}
-\item Cylindrical C:\+ $(R,\varphi,Z)$,
-\item Cartesian X:\+ $(X,Y,Z)$, as well as the magnitude, starting from the input in Flux coordinates. Note that the Cartesian components in X, Y and Z can be used to plot the real vector and that covariant components should be equal to contravariant components in this coordinate system.
+\item Cylindrical C: $(R,\varphi,Z)$,
+\item Cartesian X: $(X,Y,Z)$, as well as the magnitude, starting from the input in Flux coordinates. Note that the Cartesian components in X, Y and Z can be used to plot the real vector and that covariant components should be equal to contravariant components in this coordinate system.
 \end{DoxyEnumerate}
 
 Also, the fluxes can be calculated and plot by providing a {\ttfamily base\+\_\+name}.
@@ -246,7 +248,7 @@ By default, the cartesian components are returned, but this can be indicated dif
 
 \begin{DoxyEnumerate}
 \item Plots for different Richardson levels can be combined to show the total grid by just plotting them all individually and sequentially.
-\item The metric factors and transformation matrices have to be allocated. They can be calculated using the routines from \doxylink{namespaceeq__ops}{eq\+\_\+ops}, for {\ttfamily deriv = \+[0,0,0]\+}.
+\item The metric factors and transformation matrices have to be allocated. They can be calculated using the routines from \doxylink{namespaceeq__ops}{eq\+\_\+ops}, for {\ttfamily deriv = \+[0,0,0]}.
 \item For VMEC, the trigonometric factors of {\ttfamily grid\+\_\+\+XYZ} must be calculated beforehand. Optionally, by providing {\ttfamily X}, {\ttfamily Y} and {\ttfamily Z}, the ones calculated in this routine are overwritten. This is useful for, for example, slab geometries.
 \item The normalization factors are taken into account and the output is transformed back to unnormalized values.
 \end{DoxyEnumerate}
@@ -272,7 +274,7 @@ ierr
 \hline
 \doxymbox{\texttt{in}}  & {\em base\+\_\+name} & base name for output plotting \\
 \hline
-\doxymbox{\texttt{in}}  & {\em max\+\_\+transf} & maximum transformation level (2:\+ Magnetic, 3:\+ Equilibrium, 4:\+ Cylindrical, 5:\+ Cartesian \+[def]\+) \\
+\doxymbox{\texttt{in}}  & {\em max\+\_\+transf} & maximum transformation level (2: Magnetic, 3: Equilibrium, 4: Cylindrical, 5: Cartesian \+[def]) \\
 \hline
 \doxymbox{\texttt{in,out}}  & {\em v\+\_\+flux\+\_\+pol} & poloidal flux as function of normal coordinate for all toroidal positions \\
 \hline
@@ -285,16 +287,18 @@ ierr
 \end{DoxyParams}
 
 
-Definition at line \doxymbox{\hyperlink{grid__utilities_8f90_source_l01856}{1856}} of file \doxymbox{\hyperlink{grid__utilities_8f90_source}{grid\+\_\+utilities.\+f90}}.
+Definition at line \doxymbox{\hyperlink{grid__utilities_8f90_source_l01788}{1788}} of file \doxymbox{\hyperlink{grid__utilities_8f90_source}{grid\+\_\+utilities.\+f90}}.
 
-Here is the call graph for this function:\+\nopagebreak
+Here is the call graph for this function:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{namespacegrid__utilities_ad5b259a284efcf05eb3fd5deaca19662_cgraph}
 \end{center}
 \end{figure}
-Here is the caller graph for this function:\+\nopagebreak
+Here is the caller graph for this function:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -348,9 +352,10 @@ ierr
 \end{DoxyParams}
 
 
-Definition at line \doxymbox{\hyperlink{grid__utilities_8f90_source_l00798}{798}} of file \doxymbox{\hyperlink{grid__utilities_8f90_source}{grid\+\_\+utilities.\+f90}}.
+Definition at line \doxymbox{\hyperlink{grid__utilities_8f90_source_l00799}{799}} of file \doxymbox{\hyperlink{grid__utilities_8f90_source}{grid\+\_\+utilities.\+f90}}.
 
-Here is the caller graph for this function:\+\nopagebreak
+Here is the caller graph for this function:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -392,9 +397,10 @@ ierr
 \end{DoxyParams}
 
 
-Definition at line \doxymbox{\hyperlink{grid__utilities_8f90_source_l01188}{1188}} of file \doxymbox{\hyperlink{grid__utilities_8f90_source}{grid\+\_\+utilities.\+f90}}.
+Definition at line \doxymbox{\hyperlink{grid__utilities_8f90_source_l01189}{1189}} of file \doxymbox{\hyperlink{grid__utilities_8f90_source}{grid\+\_\+utilities.\+f90}}.
 
-Here is the caller graph for this function:\+\nopagebreak
+Here is the caller graph for this function:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -440,16 +446,18 @@ ierr
 \end{DoxyParams}
 
 
-Definition at line \doxymbox{\hyperlink{grid__utilities_8f90_source_l01094}{1094}} of file \doxymbox{\hyperlink{grid__utilities_8f90_source}{grid\+\_\+utilities.\+f90}}.
+Definition at line \doxymbox{\hyperlink{grid__utilities_8f90_source_l01095}{1095}} of file \doxymbox{\hyperlink{grid__utilities_8f90_source}{grid\+\_\+utilities.\+f90}}.
 
-Here is the call graph for this function:\+\nopagebreak
+Here is the call graph for this function:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{namespacegrid__utilities_a414a1a11924bc935afca3a89fc31f2f5_cgraph}
 \end{center}
 \end{figure}
-Here is the caller graph for this function:\+\nopagebreak
+Here is the caller graph for this function:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -477,9 +485,10 @@ finds smallest range that comprises a minimum and maximum value.
 \end{DoxyParams}
 
 
-Definition at line \doxymbox{\hyperlink{grid__utilities_8f90_source_l02994}{2994}} of file \doxymbox{\hyperlink{grid__utilities_8f90_source}{grid\+\_\+utilities.\+f90}}.
+Definition at line \doxymbox{\hyperlink{grid__utilities_8f90_source_l02928}{2928}} of file \doxymbox{\hyperlink{grid__utilities_8f90_source}{grid\+\_\+utilities.\+f90}}.
 
-Here is the caller graph for this function:\+\nopagebreak
+Here is the caller graph for this function:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -517,16 +526,18 @@ ierr
 \end{DoxyParams}
 
 
-Definition at line \doxymbox{\hyperlink{grid__utilities_8f90_source_l02900}{2900}} of file \doxymbox{\hyperlink{grid__utilities_8f90_source}{grid\+\_\+utilities.\+f90}}.
+Definition at line \doxymbox{\hyperlink{grid__utilities_8f90_source_l02833}{2833}} of file \doxymbox{\hyperlink{grid__utilities_8f90_source}{grid\+\_\+utilities.\+f90}}.
 
-Here is the call graph for this function:\+\nopagebreak
+Here is the call graph for this function:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{namespacegrid__utilities_ae8cbf5a9167339a1f5a2ba07a03d20e2_cgraph}
 \end{center}
 \end{figure}
-Here is the caller graph for this function:\+\nopagebreak
+Here is the caller graph for this function:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -547,20 +558,20 @@ by default, the routine assumes a symmetric ghost region and cuts as many grid p
 
 optionally, the trimmed indices in the normal direction can be provided in {\ttfamily norm\+\_\+id}, i.\+e. the indices in the old, untrimmed grid that correspond to the start and end indices of the trimmed grid. E.\+g. if
 \begin{DoxyItemize}
-\item proc 0:\+ 3 ... 25
-\item proc 1:\+ 20 ... 50
+\item proc 0: 3 ... 25
+\item proc 1: 20 ... 50
 \end{DoxyItemize}
 
-then the trimmed grid will be:\+
+then the trimmed grid will be:
 \begin{DoxyItemize}
-\item proc 0:\+ 3 ... 22
-\item proc 1:\+ 23 ... 50
+\item proc 0: 3 ... 22
+\item proc 1: 23 ... 50
 \end{DoxyItemize}
 
 which is shifted down by 2 to
 \begin{DoxyItemize}
-\item proc 0:\+ 1 ... 20
-\item proc 1:\+ 21 ... 48
+\item proc 0: 1 ... 20
+\item proc 1: 21 ... 48
 \end{DoxyItemize}
 
 in the trimmed grid. The indices of the previous step (3 \& 22 and 23 \& 50) are saved in {\ttfamily norm\+\_\+id}.
@@ -579,60 +590,19 @@ ierr
 \end{DoxyParams}
 
 
-Definition at line \doxymbox{\hyperlink{grid__utilities_8f90_source_l01635}{1635}} of file \doxymbox{\hyperlink{grid__utilities_8f90_source}{grid\+\_\+utilities.\+f90}}.
+Definition at line \doxymbox{\hyperlink{grid__utilities_8f90_source_l01636}{1636}} of file \doxymbox{\hyperlink{grid__utilities_8f90_source}{grid\+\_\+utilities.\+f90}}.
 
-Here is the caller graph for this function:\+\nopagebreak
+Here is the caller graph for this function:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{namespacegrid__utilities_a67001ff9bbcad707aacf17f90a748d90_icgraph}
 \end{center}
 \end{figure}
-\Hypertarget{namespacegrid__utilities_a4679f24af8e02793070f4e27b43e00b6}\index{grid\_utilities@{grid\_utilities}!untrim\_grid@{untrim\_grid}}
-\index{untrim\_grid@{untrim\_grid}!grid\_utilities@{grid\_utilities}}
-\doxysubsubsection{\texorpdfstring{untrim\_grid()}{untrim\_grid()}}
-{\footnotesize\ttfamily \label{namespacegrid__utilities_a4679f24af8e02793070f4e27b43e00b6} 
-integer function, public grid\+\_\+utilities::\+untrim\+\_\+grid (\begin{DoxyParamCaption}\item[{type(\doxymbox{\hyperlink{structgrid__vars_1_1grid__type}{grid\+\_\+type}}), intent(in)}]{grid\+\_\+in}{, }\item[{type(\doxymbox{\hyperlink{structgrid__vars_1_1grid__type}{grid\+\_\+type}}), intent(inout)}]{grid\+\_\+out}{, }\item[{integer, intent(in)}]{size\+\_\+ghost}{}\end{DoxyParamCaption})}
 
 
-
-Untrims a trimmed grid by introducing an asymmetric ghost regions at the right. 
-
-The width of the ghost region has to be provided.
-
-\begin{DoxyNote}{Note}
-
-\begin{DoxyEnumerate}
-\item the ghosted grid should be deallocated (with dealloc\+\_\+grid()).
-\item the input grid has to be trimmed.
-\end{DoxyEnumerate}
-\end{DoxyNote}
-\begin{DoxyReturn}{Returns}
-ierr 
-\end{DoxyReturn}
-
-\begin{DoxyParams}[1]{Parameters}
-\doxymbox{\texttt{in}}  & {\em grid\+\_\+in} & input grid \\
-\hline
-\doxymbox{\texttt{in,out}}  & {\em grid\+\_\+out} & ghosted grid \\
-\hline
-\doxymbox{\texttt{in}}  & {\em size\+\_\+ghost} & width of ghost region \\
-\hline
-\end{DoxyParams}
-
-
-Definition at line \doxymbox{\hyperlink{grid__utilities_8f90_source_l01763}{1763}} of file \doxymbox{\hyperlink{grid__utilities_8f90_source}{grid\+\_\+utilities.\+f90}}.
-
-Here is the caller graph for this function:\+\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=350pt]{namespacegrid__utilities_a4679f24af8e02793070f4e27b43e00b6_icgraph}
-\end{center}
-\end{figure}
-
-
-\label{doc-var-members}
+\label{namespacegrid__utilities_doc-var-members}
 \Hypertarget{namespacegrid__utilities_doc-var-members}
 \doxysubsection{Variable Documentation}
 \Hypertarget{namespacegrid__utilities_a0743c0341d508034b14aee614fa4f8a9}\index{grid\_utilities@{grid\_utilities}!debug\_calc\_int\_vol@{debug\_calc\_int\_vol}}

@@ -1,5 +1,5 @@
 \doxysection{HDF5\+\_\+ops.\+f90}
-\hypertarget{HDF5__ops_8f90_source}{}\label{HDF5__ops_8f90_source}\index{/Users/toonweyens/Code/PB3D/Modules/HDF5\_ops.f90@{/Users/toonweyens/Code/PB3D/Modules/HDF5\_ops.f90}}
+\hypertarget{HDF5__ops_8f90_source}{}\label{HDF5__ops_8f90_source}\index{Modules/HDF5\_ops.f90@{Modules/HDF5\_ops.f90}}
 \doxymbox{\hyperlink{HDF5__ops_8f90}{Go to the documentation of this file.}}
 \begin{DoxyCode}{0}
 \DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l00001}00001\ \textcolor{comment}{!-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/!}\textcolor{comment}{}}
@@ -1142,7 +1142,7 @@
 \DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01138}01138\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{character(*)},\ \textcolor{keywordtype}{parameter}\ ::\ rout\_name\ =\ \textcolor{stringliteral}{'print\_HDF5\_arrs'}}
 \DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01139}01139\ \ \ \ \ \ \ \ \ }
 \DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01140}01140\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ input\ /\ output}}
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01141}01141\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{type}(\doxymbox{\hyperlink{structhdf5__vars_1_1var__1d__type}{var\_1d\_type}}),\ \textcolor{keywordtype}{intent(in)}\ ::\ vars(:)\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !<\ variables\ to\ write}}
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01141}01141\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{type}(var\_flat\_type),\ \textcolor{keywordtype}{intent(in)}\ ::\ vars(:)\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !<\ variables\ to\ write}}
 \DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01142}01142\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{character(len=*)},\ \textcolor{keywordtype}{intent(in)}\ ::\ \doxymbox{\hyperlink{namespacenum__vars_a8b3ab3b12cddc0c3e60c3430912b5f3c}{pb3d\_name}}\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !<\ name\ of\ PB3D\ file}}
 \DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01143}01143\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{character(len=*)},\ \textcolor{keywordtype}{intent(in)}\ ::\ head\_name\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !<\ head\ name\ of\ variables}}
 \DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01144}01144\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer},\ \textcolor{keywordtype}{intent(in)},\ \textcolor{keywordtype}{optional}\ ::\ rich\_lvl\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !<\ Richardson\ level\ to\ append\ to\ file\ name}}
@@ -1541,7 +1541,7 @@
 \DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01537}01537\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{character(*)},\ \textcolor{keywordtype}{parameter}\ ::\ rout\_name\ =\ \textcolor{stringliteral}{'read\_HDF5\_arr\_ind'}}
 \DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01538}01538\ \ \ \ \ \ \ \ \ }
 \DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01539}01539\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ input\ /\ output}}
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01540}01540\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{type}(\doxymbox{\hyperlink{structhdf5__vars_1_1var__1d__type}{var\_1d\_type}}),\ \textcolor{keywordtype}{intent(inout)}\ ::\ var\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !<\ variable\ to\ read}}
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01540}01540\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{type}(var\_flat\_type),\ \textcolor{keywordtype}{intent(inout)}\ ::\ var\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !<\ variable\ to\ read}}
 \DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01541}01541\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{character(len=*)},\ \textcolor{keywordtype}{intent(in)}\ ::\ pb3d\_name\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !<\ name\ of\ PB3D\ file}}
 \DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01542}01542\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{character(len=*)},\ \textcolor{keywordtype}{intent(in)}\ ::\ head\_name\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !<\ head\ name\ of\ variables}}
 \DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01543}01543\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{character(len=*)},\ \textcolor{keywordtype}{intent(in)}\ ::\ var\_name\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !<\ name\ of\ variable}}
@@ -1567,305 +1567,307 @@
 \DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01563}01563\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer}\ ::\ max\_corder\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ current\ maximum\ creation\ order\ value\ for\ group}}
 \DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01564}01564\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer},\ \textcolor{keywordtype}{allocatable}\ ::\ lim\_tot(:,:)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ total\ limits}}
 \DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01565}01565\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer},\ \textcolor{keywordtype}{allocatable}\ ::\ lim\_loc\_loc(:,:)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ local\ lim\_loc}}
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01566}01566\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{character(len=max\_str\_ln)}\ ::\ name\_len\_loc\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ local\ copy\ of\ name\_len}}
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01567}01567\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{character(len=max\_str\_ln)}\ ::\ group\_name\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ name\ of\ group}}
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01568}01568\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{character(len=max\_str\_ln)}\ ::\ head\_name\_loc\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ local\ head\_name}}
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01569}01569\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{logical}\ ::\ disp\_info\_loc\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ local\ disp\_info}}
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01570}01570\ \textcolor{preprocessor}{\#if\ ldebug}}
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01571}01571\ \textcolor{preprocessor}{}\ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer}\ ::\ istat\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ status}}
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01572}01572\ \textcolor{preprocessor}{\#endif}}
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01573}01573\ \textcolor{preprocessor}{}\ \ \ \ \ \ \ \ }
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01574}01574\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ initialize\ ierr}}
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01575}01575\ \ \ \ \ \ \ \ \ ierr\ =\ 0}
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01576}01576\ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01577}01577\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ set\ local\ disp\_info}}
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01578}01578\ \ \ \ \ \ \ \ \ disp\_info\_loc\ =\ .false.}
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01579}01579\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\textcolor{keyword}{present}(disp\_info))\ disp\_info\_loc\ =\ disp\_info}
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01580}01580\ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01581}01581\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ set\ up\ local\ head\_name}}
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01582}01582\ \ \ \ \ \ \ \ \ head\_name\_loc\ =\ head\_name}
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01583}01583\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\textcolor{keyword}{present}(rich\_lvl))\ \textcolor{keywordflow}{then}}
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01584}01584\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (rich\_lvl.gt.0)\ head\_name\_loc\ =\ trim(head\_name\_loc)//\textcolor{stringliteral}{'\_R\_'}//\&}
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01585}01585\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&trim(\doxymbox{\hyperlink{namespacestr__utilities_a0b97e51770725a3e98ed393d26681414}{i2str}}(rich\_lvl))}
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01586}01586\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ end\ if}}
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01587}01587\ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01588}01588\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ user\ output}}
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01589}01589\ \textcolor{preprocessor}{\#if\ ldebug}}
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01590}01590\ \textcolor{preprocessor}{}\ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\doxymbox{\hyperlink{namespacehdf5__ops_a9b7c63811a63e9454539f1a2c89678b4}{debug\_hdf5\_ops}})\ \textcolor{keywordflow}{then}}
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01591}01591\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{write}(*,*,iostat=istat)\ \textcolor{stringliteral}{'Reading\ data\ from\ PB3D\ output\ "{}'}//\&}
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01592}01592\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&trim(pb3d\_name)//\textcolor{stringliteral}{'/'}//trim(head\_name\_loc)//\textcolor{stringliteral}{'/'}//\&}
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01593}01593\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&trim(var\_name)//\textcolor{stringliteral}{'"{}'}}
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01594}01594\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ end\ if}}
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01595}01595\ \textcolor{preprocessor}{\#endif}}
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01596}01596\ \textcolor{preprocessor}{}\ \ \ \ \ \ \ \ }
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01597}01597\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ initialize\ FORTRAN\ predefined\ datatypes}}
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01598}01598\ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }h5open\_f(ierr)}
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01599}01599\ \ \ \ \ \ \ \ \ chckerr(\textcolor{stringliteral}{'Failed\ to\ initialize\ HDF5'})}
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01600}01600\ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01601}01601\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ preparation}}
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01602}01602\ \ \ \ \ \ \ \ \ hdf5\_kind\_64\ =\ h5kind\_to\_type(dp,h5\_real\_kind)}
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01603}01603\ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01604}01604\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ wait\ for\ file\ access\ in\ a\ non-\/blocking\ way}}
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01605}01605\ \ \ \ \ \ \ \ \ ierr\ =\ \doxymbox{\hyperlink{namespacempi__utilities_a5a789d05be41d6109c01f46cc98620c8}{lock\_req\_acc}}(\doxymbox{\hyperlink{namespacempi__vars_a834e19cd963fef0ad150e22aa3c56d53}{hdf5\_lock}},blocking=.false.)}
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01606}01606\ \ \ \ \ \ \ \ \ chckerr(\textcolor{stringliteral}{''})}
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01607}01607\ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01608}01608\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ user\ output}}
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01609}01609\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (disp\_info\_loc)\ \textcolor{keywordflow}{then}}
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01610}01610\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_aa4a8d01563e92558e8a0875b075ec54c}{writo}}(\textcolor{stringliteral}{'Opening\ file\ '}//trim(pb3d\_name))}
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01611}01611\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ end\ if}}
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01612}01612\ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01613}01613\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ open\ the\ file}}
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01614}01614\ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }h5fopen\_f(trim(pb3d\_name),h5f\_acc\_rdonly\_f,hdf5\_i,ierr)}
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01615}01615\ \ \ \ \ \ \ \ \ chckerr(\textcolor{stringliteral}{'Failed\ to\ open\ file'})}
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01616}01616\ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01617}01617\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ user\ output}}
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01618}01618\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (disp\_info\_loc)\ \textcolor{keywordflow}{then}}
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01619}01619\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_aa4a8d01563e92558e8a0875b075ec54c}{writo}}(\textcolor{stringliteral}{'Opening\ variable\ "{}'}//trim(head\_name\_loc)//\textcolor{stringliteral}{'"{}'})}
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01620}01620\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ end\ if}}
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01621}01621\ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01622}01622\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ open\ head\ group}}
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01623}01623\ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }h5gopen\_f(hdf5\_i,trim(head\_name\_loc),head\_group\_id,ierr)}
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01624}01624\ \ \ \ \ \ \ \ \ err\_msg\ =\ \textcolor{stringliteral}{'Failed\ to\ open\ head\ group\ "{}'}//trim(head\_name\_loc)//\textcolor{stringliteral}{'"{}'}}
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01625}01625\ \ \ \ \ \ \ \ \ chckerr(err\_msg)}
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01626}01626\ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01627}01627\ \textcolor{preprocessor}{\#if\ ldebug}}
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01628}01628\ \textcolor{preprocessor}{}\ \ \ \ \ \ \ \ \textcolor{comment}{!\ display\ all\ variables\ in\ group}}
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01629}01629\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (disp\_info\_loc)\ \textcolor{keywordflow}{then}}
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01630}01630\ \ \ \ \ \ \ \ \ \ \ \ \ ierr\ =\ \doxymbox{\hyperlink{namespacehdf5__utilities_aa9d76166f970a7052cd0d96c8f3ee0be}{list\_all\_vars\_in\_group}}(head\_group\_id)}
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01631}01631\ \ \ \ \ \ \ \ \ \ \ \ \ chckerr(\textcolor{stringliteral}{''})}
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01632}01632\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ end\ if}}
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01633}01633\ \textcolor{preprocessor}{\#endif}}
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01634}01634\ \textcolor{preprocessor}{}\ \ \ \ \ \ \ \ }
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01635}01635\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ get\ number\ of\ objects\ in\ group\ to\ allocate\ vars}}
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01636}01636\ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }h5gget\_info\_f(head\_group\_id,storage\_type,nr\_lnks\_head,\&}
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01637}01637\ \ \ \ \ \ \ \ \ \ \ \ \ \&max\_corder,ierr)}
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01638}01638\ \ \ \ \ \ \ \ \ chckerr(\textcolor{stringliteral}{'Failed\ to\ get\ group\ info'})}
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01639}01639\ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01640}01640\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ iterate\ over\ all\ elements\ in\ group\ to\ save\ all\ acceptable\ variables}}
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01641}01641\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{do}\ id\ =\ 1,\ nr\_lnks\_head}
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01642}01642\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }h5lget\_name\_by\_idx\_f(head\_group\_id,\textcolor{stringliteral}{'.'},h5\_index\_name\_f,\&}
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01643}01643\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&h5\_iter\_native\_f,id-\/1,group\_name,ierr,size=name\_len)}
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01644}01644\ \ \ \ \ \ \ \ \ \ \ \ \ chckerr(\textcolor{stringliteral}{'Failed\ to\ get\ name'})}
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01645}01645\ \ \ \ \ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01646}01646\ \textcolor{preprocessor}{\#if\ ldebug}}
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01647}01647\ \textcolor{preprocessor}{}\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ check\ length}}
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01648}01648\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (name\_len.gt.max\_str\_ln)\ \textcolor{keywordflow}{then}}
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01649}01649\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{write}(name\_len\_loc,*)\ name\_len}
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01650}01650\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ierr\ =\ 1}
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01651}01651\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ err\_msg\ =\ \textcolor{stringliteral}{'Recompile\ with\ max\_str\_ln\ >\ '}//trim(name\_len\_loc)}
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01652}01652\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ chckerr(err\_msg)}
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01653}01653\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ \ \ \ \ end\ if}}
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01654}01654\ \textcolor{preprocessor}{\#endif}}
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01655}01655\ \textcolor{preprocessor}{}\ \ \ \ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01656}01656\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (trim(group\_name).ne.trim(var\_name))\ \textcolor{keywordflow}{then}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ not\ found}}
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01657}01657\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ cycle}
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01658}01658\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ \ \ \ \ end\ if}}
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01659}01659\ \ \ \ \ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01660}01660\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ user\ output}}
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01661}01661\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (disp\_info\_loc)\ \textcolor{keywordflow}{then}}
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01662}01662\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_aa4a8d01563e92558e8a0875b075ec54c}{writo}}(\textcolor{stringliteral}{'Reading\ '}//trim(group\_name))}
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01663}01663\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ \ \ \ \ end\ if}}
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01664}01664\ \ \ \ \ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01665}01665\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ set\ name}}
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01666}01666\ \ \ \ \ \ \ \ \ \ \ \ \ var\%var\_name\ =\ trim(group\_name)}
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01667}01667\ \ \ \ \ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01668}01668\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ open\ group}}
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01669}01669\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }h5gopen\_f(head\_group\_id,trim(group\_name),group\_id,ierr)}
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01670}01670\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01671}01671\ \ \ \ \ \ \ \ \ \ \ \ \ chckerr(\textcolor{stringliteral}{'Failed\ to\ open\ group'})}
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01672}01672\ \ \ \ \ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01673}01673\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ 1.\ limit\ information}}
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01566}01566\ \textcolor{preprocessor}{\#if\ ldebug}}
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01567}01567\ \textcolor{preprocessor}{}\ \ \ \ \ \ \ \ \textcolor{keywordtype}{character(len=max\_str\_ln)}\ ::\ name\_len\_loc\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ local\ copy\ of\ name\_len}}
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01568}01568\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01569}01569\ \textcolor{preprocessor}{}\ \ \ \ \ \ \ \ \textcolor{keywordtype}{character(len=max\_str\_ln)}\ ::\ group\_name\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ name\ of\ group}}
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01570}01570\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{character(len=max\_str\_ln)}\ ::\ head\_name\_loc\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ local\ head\_name}}
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01571}01571\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{logical}\ ::\ disp\_info\_loc\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ local\ disp\_info}}
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01572}01572\ \textcolor{preprocessor}{\#if\ ldebug}}
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01573}01573\ \textcolor{preprocessor}{}\ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer}\ ::\ istat\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ status}}
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01574}01574\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01575}01575\ \textcolor{preprocessor}{}\ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01576}01576\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ initialize\ ierr}}
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01577}01577\ \ \ \ \ \ \ \ \ ierr\ =\ 0}
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01578}01578\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01579}01579\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ set\ local\ disp\_info}}
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01580}01580\ \ \ \ \ \ \ \ \ disp\_info\_loc\ =\ .false.}
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01581}01581\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\textcolor{keyword}{present}(disp\_info))\ disp\_info\_loc\ =\ disp\_info}
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01582}01582\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01583}01583\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ set\ up\ local\ head\_name}}
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01584}01584\ \ \ \ \ \ \ \ \ head\_name\_loc\ =\ head\_name}
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01585}01585\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\textcolor{keyword}{present}(rich\_lvl))\ \textcolor{keywordflow}{then}}
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01586}01586\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (rich\_lvl.gt.0)\ head\_name\_loc\ =\ trim(head\_name\_loc)//\textcolor{stringliteral}{'\_R\_'}//\&}
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01587}01587\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&trim(\doxymbox{\hyperlink{namespacestr__utilities_a0b97e51770725a3e98ed393d26681414}{i2str}}(rich\_lvl))}
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01588}01588\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ end\ if}}
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01589}01589\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01590}01590\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ user\ output}}
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01591}01591\ \textcolor{preprocessor}{\#if\ ldebug}}
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01592}01592\ \textcolor{preprocessor}{}\ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\doxymbox{\hyperlink{namespacehdf5__ops_a9b7c63811a63e9454539f1a2c89678b4}{debug\_hdf5\_ops}})\ \textcolor{keywordflow}{then}}
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01593}01593\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{write}(*,*,iostat=istat)\ \textcolor{stringliteral}{'Reading\ data\ from\ PB3D\ output\ "{}'}//\&}
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01594}01594\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&trim(pb3d\_name)//\textcolor{stringliteral}{'/'}//trim(head\_name\_loc)//\textcolor{stringliteral}{'/'}//\&}
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01595}01595\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&trim(var\_name)//\textcolor{stringliteral}{'"{}'}}
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01596}01596\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ end\ if}}
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01597}01597\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01598}01598\ \textcolor{preprocessor}{}\ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01599}01599\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ initialize\ FORTRAN\ predefined\ datatypes}}
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01600}01600\ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }h5open\_f(ierr)}
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01601}01601\ \ \ \ \ \ \ \ \ chckerr(\textcolor{stringliteral}{'Failed\ to\ initialize\ HDF5'})}
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01602}01602\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01603}01603\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ preparation}}
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01604}01604\ \ \ \ \ \ \ \ \ hdf5\_kind\_64\ =\ h5kind\_to\_type(dp,h5\_real\_kind)}
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01605}01605\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01606}01606\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ wait\ for\ file\ access\ in\ a\ non-\/blocking\ way}}
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01607}01607\ \ \ \ \ \ \ \ \ ierr\ =\ \doxymbox{\hyperlink{namespacempi__utilities_a5a789d05be41d6109c01f46cc98620c8}{lock\_req\_acc}}(\doxymbox{\hyperlink{namespacempi__vars_a834e19cd963fef0ad150e22aa3c56d53}{hdf5\_lock}},blocking=.false.)}
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01608}01608\ \ \ \ \ \ \ \ \ chckerr(\textcolor{stringliteral}{''})}
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01609}01609\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01610}01610\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ user\ output}}
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01611}01611\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (disp\_info\_loc)\ \textcolor{keywordflow}{then}}
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01612}01612\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_aa4a8d01563e92558e8a0875b075ec54c}{writo}}(\textcolor{stringliteral}{'Opening\ file\ '}//trim(pb3d\_name))}
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01613}01613\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ end\ if}}
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01614}01614\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01615}01615\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ open\ the\ file}}
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01616}01616\ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }h5fopen\_f(trim(pb3d\_name),h5f\_acc\_rdonly\_f,hdf5\_i,ierr)}
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01617}01617\ \ \ \ \ \ \ \ \ chckerr(\textcolor{stringliteral}{'Failed\ to\ open\ file'})}
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01618}01618\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01619}01619\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ user\ output}}
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01620}01620\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (disp\_info\_loc)\ \textcolor{keywordflow}{then}}
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01621}01621\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_aa4a8d01563e92558e8a0875b075ec54c}{writo}}(\textcolor{stringliteral}{'Opening\ variable\ "{}'}//trim(head\_name\_loc)//\textcolor{stringliteral}{'"{}'})}
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01622}01622\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ end\ if}}
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01623}01623\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01624}01624\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ open\ head\ group}}
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01625}01625\ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }h5gopen\_f(hdf5\_i,trim(head\_name\_loc),head\_group\_id,ierr)}
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01626}01626\ \ \ \ \ \ \ \ \ err\_msg\ =\ \textcolor{stringliteral}{'Failed\ to\ open\ head\ group\ "{}'}//trim(head\_name\_loc)//\textcolor{stringliteral}{'"{}'}}
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01627}01627\ \ \ \ \ \ \ \ \ chckerr(err\_msg)}
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01628}01628\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01629}01629\ \textcolor{preprocessor}{\#if\ ldebug}}
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01630}01630\ \textcolor{preprocessor}{}\ \ \ \ \ \ \ \ \textcolor{comment}{!\ display\ all\ variables\ in\ group}}
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01631}01631\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (disp\_info\_loc)\ \textcolor{keywordflow}{then}}
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01632}01632\ \ \ \ \ \ \ \ \ \ \ \ \ ierr\ =\ \doxymbox{\hyperlink{namespacehdf5__utilities_aa9d76166f970a7052cd0d96c8f3ee0be}{list\_all\_vars\_in\_group}}(head\_group\_id)}
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01633}01633\ \ \ \ \ \ \ \ \ \ \ \ \ chckerr(\textcolor{stringliteral}{''})}
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01634}01634\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ end\ if}}
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01635}01635\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01636}01636\ \textcolor{preprocessor}{}\ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01637}01637\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ get\ number\ of\ objects\ in\ group\ to\ allocate\ vars}}
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01638}01638\ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }h5gget\_info\_f(head\_group\_id,storage\_type,nr\_lnks\_head,\&}
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01639}01639\ \ \ \ \ \ \ \ \ \ \ \ \ \&max\_corder,ierr)}
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01640}01640\ \ \ \ \ \ \ \ \ chckerr(\textcolor{stringliteral}{'Failed\ to\ get\ group\ info'})}
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01641}01641\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01642}01642\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ iterate\ over\ all\ elements\ in\ group\ to\ save\ all\ acceptable\ variables}}
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01643}01643\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{do}\ id\ =\ 1,\ nr\_lnks\_head}
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01644}01644\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }h5lget\_name\_by\_idx\_f(head\_group\_id,\textcolor{stringliteral}{'.'},h5\_index\_name\_f,\&}
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01645}01645\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&h5\_iter\_native\_f,id-\/1,group\_name,ierr,size=name\_len)}
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01646}01646\ \ \ \ \ \ \ \ \ \ \ \ \ chckerr(\textcolor{stringliteral}{'Failed\ to\ get\ name'})}
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01647}01647\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01648}01648\ \textcolor{preprocessor}{\#if\ ldebug}}
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01649}01649\ \textcolor{preprocessor}{}\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ check\ length}}
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01650}01650\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (name\_len.gt.max\_str\_ln)\ \textcolor{keywordflow}{then}}
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01651}01651\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{write}(name\_len\_loc,*)\ name\_len}
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01652}01652\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ierr\ =\ 1}
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01653}01653\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ err\_msg\ =\ \textcolor{stringliteral}{'Recompile\ with\ max\_str\_ln\ >\ '}//trim(name\_len\_loc)}
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01654}01654\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ chckerr(err\_msg)}
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01655}01655\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ \ \ \ \ end\ if}}
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01656}01656\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01657}01657\ \textcolor{preprocessor}{}\ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01658}01658\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (trim(group\_name).ne.trim(var\_name))\ \textcolor{keywordflow}{then}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ not\ found}}
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01659}01659\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ cycle}
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01660}01660\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ \ \ \ \ end\ if}}
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01661}01661\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01662}01662\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ user\ output}}
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01663}01663\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (disp\_info\_loc)\ \textcolor{keywordflow}{then}}
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01664}01664\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_aa4a8d01563e92558e8a0875b075ec54c}{writo}}(\textcolor{stringliteral}{'Reading\ '}//trim(group\_name))}
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01665}01665\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ \ \ \ \ end\ if}}
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01666}01666\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01667}01667\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ set\ name}}
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01668}01668\ \ \ \ \ \ \ \ \ \ \ \ \ var\%var\_name\ =\ trim(group\_name)}
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01669}01669\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01670}01670\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ open\ group}}
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01671}01671\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }h5gopen\_f(head\_group\_id,trim(group\_name),group\_id,ierr)}
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01672}01672\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01673}01673\ \ \ \ \ \ \ \ \ \ \ \ \ chckerr(\textcolor{stringliteral}{'Failed\ to\ open\ group'})}
 \DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01674}01674\ \ \ \ \ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01675}01675\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ open\ limit\ information\ dataset}}
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01676}01676\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }h5dopen\_f(group\_id,\textcolor{stringliteral}{'lim'},dset\_id,ierr)}
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01677}01677\ \ \ \ \ \ \ \ \ \ \ \ \ chckerr(\textcolor{stringliteral}{'Failed\ to\ open\ dataset'})}
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01678}01678\ \ \ \ \ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01679}01679\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ get\ dataspace}}
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01680}01680\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }h5dget\_space\_f(dset\_id,filespace,ierr)}
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01681}01681\ \ \ \ \ \ \ \ \ \ \ \ \ chckerr(\textcolor{stringliteral}{'Failed\ to\ get\ file\ space'})}
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01682}01682\ \ \ \ \ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01683}01683\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ get\ size\ to\ allocate\ the\ 1D\ variable}}
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01684}01684\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }h5sget\_simple\_extent\_npoints\_f(filespace,data\_size,ierr)}
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01685}01685\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01686}01686\ \ \ \ \ \ \ \ \ \ \ \ \ chckerr(\textcolor{stringliteral}{'Failed\ to\ get\ storage\ size'})}
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01687}01687\ \ \ \ \ \ \ \ \ \ \ \ \ n\_dims\ =\ data\_size/2}
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01688}01688\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{allocate}(var\%tot\_i\_min(n\_dims))}
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01689}01689\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{allocate}(var\%tot\_i\_max(n\_dims))}
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01690}01690\ \ \ \ \ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01691}01691\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ close\ dataspace}}
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01692}01692\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }h5sclose\_f(filespace,ierr)}
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01693}01693\ \ \ \ \ \ \ \ \ \ \ \ \ chckerr(\textcolor{stringliteral}{'Failed\ to\ close\ file\ space'})}
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01694}01694\ \ \ \ \ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01695}01695\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ allocate\ helper\ variables}}
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01696}01696\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{allocate}(lim\_tot(n\_dims,2))}
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01697}01697\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{allocate}(lim\_loc\_loc(n\_dims,2))}
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01698}01698\ \ \ \ \ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01699}01699\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ read\ into\ 1D\ variable}}
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01700}01700\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }h5dread\_f(dset\_id,h5t\_native\_integer,lim\_tot,[2*n\_dims],\&}
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01701}01701\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&ierr)}
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01702}01702\ \ \ \ \ \ \ \ \ \ \ \ \ chckerr(\textcolor{stringliteral}{'Failed\ to\ read\ dataset'})}
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01703}01703\ \ \ \ \ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01704}01704\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ set\ up\ local\ limits}}
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01705}01705\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\textcolor{keyword}{present}(lim\_loc))\ \textcolor{keywordflow}{then}}
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01706}01706\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ lim\_loc\_loc\ =\ lim\_loc}
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01707}01707\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{where}\ (lim\_loc(:,1).lt.0)\ lim\_loc\_loc(:,1)\ =\ lim\_tot(:,1)}
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01708}01708\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{where}\ (lim\_loc(:,2).lt.0)\ lim\_loc\_loc(:,2)\ =\ lim\_tot(:,2)}
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01709}01709\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01710}01710\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ lim\_loc\_loc\ =\ lim\_tot}
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01711}01711\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ \ \ \ \ end\ if}}
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01712}01712\ \ \ \ \ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01713}01713\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ copy\ into\ limits\ of\ var}}
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01714}01714\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ Note:\ tot\_i\_min\ is\ started\ from\ 1,\ \ the\ actual\ limits\ in\ the\ grid,}}
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01715}01715\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ eq\_1,\ eq\_2,\ \ X\_1,\ X\_2\ or\ \ sol\ variables\ \ is\ set\ by\ \ the\ respective}}
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01716}01716\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ "{}init"{}\ procedure.}}
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01717}01717\ \ \ \ \ \ \ \ \ \ \ \ \ var\%tot\_i\_min\ =\ 1}
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01718}01718\ \ \ \ \ \ \ \ \ \ \ \ \ var\%tot\_i\_max\ =\ lim\_loc\_loc(:,2)-\/lim\_loc\_loc(:,1)+1}
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01719}01719\ \ \ \ \ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01720}01720\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ close\ the\ dataset.}}
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01721}01721\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }h5dclose\_f(dset\_id,ierr)}
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01722}01722\ \ \ \ \ \ \ \ \ \ \ \ \ chckerr(\textcolor{stringliteral}{'Failed\ to\ close\ data\ set'})}
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01723}01723\ \ \ \ \ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01724}01724\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ 2.\ variable}}
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01675}01675\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ 1.\ limit\ information}}
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01676}01676\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01677}01677\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ open\ limit\ information\ dataset}}
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01678}01678\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }h5dopen\_f(group\_id,\textcolor{stringliteral}{'lim'},dset\_id,ierr)}
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01679}01679\ \ \ \ \ \ \ \ \ \ \ \ \ chckerr(\textcolor{stringliteral}{'Failed\ to\ open\ dataset'})}
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01680}01680\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01681}01681\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ get\ dataspace}}
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01682}01682\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }h5dget\_space\_f(dset\_id,filespace,ierr)}
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01683}01683\ \ \ \ \ \ \ \ \ \ \ \ \ chckerr(\textcolor{stringliteral}{'Failed\ to\ get\ file\ space'})}
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01684}01684\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01685}01685\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ get\ size\ to\ allocate\ the\ 1D\ variable}}
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01686}01686\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }h5sget\_simple\_extent\_npoints\_f(filespace,data\_size,ierr)}
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01687}01687\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01688}01688\ \ \ \ \ \ \ \ \ \ \ \ \ chckerr(\textcolor{stringliteral}{'Failed\ to\ get\ storage\ size'})}
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01689}01689\ \ \ \ \ \ \ \ \ \ \ \ \ n\_dims\ =\ data\_size/2}
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01690}01690\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{allocate}(var\%tot\_i\_min(n\_dims))}
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01691}01691\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{allocate}(var\%tot\_i\_max(n\_dims))}
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01692}01692\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01693}01693\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ close\ dataspace}}
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01694}01694\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }h5sclose\_f(filespace,ierr)}
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01695}01695\ \ \ \ \ \ \ \ \ \ \ \ \ chckerr(\textcolor{stringliteral}{'Failed\ to\ close\ file\ space'})}
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01696}01696\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01697}01697\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ allocate\ helper\ variables}}
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01698}01698\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{allocate}(lim\_tot(n\_dims,2))}
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01699}01699\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{allocate}(lim\_loc\_loc(n\_dims,2))}
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01700}01700\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01701}01701\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ read\ into\ 1D\ variable}}
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01702}01702\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }h5dread\_f(dset\_id,h5t\_native\_integer,lim\_tot,[2*n\_dims],\&}
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01703}01703\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&ierr)}
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01704}01704\ \ \ \ \ \ \ \ \ \ \ \ \ chckerr(\textcolor{stringliteral}{'Failed\ to\ read\ dataset'})}
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01705}01705\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01706}01706\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ set\ up\ local\ limits}}
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01707}01707\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\textcolor{keyword}{present}(lim\_loc))\ \textcolor{keywordflow}{then}}
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01708}01708\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ lim\_loc\_loc\ =\ lim\_loc}
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01709}01709\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{where}\ (lim\_loc(:,1).lt.0)\ lim\_loc\_loc(:,1)\ =\ lim\_tot(:,1)}
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01710}01710\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{where}\ (lim\_loc(:,2).lt.0)\ lim\_loc\_loc(:,2)\ =\ lim\_tot(:,2)}
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01711}01711\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01712}01712\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ lim\_loc\_loc\ =\ lim\_tot}
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01713}01713\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ \ \ \ \ end\ if}}
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01714}01714\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01715}01715\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ copy\ into\ limits\ of\ var}}
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01716}01716\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ Note:\ tot\_i\_min\ is\ started\ from\ 1,\ \ the\ actual\ limits\ in\ the\ grid,}}
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01717}01717\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ eq\_1,\ eq\_2,\ \ X\_1,\ X\_2\ or\ \ sol\ variables\ \ is\ set\ by\ \ the\ respective}}
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01718}01718\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ "{}init"{}\ procedure.}}
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01719}01719\ \ \ \ \ \ \ \ \ \ \ \ \ var\%tot\_i\_min\ =\ 1}
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01720}01720\ \ \ \ \ \ \ \ \ \ \ \ \ var\%tot\_i\_max\ =\ lim\_loc\_loc(:,2)-\/lim\_loc\_loc(:,1)+1}
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01721}01721\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01722}01722\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ close\ the\ dataset.}}
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01723}01723\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }h5dclose\_f(dset\_id,ierr)}
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01724}01724\ \ \ \ \ \ \ \ \ \ \ \ \ chckerr(\textcolor{stringliteral}{'Failed\ to\ close\ data\ set'})}
 \DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01725}01725\ \ \ \ \ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01726}01726\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ set\ up\ local\ data\ size\ to\ allocate\ the\ 1D\ variable}}
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01727}01727\ \ \ \ \ \ \ \ \ \ \ \ \ data\_size\ =\ product(lim\_loc\_loc(:,2)-\/lim\_loc\_loc(:,1)+1)}
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01728}01728\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{allocate}(var\%p(data\_size))}
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01729}01729\ \ \ \ \ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01730}01730\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ open\ variable\ dataset}}
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01731}01731\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }h5dopen\_f(group\_id,\textcolor{stringliteral}{'var'},dset\_id,ierr)}
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01732}01732\ \ \ \ \ \ \ \ \ \ \ \ \ chckerr(\textcolor{stringliteral}{'Failed\ to\ open\ dataset'})}
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01733}01733\ \ \ \ \ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01734}01734\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ get\ dataspace}}
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01735}01735\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }h5dget\_space\_f(dset\_id,filespace,ierr)}
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01736}01736\ \ \ \ \ \ \ \ \ \ \ \ \ chckerr(\textcolor{stringliteral}{'Failed\ to\ get\ file\ space'})}
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01737}01737\ \ \ \ \ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01738}01738\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ set\ 1D\ filespace\ hyperslab\ selection}}
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01739}01739\ \ \ \ \ \ \ \ \ \ \ \ \ ierr\ =\ \doxymbox{\hyperlink{namespacehdf5__utilities_a7574320980affc30a584f7776d33a51c}{set\_1d\_vars}}(lim\_tot,lim\_loc\_loc,space\_id=filespace)}
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01740}01740\ \ \ \ \ \ \ \ \ \ \ \ \ chckerr(\textcolor{stringliteral}{''})}
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01741}01741\ \ \ \ \ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01742}01742\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ create\ memory\ data\ space}}
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01743}01743\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }h5screate\_simple\_f(1,[data\_size],memspace,ierr)}
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01744}01744\ \ \ \ \ \ \ \ \ \ \ \ \ chckerr(\textcolor{stringliteral}{'Failed\ to\ create\ memory\ space'})}
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01745}01745\ \ \ \ \ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01746}01746\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ read\ into\ 1D\ variable}}
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01747}01747\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }h5dread\_f(dset\_id,hdf5\_kind\_64,var\%p,[data\_size],\&}
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01748}01748\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&ierr,mem\_space\_id=memspace,file\_space\_id=filespace)}
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01749}01749\ \ \ \ \ \ \ \ \ \ \ \ \ chckerr(\textcolor{stringliteral}{'Failed\ to\ read\ dataset'})}
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01750}01750\ \ \ \ \ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01751}01751\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ close\ dataspaces}}
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01752}01752\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }h5sclose\_f(filespace,ierr)}
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01753}01753\ \ \ \ \ \ \ \ \ \ \ \ \ chckerr(\textcolor{stringliteral}{'Failed\ to\ close\ file\ space'})}
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01754}01754\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }h5sclose\_f(memspace,ierr)}
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01755}01755\ \ \ \ \ \ \ \ \ \ \ \ \ chckerr(\textcolor{stringliteral}{'Unable\ to\ close\ memory\ space'})}
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01756}01756\ \ \ \ \ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01757}01757\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ close\ the\ dataset.}}
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01758}01758\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }h5dclose\_f(dset\_id,ierr)}
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01759}01759\ \ \ \ \ \ \ \ \ \ \ \ \ chckerr(\textcolor{stringliteral}{'Failed\ to\ close\ data\ set'})}
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01760}01760\ \ \ \ \ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01761}01761\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ end\ of\ group}}
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01726}01726\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ 2.\ variable}}
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01727}01727\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01728}01728\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ set\ up\ local\ data\ size\ to\ allocate\ the\ 1D\ variable}}
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01729}01729\ \ \ \ \ \ \ \ \ \ \ \ \ data\_size\ =\ product(lim\_loc\_loc(:,2)-\/lim\_loc\_loc(:,1)+1)}
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01730}01730\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{allocate}(var\%p(data\_size))}
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01731}01731\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01732}01732\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ open\ variable\ dataset}}
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01733}01733\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }h5dopen\_f(group\_id,\textcolor{stringliteral}{'var'},dset\_id,ierr)}
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01734}01734\ \ \ \ \ \ \ \ \ \ \ \ \ chckerr(\textcolor{stringliteral}{'Failed\ to\ open\ dataset'})}
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01735}01735\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01736}01736\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ get\ dataspace}}
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01737}01737\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }h5dget\_space\_f(dset\_id,filespace,ierr)}
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01738}01738\ \ \ \ \ \ \ \ \ \ \ \ \ chckerr(\textcolor{stringliteral}{'Failed\ to\ get\ file\ space'})}
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01739}01739\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01740}01740\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ set\ 1D\ filespace\ hyperslab\ selection}}
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01741}01741\ \ \ \ \ \ \ \ \ \ \ \ \ ierr\ =\ \doxymbox{\hyperlink{namespacehdf5__utilities_a7574320980affc30a584f7776d33a51c}{set\_1d\_vars}}(lim\_tot,lim\_loc\_loc,space\_id=filespace)}
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01742}01742\ \ \ \ \ \ \ \ \ \ \ \ \ chckerr(\textcolor{stringliteral}{''})}
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01743}01743\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01744}01744\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ create\ memory\ data\ space}}
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01745}01745\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }h5screate\_simple\_f(1,[data\_size],memspace,ierr)}
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01746}01746\ \ \ \ \ \ \ \ \ \ \ \ \ chckerr(\textcolor{stringliteral}{'Failed\ to\ create\ memory\ space'})}
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01747}01747\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01748}01748\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ read\ into\ 1D\ variable}}
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01749}01749\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }h5dread\_f(dset\_id,hdf5\_kind\_64,var\%p,[data\_size],\&}
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01750}01750\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&ierr,mem\_space\_id=memspace,file\_space\_id=filespace)}
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01751}01751\ \ \ \ \ \ \ \ \ \ \ \ \ chckerr(\textcolor{stringliteral}{'Failed\ to\ read\ dataset'})}
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01752}01752\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01753}01753\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ close\ dataspaces}}
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01754}01754\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }h5sclose\_f(filespace,ierr)}
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01755}01755\ \ \ \ \ \ \ \ \ \ \ \ \ chckerr(\textcolor{stringliteral}{'Failed\ to\ close\ file\ space'})}
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01756}01756\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }h5sclose\_f(memspace,ierr)}
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01757}01757\ \ \ \ \ \ \ \ \ \ \ \ \ chckerr(\textcolor{stringliteral}{'Unable\ to\ close\ memory\ space'})}
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01758}01758\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01759}01759\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ close\ the\ dataset.}}
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01760}01760\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }h5dclose\_f(dset\_id,ierr)}
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01761}01761\ \ \ \ \ \ \ \ \ \ \ \ \ chckerr(\textcolor{stringliteral}{'Failed\ to\ close\ data\ set'})}
 \DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01762}01762\ \ \ \ \ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01763}01763\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ deallocate\ limits}}
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01764}01764\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{deallocate}(lim\_tot,lim\_loc\_loc)}
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01765}01765\ \ \ \ \ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01766}01766\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ close\ the\ group}}
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01767}01767\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }h5gclose\_f(group\_id,ierr)}
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01768}01768\ \ \ \ \ \ \ \ \ \ \ \ \ chckerr(\textcolor{stringliteral}{'Failed\ to\ close\ group'})}
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01769}01769\ \ \ \ \ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01770}01770\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ exit\ loop}}
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01771}01771\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{exit}}
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01772}01772\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ end\ do}}
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01773}01773\ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01774}01774\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ close\ the\ head\ group}}
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01775}01775\ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }h5gclose\_f(head\_group\_id,ierr)}
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01776}01776\ \ \ \ \ \ \ \ \ chckerr(\textcolor{stringliteral}{'Failed\ to\ close\ head\ group'})}
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01777}01777\ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01778}01778\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ close\ the\ HDF5\ file}}
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01779}01779\ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }h5fclose\_f(hdf5\_i,ierr)}
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01780}01780\ \ \ \ \ \ \ \ \ chckerr(\textcolor{stringliteral}{'failed\ to\ close\ HDF5\ file'})}
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01781}01781\ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01782}01782\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ return\ lock}}
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01783}01783\ \ \ \ \ \ \ \ \ ierr\ =\ \doxymbox{\hyperlink{namespacempi__utilities_a86f9982a0f92b51a916f832d9a3d8ba9}{lock\_return\_acc}}(\doxymbox{\hyperlink{namespacempi__vars_a834e19cd963fef0ad150e22aa3c56d53}{hdf5\_lock}})}
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01784}01784\ \ \ \ \ \ \ \ \ chckerr(\textcolor{stringliteral}{''})}
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01785}01785\ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01786}01786\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ close\ FORTRAN\ interfaces\ and\ HDF5\ library.}}
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01787}01787\ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }h5close\_f(ierr)}
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01788}01788\ \ \ \ \ \ \ \ \ err\_msg\ =\ \textcolor{stringliteral}{'Failed\ to\ close\ FORTRAN\ HDF5\ interface'}}
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01789}01789\ \ \ \ \ \ \ \ \ chckerr(err\_msg)}
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01790}01790\ \ \ \ \ \textcolor{keyword}{end\ function\ }\doxymbox{\hyperlink{namespacehdf5__ops_ad14fad6af31ce64338c421cb9a8b5ac7}{read\_hdf5\_arr}}}
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01791}01791\ \ \ \ \ \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01792}01792\ \textcolor{comment}{\ \ \ \ !>\ \(\backslash\)private\ array\ version}}
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01793}\doxymbox{\hyperlink{interfacehdf5__ops_1_1reset__hdf5__item_aecf565eb373821f32496106d632db1b5}{01793}}\ \ \ \ \ \textcolor{keyword}{subroutine\ }reset\_hdf5\_item\_arr(XDMF\_items,ind\_plot)}
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01794}01794\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{use\ }\doxymbox{\hyperlink{namespacenum__vars}{num\_vars}},\ \textcolor{keywordtype}{only}:\ \doxymbox{\hyperlink{namespacenum__vars_ab47aa91445feaedb05ac9d1a584664fe}{rank}}}
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01795}01795\ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01796}01796\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ input\ /\ output}}
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01797}01797\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{type}(\doxymbox{\hyperlink{structhdf5__vars_1_1xml__str__type}{xml\_str\_type}}),\ \textcolor{keywordtype}{intent(inout)}\ ::\ XDMF\_items(:)\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !<\ XDMF\ items\ to\ reset}}
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01798}01798\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{logical},\ \textcolor{keywordtype}{intent(in)},\ \textcolor{keywordtype}{optional}\ ::\ ind\_plot\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !<\ whether\ individual\ plot}}
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01799}01799\ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01800}01800\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ local\ variables}}
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01801}01801\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer}\ ::\ id\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ counter}}
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01802}01802\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer}\ ::\ n\_items\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ nr.\ of\ items}}
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01803}01803\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{logical}\ ::\ ind\_plot\_loc\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ local\ version\ of\ ind\_plot}}
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01804}01804\ \textcolor{preprocessor}{\#if\ ldebug}}
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01805}01805\ \textcolor{preprocessor}{}\ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer}\ ::\ istat\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ status}}
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01806}01806\ \textcolor{preprocessor}{\#endif}}
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01807}01807\ \textcolor{preprocessor}{}\ \ \ \ \ \ \ \ }
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01808}01808\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ set\ up\ local\ ind\_plot}}
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01809}01809\ \ \ \ \ \ \ \ \ ind\_plot\_loc\ =\ .false.}
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01810}01810\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\textcolor{keyword}{present}(ind\_plot))\ ind\_plot\_loc\ =\ ind\_plot}
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01811}01811\ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01812}01812\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ set\ n\_items}}
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01813}01813\ \ \ \ \ \ \ \ \ n\_items\ =\ \textcolor{keyword}{size}(xdmf\_items)}
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01814}01814\ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01815}01815\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ only\ group\ master\ if\ parallel\ plot\ or\ current\ rank\ if\ individual\ plot}}
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01816}01816\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (ind\_plot\_loc\ .or.\ .not.ind\_plot\_loc.and.\doxymbox{\hyperlink{namespacenum__vars_ab47aa91445feaedb05ac9d1a584664fe}{rank}}.eq.0)\ \textcolor{keywordflow}{then}}
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01817}01817\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{do}\ id\ =\ 1,n\_items}
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01818}01818\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (.not.\textcolor{keyword}{allocated}(xdmf\_items(id)\%xml\_str))\ \textcolor{keywordflow}{then}}
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01819}01819\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_aa4a8d01563e92558e8a0875b075ec54c}{writo}}(\textcolor{stringliteral}{'Could\ not\ reset\ HDF5\ XDMF\ item\ "{}'}\&}
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01820}01820\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&//trim(xdmf\_items(id)\%name)//\textcolor{stringliteral}{'"{}'},warning=.true.)}
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01821}01821\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01822}01822\ \textcolor{preprocessor}{\#if\ ldebug}}
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01823}01823\ \textcolor{preprocessor}{}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\doxymbox{\hyperlink{namespacehdf5__ops_a9b7c63811a63e9454539f1a2c89678b4}{debug\_hdf5\_ops}})\ \textcolor{keyword}{write}(*,*,iostat=istat)\ \textcolor{stringliteral}{'reset\ "{}'}//\&}
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01824}01824\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&trim(xdmf\_items(id)\%name)//\textcolor{stringliteral}{'"{}'}}
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01825}01825\ \textcolor{preprocessor}{\#endif}}
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01826}01826\ \textcolor{preprocessor}{}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ xdmf\_items(id)\%name\ =\ \textcolor{stringliteral}{''}}
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01827}01827\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{deallocate}(xdmf\_items(id)\%xml\_str)}
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01828}01828\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ end\ if}}
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01829}01829\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ \ \ \ \ end\ do}}
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01830}01830\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ end\ if}}
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01831}01831\ \ \ \ \ \textcolor{keyword}{end\ subroutine\ }reset\_hdf5\_item\_arr\textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01832}01832\ \textcolor{comment}{\ \ \ \ !>\ \(\backslash\)private\ individual\ version}}
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01833}\doxymbox{\hyperlink{interfacehdf5__ops_1_1reset__hdf5__item_a03b09895b6d1e3092e0c4a42090e5332}{01833}}\ \ \ \ \ \textcolor{keyword}{subroutine\ }reset\_hdf5\_item\_ind(XDMF\_item,ind\_plot)}
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01834}01834\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{use\ }\doxymbox{\hyperlink{namespacenum__vars}{num\_vars}},\ \textcolor{keywordtype}{only}:\ \doxymbox{\hyperlink{namespacenum__vars_ab47aa91445feaedb05ac9d1a584664fe}{rank}}}
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01835}01835\ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01836}01836\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ input\ /\ output}}
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01837}01837\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{type}(\doxymbox{\hyperlink{structhdf5__vars_1_1xml__str__type}{xml\_str\_type}}),\ \textcolor{keywordtype}{intent(inout)}\ ::\ XDMF\_item\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !<\ XDMF\ item\ to\ reset}}
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01838}01838\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{logical},\ \textcolor{keywordtype}{intent(in)},\ \textcolor{keywordtype}{optional}\ ::\ ind\_plot\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !<\ whether\ individual\ plot}}
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01839}01839\ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01840}01840\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ local\ variables}}
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01841}01841\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{logical}\ ::\ ind\_plot\_loc\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ local\ version\ of\ ind\_plot}}
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01842}01842\ \textcolor{preprocessor}{\#if\ ldebug}}
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01843}01843\ \textcolor{preprocessor}{}\ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer}\ ::\ istat\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ status}}
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01844}01844\ \textcolor{preprocessor}{\#endif}}
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01845}01845\ \textcolor{preprocessor}{}\ \ \ \ \ \ \ \ }
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01846}01846\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ set\ up\ local\ ind\_plot}}
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01847}01847\ \ \ \ \ \ \ \ \ ind\_plot\_loc\ =\ .false.}
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01848}01848\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\textcolor{keyword}{present}(ind\_plot))\ ind\_plot\_loc\ =\ ind\_plot}
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01849}01849\ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01850}01850\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ only\ group\ master\ if\ parallel\ plot\ or\ current\ rank\ if\ individual\ plot}}
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01851}01851\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (ind\_plot\_loc\ .or.\ .not.ind\_plot\_loc.and.\doxymbox{\hyperlink{namespacenum__vars_ab47aa91445feaedb05ac9d1a584664fe}{rank}}.eq.0)\ \textcolor{keywordflow}{then}}
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01852}01852\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (.not.\textcolor{keyword}{allocated}(xdmf\_item\%xml\_str))\ \textcolor{keywordflow}{then}}
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01853}01853\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_aa4a8d01563e92558e8a0875b075ec54c}{writo}}(\textcolor{stringliteral}{'Could\ not\ reset\ HDF5\ XDMF\ item\ "{}'}\&}
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01854}01854\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&//trim(xdmf\_item\%name)//\textcolor{stringliteral}{'"{}'},warning=.true.)}
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01855}01855\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01856}01856\ \textcolor{preprocessor}{\#if\ ldebug}}
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01857}01857\ \textcolor{preprocessor}{}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\doxymbox{\hyperlink{namespacehdf5__ops_a9b7c63811a63e9454539f1a2c89678b4}{debug\_hdf5\_ops}})\ \textcolor{keyword}{write}(*,*,iostat=istat)\ \textcolor{stringliteral}{'reset\ "{}'}//\&}
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01858}01858\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&trim(xdmf\_item\%name)//\textcolor{stringliteral}{'"{}'}}
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01859}01859\ \textcolor{preprocessor}{\#endif}}
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01860}01860\ \textcolor{preprocessor}{}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ xdmf\_item\%name\ =\ \textcolor{stringliteral}{''}}
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01861}01861\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{deallocate}(xdmf\_item\%xml\_str)}
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01862}01862\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ \ \ \ \ end\ if}}
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01863}01863\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ end\ if}}
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01864}01864\ \ \ \ \ \textcolor{keyword}{end\ subroutine\ }reset\_hdf5\_item\_ind}
-\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01865}01865\ \textcolor{keyword}{end\ module\ }\doxymbox{\hyperlink{namespacehdf5__ops}{hdf5\_ops}}}
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01763}01763\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ end\ of\ group}}
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01764}01764\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01765}01765\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ deallocate\ limits}}
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01766}01766\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{deallocate}(lim\_tot,lim\_loc\_loc)}
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01767}01767\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01768}01768\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ close\ the\ group}}
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01769}01769\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }h5gclose\_f(group\_id,ierr)}
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01770}01770\ \ \ \ \ \ \ \ \ \ \ \ \ chckerr(\textcolor{stringliteral}{'Failed\ to\ close\ group'})}
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01771}01771\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01772}01772\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ exit\ loop}}
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01773}01773\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{exit}}
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01774}01774\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ end\ do}}
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01775}01775\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01776}01776\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ close\ the\ head\ group}}
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01777}01777\ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }h5gclose\_f(head\_group\_id,ierr)}
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01778}01778\ \ \ \ \ \ \ \ \ chckerr(\textcolor{stringliteral}{'Failed\ to\ close\ head\ group'})}
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01779}01779\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01780}01780\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ close\ the\ HDF5\ file}}
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01781}01781\ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }h5fclose\_f(hdf5\_i,ierr)}
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01782}01782\ \ \ \ \ \ \ \ \ chckerr(\textcolor{stringliteral}{'failed\ to\ close\ HDF5\ file'})}
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01783}01783\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01784}01784\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ return\ lock}}
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01785}01785\ \ \ \ \ \ \ \ \ ierr\ =\ \doxymbox{\hyperlink{namespacempi__utilities_a86f9982a0f92b51a916f832d9a3d8ba9}{lock\_return\_acc}}(\doxymbox{\hyperlink{namespacempi__vars_a834e19cd963fef0ad150e22aa3c56d53}{hdf5\_lock}})}
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01786}01786\ \ \ \ \ \ \ \ \ chckerr(\textcolor{stringliteral}{''})}
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01787}01787\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01788}01788\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ close\ FORTRAN\ interfaces\ and\ HDF5\ library.}}
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01789}01789\ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }h5close\_f(ierr)}
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01790}01790\ \ \ \ \ \ \ \ \ err\_msg\ =\ \textcolor{stringliteral}{'Failed\ to\ close\ FORTRAN\ HDF5\ interface'}}
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01791}01791\ \ \ \ \ \ \ \ \ chckerr(err\_msg)}
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01792}01792\ \ \ \ \ \textcolor{keyword}{end\ function\ }\doxymbox{\hyperlink{namespacehdf5__ops_ad14fad6af31ce64338c421cb9a8b5ac7}{read\_hdf5\_arr}}}
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01793}01793\ \ \ \ \ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01794}01794\ \textcolor{comment}{\ \ \ \ !>\ \(\backslash\)private\ array\ version}}
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01795}\doxymbox{\hyperlink{interfacehdf5__ops_1_1reset__hdf5__item_aecf565eb373821f32496106d632db1b5}{01795}}\ \ \ \ \ \textcolor{keyword}{subroutine\ }reset\_hdf5\_item\_arr(XDMF\_items,ind\_plot)}
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01796}01796\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{use\ }\doxymbox{\hyperlink{namespacenum__vars}{num\_vars}},\ \textcolor{keywordtype}{only}:\ \doxymbox{\hyperlink{namespacenum__vars_ab47aa91445feaedb05ac9d1a584664fe}{rank}}}
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01797}01797\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01798}01798\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ input\ /\ output}}
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01799}01799\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{type}(\doxymbox{\hyperlink{structhdf5__vars_1_1xml__str__type}{xml\_str\_type}}),\ \textcolor{keywordtype}{intent(inout)}\ ::\ XDMF\_items(:)\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !<\ XDMF\ items\ to\ reset}}
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01800}01800\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{logical},\ \textcolor{keywordtype}{intent(in)},\ \textcolor{keywordtype}{optional}\ ::\ ind\_plot\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !<\ whether\ individual\ plot}}
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01801}01801\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01802}01802\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ local\ variables}}
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01803}01803\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer}\ ::\ id\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ counter}}
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01804}01804\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer}\ ::\ n\_items\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ nr.\ of\ items}}
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01805}01805\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{logical}\ ::\ ind\_plot\_loc\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ local\ version\ of\ ind\_plot}}
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01806}01806\ \textcolor{preprocessor}{\#if\ ldebug}}
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01807}01807\ \textcolor{preprocessor}{}\ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer}\ ::\ istat\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ status}}
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01808}01808\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01809}01809\ \textcolor{preprocessor}{}\ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01810}01810\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ set\ up\ local\ ind\_plot}}
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01811}01811\ \ \ \ \ \ \ \ \ ind\_plot\_loc\ =\ .false.}
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01812}01812\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\textcolor{keyword}{present}(ind\_plot))\ ind\_plot\_loc\ =\ ind\_plot}
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01813}01813\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01814}01814\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ set\ n\_items}}
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01815}01815\ \ \ \ \ \ \ \ \ n\_items\ =\ \textcolor{keyword}{size}(xdmf\_items)}
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01816}01816\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01817}01817\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ only\ group\ master\ if\ parallel\ plot\ or\ current\ rank\ if\ individual\ plot}}
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01818}01818\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (ind\_plot\_loc\ .or.\ .not.ind\_plot\_loc.and.\doxymbox{\hyperlink{namespacenum__vars_ab47aa91445feaedb05ac9d1a584664fe}{rank}}.eq.0)\ \textcolor{keywordflow}{then}}
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01819}01819\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{do}\ id\ =\ 1,n\_items}
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01820}01820\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (.not.\textcolor{keyword}{allocated}(xdmf\_items(id)\%xml\_str))\ \textcolor{keywordflow}{then}}
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01821}01821\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_aa4a8d01563e92558e8a0875b075ec54c}{writo}}(\textcolor{stringliteral}{'Could\ not\ reset\ HDF5\ XDMF\ item\ "{}'}\&}
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01822}01822\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&//trim(xdmf\_items(id)\%name)//\textcolor{stringliteral}{'"{}'},warning=.true.)}
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01823}01823\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01824}01824\ \textcolor{preprocessor}{\#if\ ldebug}}
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01825}01825\ \textcolor{preprocessor}{}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\doxymbox{\hyperlink{namespacehdf5__ops_a9b7c63811a63e9454539f1a2c89678b4}{debug\_hdf5\_ops}})\ \textcolor{keyword}{write}(*,*,iostat=istat)\ \textcolor{stringliteral}{'reset\ "{}'}//\&}
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01826}01826\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&trim(xdmf\_items(id)\%name)//\textcolor{stringliteral}{'"{}'}}
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01827}01827\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01828}01828\ \textcolor{preprocessor}{}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ xdmf\_items(id)\%name\ =\ \textcolor{stringliteral}{''}}
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01829}01829\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{deallocate}(xdmf\_items(id)\%xml\_str)}
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01830}01830\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ end\ if}}
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01831}01831\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ \ \ \ \ end\ do}}
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01832}01832\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ end\ if}}
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01833}01833\ \ \ \ \ \textcolor{keyword}{end\ subroutine\ }reset\_hdf5\_item\_arr\textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01834}01834\ \textcolor{comment}{\ \ \ \ !>\ \(\backslash\)private\ individual\ version}}
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01835}\doxymbox{\hyperlink{interfacehdf5__ops_1_1reset__hdf5__item_a03b09895b6d1e3092e0c4a42090e5332}{01835}}\ \ \ \ \ \textcolor{keyword}{subroutine\ }reset\_hdf5\_item\_ind(XDMF\_item,ind\_plot)}
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01836}01836\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{use\ }\doxymbox{\hyperlink{namespacenum__vars}{num\_vars}},\ \textcolor{keywordtype}{only}:\ \doxymbox{\hyperlink{namespacenum__vars_ab47aa91445feaedb05ac9d1a584664fe}{rank}}}
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01837}01837\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01838}01838\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ input\ /\ output}}
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01839}01839\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{type}(\doxymbox{\hyperlink{structhdf5__vars_1_1xml__str__type}{xml\_str\_type}}),\ \textcolor{keywordtype}{intent(inout)}\ ::\ XDMF\_item\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !<\ XDMF\ item\ to\ reset}}
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01840}01840\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{logical},\ \textcolor{keywordtype}{intent(in)},\ \textcolor{keywordtype}{optional}\ ::\ ind\_plot\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !<\ whether\ individual\ plot}}
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01841}01841\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01842}01842\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ local\ variables}}
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01843}01843\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{logical}\ ::\ ind\_plot\_loc\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ local\ version\ of\ ind\_plot}}
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01844}01844\ \textcolor{preprocessor}{\#if\ ldebug}}
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01845}01845\ \textcolor{preprocessor}{}\ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer}\ ::\ istat\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ status}}
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01846}01846\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01847}01847\ \textcolor{preprocessor}{}\ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01848}01848\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ set\ up\ local\ ind\_plot}}
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01849}01849\ \ \ \ \ \ \ \ \ ind\_plot\_loc\ =\ .false.}
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01850}01850\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\textcolor{keyword}{present}(ind\_plot))\ ind\_plot\_loc\ =\ ind\_plot}
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01851}01851\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01852}01852\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ only\ group\ master\ if\ parallel\ plot\ or\ current\ rank\ if\ individual\ plot}}
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01853}01853\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (ind\_plot\_loc\ .or.\ .not.ind\_plot\_loc.and.\doxymbox{\hyperlink{namespacenum__vars_ab47aa91445feaedb05ac9d1a584664fe}{rank}}.eq.0)\ \textcolor{keywordflow}{then}}
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01854}01854\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (.not.\textcolor{keyword}{allocated}(xdmf\_item\%xml\_str))\ \textcolor{keywordflow}{then}}
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01855}01855\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_aa4a8d01563e92558e8a0875b075ec54c}{writo}}(\textcolor{stringliteral}{'Could\ not\ reset\ HDF5\ XDMF\ item\ "{}'}\&}
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01856}01856\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&//trim(xdmf\_item\%name)//\textcolor{stringliteral}{'"{}'},warning=.true.)}
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01857}01857\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01858}01858\ \textcolor{preprocessor}{\#if\ ldebug}}
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01859}01859\ \textcolor{preprocessor}{}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\doxymbox{\hyperlink{namespacehdf5__ops_a9b7c63811a63e9454539f1a2c89678b4}{debug\_hdf5\_ops}})\ \textcolor{keyword}{write}(*,*,iostat=istat)\ \textcolor{stringliteral}{'reset\ "{}'}//\&}
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01860}01860\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&trim(xdmf\_item\%name)//\textcolor{stringliteral}{'"{}'}}
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01861}01861\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01862}01862\ \textcolor{preprocessor}{}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ xdmf\_item\%name\ =\ \textcolor{stringliteral}{''}}
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01863}01863\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{deallocate}(xdmf\_item\%xml\_str)}
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01864}01864\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ \ \ \ \ end\ if}}
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01865}01865\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ end\ if}}
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01866}01866\ \ \ \ \ \textcolor{keyword}{end\ subroutine\ }reset\_hdf5\_item\_ind}
+\DoxyCodeLine{\Hypertarget{HDF5__ops_8f90_source_l01867}01867\ \textcolor{keyword}{end\ module\ }\doxymbox{\hyperlink{namespacehdf5__ops}{hdf5\_ops}}}
 
 \end{DoxyCode}

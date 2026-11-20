@@ -21,7 +21,7 @@ integer function, public \doxymbox{\hyperlink{namespacehelena__ops_a83f2ad5dc967
 \doxysubsection{Detailed Description}
 Operations on HELENA variables. 
 
-\label{doc-func-members}
+\label{namespacehelena__ops_doc-func-members}
 \Hypertarget{namespacehelena__ops_doc-func-members}
 \doxysubsection{Function/\+\+Subroutine Documentation}
 \Hypertarget{namespacehelena__ops_a11defc7f58c96da44f6ac492cb8e4a31}\index{helena\_ops@{helena\_ops}!interp\_hel\_on\_grid@{interp\_hel\_on\_grid}}
@@ -34,12 +34,12 @@ integer function, public helena\+\_\+ops::\+interp\+\_\+hel\+\_\+on\+\_\+grid (\
 
 Interpolate variables resulting from HELENA equilibria to another grid (angularly). 
 
-The input and output grid to be provided depend on the quantities to be interpolated:\+
+The input and output grid to be provided depend on the quantities to be interpolated:
 \begin{DoxyItemize}
-\item equilibrium variables:\+ flux variables (no need to convert) and derived quantities (need equilibrium grid)
-\item metric variables:\+ jac\+\_\+\+FD (need equilibrium grid)
-\item vectorial perturbation variables:\+ U\+\_\+i, DU\+\_\+i (need perturbation grid)
-\item tensorial perturbation variables:\+ PV\+\_\+i, KV\+\_\+i (need perturbation grid)
+\item equilibrium variables: flux variables (no need to convert) and derived quantities (need equilibrium grid)
+\item metric variables: jac\+\_\+\+FD (need equilibrium grid)
+\item vectorial perturbation variables: U\+\_\+i, DU\+\_\+i (need perturbation grid)
+\item tensorial perturbation variables: PV\+\_\+i, KV\+\_\+i (need perturbation grid)
 \end{DoxyItemize}
 
 Also, a message can be printed if a grid name is passed.
@@ -80,16 +80,18 @@ ierr
 \end{DoxyParams}
 
 
-Definition at line \doxymbox{\hyperlink{HELENA__ops_8f90_source_l00548}{548}} of file \doxymbox{\hyperlink{HELENA__ops_8f90_source}{HELENA\+\_\+ops.\+f90}}.
+Definition at line \doxymbox{\hyperlink{HELENA__ops_8f90_source_l00551}{551}} of file \doxymbox{\hyperlink{HELENA__ops_8f90_source}{HELENA\+\_\+ops.\+f90}}.
 
-Here is the call graph for this function:\+\nopagebreak
+Here is the call graph for this function:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{namespacehelena__ops_a11defc7f58c96da44f6ac492cb8e4a31_cgraph}
 \end{center}
 \end{figure}
-Here is the caller graph for this function:\+\nopagebreak
+Here is the caller graph for this function:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -108,37 +110,37 @@ Reads the HELENA equilibrium data.
 
 Adapted from HELENA routine {\ttfamily IODSK}.
 
-The variales in the HELENA mapping file are globalized in two ways:\+
+The variales in the HELENA mapping file are globalized in two ways:
 \begin{DoxyItemize}
 \item X and Y are normalized w.\+r.\+t. vacuum geometric axis {\ttfamily R\+\_\+vac} and toroidal field at the geometric axis {\ttfamily B\+\_\+vac}.
-\item {\ttfamily  R\+[m]\+ = R\+\_\+vac\+[m]\+ (1 + eps X\+[]\+) },
-\item {\ttfamily  Z\+[m]\+ = R\+\_\+vac\+[m]\+ eps Y\+[]\+ }.
+\item {\ttfamily  R\+[m] = R\+\_\+vac\+[m] (1 + eps X\+[]) },
+\item {\ttfamily  Z\+[m] = R\+\_\+vac\+[m] eps Y\+[] }.
 \end{DoxyItemize}
 
-The covariant toroidal field {\ttfamily F\+\_\+H}, {\ttfamily pres\+\_\+H} and poloidal flux are normalized w.\+r.\+t magnetic axis {\ttfamily R\+\_\+m} and total toroidal field at magnetic axis {\ttfamily B\+\_\+m:\+} 
+The covariant toroidal field {\ttfamily F\+\_\+H}, {\ttfamily pres\+\_\+H} and poloidal flux are normalized w.\+r.\+t magnetic axis {\ttfamily R\+\_\+m} and total toroidal field at magnetic axis {\ttfamily B\+\_\+m:} 
 \begin{DoxyItemize}
-\item {\ttfamily  RBphi\+[Tm]\+ = F\+\_\+H\+[]\+ R\+\_\+m\+[m]\+ B\+\_\+m\+[T]\+ },
-\item {\ttfamily  pres\+[N/\+m\texorpdfstring{$^\wedge$}{\string^}2]\+ = pres\+\_\+H\+[]\+ (B\+\_\+m\+[T]\+)\texorpdfstring{$^\wedge$}{\string^}2/\+mu\+\_\+0\+[N/\+\+A\texorpdfstring{$^\wedge$}{\string^}2]\+ },
-\item {\ttfamily  flux\+\_\+p\+[Tm\texorpdfstring{$^\wedge$}{\string^}2]\+ = 2pi (s\+[]\+)\texorpdfstring{$^\wedge$}{\string^}2 cpsurf\+[]\+ B\+\_\+m\+[T]\+ (R\+\_\+m\+[m]\+)\texorpdfstring{$^\wedge$}{\string^}2 }.
+\item {\ttfamily  RBphi\+[Tm] = F\+\_\+H\+[] R\+\_\+m\+[m] B\+\_\+m\+[T] },
+\item {\ttfamily  pres\+[N/\+m\texorpdfstring{$^\wedge$}{\string^}2] = pres\+\_\+H\+[] (B\+\_\+m\+[T])\texorpdfstring{$^\wedge$}{\string^}2/\+mu\+\_\+0\+[N/\+\+A\texorpdfstring{$^\wedge$}{\string^}2] },
+\item {\ttfamily  flux\+\_\+p\+[Tm\texorpdfstring{$^\wedge$}{\string^}2] = 2pi (s\+[])\texorpdfstring{$^\wedge$}{\string^}2 cpsurf\+[] B\+\_\+m\+[T] (R\+\_\+m\+[m])\texorpdfstring{$^\wedge$}{\string^}2 }.
 \end{DoxyItemize}
 
 The first normalization type is the HELENA normalization, whereas the second is the MISHKA normalization.
 
-Everything is translated to MISHKA normalization to make comparison with MISHKA simple. This is done using the factors:\+
+Everything is translated to MISHKA normalization to make comparison with MISHKA simple. This is done using the factors:
 \begin{DoxyItemize}
-\item {\ttfamily  radius\+[]\+ = a\+[m]\+ /\+ R\+\_\+m\+[m]\+ },
-\item {\ttfamily  eps\+[]\+ = a\+[m]\+ /\+ R\+\_\+vac\+[m]\+ }, so that the expressions become:\+
-\item {\ttfamily  R\+[m]\+ = radius\+[]\+ (1/\+eps\+[]\+ + X\+[]\+) R\+\_\+m\+[m]\+},
-\item {\ttfamily  Z\+[m]\+ = radius\+[]\+ Y\+[]\+ R\+\_\+m\+[m]\+},
-\item {\ttfamily  RBphi\+[Tm]\+ = F\+\_\+H\+[]\+ B\+\_\+m\+[T]\+ R\+\_\+m\+[m]\+},
-\item {\ttfamily  pres\+[N/\+m\texorpdfstring{$^\wedge$}{\string^}2]\+ = pres\+\_\+H\+[]\+ B\+\_\+m\+[T]\+\texorpdfstring{$^\wedge$}{\string^}2 mu\+\_\+0\+[N/\+\+A\texorpdfstring{$^\wedge$}{\string^}2]\+\texorpdfstring{$^\wedge$}{\string^}-\/1},
-\item {\ttfamily  flux\+\_\+p\+[Tm\texorpdfstring{$^\wedge$}{\string^}2]\+ = 2pi (s\+[]\+)\texorpdfstring{$^\wedge$}{\string^}2 cpsurf\+[]\+ B\+\_\+m\+[T]\+ R\+\_\+m\+[T]\+\texorpdfstring{$^\wedge$}{\string^}2}.
+\item {\ttfamily  radius\+[] = a\+[m] / R\+\_\+m\+[m] },
+\item {\ttfamily  eps\+[] = a\+[m] / R\+\_\+vac\+[m] }, so that the expressions become:
+\item {\ttfamily  R\+[m] = radius\+[] (1/\+eps\+[] + X\+[]) R\+\_\+m\+[m]},
+\item {\ttfamily  Z\+[m] = radius\+[] Y\+[] R\+\_\+m\+[m]},
+\item {\ttfamily  RBphi\+[Tm] = F\+\_\+H\+[] B\+\_\+m\+[T] R\+\_\+m\+[m]},
+\item {\ttfamily  pres\+[N/\+m\texorpdfstring{$^\wedge$}{\string^}2] = pres\+\_\+H\+[] B\+\_\+m\+[T]\texorpdfstring{$^\wedge$}{\string^}2 mu\+\_\+0\+[N/\+\+A\texorpdfstring{$^\wedge$}{\string^}2]\texorpdfstring{$^\wedge$}{\string^}-\/1},
+\item {\ttfamily  flux\+\_\+p\+[Tm\texorpdfstring{$^\wedge$}{\string^}2] = 2pi (s\+[])\texorpdfstring{$^\wedge$}{\string^}2 cpsurf\+[] B\+\_\+m\+[T] R\+\_\+m\+[T]\texorpdfstring{$^\wedge$}{\string^}2}.
 \end{DoxyItemize}
 
-Finally, in HELENA, the total current {\ttfamily I}, the poloidal beta and the density at the geometric axis can be prescribed through:\+
+Finally, in HELENA, the total current {\ttfamily I}, the poloidal beta and the density at the geometric axis can be prescribed through:
 \begin{DoxyItemize}
-\item {\ttfamily  XIAB = mu\+\_\+0 I /\+ (a\+\_\+vac B\+\_\+vac) },
-\item {\ttfamily  BETAP = 8 pi S \texorpdfstring{$<$}{<}p\texorpdfstring{$>$}{>} /\+ (I\texorpdfstring{$^\wedge$}{\string^}2 mu\+\_\+0) },
+\item {\ttfamily  XIAB = mu\+\_\+0 I / (a\+\_\+vac B\+\_\+vac) },
+\item {\ttfamily  BETAP = 8 pi S \texorpdfstring{$<$}{<}p\texorpdfstring{$>$}{>} / (I\texorpdfstring{$^\wedge$}{\string^}2 mu\+\_\+0) },
 \item {\ttfamily  ZN },
 \end{DoxyItemize}
 
@@ -148,7 +150,7 @@ where {\ttfamily  a\+\_\+vac = eps R\+\_\+vac } and {\ttfamily B\+\_\+vac} are v
 To translate this to the MISHKA normalization factors as
 \begin{DoxyItemize}
 \item {\ttfamily  R\+\_\+m = (eps/\+radius) R\+\_\+vac },
-\item {\ttfamily  B\+\_\+m = B\+\_\+vac /\+ B0 },
+\item {\ttfamily  B\+\_\+m = B\+\_\+vac / B0 },
 \end{DoxyItemize}
 
 where
@@ -177,14 +179,16 @@ ierr
 
 Definition at line \doxymbox{\hyperlink{HELENA__ops_8f90_source_l00083}{83}} of file \doxymbox{\hyperlink{HELENA__ops_8f90_source}{HELENA\+\_\+ops.\+f90}}.
 
-Here is the call graph for this function:\+\nopagebreak
+Here is the call graph for this function:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{namespacehelena__ops_ad227f370bcd063642a98b57e7a4a5abc_cgraph}
 \end{center}
 \end{figure}
-Here is the caller graph for this function:\+\nopagebreak
+Here is the caller graph for this function:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -206,16 +210,18 @@ Run with one process.
 \end{DoxyNote}
 
 
-Definition at line \doxymbox{\hyperlink{HELENA__ops_8f90_source_l01484}{1484}} of file \doxymbox{\hyperlink{HELENA__ops_8f90_source}{HELENA\+\_\+ops.\+f90}}.
+Definition at line \doxymbox{\hyperlink{HELENA__ops_8f90_source_l01487}{1487}} of file \doxymbox{\hyperlink{HELENA__ops_8f90_source}{HELENA\+\_\+ops.\+f90}}.
 
-Here is the call graph for this function:\+\nopagebreak
+Here is the call graph for this function:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{namespacehelena__ops_a83f2ad5dc967c7bae287b60fddb8eb0a_cgraph}
 \end{center}
 \end{figure}
-Here is the caller graph for this function:\+\nopagebreak
+Here is the caller graph for this function:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -232,7 +238,7 @@ integer function, public helena\+\_\+ops::\+test\+\_\+metrics\+\_\+h}
 
 Checks whether the metric elements provided by HELENA are consistent with a direct calculation using the coordinate transformations \DoxyCite{weyens3d}{number}{1}. 
 
-Direct calculations used:\+              \[\begin{aligned}
+Direct calculations used:              \[\begin{aligned}
           \left|\nabla \psi\right|^2             &= \frac{1}{\mathcal{J}^2}
              \left(\left(\frac{\partial Z}{\partial \chi}\right)^2 +
              \left(\frac{\partial R}{\partial \chi}\right)^2\right) \\
@@ -259,16 +265,18 @@ ierr
 \end{DoxyReturn}
 
 
-Definition at line \doxymbox{\hyperlink{HELENA__ops_8f90_source_l01288}{1288}} of file \doxymbox{\hyperlink{HELENA__ops_8f90_source}{HELENA\+\_\+ops.\+f90}}.
+Definition at line \doxymbox{\hyperlink{HELENA__ops_8f90_source_l01291}{1291}} of file \doxymbox{\hyperlink{HELENA__ops_8f90_source}{HELENA\+\_\+ops.\+f90}}.
 
-Here is the call graph for this function:\+\nopagebreak
+Here is the call graph for this function:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{namespacehelena__ops_a0f156b3653264fb016d6d311eb59114c_cgraph}
 \end{center}
 \end{figure}
-Here is the caller graph for this function:\+\nopagebreak
+Here is the caller graph for this function:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode

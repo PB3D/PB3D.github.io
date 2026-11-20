@@ -31,7 +31,7 @@ MathJax.Hub.Config({
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">PB3D<span id="projectnumber">&#160;[2.50]</span>
+   <div id="projectname">PB3D<span id="projectnumber">&#160;[2.51]</span>
    </div>
    <div id="projectbrief">Ideal linear high-n MHD stability in 3-D</div>
   </td>
@@ -720,7 +720,7 @@ For style 1 the kernel is integrated along the field line within four interval l
 <p>Stores calculation of the vacuum response by storing the necessary variables. </p>
 <p>This is done by the last process, which is the one that contains the variables at the plasma edge, and then this is broadcasted to the other processes.</p>
 <p>The workings of this routine are summarized in the following diagram for VMEC: </p><div class="dotgraph">
-</div>
+<iframe scrolling="no" loading="lazy" frameborder="0" src="dot_inline_dotgraph_de6a7aa2fcd8c6b76028dd0e05ef87d2.svg" width="747" height="778"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 <p>Before storing the new variables, the procedure checks the following things:</p><ul>
 <li>For the first equilibrium job, this routine copies the results from the previous Richardson level into the appropriate subranges of the new vacuum variables if no restart of Richardson levels was done.</li>
 <li>If a restart was done and the level is greater than one, there is a reconstruction of the previous level's variables. But this will happen in <a class="el" href="#a5e5a8322b3aa2e3704b1050426f06d9d" title="Calculates the vacuum response.">calc_vac_res()</a>, not in this procedure.</li>
