@@ -23,12 +23,12 @@
         - 3-D VMEC \cite hirshman1983vmec.
         - Axisymmetric HELENA \cite mikhailovskii1997optimization.
 
-    VMEC is a general 3-D code built on an interesting idea: The poloidal coordinate \f$\theta\f$ is deformed in such as a way to make the Fourier basis that is used to describe the cylindrical coordinates \f$R(s,\theta,\varphi)\f$ and \f$Z(s,\theta,\varphi)\f$ as narrow as possible, where \f$s\f$ is the flux label (\f$s=\sqrt{\Psi_\text{tor}/\Psi_{\text{tor,edge}}})\f$ and \f$\varphi\f$ is the regular cylindrical angle (\ref fnt1 "1"). This is done by introducing a deformation factor \f$\lambda(s,\theta,\varphi)\f$ defined so that the straight-field line coordinate \f$\theta_\text{F}\f$ is given by \f$\theta_\text{F} = \theta + \lambda \f$.
+    VMEC is a general 3-D code built on an interesting idea: The poloidal coordinate \f$\theta\f$ is deformed in such as a way to make the Fourier basis that is used to describe the cylindrical coordinates \f$R(s,\theta,\varphi)\f$ and \f$Z(s,\theta,\varphi)\f$ as narrow as possible, where \f$s\f$ is the flux label (\f$s=\Psi_\text{tor}/\Psi_{\text{tor,edge}}\f$, the normalized toroidal flux) and \f$\varphi\f$ is the regular cylindrical angle (\ref fnt1 "1"). This is done by introducing a deformation factor \f$\lambda(s,\theta,\varphi)\f$ defined so that the straight-field line coordinate \f$\theta_\text{F}\f$ is given by \f$\theta_\text{F} = \theta + \lambda \f$.
 
     The fact that \f$R\f$, \f$Z\f$ and \f$\lambda\f$ are given as a double Fourier series in \f$\theta\f$ and \f$\zeta\f$ ensures that the angular derivatives can be done analytically. This property is used in PB3D. Apart from that, the flux functions that describe the profiles on the flux surfaces, the rotational transform \f$\iota(s)\f$ and pressure \f$p(s)\f$, are also returned.
 
     For HELENA, the situation is different, as this code considers axisymmetric equilibria only.
-    Its output consists, aside from flux functions safety factor \f$q(\psi)\f$, presure \f$p(\psi)\f$ and toroidal covariant magnetic field \f$F(\psi)\f$, where \f$\psi=\Psi_\text{pol}/\Psi_{\text{pol,edge}}\f$ is the normalized poloidal angle, of a 2-D table for the upper metric factors \f$h^{\psi\psi}\f$ and \f$h^{\psi\theta}\f$ and the lower metric factor \f$g_{\zeta\zeta}\f$.
+    Its output consists, aside from flux functions safety factor \f$q(\psi)\f$, pressure \f$p(\psi)\f$ and toroidal covariant magnetic field \f$F(\psi)\f$, where \f$\psi=\Psi_\text{pol}/\Psi_{\text{pol,edge}}\f$ is the normalized poloidal flux, of a 2-D table for the upper metric factors \f$h^{\psi\psi}\f$ and \f$h^{\psi\theta}\f$ and the lower metric factor \f$g_{\zeta\zeta}\f$.
     HELENA uses the same angular coordinates \f$\theta\f$ and \f$\zeta = -\varphi\f$ as PB3D (see \ref fnt1 "1").
 
     \note The modular nature of PB3D enables easy integration of other equilibrium codes, if necessary.
@@ -39,7 +39,7 @@
 
     and to specify their names as the second input argument, the first one being the file with user inputs (see \ref tutorial_inputs).
 
-    \note For VMEC, the <tt>wout</tt> file has to be in Netcdf's <tt>.nc</tt> format. The old <tt>.txt</tt> format is no longer supported.
+    \note For VMEC, the <tt>wout</tt> file has to be in NetCDF format, and its name has to end in <tt>.nc</tt>, because PB3D recognizes a VMEC file by this extension (see open_input()). The <tt>.txt</tt> format of VMEC is not supported.
 
     In any case, if you forget how to run the PB3D (or POST) programs, you can always just type
     \code ./PB3D --help \endcode
@@ -65,7 +65,7 @@
 
     It is possible to use PB3D to check this. This will be quickly described in this optional section.
     
-    The checks described below are only possible with the code compiled with the debug flag on (see \ref page_installation).
+    The checks described below are only possible with the code compiled in the debug version, which is the CMake option <tt>-DPB3D_ENABLE_DEBUG=ON</tt> (see \ref page_installation).
     Using the debug version, the tests can be triggered using the \c --test option when running PB3D (or POST), and using the interactive user interface.
 
     They generally output HDF5 files that can be read with ParaView or VisIt to check the difference between two plots.
@@ -123,24 +123,33 @@
     \includelineno PB3D.input
     
     Have a look:
-        - \c min_n_par_X is the number of points in the parallel grid.
-        - They range from \c min_par_X to \c max_par_X. As this is an axisymmetric example, they can simply be chosen to be a fundamental period of \f$ 2\pi \f$. For 3-D equilibria, this number has to be increased until convergence is reached \cite Weyens2017PB3D.
-        - \c alpha indicates the field line at which the perturbations are situated.
+        - \c min_n_par_X is the number of points in the parallel grid of every field line at the first Richardson level.
+        - These points range from \c min_par_X to \c max_par_X, in units of \f$\pi\f$.
+        - How the field lines are chosen depends on \c alpha_style, which is not set in this file.
+        For VMEC, the default is <tt>alpha_style = 2</tt> with <tt>n_alpha = 10</tt> field lines, each followed over one poloidal turn.
+        PB3D then sets \c min_par_X and \c max_par_X to 0 and 2 if their difference is not 2, and it does not use \c alpha (see \ref page_inputs).
+        In this file, \c min_par_X and \c max_par_X are already 0 and 2, so the line with \c alpha has no effect.
+        - With <tt>alpha_style = 1</tt>, the default for HELENA, \c alpha is the label of the single field line on which the perturbations are calculated, and the parallel range from \c min_par_X to \c max_par_X can span several poloidal turns.
+        For 3-D equilibria, the number of field lines \c n_alpha (<tt>alpha_style = 2</tt>) or the parallel range (<tt>alpha_style = 1</tt>), together with \c min_n_par_X, has to be increased until convergence is reached \cite Weyens2017PB3D.
         - \c n_r_sol is the number of points in the solution grid, that ranges from \c min_r_sol to \c max_r_sol in the PB3D normal coordinate (see num_vars.use_pol_flux_f).
-        - \c n_mod_X is the number of resonating Harmonics with \c prim_X the primary mode number.
+        - \c n_mod_X is the number of Fourier harmonics that are kept, with \c prim_X the primary mode number.
+        With the poloidal flux as normal coordinate (the default), \c prim_X is the toroidal mode number \f$n\f$ and the harmonics are poloidal mode numbers \f$m\f$.
         - \c BC_style(1:2) indicates the style with which the boundary conditions are implemented deep in the plasma and on the plasma edge.
         - \c max_tot_mem is the total virtual memory that PB3D may consume.
         - \c use_normalization indicates whether normalization is used (recommended), but it is useful to turn this off for debugging.
 
-    \note \c BC_style(2) is currently set to 1, indicating that the mode amplitude is zero at the edge.
-    In the upcoming version of PB3D, the vacuum perturbation on the potential energy will be taken into account, which enables other boundary condition styles at the plasma edge.
-    
-    There are also some extra options listed (but not loaded in PB3D as they com after the end of the \c inputdata_PB3D block of the Fortran namelist) below:
+    \note In this file, <tt>BC_style = 1 1</tt> sets the displacement to zero at the plasma edge, which makes it a fixed boundary.
+    The inner end, deep in the plasma, only accepts <tt>BC_style(1) = 1</tt>.
+    With <tt>BC_style(2) = 2</tt>, which is the default, the plasma edge is a free boundary, and PB3D calculates the vacuum response and adds it to the perturbed potential energy (see \ref page_overview).
+    For VMEC, a free boundary needs <tt>alpha_style = 2</tt> with more than one field line, as PB3D then uses a 3-D boundary-element method on the field lines; PB3D stops with an error for <tt>alpha_style = 1</tt>.
+    The changelog in the code's <tt>README.md</tt> records, as a rule for this 3-D vacuum, at least 128 field lines and about 36 parallel points per poloidal wavelength.
+
+    There are also some extra options listed (but not loaded in PB3D as they come after the end of the \c inputdata_PB3D block of the Fortran namelist) below:
     \snippetlineno PB3D.input some extra options for PB3D
     They include:
-        - \c rich_restart_lvl is used to restart a simulation at a certain Richardson level. The Richardson level 1 refers to the first simulation, with the number of parallel points used in the calculation of line integrals along the magnetic field set by \c min_n_par_X (see \ref inputs_PB3D_file_tab). For every subsequent Richardson level, this number is approximately doubled in order to gain a grid size that is twice as fine. The results from these different levels are extrapolated to a theoretically infinitely fine grid. These operations are done in module rich_ops.
+        - \c rich_restart_lvl is used to restart a simulation at a certain Richardson level. The Richardson level 1 refers to the first simulation, with the number of parallel points used in the calculation of line integrals along the magnetic field set by \c min_n_par_X (see \ref inputs_PB3D_file_tab). For every subsequent Richardson level, this number \f$n\f$ becomes \f$2n-1\f$, so that the grid spacing is halved. The results from these different levels are extrapolated to a theoretically infinitely fine grid. These operations are done in module rich_ops.
         - \c tol_rich is the tolerance at which Richardson extrapolation is considered to have converged.
-        - \c tol_SLEPC is an array of tolerances used for the different SLEPc eigenvalue solutions.
+        - \c tol_SLEPC is an array of tolerances used for the SLEPc eigenvalue solutions of the different Richardson levels.
 
     There are many, many more input parameters. A short description of these can be found in \ref page_inputs.
 
@@ -148,9 +157,9 @@
 
     \section tutorial_PB3D Running PB3D
     This tutorial provides a basic VMEC equilibrium file to experiment with, called \c cbm18, which represents a simple circular test case designed to be ballooning unstable. \cite ferraro2010ELMbenchmark
-    Some properties are given in table \ref tutorial_PB3D_tab "1".
+    Some properties are given in table \ref tutorial_PB3D_tab "2".
     <table>
-    <caption id="tutorial_PB3D_tab">Table 1. equilibrium parameters</caption>
+    <caption id="tutorial_PB3D_tab">Table 2. equilibrium parameters</caption>
     <tr>
         <td> toroidal current \f$I_\text{tot}\f$  </td> <td> \f$1.614MA\f$ </td>
     </tr>
@@ -158,36 +167,38 @@
         <td> \f$\beta_\text{pol}\f$  </td> <td> \f$0.443 \f$ </td>
     </tr>
     <tr>
-        <td> aspect ratio \f$\epsilon\f$  </td> <td> \f$1.5 \f$ </td>
+        <td> aspect ratio \f$R_0/a\f$, with major radius \f$R_0 = 3\,\text{m}\f$ and minor radius \f$a = 2\,\text{m}\f$ </td> <td> \f$1.5 \f$ </td>
     </tr>
     </table>
     
     Put this equilibrium file, as well as the input file in a separate run directory; let's call it \c cbm18.
 
     In order to produce outputs, PB3D needs three sub-directories in the run directory, called <tt>Data/</tt>, <tt>Scripts/</tt> and <tt>Plots/</tt>.
-        - In <tt>Data/</tt>, datafiles are stored that are used for plots.
-        - In <tt>Scripts/</tt>, scripts are generated that use the datafiles from <tt>Data</tt>.
-        - The <tt>Plots/</tt>, the resulting plots are located, both for external plots, and for HDF5 plots that can be read later in visualization software such as VisIt or ParaView.
+        - In <tt>Data/</tt>, the data files for the external plots are stored, as well as the HDF5 plots (<tt>.h5</tt> and <tt>.xmf</tt> files) that can be read later in visualization software such as VisIt or ParaView.
+        - In <tt>Scripts/</tt>, scripts are generated that use the data files from <tt>Data/</tt>.
+        - In <tt>Plots/</tt>, the resulting external plots are located.
         In \ref output_plots, this is explained in more detail.
 
-    If these directories are not present, you will receive error message, so go ahead and create them.
+    If these directories are not present, you will receive an error message, so go ahead and create them.
 
     We can now run the code using \c mpirun. For example, with
     \code mpirun -np 4 ./PB3D PB3D.input wout.nc \endcode
     4 processes are used.
+    With more than one process, the eigenvalue solver needs PETSc with a parallel direct solver such as MUMPS (see \ref page_faq); a single process can also be used, by running <tt>./PB3D PB3D.input wout.nc</tt> without \c mpirun.
     You can find the VMEC file <a href="https://pb3d.github.io/Examples/wout.nc">here</a>.
     
     There are optional run-time options that can be triggered, such as <tt>--jump_to_sol</tt>, which can be used to easily change solution preferences, such as discretization order, etc.
-    For an overview, see \ref inputs_POST_cmd; they are not treated here.
+    For an overview, see \ref inputs_PB3D_cmd; they are not treated here.
 
-    You will see formatted output on the screen, with indentation that consistent indentation according to the depth of a routine in the program.
-    The same output is also written to an output file, unformatted but still indented (see \ref output_file_log).
-    
-    The resulting eigenvalues can also be read in a separate output file (see \ref output_file_EV).
-    
+    You will see formatted output on the screen, with indentation according to the depth of a routine in the program.
+    The same output is also written to the output file <tt>PB3D_out.txt</tt>, unformatted but still indented (see \ref output_file_log).
+
+    The resulting eigenvalues can also be read in a separate output file, <tt>PB3D_out_EV_R_1.txt</tt> for the first Richardson level (see \ref output_file_EV).
+    The other results are written to the HDF5 file <tt>PB3D_out.h5</tt>, which POST reads.
+
     Take a look at these output files and shuffle a bit with the input parameters if you want.
-    For example, change \c n_mod_X to another value in order to get a different number Fourier harmonics, or \c n_r_sol to change the number of normal grid points in the solution.
-    The solution should not change a lot if you have enough harmonics and normal grid poins.
+    For example, change \c n_mod_X to another value in order to get a different number of Fourier harmonics, or \c n_r_sol to change the number of normal grid points in the solution.
+    The solution should not change a lot if you have enough harmonics and normal grid points.
 
     \note For VMEC, the magnetic axis is a bit problematic. It is necessary, therefore, to choose \c min_r_sol to be slightly larger than 0; 0.01 for example.
     
@@ -196,11 +207,11 @@
 
     PB3D comes with a bunch of extra run tools, which can greatly improve user experience.
     
-    \note These tools now come in a separate git repository, \c <a href="https://github.com/ToonWeyens/PB3D_tools">PB3D_tools</a>.
+    \note These tools are in a separate git repository, \c <a href="https://github.com/ToonWeyens/PB3D_tools">PB3D_tools</a>.
 
-    In table \ref tutorial_scripts_tab "2", an overview is given:
+    In table \ref tutorial_scripts_tab "3", an overview is given:
     <table>
-    <caption id="tutorial_scripts_tab">Table 2. extra tools</caption>
+    <caption id="tutorial_scripts_tab">Table 3. extra tools</caption>
     <tr>
         <td> <tt>run</tt> </td> <td> Run script that can be used for PB3D and POST with an extensive range of features including
             - the possibility to do a parameter scan for a variety of input variables
@@ -229,8 +240,8 @@
     \includelineno POST.input
     It can be seen that apart from the <tt>plot_</tt> flags, there are also
         - \c min_r_plot and \c max_r_plot, which are the direct equivalent of \c min_r_sol and \c max_r_sol in PB3D.
-        - \c min_theta_plot, \c max_theta_plot and \c n_theta_plot which indicate the range of the poloidal variable that is plot, as well as the the number of point. There is an equivalent for the toroidal variable.
-        - \c POST_style that allows the user to change between different styles, such as whether the output grid is chosen to be fill the torus in a regular way, for example, or whether it follows the PB3D equilibrium grid.
+        - \c min_theta_plot, \c max_theta_plot and \c n_theta_plot which indicate the range of the poloidal variable that is plot, as well as the number of points. There is an equivalent for the toroidal variable.
+        - \c POST_style that allows the user to change between different styles, such as whether the output grid is chosen to fill the torus in a regular way, for example, or whether it follows the PB3D equilibrium grid.
         - \c plot_grid_style, subsequently, can be used to change the way in which these grids are produced. For example, they could be changed to slab plots or plots with a straightened toroidal angle.
         - \c pert_mult_factor_POST can be used to deform the output grids by the perturbation itself.
 
@@ -238,7 +249,7 @@
     \snippetlineno POST.input some extra options for POST
     They include:
         - \c ex_plot_style to indicate which program is to be used for external plotting. Changing it to 2 would engage Bokeh and Mayavi.
-        - \c PB3D_rich_lvl can be optionally employed to specify explicitely which Richardson level to use for the post-processing.
+        - \c PB3D_rich_lvl can be optionally employed to specify explicitly which Richardson level to use for the post-processing.
     
     All of these options are explained in \ref inputs_POST_file.
     Again, there are also run-time options that can be found in \ref inputs_POST_cmd.
@@ -247,17 +258,19 @@
     \code mpirun -np 4 ./POST POST.input PB3D_out.h5 \endcode
 
     An interesting output is the energy reconstruction, which is activated with \c plot_E_rec.
-    This calculation reinserts the solution normal mode into the perturbed plasma potential terms, in order to check whether the Rayleigh quotient still holds, and to see which terms are dominant and which ones are less important.
-    The results are stored in a separate files as well (see \ref output_file_E_rec).
+    This calculation reinserts the eigenvector into the terms of the perturbed potential energy and of the kinetic energy, in order to check whether the Rayleigh quotient still holds, and to see which terms are dominant and which ones are less important.
+    The integrated terms are also stored in a separate file, <tt>POST_out_EN_R[lvl].txt</tt> for Richardson level <tt>[lvl]</tt> (see \ref output_file_E_rec).
 
-    If <tt>--do_execute_command_line</tt> was not explicitely used, the actual external plot programs are not used yet, but their usage is given in a shell commands script file (see \ref output_file_shell).
+    For a free-boundary PB3D run, POST also plots the vacuum potential outside the plasma (\c plot_vac_pot, which is set by default); for a fixed boundary, as in this example, POST switches this plot off.
+
+    If <tt>--do_execute_command_line</tt> was not explicitly used, the actual external plot programs are not used yet, but their usage is given in a shell commands script file (see \ref output_file_shell).
     Run this shell with
     \code ./POST_shell_commands.sh \endcode
 
     If everything is okay, you should now see output in the <tt>Plots/</tt> folder.
-    If an error occurs, please verfiy whether you have appropriate versions of the external plot programs (i.e. GnuPlot, Bokeh, ...)
+    If an error occurs, please verify whether you have appropriate versions of the external plot programs (i.e. GnuPlot, Bokeh, ...)
 
-    Also, open some of the <tt>.xmf</tt> files in VisIt or ParaView to explore these plots.
+    Also, open some of the <tt>.xmf</tt> files in <tt>Data/</tt> in VisIt or ParaView to explore these plots.
     
     To finish this tutorial, feel free to adjust some input parameters.
     For example, you can change the output grid to become 3-D by setting \c n_zeta_plot and \c max_zeta_plot, or you could deform it using \c pert_mult_factor_POST.

@@ -7,9 +7,10 @@ var searchData=
   ['shell_5fcommands_5fi_4',['shell_commands_i',['../namespacenum__vars.html#a2e139da75c6bcec4376b38d3ea1c5aa7',1,'num_vars']]],
   ['shell_5fcommands_5fname_5',['shell_commands_name',['../namespacenum__vars.html#af30710083de41ebf93a407412d3125e5',1,'num_vars']]],
   ['sigma_6',['sigma',['../structeq__vars_1_1eq__2__type.html#a330a92ba51576cfb9ff091b2eb633b94',1,'eq_vars::eq_2_type']]],
-  ['sol_5fn_5fprocs_7',['sol_n_procs',['../namespacenum__vars.html#a03373a7c9a040867e8108023f2ccf479',1,'num_vars']]],
-  ['sol_5fval_5frich_8',['sol_val_rich',['../namespacerich__vars.html#ae1d3c7deb4c8becd036a63367fca5e20',1,'rich_vars']]],
-  ['solver_5fslepc_5fstyle_9',['solver_slepc_style',['../namespacenum__vars.html#aff32519d88708f2f44f80d62cfb0e0f4',1,'num_vars']]],
-  ['style_10',['style',['../structvac__vars_1_1vac__type.html#afbd856ce1a362b252a9d8195b83546cd',1,'vac_vars::vac_type']]],
-  ['swap_5fangles_11',['swap_angles',['../namespacenum__vars.html#adaf8e128a1b232b8231305be41a55bdc',1,'num_vars']]]
+  ['size_5fghost_5finterp_5fv_7',['size_ghost_interp_v',['../namespacenum__vars.html#a3129427de0735b7fd7a6db9c413871e0',1,'num_vars']]],
+  ['sol_5fn_5fprocs_8',['sol_n_procs',['../namespacenum__vars.html#a03373a7c9a040867e8108023f2ccf479',1,'num_vars']]],
+  ['sol_5fval_5frich_9',['sol_val_rich',['../namespacerich__vars.html#ae1d3c7deb4c8becd036a63367fca5e20',1,'rich_vars']]],
+  ['solver_5fslepc_5fstyle_10',['solver_slepc_style',['../namespacenum__vars.html#aff32519d88708f2f44f80d62cfb0e0f4',1,'num_vars']]],
+  ['style_11',['style',['../structvac__vars_1_1vac__type.html#afbd856ce1a362b252a9d8195b83546cd',1,'vac_vars::vac_type']]],
+  ['swap_5fangles_12',['swap_angles',['../namespacenum__vars.html#adaf8e128a1b232b8231305be41a55bdc',1,'num_vars']]]
 ];

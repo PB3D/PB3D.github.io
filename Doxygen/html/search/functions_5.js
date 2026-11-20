@@ -1,5 +1,6 @@
 var searchData=
 [
   ['eq_5finfo_0',['eq_info',['../namespaceeq__utilities.html#a34c5ddab45a54a6c738e5e0b8c7d55d6',1,'eq_utilities']]],
-  ['extend_5fgrid_5ff_1',['extend_grid_f',['../namespacegrid__utilities.html#a414a1a11924bc935afca3a89fc31f2f5',1,'grid_utilities']]]
+  ['eval_5fpot_5fext_1',['eval_pot_ext',['../namespacevac__ops.html#a33bf7285ead934fa8e4242c708542d92',1,'vac_ops']]],
+  ['extend_5fgrid_5ff_2',['extend_grid_f',['../namespacegrid__utilities.html#a414a1a11924bc935afca3a89fc31f2f5',1,'grid_utilities']]]
 ];

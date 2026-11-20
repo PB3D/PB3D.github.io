@@ -1,0 +1,178 @@
+/*! \page page_vacuum Vacuum response
+
+    \tableofcontents
+
+    This page describes how PB3D computes the vacuum contribution to the perturbed potential energy for a free boundary, from the input options to the block that it adds to the matrix \f$\overline{\text{A}}\f$.
+    The routines named here link to their code documentation, which gives the details of each step.
+
+    \section vacuum_when When the vacuum is computed
+
+    The vacuum is computed only for a free boundary, <tt>BC_style(2) = 2</tt> (see \ref page_inputs).
+    For a fixed boundary, <tt>BC_style(2) = 1</tt>, all the steps on this page are skipped.
+
+    The equilibrium code chooses the method; there is no input for it:
+        - VMEC equilibria use the <b>field-line style</b> (style 1): a boundary element method on the boundary points of the field lines of the PB3D grid.
+        - HELENA equilibria use the <b>axisymmetric style</b> (style 2): a boundary element method on HELENA's poloidal grid, with the toroidal integral done analytically.
+
+    The calculation runs in three places:
+        - In the equilibrium driver, store_vac() stores the boundary geometry at the last normal grid point: the Cartesian positions of the boundary points, the normal \f$\vec{N} = -\mathcal{J}\nabla\psi\f$, and, for the field-line style, the metric factors.
+        - In the solution driver, calc_vac_res() computes the vacuum response matrix and print_output_vac() writes it to the HDF5 group \c vac (see \ref page_outputs). For VMEC this happens at every Richardson level, and for HELENA only at the restart level.
+        - When the matrices are set up, set_bc() adds the response matrix to \f$\overline{\text{A}}\f$ in the block of the last normal grid point.
+
+    \section vacuum_equation The boundary integral equation
+
+    Outside the plasma, the perturbed magnetic field is the gradient of a potential \f$\phi\f$ that is harmonic and decays at infinity.
+    Its normal derivative at the plasma boundary is set by the displacement of the boundary, and the vacuum energy is the surface integral of \f$\phi\f$ times that normal derivative.
+    The boundary element method finds \f$\phi\f$ on the boundary from its normal derivative.
+
+    Write \f$\phi_j\f$ for the potential at boundary point \f$\vec{r}_j\f$ and \f$\phi'_j = \vec{N}_j\cdot\nabla\phi\f$ for its derivative along the stored normal \f$\vec{N}_j\f$, which points out of the vacuum.
+    Green's identity, discretized on the boundary points, gives one equation for every boundary point \f$\vec{r}_i\f$:
+    \f[ \sum_j H_{ij}\,\phi_j - \sum_j G_{ij}\,\phi'_j = c\,\phi_i , \f]
+    with \f$c = 0\f$ for a potential that is harmonic in the vacuum and decays, and \f$c = -4\pi\f$ for a potential that is harmonic inside the boundary.
+    Away from \f$\vec{r}_i\f$, the entries are the two kernels times the integration weight \f$w_j\f$ of point \f$j\f$:
+    \f[ G_{ij} = -\frac{w_j}{|\vec{r}_j-\vec{r}_i|}, \qquad H_{ij} = w_j\,\frac{\vec{N}_j\cdot(\vec{r}_j-\vec{r}_i)}{|\vec{r}_j-\vec{r}_i|^3} . \f]
+    A row of \c G and \c H belongs to the point \f$\vec{r}_i\f$ at which the potential is evaluated (the "influence point" in the code), and a column to the boundary point \f$\vec{r}_j\f$ over which the integral runs.
+    The diagonal entries \f$H_{ii}\f$ and \f$G_{ii}\f$ hold the singular part of the integral and, for \c H, the free term; section \ref vacuum_diag describes how they are set.
+
+    \section vacuum_flow The calculation step by step
+
+    \dot
+    digraph vacuum_flow {
+        rankdir=TB;
+        node [shape=box, fontname=Helvetica, fontsize=10];
+        store [label="store_vac\n(equilibrium driver)\nboundary points, normals, metric"];
+        GH [label="calc_GH\nassemble G and H"];
+        GH1 [label="calc_GH_1 + calc_GH_int_1\nfield-line style (VMEC)"];
+        GH2 [label="calc_GH_2 + calc_GH_int_2\naxisymmetric style (HELENA)"];
+        diag [label="diagonals of G and H\ndiag_indirect / fit_diag (default)\nor calc_diag_direct"];
+        check [label="check_vac_exact\n(only with check_vac)"];
+        data [label="normal data of every\nFourier mode at the boundary"];
+        solve [label="solve_Phi_BEM\nH Phi = G (normal data)"];
+        proj [label="projection of Phi on the\nnormal data, with the\nintegration rule"];
+        fin [label="response matrix R\n(/ mu_0, x 2 pi, Hermitian part)"];
+        out [label="print_output_vac\nHDF5 group vac"];
+        bc [label="set_bc\nR added to the edge block of A"];
+        store -> GH;
+        GH -> GH1; GH -> GH2;
+        GH1 -> diag; GH2 -> diag;
+        diag -> check [style=dashed];
+        diag -> data -> solve -> proj -> fin;
+        fin -> out; fin -> bc;
+    }
+    \enddot
+
+    The steps in calc_vac_res() are:
+        -# calc_gh() assembles \c G and \c H with the routines of the style (sections \ref vacuum_field_line and \ref vacuum_axisym), and then sets their diagonals (section \ref vacuum_diag).
+        -# If \c check_vac is set, check_vac_exact() tests the operators with potentials whose boundary values and normal derivatives are known exactly (see \ref output_file_check_vac).
+        -# For every Fourier mode of the perturbation, the normal derivative of the vacuum potential at the boundary follows from the displacement at the edge.
+        The real and imaginary parts are stored as separate columns, so that the solve works with real numbers.
+        -# solve_Phi_BEM() solves \f$\overline{\text{H}}\,\overline{\Phi} = \overline{\text{G}}\,\overline{\Phi'}\f$ for the boundary potential \f$\overline{\Phi}\f$ of every mode, with STRUMPACK when PB3D was built with it, and with ScaLAPACK LU otherwise.
+        -# The boundary potential of every mode is projected on the normal derivative of every mode, with the integration rule of the style.
+        For the field-line style this rule is the trapezoidal rule along the field lines and the average over the field lines.
+        -# The result is divided by \f$\mu_0\f$, multiplied by \f$2\pi\f$ for the toroidal integral, and replaced by its Hermitian part.
+        This gives the response matrix \f$\overline{\text{R}}\f$ of size <tt>n_mod_X</tt> \f$\times\f$ <tt>n_mod_X</tt>.
+        The exact operator is Hermitian; the discretization leaves an asymmetry of about \f$10^{-5}\f$, which would make SLEPc reject tightly converged eigenvalues as complex.
+
+    With \f$\vec{X}_e\f$ the Fourier coefficients of the displacement at the edge, twice the vacuum energy is \f$\vec{X}_e^\dagger\,\overline{\text{R}}\,\vec{X}_e\f$, and this is the term that set_bc() adds to \f$\overline{\text{A}}\f$.
+    POST adds the same term to the potential energy of a solution (the last column of the energy reconstruction, see \ref output_file_E_rec).
+
+    \section vacuum_field_line Field-line style (VMEC)
+
+    \subsection vacuum_field_line_grid Boundary points
+
+    The boundary points are the points of the PB3D grid at the last normal point.
+    They lie on \f$n_\alpha\f$ field lines with the labels \f$\alpha_k = (k-1)\Delta\alpha\f$, \f$k = 1,\ldots,n_\alpha\f$, and \f$\Delta\alpha = 2\pi/n_\alpha\f$, so the lines cover one period of \f$\alpha\f$ and the line at \f$2\pi\f$, which is the line at 0, is not repeated.
+    Every field line has \f$n_p\f$ points in the parallel coordinate \f$p\f$, over one turn, including both ends, with step \f$\Delta p = 2\pi/(n_p-1)\f$.
+    The rectangle in \f$(p,\alpha)\f$ therefore covers the boundary surface once.
+    The points are stored line by line: point \f$l\f$ of line \f$k\f$ is column \f$(k-1)n_p + l\f$ of \c G and \c H.
+
+    The length of the stored normal \f$\vec{N} = -\mathcal{J}\nabla\psi\f$ is the surface element per unit \f$p\f$ and per unit \f$\alpha\f$, so the integration weights contain no other Jacobian.
+
+    \subsection vacuum_field_line_rule Integration rule
+
+    Far from the influence point, a surface integral is approximated as
+    \f[ \iint f\,\text{d}p\,\text{d}\alpha \approx \sum_{k=1}^{n_\alpha} \Delta\alpha \sum_{l=1}^{n_p} c_l\,\Delta p\, f(p_l,\alpha_k), \qquad c_1 = c_{n_p} = \tfrac{1}{2}, \quad c_l = 1 \text{ otherwise} . \f]
+        - Along every field line this is the trapezoidal rule.
+        calc_gh_1() loops over the intervals between neighbouring points of a line and gives each end point of an interval the weight \f$\Delta p\,\Delta\alpha/2\f$.
+        The last point of one line and the first point of the next are neighbours in the storage only, and the loop skips that pair.
+        - Across the field lines it is a sum with the equal weight \f$\Delta\alpha\f$, which is the trapezoidal rule for a function that is periodic in \f$\alpha\f$.
+        The kernels are evaluated on the field lines only; nothing is interpolated between them.
+
+    \subsection vacuum_field_line_near Near the influence point
+
+    calc_gh_int_1() computes, for each end point of an interval, the mean of the kernels over the half of the interval next to that end point.
+    It uses one of three rules, depending on the distance:
+        - <b>Far:</b> the kernel value at the end point, which is the trapezoidal rule above.
+        - <b>Near</b>, within four interval lengths of the influence point: the kernels are integrated over the half-interval with 8-point Gauss-Legendre quadrature, at points on the cubic through four neighbouring points of the same field line.
+        This is needed where neighbouring field lines lie much closer together than the points along them, as at the inboard tips of the W7-X cross section (0.007 \f$R_0\f$ between lines against 0.06 \f$R_0\f$ along them): there the kernel along a neighbouring line is a peak narrower than the spacing of the points.
+        At the first and the last interval of a line the four points lie on one side of the interval.
+        The rule changes the integral along the line only; across the lines the sum keeps the weight \f$\Delta\alpha\f$.
+        - <b>Singular</b>, when the end point is the influence point itself: the integral of the kernel of \c G over the half-cell (half a step along the line and half a line spacing to each side) in the tangent plane, in closed form.
+        The kernel of \c H is not integrated here, because its diagonal is set afterwards.
+
+    \section vacuum_diag The diagonals
+
+    The input \c vac_diag_style chooses how the diagonals \f$H_{ii}\f$ and \f$G_{ii}\f$ are set (see \ref page_inputs).
+
+    <b>Indirect (1, the default).</b> diag_indirect() chooses the diagonals so that every row satisfies the boundary integral equation exactly for potentials whose boundary values and normal derivatives are known.
+    For the field-line style this is done in two steps:
+        - \f$H_{ii}\f$ from the constant potential, which is harmonic inside the boundary and has zero normal derivative:
+        \f[ H_{ii} = -4\pi - \sum_{j\ne i} H_{ij} . \f]
+        - \f$G_{ii}\f$ from the potentials \f$x\f$, \f$y\f$ and \f$z\f$ with that \f$H_{ii}\f$.
+        With one unknown per row, the least-squares fit over the three potentials (fit_diag()) is the same as the equation for the single potential \f$\vec{N}_i\cdot\vec{r}\f$:
+        \f[ G_{ii} = \frac{\vec{N}_i\cdot\left(\sum_j H_{ij}\,\vec{r}_j - \sum_{j\ne i} G_{ij}\,\vec{N}_j + 4\pi\,\vec{r}_i\right)}{|\vec{N}_i|^2} . \f]
+
+    These values replace the diagonals of the assembly, including the closed-form half-cell value of \f$G_{ii}\f$ from calc_gh_int_1().
+    The reason is the rule across the field lines.
+    In a row, \f$G_{ii}\f$ is the entry that makes the sum of the row equal to the surface integral.
+    That entry equals the integral over the point's own cell only if every other entry of the row is exact for its own cell.
+    Near the influence point they are not: each neighbouring line stands for a strip of width \f$\Delta\alpha\f$ with the kernel taken on the line only, and \f$1/r\f$ changes strongly across such a strip.
+    The closed-form value is exact for the own cell and leaves this error in the row; the fitted value takes it up, as the row sum does for \f$H_{ii}\f$.
+
+    The difference is measured (31 October 2026, code repository <tt>Documentation/plan_vacuum_bugfix.md</tt>), with the near-field rule on and \f$H_{ii}\f$ from the row sum in both cases:
+    <table>
+    <caption id="vacuum_diag_tab">Table 1. Closed-form against fitted diagonal of G</caption>
+    <tr><th> case </th><th> closed-form \f$G_{ii}\f$ </th><th> fitted \f$G_{ii}\f$ </th><th> reference </th></tr>
+    <tr><td> circular VMEC case, 64 field lines: eigenvalue </td><td> \f$-0.4971\f$ </td><td> \f$-0.4491\f$ </td><td> HELENA twin: \f$-0.44383\f$ </td></tr>
+    <tr><td> circular VMEC case, 128 field lines: eigenvalue </td><td> \f$-0.4607\f$ </td><td> \f$-0.4528\f$ </td><td> HELENA twin: \f$-0.44383\f$ </td></tr>
+    <tr><td> W7-X, 64 lines \f$\times\f$ 121 points: response diagonal at \f$m = -7\f$ </td><td> 50.7 </td><td> 66.1 </td><td> </td></tr>
+    <tr><td> W7-X, 128 \f$\times\f$ 121 </td><td> 63.2 </td><td> 65.9 </td><td> </td></tr>
+    <tr><td> W7-X, 256 \f$\times\f$ 121 </td><td> 64.5 </td><td> 65.4 </td><td> </td></tr>
+    </table>
+    With the closed-form diagonal the W7-X values approach their limit from below, with an error proportional to the step; with the fitted diagonal the grids agree to 1.2 %.
+
+    For the axisymmetric style, diag_indirect() sets both diagonals in one step, from three potentials (set_pot_2()).
+
+    <b>Direct (2), a diagnostic.</b> For the field-line style, \f$H_{ii}\f$ is \f$-2\pi\f$ plus the integral of the kernel over the point's cell (calc_diag_direct()) where the point has a full cell, and the indirect value at the ends of the lines; \f$G_{ii}\f$ keeps the closed-form half-cell value.
+    For the axisymmetric style both diagonals keep the values of the assembly.
+    On W7-X at 128 lines \f$\times\f$ 121 points, the identity residual for the potential \f$x\f$ is \f$4.1\times10^{-2}\f$ with the direct diagonals against \f$1.2\times10^{-3}\f$ with the indirect ones, and the exterior solve for a ring source on the magnetic axis is off by \f$5.2\times10^{-2}\f$ against \f$5.9\times10^{-3}\f$ (6 November 2026, code repository <tt>Documentation/w7x_check_vac_diag.md</tt>).
+    PB3D warns that this option is not for production runs.
+
+    \section vacuum_axisym Axisymmetric style (HELENA)
+
+    For an axisymmetric equilibrium, every Fourier mode of the perturbation has a single toroidal mode number \f$n\f$, and the toroidal part of the integrals can be done analytically.
+    calc_gh_2() and calc_gh_int_2() use the toroidal functions of half-integer degree for this \cite Cohl1999 and integrate in the poloidal angle over the boundary points of HELENA's grid, with closed-form integrals at and near the singular point and the corner term at the point itself.
+    The first and the last boundary point coincide; the corner term keeps the system nonsingular.
+
+    \section vacuum_rich Richardson levels and restarts
+
+    \c G and \c H are not stored in the output, because they are large.
+        - For VMEC the boundary points change with every Richardson level, so calc_vac_res() computes \c G, \c H and the response matrix again at every level.
+        - For HELENA the boundary points are those of HELENA's grid, which does not change between levels, so the response is computed once, at the restart level.
+        - At the restart level with <tt>--jump_to_sol</tt>, calc_vac_res() reads the stored response back from the output instead of computing it.
+
+    \section vacuum_external Points off the boundary
+
+    POST can plot the vacuum potential outside the plasma (\c plot_vac_pot, see \ref page_inputs).
+    eval_pot_ext() evaluates the boundary integral at points off the boundary with rows of \c G and \c H for those points, without a diagonal.
+    For the field-line style the near-field rule is used only for a point that lies closer to its nearest boundary point than that boundary point lies to its neighbour on the same field line.
+    Within a few grid spacings of the boundary the quadrature does not resolve the kernels; vac_pot_plot() corrects the largest part of that error with sub_nearest().
+
+    \section vacuum_limits Input rules and known limits
+
+        - The field-line style needs at least 2 field lines (\c n_alpha) and at least 4 points per line; PB3D stops otherwise. A free-boundary VMEC run needs <tt>alpha_style = 2</tt>.
+        - The README of the code gives a rule for the field-line style: at least 128 field lines and about 36 parallel points per poloidal wavelength.
+        - \c n_alpha should have no common factor with the number of field periods of the equilibrium. Otherwise the sum over the field lines treats a harmonic of the field period as part of the average; PB3D warns about this when it reads the VMEC file.
+        - The trapezoidal rule along a field line has a first-order error at the ends of the line. On the circular VMEC case with 128 field lines this error is 2 to 4 % of the response for \f$m = 10\f$ to \f$15\f$.
+        - For points off the boundary, see section \ref vacuum_external.
+*/
