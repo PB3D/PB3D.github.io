@@ -36,6 +36,7 @@
     For a free boundary (<tt>BC_style(2) = 2</tt>), the vacuum outside the plasma adds a term at the plasma edge to the perturbed potential energy.
     PB3D computes this vacuum response in calc_vac_res(), in the solution driver, and only when <tt>BC_style(2)</tt> is not 1; it is added to \f$\overline{\text{A}}\f$ in the block of the last normal grid point (see set_bc()).
     The equilibrium code determines the method: a 3-D boundary-element method along the magnetic field lines for VMEC, and an axisymmetric boundary-element method for HELENA.
+    The page \ref page_vacuum describes this calculation step by step.
 
     The matrices are set up in the <b>solution driver</b>, which works with the SLEPc library that is built on the PETSc library for sparse linear algebra.
     After solution, the eigenvalues and eigenvectors are stored appropriately.
