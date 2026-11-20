@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.18.0"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>PB3D: /Users/toonweyens/Code/PB3D/.claude/worktrees/site-src/Modules/vac_utilities.f90 Source File</title>
+<title>PB3D: /Users/toonweyens/Code/PB3D/Modules/vac_utilities.f90 Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="dynsections.js"></script>
 <script type="text/javascript" src="codefolding.js"></script>
@@ -94,7 +94,7 @@ document.addEventListener('DOMContentLoaded', codefold.init);
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><a href="dir_abd866f922fda2a610a7ae3b578a9cb5.html">PB3D</a></li><li class="navelem"><a href="dir_317b4ee1aa72dfea2df854d4a8cfbef2.html">.claude</a></li><li class="navelem"><a href="dir_627b1ad7e542e553552fb07854f258e0.html">worktrees</a></li><li class="navelem"><a href="dir_701c0726bfb371b821ad4a639d1f4e81.html">site-src</a></li><li class="navelem"><a href="dir_957531e8e1113404252923588533cdf8.html">Modules</a></li>  </ul>
+<li class="navelem"><a href="dir_abd866f922fda2a610a7ae3b578a9cb5.html">PB3D</a></li><li class="navelem"><a href="dir_c08747878f0308ef1ee4ad272e6068b4.html">Modules</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div id="doc-content">
@@ -230,8 +230,8 @@ document.addEventListener('DOMContentLoaded', codefold.init);
 <div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span><span class="keywordtype">        real</span>(<a class="code hl_variable" href="namespacenum__vars.html#a03802aa2bd86439d7a9370836fabf3f2">dp</a>), <span class="keywordtype">intent(in)</span> :: norm_s(4,3)<span class="comment">                                     !&lt; normal vector at the four stencil points</span></div>
 <div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span><span class="keywordtype">        real</span>(<a class="code hl_variable" href="namespacenum__vars.html#a03802aa2bd86439d7a9370836fabf3f2">dp</a>), <span class="keywordtype">intent(in)</span> :: h_fac_in(3)<span class="comment">                                     !&lt; metric factors g_aa, g_at, g_tt at the influence point</span></div>
 <div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span><span class="keywordtype">        real</span>(<a class="code hl_variable" href="namespacenum__vars.html#a03802aa2bd86439d7a9370836fabf3f2">dp</a>), <span class="keywordtype">intent(in)</span> :: step_size(2)<span class="comment">                                    !&lt; step sizes in parallel direction and alpha</span></div>
-<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span><span class="keywordtype">        real</span>(<a class="code hl_variable" href="namespacenum__vars.html#a03802aa2bd86439d7a9370836fabf3f2">dp</a>), <span class="keywordtype">intent(in)</span> :: tol<span class="comment">                                             !&lt; tolerance on distance between points</span></div>
-<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span>        <span class="keywordtype">integer</span>, <span class="keywordtype">intent(in)</span> :: i_int<span class="comment">                                            !&lt; stencil index of the left point of the interval (1, 2 or 3)</span></div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span><span class="keywordtype">        real</span>(<a class="code hl_variable" href="namespacenum__vars.html#a03802aa2bd86439d7a9370836fabf3f2">dp</a>), <span class="keywordtype">intent(in)</span> :: tol<span class="comment">                                             !&lt; tolerance on the squared distance between an endpoint and the influence point</span></div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span>        <span class="keywordtype">integer</span>, <span class="keywordtype">intent(in)</span> :: i_int<span class="comment">                                          !&lt; stencil index of the left point of the interval (1, 2 or 3)</span></div>
 <div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>        <span class="keywordtype">logical</span>, <span class="keywordtype">intent(in)</span>, <span class="keywordtype">optional</span> :: use_near<span class="comment">                               !&lt; whether the near-field rule may be used (default true)</span></div>
 <div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span> </div>
 <div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span>        <span class="comment">! local variables</span></div>

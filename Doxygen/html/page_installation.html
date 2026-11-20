@@ -356,7 +356,7 @@ Tests</h1>
 <tr>
 <td><code>fullstack</code> </td><td>the executables and all dependencies </td><td>tests of the modules against analytical and brute-force references, mainly of the vacuum; some also run under <span class="tt">mpirun -n 2</span> and <span class="tt">-n 4</span> </td></tr>
 <tr>
-<td><code>regression</code> </td><td>the executables and the equilibrium files </td><td>complete runs of <code>PB3D</code> on the equilibrium files of <span class="tt">tests/fixtures</span>, with the eigenvalues compared to recorded values </td></tr>
+<td><code>regression</code> </td><td>the executables and the equilibrium files </td><td>complete runs of <code>PB3D</code> on the equilibrium files of <span class="tt">tests/fixtures</span>, with the eigenvalues compared to recorded values; runs that check that PB3D refuses wrong inputs with a message; and <code>regression_post_checks</code>, which runs <code>POST</code> on the output of a run with three solutions </td></tr>
 </table>
 <p>The tests that run under <code>mpirun</code> carry the label <code>mpi</code> as well, and <span class="tt">ctest -LE mpi</span> leaves them out. The unit tests can also be built without any of the external libraries: </p><pre class="fragment">cmake -S $PB3D_SRC -B $PB3D_SRC/build-tests -DPB3D_BUILD_EXECUTABLES=OFF
 cmake --build $PB3D_SRC/build-tests -j
