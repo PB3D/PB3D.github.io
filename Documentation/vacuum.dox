@@ -141,7 +141,11 @@
     </table>
     With the closed-form diagonal the W7-X values approach their limit from below, with an error proportional to the step; with the fitted diagonal the grids agree to 1.2 %.
 
-    For the axisymmetric style, diag_indirect() sets both diagonals in one step, from three potentials (set_pot_2()).
+    For the axisymmetric style, diag_indirect() sets both diagonals in one step, from \f$Q_{|n|-1/2}(\gamma)/\sqrt{RR_s}\f$ and \f$P_{|n|-1/2}(\gamma)/\sqrt{RR_s}\f$ (set_pot_2()), the two solutions of the Legendre equation of a ring at the centroid \f$(R_s, Z_s)\f$ of the boundary points, with \f$\gamma = 1 + |\vec{x}-\vec{x}_s|^2/(2RR_s)\f$.
+    Q is harmonic outside the boundary and decays (free term 0), P is harmonic inside it (free term \f$-4\pi\f$), and fit_diag() solves their two identities of each row exactly.
+    The diagonals converge to third order in the number of boundary points, up to \f$n = 60\f$ on a circle and on a D-shape (full-stack test \c exact_exterior_2d_options).
+    The two identities cannot separate \f$H_{ii}\f$ from \f$G_{ii}\f$ where the boundary normal is perpendicular to \f$\nabla\gamma\f$: the curves of constant \f$\gamma\f$ are circles around the ring, so this needs a boundary that crosses them at a right angle, as on the flanks of a deep bean.
+    fit_diag() warns when a row comes close to that and stops when the two identities are dependent to six digits; diag_indirect() stops when the centroid lies outside the boundary.
 
     <b>Direct (2), a diagnostic.</b> For the field-line style, \f$H_{ii}\f$ is \f$-2\pi\f$ plus the integral of the kernel over the point's cell (calc_diag_direct()) where the point has a full cell, and the indirect value at the ends of the lines; \f$G_{ii}\f$ keeps the closed-form half-cell value.
     For the axisymmetric style both diagonals keep the values of the assembly.

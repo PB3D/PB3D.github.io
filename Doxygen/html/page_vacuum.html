@@ -31,7 +31,7 @@ MathJax.Hub.Config({
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">PB3D<span id="projectnumber">&#160;[2.51]</span>
+   <div id="projectname">PB3D<span id="projectnumber">&#160;[2.52]</span>
    </div>
    <div id="projectbrief">Ideal linear high-n MHD stability in 3-D</div>
   </td>
@@ -236,7 +236,7 @@ The diagonals</h1>
 <td>W7-X, 256 \(\times\) 121 </td><td>64.5 </td><td>65.4 </td><td></td></tr>
 </table>
 <p>With the closed-form diagonal the W7-X values approach their limit from below, with an error proportional to the step; with the fitted diagonal the grids agree to 1.2 %.</p>
-<p>For the axisymmetric style, diag_indirect() sets both diagonals in one step, from three potentials (set_pot_2()).</p>
+<p>For the axisymmetric style, diag_indirect() sets both diagonals in one step, from \(Q_{|n|-1/2}(\gamma)/\sqrt{RR_s}\) and \(P_{|n|-1/2}(\gamma)/\sqrt{RR_s}\) (set_pot_2()), the two solutions of the Legendre equation of a ring at the centroid \((R_s, Z_s)\) of the boundary points, with \(\gamma = 1 + |\vec{x}-\vec{x}_s|^2/(2RR_s)\). Q is harmonic outside the boundary and decays (free term 0), P is harmonic inside it (free term \(-4\pi\)), and fit_diag() solves their two identities of each row exactly. The diagonals converge to third order in the number of boundary points, up to \(n = 60\) on a circle and on a D-shape (full-stack test <code>exact_exterior_2d_options</code>). The two identities cannot separate \(H_{ii}\) from \(G_{ii}\) where the boundary normal is perpendicular to \(\nabla\gamma\): the curves of constant \(\gamma\) are circles around the ring, so this needs a boundary that crosses them at a right angle, as on the flanks of a deep bean. fit_diag() warns when a row comes close to that and stops when the two identities are dependent to six digits; diag_indirect() stops when the centroid lies outside the boundary.</p>
 <p><b>Direct (2), a diagnostic.</b> For the field-line style, \(H_{ii}\) is \(-2\pi\) plus the integral of the kernel over the point's cell (calc_diag_direct()) where the point has a full cell, and the indirect value at the ends of the lines; \(G_{ii}\) keeps the closed-form half-cell value. For the axisymmetric style both diagonals keep the values of the assembly. On W7-X at 128 lines \(\times\) 121 points, the identity residual for the potential \(x\) is \(4.1\times10^{-2}\) with the direct diagonals against \(1.2\times10^{-3}\) with the indirect ones, and the exterior solve for a ring source on the magnetic axis is off by \(5.2\times10^{-2}\) against \(5.9\times10^{-3}\) (6 November 2026, code repository <span class="tt">Documentation/w7x_check_vac_diag.md</span>). PB3D warns that this option is not for production runs.</p>
 <h1 class="doxsection"><a class="anchor" id="vacuum_axisym"></a>
 Axisymmetric style (HELENA)</h1>

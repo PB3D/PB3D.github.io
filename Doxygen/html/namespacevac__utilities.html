@@ -31,7 +31,7 @@ MathJax.Hub.Config({
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">PB3D<span id="projectnumber">&#160;[2.51]</span>
+   <div id="projectname">PB3D<span id="projectnumber">&#160;[2.52]</span>
    </div>
    <div id="projectbrief">Ideal linear high-n MHD stability in 3-D</div>
   </td>
@@ -651,10 +651,17 @@ With <code>use_near</code> false the near-field rule is not used. For points off
 
 <p>Fits diagonal entries of H and G to Green's identity for potentials whose boundary values and normal data are known. </p>
 <p>For a potential \(\phi_k\) with normal data \(\phi&#39;_k\), row \(i\) of the identity is  </p><p class="formulaDsp">
-\[ H_{ii}\phi_{k,i} - G_{ii}\phi&#39;_{k,i} = c_k\phi_{k,i}
+\[ H_{ii}\phi_{k,i} - G_{ii}\phi&#39;_{k,i} = r_{k,i} \equiv c_k\phi_{k,i}
          - \sum_{j\ne i} H_{ij}\phi_{k,j} + \sum_{j\ne i} G_{ij}\phi&#39;_{k,j} , \]
 </p>
-<p> where the free term \(c_k\) is \(-4\pi\) for a potential that is harmonic inside the boundary and \(0\) for one that is harmonic outside it and decays. This routine solves these equations for each row, in the least-squares sense over the potentials, for the entries that <code>fit_H</code> and <code>fit_G</code> select. An entry that is not fitted keeps the value that <code>dH</code> or <code>dG</code> holds on input, and the routine moves its term to the right-hand side. The off-diagonal sums are the products with the full matrices minus their current diagonals, so the matrices are not changed. </p><dl class="params"><dt>Parameters</dt><dd>
+<p> where the free term \(c_k\) is \(-4\pi\) for a potential that is harmonic inside the boundary and \(0\) for one that is harmonic outside it and decays. The off-diagonal sums are the products with the full matrices minus their current diagonals, so the matrices are not changed.</p>
+<p>Either one entry is fitted, <code>fit_H</code> or <code>fit_G</code>, in the least-squares sense over any number of potentials; the other keeps the value that <code>dH</code> or <code>dG</code> holds on input, and its term moves to the right-hand side. Or both are fitted from exactly two potentials, whose two equations per row are solved exactly:   </p><p class="formulaDsp">
+\[ H_{ii} = \frac{r_{1,i}\phi&#39;_{2,i} - r_{2,i}\phi&#39;_{1,i}}{D_i}, \quad
+         G_{ii} = \frac{r_{1,i}\phi_{2,i} - r_{2,i}\phi_{1,i}}{D_i}, \quad
+         D_i = \phi_{1,i}\phi&#39;_{2,i} - \phi&#39;_{1,i}\phi_{2,i} . \]
+</p>
+<p> The ratio  \(s_i = |D_i| / (|\phi_{1,i}\phi&#39;_{2,i}| +
+        |\phi&#39;_{1,i}\phi_{2,i}|)\), between 0 and 1, does not depend on how either potential is scaled; about \(-\log_{10}s_i\) digits of \(D_i\) are lost to cancellation. The routine stops with an error when \(s_i &lt; 10^{-6}\) at some row, where the two equations cannot separate \(H_{ii}\) from \(G_{ii}\), and warns when the smallest \(s_i\) is below \(10^{-2}\). </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">vac</td><td>vacuum variables </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">phi</td><td>potentials at the boundary points, one column per potential </td></tr>
@@ -668,12 +675,12 @@ With <code>use_near</code> false the near-field rule is not used. For points off
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="vac__utilities_8f90_source.html#l01026">1026</a> of file <a class="el" href="vac__utilities_8f90_source.html">vac_utilities.f90</a>.</p>
+<p class="definition">Definition at line <a class="el" href="vac__utilities_8f90_source.html#l01038">1038</a> of file <a class="el" href="vac__utilities_8f90_source.html">vac_utilities.f90</a>.</p>
 <div id="dynsection-9" class="dynheader closed"><span class="dynarrow"><span class="arrowhead closed"></span></span>Here is the call graph for this function:</div>
 <div id="dynsection-9-summary" class="dynsummary">
 </div>
 <div id="dynsection-9-content" class="dyncontent hidden">
-<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="namespacevac__utilities_aa2cd312350e1c3f53293a13d94f23654_cgraph.svg" width="1182" height="307"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="namespacevac__utilities_aa2cd312350e1c3f53293a13d94f23654_cgraph.svg" width="1222" height="458"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 <div id="dynsection-10" class="dynheader closed"><span class="dynarrow"><span class="arrowhead closed"></span></span>Here is the caller graph for this function:</div>
 <div id="dynsection-10-summary" class="dynsummary">
