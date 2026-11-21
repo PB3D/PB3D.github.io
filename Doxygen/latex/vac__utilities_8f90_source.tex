@@ -1016,85 +1016,103 @@
 \DoxyCodeLine{\Hypertarget{vac__utilities_8f90_source_l01012}01012\ \textcolor{comment}{\ \ \ \ !!}}
 \DoxyCodeLine{\Hypertarget{vac__utilities_8f90_source_l01013}01013\ \textcolor{comment}{\ \ \ \ !!\ For\ \ a\ potential\ \ \(\backslash\)f\$\(\backslash\)phi\_k\(\backslash\)f\$\ with\ \ normal\ data\ \ \(\backslash\)f\$\(\backslash\)phi'\_k\(\backslash\)f\$,\ row}}
 \DoxyCodeLine{\Hypertarget{vac__utilities_8f90_source_l01014}01014\ \textcolor{comment}{\ \ \ \ !!\ \(\backslash\)f\$i\(\backslash\)f\$\ of\ the\ identity\ is}}
-\DoxyCodeLine{\Hypertarget{vac__utilities_8f90_source_l01015}01015\ \textcolor{comment}{\ \ \ \ !!\ \(\backslash\)f[\ H\_\{ii\}\(\backslash\)phi\_\{k,i\}\ -\/\ G\_\{ii\}\(\backslash\)phi'\_\{k,i\}\ =\ c\_k\(\backslash\)phi\_\{k,i\}}}
+\DoxyCodeLine{\Hypertarget{vac__utilities_8f90_source_l01015}01015\ \textcolor{comment}{\ \ \ \ !!\ \(\backslash\)f[\ H\_\{ii\}\(\backslash\)phi\_\{k,i\}\ -\/\ G\_\{ii\}\(\backslash\)phi'\_\{k,i\}\ =\ r\_\{k,i\}\ \(\backslash\)equiv\ c\_k\(\backslash\)phi\_\{k,i\}}}
 \DoxyCodeLine{\Hypertarget{vac__utilities_8f90_source_l01016}01016\ \textcolor{comment}{\ \ \ \ !!\ \ -\/\ \(\backslash\)sum\_\{j\(\backslash\)ne\ i\}\ H\_\{ij\}\(\backslash\)phi\_\{k,j\}\ +\ \(\backslash\)sum\_\{j\(\backslash\)ne\ i\}\ G\_\{ij\}\(\backslash\)phi'\_\{k,j\}\ ,\ \(\backslash\)f]}}
 \DoxyCodeLine{\Hypertarget{vac__utilities_8f90_source_l01017}01017\ \textcolor{comment}{\ \ \ \ !!\ where\ the\ free\ term\ \(\backslash\)f\$c\_k\(\backslash\)f\$\ is\ \(\backslash\)f\$-\/4\(\backslash\)pi\(\backslash\)f\$\ for\ a\ potential\ that\ is}}
 \DoxyCodeLine{\Hypertarget{vac__utilities_8f90_source_l01018}01018\ \textcolor{comment}{\ \ \ \ !!\ harmonic\ inside\ the\ boundary\ and\ \(\backslash\)f\$0\(\backslash\)f\$\ for\ one\ that\ is\ harmonic}}
-\DoxyCodeLine{\Hypertarget{vac__utilities_8f90_source_l01019}01019\ \textcolor{comment}{\ \ \ \ !!\ outside\ it\ and\ decays.\ This\ routine\ solves\ these\ equations\ for\ each\ row,}}
-\DoxyCodeLine{\Hypertarget{vac__utilities_8f90_source_l01020}01020\ \textcolor{comment}{\ \ \ \ !!\ in\ the\ least-\/squares\ sense\ over\ the\ potentials,\ for\ the\ entries\ that}}
-\DoxyCodeLine{\Hypertarget{vac__utilities_8f90_source_l01021}01021\ \textcolor{comment}{\ \ \ \ !!\ \(\backslash\)c\ fit\_H\ and\ \(\backslash\)c\ fit\_G\ select.\ An\ entry\ that\ is\ not\ fitted\ keeps\ the}}
-\DoxyCodeLine{\Hypertarget{vac__utilities_8f90_source_l01022}01022\ \textcolor{comment}{\ \ \ \ !!\ value\ that\ \(\backslash\)c\ dH\ or\ \(\backslash\)c\ dG\ holds\ on\ input,\ and\ the\ routine\ moves\ its\ term}}
-\DoxyCodeLine{\Hypertarget{vac__utilities_8f90_source_l01023}01023\ \textcolor{comment}{\ \ \ \ !!\ to\ the\ right-\/hand\ side.\ The\ off-\/diagonal\ sums\ are\ the\ products\ with\ the}}
-\DoxyCodeLine{\Hypertarget{vac__utilities_8f90_source_l01024}01024\ \textcolor{comment}{\ \ \ \ !!\ full\ matrices\ minus\ their\ current\ diagonals,\ so\ the\ matrices\ are\ not}}
-\DoxyCodeLine{\Hypertarget{vac__utilities_8f90_source_l01025}01025\ \textcolor{comment}{\ \ \ \ !!\ changed.}}
-\DoxyCodeLine{\Hypertarget{vac__utilities_8f90_source_l01026}\doxymbox{\hyperlink{namespacevac__utilities_aa2cd312350e1c3f53293a13d94f23654}{01026}}\ \ \ \ \ \textcolor{keyword}{integer\ }\textcolor{keyword}{function\ }\doxymbox{\hyperlink{namespacevac__utilities_aa2cd312350e1c3f53293a13d94f23654}{fit\_diag}}(vac,phi,dphi,c\_free,fit\_H,fit\_G,dH,dG)\ \&}
-\DoxyCodeLine{\Hypertarget{vac__utilities_8f90_source_l01027}01027\ \ \ \ \ \ \ \ \ \&result(ierr)}
-\DoxyCodeLine{\Hypertarget{vac__utilities_8f90_source_l01028}01028\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{use\ }\doxymbox{\hyperlink{namespacevac__vars}{vac\_vars}},\ \textcolor{keywordtype}{only}:\ \doxymbox{\hyperlink{namespacevac__vars_af0fd2f819434bf7adc494753df4af19c}{in\_context}}}
-\DoxyCodeLine{\Hypertarget{vac__utilities_8f90_source_l01029}01029\ }
-\DoxyCodeLine{\Hypertarget{vac__utilities_8f90_source_l01030}01030\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{character(*)},\ \textcolor{keywordtype}{parameter}\ ::\ rout\_name\ =\ \textcolor{stringliteral}{'fit\_diag'}}
-\DoxyCodeLine{\Hypertarget{vac__utilities_8f90_source_l01031}01031\ }
-\DoxyCodeLine{\Hypertarget{vac__utilities_8f90_source_l01032}01032\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ input\ /\ output}}
-\DoxyCodeLine{\Hypertarget{vac__utilities_8f90_source_l01033}01033\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{type}(\doxymbox{\hyperlink{structvac__vars_1_1vac__type}{vac\_type}}),\ \textcolor{keywordtype}{intent(in)}\ ::\ vac\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !<\ vacuum\ variables}}
-\DoxyCodeLine{\Hypertarget{vac__utilities_8f90_source_l01034}01034\ \textcolor{keywordtype}{\ \ \ \ \ \ \ \ real}(dp),\ \textcolor{keywordtype}{intent(in)}\ ::\ phi(:,:)\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !<\ potentials\ at\ the\ boundary\ points,\ one\ column\ per\ potential}}
-\DoxyCodeLine{\Hypertarget{vac__utilities_8f90_source_l01035}01035\ \textcolor{keywordtype}{\ \ \ \ \ \ \ \ real}(dp),\ \textcolor{keywordtype}{intent(in)}\ ::\ dphi(:,:)\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !<\ their\ normal\ data}}
-\DoxyCodeLine{\Hypertarget{vac__utilities_8f90_source_l01036}01036\ \textcolor{keywordtype}{\ \ \ \ \ \ \ \ real}(dp),\ \textcolor{keywordtype}{intent(in)}\ ::\ c\_free(:)\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !<\ free\ term\ of\ the\ identity\ of\ each\ potential}}
-\DoxyCodeLine{\Hypertarget{vac__utilities_8f90_source_l01037}01037\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{logical},\ \textcolor{keywordtype}{intent(in)}\ ::\ fit\_h\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !<\ fit\ the\ diagonal\ of\ H}}
-\DoxyCodeLine{\Hypertarget{vac__utilities_8f90_source_l01038}01038\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{logical},\ \textcolor{keywordtype}{intent(in)}\ ::\ fit\_g\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !<\ fit\ the\ diagonal\ of\ G}}
-\DoxyCodeLine{\Hypertarget{vac__utilities_8f90_source_l01039}01039\ \textcolor{keywordtype}{\ \ \ \ \ \ \ \ real}(dp),\ \textcolor{keywordtype}{intent(inout)}\ ::\ dh(:)\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !<\ diagonal\ of\ H\ (global):\ known\ on\ input,\ or\ fitted\ on\ output}}
-\DoxyCodeLine{\Hypertarget{vac__utilities_8f90_source_l01040}01040\ \textcolor{keywordtype}{\ \ \ \ \ \ \ \ real}(dp),\ \textcolor{keywordtype}{intent(inout)}\ ::\ dg(:)\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !<\ diagonal\ of\ G\ (global):\ known\ on\ input,\ or\ fitted\ on\ output}}
+\DoxyCodeLine{\Hypertarget{vac__utilities_8f90_source_l01019}01019\ \textcolor{comment}{\ \ \ \ !!\ outside\ it\ and\ decays.\ The\ off-\/diagonal\ sums\ are\ the\ products\ with\ the}}
+\DoxyCodeLine{\Hypertarget{vac__utilities_8f90_source_l01020}01020\ \textcolor{comment}{\ \ \ \ !!\ full\ matrices\ minus\ their\ current\ diagonals,\ so\ the\ matrices\ are\ not}}
+\DoxyCodeLine{\Hypertarget{vac__utilities_8f90_source_l01021}01021\ \textcolor{comment}{\ \ \ \ !!\ changed.}}
+\DoxyCodeLine{\Hypertarget{vac__utilities_8f90_source_l01022}01022\ \textcolor{comment}{\ \ \ \ !!}}
+\DoxyCodeLine{\Hypertarget{vac__utilities_8f90_source_l01023}01023\ \textcolor{comment}{\ \ \ \ !!\ Either\ one\ entry\ is\ fitted,\ \(\backslash\)c\ fit\_H\ or\ \(\backslash\)c\ fit\_G,\ in\ the\ least-\/squares}}
+\DoxyCodeLine{\Hypertarget{vac__utilities_8f90_source_l01024}01024\ \textcolor{comment}{\ \ \ \ !!\ sense\ over\ any\ number\ of\ potentials;\ the\ other\ keeps\ the\ value\ that}}
+\DoxyCodeLine{\Hypertarget{vac__utilities_8f90_source_l01025}01025\ \textcolor{comment}{\ \ \ \ !!\ \(\backslash\)c\ dH\ or\ \(\backslash\)c\ dG\ holds\ on\ input,\ and\ its\ term\ moves\ to\ the\ right-\/hand\ side.}}
+\DoxyCodeLine{\Hypertarget{vac__utilities_8f90_source_l01026}01026\ \textcolor{comment}{\ \ \ \ !!\ Or\ both\ are\ fitted\ from\ exactly\ two\ potentials,\ whose\ two\ equations\ per}}
+\DoxyCodeLine{\Hypertarget{vac__utilities_8f90_source_l01027}01027\ \textcolor{comment}{\ \ \ \ !!\ row\ are\ solved\ exactly:}}
+\DoxyCodeLine{\Hypertarget{vac__utilities_8f90_source_l01028}01028\ \textcolor{comment}{\ \ \ \ !!\ \(\backslash\)f[\ H\_\{ii\}\ =\ \(\backslash\)frac\{r\_\{1,i\}\(\backslash\)phi'\_\{2,i\}\ -\/\ r\_\{2,i\}\(\backslash\)phi'\_\{1,i\}\}\{D\_i\},\ \(\backslash\)quad}}
+\DoxyCodeLine{\Hypertarget{vac__utilities_8f90_source_l01029}01029\ \textcolor{comment}{\ \ \ \ !!\ \ G\_\{ii\}\ =\ \(\backslash\)frac\{r\_\{1,i\}\(\backslash\)phi\_\{2,i\}\ -\/\ r\_\{2,i\}\(\backslash\)phi\_\{1,i\}\}\{D\_i\},\ \(\backslash\)quad}}
+\DoxyCodeLine{\Hypertarget{vac__utilities_8f90_source_l01030}01030\ \textcolor{comment}{\ \ \ \ !!\ \ D\_i\ =\ \(\backslash\)phi\_\{1,i\}\(\backslash\)phi'\_\{2,i\}\ -\/\ \(\backslash\)phi'\_\{1,i\}\(\backslash\)phi\_\{2,i\}\ .\ \(\backslash\)f]}}
+\DoxyCodeLine{\Hypertarget{vac__utilities_8f90_source_l01031}01031\ \textcolor{comment}{\ \ \ \ !!\ The\ ratio\ \(\backslash\)f\$s\_i\ =\ |D\_i|\ /\ (|\(\backslash\)phi\_\{1,i\}\(\backslash\)phi'\_\{2,i\}|\ +}}
+\DoxyCodeLine{\Hypertarget{vac__utilities_8f90_source_l01032}01032\ \textcolor{comment}{\ \ \ \ !!\ |\(\backslash\)phi'\_\{1,i\}\(\backslash\)phi\_\{2,i\}|)\(\backslash\)f\$,\ between\ 0\ and\ 1,\ does\ not\ depend\ on\ how}}
+\DoxyCodeLine{\Hypertarget{vac__utilities_8f90_source_l01033}01033\ \textcolor{comment}{\ \ \ \ !!\ either\ potential\ is\ scaled;\ about\ \(\backslash\)f\$-\/\(\backslash\)log\_\{10\}s\_i\(\backslash\)f\$\ digits\ of}}
+\DoxyCodeLine{\Hypertarget{vac__utilities_8f90_source_l01034}01034\ \textcolor{comment}{\ \ \ \ !!\ \(\backslash\)f\$D\_i\(\backslash\)f\$\ are\ lost\ to\ cancellation.\ The\ routine\ stops\ with\ an\ error\ when}}
+\DoxyCodeLine{\Hypertarget{vac__utilities_8f90_source_l01035}01035\ \textcolor{comment}{\ \ \ \ !!\ \(\backslash\)f\$s\_i\ <\ 10\string^\{-\/6\}\(\backslash\)f\$\ at\ some\ row,\ where\ the\ two\ equations\ cannot\ separate}}
+\DoxyCodeLine{\Hypertarget{vac__utilities_8f90_source_l01036}01036\ \textcolor{comment}{\ \ \ \ !!\ \(\backslash\)f\$H\_\{ii\}\(\backslash\)f\$\ from\ \(\backslash\)f\$G\_\{ii\}\(\backslash\)f\$,\ and\ warns\ when\ the\ smallest\ \(\backslash\)f\$s\_i\(\backslash\)f\$\ is}}
+\DoxyCodeLine{\Hypertarget{vac__utilities_8f90_source_l01037}01037\ \textcolor{comment}{\ \ \ \ !!\ below\ \(\backslash\)f\$10\string^\{-\/2\}\(\backslash\)f\$.}}
+\DoxyCodeLine{\Hypertarget{vac__utilities_8f90_source_l01038}\doxymbox{\hyperlink{namespacevac__utilities_aa2cd312350e1c3f53293a13d94f23654}{01038}}\ \ \ \ \ \textcolor{keyword}{integer\ }\textcolor{keyword}{function\ }\doxymbox{\hyperlink{namespacevac__utilities_aa2cd312350e1c3f53293a13d94f23654}{fit\_diag}}(vac,phi,dphi,c\_free,fit\_H,fit\_G,dH,dG)\ \&}
+\DoxyCodeLine{\Hypertarget{vac__utilities_8f90_source_l01039}01039\ \ \ \ \ \ \ \ \ \&result(ierr)}
+\DoxyCodeLine{\Hypertarget{vac__utilities_8f90_source_l01040}01040\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{use\ }\doxymbox{\hyperlink{namespacevac__vars}{vac\_vars}},\ \textcolor{keywordtype}{only}:\ \doxymbox{\hyperlink{namespacevac__vars_af0fd2f819434bf7adc494753df4af19c}{in\_context}}}
 \DoxyCodeLine{\Hypertarget{vac__utilities_8f90_source_l01041}01041\ }
-\DoxyCodeLine{\Hypertarget{vac__utilities_8f90_source_l01042}01042\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ local\ variables}}
-\DoxyCodeLine{\Hypertarget{vac__utilities_8f90_source_l01043}01043\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer}\ ::\ kd,\ rd\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ counters}}
-\DoxyCodeLine{\Hypertarget{vac__utilities_8f90_source_l01044}01044\ \textcolor{keywordtype}{\ \ \ \ \ \ \ \ real}(dp)\ ::\ rr\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ right-\/hand\ side\ of\ an\ identity\ at\ a\ point}}
-\DoxyCodeLine{\Hypertarget{vac__utilities_8f90_source_l01045}01045\ \textcolor{keywordtype}{\ \ \ \ \ \ \ \ real}(dp)\ ::\ det\_loc\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ determinant\ of\ the\ normal\ equations}}
-\DoxyCodeLine{\Hypertarget{vac__utilities_8f90_source_l01046}01046\ \textcolor{keywordtype}{\ \ \ \ \ \ \ \ real}(dp),\ \textcolor{keywordtype}{allocatable}\ ::\ yh(:),\ yg(:)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ products\ with\ the\ full\ H\ and\ G}}
-\DoxyCodeLine{\Hypertarget{vac__utilities_8f90_source_l01047}01047\ \textcolor{keywordtype}{\ \ \ \ \ \ \ \ real}(dp),\ \textcolor{keywordtype}{allocatable}\ ::\ dh0(:),\ dg0(:)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ current\ diagonals\ of\ the\ matrices}}
-\DoxyCodeLine{\Hypertarget{vac__utilities_8f90_source_l01048}01048\ \textcolor{keywordtype}{\ \ \ \ \ \ \ \ real}(dp),\ \textcolor{keywordtype}{allocatable}\ ::\ a11(:),\ a12(:),\ a22(:),\ b1(:),\ b2(:)\ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ normal\ equations\ per\ row}}
-\DoxyCodeLine{\Hypertarget{vac__utilities_8f90_source_l01049}01049\ }
-\DoxyCodeLine{\Hypertarget{vac__utilities_8f90_source_l01050}01050\ \ \ \ \ \ \ \ \ ierr\ =\ 0}
-\DoxyCodeLine{\Hypertarget{vac__utilities_8f90_source_l01051}01051\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (.not.\doxymbox{\hyperlink{namespacevac__vars_af0fd2f819434bf7adc494753df4af19c}{in\_context}}(vac\%ctxt\_HG))\ \textcolor{keywordflow}{return}}
-\DoxyCodeLine{\Hypertarget{vac__utilities_8f90_source_l01052}01052\ \ \ \ \ \ \ \ \ \textcolor{keyword}{allocate}(yh(vac\%n\_bnd),yg(vac\%n\_bnd),dh0(vac\%n\_bnd),dg0(vac\%n\_bnd))}
-\DoxyCodeLine{\Hypertarget{vac__utilities_8f90_source_l01053}01053\ \ \ \ \ \ \ \ \ \textcolor{keyword}{allocate}(a11(vac\%n\_bnd),a12(vac\%n\_bnd),a22(vac\%n\_bnd),b1(vac\%n\_bnd),\&}
-\DoxyCodeLine{\Hypertarget{vac__utilities_8f90_source_l01054}01054\ \ \ \ \ \ \ \ \ \ \ \ \ \&b2(vac\%n\_bnd))}
-\DoxyCodeLine{\Hypertarget{vac__utilities_8f90_source_l01055}01055\ \ \ \ \ \ \ \ \ ierr\ =\ \doxymbox{\hyperlink{namespacevac__utilities_acbb1dd4bf17dad7f8332fe211af6492c}{dis\_diag}}(vac,vac\%H,dh0)}
-\DoxyCodeLine{\Hypertarget{vac__utilities_8f90_source_l01056}01056\ \ \ \ \ \ \ \ \ chckerr(\textcolor{stringliteral}{''})}
-\DoxyCodeLine{\Hypertarget{vac__utilities_8f90_source_l01057}01057\ \ \ \ \ \ \ \ \ ierr\ =\ \doxymbox{\hyperlink{namespacevac__utilities_acbb1dd4bf17dad7f8332fe211af6492c}{dis\_diag}}(vac,vac\%G,dg0)}
-\DoxyCodeLine{\Hypertarget{vac__utilities_8f90_source_l01058}01058\ \ \ \ \ \ \ \ \ chckerr(\textcolor{stringliteral}{''})}
-\DoxyCodeLine{\Hypertarget{vac__utilities_8f90_source_l01059}01059\ \ \ \ \ \ \ \ \ a11\ =\ 0.\_dp}
-\DoxyCodeLine{\Hypertarget{vac__utilities_8f90_source_l01060}01060\ \ \ \ \ \ \ \ \ a12\ =\ 0.\_dp}
-\DoxyCodeLine{\Hypertarget{vac__utilities_8f90_source_l01061}01061\ \ \ \ \ \ \ \ \ a22\ =\ 0.\_dp}
-\DoxyCodeLine{\Hypertarget{vac__utilities_8f90_source_l01062}01062\ \ \ \ \ \ \ \ \ b1\ =\ 0.\_dp}
-\DoxyCodeLine{\Hypertarget{vac__utilities_8f90_source_l01063}01063\ \ \ \ \ \ \ \ \ b2\ =\ 0.\_dp}
-\DoxyCodeLine{\Hypertarget{vac__utilities_8f90_source_l01064}01064\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{do}\ kd\ =\ 1,\textcolor{keyword}{size}(phi,2)}
-\DoxyCodeLine{\Hypertarget{vac__utilities_8f90_source_l01065}01065\ \ \ \ \ \ \ \ \ \ \ \ \ ierr\ =\ \doxymbox{\hyperlink{namespacevac__utilities_a6e538c4419e87d8b4d73a5d25f381cbc}{dis\_matvec}}(vac,vac\%H,vac\%desc\_H,phi(:,kd),yh)}
-\DoxyCodeLine{\Hypertarget{vac__utilities_8f90_source_l01066}01066\ \ \ \ \ \ \ \ \ \ \ \ \ chckerr(\textcolor{stringliteral}{''})}
-\DoxyCodeLine{\Hypertarget{vac__utilities_8f90_source_l01067}01067\ \ \ \ \ \ \ \ \ \ \ \ \ ierr\ =\ \doxymbox{\hyperlink{namespacevac__utilities_a6e538c4419e87d8b4d73a5d25f381cbc}{dis\_matvec}}(vac,vac\%G,vac\%desc\_G,dphi(:,kd),yg)}
-\DoxyCodeLine{\Hypertarget{vac__utilities_8f90_source_l01068}01068\ \ \ \ \ \ \ \ \ \ \ \ \ chckerr(\textcolor{stringliteral}{''})}
-\DoxyCodeLine{\Hypertarget{vac__utilities_8f90_source_l01069}01069\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{do}\ rd\ =\ 1,vac\%n\_bnd}
-\DoxyCodeLine{\Hypertarget{vac__utilities_8f90_source_l01070}01070\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ h\ phi\ -\/\ g\ dphi\ =\ rr\ for\ the\ diagonal\ entries\ h\ and\ g}}
-\DoxyCodeLine{\Hypertarget{vac__utilities_8f90_source_l01071}01071\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ rr\ =\ c\_free(kd)*phi(rd,kd)\ -\/\ (yh(rd)-\/dh0(rd)*phi(rd,kd))\ +\ \&}
-\DoxyCodeLine{\Hypertarget{vac__utilities_8f90_source_l01072}01072\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&(yg(rd)-\/dg0(rd)*dphi(rd,kd))}
-\DoxyCodeLine{\Hypertarget{vac__utilities_8f90_source_l01073}01073\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (.not.fit\_h)\ rr\ =\ rr\ -\/\ dh(rd)*phi(rd,kd)}
-\DoxyCodeLine{\Hypertarget{vac__utilities_8f90_source_l01074}01074\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (.not.fit\_g)\ rr\ =\ rr\ +\ dg(rd)*dphi(rd,kd)}
-\DoxyCodeLine{\Hypertarget{vac__utilities_8f90_source_l01075}01075\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ a11(rd)\ =\ a11(rd)\ +\ phi(rd,kd)**2}
-\DoxyCodeLine{\Hypertarget{vac__utilities_8f90_source_l01076}01076\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ a12(rd)\ =\ a12(rd)\ -\/\ phi(rd,kd)*dphi(rd,kd)}
-\DoxyCodeLine{\Hypertarget{vac__utilities_8f90_source_l01077}01077\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ a22(rd)\ =\ a22(rd)\ +\ dphi(rd,kd)**2}
-\DoxyCodeLine{\Hypertarget{vac__utilities_8f90_source_l01078}01078\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ b1(rd)\ =\ b1(rd)\ +\ phi(rd,kd)*rr}
-\DoxyCodeLine{\Hypertarget{vac__utilities_8f90_source_l01079}01079\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ b2(rd)\ =\ b2(rd)\ -\/\ dphi(rd,kd)*rr}
-\DoxyCodeLine{\Hypertarget{vac__utilities_8f90_source_l01080}01080\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ \ \ \ \ end\ do}}
-\DoxyCodeLine{\Hypertarget{vac__utilities_8f90_source_l01081}01081\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ end\ do}}
-\DoxyCodeLine{\Hypertarget{vac__utilities_8f90_source_l01082}01082\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (fit\_h\ .and.\ fit\_g)\ \textcolor{keywordflow}{then}}
-\DoxyCodeLine{\Hypertarget{vac__utilities_8f90_source_l01083}01083\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{do}\ rd\ =\ 1,vac\%n\_bnd}
-\DoxyCodeLine{\Hypertarget{vac__utilities_8f90_source_l01084}01084\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ det\_loc\ =\ a11(rd)*a22(rd)\ -\/\ a12(rd)**2}
-\DoxyCodeLine{\Hypertarget{vac__utilities_8f90_source_l01085}01085\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ dh(rd)\ =\ (a22(rd)*b1(rd)\ -\/\ a12(rd)*b2(rd))/det\_loc}
-\DoxyCodeLine{\Hypertarget{vac__utilities_8f90_source_l01086}01086\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ dg(rd)\ =\ (a11(rd)*b2(rd)\ -\/\ a12(rd)*b1(rd))/det\_loc}
-\DoxyCodeLine{\Hypertarget{vac__utilities_8f90_source_l01087}01087\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ \ \ \ \ end\ do}}
-\DoxyCodeLine{\Hypertarget{vac__utilities_8f90_source_l01088}01088\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (fit\_h)\ \textcolor{keywordflow}{then}}
-\DoxyCodeLine{\Hypertarget{vac__utilities_8f90_source_l01089}01089\ \ \ \ \ \ \ \ \ \ \ \ \ dh\ =\ b1/a11}
-\DoxyCodeLine{\Hypertarget{vac__utilities_8f90_source_l01090}01090\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (fit\_g)\ \textcolor{keywordflow}{then}}
-\DoxyCodeLine{\Hypertarget{vac__utilities_8f90_source_l01091}01091\ \ \ \ \ \ \ \ \ \ \ \ \ dg\ =\ b2/a22}
-\DoxyCodeLine{\Hypertarget{vac__utilities_8f90_source_l01092}01092\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ end\ if}}
-\DoxyCodeLine{\Hypertarget{vac__utilities_8f90_source_l01093}01093\ \ \ \ \ \textcolor{keyword}{end\ function\ }\doxymbox{\hyperlink{namespacevac__utilities_aa2cd312350e1c3f53293a13d94f23654}{fit\_diag}}}
-\DoxyCodeLine{\Hypertarget{vac__utilities_8f90_source_l01094}01094\ \textcolor{keyword}{end\ module\ }\doxymbox{\hyperlink{namespacevac__utilities}{vac\_utilities}}}
+\DoxyCodeLine{\Hypertarget{vac__utilities_8f90_source_l01042}01042\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{character(*)},\ \textcolor{keywordtype}{parameter}\ ::\ rout\_name\ =\ \textcolor{stringliteral}{'fit\_diag'}}
+\DoxyCodeLine{\Hypertarget{vac__utilities_8f90_source_l01043}01043\ }
+\DoxyCodeLine{\Hypertarget{vac__utilities_8f90_source_l01044}01044\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ input\ /\ output}}
+\DoxyCodeLine{\Hypertarget{vac__utilities_8f90_source_l01045}01045\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{type}(\doxymbox{\hyperlink{structvac__vars_1_1vac__type}{vac\_type}}),\ \textcolor{keywordtype}{intent(in)}\ ::\ vac\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !<\ vacuum\ variables}}
+\DoxyCodeLine{\Hypertarget{vac__utilities_8f90_source_l01046}01046\ \textcolor{keywordtype}{\ \ \ \ \ \ \ \ real}(dp),\ \textcolor{keywordtype}{intent(in)}\ ::\ phi(:,:)\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !<\ potentials\ at\ the\ boundary\ points,\ one\ column\ per\ potential}}
+\DoxyCodeLine{\Hypertarget{vac__utilities_8f90_source_l01047}01047\ \textcolor{keywordtype}{\ \ \ \ \ \ \ \ real}(dp),\ \textcolor{keywordtype}{intent(in)}\ ::\ dphi(:,:)\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !<\ their\ normal\ data}}
+\DoxyCodeLine{\Hypertarget{vac__utilities_8f90_source_l01048}01048\ \textcolor{keywordtype}{\ \ \ \ \ \ \ \ real}(dp),\ \textcolor{keywordtype}{intent(in)}\ ::\ c\_free(:)\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !<\ free\ term\ of\ the\ identity\ of\ each\ potential}}
+\DoxyCodeLine{\Hypertarget{vac__utilities_8f90_source_l01049}01049\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{logical},\ \textcolor{keywordtype}{intent(in)}\ ::\ fit\_h\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !<\ fit\ the\ diagonal\ of\ H}}
+\DoxyCodeLine{\Hypertarget{vac__utilities_8f90_source_l01050}01050\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{logical},\ \textcolor{keywordtype}{intent(in)}\ ::\ fit\_g\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !<\ fit\ the\ diagonal\ of\ G}}
+\DoxyCodeLine{\Hypertarget{vac__utilities_8f90_source_l01051}01051\ \textcolor{keywordtype}{\ \ \ \ \ \ \ \ real}(dp),\ \textcolor{keywordtype}{intent(inout)}\ ::\ dh(:)\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !<\ diagonal\ of\ H\ (global):\ known\ on\ input,\ or\ fitted\ on\ output}}
+\DoxyCodeLine{\Hypertarget{vac__utilities_8f90_source_l01052}01052\ \textcolor{keywordtype}{\ \ \ \ \ \ \ \ real}(dp),\ \textcolor{keywordtype}{intent(inout)}\ ::\ dg(:)\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !<\ diagonal\ of\ G\ (global):\ known\ on\ input,\ or\ fitted\ on\ output}}
+\DoxyCodeLine{\Hypertarget{vac__utilities_8f90_source_l01053}01053\ }
+\DoxyCodeLine{\Hypertarget{vac__utilities_8f90_source_l01054}01054\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ local\ variables}}
+\DoxyCodeLine{\Hypertarget{vac__utilities_8f90_source_l01055}01055\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer}\ ::\ kd\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ counter}}
+\DoxyCodeLine{\Hypertarget{vac__utilities_8f90_source_l01056}01056\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer}\ ::\ rd\_min\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ row\ of\ the\ smallest\ s\_i}}
+\DoxyCodeLine{\Hypertarget{vac__utilities_8f90_source_l01057}01057\ \textcolor{keywordtype}{\ \ \ \ \ \ \ \ real}(dp),\ \textcolor{keywordtype}{parameter}\ ::\ tol\_stop\ =\ 1.e-\/6\_dp\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ smallest\ s\_i\ accepted}}
+\DoxyCodeLine{\Hypertarget{vac__utilities_8f90_source_l01058}01058\ \textcolor{keywordtype}{\ \ \ \ \ \ \ \ real}(dp),\ \textcolor{keywordtype}{parameter}\ ::\ tol\_warn\ =\ 1.e-\/2\_dp\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ smallest\ s\_i\ without\ a\ warning}}
+\DoxyCodeLine{\Hypertarget{vac__utilities_8f90_source_l01059}01059\ \textcolor{keywordtype}{\ \ \ \ \ \ \ \ real}(dp),\ \textcolor{keywordtype}{allocatable}\ ::\ yh(:),\ yg(:)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ products\ with\ the\ full\ H\ and\ G}}
+\DoxyCodeLine{\Hypertarget{vac__utilities_8f90_source_l01060}01060\ \textcolor{keywordtype}{\ \ \ \ \ \ \ \ real}(dp),\ \textcolor{keywordtype}{allocatable}\ ::\ dh0(:),\ dg0(:)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ current\ diagonals\ of\ the\ matrices}}
+\DoxyCodeLine{\Hypertarget{vac__utilities_8f90_source_l01061}01061\ \textcolor{keywordtype}{\ \ \ \ \ \ \ \ real}(dp),\ \textcolor{keywordtype}{allocatable}\ ::\ rr(:,:)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ right-\/hand\ sides,\ per\ row\ and\ potential}}
+\DoxyCodeLine{\Hypertarget{vac__utilities_8f90_source_l01062}01062\ \textcolor{keywordtype}{\ \ \ \ \ \ \ \ real}(dp),\ \textcolor{keywordtype}{allocatable}\ ::\ det(:),\ s\_sep(:)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ D\_i\ and\ s\_i}}
+\DoxyCodeLine{\Hypertarget{vac__utilities_8f90_source_l01063}01063\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{character(len=max\_str\_ln)}\ ::\ err\_msg\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ error\ message}}
+\DoxyCodeLine{\Hypertarget{vac__utilities_8f90_source_l01064}01064\ }
+\DoxyCodeLine{\Hypertarget{vac__utilities_8f90_source_l01065}01065\ \ \ \ \ \ \ \ \ ierr\ =\ 0}
+\DoxyCodeLine{\Hypertarget{vac__utilities_8f90_source_l01066}01066\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (.not.\doxymbox{\hyperlink{namespacevac__vars_af0fd2f819434bf7adc494753df4af19c}{in\_context}}(vac\%ctxt\_HG))\ \textcolor{keywordflow}{return}}
+\DoxyCodeLine{\Hypertarget{vac__utilities_8f90_source_l01067}01067\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\textcolor{keyword}{size}(c\_free).ne.\textcolor{keyword}{size}(phi,2)\ .or.\ fit\_h.and.fit\_g.and.\textcolor{keyword}{size}(phi,2).ne.2)\ \textcolor{keywordflow}{then}}
+\DoxyCodeLine{\Hypertarget{vac__utilities_8f90_source_l01068}01068\ \ \ \ \ \ \ \ \ \ \ \ \ ierr\ =\ 1}
+\DoxyCodeLine{\Hypertarget{vac__utilities_8f90_source_l01069}01069\ \ \ \ \ \ \ \ \ \ \ \ \ err\_msg\ =\ \textcolor{stringliteral}{'one\ free\ term\ per\ potential,\ and\ exactly\ two\ potentials\ \&}}
+\DoxyCodeLine{\Hypertarget{vac__utilities_8f90_source_l01070}01070\ \textcolor{stringliteral}{}\textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&to\ fit\ both\ diagonals'}}
+\DoxyCodeLine{\Hypertarget{vac__utilities_8f90_source_l01071}01071\ \ \ \ \ \ \ \ \ \ \ \ \ chckerr(err\_msg)}
+\DoxyCodeLine{\Hypertarget{vac__utilities_8f90_source_l01072}01072\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ end\ if}}
+\DoxyCodeLine{\Hypertarget{vac__utilities_8f90_source_l01073}01073\ \ \ \ \ \ \ \ \ \textcolor{keyword}{allocate}(yh(vac\%n\_bnd),yg(vac\%n\_bnd),dh0(vac\%n\_bnd),dg0(vac\%n\_bnd))}
+\DoxyCodeLine{\Hypertarget{vac__utilities_8f90_source_l01074}01074\ \ \ \ \ \ \ \ \ \textcolor{keyword}{allocate}(rr(vac\%n\_bnd,\textcolor{keyword}{size}(phi,2)))}
+\DoxyCodeLine{\Hypertarget{vac__utilities_8f90_source_l01075}01075\ \ \ \ \ \ \ \ \ ierr\ =\ \doxymbox{\hyperlink{namespacevac__utilities_acbb1dd4bf17dad7f8332fe211af6492c}{dis\_diag}}(vac,vac\%H,dh0)}
+\DoxyCodeLine{\Hypertarget{vac__utilities_8f90_source_l01076}01076\ \ \ \ \ \ \ \ \ chckerr(\textcolor{stringliteral}{''})}
+\DoxyCodeLine{\Hypertarget{vac__utilities_8f90_source_l01077}01077\ \ \ \ \ \ \ \ \ ierr\ =\ \doxymbox{\hyperlink{namespacevac__utilities_acbb1dd4bf17dad7f8332fe211af6492c}{dis\_diag}}(vac,vac\%G,dg0)}
+\DoxyCodeLine{\Hypertarget{vac__utilities_8f90_source_l01078}01078\ \ \ \ \ \ \ \ \ chckerr(\textcolor{stringliteral}{''})}
+\DoxyCodeLine{\Hypertarget{vac__utilities_8f90_source_l01079}01079\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{do}\ kd\ =\ 1,\textcolor{keyword}{size}(phi,2)}
+\DoxyCodeLine{\Hypertarget{vac__utilities_8f90_source_l01080}01080\ \ \ \ \ \ \ \ \ \ \ \ \ ierr\ =\ \doxymbox{\hyperlink{namespacevac__utilities_a6e538c4419e87d8b4d73a5d25f381cbc}{dis\_matvec}}(vac,vac\%H,vac\%desc\_H,phi(:,kd),yh)}
+\DoxyCodeLine{\Hypertarget{vac__utilities_8f90_source_l01081}01081\ \ \ \ \ \ \ \ \ \ \ \ \ chckerr(\textcolor{stringliteral}{''})}
+\DoxyCodeLine{\Hypertarget{vac__utilities_8f90_source_l01082}01082\ \ \ \ \ \ \ \ \ \ \ \ \ ierr\ =\ \doxymbox{\hyperlink{namespacevac__utilities_a6e538c4419e87d8b4d73a5d25f381cbc}{dis\_matvec}}(vac,vac\%G,vac\%desc\_G,dphi(:,kd),yg)}
+\DoxyCodeLine{\Hypertarget{vac__utilities_8f90_source_l01083}01083\ \ \ \ \ \ \ \ \ \ \ \ \ chckerr(\textcolor{stringliteral}{''})}
+\DoxyCodeLine{\Hypertarget{vac__utilities_8f90_source_l01084}01084\ \ \ \ \ \ \ \ \ \ \ \ \ rr(:,kd)\ =\ c\_free(kd)*phi(:,kd)\ -\/\ (yh-\/dh0*phi(:,kd))\ +\ \&}
+\DoxyCodeLine{\Hypertarget{vac__utilities_8f90_source_l01085}01085\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&(yg-\/dg0*dphi(:,kd))}
+\DoxyCodeLine{\Hypertarget{vac__utilities_8f90_source_l01086}01086\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (.not.fit\_h)\ rr(:,kd)\ =\ rr(:,kd)\ -\/\ dh*phi(:,kd)}
+\DoxyCodeLine{\Hypertarget{vac__utilities_8f90_source_l01087}01087\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (.not.fit\_g)\ rr(:,kd)\ =\ rr(:,kd)\ +\ dg*dphi(:,kd)}
+\DoxyCodeLine{\Hypertarget{vac__utilities_8f90_source_l01088}01088\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ end\ do}}
+\DoxyCodeLine{\Hypertarget{vac__utilities_8f90_source_l01089}01089\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (fit\_h\ .and.\ fit\_g)\ \textcolor{keywordflow}{then}}
+\DoxyCodeLine{\Hypertarget{vac__utilities_8f90_source_l01090}01090\ \ \ \ \ \ \ \ \ \ \ \ \ det\ =\ phi(:,1)*dphi(:,2)\ -\/\ dphi(:,1)*phi(:,2)}
+\DoxyCodeLine{\Hypertarget{vac__utilities_8f90_source_l01091}01091\ \ \ \ \ \ \ \ \ \ \ \ \ s\_sep\ =\ abs(phi(:,1)*dphi(:,2))\ +\ abs(dphi(:,1)*phi(:,2))}
+\DoxyCodeLine{\Hypertarget{vac__utilities_8f90_source_l01092}01092\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{where}\ (s\_sep.gt.0.\_dp)\ s\_sep\ =\ abs(det)/s\_sep}
+\DoxyCodeLine{\Hypertarget{vac__utilities_8f90_source_l01093}01093\ \ \ \ \ \ \ \ \ \ \ \ \ rd\_min\ =\ minloc(s\_sep,1)}
+\DoxyCodeLine{\Hypertarget{vac__utilities_8f90_source_l01094}01094\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (s\_sep(rd\_min).lt.tol\_stop)\ \textcolor{keywordflow}{then}}
+\DoxyCodeLine{\Hypertarget{vac__utilities_8f90_source_l01095}01095\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ierr\ =\ 1}
+\DoxyCodeLine{\Hypertarget{vac__utilities_8f90_source_l01096}01096\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ err\_msg\ =\ \textcolor{stringliteral}{'row\ '}//trim(\doxymbox{\hyperlink{namespacestr__utilities_a0b97e51770725a3e98ed393d26681414}{i2str}}(rd\_min))//\textcolor{stringliteral}{'\ of\ '}//\&}
+\DoxyCodeLine{\Hypertarget{vac__utilities_8f90_source_l01097}01097\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&trim(\doxymbox{\hyperlink{namespacestr__utilities_a0b97e51770725a3e98ed393d26681414}{i2str}}(vac\%n\_bnd))//\textcolor{stringliteral}{'\ (n\ =\ '}//trim(\doxymbox{\hyperlink{namespacestr__utilities_a0b97e51770725a3e98ed393d26681414}{i2str}}(vac\%prim\_X))//\&}
+\DoxyCodeLine{\Hypertarget{vac__utilities_8f90_source_l01098}01098\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&\textcolor{stringliteral}{'):\ identities\ cannot\ separate\ H\_ii\ and\ G\_ii'}}
+\DoxyCodeLine{\Hypertarget{vac__utilities_8f90_source_l01099}01099\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ chckerr(err\_msg)}
+\DoxyCodeLine{\Hypertarget{vac__utilities_8f90_source_l01100}01100\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ \ \ \ \ end\ if}}
+\DoxyCodeLine{\Hypertarget{vac__utilities_8f90_source_l01101}01101\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (s\_sep(rd\_min).lt.tol\_warn)\ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{namespacemessages_aa4a8d01563e92558e8a0875b075ec54c}{writo}}(\textcolor{stringliteral}{'fit\_diag:\ identities\ \&}}
+\DoxyCodeLine{\Hypertarget{vac__utilities_8f90_source_l01102}01102\ \textcolor{stringliteral}{}\textcolor{stringliteral}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&barely\ separate\ H\_ii\ and\ G\_ii\ at\ row\ '}//trim(\doxymbox{\hyperlink{namespacestr__utilities_a0b97e51770725a3e98ed393d26681414}{i2str}}(rd\_min))//\&}
+\DoxyCodeLine{\Hypertarget{vac__utilities_8f90_source_l01103}01103\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&\textcolor{stringliteral}{'\ (s\ =\ '}//trim(\doxymbox{\hyperlink{namespacestr__utilities_ac778d706b2e021672618939ab58fdd32}{r2strt}}(s\_sep(rd\_min)))//\textcolor{stringliteral}{')'},warning=.true.)}
+\DoxyCodeLine{\Hypertarget{vac__utilities_8f90_source_l01104}01104\ \ \ \ \ \ \ \ \ \ \ \ \ dh\ =\ (rr(:,1)*dphi(:,2)\ -\/\ rr(:,2)*dphi(:,1))/det}
+\DoxyCodeLine{\Hypertarget{vac__utilities_8f90_source_l01105}01105\ \ \ \ \ \ \ \ \ \ \ \ \ dg\ =\ (rr(:,1)*phi(:,2)\ -\/\ rr(:,2)*phi(:,1))/det}
+\DoxyCodeLine{\Hypertarget{vac__utilities_8f90_source_l01106}01106\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (fit\_h)\ \textcolor{keywordflow}{then}}
+\DoxyCodeLine{\Hypertarget{vac__utilities_8f90_source_l01107}01107\ \ \ \ \ \ \ \ \ \ \ \ \ dh\ =\ sum(phi*rr,2)/sum(phi**2,2)}
+\DoxyCodeLine{\Hypertarget{vac__utilities_8f90_source_l01108}01108\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (fit\_g)\ \textcolor{keywordflow}{then}}
+\DoxyCodeLine{\Hypertarget{vac__utilities_8f90_source_l01109}01109\ \ \ \ \ \ \ \ \ \ \ \ \ dg\ =\ -\/sum(dphi*rr,2)/sum(dphi**2,2)}
+\DoxyCodeLine{\Hypertarget{vac__utilities_8f90_source_l01110}01110\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ end\ if}}
+\DoxyCodeLine{\Hypertarget{vac__utilities_8f90_source_l01111}01111\ \ \ \ \ \textcolor{keyword}{end\ function\ }\doxymbox{\hyperlink{namespacevac__utilities_aa2cd312350e1c3f53293a13d94f23654}{fit\_diag}}}
+\DoxyCodeLine{\Hypertarget{vac__utilities_8f90_source_l01112}01112\ \textcolor{keyword}{end\ module\ }\doxymbox{\hyperlink{namespacevac__utilities}{vac\_utilities}}}
 
 \end{DoxyCode}
