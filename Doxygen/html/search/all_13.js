@@ -73,7 +73,7 @@ var searchData=
   ['stop_5frich_5flvl_70',['stop_rich_lvl',['../namespacerich__ops.html#a0cce16b835e18b025d366a038b22efe1',1,'rich_ops']]],
   ['stop_5fslepc_71',['stop_slepc',['../namespaceslepc__ops.html#ae4204b9f599aee68ce8c259cec6ed041',1,'slepc_ops']]],
   ['stop_5ftime_72',['stop_time',['../namespacemessages.html#aed343894ae4a28ad6dfbd1d39aac64ff',1,'messages']]],
-  ['store_5fresults_73',['store_results',['../namespaceslepc__ops.html#a0edf7e300f161391955a2b1c4c76d12c',1,'slepc_ops']]],
+  ['store_5fresults_73',['store_results',['../namespaceslepc__ops.html#a04e354a69cfef46f88ef49cbe56547ab',1,'slepc_ops']]],
   ['store_5fvac_74',['store_vac',['../namespacevac__ops.html#a37220702fbf378626a0f2c12f446e0aa',1,'vac_ops']]],
   ['str_5futilities_75',['str_utilities',['../namespacestr__utilities.html',1,'']]],
   ['str_5futilities_2ef90_76',['str_utilities.f90',['../str__utilities_8f90.html',1,'']]],
