@@ -31,7 +31,7 @@ MathJax.Hub.Config({
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">PB3D<span id="projectnumber">&#160;[2.53]</span>
+   <div id="projectname">PB3D<span id="projectnumber">&#160;[2.54]</span>
    </div>
    <div id="projectbrief">Ideal linear high-n MHD stability in 3-D</div>
   </td>
@@ -115,6 +115,8 @@ document.addEventListener('DOMContentLoaded', codefold.init);
 Functions/Subroutines</h2></td></tr>
 <tr class="memitem:ad227f370bcd063642a98b57e7a4a5abc" id="r_ad227f370bcd063642a98b57e7a4a5abc"><td class="memItemLeft">integer function, public&#160;</td><td class="memItemRight"><a class="el" href="#ad227f370bcd063642a98b57e7a4a5abc">read_hel</a> (n_r_in, use_pol_flux_h)</td></tr>
 <tr class="memdesc:ad227f370bcd063642a98b57e7a4a5abc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reads the HELENA equilibrium data.  <br /></td></tr>
+<tr class="memitem:a94c38247cd2a566c0ece79519e191ac9" id="r_a94c38247cd2a566c0ece79519e191ac9"><td class="memItemLeft">pure real(dp) function, public&#160;</td><td class="memItemRight"><a class="el" href="#a94c38247cd2a566c0ece79519e191ac9">chi_h_rounding</a> (chi, ias)</td></tr>
+<tr class="memdesc:a94c38247cd2a566c0ece79519e191ac9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Largest deviation of HELENA's poloidal grid from the uniform grid that HELENA computes.  <br /></td></tr>
 <tr class="memitem:a11defc7f58c96da44f6ac492cb8e4a31" id="r_a11defc7f58c96da44f6ac492cb8e4a31"><td class="memItemLeft">integer function, public&#160;</td><td class="memItemRight"><a class="el" href="#a11defc7f58c96da44f6ac492cb8e4a31">interp_hel_on_grid</a> (grid_in, grid_out, eq_2, x_1, x_2, eq_2_out, x_1_out, x_2_out, eq_1, grid_name)</td></tr>
 <tr class="memdesc:a11defc7f58c96da44f6ac492cb8e4a31"><td class="mdescLeft">&#160;</td><td class="mdescRight">Interpolate variables resulting from HELENA equilibria to another grid (angularly).  <br /></td></tr>
 <tr class="memitem:a0f156b3653264fb016d6d311eb59114c" id="r_a0f156b3653264fb016d6d311eb59114c"><td class="memItemLeft">integer function, public&#160;</td><td class="memItemRight"><a class="el" href="#a0f156b3653264fb016d6d311eb59114c">test_metrics_h</a> ()</td></tr>
@@ -125,6 +127,47 @@ Functions/Subroutines</h2></td></tr>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Operations on HELENA variables. </p>
 </div><a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Function/Subroutine Documentation</h2>
+<a id="a94c38247cd2a566c0ece79519e191ac9" name="a94c38247cd2a566c0ece79519e191ac9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a94c38247cd2a566c0ece79519e191ac9">&#9670;&#160;</a></span>chi_h_rounding()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">pure real(dp) function, public helena_ops::chi_h_rounding </td>
+          <td>(</td>
+          <td class="paramtype">real(dp), dimension(:), intent(in)</td>          <td class="paramname"><span class="paramname"><em>chi</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">integer, intent(in)</td>          <td class="paramname"><span class="paramname"><em>ias</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Largest deviation of HELENA's poloidal grid from the uniform grid that HELENA computes. </p>
+<p>HELENA sets <span class="tt">chi_j = pi (j-1)/(nchi-1)</span> for a top-bottom symmetric equilibrium (<span class="tt"><a class="el" href="namespacehelena__vars.html#a009c168bb16124399a6059f7a6107a56" title="0 if top-bottom symmetric, 1 if not">ias</a> = 0</span>) and <span class="tt">chi_j = 2 pi (j-1)/nchi</span> otherwise, and writes it to the mapping file. In a file written with 16 digits the deviation is at rounding level, below 1e-15. In a file written with HELENA's original <span class="tt">FORMAT(4E16.8)</span> it is up to 5e-8, which read_HEL() uses to warn that the file has too few digits (issue #65).</p>
+<dl class="section return"><dt>Returns</dt><dd>deviation </dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">chi</td><td>poloidal grid as read from the file (<code>nchi</code> points) </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">ias</td><td>0 if top-bottom symmetric </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>largest deviation from the uniform grid </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="HELENA__ops_8f90_source.html#l00412">412</a> of file <a class="el" href="HELENA__ops_8f90_source.html">HELENA_ops.f90</a>.</p>
+<div id="dynsection-0" class="dynheader closed"><span class="dynarrow"><span class="arrowhead closed"></span></span>Here is the caller graph for this function:</div>
+<div id="dynsection-0-summary" class="dynsummary">
+</div>
+<div id="dynsection-0-content" class="dyncontent hidden">
+<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="namespacehelena__ops_a94c38247cd2a566c0ece79519e191ac9_icgraph.svg" width="896" height="39"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+
+</div>
+</div>
 <a id="a11defc7f58c96da44f6ac492cb8e4a31" name="a11defc7f58c96da44f6ac492cb8e4a31"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a11defc7f58c96da44f6ac492cb8e4a31">&#9670;&#160;</a></span>interp_hel_on_grid()</h2>
 
@@ -215,17 +258,17 @@ Functions/Subroutines</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="HELENA__ops_8f90_source.html#l00551">551</a> of file <a class="el" href="HELENA__ops_8f90_source.html">HELENA_ops.f90</a>.</p>
-<div id="dynsection-0" class="dynheader closed"><span class="dynarrow"><span class="arrowhead closed"></span></span>Here is the call graph for this function:</div>
-<div id="dynsection-0-summary" class="dynsummary">
-</div>
-<div id="dynsection-0-content" class="dyncontent hidden">
-<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="namespacehelena__ops_a11defc7f58c96da44f6ac492cb8e4a31_cgraph.svg" width="856" height="239"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
-</div>
-<div id="dynsection-1" class="dynheader closed"><span class="dynarrow"><span class="arrowhead closed"></span></span>Here is the caller graph for this function:</div>
+<p class="definition">Definition at line <a class="el" href="HELENA__ops_8f90_source.html#l00613">613</a> of file <a class="el" href="HELENA__ops_8f90_source.html">HELENA_ops.f90</a>.</p>
+<div id="dynsection-1" class="dynheader closed"><span class="dynarrow"><span class="arrowhead closed"></span></span>Here is the call graph for this function:</div>
 <div id="dynsection-1-summary" class="dynsummary">
 </div>
 <div id="dynsection-1-content" class="dyncontent hidden">
+<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="namespacehelena__ops_a11defc7f58c96da44f6ac492cb8e4a31_cgraph.svg" width="856" height="239"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+<div id="dynsection-2" class="dynheader closed"><span class="dynarrow"><span class="arrowhead closed"></span></span>Here is the caller graph for this function:</div>
+<div id="dynsection-2-summary" class="dynsummary">
+</div>
+<div id="dynsection-2-content" class="dyncontent hidden">
 <div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="namespacehelena__ops_a11defc7f58c96da44f6ac492cb8e4a31_icgraph.svg" width="635" height="91"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
@@ -294,7 +337,9 @@ where<ul>
 Furthermore, the density on axis can be specified as <code>ZN0</code> from HELENA input (10). <br  />
  The other variables should probably not be touched for consistency. </dd>
 <dd>
-Finally, the variables IAS and B0 are in the mapping file (12) only in patched versions. See <a class="el" href="page_tutorial.html#tutorial_eq" title="Getting the Equilibrium">Getting the Equilibrium</a>.</dd></dl>
+Finally, the variables IAS and B0 are in the mapping file (12) only in patched versions. See <a class="el" href="page_tutorial.html#tutorial_eq_helena" title="Patching HELENA">Patching HELENA</a>. </dd>
+<dd>
+HELENA writes the mapping file with 8 significant digits unless it is patched to write 16. With 8 digits the eigenvalue can be off by per cents at low n on fine mappings, mostly through the rounded poloidal grid <code>chi_H</code> (issue #65). PB3D detects such a file with chi_H_rounding() and warns. See <a class="el" href="page_tutorial.html#tutorial_eq_helena" title="Patching HELENA">Patching HELENA</a> for the patch.</dd></dl>
 <dl class="section return"><dt>Returns</dt><dd>ierr </dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -304,17 +349,17 @@ Finally, the variables IAS and B0 are in the mapping file (12) only in patched v
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="HELENA__ops_8f90_source.html#l00083">83</a> of file <a class="el" href="HELENA__ops_8f90_source.html">HELENA_ops.f90</a>.</p>
-<div id="dynsection-2" class="dynheader closed"><span class="dynarrow"><span class="arrowhead closed"></span></span>Here is the call graph for this function:</div>
-<div id="dynsection-2-summary" class="dynsummary">
-</div>
-<div id="dynsection-2-content" class="dyncontent hidden">
-<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="namespacehelena__ops_ad227f370bcd063642a98b57e7a4a5abc_cgraph.svg" width="1126" height="336"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
-</div>
-<div id="dynsection-3" class="dynheader closed"><span class="dynarrow"><span class="arrowhead closed"></span></span>Here is the caller graph for this function:</div>
+<p class="definition">Definition at line <a class="el" href="HELENA__ops_8f90_source.html#l00088">88</a> of file <a class="el" href="HELENA__ops_8f90_source.html">HELENA_ops.f90</a>.</p>
+<div id="dynsection-3" class="dynheader closed"><span class="dynarrow"><span class="arrowhead closed"></span></span>Here is the call graph for this function:</div>
 <div id="dynsection-3-summary" class="dynsummary">
 </div>
 <div id="dynsection-3-content" class="dyncontent hidden">
+<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="namespacehelena__ops_ad227f370bcd063642a98b57e7a4a5abc_cgraph.svg" width="1182" height="516"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+<div id="dynsection-4" class="dynheader closed"><span class="dynarrow"><span class="arrowhead closed"></span></span>Here is the caller graph for this function:</div>
+<div id="dynsection-4-summary" class="dynsummary">
+</div>
+<div id="dynsection-4-content" class="dyncontent hidden">
 <div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="namespacehelena__ops_ad227f370bcd063642a98b57e7a4a5abc_icgraph.svg" width="619" height="39"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
@@ -335,17 +380,17 @@ Finally, the variables IAS and B0 are in the mapping file (12) only in patched v
 <p>Investaige harmonic content of the HELENA variables. </p>
 <dl class="section note"><dt>Note</dt><dd>Run with one process. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="HELENA__ops_8f90_source.html#l01487">1487</a> of file <a class="el" href="HELENA__ops_8f90_source.html">HELENA_ops.f90</a>.</p>
-<div id="dynsection-4" class="dynheader closed"><span class="dynarrow"><span class="arrowhead closed"></span></span>Here is the call graph for this function:</div>
-<div id="dynsection-4-summary" class="dynsummary">
-</div>
-<div id="dynsection-4-content" class="dyncontent hidden">
-<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="namespacehelena__ops_a83f2ad5dc967c7bae287b60fddb8eb0a_cgraph.svg" width="1371" height="315"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
-</div>
-<div id="dynsection-5" class="dynheader closed"><span class="dynarrow"><span class="arrowhead closed"></span></span>Here is the caller graph for this function:</div>
+<p class="definition">Definition at line <a class="el" href="HELENA__ops_8f90_source.html#l01549">1549</a> of file <a class="el" href="HELENA__ops_8f90_source.html">HELENA_ops.f90</a>.</p>
+<div id="dynsection-5" class="dynheader closed"><span class="dynarrow"><span class="arrowhead closed"></span></span>Here is the call graph for this function:</div>
 <div id="dynsection-5-summary" class="dynsummary">
 </div>
 <div id="dynsection-5-content" class="dyncontent hidden">
+<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="namespacehelena__ops_a83f2ad5dc967c7bae287b60fddb8eb0a_cgraph.svg" width="1371" height="315"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+<div id="dynsection-6" class="dynheader closed"><span class="dynarrow"><span class="arrowhead closed"></span></span>Here is the caller graph for this function:</div>
+<div id="dynsection-6-summary" class="dynsummary">
+</div>
+<div id="dynsection-6-content" class="dyncontent hidden">
 <div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="namespacehelena__ops_a83f2ad5dc967c7bae287b60fddb8eb0a_icgraph.svg" width="478" height="56"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
@@ -389,17 +434,17 @@ Finally, the variables IAS and B0 are in the mapping file (12) only in patched v
 <dl class="section note"><dt>Note</dt><dd>Debug version only</dd></dl>
 <dl class="section return"><dt>Returns</dt><dd>ierr </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="HELENA__ops_8f90_source.html#l01291">1291</a> of file <a class="el" href="HELENA__ops_8f90_source.html">HELENA_ops.f90</a>.</p>
-<div id="dynsection-6" class="dynheader closed"><span class="dynarrow"><span class="arrowhead closed"></span></span>Here is the call graph for this function:</div>
-<div id="dynsection-6-summary" class="dynsummary">
-</div>
-<div id="dynsection-6-content" class="dyncontent hidden">
-<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="namespacehelena__ops_a0f156b3653264fb016d6d311eb59114c_cgraph.svg" width="1198" height="396"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
-</div>
-<div id="dynsection-7" class="dynheader closed"><span class="dynarrow"><span class="arrowhead closed"></span></span>Here is the caller graph for this function:</div>
+<p class="definition">Definition at line <a class="el" href="HELENA__ops_8f90_source.html#l01353">1353</a> of file <a class="el" href="HELENA__ops_8f90_source.html">HELENA_ops.f90</a>.</p>
+<div id="dynsection-7" class="dynheader closed"><span class="dynarrow"><span class="arrowhead closed"></span></span>Here is the call graph for this function:</div>
 <div id="dynsection-7-summary" class="dynsummary">
 </div>
 <div id="dynsection-7-content" class="dyncontent hidden">
+<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="namespacehelena__ops_a0f156b3653264fb016d6d311eb59114c_cgraph.svg" width="1198" height="396"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+<div id="dynsection-8" class="dynheader closed"><span class="dynarrow"><span class="arrowhead closed"></span></span>Here is the caller graph for this function:</div>
+<div id="dynsection-8-summary" class="dynsummary">
+</div>
+<div id="dynsection-8-content" class="dyncontent hidden">
 <div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="namespacehelena__ops_a0f156b3653264fb016d6d311eb59114c_icgraph.svg" width="518" height="39"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 

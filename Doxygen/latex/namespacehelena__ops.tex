@@ -10,6 +10,8 @@ Operations on HELENA variables.
 \item 
 integer function, public \doxymbox{\hyperlink{namespacehelena__ops_ad227f370bcd063642a98b57e7a4a5abc}{read\+\_\+hel}} (n\+\_\+r\+\_\+in, use\+\_\+pol\+\_\+flux\+\_\+h)
 \begin{DoxyCompactList}\small\item\em Reads the HELENA equilibrium data. \end{DoxyCompactList}\item 
+pure real(dp) function, public \doxymbox{\hyperlink{namespacehelena__ops_a94c38247cd2a566c0ece79519e191ac9}{chi\+\_\+h\+\_\+rounding}} (chi, ias)
+\begin{DoxyCompactList}\small\item\em Largest deviation of HELENA\textquotesingle{}s poloidal grid from the uniform grid that HELENA computes. \end{DoxyCompactList}\item 
 integer function, public \doxymbox{\hyperlink{namespacehelena__ops_a11defc7f58c96da44f6ac492cb8e4a31}{interp\+\_\+hel\+\_\+on\+\_\+grid}} (grid\+\_\+in, grid\+\_\+out, eq\+\_\+2, x\+\_\+1, x\+\_\+2, eq\+\_\+2\+\_\+out, x\+\_\+1\+\_\+out, x\+\_\+2\+\_\+out, eq\+\_\+1, grid\+\_\+name)
 \begin{DoxyCompactList}\small\item\em Interpolate variables resulting from HELENA equilibria to another grid (angularly). \end{DoxyCompactList}\item 
 integer function, public \doxymbox{\hyperlink{namespacehelena__ops_a0f156b3653264fb016d6d311eb59114c}{test\+\_\+metrics\+\_\+h}} ()
@@ -24,6 +26,42 @@ Operations on HELENA variables.
 \label{namespacehelena__ops_doc-func-members}
 \Hypertarget{namespacehelena__ops_doc-func-members}
 \doxysubsection{Function/\+\+Subroutine Documentation}
+\Hypertarget{namespacehelena__ops_a94c38247cd2a566c0ece79519e191ac9}\index{helena\_ops@{helena\_ops}!chi\_h\_rounding@{chi\_h\_rounding}}
+\index{chi\_h\_rounding@{chi\_h\_rounding}!helena\_ops@{helena\_ops}}
+\doxysubsubsection{\texorpdfstring{chi\_h\_rounding()}{chi\_h\_rounding()}}
+{\footnotesize\ttfamily \label{namespacehelena__ops_a94c38247cd2a566c0ece79519e191ac9} 
+pure real(dp) function, public helena\+\_\+ops::\+chi\+\_\+h\+\_\+rounding (\begin{DoxyParamCaption}\item[{real(dp), dimension(:\+), intent(in)}]{chi}{, }\item[{integer, intent(in)}]{ias}{}\end{DoxyParamCaption})}
+
+
+
+Largest deviation of HELENA\textquotesingle{}s poloidal grid from the uniform grid that HELENA computes. 
+
+HELENA sets {\ttfamily chi\+\_\+j = pi (j-\/1)/(nchi-\/1)} for a top-\/bottom symmetric equilibrium ({\ttfamily \doxylink{namespacehelena__vars_a009c168bb16124399a6059f7a6107a56}{ias} = 0}) and {\ttfamily chi\+\_\+j = 2 pi (j-\/1)/\+nchi} otherwise, and writes it to the mapping file. In a file written with 16 digits the deviation is at rounding level, below 1e-\/15. In a file written with HELENA\textquotesingle{}s original {\ttfamily FORMAT(4\+E16.\+8)} it is up to 5e-\/8, which read\+\_\+\+HEL() uses to warn that the file has too few digits (issue \#65).
+
+\begin{DoxyReturn}{Returns}
+deviation 
+\end{DoxyReturn}
+
+\begin{DoxyParams}[1]{Parameters}
+\doxymbox{\texttt{in}}  & {\em chi} & poloidal grid as read from the file ({\ttfamily nchi} points) \\
+\hline
+\doxymbox{\texttt{in}}  & {\em ias} & 0 if top-\/bottom symmetric \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+largest deviation from the uniform grid 
+\end{DoxyReturn}
+
+
+Definition at line \doxymbox{\hyperlink{HELENA__ops_8f90_source_l00412}{412}} of file \doxymbox{\hyperlink{HELENA__ops_8f90_source}{HELENA\+\_\+ops.\+f90}}.
+
+Here is the caller graph for this function:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespacehelena__ops_a94c38247cd2a566c0ece79519e191ac9_icgraph}
+\end{center}
+\end{figure}
 \Hypertarget{namespacehelena__ops_a11defc7f58c96da44f6ac492cb8e4a31}\index{helena\_ops@{helena\_ops}!interp\_hel\_on\_grid@{interp\_hel\_on\_grid}}
 \index{interp\_hel\_on\_grid@{interp\_hel\_on\_grid}!helena\_ops@{helena\_ops}}
 \doxysubsubsection{\texorpdfstring{interp\_hel\_on\_grid()}{interp\_hel\_on\_grid()}}
@@ -80,18 +118,16 @@ ierr
 \end{DoxyParams}
 
 
-Definition at line \doxymbox{\hyperlink{HELENA__ops_8f90_source_l00551}{551}} of file \doxymbox{\hyperlink{HELENA__ops_8f90_source}{HELENA\+\_\+ops.\+f90}}.
+Definition at line \doxymbox{\hyperlink{HELENA__ops_8f90_source_l00613}{613}} of file \doxymbox{\hyperlink{HELENA__ops_8f90_source}{HELENA\+\_\+ops.\+f90}}.
 
-Here is the call graph for this function:
-\nopagebreak
+Here is the call graph for this function:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{namespacehelena__ops_a11defc7f58c96da44f6ac492cb8e4a31_cgraph}
 \end{center}
 \end{figure}
-Here is the caller graph for this function:
-\nopagebreak
+Here is the caller graph for this function:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -163,7 +199,9 @@ where
 Furthermore, the density on axis can be specified as {\ttfamily ZN0} from HELENA input (10). ~\newline
  The other variables should probably not be touched for consistency. 
 
-Finally, the variables IAS and B0 are in the mapping file (12) only in patched versions. See \doxysectlink{page_tutorial_tutorial_eq}{Getting the Equilibrium}{1}.
+Finally, the variables IAS and B0 are in the mapping file (12) only in patched versions. See \doxysectlink{page_tutorial_tutorial_eq_helena}{Patching HELENA}{2}. 
+
+HELENA writes the mapping file with 8 significant digits unless it is patched to write 16. With 8 digits the eigenvalue can be off by per cents at low n on fine mappings, mostly through the rounded poloidal grid {\ttfamily chi\+\_\+H} (issue \#65). PB3D detects such a file with chi\+\_\+\+H\+\_\+rounding() and warns. See \doxysectlink{page_tutorial_tutorial_eq_helena}{Patching HELENA}{2} for the patch.
 \end{DoxyNote}
 \begin{DoxyReturn}{Returns}
 ierr 
@@ -177,18 +215,16 @@ ierr
 \end{DoxyParams}
 
 
-Definition at line \doxymbox{\hyperlink{HELENA__ops_8f90_source_l00083}{83}} of file \doxymbox{\hyperlink{HELENA__ops_8f90_source}{HELENA\+\_\+ops.\+f90}}.
+Definition at line \doxymbox{\hyperlink{HELENA__ops_8f90_source_l00088}{88}} of file \doxymbox{\hyperlink{HELENA__ops_8f90_source}{HELENA\+\_\+ops.\+f90}}.
 
-Here is the call graph for this function:
-\nopagebreak
+Here is the call graph for this function:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{namespacehelena__ops_ad227f370bcd063642a98b57e7a4a5abc_cgraph}
 \end{center}
 \end{figure}
-Here is the caller graph for this function:
-\nopagebreak
+Here is the caller graph for this function:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -210,18 +246,16 @@ Run with one process.
 \end{DoxyNote}
 
 
-Definition at line \doxymbox{\hyperlink{HELENA__ops_8f90_source_l01487}{1487}} of file \doxymbox{\hyperlink{HELENA__ops_8f90_source}{HELENA\+\_\+ops.\+f90}}.
+Definition at line \doxymbox{\hyperlink{HELENA__ops_8f90_source_l01549}{1549}} of file \doxymbox{\hyperlink{HELENA__ops_8f90_source}{HELENA\+\_\+ops.\+f90}}.
 
-Here is the call graph for this function:
-\nopagebreak
+Here is the call graph for this function:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{namespacehelena__ops_a83f2ad5dc967c7bae287b60fddb8eb0a_cgraph}
 \end{center}
 \end{figure}
-Here is the caller graph for this function:
-\nopagebreak
+Here is the caller graph for this function:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -265,18 +299,16 @@ ierr
 \end{DoxyReturn}
 
 
-Definition at line \doxymbox{\hyperlink{HELENA__ops_8f90_source_l01291}{1291}} of file \doxymbox{\hyperlink{HELENA__ops_8f90_source}{HELENA\+\_\+ops.\+f90}}.
+Definition at line \doxymbox{\hyperlink{HELENA__ops_8f90_source_l01353}{1353}} of file \doxymbox{\hyperlink{HELENA__ops_8f90_source}{HELENA\+\_\+ops.\+f90}}.
 
-Here is the call graph for this function:
-\nopagebreak
+Here is the call graph for this function:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{namespacehelena__ops_a0f156b3653264fb016d6d311eb59114c_cgraph}
 \end{center}
 \end{figure}
-Here is the caller graph for this function:
-\nopagebreak
+Here is the caller graph for this function:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
