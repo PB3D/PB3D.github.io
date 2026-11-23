@@ -45,7 +45,7 @@
         GH1 [label="calc_GH_1 + calc_GH_int_1\nfield-line style (VMEC)"];
         GH2 [label="calc_GH_2 + calc_GH_int_2\naxisymmetric style (HELENA)"];
         diag [label="diagonals of G and H\ndiag_indirect / fit_diag (default)\nor calc_diag_direct"];
-        check [label="check_vac_exact\n(only with check_vac)"];
+        check [label="check_vac_exact\n(only with check_vac,\ndebug version only)"];
         data [label="normal data of every\nFourier mode at the boundary"];
         solve [label="solve_Phi_BEM\nH Phi = G (normal data)"];
         proj [label="projection of Phi on the\nnormal data, with the\nintegration rule"];
@@ -63,7 +63,7 @@
 
     The steps in calc_vac_res() are:
         -# calc_gh() assembles \c G and \c H with the routines of the style (sections \ref vacuum_field_line and \ref vacuum_axisym), and then sets their diagonals (section \ref vacuum_diag).
-        -# If \c check_vac is set, check_vac_exact() tests the operators with potentials whose boundary values and normal derivatives are known exactly (see \ref output_file_check_vac).
+        -# If \c check_vac is set and PB3D was built with the CMake option \c PB3D_ENABLE_DEBUG, check_vac_exact() tests the operators with potentials whose boundary values and normal derivatives are known exactly (see \ref output_file_check_vac).
         -# For every Fourier mode of the perturbation, the normal derivative of the vacuum potential at the boundary follows from the displacement at the edge.
         The real and imaginary parts are stored as separate columns, so that the solve works with real numbers.
         -# solve_Phi_BEM() solves \f$\overline{\text{H}}\,\overline{\Phi} = \overline{\text{G}}\,\overline{\Phi'}\f$ for the boundary potential \f$\overline{\Phi}\f$ of every mode, with STRUMPACK when PB3D was built with it, and with ScaLAPACK LU otherwise.

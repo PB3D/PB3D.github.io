@@ -173,10 +173,10 @@ The boundary integral equation</h1>
 <h1 class="doxsection"><a class="anchor" id="vacuum_flow"></a>
 The calculation step by step</h1>
 <div class="dotgraph">
-<iframe scrolling="no" loading="lazy" frameborder="0" src="dot_inline_dotgraph_2d29303e3d17c8409eef4d0c2b997505.svg" width="503" height="850"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<iframe scrolling="no" loading="lazy" frameborder="0" src="dot_inline_dotgraph_c8779291ebcbd2c058a8fa3a05940d3c.svg" width="503" height="858"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 <p>The steps in calc_vac_res() are:</p><ol type="1">
 <li>calc_gh() assembles <code>G</code> and <code>H</code> with the routines of the style (sections <a class="el" href="#vacuum_field_line" title="Field-line style (VMEC)">Field-line style (VMEC)</a> and <a class="el" href="#vacuum_axisym" title="Axisymmetric style (HELENA)">Axisymmetric style (HELENA)</a>), and then sets their diagonals (section <a class="el" href="#vacuum_diag" title="The diagonals">The diagonals</a>).</li>
-<li>If <code>check_vac</code> is set, check_vac_exact() tests the operators with potentials whose boundary values and normal derivatives are known exactly (see <a class="el" href="page_outputs.html#output_file_check_vac" title="Vacuum check output">Vacuum check output</a>).</li>
+<li>If <code>check_vac</code> is set and PB3D was built with the CMake option <code>PB3D_ENABLE_DEBUG</code>, check_vac_exact() tests the operators with potentials whose boundary values and normal derivatives are known exactly (see <a class="el" href="page_outputs.html#output_file_check_vac" title="Vacuum check output">Vacuum check output</a>).</li>
 <li>For every Fourier mode of the perturbation, the normal derivative of the vacuum potential at the boundary follows from the displacement at the edge. The real and imaginary parts are stored as separate columns, so that the solve works with real numbers.</li>
 <li>solve_Phi_BEM() solves \(\overline{\text{H}}\,\overline{\Phi} = \overline{\text{G}}\,\overline{\Phi&#39;}\) for the boundary potential \(\overline{\Phi}\) of every mode, with STRUMPACK when PB3D was built with it, and with ScaLAPACK LU otherwise.</li>
 <li>The boundary potential of every mode is projected on the normal derivative of every mode, with the integration rule of the style. For the field-line style this rule is the trapezoidal rule along the field lines and the average over the field lines.</li>
