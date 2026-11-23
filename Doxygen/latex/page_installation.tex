@@ -25,7 +25,7 @@ PB3D is written in Fortran and is built with \href{https://cmake.org/}{\texttt{C
 \end{DoxyItemize}
 \item \href{http://www.netlib.org/lapack/}{\texttt{BLAS / LAPACK}} and \href{http://www.netlib.org/scalapack/}{\texttt{Sca\+LAPACK}}
 \begin{DoxyItemize}
-\item for dense linear algebra, in particular the boundary-\/element system of the vacuum
+\item for dense linear algebra, in particular the boundary-\/element system of the vacuum, which PB3D solves with the LU factorization of Sca\+LAPACK ({\ttfamily pdgetrf} and {\ttfamily pdgetrs})
 \end{DoxyItemize}
 \item \href{https://github.com/PrincetonUniversity/STELLOPT}{\texttt{LIBSTELL}}, part of the STELLOPT suite, which contains VMEC
 \begin{DoxyItemize}
@@ -34,10 +34,6 @@ PB3D is written in Fortran and is built with \href{https://cmake.org/}{\texttt{C
 \item \href{https://github.com/ilonster/pspline}{\texttt{PSPLINE}}
 \begin{DoxyItemize}
 \item Princeton Spline and Hermite Cubic Interpolation Routines
-\end{DoxyItemize}
-\item STRUMPACK-\/\+Dense 1.\+1.\+1 (optional)
-\begin{DoxyItemize}
-\item for a compressed solver of the boundary-\/element system of the vacuum \DoxyCite{ambikasaran2013}{number}{1}; without it, PB3D solves that system with the LU factorization of Sca\+LAPACK
 \end{DoxyItemize}
 \end{DoxyItemize}
 
@@ -68,9 +64,9 @@ mkdir -p $DEPS
 \hypertarget{page_installation_installation_requirements}{}\doxysection{\texorpdfstring{Requirements}{Requirements}}\label{page_installation_installation_requirements}
 The build needs the following tools:
 \begin{DoxyItemize}
-\item A Fortran compiler, and a C and a C++ compiler. The builds that are tested use GNU Fortran 13, 14.\+2 and 16. {\ttfamily CMake\+Lists.\+txt} also contains flags for the Intel Fortran compiler.
+\item A Fortran compiler and a C compiler. The builds that are tested use GNU Fortran 13, 14.\+2 and 16. {\ttfamily CMake\+Lists.\+txt} also contains flags for the Intel Fortran compiler.
 \item CMake 3.\+18 or later. With PETSc 3.\+25, use CMake 4 (see \doxysectlink{page_installation_installation_problems}{Known problems}{1}).
-\item An MPI library with Fortran, C and C++ bindings, such as Open\+MPI.
+\item An MPI library with Fortran and C bindings, such as Open\+MPI.
 \item pkg-\/config. CMake finds PETSc, SLEPc and Net\+CDF-\/\+Fortran through pkg-\/config, and Sca\+LAPACK through pkg-\/config or by the library name.
 \item xz, to decompress the equilibrium files of the regression tests.
 \item Optionally Python 3 with h5py and scipy, for the checks of the regression tests that read the HDF5 output.
@@ -143,19 +139,14 @@ STELLOPT_SRC=$DEPS/stellopt NETCDF_FORTRAN_DIR=$NETCDF_FORTRAN_DIR \
     $PB3D_SRC/Libraries/build_libstell_min.sh $DEPS/libstell-min
 export LIBSTELL_DIR=$DEPS/libstell-min
 \end{DoxyVerb}
- The last argument of the script is the installation directory. It should always be given, because the default of the script assumes that the code lies in {\ttfamily \$\+HOME/\+\+Code/\+\+PB3D}. Both scripts put {\ttfamily /\+opt/\+homebrew/\+bin} at the front of {\ttfamily PATH}, so on mac\+OS they use the compilers of Homebrew. A full LIBSTELL, built with the build system of STELLOPT, works as well. CMake looks under {\ttfamily LIBSTELL\+\_\+\+DIR} (or {\ttfamily STELLOPT\+\_\+\+DIR}) for the library {\ttfamily libstell} and for the module file {\ttfamily vsvd0.\+mod} or {\ttfamily vmec\+\_\+input.\+mod}.\hypertarget{page_installation_installation_strumpack}{}\doxysubsection{\texorpdfstring{STRUMPACK-\/\+Dense (optional)}{STRUMPACK-\/\+Dense (optional)}}\label{page_installation_installation_strumpack}
-Without STRUMPACK, PB3D solves the boundary-\/element system of the vacuum with the LU factorization of Sca\+LAPACK ({\ttfamily pdgetrf} and {\ttfamily pdgetrs}). The continuous integration and the cluster builds use this solver. PB3D can use the old STRUMPACK-\/\+Dense 1.\+1.\+1 instead, through its Fortran module {\ttfamily strumpackdensepackage}, which the newer STRUMPACK 7 does not have. The source, {\ttfamily STRUMPACK-\/\+Dense-\/1.\+1.\+1.\+tar.\+gz}, comes from {\ttfamily portal.\+nersc.\+gov/\+project/\+sparse/\+strumpack}, which is not always reachable. In the directory {\ttfamily src} of the unpacked package, the two sources are compiled into a library: \begin{DoxyVerb}mpic++ -O3 -std=gnu++11 -I. -c StrumpackDensePackage_C.cpp -o StrumpackDensePackage_C.o
-mpif90 -O3 -c StrumpackDensePackage.F90 -o StrumpackDensePackage.o
-ar -rcs libstrumpack.a StrumpackDensePackage_C.o StrumpackDensePackage.o
-\end{DoxyVerb}
- The MPI C++ compiler must use the GNU C++ compiler (for Open\+MPI, with {\ttfamily OMPI\+\_\+\+CXX=g++}), because PB3D links with {\ttfamily -\/lstdc++}. CMake looks for {\ttfamily libstrumpack.\+a} in the subdirectory {\ttfamily lib} or {\ttfamily src} of {\ttfamily STRUMPACK\+\_\+\+DIR}, and for {\ttfamily strumpackdensepackage.\+mod} in the subdirectory {\ttfamily inc} or {\ttfamily examples}. Links in {\ttfamily lib} and {\ttfamily inc} of the package directory to the two files in {\ttfamily src} satisfy this, and {\ttfamily STRUMPACK\+\_\+\+DIR} is then the package directory.\hypertarget{page_installation_installation_compilation}{}\doxysection{\texorpdfstring{Compilation with CMake}{Compilation with CMake}}\label{page_installation_installation_compilation}
+ The last argument of the script is the installation directory. It should always be given, because the default of the script assumes that the code lies in {\ttfamily \$\+HOME/\+\+Code/\+\+PB3D}. Both scripts put {\ttfamily /\+opt/\+homebrew/\+bin} at the front of {\ttfamily PATH}, so on mac\+OS they use the compilers of Homebrew. A full LIBSTELL, built with the build system of STELLOPT, works as well. CMake looks under {\ttfamily LIBSTELL\+\_\+\+DIR} (or {\ttfamily STELLOPT\+\_\+\+DIR}) for the library {\ttfamily libstell} and for the module file {\ttfamily vsvd0.\+mod} or {\ttfamily vmec\+\_\+input.\+mod}.\hypertarget{page_installation_installation_compilation}{}\doxysection{\texorpdfstring{Compilation with CMake}{Compilation with CMake}}\label{page_installation_installation_compilation}
 When all dependencies are available, PB3D is configured and compiled in a separate build directory: \begin{DoxyVerb}cmake -S $PB3D_SRC -B $PB3D_SRC/build \
     -DCMAKE_BUILD_TYPE=Release \
     -DPSPLINE_DIR=$PSPLINE_DIR \
     -DLIBSTELL_DIR=$LIBSTELL_DIR
 cmake --build $PB3D_SRC/build -j
 \end{DoxyVerb}
- With the Ubuntu packages, the configuration also needs {\ttfamily -\/DHDF5\+\_\+\+ROOT=/\+usr/\+lib/\+x86\+\_\+64-\/linux-\/gnu/\+hdf5/\+openmpi}. At the end of the configuration, CMake prints a summary of the dependencies it found, including whether it found STRUMPACK. The executables {\ttfamily PB3D} and {\ttfamily POST} are created in the build directory. {\ttfamily cmake --install \$\+PB3\+D\+\_\+\+SRC/\+build --prefix DIR} copies them into {\ttfamily DIR/\+bin}.
+ With the Ubuntu packages, the configuration also needs {\ttfamily -\/DHDF5\+\_\+\+ROOT=/\+usr/\+lib/\+x86\+\_\+64-\/linux-\/gnu/\+hdf5/\+openmpi}. At the end of the configuration, CMake prints a summary of the dependencies it found. The executables {\ttfamily PB3D} and {\ttfamily POST} are created in the build directory. {\ttfamily cmake --install \$\+PB3\+D\+\_\+\+SRC/\+build --prefix DIR} copies them into {\ttfamily DIR/\+bin}.
 
 A debug build, which has the debug code of PB3D and the runtime checks of the compiler, is made in a second build directory: \begin{DoxyVerb}cmake -S $PB3D_SRC -B $PB3D_SRC/build-debug \
     -DCMAKE_BUILD_TYPE=Debug -DPB3D_ENABLE_DEBUG=ON \
@@ -177,7 +168,6 @@ The following options and variables are passed to CMake with {\ttfamily -\/D}:
 {\ttfamily BUILD\+\_\+\+TESTING} &{\ttfamily ON} &builds the test suite (see \doxysectlink{page_installation_installation_tests}{Tests}{1}) \\
 {\ttfamily PSPLINE\+\_\+\+DIR} &none &installation directory of PSPLINE; {\ttfamily PSPLINE\+\_\+\+ROOT} and the environment variables {\ttfamily PSPLINE\+\_\+\+DIR} and {\ttfamily PSPLINE\+\_\+\+ROOT} work as well \\
 {\ttfamily LIBSTELL\+\_\+\+DIR} &none &installation directory of LIBSTELL; {\ttfamily LIBSTELL\+\_\+\+ROOT}, {\ttfamily STELLOPT\+\_\+\+DIR} and the environment variables of the same names work as well \\
-{\ttfamily STRUMPACK\+\_\+\+DIR} &{\ttfamily \$\+HOME/\+\+Code/\+\+STRUMPACK-\/\+Dense-\/1.1.\+1} &directory of a STRUMPACK-\/\+Dense 1.\+1.\+1 build; if CMake finds no library there, PB3D uses Sca\+LAPACK for the vacuum \\
 {\ttfamily HDF5\+\_\+\+ROOT} &none &standard CMake variable that selects the HDF5 installation; PB3D needs the parallel HDF5 \\
 {\ttfamily PB3\+D\+\_\+\+FIXTURE\+\_\+\+DIR} &{\ttfamily fixtures} in the build directory &directory with the equilibrium files of the regression tests; by default, CMake decompresses the files of {\ttfamily tests/\+fixtures} into it with xz \\
 {\ttfamily PB3\+D\+\_\+\+TEST\+\_\+\+MPI\+\_\+\+REGRESSION} &{\ttfamily OFF} &adds regression tests that run PB3D under {\ttfamily mpirun -\/n 2} and {\ttfamily -\/n 4} and require the eigenvalue to agree with the one-\/process run to $10^{-6}$; they need PETSc with MUMPS \\
@@ -203,7 +193,7 @@ The tests that run under {\ttfamily mpirun} carry the label {\ttfamily mpi} as w
 cmake --build $PB3D_SRC/build-tests -j
 ctest --test-dir $PB3D_SRC/build-tests --output-on-failure
 \end{DoxyVerb}
- CMake still looks for a C and a C++ compiler in this case, because the project declares these languages. The file {\ttfamily Documentation/\+testing.\+md} of the code describes every test and the recorded eigenvalues.\hypertarget{page_installation_installation_problems}{}\doxysection{\texorpdfstring{Known problems}{Known problems}}\label{page_installation_installation_problems}
+ CMake still looks for a C compiler in this case, because the project declares that language. The file {\ttfamily Documentation/\+testing.\+md} of the code describes every test and the recorded eigenvalues.\hypertarget{page_installation_installation_problems}{}\doxysection{\texorpdfstring{Known problems}{Known problems}}\label{page_installation_installation_problems}
 
 \begin{DoxyItemize}
 \item With more than one MPI process, a PETSc without MUMPS stops the eigenvalue solver with the message "{}\+Could not locate a solver type for factorization type LU and matrix type mpibaij"{}, which PB3D reports as error code 92 from get\+\_\+solution(). The solver uses shift-\/invert, which needs an LU factorization of a distributed matrix, and the LU factorization of PETSc itself works on one process only.

@@ -31,7 +31,7 @@ MathJax.Hub.Config({
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">PB3D<span id="projectnumber">&#160;[2.52]</span>
+   <div id="projectname">PB3D<span id="projectnumber">&#160;[2.53]</span>
    </div>
    <div id="projectbrief">Ideal linear high-n MHD stability in 3-D</div>
   </td>
@@ -178,7 +178,7 @@ The calculation step by step</h1>
 <li>calc_gh() assembles <code>G</code> and <code>H</code> with the routines of the style (sections <a class="el" href="#vacuum_field_line" title="Field-line style (VMEC)">Field-line style (VMEC)</a> and <a class="el" href="#vacuum_axisym" title="Axisymmetric style (HELENA)">Axisymmetric style (HELENA)</a>), and then sets their diagonals (section <a class="el" href="#vacuum_diag" title="The diagonals">The diagonals</a>).</li>
 <li>If <code>check_vac</code> is set and PB3D was built with the CMake option <code>PB3D_ENABLE_DEBUG</code>, check_vac_exact() tests the operators with potentials whose boundary values and normal derivatives are known exactly (see <a class="el" href="page_outputs.html#output_file_check_vac" title="Vacuum check output">Vacuum check output</a>).</li>
 <li>For every Fourier mode of the perturbation, the normal derivative of the vacuum potential at the boundary follows from the displacement at the edge. The real and imaginary parts are stored as separate columns, so that the solve works with real numbers.</li>
-<li>solve_Phi_BEM() solves \(\overline{\text{H}}\,\overline{\Phi} = \overline{\text{G}}\,\overline{\Phi&#39;}\) for the boundary potential \(\overline{\Phi}\) of every mode, with STRUMPACK when PB3D was built with it, and with ScaLAPACK LU otherwise.</li>
+<li>solve_Phi_BEM() solves \(\overline{\text{H}}\,\overline{\Phi} = \overline{\text{G}}\,\overline{\Phi&#39;}\) for the boundary potential \(\overline{\Phi}\) of every mode, with the LU factorization of ScaLAPACK.</li>
 <li>The boundary potential of every mode is projected on the normal derivative of every mode, with the integration rule of the style. For the field-line style this rule is the trapezoidal rule along the field lines and the average over the field lines.</li>
 <li>The result is divided by \(\mu_0\), multiplied by \(2\pi\) for the toroidal integral, and replaced by its Hermitian part. This gives the response matrix \(\overline{\text{R}}\) of size <span class="tt">n_mod_X</span> \(\times\) <span class="tt">n_mod_X</span>. The exact operator is Hermitian; the discretization leaves an asymmetry of about \(10^{-5}\), which would make SLEPc reject tightly converged eigenvalues as complex.</li>
 </ol>
@@ -240,7 +240,7 @@ The diagonals</h1>
 <p><b>Direct (2), a diagnostic.</b> For the field-line style, \(H_{ii}\) is \(-2\pi\) plus the integral of the kernel over the point's cell (calc_diag_direct()) where the point has a full cell, and the indirect value at the ends of the lines; \(G_{ii}\) keeps the closed-form half-cell value. For the axisymmetric style both diagonals keep the values of the assembly. On W7-X at 128 lines \(\times\) 121 points, the identity residual for the potential \(x\) is \(4.1\times10^{-2}\) with the direct diagonals against \(1.2\times10^{-3}\) with the indirect ones, and the exterior solve for a ring source on the magnetic axis is off by \(5.2\times10^{-2}\) against \(5.9\times10^{-3}\) (6 November 2026, code repository <span class="tt">Documentation/w7x_check_vac_diag.md</span>). PB3D warns that this option is not for production runs.</p>
 <h1 class="doxsection"><a class="anchor" id="vacuum_axisym"></a>
 Axisymmetric style (HELENA)</h1>
-<p>For an axisymmetric equilibrium, every Fourier mode of the perturbation has a single toroidal mode number \(n\), and the toroidal part of the integrals can be done analytically. calc_gh_2() and calc_gh_int_2() use the toroidal functions of half-integer degree for this <a class="el" href="citelist.html#CITEREF_cohl1999">[3]</a> and integrate in the poloidal angle over the boundary points of HELENA's grid, with closed-form integrals at and near the singular point and the corner term at the point itself. The first and the last boundary point coincide; the corner term keeps the system nonsingular.</p>
+<p>For an axisymmetric equilibrium, every Fourier mode of the perturbation has a single toroidal mode number \(n\), and the toroidal part of the integrals can be done analytically. calc_gh_2() and calc_gh_int_2() use the toroidal functions of half-integer degree for this <a class="el" href="citelist.html#CITEREF_cohl1999">[2]</a> and integrate in the poloidal angle over the boundary points of HELENA's grid, with closed-form integrals at and near the singular point and the corner term at the point itself. The first and the last boundary point coincide; the corner term keeps the system nonsingular.</p>
 <h1 class="doxsection"><a class="anchor" id="vacuum_rich"></a>
 Richardson levels and restarts</h1>
 <p><code>G</code> and <code>H</code> are not stored in the output, because they are large.</p><ul>

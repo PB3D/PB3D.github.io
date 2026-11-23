@@ -55,15 +55,13 @@ The vacuum response is calculated using the Boundary Element Method. There are t
 \end{DoxyItemize}
 \end{DoxyEnumerate}
 
-The final matrix equation is solved through Strumpack \DoxyCite{meiser2016}{number}{1}, or through Sca\+LAPACK when PB3D was built without Strumpack.
+The final matrix equation is solved with Sca\+LAPACK\textquotesingle{}s LU.
 
 \begin{DoxySeeAlso}{See also}
 See \DoxyCite{weyens3d}{number}{1}.
 \end{DoxySeeAlso}
 \begin{DoxyRefDesc}{Todo}
-\item[\doxymbox{\hyperlink{todo__todo000001}{Todo}}]Publish vacuum benchmarks and refer to them here. 
-
-Investigate Strumpack rather than inefficient scalapack \end{DoxyRefDesc}
+\item[\doxymbox{\hyperlink{todo__todo000001}{Todo}}]Publish vacuum benchmarks and refer to them here. \end{DoxyRefDesc}
 
 
 \label{namespacevac__ops_doc-func-members}
@@ -122,7 +120,7 @@ ierr
 \end{DoxyParams}
 
 
-Definition at line \doxymbox{\hyperlink{vac__ops_8f90_source_l00557}{557}} of file \doxymbox{\hyperlink{vac__ops_8f90_source}{vac\+\_\+ops.\+f90}}.
+Definition at line \doxymbox{\hyperlink{vac__ops_8f90_source_l00549}{549}} of file \doxymbox{\hyperlink{vac__ops_8f90_source}{vac\+\_\+ops.\+f90}}.
 
 Here is the call graph for this function:
 \nopagebreak
@@ -189,7 +187,7 @@ Near the influence point, \doxylink{namespacevac__utilities_a3b2836606e5331d3827
 \end{DoxyParams}
 
 
-Definition at line \doxymbox{\hyperlink{vac__ops_8f90_source_l00795}{795}} of file \doxymbox{\hyperlink{vac__ops_8f90_source}{vac\+\_\+ops.\+f90}}.
+Definition at line \doxymbox{\hyperlink{vac__ops_8f90_source_l00787}{787}} of file \doxymbox{\hyperlink{vac__ops_8f90_source}{vac\+\_\+ops.\+f90}}.
 
 Here is the call graph for this function:
 \nopagebreak
@@ -241,7 +239,7 @@ It makes use of toroidal functions.
 \end{DoxyParams}
 
 
-Definition at line \doxymbox{\hyperlink{vac__ops_8f90_source_l00951}{951}} of file \doxymbox{\hyperlink{vac__ops_8f90_source}{vac\+\_\+ops.\+f90}}.
+Definition at line \doxymbox{\hyperlink{vac__ops_8f90_source_l00943}{943}} of file \doxymbox{\hyperlink{vac__ops_8f90_source}{vac\+\_\+ops.\+f90}}.
 
 Here is the call graph for this function:
 \nopagebreak
@@ -294,7 +292,7 @@ ierr
 \end{DoxyParams}
 
 
-Definition at line \doxymbox{\hyperlink{vac__ops_8f90_source_l01674}{1674}} of file \doxymbox{\hyperlink{vac__ops_8f90_source}{vac\+\_\+ops.\+f90}}.
+Definition at line \doxymbox{\hyperlink{vac__ops_8f90_source_l01666}{1666}} of file \doxymbox{\hyperlink{vac__ops_8f90_source}{vac\+\_\+ops.\+f90}}.
 
 Here is the call graph for this function:
 \nopagebreak
@@ -353,7 +351,7 @@ ierr
 \end{DoxyParams}
 
 
-Definition at line \doxymbox{\hyperlink{vac__ops_8f90_source_l02761}{2761}} of file \doxymbox{\hyperlink{vac__ops_8f90_source}{vac\+\_\+ops.\+f90}}.
+Definition at line \doxymbox{\hyperlink{vac__ops_8f90_source_l02749}{2749}} of file \doxymbox{\hyperlink{vac__ops_8f90_source}{vac\+\_\+ops.\+f90}}.
 
 Here is the call graph for this function:
 \nopagebreak
@@ -417,7 +415,7 @@ ierr
 \end{DoxyParams}
 
 
-Definition at line \doxymbox{\hyperlink{vac__ops_8f90_source_l03858}{3858}} of file \doxymbox{\hyperlink{vac__ops_8f90_source}{vac\+\_\+ops.\+f90}}.
+Definition at line \doxymbox{\hyperlink{vac__ops_8f90_source_l03743}{3743}} of file \doxymbox{\hyperlink{vac__ops_8f90_source}{vac\+\_\+ops.\+f90}}.
 
 Here is the call graph for this function:
 \nopagebreak
@@ -439,7 +437,7 @@ Here is the caller graph for this function:
 \index{solve\_phi\_bem@{solve\_phi\_bem}!vac\_ops@{vac\_ops}}
 \doxysubsubsection{\texorpdfstring{solve\_phi\_bem()}{solve\_phi\_bem()}}
 {\footnotesize\ttfamily \label{namespacevac__ops_afb0bbf55ee22e8831b31bef1be85a741} 
-integer function, public vac\+\_\+ops::\+solve\+\_\+phi\+\_\+bem (\begin{DoxyParamCaption}\item[{type(\doxymbox{\hyperlink{structvac__vars_1_1vac__type}{vac\+\_\+type}}), intent(in), target}]{vac}{, }\item[{real(dp), dimension(:\+,:\+), intent(in)}]{r}{, }\item[{real(dp), dimension(:\+,:\+), intent(inout), target}]{phi}{, }\item[{integer, dimension(2), intent(in)}]{n\+\_\+rphi}{, }\item[{integer, dimension(2), intent(in)}]{n\+\_\+loc\+\_\+rphi}{, }\item[{integer, dimension(:\+,:\+), intent(in)}]{lims\+\_\+c\+\_\+rphi}{, }\item[{integer, dimension(blacsctxtsize), intent(in), target}]{desc\+\_\+rphi}{}\end{DoxyParamCaption})}
+integer function, public vac\+\_\+ops::\+solve\+\_\+phi\+\_\+bem (\begin{DoxyParamCaption}\item[{type(\doxymbox{\hyperlink{structvac__vars_1_1vac__type}{vac\+\_\+type}}), intent(in)}]{vac}{, }\item[{real(dp), dimension(:\+,:\+), intent(in)}]{r}{, }\item[{real(dp), dimension(:\+,:\+), intent(inout)}]{phi}{, }\item[{integer, dimension(2), intent(in)}]{n\+\_\+rphi}{, }\item[{integer, dimension(2), intent(in)}]{n\+\_\+loc\+\_\+rphi}{, }\item[{integer, dimension(:\+,:\+), intent(in)}]{lims\+\_\+c\+\_\+rphi}{, }\item[{integer, dimension(blacsctxtsize), intent(in)}]{desc\+\_\+rphi}{}\end{DoxyParamCaption})}
 
 
 
@@ -452,7 +450,7 @@ Both vacuum styles assemble $\overline{\text{H}}$ in the vacuum-\/side conventio
         \overline{\text{G}}\overline{\text{D}\phi}$, and potentials that are harmonic inside the boundary satisfy  $\overline{\text{H}}\overline{\phi} - \overline{\text{G}}\overline{\text{D}\phi}
         = -4\pi\overline{\phi}$ (both verified in the full-\/stack tests). The corner term also makes the system nonsingular when the first and last points of a closed boundary coincide, as they do for HELENA: the two rows differ only in the column of that term.
 
-The linear system is solved with STRUMPack when PB3D was configured with it, and with Sca\+LAPACK LU ({\ttfamily pdgesv}) otherwise. 
+The linear system is solved with Sca\+LAPACK\textquotesingle{}s LU ({\ttfamily pdgetrf} and {\ttfamily pdgetrs}). 
 \begin{DoxyParams}[1]{Parameters}
 \doxymbox{\texttt{in}}  & {\em vac} & vacuum variables \\
 \hline
@@ -471,7 +469,7 @@ The linear system is solved with STRUMPack when PB3D was configured with it, and
 \end{DoxyParams}
 
 
-Definition at line \doxymbox{\hyperlink{vac__ops_8f90_source_l03578}{3578}} of file \doxymbox{\hyperlink{vac__ops_8f90_source}{vac\+\_\+ops.\+f90}}.
+Definition at line \doxymbox{\hyperlink{vac__ops_8f90_source_l03566}{3566}} of file \doxymbox{\hyperlink{vac__ops_8f90_source}{vac\+\_\+ops.\+f90}}.
 
 Here is the call graph for this function:
 \nopagebreak
@@ -535,7 +533,7 @@ ierr
 \end{DoxyParams}
 
 
-Definition at line \doxymbox{\hyperlink{vac__ops_8f90_source_l00126}{126}} of file \doxymbox{\hyperlink{vac__ops_8f90_source}{vac\+\_\+ops.\+f90}}.
+Definition at line \doxymbox{\hyperlink{vac__ops_8f90_source_l00118}{118}} of file \doxymbox{\hyperlink{vac__ops_8f90_source}{vac\+\_\+ops.\+f90}}.
 
 Here is the call graph for this function:
 \nopagebreak
@@ -587,7 +585,7 @@ ierr
 \end{DoxyParams}
 
 
-Definition at line \doxymbox{\hyperlink{vac__ops_8f90_source_l03174}{3174}} of file \doxymbox{\hyperlink{vac__ops_8f90_source}{vac\+\_\+ops.\+f90}}.
+Definition at line \doxymbox{\hyperlink{vac__ops_8f90_source_l03162}{3162}} of file \doxymbox{\hyperlink{vac__ops_8f90_source}{vac\+\_\+ops.\+f90}}.
 
 Here is the call graph for this function:
 \nopagebreak
@@ -625,7 +623,7 @@ Debug version only
 \end{DoxyNote}
 
 
-Definition at line \doxymbox{\hyperlink{vac__ops_8f90_source_l00060}{60}} of file \doxymbox{\hyperlink{vac__ops_8f90_source}{vac\+\_\+ops.\+f90}}.
+Definition at line \doxymbox{\hyperlink{vac__ops_8f90_source_l00052}{52}} of file \doxymbox{\hyperlink{vac__ops_8f90_source}{vac\+\_\+ops.\+f90}}.
 
 \Hypertarget{namespacevac__ops_a6b99f921f077f63f641d5a9c86d88eaf}\index{vac\_ops@{vac\_ops}!debug\_calc\_vac\_res@{debug\_calc\_vac\_res}}
 \index{debug\_calc\_vac\_res@{debug\_calc\_vac\_res}!vac\_ops@{vac\_ops}}
@@ -642,7 +640,7 @@ Debug version only
 \end{DoxyNote}
 
 
-Definition at line \doxymbox{\hyperlink{vac__ops_8f90_source_l00061}{61}} of file \doxymbox{\hyperlink{vac__ops_8f90_source}{vac\+\_\+ops.\+f90}}.
+Definition at line \doxymbox{\hyperlink{vac__ops_8f90_source_l00053}{53}} of file \doxymbox{\hyperlink{vac__ops_8f90_source}{vac\+\_\+ops.\+f90}}.
 
 \Hypertarget{namespacevac__ops_a1afb20e30f5f99547fc8df4ace204ee9}\index{vac\_ops@{vac\_ops}!debug\_vac\_pot\_plot@{debug\_vac\_pot\_plot}}
 \index{debug\_vac\_pot\_plot@{debug\_vac\_pot\_plot}!vac\_ops@{vac\_ops}}
@@ -659,5 +657,5 @@ Debug version only
 \end{DoxyNote}
 
 
-Definition at line \doxymbox{\hyperlink{vac__ops_8f90_source_l00062}{62}} of file \doxymbox{\hyperlink{vac__ops_8f90_source}{vac\+\_\+ops.\+f90}}.
+Definition at line \doxymbox{\hyperlink{vac__ops_8f90_source_l00054}{54}} of file \doxymbox{\hyperlink{vac__ops_8f90_source}{vac\+\_\+ops.\+f90}}.
 
