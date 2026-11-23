@@ -31,7 +31,7 @@ MathJax.Hub.Config({
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">PB3D<span id="projectnumber">&#160;[2.54]</span>
+   <div id="projectname">PB3D<span id="projectnumber">&#160;[2.55]</span>
    </div>
    <div id="projectbrief">Ideal linear high-n MHD stability in 3-D</div>
   </td>
@@ -182,7 +182,7 @@ The calculation step by step</h1>
 <li>The boundary potential of every mode is projected on the normal derivative of every mode, with the integration rule of the style. For the field-line style this rule is the trapezoidal rule along the field lines and the average over the field lines.</li>
 <li>The result is divided by \(\mu_0\), multiplied by \(2\pi\) for the toroidal integral, and replaced by its Hermitian part. This gives the response matrix \(\overline{\text{R}}\) of size <span class="tt">n_mod_X</span> \(\times\) <span class="tt">n_mod_X</span>. The exact operator is Hermitian; the discretization leaves an asymmetry of about \(10^{-5}\), which would make SLEPc reject tightly converged eigenvalues as complex.</li>
 </ol>
-<p>With \(\vec{X}_e\) the Fourier coefficients of the displacement at the edge, twice the vacuum energy is \(\vec{X}_e^\dagger\,\overline{\text{R}}\,\vec{X}_e\), and this is the term that set_bc() adds to \(\overline{\text{A}}\). POST adds the same term to the potential energy of a solution (the last column of the energy reconstruction, see <a class="el" href="page_outputs.html#output_file_E_rec" title="Energy reconstruction file">Energy reconstruction file</a>).</p>
+<p>With \(\vec{X}_e\) the Fourier coefficients of the displacement at the edge, twice the vacuum energy is \(\vec{X}_e^\dagger\,\overline{\text{R}}\,\vec{X}_e\), and this is the term that set_bc() adds to \(\overline{\text{A}}\). POST adds the same term to the potential energy of a solution (the last column of the energy reconstruction, see <a class="el" href="page_outputs.html#output_file_E_rec" title="Energy reconstruction file">Energy reconstruction file</a>). PB3D prints the term for every eigenvalue it keeps, on the screen and in the log file: below the line <span class="tt">E_pot = X*AX</span>, which gives \(\vec{X}^\dagger\,\overline{\text{A}}\,\vec{X}\) for the whole eigenvector \(\vec{X}\), it prints the plasma part and the vacuum part \(\vec{X}_e^\dagger\,\overline{\text{R}}\,\vec{X}_e\), which add up to \(\vec{X}^\dagger\,\overline{\text{A}}\,\vec{X}\).</p>
 <h1 class="doxsection"><a class="anchor" id="vacuum_field_line"></a>
 Field-line style (VMEC)</h1>
 <h2 class="doxsection"><a class="anchor" id="vacuum_field_line_grid"></a>

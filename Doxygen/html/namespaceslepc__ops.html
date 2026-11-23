@@ -31,7 +31,7 @@ MathJax.Hub.Config({
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">PB3D<span id="projectnumber">&#160;[2.54]</span>
+   <div id="projectname">PB3D<span id="projectnumber">&#160;[2.55]</span>
    </div>
    <div id="projectbrief">Ideal linear high-n MHD stability in 3-D</div>
   </td>
@@ -131,8 +131,8 @@ Functions/Subroutines</h2></td></tr>
 <tr class="memdesc:aabe2aef90f039316bf3f03e651a6e7e0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the solution vectors.  <br /></td></tr>
 <tr class="memitem:a4cbeed85f05511e8219aef693c84dc3e" id="r_a4cbeed85f05511e8219aef693c84dc3e"><td class="memItemLeft">integer function, public&#160;</td><td class="memItemRight"><a class="el" href="#a4cbeed85f05511e8219aef693c84dc3e">summarize_solution</a> (solver, max_n_ev)</td></tr>
 <tr class="memdesc:a4cbeed85f05511e8219aef693c84dc3e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Summarizes solution.  <br /></td></tr>
-<tr class="memitem:a0edf7e300f161391955a2b1c4c76d12c" id="r_a0edf7e300f161391955a2b1c4c76d12c"><td class="memItemLeft">integer function, public&#160;</td><td class="memItemRight"><a class="el" href="#a0edf7e300f161391955a2b1c4c76d12c">store_results</a> (mds, grid_sol, sol, solver, max_n_ev, a, b)</td></tr>
-<tr class="memdesc:a0edf7e300f161391955a2b1c4c76d12c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stores the results.  <br /></td></tr>
+<tr class="memitem:a04e354a69cfef46f88ef49cbe56547ab" id="r_a04e354a69cfef46f88ef49cbe56547ab"><td class="memItemLeft">integer function, public&#160;</td><td class="memItemRight"><a class="el" href="#a04e354a69cfef46f88ef49cbe56547ab">store_results</a> (mds, grid_sol, vac, sol, solver, max_n_ev, a, b)</td></tr>
+<tr class="memdesc:a04e354a69cfef46f88ef49cbe56547ab"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stores the results.  <br /></td></tr>
 <tr class="memitem:ae4204b9f599aee68ce8c259cec6ed041" id="r_ae4204b9f599aee68ce8c259cec6ed041"><td class="memItemLeft">integer function, public&#160;</td><td class="memItemRight"><a class="el" href="#ae4204b9f599aee68ce8c259cec6ed041">stop_slepc</a> (a, b, solver)</td></tr>
 <tr class="memdesc:ae4204b9f599aee68ce8c259cec6ed041"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stop PETSC and SLEPC.  <br /></td></tr>
 </table><table class="memberdecls">
@@ -561,7 +561,7 @@ Variables</h2></td></tr>
 <p>Stop PETSC and SLEPC. </p>
 <dl class="section return"><dt>Returns</dt><dd>ierr </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="SLEPC__ops_8f90_source.html#l01918">1918</a> of file <a class="el" href="SLEPC__ops_8f90_source.html">SLEPC_ops.f90</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SLEPC__ops_8f90_source.html#l01948">1948</a> of file <a class="el" href="SLEPC__ops_8f90_source.html">SLEPC_ops.f90</a>.</p>
 <div id="dynsection-14" class="dynheader closed"><span class="dynarrow"><span class="arrowhead closed"></span></span>Here is the call graph for this function:</div>
 <div id="dynsection-14-summary" class="dynsummary">
 </div>
@@ -577,8 +577,8 @@ Variables</h2></td></tr>
 
 </div>
 </div>
-<a id="a0edf7e300f161391955a2b1c4c76d12c" name="a0edf7e300f161391955a2b1c4c76d12c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0edf7e300f161391955a2b1c4c76d12c">&#9670;&#160;</a></span>store_results()</h2>
+<a id="a04e354a69cfef46f88ef49cbe56547ab" name="a04e354a69cfef46f88ef49cbe56547ab"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a04e354a69cfef46f88ef49cbe56547ab">&#9670;&#160;</a></span>store_results()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -592,6 +592,11 @@ Variables</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">type(<a class="el" href="structgrid__vars_1_1grid__type.html">grid_type</a>), intent(in)</td>          <td class="paramname"><span class="paramname"><em>grid_sol</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">type(<a class="el" href="structvac__vars_1_1vac__type.html">vac_type</a>), intent(in)</td>          <td class="paramname"><span class="paramname"><em>vac</em></span>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -622,28 +627,30 @@ Variables</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Stores the results. </p>
+<p>For every accepted eigenvalue, the potential energy \(X^* A X\) and the kinetic energy \(X^* B X\) of the eigenvector are printed. A and B include the step size and the quadrature weights of the normal integral (see <a class="el" href="#a500b46d275e7dda76ed46db7e2515b24" title="Sets up the matrices  and  in the EV problem  .">setup_mats()</a>), so these are the discretized energies themselves. With a free boundary, the potential energy is also split into its plasma part and its vacuum part \(X_\text{edge}^* R \, X_\text{edge}\), with \(R\) the vacuum response <code>res</code> of <a class="el" href="structvac__vars_1_1vac__type.html" title="vacuum type">vac_type</a>, which set_BC() adds to the edge block of A.</p>
 <dl class="section return"><dt>Returns</dt><dd>ierr </dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">mds</td><td>general modes variables </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">grid_sol</td><td>solution grid </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">vac</td><td>vacuum variables </td></tr>
     <tr><td class="paramdir">[in,out]</td><td class="paramname">sol</td><td>solution variables </td></tr>
   </table>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="SLEPC__ops_8f90_source.html#l01489">1489</a> of file <a class="el" href="SLEPC__ops_8f90_source.html">SLEPC_ops.f90</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SLEPC__ops_8f90_source.html#l01498">1498</a> of file <a class="el" href="SLEPC__ops_8f90_source.html">SLEPC_ops.f90</a>.</p>
 <div id="dynsection-16" class="dynheader closed"><span class="dynarrow"><span class="arrowhead closed"></span></span>Here is the call graph for this function:</div>
 <div id="dynsection-16-summary" class="dynsummary">
 </div>
 <div id="dynsection-16-content" class="dyncontent hidden">
-<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="namespaceslepc__ops_a0edf7e300f161391955a2b1c4c76d12c_cgraph.svg" width="936" height="494"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="namespaceslepc__ops_a04e354a69cfef46f88ef49cbe56547ab_cgraph.svg" width="936" height="494"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 <div id="dynsection-17" class="dynheader closed"><span class="dynarrow"><span class="arrowhead closed"></span></span>Here is the caller graph for this function:</div>
 <div id="dynsection-17-summary" class="dynsummary">
 </div>
 <div id="dynsection-17-content" class="dyncontent hidden">
-<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="namespaceslepc__ops_a0edf7e300f161391955a2b1c4c76d12c_icgraph.svg" width="888" height="56"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="namespaceslepc__ops_a04e354a69cfef46f88ef49cbe56547ab_icgraph.svg" width="888" height="56"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
