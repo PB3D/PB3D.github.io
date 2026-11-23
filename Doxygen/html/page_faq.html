@@ -117,14 +117,16 @@ document.addEventListener('DOMContentLoaded', codefold.init);
 </div>
 <div class="textblock"><h1 class="doxsection"><a class="anchor" id="faq_errors"></a>
 runtime errors</h1>
-<p>When PB3D or POST stops on an error, it prints the error message, the trace of the calling routines and the line <span class="tt">ERROR CODE [code]</span>.</p>
+<p>When PB3D or POST stops on an error, it prints the error message, the trace of the calling routines and the line <span class="tt">ERROR CODE [code]</span>. It then ends with an exit status that is not zero, so that a script or a batch system sees that the run failed. The exit status is the number that the shell receives when the program ends (<span class="tt">$?</span> in bash). It is the error code if that lies between 1 and 125, and 1 for every other code. After a complete run and after <span class="tt">&ndash;help</span>, the exit status is 0; after a call with too few arguments, which prints the usage message, it is 2. Under <span class="tt">mpirun</span>, the launcher returns the same status.</p>
 <a class="anchor" id="faq_errors_tab"></a>
 <table class="doxtable">
 <caption>Table 1. frequently encountered errors</caption>
 <tr>
 <th>error </th><th>solution </th></tr>
 <tr>
-<td>"Cannot read user-provided file" </td><td>The input file contains a variable that is not part of the Fortran namelist <span class="tt">inputdata_PB3D</span> or <span class="tt">inputdata_POST</span>, or a value of the wrong type. The message that follows comes from the Fortran run-time library and usually names the variable. Check the spelling against <a class="el" href="page_inputs.html" title="Input variables">Input variables</a>. An input that PB3D does not read, such as <span class="tt">norm_disc_style_sol</span>, also gives this error. </td></tr>
+<td>"Cannot open input file "[name]"" </td><td>The input file, the first argument on the command line, does not exist or cannot be read. There is no default input file: the file is needed also when it sets no variable (see <a class="el" href="page_inputs.html" title="Input variables">Input variables</a>). PB3D and POST keep only the first 120 characters of every command-line argument, so a long absolute path gives this error as well, and for the second file the error "No equilibrium file found." or "No PB3D file found."; run the program in the folder of the files and give their names relative to it. </td></tr>
+<tr>
+<td>"Cannot read user-provided file" </td><td>The input file contains a variable that is not part of the Fortran namelist <span class="tt">inputdata_PB3D</span> or <span class="tt">inputdata_POST</span>, or a value of the wrong type. The message that follows comes from the Fortran run-time library and usually names the variable. Check the spelling against <a class="el" href="page_inputs.html" title="Input variables">Input variables</a>. An input that PB3D does not read, such as <span class="tt">norm_disc_style_sol</span>, also gives this error. A file that does not contain the namelist at all gives it too, with the message "End of file". </td></tr>
 <tr>
 <td>"BC_style(1) has to be 1: the perturbation is set to zero at the inner end" or "BC_style(2) has to be 1 (fixed boundary) or 2 (free boundary with vacuum)" </td><td><code>BC_style</code> accepts only these values: <span class="tt">BC_style(1) = 1</span> deep in the plasma, and <span class="tt">BC_style(2) = 1</span> (fixed boundary) or <span class="tt">BC_style(2) = 2</span> (free boundary, the default) at the plasma edge (see <a class="el" href="page_inputs.html" title="Input variables">Input variables</a>). </td></tr>
 <tr>

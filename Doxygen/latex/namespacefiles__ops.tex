@@ -10,7 +10,7 @@ Operations related to files !
 \item 
 subroutine, public \doxymbox{\hyperlink{namespacefiles__ops_a1e219b1147f109f758d03bef89d540e8}{init\+\_\+files}} ()
 \begin{DoxyCompactList}\small\item\em Initialize the variables for the module. \end{DoxyCompactList}\item 
-integer function, public \doxymbox{\hyperlink{namespacefiles__ops_a051584112f6e4f6e60b0ef824dffbf5e}{parse\+\_\+args}} ()
+integer function, public \doxymbox{\hyperlink{namespacefiles__ops_a809ada22366815a6b3d3b618566786ae}{parse\+\_\+args}} (usage\+\_\+status)
 \begin{DoxyCompactList}\small\item\em Parses the command line arguments. \end{DoxyCompactList}\item 
 integer function, public \doxymbox{\hyperlink{namespacefiles__ops_a63a81a5a451f787025429878b2cec81b}{open\+\_\+input}} ()
 \begin{DoxyCompactList}\small\item\em Open the input files. \end{DoxyCompactList}\item 
@@ -43,7 +43,7 @@ Closes the output file.
 
 
 
-Definition at line \doxymbox{\hyperlink{files__ops_8f90_source_l00700}{700}} of file \doxymbox{\hyperlink{files__ops_8f90_source}{files\+\_\+ops.\+f90}}.
+Definition at line \doxymbox{\hyperlink{files__ops_8f90_source_l00710}{710}} of file \doxymbox{\hyperlink{files__ops_8f90_source}{files\+\_\+ops.\+f90}}.
 
 Here is the call graph for this function:
 \nopagebreak
@@ -96,19 +96,22 @@ Open the input files.
 
 \begin{DoxyItemize}
 \item input file with user options
-\item equilibrium file in
+\item for PB3D, the equilibrium file in
 \begin{DoxyItemize}
 \item Net\+CDF for VMEC
 \item plain for HELENA
 \end{DoxyItemize}
+\item for POST, the PB3D output file
 \end{DoxyItemize}
+
+Neither file has a default: the program stops with an error when one of them cannot be opened.
 
 \begin{DoxyReturn}{Returns}
 ierr 
 \end{DoxyReturn}
 
 
-Definition at line \doxymbox{\hyperlink{files__ops_8f90_source_l00175}{175}} of file \doxymbox{\hyperlink{files__ops_8f90_source}{files\+\_\+ops.\+f90}}.
+Definition at line \doxymbox{\hyperlink{files__ops_8f90_source_l00193}{193}} of file \doxymbox{\hyperlink{files__ops_8f90_source}{files\+\_\+ops.\+f90}}.
 
 Here is the call graph for this function:
 \nopagebreak
@@ -160,7 +163,7 @@ ierr
 \end{DoxyReturn}
 
 
-Definition at line \doxymbox{\hyperlink{files__ops_8f90_source_l00526}{526}} of file \doxymbox{\hyperlink{files__ops_8f90_source}{files\+\_\+ops.\+f90}}.
+Definition at line \doxymbox{\hyperlink{files__ops_8f90_source_l00536}{536}} of file \doxymbox{\hyperlink{files__ops_8f90_source}{files\+\_\+ops.\+f90}}.
 
 Here is the call graph for this function:
 \nopagebreak
@@ -178,11 +181,11 @@ Here is the caller graph for this function:
 \includegraphics[width=350pt]{namespacefiles__ops_ad681a9e8083a6f664cf0f9d17ebe279c_icgraph}
 \end{center}
 \end{figure}
-\Hypertarget{namespacefiles__ops_a051584112f6e4f6e60b0ef824dffbf5e}\index{files\_ops@{files\_ops}!parse\_args@{parse\_args}}
+\Hypertarget{namespacefiles__ops_a809ada22366815a6b3d3b618566786ae}\index{files\_ops@{files\_ops}!parse\_args@{parse\_args}}
 \index{parse\_args@{parse\_args}!files\_ops@{files\_ops}}
 \doxysubsubsection{\texorpdfstring{parse\_args()}{parse\_args()}}
-{\footnotesize\ttfamily \label{namespacefiles__ops_a051584112f6e4f6e60b0ef824dffbf5e} 
-integer function, public files\+\_\+ops::\+parse\+\_\+args}
+{\footnotesize\ttfamily \label{namespacefiles__ops_a809ada22366815a6b3d3b618566786ae} 
+integer function, public files\+\_\+ops::\+parse\+\_\+args (\begin{DoxyParamCaption}\item[{integer, intent(out)}]{usage\+\_\+status}{}\end{DoxyParamCaption})}
 
 
 
@@ -191,19 +194,28 @@ Parses the command line arguments.
 \begin{DoxyNote}{Note}
 The input arguments are saved in {\ttfamily command\+\_\+arg} 
 \end{DoxyNote}
+After the help message (first argument {\ttfamily -\/h} or {\ttfamily -\/-\/help}) and after the usage message (fewer arguments than needed), {\ttfamily usage\+\_\+status} is the exit status with which all processes stop (see stop\+\_\+usage()). Otherwise it is -\/1 and the program goes on.
+
+The exit status is 0 after the help message, which the user asked for, and 2 after the usage message. A call with too few arguments is a mistake, for example a script that passes an empty variable in place of a file name, and the script has to see that the run did not succeed. 2 is the exit status that Python\textquotesingle{}s argparse and the GNU tools use for a wrong call.
+
 \begin{DoxyReturn}{Returns}
 ierr 
 \end{DoxyReturn}
 
+\begin{DoxyParams}[1]{Parameters}
+\doxymbox{\texttt{out}}  & {\em usage\+\_\+status} & exit status after usage or help, -\/1 to go on \\
+\hline
+\end{DoxyParams}
 
-Definition at line \doxymbox{\hyperlink{files__ops_8f90_source_l00076}{76}} of file \doxymbox{\hyperlink{files__ops_8f90_source}{files\+\_\+ops.\+f90}}.
+
+Definition at line \doxymbox{\hyperlink{files__ops_8f90_source_l00088}{88}} of file \doxymbox{\hyperlink{files__ops_8f90_source}{files\+\_\+ops.\+f90}}.
 
 Here is the call graph for this function:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=350pt]{namespacefiles__ops_a051584112f6e4f6e60b0ef824dffbf5e_cgraph}
+\includegraphics[width=350pt]{namespacefiles__ops_a809ada22366815a6b3d3b618566786ae_cgraph}
 \end{center}
 \end{figure}
 Here is the caller graph for this function:
@@ -211,7 +223,7 @@ Here is the caller graph for this function:
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=346pt]{namespacefiles__ops_a051584112f6e4f6e60b0ef824dffbf5e_icgraph}
+\includegraphics[width=346pt]{namespacefiles__ops_a809ada22366815a6b3d3b618566786ae_icgraph}
 \end{center}
 \end{figure}
 

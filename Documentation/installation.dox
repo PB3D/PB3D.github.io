@@ -256,7 +256,7 @@
         <td> \c unit </td><td> a Fortran compiler (and LAPACK for some suites) </td><td> unit tests of the core library </td>
     </tr>
     <tr>
-        <td> \c smoke </td><td> the executables </td><td> \c PB3D and \c POST print their usage message </td>
+        <td> \c smoke </td><td> the executables </td><td> \c PB3D and \c POST print their usage message, with exit status 2, and their help message, with exit status 0, also under <tt>mpirun -n 2</tt>; they stop with a message on an input file that does not exist </td>
     </tr>
     <tr>
         <td> \c fullstack </td><td> the executables and all dependencies </td><td> tests of the modules against analytical and brute-force references, mainly of the vacuum; some also run under <tt>mpirun -n 2</tt> and <tt>-n 4</tt> </td>

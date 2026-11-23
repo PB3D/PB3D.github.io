@@ -337,7 +337,7 @@ Tests</h1>
 <tr>
 <td><code>unit</code> </td><td>a Fortran compiler (and LAPACK for some suites) </td><td>unit tests of the core library </td></tr>
 <tr>
-<td><code>smoke</code> </td><td>the executables </td><td><code>PB3D</code> and <code>POST</code> print their usage message </td></tr>
+<td><code>smoke</code> </td><td>the executables </td><td><code>PB3D</code> and <code>POST</code> print their usage message, with exit status 2, and their help message, with exit status 0, also under <span class="tt">mpirun -n 2</span>; they stop with a message on an input file that does not exist </td></tr>
 <tr>
 <td><code>fullstack</code> </td><td>the executables and all dependencies </td><td>tests of the modules against analytical and brute-force references, mainly of the vacuum; some also run under <span class="tt">mpirun -n 2</span> and <span class="tt">-n 4</span> </td></tr>
 <tr>
