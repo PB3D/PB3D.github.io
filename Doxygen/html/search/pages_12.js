@@ -10,8 +10,7 @@ var searchData=
   ['step_7',['The calculation step by step',['../page_vacuum.html#vacuum_flow',1,'']]],
   ['step_20by_20step_8',['The calculation step by step',['../page_vacuum.html#vacuum_flow',1,'']]],
   ['structure_9',['General code structure',['../page_overview.html',1,'']]],
-  ['strumpack_20dense_20optional_10',['STRUMPACK-Dense (optional)',['../page_installation.html#installation_strumpack',1,'']]],
-  ['style_20helena_11',['Axisymmetric style (HELENA)',['../page_vacuum.html#vacuum_axisym',1,'']]],
-  ['style_20vmec_12',['Field-line style (VMEC)',['../page_vacuum.html#vacuum_field_line',1,'']]],
-  ['summary_20file_13',['Eigenvalue summary file',['../page_outputs.html#output_file_EV',1,'']]]
+  ['style_20helena_10',['Axisymmetric style (HELENA)',['../page_vacuum.html#vacuum_axisym',1,'']]],
+  ['style_20vmec_11',['Field-line style (VMEC)',['../page_vacuum.html#vacuum_field_line',1,'']]],
+  ['summary_20file_12',['Eigenvalue summary file',['../page_outputs.html#output_file_EV',1,'']]]
 ];

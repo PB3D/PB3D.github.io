@@ -31,7 +31,7 @@ MathJax.Hub.Config({
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">PB3D<span id="projectnumber">&#160;[2.52]</span>
+   <div id="projectname">PB3D<span id="projectnumber">&#160;[2.53]</span>
    </div>
    <div id="projectbrief">Ideal linear high-n MHD stability in 3-D</div>
   </td>
@@ -131,9 +131,6 @@ document.addEventListener('DOMContentLoaded', codefold.init);
       <li class="level2">
         <a href="#installation_libstell">LIBSTELL </a>
       </li>
-      <li class="level2">
-        <a href="#installation_strumpack">STRUMPACK-Dense (optional) </a>
-      </li>
     </ul>
   </li>
   <li class="level1">
@@ -174,7 +171,7 @@ Introduction</h1>
 </ul>
 </li>
 <li><a href="http://www.netlib.org/lapack/">BLAS / LAPACK</a> and <a href="http://www.netlib.org/scalapack/">ScaLAPACK</a><ul>
-<li>for dense linear algebra, in particular the boundary-element system of the vacuum</li>
+<li>for dense linear algebra, in particular the boundary-element system of the vacuum, which PB3D solves with the LU factorization of ScaLAPACK (<code>pdgetrf</code> and <code>pdgetrs</code>)</li>
 </ul>
 </li>
 <li><a href="https://github.com/PrincetonUniversity/STELLOPT">LIBSTELL</a>, part of the STELLOPT suite, which contains VMEC<ul>
@@ -183,10 +180,6 @@ Introduction</h1>
 </li>
 <li><a href="https://github.com/ilonster/pspline">PSPLINE</a><ul>
 <li>Princeton Spline and Hermite Cubic Interpolation Routines</li>
-</ul>
-</li>
-<li>STRUMPACK-Dense 1.1.1 (optional)<ul>
-<li>for a compressed solver of the boundary-element system of the vacuum <a class="el" href="citelist.html#CITEREF_ambikasaran2013">[1]</a>; without it, PB3D solves that system with the LU factorization of ScaLAPACK</li>
 </ul>
 </li>
 </ul>
@@ -211,9 +204,9 @@ mkdir -p $DEPS
 </pre><h1 class="doxsection"><a class="anchor" id="installation_requirements"></a>
 Requirements</h1>
 <p>The build needs the following tools:</p><ul>
-<li>A Fortran compiler, and a C and a C++ compiler. The builds that are tested use GNU Fortran 13, 14.2 and 16. <span class="tt">CMakeLists.txt</span> also contains flags for the Intel Fortran compiler.</li>
+<li>A Fortran compiler and a C compiler. The builds that are tested use GNU Fortran 13, 14.2 and 16. <span class="tt">CMakeLists.txt</span> also contains flags for the Intel Fortran compiler.</li>
 <li>CMake 3.18 or later. With PETSc 3.25, use CMake 4 (see <a class="el" href="#installation_problems" title="Known problems">Known problems</a>).</li>
-<li>An MPI library with Fortran, C and C++ bindings, such as OpenMPI.</li>
+<li>An MPI library with Fortran and C bindings, such as OpenMPI.</li>
 <li>pkg-config. CMake finds PETSc, SLEPc and NetCDF-Fortran through pkg-config, and ScaLAPACK through pkg-config or by the library name.</li>
 <li>xz, to decompress the equilibrium files of the regression tests.</li>
 <li>Optionally Python 3 with h5py and scipy, for the checks of the regression tests that read the HDF5 output.</li>
@@ -291,12 +284,6 @@ STELLOPT_SRC=$DEPS/stellopt NETCDF_FORTRAN_DIR=$NETCDF_FORTRAN_DIR \
     $PB3D_SRC/Libraries/build_libstell_min.sh $DEPS/libstell-min
 export LIBSTELL_DIR=$DEPS/libstell-min
 </pre><p> The last argument of the script is the installation directory. It should always be given, because the default of the script assumes that the code lies in <span class="tt">$HOME/Code/PB3D</span>. Both scripts put <span class="tt">/opt/homebrew/bin</span> at the front of <code>PATH</code>, so on macOS they use the compilers of Homebrew. A full LIBSTELL, built with the build system of STELLOPT, works as well. CMake looks under <code>LIBSTELL_DIR</code> (or <code>STELLOPT_DIR</code>) for the library <code>libstell</code> and for the module file <code>vsvd0.mod</code> or <code>vmec_input.mod</code>.</p>
-<h2 class="doxsection"><a class="anchor" id="installation_strumpack"></a>
-STRUMPACK-Dense (optional)</h2>
-<p>Without STRUMPACK, PB3D solves the boundary-element system of the vacuum with the LU factorization of ScaLAPACK (<code>pdgetrf</code> and <code>pdgetrs</code>). The continuous integration and the cluster builds use this solver. PB3D can use the old STRUMPACK-Dense 1.1.1 instead, through its Fortran module <code>strumpackdensepackage</code>, which the newer STRUMPACK 7 does not have. The source, <span class="tt">STRUMPACK-Dense-1.1.1.tar.gz</span>, comes from <span class="tt">portal.nersc.gov/project/sparse/strumpack</span>, which is not always reachable. In the directory <span class="tt">src</span> of the unpacked package, the two sources are compiled into a library: </p><pre class="fragment">mpic++ -O3 -std=gnu++11 -I. -c StrumpackDensePackage_C.cpp -o StrumpackDensePackage_C.o
-mpif90 -O3 -c StrumpackDensePackage.F90 -o StrumpackDensePackage.o
-ar -rcs libstrumpack.a StrumpackDensePackage_C.o StrumpackDensePackage.o
-</pre><p> The MPI C++ compiler must use the GNU C++ compiler (for OpenMPI, with <span class="tt">OMPI_CXX=g++</span>), because PB3D links with <code>-lstdc++</code>. CMake looks for <span class="tt">libstrumpack.a</span> in the subdirectory <span class="tt">lib</span> or <span class="tt">src</span> of <code>STRUMPACK_DIR</code>, and for <span class="tt">strumpackdensepackage.mod</span> in the subdirectory <span class="tt">inc</span> or <span class="tt">examples</span>. Links in <span class="tt">lib</span> and <span class="tt">inc</span> of the package directory to the two files in <span class="tt">src</span> satisfy this, and <code>STRUMPACK_DIR</code> is then the package directory.</p>
 <h1 class="doxsection"><a class="anchor" id="installation_compilation"></a>
 Compilation with CMake</h1>
 <p>When all dependencies are available, PB3D is configured and compiled in a separate build directory: </p><pre class="fragment">cmake -S $PB3D_SRC -B $PB3D_SRC/build \
@@ -304,7 +291,7 @@ Compilation with CMake</h1>
     -DPSPLINE_DIR=$PSPLINE_DIR \
     -DLIBSTELL_DIR=$LIBSTELL_DIR
 cmake --build $PB3D_SRC/build -j
-</pre><p> With the Ubuntu packages, the configuration also needs <span class="tt">-DHDF5_ROOT=/usr/lib/x86_64-linux-gnu/hdf5/openmpi</span>. At the end of the configuration, CMake prints a summary of the dependencies it found, including whether it found STRUMPACK. The executables <code>PB3D</code> and <code>POST</code> are created in the build directory. <span class="tt">cmake &ndash;install $PB3D_SRC/build &ndash;prefix DIR</span> copies them into <span class="tt">DIR/bin</span>.</p>
+</pre><p> With the Ubuntu packages, the configuration also needs <span class="tt">-DHDF5_ROOT=/usr/lib/x86_64-linux-gnu/hdf5/openmpi</span>. At the end of the configuration, CMake prints a summary of the dependencies it found. The executables <code>PB3D</code> and <code>POST</code> are created in the build directory. <span class="tt">cmake &ndash;install $PB3D_SRC/build &ndash;prefix DIR</span> copies them into <span class="tt">DIR/bin</span>.</p>
 <p>A debug build, which has the debug code of PB3D and the runtime checks of the compiler, is made in a second build directory: </p><pre class="fragment">cmake -S $PB3D_SRC -B $PB3D_SRC/build-debug \
     -DCMAKE_BUILD_TYPE=Debug -DPB3D_ENABLE_DEBUG=ON \
     -DPSPLINE_DIR=$PSPLINE_DIR -DLIBSTELL_DIR=$LIBSTELL_DIR
@@ -329,8 +316,6 @@ cmake --build $PB3D_SRC/build-debug -j
 <td><code>PSPLINE_DIR</code> </td><td>none </td><td>installation directory of PSPLINE; <code>PSPLINE_ROOT</code> and the environment variables <code>PSPLINE_DIR</code> and <code>PSPLINE_ROOT</code> work as well </td></tr>
 <tr>
 <td><code>LIBSTELL_DIR</code> </td><td>none </td><td>installation directory of LIBSTELL; <code>LIBSTELL_ROOT</code>, <code>STELLOPT_DIR</code> and the environment variables of the same names work as well </td></tr>
-<tr>
-<td><code>STRUMPACK_DIR</code> </td><td><span class="tt">$HOME/Code/STRUMPACK-Dense-1.1.1</span> </td><td>directory of a STRUMPACK-Dense 1.1.1 build; if CMake finds no library there, PB3D uses ScaLAPACK for the vacuum </td></tr>
 <tr>
 <td><code>HDF5_ROOT</code> </td><td>none </td><td>standard CMake variable that selects the HDF5 installation; PB3D needs the parallel HDF5 </td></tr>
 <tr>
@@ -361,7 +346,7 @@ Tests</h1>
 <p>The tests that run under <code>mpirun</code> carry the label <code>mpi</code> as well, and <span class="tt">ctest -LE mpi</span> leaves them out. The unit tests can also be built without any of the external libraries: </p><pre class="fragment">cmake -S $PB3D_SRC -B $PB3D_SRC/build-tests -DPB3D_BUILD_EXECUTABLES=OFF
 cmake --build $PB3D_SRC/build-tests -j
 ctest --test-dir $PB3D_SRC/build-tests --output-on-failure
-</pre><p> CMake still looks for a C and a C++ compiler in this case, because the project declares these languages. The file <span class="tt">Documentation/testing.md</span> of the code describes every test and the recorded eigenvalues.</p>
+</pre><p> CMake still looks for a C compiler in this case, because the project declares that language. The file <span class="tt">Documentation/testing.md</span> of the code describes every test and the recorded eigenvalues.</p>
 <h1 class="doxsection"><a class="anchor" id="installation_problems"></a>
 Known problems</h1>
 <ul>

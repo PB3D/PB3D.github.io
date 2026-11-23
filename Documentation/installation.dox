@@ -17,13 +17,11 @@
         - <a href="https://www.unidata.ucar.edu/software/netcdf/">NetCDF-Fortran</a>
             - to read the output of VMEC
         - <a href="http://www.netlib.org/lapack/">BLAS / LAPACK</a> and <a href="http://www.netlib.org/scalapack/">ScaLAPACK</a>
-            - for dense linear algebra, in particular the boundary-element system of the vacuum
+            - for dense linear algebra, in particular the boundary-element system of the vacuum, which PB3D solves with the LU factorization of ScaLAPACK (\c pdgetrf and \c pdgetrs)
         - <a href="https://github.com/PrincetonUniversity/STELLOPT">LIBSTELL</a>, part of the STELLOPT suite, which contains VMEC
             - to read the output of VMEC (PB3D uses only the module \c read_wout_mod)
         - <a href="https://github.com/ilonster/pspline">PSPLINE</a>
             - Princeton Spline and Hermite Cubic Interpolation Routines
-        - STRUMPACK-Dense 1.1.1 (optional)
-            - for a compressed solver of the boundary-element system of the vacuum \cite Ambikasaran2013; without it, PB3D solves that system with the LU factorization of ScaLAPACK
 
     Furthermore, PB3D comes bundled with some other, smaller libraries, which CMake compiles with the code:
         - <a href="http://www.netlib.org/fftpack/">fftpack</a> (<tt>Libraries/dfft.f</tt>)
@@ -48,9 +46,9 @@
     \section installation_requirements Requirements
 
     The build needs the following tools:
-        - A Fortran compiler, and a C and a C++ compiler. The builds that are tested use GNU Fortran 13, 14.2 and 16. <tt>CMakeLists.txt</tt> also contains flags for the Intel Fortran compiler.
+        - A Fortran compiler and a C compiler. The builds that are tested use GNU Fortran 13, 14.2 and 16. <tt>CMakeLists.txt</tt> also contains flags for the Intel Fortran compiler.
         - CMake 3.18 or later. With PETSc 3.25, use CMake 4 (see \ref installation_problems).
-        - An MPI library with Fortran, C and C++ bindings, such as OpenMPI.
+        - An MPI library with Fortran and C bindings, such as OpenMPI.
         - pkg-config. CMake finds PETSc, SLEPc and NetCDF-Fortran through pkg-config, and ScaLAPACK through pkg-config or by the library name.
         - xz, to decompress the equilibrium files of the regression tests.
         - Optionally Python 3 with h5py and scipy, for the checks of the regression tests that read the HDF5 output.
@@ -176,22 +174,6 @@
     Both scripts put <tt>/opt/homebrew/bin</tt> at the front of \c PATH, so on macOS they use the compilers of Homebrew.
     A full LIBSTELL, built with the build system of STELLOPT, works as well. CMake looks under \c LIBSTELL_DIR (or \c STELLOPT_DIR) for the library \c libstell and for the module file \c vsvd0.mod or \c vmec_input.mod.
 
-    \subsection installation_strumpack STRUMPACK-Dense (optional)
-
-    Without STRUMPACK, PB3D solves the boundary-element system of the vacuum with the LU factorization of ScaLAPACK (\c pdgetrf and \c pdgetrs).
-    The continuous integration and the cluster builds use this solver.
-    PB3D can use the old STRUMPACK-Dense 1.1.1 instead, through its Fortran module \c strumpackdensepackage, which the newer STRUMPACK 7 does not have.
-    The source, <tt>STRUMPACK-Dense-1.1.1.tar.gz</tt>, comes from <tt>portal.nersc.gov/project/sparse/strumpack</tt>, which is not always reachable.
-    In the directory <tt>src</tt> of the unpacked package, the two sources are compiled into a library:
-    \verbatim
-    mpic++ -O3 -std=gnu++11 -I. -c StrumpackDensePackage_C.cpp -o StrumpackDensePackage_C.o
-    mpif90 -O3 -c StrumpackDensePackage.F90 -o StrumpackDensePackage.o
-    ar -rcs libstrumpack.a StrumpackDensePackage_C.o StrumpackDensePackage.o
-    \endverbatim
-    The MPI C++ compiler must use the GNU C++ compiler (for OpenMPI, with <tt>OMPI_CXX=g++</tt>), because PB3D links with \c -lstdc++.
-    CMake looks for <tt>libstrumpack.a</tt> in the subdirectory <tt>lib</tt> or <tt>src</tt> of \c STRUMPACK_DIR, and for <tt>strumpackdensepackage.mod</tt> in the subdirectory <tt>inc</tt> or <tt>examples</tt>.
-    Links in <tt>lib</tt> and <tt>inc</tt> of the package directory to the two files in <tt>src</tt> satisfy this, and \c STRUMPACK_DIR is then the package directory.
-
     \section installation_compilation Compilation with CMake
 
     When all dependencies are available, PB3D is configured and compiled in a separate build directory:
@@ -203,7 +185,7 @@
     cmake --build $PB3D_SRC/build -j
     \endverbatim
     With the Ubuntu packages, the configuration also needs <tt>-DHDF5_ROOT=/usr/lib/x86_64-linux-gnu/hdf5/openmpi</tt>.
-    At the end of the configuration, CMake prints a summary of the dependencies it found, including whether it found STRUMPACK.
+    At the end of the configuration, CMake prints a summary of the dependencies it found.
     The executables \c PB3D and \c POST are created in the build directory.
     <tt>cmake --install $PB3D_SRC/build --prefix DIR</tt> copies them into <tt>DIR/bin</tt>.
 
@@ -242,9 +224,6 @@
     </tr>
     <tr>
         <td> \c LIBSTELL_DIR </td><td> none </td><td> installation directory of LIBSTELL; \c LIBSTELL_ROOT, \c STELLOPT_DIR and the environment variables of the same names work as well </td>
-    </tr>
-    <tr>
-        <td> \c STRUMPACK_DIR </td><td> <tt>$HOME/Code/STRUMPACK-Dense-1.1.1</tt> </td><td> directory of a STRUMPACK-Dense 1.1.1 build; if CMake finds no library there, PB3D uses ScaLAPACK for the vacuum </td>
     </tr>
     <tr>
         <td> \c HDF5_ROOT </td><td> none </td><td> standard CMake variable that selects the HDF5 installation; PB3D needs the parallel HDF5 </td>
@@ -294,7 +273,7 @@
     cmake --build $PB3D_SRC/build-tests -j
     ctest --test-dir $PB3D_SRC/build-tests --output-on-failure
     \endverbatim
-    CMake still looks for a C and a C++ compiler in this case, because the project declares these languages.
+    CMake still looks for a C compiler in this case, because the project declares that language.
     The file <tt>Documentation/testing.md</tt> of the code describes every test and the recorded eigenvalues.
 
     \section installation_problems Known problems

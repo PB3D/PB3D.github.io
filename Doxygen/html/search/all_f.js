@@ -5,7 +5,7 @@ var searchData=
   ['open_5finput_2',['open_input',['../namespacefiles__ops.html#a63a81a5a451f787025429878b2cec81b',1,'files_ops']]],
   ['open_5foutput_3',['open_output',['../namespacefiles__ops.html#ad681a9e8083a6f664cf0f9d17ebe279c',1,'files_ops']]],
   ['opt_5fargs_4',['opt_args',['../namespacefiles__ops.html#a0666bcbf3aa6a9969e6dc563a40e7152',1,'files_ops']]],
-  ['optional_5',['optional',['../page_tutorial.html#tutorial_test_eq',1,'Checking the equilibrium (optional)'],['../page_installation.html#installation_strumpack',1,'STRUMPACK-Dense (optional)']]],
+  ['optional_5',['Checking the equilibrium (optional)',['../page_tutorial.html#tutorial_test_eq',1,'']]],
   ['order_5fper_5ffun_6',['order_per_fun',['../interfacenum__utilities_1_1order__per__fun.html',1,'num_utilities']]],
   ['order_5fper_5ffun_5f1_7',['order_per_fun_1',['../interfacenum__utilities_1_1order__per__fun.html#a4c471614ea10f5d51620e4f5d6438263',1,'num_utilities::order_per_fun']]],
   ['order_5fper_5ffun_5f2_8',['order_per_fun_2',['../interfacenum__utilities_1_1order__per__fun.html#af2fcf930b3460b3f261ce37ae867bcbf',1,'num_utilities::order_per_fun']]],

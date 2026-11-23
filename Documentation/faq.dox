@@ -66,9 +66,6 @@
         <td><tt>cmake --build</tt> does not start compiling</td> <td> With CMake 3.31 and the Fortran headers of PETSc 3.25, the dependency scan of CMake loops on <tt>petscmath.h</tt> and <tt>petscsys.h</tt>, which include each other, for a long time and with a large amount of memory. CMake 4.3 and 4.4 scan the source tree without this problem. </td>
     </tr>
     <tr>
-        <td>CMake prints "STRUMPACK-Dense not found"</td> <td> This is information, not an error. Without STRUMPACK-Dense, the vacuum module solves its boundary-element system with ScaLAPACK (<tt>pdgesv</tt>). Set \c STRUMPACK_DIR to a STRUMPACK-Dense 1.1.1 build to use STRUMPACK instead. </td>
-    </tr>
-    <tr>
         <td>A Debug build with gfortran 14 has no bounds checking</td> <td> gfortran 14.2 and 14.3 miscompile the bounds check of some array subscripts in PB3D. For gfortran 14, CMake therefore builds the Debug configuration with <tt>-fcheck=all,no-bounds</tt> instead of <tt>-fcheck=all</tt>, and prints a message about it. Use another gfortran version to build with bounds checking. </td>
     </tr>
     <tr>

@@ -80,12 +80,11 @@ var searchData=
   ['strh2l_77',['strh2l',['../namespacestr__utilities.html#a219964a283968cc6a968db0197d2187e',1,'str_utilities']]],
   ['strl2h_78',['strl2h',['../namespacestr__utilities.html#a7e2e441d509c12045a3373819040a806',1,'str_utilities']]],
   ['structure_79',['General code structure',['../page_overview.html',1,'']]],
-  ['strumpack_20dense_20optional_80',['STRUMPACK-Dense (optional)',['../page_installation.html#installation_strumpack',1,'']]],
-  ['style_81',['style',['../structvac__vars_1_1vac__type.html#afbd856ce1a362b252a9d8195b83546cd',1,'vac_vars::vac_type']]],
-  ['style_20helena_82',['Axisymmetric style (HELENA)',['../page_vacuum.html#vacuum_axisym',1,'']]],
-  ['style_20vmec_83',['Field-line style (VMEC)',['../page_vacuum.html#vacuum_field_line',1,'']]],
-  ['sudden_5fstop_84',['sudden_stop',['../namespacempi__ops.html#a40e8610357a9a5b075fef9dab1c3f24f',1,'mpi_ops']]],
-  ['summarize_5fsolution_85',['summarize_solution',['../namespaceslepc__ops.html#a4cbeed85f05511e8219aef693c84dc3e',1,'slepc_ops']]],
-  ['summary_20file_86',['Eigenvalue summary file',['../page_outputs.html#output_file_EV',1,'']]],
-  ['swap_5fangles_87',['swap_angles',['../namespacenum__vars.html#adaf8e128a1b232b8231305be41a55bdc',1,'num_vars']]]
+  ['style_80',['style',['../structvac__vars_1_1vac__type.html#afbd856ce1a362b252a9d8195b83546cd',1,'vac_vars::vac_type']]],
+  ['style_20helena_81',['Axisymmetric style (HELENA)',['../page_vacuum.html#vacuum_axisym',1,'']]],
+  ['style_20vmec_82',['Field-line style (VMEC)',['../page_vacuum.html#vacuum_field_line',1,'']]],
+  ['sudden_5fstop_83',['sudden_stop',['../namespacempi__ops.html#a40e8610357a9a5b075fef9dab1c3f24f',1,'mpi_ops']]],
+  ['summarize_5fsolution_84',['summarize_solution',['../namespaceslepc__ops.html#a4cbeed85f05511e8219aef693c84dc3e',1,'slepc_ops']]],
+  ['summary_20file_85',['Eigenvalue summary file',['../page_outputs.html#output_file_EV',1,'']]],
+  ['swap_5fangles_86',['swap_angles',['../namespacenum__vars.html#adaf8e128a1b232b8231305be41a55bdc',1,'num_vars']]]
 ];

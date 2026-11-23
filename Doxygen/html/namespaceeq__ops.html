@@ -31,7 +31,7 @@ MathJax.Hub.Config({
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">PB3D<span id="projectnumber">&#160;[2.52]</span>
+   <div id="projectname">PB3D<span id="projectnumber">&#160;[2.53]</span>
    </div>
    <div id="projectbrief">Ideal linear high-n MHD stability in 3-D</div>
   </td>
@@ -304,7 +304,7 @@ Variables</h2></td></tr>
 VMEC</h1>
 <h2 class="doxsection"><a class="anchor" id="autotoc_md1"></a>
 The shear</h2>
-<p>The local shear \(S\) is calculated using equation 3.22 from <a class="el" href="citelist.html#CITEREF_weyens3d">[17]</a> :</p>
+<p>The local shear \(S\) is calculated using equation 3.22 from <a class="el" href="citelist.html#CITEREF_weyens3d">[15]</a> :</p>
 <p>\(S = - \frac{1}{\mathcal{J}} \frac{\partial}{\partial \theta}
          \left(\frac{ h^{\psi\alpha}}{ h^{\psi \psi}}\right)\)</p>
 <p>which doesn't pose any particular problems as there are only angular derivatives.</p>
@@ -353,7 +353,7 @@ The curvature</h2>
 <p>An advantage of using this formulation is that no normal derivatives are needed, so that nothing has to implicitely cancel out.</p>
 <h2 class="doxsection"><a class="anchor" id="autotoc_md3"></a>
 The parallel current</h2>
-<p>The parallel current is calculated from the shear with the help of equation 3.29 of <a class="el" href="citelist.html#CITEREF_weyens3d">[17]</a> :</p>
+<p>The parallel current is calculated from the shear with the help of equation 3.29 of <a class="el" href="citelist.html#CITEREF_weyens3d">[15]</a> :</p>
 <p>\(\mu_0 \sigma = -\frac{1}{B_\theta} \left[
          2 \frac{\nabla \psi \times \vec{B}}{\left|\nabla \psi\right|^2} \cdot 
          \frac{\partial \left(\nabla \psi\right)}{\partial \theta} +
@@ -377,10 +377,10 @@ The parallel current</h2>
              - g_{\theta\theta} \frac{\partial \vec{e}_\theta}{\partial \alpha} \right]
 \) ,</p>
 <p>which is given by a formula similar to the one used above for the geodesical curvature.</p>
-<p>In debug mode, it can be checked whether the current is indeed divergence-free, with the help of equation 3.33 of <a class="el" href="citelist.html#CITEREF_weyens3d">[17]</a>.</p>
+<p>In debug mode, it can be checked whether the current is indeed divergence-free, with the help of equation 3.33 of <a class="el" href="citelist.html#CITEREF_weyens3d">[15]</a>.</p>
 <p>\( -2 p&#39; \int_{\theta_0}^\theta \mathcal{J} \kappa_g \text{d}{\theta} = 
              \sigma\left(\theta\right) - \sigma_0\)</p>
-<p>and whether a direct, naive implementation of the parallel current from equation 3.26 of <a class="el" href="citelist.html#CITEREF_weyens3d">[17]</a> agrees with the more accurate results used here:</p>
+<p>and whether a direct, naive implementation of the parallel current from equation 3.26 of <a class="el" href="citelist.html#CITEREF_weyens3d">[15]</a> agrees with the more accurate results used here:</p>
 <p>\(\mu_0 \sigma = \frac{\partial B_\psi}{\partial \alpha} - 
              \frac{\partial B_\alpha}{\partial \psi} -
              \mu_0 p&#39; \mathcal{J} \frac{B_\alpha}{B_\theta}\) .</p>
@@ -394,8 +394,8 @@ The parallel current</h2>
 <p>which can be used like that.</p>
 <h2 class="doxsection"><a class="anchor" id="autotoc_md6"></a>
 The shear</h2>
-<p>The calculate the local shear \(S\) is looks like it is best to use equation 3.22 from <a class="el" href="citelist.html#CITEREF_weyens3d">[17]</a> , just as in the VMEC case:</p>
-<p>As a test, however, equation 3.29 of <a class="el" href="citelist.html#CITEREF_weyens3d">[17]</a> can be used in stead:</p>
+<p>The calculate the local shear \(S\) is looks like it is best to use equation 3.22 from <a class="el" href="citelist.html#CITEREF_weyens3d">[15]</a> , just as in the VMEC case:</p>
+<p>As a test, however, equation 3.29 of <a class="el" href="citelist.html#CITEREF_weyens3d">[15]</a> can be used in stead:</p>
 <p>\(\mathcal{J}\left|\nabla \psi\right|^2 S + \mu_0 \mathcal{J}B^2 \sigma
         = - 2 \frac{F}{R} \left( \frac{Z_\theta}{R} +
         \frac{Z_\theta R_{\theta\theta} - R_\theta Z_{\theta\theta}}{R_\theta^2 + Z_\theta^2} \right)\).</p>

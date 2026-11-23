@@ -66,7 +66,7 @@
         -# If \c check_vac is set and PB3D was built with the CMake option \c PB3D_ENABLE_DEBUG, check_vac_exact() tests the operators with potentials whose boundary values and normal derivatives are known exactly (see \ref output_file_check_vac).
         -# For every Fourier mode of the perturbation, the normal derivative of the vacuum potential at the boundary follows from the displacement at the edge.
         The real and imaginary parts are stored as separate columns, so that the solve works with real numbers.
-        -# solve_Phi_BEM() solves \f$\overline{\text{H}}\,\overline{\Phi} = \overline{\text{G}}\,\overline{\Phi'}\f$ for the boundary potential \f$\overline{\Phi}\f$ of every mode, with STRUMPACK when PB3D was built with it, and with ScaLAPACK LU otherwise.
+        -# solve_Phi_BEM() solves \f$\overline{\text{H}}\,\overline{\Phi} = \overline{\text{G}}\,\overline{\Phi'}\f$ for the boundary potential \f$\overline{\Phi}\f$ of every mode, with the LU factorization of ScaLAPACK.
         -# The boundary potential of every mode is projected on the normal derivative of every mode, with the integration rule of the style.
         For the field-line style this rule is the trapezoidal rule along the field lines and the average over the field lines.
         -# The result is divided by \f$\mu_0\f$, multiplied by \f$2\pi\f$ for the toroidal integral, and replaced by its Hermitian part.

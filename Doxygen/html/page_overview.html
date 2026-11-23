@@ -31,7 +31,7 @@ MathJax.Hub.Config({
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">PB3D<span id="projectnumber">&#160;[2.52]</span>
+   <div id="projectname">PB3D<span id="projectnumber">&#160;[2.53]</span>
    </div>
    <div id="projectbrief">Ideal linear high-n MHD stability in 3-D</div>
   </td>
@@ -129,10 +129,10 @@ document.addEventListener('DOMContentLoaded', codefold.init);
   </li>
 </ul>
 </div>
-<div class="textblock"><p>This page describes the general code structure of PB3D, as well as its accompanying post-process program POST. It is more complete than the documentation that can be found in <a class="el" href="citelist.html#CITEREF_weyens2017pb3d">[16]</a>.</p>
+<div class="textblock"><p>This page describes the general code structure of PB3D, as well as its accompanying post-process program POST. It is more complete than the documentation that can be found in <a class="el" href="citelist.html#CITEREF_weyens2017pb3d">[14]</a>.</p>
 <h1 class="doxsection"><a class="anchor" id="overview_PB3D_flowchart"></a>
 PB3D flowchart</h1>
-<p>In <a class="el" href="#flowchart_fig" title="flowchart_fig">figure 1</a>, the top-level flowchart of PB3D is shown (adapted from <a class="el" href="citelist.html#CITEREF_weyens2017pb3d">[16]</a>):</p>
+<p>In <a class="el" href="#flowchart_fig" title="flowchart_fig">figure 1</a>, the top-level flowchart of PB3D is shown (adapted from <a class="el" href="citelist.html#CITEREF_weyens2017pb3d">[14]</a>):</p>
 <p><a class="anchor" id="flowchart_fig"></a></p><div class="image">
 <object type="image/svg+xml" data="flowchart.svg" width="40%" style="pointer-events: none;"></object>
 <div class="caption">
@@ -146,11 +146,11 @@ PB3D flowchart</h1>
 <p>The <b>input driver</b> sets the other drivers up by reading input options as well as quantities from equilibrium codes, and converting them to the internal PB3D format.</p>
 <p>The <b>equilibrium driver</b> uses these input variables to set up equilibrium quantities.</p><ul>
 <li>On the one hand these consist of flux equilibrium quantities (stored in a <a class="el" href="structeq__vars_1_1eq__1__type.html" title="flux equilibrium type">eq_vars.eq_1_type</a>) that only depend on the flux coordinates, such as the pressure \(p\), the safety factor \(q\), etc.</li>
-<li>On the other hand, they consist of metric equilibrium quantities (stored in a <a class="el" href="structeq__vars_1_1eq__2__type.html" title="metric equilibrium type">eq_vars.eq_2_type</a>) that depend on the angular position as well, such as the metric quantities of the grid \(g_{ij} = \vec{e}_i \cdot \vec{e}_j\) and \(h_{ij} = \nabla u^i \cdot \nabla u^j\), as well as derived quantities such as the parallel current \(\sigma = \frac{\vec{B}\cdot\vec{J}}{B^2}\), etc. <a class="el" href="citelist.html#CITEREF_weyens2014theory">[15]</a></li>
+<li>On the other hand, they consist of metric equilibrium quantities (stored in a <a class="el" href="structeq__vars_1_1eq__2__type.html" title="metric equilibrium type">eq_vars.eq_2_type</a>) that depend on the angular position as well, such as the metric quantities of the grid \(g_{ij} = \vec{e}_i \cdot \vec{e}_j\) and \(h_{ij} = \nabla u^i \cdot \nabla u^j\), as well as derived quantities such as the parallel current \(\sigma = \frac{\vec{B}\cdot\vec{J}}{B^2}\), etc. <a class="el" href="citelist.html#CITEREF_weyens2014theory">[13]</a></li>
 </ul>
 <p>The <b>perturbation driver</b> uses both types of equilibrium variables to calculate perturbation quantities. Again, there are two types.</p><ul>
 <li>The first type of variables are the vectorial perturbation quantities (stored in a <a class="el" href="structx__vars_1_1x__1__type.html" title="vectorial perturbation type">x_vars.x_1_type</a>), which contain the geodesic component of the perturbation \(U = \frac{\nabla \psi \times \vec{B}}{\left|\nabla \psi\right|^2} \cdot \vec{\xi}\) where \(\vec{\xi}\) is the plasma displacement. Also the parallel derivatives of these quantities are calculated.</li>
-<li>The other type are the tensorial perturbation quantities (stored in a <a class="el" href="structx__vars_1_1x__2__type.html" title="tensorial perturbation type">x_vars.x_2_type</a>), which combine the vectorial perturbation quantities with the equilibrium quantities to form the tensorial quantities \(\widetilde{PV}_{k,m}^i\) and \(\widetilde{KV}_{k,m}^i\) that represent the perturbed potential energy as well as the kinetic energy of the perturbation <a class="el" href="citelist.html#CITEREF_weyens2014theory">[15]</a>.</li>
+<li>The other type are the tensorial perturbation quantities (stored in a <a class="el" href="structx__vars_1_1x__2__type.html" title="tensorial perturbation type">x_vars.x_2_type</a>), which combine the vectorial perturbation quantities with the equilibrium quantities to form the tensorial quantities \(\widetilde{PV}_{k,m}^i\) and \(\widetilde{KV}_{k,m}^i\) that represent the perturbed potential energy as well as the kinetic energy of the perturbation <a class="el" href="citelist.html#CITEREF_weyens2014theory">[13]</a>.</li>
 </ul>
 <p>After integrating them along the magnetic field lines, these magnetic integrals form the building blocks of the discretized matrices \(\overline{\text{A}}\) and \(\overline{\text{B}}\) in the generalized system of eigenvalue equations \(\overline{\text{A}} \vec{X} = \lambda \overline{\text{B}}\vec{X}\).</p>
 <p>For a free boundary (<span class="tt">BC_style(2) = 2</span>), the vacuum outside the plasma adds a term at the plasma edge to the perturbed potential energy. PB3D computes this vacuum response in calc_vac_res(), in the solution driver, and only when <span class="tt">BC_style(2)</span> is not 1; it is added to \(\overline{\text{A}}\) in the block of the last normal grid point (see set_bc()). The equilibrium code determines the method: a 3-D boundary-element method along the magnetic field lines for VMEC, and an axisymmetric boundary-element method for HELENA. The page <a class="el" href="page_vacuum.html" title="Vacuum response">Vacuum response</a> describes this calculation step by step.</p>
