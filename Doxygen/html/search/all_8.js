@@ -21,7 +21,7 @@ var searchData=
   ['hdf5_5fvars_2ef90_18',['HDF5_vars.f90',['../HDF5__vars_8f90.html',1,'']]],
   ['hel_5fexport_5fi_19',['hel_export_i',['../namespacenum__vars.html#ac781aa60ad67117abaff9737745e53f1',1,'num_vars']]],
   ['hel_5fpert_5fi_20',['hel_pert_i',['../namespacenum__vars.html#a85c70cc05010c9efdf37551d9ec852cb',1,'num_vars']]],
-  ['helena_21',['HELENA',['../page_vacuum.html#vacuum_axisym',1,'Axisymmetric style (HELENA)'],['../namespaceeq__ops.html#autotoc_md4',1,'HELENA']]],
+  ['helena_21',['HELENA',['../page_vacuum.html#vacuum_axisym',1,'Axisymmetric style (HELENA)'],['../namespaceeq__ops.html#autotoc_md4',1,'HELENA'],['../page_tutorial.html#tutorial_eq_helena',1,'Patching HELENA']]],
   ['helena_5fops_22',['helena_ops',['../namespacehelena__ops.html',1,'']]],
   ['helena_5fops_2ef90_23',['HELENA_ops.f90',['../HELENA__ops_8f90.html',1,'']]],
   ['helena_5fvars_24',['helena_vars',['../namespacehelena__vars.html',1,'']]],

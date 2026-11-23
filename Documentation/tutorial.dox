@@ -46,17 +46,31 @@
     or even just
     \code ./PB3D \endcode
 
-    \note The HELENA version used here outputs the variables \c IAS and \c B0 to the mapping file, after the variable \c JS0 and after the variable \c RAXIS.
-    Some versions do not write these by default.
-    If yours is one of the above, the solution is to change
-    \code write(nmap,8) JS0 \endcode
-    to 
-    \code write(nmap,8) JS0, IAS \endcode
-    and 
-    \code write(nmap,8) RAXIS \endcode
-    to 
-    \code write(nmap,8) RAXIS, B0 \endcode
-    in the subroutine \c mapping and recompile and re-run HELENA.
+    \subsection tutorial_eq_helena Patching HELENA
+    PB3D needs a HELENA that is changed in three places from the usual version. All three are in the subroutine \c mapping, which writes the mapping file <tt>fort.12</tt>.
+        -# HELENA writes \c IAS after \c JS0 and \c B0 after \c RAXIS. Some versions do not write these by default. If yours is one of them, change
+        \code write(nmap,8) JS0 \endcode
+        to
+        \code write(nmap,8) JS0, IAS \endcode
+        and
+        \code write(nmap,8) RAXIS \endcode
+        to
+        \code write(nmap,8) RAXIS, B0 \endcode
+        Without them, PB3D stops with the error "Failed to read HELENA output file".
+        -# HELENA writes the mapping file with 16 significant digits. HELENA's own formats write 8. Change the formats of the mapping output from \c E16.8 to \c E24.16:
+        \code
+    6 FORMAT(4E24.16)
+    7 FORMAT(2E24.16)
+    9 FORMAT(E24.16)
+        \endcode
+        (format 11, of the profile file <tt>fort.21</tt>, may change the same way; PB3D does not read that file). PB3D reads the file in free format, so it reads both versions without any change.
+        -# HELENA is compiled in double precision, for example with <tt>gfortran -fdefault-real-8 -fdefault-double-8</tt>. In single precision, 16 written digits do not help.
+
+    Then recompile and re-run HELENA.
+
+    The 16 digits are not a claim about the accuracy of the equilibrium. HELENA's own discretisation error changes smoothly from one poloidal point to the next, but rounding to 8 digits adds an independent error of up to \f$5\times10^{-8}\f$ at each point. PB3D takes up to three derivatives in the poloidal angle \f$\chi\f$, which multiply such an error by about \f$1/h^3\f$, with \f$h\f$ the spacing of the poloidal points. With 8 digits, the eigenvalue can be off by per cents at low \f$n\f$ on fine mappings: with a free boundary at \f$n = 5\f$ and 2049 poloidal points, by 2 % for a circular \f$\epsilon = 0.33\f$ case and by 50 % for a pedestal case (PB3D issue 65). With 16 digits, the same cases converge smoothly in the number of poloidal points. Most of the error comes from the poloidal grid itself: HELENA sets it exactly to \f$\chi_j = \pi (j-1)/(N_\chi-1)\f$ (or \f$2\pi (j-1)/N_\chi\f$ without up-down symmetry), and 8 digits round it.
+
+    \note PB3D checks this when it reads the file (see read_hel() and chi_h_rounding()). If the poloidal grid in the file differs from HELENA's exact grid by between \f$10^{-12}\f$ and \f$10^{-6}\f$, PB3D warns that the mapping file has too few digits and refers to this section. The run continues, because the error is small at higher \f$n\f$ and on coarse mappings (0.1 % or less at \f$n \geq 10\f$ with 1025 poloidal points), but the eigenvalue should not be trusted at low \f$n\f$ on fine mappings.
 
 
 

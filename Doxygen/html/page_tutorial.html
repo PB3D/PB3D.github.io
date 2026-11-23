@@ -31,7 +31,7 @@ MathJax.Hub.Config({
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">PB3D<span id="projectnumber">&#160;[2.53]</span>
+   <div id="projectname">PB3D<span id="projectnumber">&#160;[2.54]</span>
    </div>
    <div id="projectbrief">Ideal linear high-n MHD stability in 3-D</div>
   </td>
@@ -109,6 +109,11 @@ document.addEventListener('DOMContentLoaded', codefold.init);
 <ul>
   <li class="level1">
     <a href="#tutorial_eq">Getting the Equilibrium </a>
+    <ul>
+      <li class="level2">
+        <a href="#tutorial_eq_helena">Patching HELENA </a>
+      </li>
+    </ul>
   </li>
   <li class="level1">
     <a href="#tutorial_test_eq">Checking the equilibrium (optional) </a>
@@ -151,11 +156,23 @@ Getting the Equilibrium</h1>
 <dl class="section note"><dt>Note</dt><dd>For VMEC, the <span class="tt">wout</span> file has to be in NetCDF format, and its name has to end in <span class="tt">.nc</span>, because PB3D recognizes a VMEC file by this extension (see open_input()). The <span class="tt">.txt</span> format of VMEC is not supported.</dd></dl>
 <p>In any case, if you forget how to run the PB3D (or POST) programs, you can always just type </p><div class="fragment"><div class="line">./PB3D --help </div>
 </div><!-- fragment --><p> or even just </p><div class="fragment"><div class="line">./PB3D </div>
-</div><!-- fragment --><dl class="section note"><dt>Note</dt><dd>The HELENA version used here outputs the variables <code>IAS</code> and <code>B0</code> to the mapping file, after the variable <code>JS0</code> and after the variable <code>RAXIS</code>. Some versions do not write these by default. If yours is one of the above, the solution is to change <div class="fragment"><div class="line">write(nmap,8) JS0 </div>
+</div><!-- fragment --><h2 class="doxsection"><a class="anchor" id="tutorial_eq_helena"></a>
+Patching HELENA</h2>
+<p>PB3D needs a HELENA that is changed in three places from the usual version. All three are in the subroutine <code>mapping</code>, which writes the mapping file <span class="tt">fort.12</span>.</p><ol type="1">
+<li>HELENA writes <code>IAS</code> after <code>JS0</code> and <code>B0</code> after <code>RAXIS</code>. Some versions do not write these by default. If yours is one of them, change <div class="fragment"><div class="line">write(nmap,8) JS0 </div>
 </div><!-- fragment --> to <div class="fragment"><div class="line">write(nmap,8) JS0, IAS </div>
 </div><!-- fragment --> and <div class="fragment"><div class="line">write(nmap,8) RAXIS </div>
 </div><!-- fragment --> to <div class="fragment"><div class="line">write(nmap,8) RAXIS, B0 </div>
-</div><!-- fragment --> in the subroutine <code>mapping</code> and recompile and re-run HELENA.</dd></dl>
+</div><!-- fragment --> Without them, PB3D stops with the error "Failed to read HELENA output file".</li>
+<li>HELENA writes the mapping file with 16 significant digits. HELENA's own formats write 8. Change the formats of the mapping output from <code>E16.8</code> to <code>E24.16</code>: <div class="fragment"><div class="line">6 FORMAT(4E24.16)</div>
+<div class="line">7 FORMAT(2E24.16)</div>
+<div class="line">9 FORMAT(E24.16)</div>
+</div><!-- fragment --> (format 11, of the profile file <span class="tt">fort.21</span>, may change the same way; PB3D does not read that file). PB3D reads the file in free format, so it reads both versions without any change.</li>
+<li>HELENA is compiled in double precision, for example with <span class="tt">gfortran -fdefault-real-8 -fdefault-double-8</span>. In single precision, 16 written digits do not help.</li>
+</ol>
+<p>Then recompile and re-run HELENA.</p>
+<p>The 16 digits are not a claim about the accuracy of the equilibrium. HELENA's own discretisation error changes smoothly from one poloidal point to the next, but rounding to 8 digits adds an independent error of up to \(5\times10^{-8}\) at each point. PB3D takes up to three derivatives in the poloidal angle \(\chi\), which multiply such an error by about \(1/h^3\), with \(h\) the spacing of the poloidal points. With 8 digits, the eigenvalue can be off by per cents at low \(n\) on fine mappings: with a free boundary at \(n = 5\) and 2049 poloidal points, by 2 % for a circular \(\epsilon = 0.33\) case and by 50 % for a pedestal case (PB3D issue 65). With 16 digits, the same cases converge smoothly in the number of poloidal points. Most of the error comes from the poloidal grid itself: HELENA sets it exactly to \(\chi_j = \pi (j-1)/(N_\chi-1)\) (or \(2\pi (j-1)/N_\chi\) without up-down symmetry), and 8 digits round it.</p>
+<dl class="section note"><dt>Note</dt><dd>PB3D checks this when it reads the file (see read_hel() and chi_h_rounding()). If the poloidal grid in the file differs from HELENA's exact grid by between \(10^{-12}\) and \(10^{-6}\), PB3D warns that the mapping file has too few digits and refers to this section. The run continues, because the error is small at higher \(n\) and on coarse mappings (0.1 % or less at \(n \geq 10\) with 1025 poloidal points), but the eigenvalue should not be trusted at low \(n\) on fine mappings.</dd></dl>
 <h1 class="doxsection"><a class="anchor" id="tutorial_test_eq"></a>
 Checking the equilibrium (optional)</h1>
 <p>It is always important that the equilibrium has been properly calculated, well-converged, etc.</p>
