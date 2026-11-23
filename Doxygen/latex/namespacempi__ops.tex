@@ -17,7 +17,9 @@ integer function, public \doxymbox{\hyperlink{namespacempi__ops_ac7fffd36919e354
 integer function, public \doxymbox{\hyperlink{namespacempi__ops_a932eba1c998dd7a0f1191b55cd754be3}{broadcast\+\_\+input\+\_\+opts}} ()
 \begin{DoxyCompactList}\small\item\em Broadcasts options (e.\+g. user-\/prescribed) that are not passed through the HDF5 output file (i.\+e. {\ttfamily ltest}, {\ttfamily no\+\_\+plots}, ...). \end{DoxyCompactList}\item 
 subroutine, public \doxymbox{\hyperlink{namespacempi__ops_a40e8610357a9a5b075fef9dab1c3f24f}{sudden\+\_\+stop}} (ierr)
-\begin{DoxyCompactList}\small\item\em Suddenly stops the computations, aborting MPI, etc. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Suddenly stops the computations, aborting MPI, etc. \end{DoxyCompactList}\item 
+subroutine, public \doxymbox{\hyperlink{namespacempi__ops_a6c29c34fa9899fe7b72e85a2bc11df14}{stop\+\_\+usage}} (status)
+\begin{DoxyCompactList}\small\item\em Stops all processes after the usage or help message. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
@@ -205,6 +207,43 @@ Here is the caller graph for this function:
 \includegraphics[width=350pt]{namespacempi__ops_a0028cc7df4fbd89dbd93de245ab3b2aa_icgraph}
 \end{center}
 \end{figure}
+\Hypertarget{namespacempi__ops_a6c29c34fa9899fe7b72e85a2bc11df14}\index{mpi\_ops@{mpi\_ops}!stop\_usage@{stop\_usage}}
+\index{stop\_usage@{stop\_usage}!mpi\_ops@{mpi\_ops}}
+\doxysubsubsection{\texorpdfstring{stop\_usage()}{stop\_usage()}}
+{\footnotesize\ttfamily \label{namespacempi__ops_a6c29c34fa9899fe7b72e85a2bc11df14} 
+subroutine, public mpi\+\_\+ops::\+stop\+\_\+usage (\begin{DoxyParamCaption}\item[{integer, intent(in)}]{status}{}\end{DoxyParamCaption})}
+
+
+
+Stops all processes after the usage or help message. 
+
+Only rank 0 reads the command line, in parse\+\_\+args(). The main programs broadcast the exit status that it returns, and every process then calls this routine. Every process has to call it, because stop\+\_\+\+MPI() makes collective calls: a process that stopped alone would wait in them for the others, which would wait in their next broadcast for it, and the run would never end.
+
+The program ends with exit status {\ttfamily status} and prints nothing more, as the usage or help message has already been printed. 
+\begin{DoxyParams}[1]{Parameters}
+\doxymbox{\texttt{in}}  & {\em status} & exit status \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \doxymbox{\hyperlink{MPI__ops_8f90_source_l00588}{588}} of file \doxymbox{\hyperlink{MPI__ops_8f90_source}{MPI\+\_\+ops.\+f90}}.
+
+Here is the call graph for this function:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespacempi__ops_a6c29c34fa9899fe7b72e85a2bc11df14_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=334pt]{namespacempi__ops_a6c29c34fa9899fe7b72e85a2bc11df14_icgraph}
+\end{center}
+\end{figure}
 \Hypertarget{namespacempi__ops_a40e8610357a9a5b075fef9dab1c3f24f}\index{mpi\_ops@{mpi\_ops}!sudden\_stop@{sudden\_stop}}
 \index{sudden\_stop@{sudden\_stop}!mpi\_ops@{mpi\_ops}}
 \doxysubsubsection{\texorpdfstring{sudden\_stop()}{sudden\_stop()}}
@@ -219,14 +258,14 @@ The error code {\ttfamily ierr} is printed and MPI is aborted with abort\+\_\+\+
 
 Before the abort, the buffered output on the screen and in the output file is written out: {\ttfamily MPI\+\_\+\+Abort} ends the process without doing this, and the error message would be lost when the output goes to a file or to a pipe.
 
-As a special case, if {\ttfamily ierr} = 66, no error message is printed, MPI is stopped with stop\+\_\+\+MPI() and the exit status is zero. This is the stop after the usage or help message. 
+The stop after the usage or help message is not an error and goes through \doxylink{namespacempi__ops_a6c29c34fa9899fe7b72e85a2bc11df14}{stop\+\_\+usage()}. 
 \begin{DoxyParams}[1]{Parameters}
 \doxymbox{\texttt{in}}  & {\em ierr} & error to output \\
 \hline
 \end{DoxyParams}
 
 
-Definition at line \doxymbox{\hyperlink{MPI__ops_8f90_source_l00542}{542}} of file \doxymbox{\hyperlink{MPI__ops_8f90_source}{MPI\+\_\+ops.\+f90}}.
+Definition at line \doxymbox{\hyperlink{MPI__ops_8f90_source_l00541}{541}} of file \doxymbox{\hyperlink{MPI__ops_8f90_source}{MPI\+\_\+ops.\+f90}}.
 
 Here is the call graph for this function:
 \nopagebreak

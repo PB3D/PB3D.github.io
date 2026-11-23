@@ -123,6 +123,8 @@ Functions/Subroutines</h2></td></tr>
 <tr class="memdesc:a932eba1c998dd7a0f1191b55cd754be3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Broadcasts options (e.g. user-prescribed) that are not passed through the HDF5 output file (i.e. <code>ltest</code>, <code>no_plots</code>, ...).  <br /></td></tr>
 <tr class="memitem:a40e8610357a9a5b075fef9dab1c3f24f" id="r_a40e8610357a9a5b075fef9dab1c3f24f"><td class="memItemLeft">subroutine, public&#160;</td><td class="memItemRight"><a class="el" href="#a40e8610357a9a5b075fef9dab1c3f24f">sudden_stop</a> (ierr)</td></tr>
 <tr class="memdesc:a40e8610357a9a5b075fef9dab1c3f24f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Suddenly stops the computations, aborting MPI, etc.  <br /></td></tr>
+<tr class="memitem:a6c29c34fa9899fe7b72e85a2bc11df14" id="r_a6c29c34fa9899fe7b72e85a2bc11df14"><td class="memItemLeft">subroutine, public&#160;</td><td class="memItemRight"><a class="el" href="#a6c29c34fa9899fe7b72e85a2bc11df14">stop_usage</a> (status)</td></tr>
+<tr class="memdesc:a6c29c34fa9899fe7b72e85a2bc11df14"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stops all processes after the usage or help message.  <br /></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Operations related to MPI. </p>
@@ -333,7 +335,47 @@ Functions/Subroutines</h2></td></tr>
 <div id="dynsection-6-summary" class="dynsummary">
 </div>
 <div id="dynsection-6-content" class="dyncontent hidden">
-<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="namespacempi__ops_a0028cc7df4fbd89dbd93de245ab3b2aa_icgraph.svg" width="563" height="103"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="namespacempi__ops_a0028cc7df4fbd89dbd93de245ab3b2aa_icgraph.svg" width="555" height="103"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+
+</div>
+</div>
+<a id="a6c29c34fa9899fe7b72e85a2bc11df14" name="a6c29c34fa9899fe7b72e85a2bc11df14"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6c29c34fa9899fe7b72e85a2bc11df14">&#9670;&#160;</a></span>stop_usage()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">subroutine, public mpi_ops::stop_usage </td>
+          <td>(</td>
+          <td class="paramtype">integer, intent(in)</td>          <td class="paramname"><span class="paramname"><em>status</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Stops all processes after the usage or help message. </p>
+<p>Only rank 0 reads the command line, in parse_args(). The main programs broadcast the exit status that it returns, and every process then calls this routine. Every process has to call it, because stop_MPI() makes collective calls: a process that stopped alone would wait in them for the others, which would wait in their next broadcast for it, and the run would never end.</p>
+<p>The program ends with exit status <code>status</code> and prints nothing more, as the usage or help message has already been printed. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">status</td><td>exit status </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="MPI__ops_8f90_source.html#l00588">588</a> of file <a class="el" href="MPI__ops_8f90_source.html">MPI_ops.f90</a>.</p>
+<div id="dynsection-7" class="dynheader closed"><span class="dynarrow"><span class="arrowhead closed"></span></span>Here is the call graph for this function:</div>
+<div id="dynsection-7-summary" class="dynsummary">
+</div>
+<div id="dynsection-7-content" class="dyncontent hidden">
+<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="namespacempi__ops_a6c29c34fa9899fe7b72e85a2bc11df14_cgraph.svg" width="1078" height="191"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+<div id="dynsection-8" class="dynheader closed"><span class="dynarrow"><span class="arrowhead closed"></span></span>Here is the caller graph for this function:</div>
+<div id="dynsection-8-summary" class="dynsummary">
+</div>
+<div id="dynsection-8-content" class="dyncontent hidden">
+<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="namespacempi__ops_a6c29c34fa9899fe7b72e85a2bc11df14_icgraph.svg" width="350" height="91"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
@@ -356,24 +398,24 @@ Functions/Subroutines</h2></td></tr>
 <p>Suddenly stops the computations, aborting MPI, etc. </p>
 <p>The error code <code>ierr</code> is printed and MPI is aborted with abort_MPI(). The program then ends with the exit status of get_exit_status(), which is not zero, so that a shell script, a batch system or a test sees that the run failed.</p>
 <p>Before the abort, the buffered output on the screen and in the output file is written out: <code>MPI_Abort</code> ends the process without doing this, and the error message would be lost when the output goes to a file or to a pipe.</p>
-<p>As a special case, if <code>ierr</code> = 66, no error message is printed, MPI is stopped with stop_MPI() and the exit status is zero. This is the stop after the usage or help message. </p><dl class="params"><dt>Parameters</dt><dd>
+<p>The stop after the usage or help message is not an error and goes through <a class="el" href="#a6c29c34fa9899fe7b72e85a2bc11df14" title="Stops all processes after the usage or help message.">stop_usage()</a>. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">ierr</td><td>error to output </td></tr>
   </table>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="MPI__ops_8f90_source.html#l00542">542</a> of file <a class="el" href="MPI__ops_8f90_source.html">MPI_ops.f90</a>.</p>
-<div id="dynsection-7" class="dynheader closed"><span class="dynarrow"><span class="arrowhead closed"></span></span>Here is the call graph for this function:</div>
-<div id="dynsection-7-summary" class="dynsummary">
+<p class="definition">Definition at line <a class="el" href="MPI__ops_8f90_source.html#l00541">541</a> of file <a class="el" href="MPI__ops_8f90_source.html">MPI_ops.f90</a>.</p>
+<div id="dynsection-9" class="dynheader closed"><span class="dynarrow"><span class="arrowhead closed"></span></span>Here is the call graph for this function:</div>
+<div id="dynsection-9-summary" class="dynsummary">
 </div>
-<div id="dynsection-7-content" class="dyncontent hidden">
-<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="namespacempi__ops_a40e8610357a9a5b075fef9dab1c3f24f_cgraph.svg" width="1094" height="320"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div id="dynsection-9-content" class="dyncontent hidden">
+<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="namespacempi__ops_a40e8610357a9a5b075fef9dab1c3f24f_cgraph.svg" width="848" height="159"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
-<div id="dynsection-8" class="dynheader closed"><span class="dynarrow"><span class="arrowhead closed"></span></span>Here is the caller graph for this function:</div>
-<div id="dynsection-8-summary" class="dynsummary">
+<div id="dynsection-10" class="dynheader closed"><span class="dynarrow"><span class="arrowhead closed"></span></span>Here is the caller graph for this function:</div>
+<div id="dynsection-10-summary" class="dynsummary">
 </div>
-<div id="dynsection-8-content" class="dyncontent hidden">
+<div id="dynsection-10-content" class="dyncontent hidden">
 <div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="namespacempi__ops_a40e8610357a9a5b075fef9dab1c3f24f_icgraph.svg" width="358" height="91"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 

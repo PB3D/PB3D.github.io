@@ -183,7 +183,7 @@ The tests are run with CTest from the build directory: \begin{DoxyVerb}ctest --t
 \begin{DoxyTable}{3}{Table 2. Test layers}{page_installation_installation_tests_tab}{1}
 \SetCell{bg=\tableheadbgcolor,font=\bfseries}label &\SetCell{bg=\tableheadbgcolor,font=\bfseries}needs &\SetCell{bg=\tableheadbgcolor,font=\bfseries}contents \\
 {\ttfamily unit} &a Fortran compiler (and LAPACK for some suites) &unit tests of the core library \\
-{\ttfamily smoke} &the executables &{\ttfamily PB3D} and {\ttfamily POST} print their usage message \\
+{\ttfamily smoke} &the executables &{\ttfamily PB3D} and {\ttfamily POST} print their usage message, with exit status 2, and their help message, with exit status 0, also under {\ttfamily mpirun -\/n 2}; they stop with a message on an input file that does not exist \\
 {\ttfamily fullstack} &the executables and all dependencies &tests of the modules against analytical and brute-\/force references, mainly of the vacuum; some also run under {\ttfamily mpirun -\/n 2} and {\ttfamily -\/n 4} \\
 {\ttfamily regression} &the executables and the equilibrium files &complete runs of {\ttfamily PB3D} on the equilibrium files of {\ttfamily tests/\+fixtures}, with the eigenvalues compared to recorded values; runs that check that PB3D refuses wrong inputs with a message; and {\ttfamily regression\+\_\+post\+\_\+checks}, which runs {\ttfamily POST} on the output of a run with three solutions \\
 \end{DoxyTable}

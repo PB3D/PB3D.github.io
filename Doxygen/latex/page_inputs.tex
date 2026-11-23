@@ -9,7 +9,7 @@ This page describes the input variables of PB3D and POST.
 Most inputs are read from the user input file, which holds the Fortran namelist {\ttfamily inputdata\+\_\+\+PB3D} for PB3D or {\ttfamily inputdata\+\_\+\+POST} for POST. Every variable that is not set in the file keeps its default value. A name in the file that is not part of the namelist stops the program with the error "{}\+Cannot read user-\/provided file"{}. The other inputs are options on the command line. PB3D and POST are called as \begin{DoxyVerb}PB3D USER_INPUT EQUILIBRIUM_INPUT [OPTIONS]
 POST USER_INPUT PB3D_OUTPUT [OPTIONS]
 \end{DoxyVerb}
- where the options take the form {\ttfamily --\+[option\+\_\+name]}, sometimes followed by values. If the user input file cannot be opened, the program uses the defaults for all variables. \begin{DoxySeeAlso}{See also}
+ where the options take the form {\ttfamily --\+[option\+\_\+name]}, sometimes followed by values. The user input file has to exist, also when it sets no variable: there is no default input file. If the file cannot be opened, the program stops with the error "{}\+Cannot open input file"{} (see \doxysectlink{page_faq_faq_errors}{runtime errors}{1}). \begin{DoxySeeAlso}{See also}
 See init\+\_\+files() and open\+\_\+input().
 \end{DoxySeeAlso}
 For both PB3D and POST, both types of input are discussed.

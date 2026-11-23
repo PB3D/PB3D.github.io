@@ -116,8 +116,8 @@ document.addEventListener('DOMContentLoaded', codefold.init);
 Functions/Subroutines</h2></td></tr>
 <tr class="memitem:a1e219b1147f109f758d03bef89d540e8" id="r_a1e219b1147f109f758d03bef89d540e8"><td class="memItemLeft">subroutine, public&#160;</td><td class="memItemRight"><a class="el" href="#a1e219b1147f109f758d03bef89d540e8">init_files</a> ()</td></tr>
 <tr class="memdesc:a1e219b1147f109f758d03bef89d540e8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize the variables for the module.  <br /></td></tr>
-<tr class="memitem:a051584112f6e4f6e60b0ef824dffbf5e" id="r_a051584112f6e4f6e60b0ef824dffbf5e"><td class="memItemLeft">integer function, public&#160;</td><td class="memItemRight"><a class="el" href="#a051584112f6e4f6e60b0ef824dffbf5e">parse_args</a> ()</td></tr>
-<tr class="memdesc:a051584112f6e4f6e60b0ef824dffbf5e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parses the command line arguments.  <br /></td></tr>
+<tr class="memitem:a809ada22366815a6b3d3b618566786ae" id="r_a809ada22366815a6b3d3b618566786ae"><td class="memItemLeft">integer function, public&#160;</td><td class="memItemRight"><a class="el" href="#a809ada22366815a6b3d3b618566786ae">parse_args</a> (usage_status)</td></tr>
+<tr class="memdesc:a809ada22366815a6b3d3b618566786ae"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parses the command line arguments.  <br /></td></tr>
 <tr class="memitem:a63a81a5a451f787025429878b2cec81b" id="r_a63a81a5a451f787025429878b2cec81b"><td class="memItemLeft">integer function, public&#160;</td><td class="memItemRight"><a class="el" href="#a63a81a5a451f787025429878b2cec81b">open_input</a> ()</td></tr>
 <tr class="memdesc:a63a81a5a451f787025429878b2cec81b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Open the input files.  <br /></td></tr>
 <tr class="memitem:ad681a9e8083a6f664cf0f9d17ebe279c" id="r_ad681a9e8083a6f664cf0f9d17ebe279c"><td class="memItemLeft">integer function, public&#160;</td><td class="memItemRight"><a class="el" href="#ad681a9e8083a6f664cf0f9d17ebe279c">open_output</a> ()</td></tr>
@@ -147,7 +147,7 @@ Variables</h2></td></tr>
 
 <p>Closes the output file. </p>
 
-<p class="definition">Definition at line <a class="el" href="files__ops_8f90_source.html#l00700">700</a> of file <a class="el" href="files__ops_8f90_source.html">files_ops.f90</a>.</p>
+<p class="definition">Definition at line <a class="el" href="files__ops_8f90_source.html#l00710">710</a> of file <a class="el" href="files__ops_8f90_source.html">files_ops.f90</a>.</p>
 <div id="dynsection-0" class="dynheader closed"><span class="dynarrow"><span class="arrowhead closed"></span></span>Here is the call graph for this function:</div>
 <div id="dynsection-0-summary" class="dynsummary">
 </div>
@@ -202,15 +202,17 @@ Variables</h2></td></tr>
 <p>Open the input files. </p>
 <ul>
 <li>input file with user options</li>
-<li>equilibrium file in<ul>
+<li>for PB3D, the equilibrium file in<ul>
 <li>NetCDF for VMEC</li>
 <li>plain for HELENA</li>
 </ul>
 </li>
+<li>for POST, the PB3D output file</li>
 </ul>
+<p>Neither file has a default: the program stops with an error when one of them cannot be opened.</p>
 <dl class="section return"><dt>Returns</dt><dd>ierr </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="files__ops_8f90_source.html#l00175">175</a> of file <a class="el" href="files__ops_8f90_source.html">files_ops.f90</a>.</p>
+<p class="definition">Definition at line <a class="el" href="files__ops_8f90_source.html#l00193">193</a> of file <a class="el" href="files__ops_8f90_source.html">files_ops.f90</a>.</p>
 <div id="dynsection-3" class="dynheader closed"><span class="dynarrow"><span class="arrowhead closed"></span></span>Here is the call graph for this function:</div>
 <div id="dynsection-3-summary" class="dynsummary">
 </div>
@@ -255,7 +257,7 @@ Variables</h2></td></tr>
 </dd></dl>
 <dl class="section return"><dt>Returns</dt><dd>ierr </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="files__ops_8f90_source.html#l00526">526</a> of file <a class="el" href="files__ops_8f90_source.html">files_ops.f90</a>.</p>
+<p class="definition">Definition at line <a class="el" href="files__ops_8f90_source.html#l00536">536</a> of file <a class="el" href="files__ops_8f90_source.html">files_ops.f90</a>.</p>
 <div id="dynsection-5" class="dynheader closed"><span class="dynarrow"><span class="arrowhead closed"></span></span>Here is the call graph for this function:</div>
 <div id="dynsection-5-summary" class="dynsummary">
 </div>
@@ -271,34 +273,45 @@ Variables</h2></td></tr>
 
 </div>
 </div>
-<a id="a051584112f6e4f6e60b0ef824dffbf5e" name="a051584112f6e4f6e60b0ef824dffbf5e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a051584112f6e4f6e60b0ef824dffbf5e">&#9670;&#160;</a></span>parse_args()</h2>
+<a id="a809ada22366815a6b3d3b618566786ae" name="a809ada22366815a6b3d3b618566786ae"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a809ada22366815a6b3d3b618566786ae">&#9670;&#160;</a></span>parse_args()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">integer function, public files_ops::parse_args</td>
+          <td class="memname">integer function, public files_ops::parse_args </td>
+          <td>(</td>
+          <td class="paramtype">integer, intent(out)</td>          <td class="paramname"><span class="paramname"><em>usage_status</em></span></td><td>)</td>
+          <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 <p>Parses the command line arguments. </p>
 <dl class="section note"><dt>Note</dt><dd>The input arguments are saved in <code>command_arg</code> </dd></dl>
+<p>After the help message (first argument <code>-h</code> or <code>--help</code>) and after the usage message (fewer arguments than needed), <code>usage_status</code> is the exit status with which all processes stop (see stop_usage()). Otherwise it is -1 and the program goes on.</p>
+<p>The exit status is 0 after the help message, which the user asked for, and 2 after the usage message. A call with too few arguments is a mistake, for example a script that passes an empty variable in place of a file name, and the script has to see that the run did not succeed. 2 is the exit status that Python's argparse and the GNU tools use for a wrong call.</p>
 <dl class="section return"><dt>Returns</dt><dd>ierr </dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[out]</td><td class="paramname">usage_status</td><td>exit status after usage or help, -1 to go on </td></tr>
+  </table>
+  </dd>
+</dl>
 
-<p class="definition">Definition at line <a class="el" href="files__ops_8f90_source.html#l00076">76</a> of file <a class="el" href="files__ops_8f90_source.html">files_ops.f90</a>.</p>
+<p class="definition">Definition at line <a class="el" href="files__ops_8f90_source.html#l00088">88</a> of file <a class="el" href="files__ops_8f90_source.html">files_ops.f90</a>.</p>
 <div id="dynsection-7" class="dynheader closed"><span class="dynarrow"><span class="arrowhead closed"></span></span>Here is the call graph for this function:</div>
 <div id="dynsection-7-summary" class="dynsummary">
 </div>
 <div id="dynsection-7-content" class="dyncontent hidden">
-<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="namespacefiles__ops_a051584112f6e4f6e60b0ef824dffbf5e_cgraph.svg" width="643" height="115"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="namespacefiles__ops_a809ada22366815a6b3d3b618566786ae_cgraph.svg" width="643" height="115"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 <div id="dynsection-8" class="dynheader closed"><span class="dynarrow"><span class="arrowhead closed"></span></span>Here is the caller graph for this function:</div>
 <div id="dynsection-8-summary" class="dynsummary">
 </div>
 <div id="dynsection-8-content" class="dyncontent hidden">
-<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="namespacefiles__ops_a051584112f6e4f6e60b0ef824dffbf5e_icgraph.svg" width="366" height="91"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="namespacefiles__ops_a809ada22366815a6b3d3b618566786ae_icgraph.svg" width="366" height="91"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
