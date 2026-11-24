@@ -126,26 +126,27 @@ Now that we have the equilibrium files, it is time to have a look at the input f
 
 \begin{DoxyCodeInclude}{0}
 \DoxyCodeLine{00001\ \&inputdata\_PB3D}
-\DoxyCodeLine{00002\ \ \ \ \ min\_n\_par\_X\ \ \ \ \ \ \ \ \ \ \ \ \ =\ 500}
+\DoxyCodeLine{00002\ \ \ \ \ min\_n\_par\_X\ \ \ \ \ \ \ \ \ \ \ \ \ =\ 100}
 \DoxyCodeLine{00003\ \ \ \ \ min\_par\_X\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ 0.0}
 \DoxyCodeLine{00004\ \ \ \ \ max\_par\_X\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ 2.0}
-\DoxyCodeLine{00005\ \ \ \ \ alpha\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ 0.0}
-\DoxyCodeLine{00006\ \ \ \ \ min\_r\_sol\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ 0.1}
-\DoxyCodeLine{00007\ \ \ \ \ max\_r\_sol\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ 1.0}
-\DoxyCodeLine{00008\ \ \ \ \ n\_r\_sol\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ 500}
-\DoxyCodeLine{00009\ \ \ \ \ prim\_X\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ 10}
-\DoxyCodeLine{00010\ \ \ \ \ n\_mod\_X\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ 20}
-\DoxyCodeLine{00011\ \ \ \ \ BC\_style\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ 1\ 1}
-\DoxyCodeLine{00012\ \ \ \ \ U\_style\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ 3}
-\DoxyCodeLine{00013\ \ \ \ \ max\_tot\_mem\ \ \ \ \ \ \ \ \ \ \ \ \ =\ 8000}
-\DoxyCodeLine{00014\ \ \ \ \ max\_it\_rich\ \ \ \ \ \ \ \ \ \ \ \ \ =\ 2}
-\DoxyCodeLine{00015\ \ \ \ \ use\_normalization\ \ \ \ \ \ \ =\ .true.}
-\DoxyCodeLine{00016\ /}
-\DoxyCodeLine{00017\ //!\ [some\ extra\ options\ for\ PB3D]}
-\DoxyCodeLine{00018\ \ \ \ \ rich\_restart\_lvl\ \ \ \ \ \ \ \ =\ 1}
-\DoxyCodeLine{00019\ \ \ \ \ tol\_rich\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ 1.0E-\/4}
-\DoxyCodeLine{00020\ \ \ \ \ tol\_SLEPC\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ 1.0E-\/8\ 1.0E-\/8}
-\DoxyCodeLine{00021\ //!\ [some\ extra\ options\ for\ PB3D]}
+\DoxyCodeLine{00005\ \ \ \ \ alpha\_style\ \ \ \ \ \ \ \ \ \ \ \ \ =\ 2}
+\DoxyCodeLine{00006\ \ \ \ \ n\_alpha\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ 64}
+\DoxyCodeLine{00007\ \ \ \ \ min\_r\_sol\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ 0.3}
+\DoxyCodeLine{00008\ \ \ \ \ max\_r\_sol\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ 1.0}
+\DoxyCodeLine{00009\ \ \ \ \ n\_r\_sol\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ 400}
+\DoxyCodeLine{00010\ \ \ \ \ prim\_X\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ 10}
+\DoxyCodeLine{00011\ \ \ \ \ n\_mod\_X\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ 20}
+\DoxyCodeLine{00012\ \ \ \ \ BC\_style\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ 1\ 2}
+\DoxyCodeLine{00013\ \ \ \ \ U\_style\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ 3}
+\DoxyCodeLine{00014\ \ \ \ \ max\_tot\_mem\ \ \ \ \ \ \ \ \ \ \ \ \ =\ 4000}
+\DoxyCodeLine{00015\ \ \ \ \ max\_it\_rich\ \ \ \ \ \ \ \ \ \ \ \ \ =\ 1}
+\DoxyCodeLine{00016\ \ \ \ \ use\_normalization\ \ \ \ \ \ \ =\ .true.}
+\DoxyCodeLine{00017\ /}
+\DoxyCodeLine{00018\ //!\ [some\ extra\ options\ for\ PB3D]}
+\DoxyCodeLine{00019\ \ \ \ \ rich\_restart\_lvl\ \ \ \ \ \ \ \ =\ 1}
+\DoxyCodeLine{00020\ \ \ \ \ tol\_rich\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ 1.0E-\/4}
+\DoxyCodeLine{00021\ \ \ \ \ tol\_SLEPC\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ 1.0E-\/8\ 1.0E-\/8}
+\DoxyCodeLine{00022\ //!\ [some\ extra\ options\ for\ PB3D]}
 
 \end{DoxyCodeInclude}
 
@@ -154,23 +155,24 @@ Have a look:
 \begin{DoxyItemize}
 \item {\ttfamily min\+\_\+n\+\_\+par\+\_\+X} is the number of points in the parallel grid of every field line at the first Richardson level.
 \item These points range from {\ttfamily min\+\_\+par\+\_\+X} to {\ttfamily max\+\_\+par\+\_\+X}, in units of $\pi$.
-\item How the field lines are chosen depends on {\ttfamily alpha\+\_\+style}, which is not set in this file. For VMEC, the default is {\ttfamily alpha\+\_\+style = 2} with {\ttfamily n\+\_\+alpha = 10} field lines, each followed over one poloidal turn. PB3D then sets {\ttfamily min\+\_\+par\+\_\+X} and {\ttfamily max\+\_\+par\+\_\+X} to 0 and 2 if their difference is not 2, and it does not use {\ttfamily alpha} (see \doxysectlink{page_inputs}{Input variables}{0}). In this file, {\ttfamily min\+\_\+par\+\_\+X} and {\ttfamily max\+\_\+par\+\_\+X} are already 0 and 2, so the line with {\ttfamily alpha} has no effect.
-\item With {\ttfamily alpha\+\_\+style = 1}, the default for HELENA, {\ttfamily alpha} is the label of the single field line on which the perturbations are calculated, and the parallel range from {\ttfamily min\+\_\+par\+\_\+X} to {\ttfamily max\+\_\+par\+\_\+X} can span several poloidal turns. For 3-\/D equilibria, the number of field lines {\ttfamily n\+\_\+alpha} ({\ttfamily alpha\+\_\+style = 2}) or the parallel range ({\ttfamily alpha\+\_\+style = 1}), together with {\ttfamily min\+\_\+n\+\_\+par\+\_\+X}, has to be increased until convergence is reached \DoxyCite{weyens2017pb3d}{number}{1}.
+\item How the field lines are chosen depends on {\ttfamily alpha\+\_\+style}. This file sets {\ttfamily alpha\+\_\+style = 2}, which is also the default for VMEC: PB3D uses {\ttfamily n\+\_\+alpha} field lines, here 64, with equally spaced labels, and follows each of them over one poloidal turn. PB3D sets {\ttfamily min\+\_\+par\+\_\+X} and {\ttfamily max\+\_\+par\+\_\+X} to 0 and 2 if their difference is not 2 (see \doxysectlink{page_inputs}{Input variables}{0}); in this file, they are already 0 and 2.
+\item With {\ttfamily alpha\+\_\+style = 1}, the default for HELENA, PB3D follows the single field line with label {\ttfamily alpha}, and the parallel range from {\ttfamily min\+\_\+par\+\_\+X} to {\ttfamily max\+\_\+par\+\_\+X} can span several poloidal turns. For 3-\/D equilibria, the number of field lines {\ttfamily n\+\_\+alpha} ({\ttfamily alpha\+\_\+style = 2}) or the parallel range ({\ttfamily alpha\+\_\+style = 1}), together with {\ttfamily min\+\_\+n\+\_\+par\+\_\+X}, has to be increased until convergence is reached \DoxyCite{weyens2017pb3d}{number}{1}.
 \item {\ttfamily n\+\_\+r\+\_\+sol} is the number of points in the solution grid, that ranges from {\ttfamily min\+\_\+r\+\_\+sol} to {\ttfamily max\+\_\+r\+\_\+sol} in the PB3D normal coordinate (see \doxylink{namespacenum__vars_ae21ec57b791e369c3558c0eb3da1555b}{num\+\_\+vars.\+use\+\_\+pol\+\_\+flux\+\_\+f}).
 \item {\ttfamily n\+\_\+mod\+\_\+X} is the number of Fourier harmonics that are kept, with {\ttfamily prim\+\_\+X} the primary mode number. With the poloidal flux as normal coordinate (the default), {\ttfamily prim\+\_\+X} is the toroidal mode number $n$ and the harmonics are poloidal mode numbers $m$.
 \item {\ttfamily BC\+\_\+style(1:\+2)} indicates the style with which the boundary conditions are implemented deep in the plasma and on the plasma edge.
-\item {\ttfamily max\+\_\+tot\+\_\+mem} is the total virtual memory that PB3D may consume.
+\item {\ttfamily max\+\_\+tot\+\_\+mem} is a memory limit in MB: PB3D divides its work into jobs so that its own estimate of the memory it needs stays below this limit. The memory that the run really uses can be higher; section \doxysectlink{page_tutorial_tutorial_PB3D_results}{What to expect}{2} gives the numbers for this example.
+\item {\ttfamily max\+\_\+it\+\_\+rich} is the number of Richardson levels (see the extra options below); with 1, PB3D does not extrapolate.
 \item {\ttfamily use\+\_\+normalization} indicates whether normalization is used (recommended), but it is useful to turn this off for debugging.
 \end{DoxyItemize}
 
 \begin{DoxyNote}{Note}
-In this file, {\ttfamily BC\+\_\+style = 1 1} sets the displacement to zero at the plasma edge, which makes it a fixed boundary. The inner end, deep in the plasma, only accepts {\ttfamily BC\+\_\+style(1) = 1}. With {\ttfamily BC\+\_\+style(2) = 2}, which is the default, the plasma edge is a free boundary, and PB3D calculates the vacuum response and adds it to the perturbed potential energy (see \doxysectlink{page_overview}{General code structure}{0}). For VMEC, a free boundary needs {\ttfamily alpha\+\_\+style = 2} with more than one field line, as PB3D then uses a 3-\/D boundary-\/element method on the field lines; PB3D stops with an error for {\ttfamily alpha\+\_\+style = 1}. The changelog in the code\textquotesingle{}s {\ttfamily README.\+md} records, as a rule for this 3-\/D vacuum, at least 128 field lines and about 36 parallel points per poloidal wavelength.
+In this file, {\ttfamily BC\+\_\+style = 1 2} makes the plasma edge a free boundary: PB3D calculates the response of the vacuum outside the plasma and adds its energy to the perturbed potential energy (see \doxysectlink{page_overview}{General code structure}{0} and \doxysectlink{page_vacuum}{Vacuum response}{0}). {\ttfamily BC\+\_\+style(2) = 2} is also the default. With {\ttfamily BC\+\_\+style = 1 1}, the displacement is zero at the plasma edge, as if a conducting wall lay on the plasma surface, which makes it a fixed boundary. The inner end, deep in the plasma, only accepts {\ttfamily BC\+\_\+style(1) = 1}. For VMEC, a free boundary needs {\ttfamily alpha\+\_\+style = 2} with more than one field line, as PB3D then uses a 3-\/D boundary-\/element method on the points of the field lines on the plasma boundary; PB3D stops with an error for {\ttfamily alpha\+\_\+style = 1}. The number of field lines decides how well this method resolves the toroidal variation of the vacuum potential, $e^{-in\zeta}$: there must be clearly more than $2n+1$ of them. Section \doxysectlink{page_tutorial_tutorial_PB3D_results}{What to expect}{2} shows how accurate 64 field lines with 100 points each are for this example.
 \end{DoxyNote}
 There are also some extra options listed (but not loaded in PB3D as they come after the end of the {\ttfamily inputdata\+\_\+\+PB3D} block of the Fortran namelist) below: 
 \begin{DoxyCodeInclude}{0}
-\DoxyCodeLine{00018\ \ \ \ \ rich\_restart\_lvl\ \ \ \ \ \ \ \ =\ 1}
-\DoxyCodeLine{00019\ \ \ \ \ tol\_rich\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ 1.0E-\/4}
-\DoxyCodeLine{00020\ \ \ \ \ tol\_SLEPC\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ 1.0E-\/8\ 1.0E-\/8}
+\DoxyCodeLine{00019\ \ \ \ \ rich\_restart\_lvl\ \ \ \ \ \ \ \ =\ 1}
+\DoxyCodeLine{00020\ \ \ \ \ tol\_rich\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ 1.0E-\/4}
+\DoxyCodeLine{00021\ \ \ \ \ tol\_SLEPC\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ 1.0E-\/8\ 1.0E-\/8}
 
 \end{DoxyCodeInclude}
  They include:
@@ -181,12 +183,26 @@ There are also some extra options listed (but not loaded in PB3D as they come af
 \end{DoxyItemize}
 
 There are many, many more input parameters. A short description of these can be found in \doxysectlink{page_inputs}{Input variables}{0}.\hypertarget{page_tutorial_tutorial_PB3D}{}\doxysection{\texorpdfstring{Running PB3D}{Running PB3D}}\label{page_tutorial_tutorial_PB3D}
-This tutorial provides a basic VMEC equilibrium file to experiment with, called {\ttfamily cbm18}, which represents a simple circular test case designed to be ballooning unstable. \DoxyCite{ferraro2010elmbenchmark}{number}{1} Some properties are given in table \doxytablelink{page_tutorial_tutorial_PB3D_tab}{2}. \hypertarget{page_tutorial_tutorial_PB3D_tab}{}
+This tutorial provides a VMEC equilibrium file to experiment with: the {\ttfamily cbm18} equilibrium of the benchmark for edge-\/localized modes of Ferraro et al. \DoxyCite{ferraro2010elmbenchmark}{number}{1}, a nearly circular tokamak with a steep pressure pedestal at the edge, which is unstable to peeling-\/ballooning modes. The plasma ends at the foot of the pedestal, where the pressure gradient and the current density fall to zero, and outside it is vacuum. The file was made from the HELENA equilibrium of this plasma, with PB3D\textquotesingle{}s option {\ttfamily --export\+\_\+\+HEL} and VMEC++ on 639 flux surfaces; its safety factor agrees with that of HELENA to five digits. Lengths and fields are in SI units. Figure 1 shows the flux surfaces and the profiles of the pressure and the safety factor: the pressure falls from 25 k\+Pa at $\psi = 0.75$ to 0.\+2 k\+Pa at $\psi = 0.95$, where $\psi$ is the normalized poloidal flux. Some properties are given in table \doxytablelink{page_tutorial_tutorial_PB3D_tab}{2}.
+
+ 
+\begin{DoxyImage}%
+\includegraphics[width=\textwidth]{tutorial_equilibrium.png}%
+\doxyfigcaption{Figure 1: the equilibrium of this tutorial. Left: the flux surfaces in a poloidal cross-\/section, every 0.1 in the normalized poloidal flux, with the magnetic axis marked by a cross. Right: the pressure and the absolute value of the safety factor against the normalized poloidal flux.}%
+\end{DoxyImage}
+
+
+\hypertarget{page_tutorial_tutorial_PB3D_tab}{}
 
 \begin{DoxyTable}{2}{Table 2. equilibrium parameters}{page_tutorial_tutorial_PB3D_tab}{0}
-toroidal current $I_\text{tot}$ &$1.614MA$ \\
-$\beta_\text{pol}$ &$0.443 $ \\
-aspect ratio $R_0/a$, with major radius $R_0 = 3\,\text{m}$ and minor radius $a = 2\,\text{m}$ &$1.5 $ \\
+radius of the magnetic axis &$3.61\,\text{m}$ \\
+plasma boundary in the midplane &from $R = 2.29\,\text{m}$ to $R = 4.70\,\text{m}$ \\
+major radius $R_0$ and minor radius $a$ (centre and half width of the boundary in the midplane), aspect ratio $R_0/a$ &$3.49\,\text{m}$, $1.20\,\text{m}$, $2.9$ \\
+elongation &$1.10$ \\
+toroidal magnetic field on the magnetic axis &$1.72\,\text{T}$ \\
+toroidal current $I_\text{tot}$ &$1.61\,\text{MA}$ \\
+pressure on the magnetic axis &$28.8\,\text{kPa}$ \\
+safety factor $|q|$, on the magnetic axis and at the boundary (\doxylink{page_tutorial_fnt2}{2}) &$1.05$, $3.04$ \\
 \end{DoxyTable}
 
 
@@ -206,7 +222,7 @@ We can now run the code using {\ttfamily mpirun}. For example, with
 \DoxyCodeLine{mpirun\ -\/np\ 4\ ./PB3D\ PB3D.input\ wout.nc\ }
 
 \end{DoxyCode}
- 4 processes are used. With more than one process, the eigenvalue solver needs PETSc with a parallel direct solver such as MUMPS (see \doxysectlink{page_faq}{Frequently Asked Questions}{0}); a single process can also be used, by running {\ttfamily ./\+\+PB3D PB3\+D.\+input wout.\+nc} without {\ttfamily mpirun}. You can find the VMEC file \href{https://pb3d.github.io/Examples/wout.nc}{\texttt{here}}.
+ 4 processes are used. With more than one process, the eigenvalue solver needs PETSc with a parallel direct solver such as MUMPS (see \doxysectlink{page_faq}{Frequently Asked Questions}{0}); a single process can also be used, by running {\ttfamily ./\+\+PB3D PB3\+D.\+input wout.\+nc} without {\ttfamily mpirun}. You can find the VMEC file \href{https://pb3d.github.io/Examples/wout.nc}{\texttt{here}}. The HELENA input file of the same plasma is \href{https://pb3d.github.io/Examples/fort.10}{\texttt{here}}; with a HELENA patched as described in \doxysectlink{page_tutorial_tutorial_eq_helena}{Patching HELENA}{2}, it gives the mapping file that PB3D reads instead of {\ttfamily wout.\+nc}.
 
 There are optional run-\/time options that can be triggered, such as {\ttfamily --jump\+\_\+to\+\_\+sol}, which can be used to easily change solution preferences, such as discretization order, etc. For an overview, see \doxysectlink{page_inputs_inputs_PB3D_cmd}{Command-\/line inputs}{2}; they are not treated here.
 
@@ -219,15 +235,64 @@ Take a look at these output files and shuffle a bit with the input parameters if
 \begin{DoxyNote}{Note}
 For VMEC, the magnetic axis is a bit problematic. It is necessary, therefore, to choose {\ttfamily min\+\_\+r\+\_\+sol} to be slightly larger than 0; 0.\+01 for example.
 \end{DoxyNote}
-\hypertarget{page_tutorial_tutorial_scripts}{}\doxysection{\texorpdfstring{Run Script Tools}{Run Script Tools}}\label{page_tutorial_tutorial_scripts}
+\hypertarget{page_tutorial_tutorial_PB3D_results}{}\doxysubsection{\texorpdfstring{What to expect}{What to expect}}\label{page_tutorial_tutorial_PB3D_results}
+On one core of a laptop (Apple M3 Pro), this run takes about 2 minutes, and its memory use peaks at 10.\+6 GB. Most of the time goes into the plasma quantities on the 64 field lines; the vacuum takes 15 s. If your computer has less memory, lower {\ttfamily max\+\_\+tot\+\_\+mem:} with 2000, the peak was 6.\+5 GB and the run took about 3 minutes; with 8000, the peak was 13.\+6 GB.
+
+PB3D gives the eigenvalues $\lambda = \omega^2/\omega_A^2$, normalized to the square of the Alfvén frequency $\omega_A$ that the header of {\ttfamily PB3\+D\+\_\+out\+\_\+\+EV\+\_\+\+R\+\_\+1.\+txt} gives. For this input file, the first eigenvalue should be close to $\lambda = -0.0499$. A negative eigenvalue belongs to an unstable mode, with the growth rate $\gamma = \omega_A\sqrt{-\lambda}$, here $0.22\,\omega_A$.
+
+Figure 2 shows the eigenvector: the amplitudes of the poloidal Fourier harmonics $X_m$ of the normal displacement $X = \vec{\xi}\cdot\nabla\psi$. Each harmonic peaks close to the flux surface on which it is resonant, where $n|q| = m$; the upper axis of the figure gives $n|q|$. The largest harmonics, $m = 18$ to $23$, lie where the pressure falls most steeply. At the plasma boundary, where $n|q| = 30.4$, the harmonic $m = 31$, which would be resonant just outside the plasma, still has 0.\+27 of the largest amplitude, so that the mode moves the boundary.
+
+ 
+\begin{DoxyImage}%
+\includegraphics[width=\textwidth]{tutorial_harmonics.png}%
+\doxyfigcaption{Figure 2: amplitudes of the poloidal Fourier harmonics of the normal displacement of the first eigenvector, for n = 10, divided by the largest value. The upper axis gives n\texorpdfstring{$\vert$}{|}q\texorpdfstring{$\vert$}{|}; each harmonic m peaks close to where n\texorpdfstring{$\vert$}{|}q\texorpdfstring{$\vert$}{|} = m.}%
+\end{DoxyImage}
+
+
+Figure 3 shows the same eigenvector in the poloidal plane $\zeta = 0$, and the potential of the perturbed magnetic field in the vacuum outside the plasma. The displacement is largest on the outboard side, where the curvature of the field lines makes the pressure gradient destabilizing: the mode balloons. Outside the plasma, the vacuum potential falls off over a distance comparable to the distance between its maxima along the boundary. Figure 4 shows the displacement on the whole plasma boundary: its maxima and minima follow the field lines, with 10 periods around the torus, and it is largest on the outboard side. POST computes both figures (see \doxysectlink{page_tutorial_tutorial_POST}{Post-\/processing With POST}{1}); they were plotted with matplotlib from the HDF5 files that POST writes in {\ttfamily Data/}.
+
+ 
+\begin{DoxyImage}%
+\includegraphics[width=\textwidth]{tutorial_mode.png}%
+\doxyfigcaption{Figure 3: real part of the first eigenvector in the poloidal plane at zeta = 0. Left: the normal displacement X inside the plasma; the solution range starts at a normalized poloidal flux of 0.3. Right: the vacuum potential outside the plasma. Both in arbitrary units.}%
+\end{DoxyImage}
+  
+\begin{DoxyImage}%
+\includegraphics[width=0.8\textwidth]{tutorial_mode_3d.png}%
+\doxyfigcaption{Figure 4: real part of the normal displacement X of the first eigenvector on the plasma boundary, over the whole torus (red positive, blue negative).}%
+\end{DoxyImage}
+
+
+Table \doxytablelink{page_tutorial_tutorial_PB3D_res_tab}{3} shows how this eigenvalue changes when the input file is changed. Every row changes one thing. The rows marked HELENA use the HELENA mapping of the same plasma, without the lines with {\ttfamily alpha\+\_\+style} and {\ttfamily n\+\_\+alpha} (\doxylink{page_tutorial_fnt3}{3}); for HELENA, PB3D computes the vacuum with an axisymmetric method (see \doxysectlink{page_vacuum}{Vacuum response}{0}). \hypertarget{page_tutorial_tutorial_PB3D_res_tab}{}
+
+\begin{DoxyTable}{4}{Table 3. first eigenvalue for $n = 10$, with the time and the peak memory of the run on one core}{page_tutorial_tutorial_PB3D_res_tab}{1}
+\SetCell{bg=\tableheadbgcolor,font=\bfseries}change to the input file &\SetCell{bg=\tableheadbgcolor,font=\bfseries}eigenvalue &\SetCell{bg=\tableheadbgcolor,font=\bfseries}time &\SetCell{bg=\tableheadbgcolor,font=\bfseries}memory \\
+none (64 field lines with 100 points each) &$-0.04987$ &2 min &10.\+6 GB \\
+{\ttfamily min\+\_\+n\+\_\+par\+\_\+X = 200} &$-0.05029$ &5 min &12.\+4 GB \\
+{\ttfamily n\+\_\+alpha = 128} &$-0.04990$ &7 min &13.\+8 GB \\
+HELENA &$-0.05026$ &3 s &2.\+6 GB \\
+HELENA, {\ttfamily n\+\_\+mod\+\_\+X = 30} &$-0.05034$ &4 s &3.\+5 GB \\
+{\ttfamily BC\+\_\+style = 1 1} (fixed boundary) &$-0.04027$ &2 min &7.\+4 GB \\
+HELENA, {\ttfamily BC\+\_\+style = 1 1} &$-0.04028$ &2 s &2.\+6 GB \\
+\end{DoxyTable}
+
+
+The times varied by about 15 \% between repeated runs of the same input file. The table shows the following.
+\begin{DoxyItemize}
+\item With 100 points on each field line, the points along the lines limit the accuracy of the vacuum. 200 points per line move the eigenvalue by 0.\+8 \%, to within 0.\+1 \% of the HELENA value, while 128 field lines instead of 64 move it by only 0.\+05 \%.
+\item With 30 Fourier harmonics instead of 20, the free-\/boundary eigenvalue on the HELENA mapping is 0.\+2 \% more negative; the fixed-\/boundary eigenvalue on the HELENA mapping changes by less than $10^{-4}$ of its value.
+\item With the vacuum, the eigenvalue is 24 \% more negative than with a conducting wall on the plasma surface, so the growth rate is 11 \% larger.
+\item {\ttfamily min\+\_\+r\+\_\+sol} = 0.\+3 lies far enough inward. On the HELENA mapping, with the same spacing of the radial points, the free-\/boundary eigenvalue changes by $10^{-5}$ of its value when the solution range starts at 0.\+1 instead. When it starts at 0.\+5, the range cuts off the inner part of the eigenfunction, and the eigenvalue is 0.\+2 \% less negative.
+\item The radial grid is fine enough: with 1120 points instead of 400, the HELENA eigenvalue with a free boundary changes by 0.\+04 \%.
+\end{DoxyItemize}\hypertarget{page_tutorial_tutorial_scripts}{}\doxysection{\texorpdfstring{Run Script Tools}{Run Script Tools}}\label{page_tutorial_tutorial_scripts}
 PB3D comes with a bunch of extra run tools, which can greatly improve user experience.
 
 \begin{DoxyNote}{Note}
 These tools are in a separate git repository, {\ttfamily } \href{https://github.com/ToonWeyens/PB3D_tools}{\texttt{PB3\+D\+\_\+tools}}.
 \end{DoxyNote}
-In table \doxytablelink{page_tutorial_tutorial_scripts_tab}{3}, an overview is given: \hypertarget{page_tutorial_tutorial_scripts_tab}{}
+In table \doxytablelink{page_tutorial_tutorial_scripts_tab}{4}, an overview is given: \hypertarget{page_tutorial_tutorial_scripts_tab}{}
 
-\begin{DoxyTable}{2}{Table 3. extra tools}{page_tutorial_tutorial_scripts_tab}{0}
+\begin{DoxyTable}{2}{Table 4. extra tools}{page_tutorial_tutorial_scripts_tab}{0}
 {\ttfamily run} &Run script that can be used for PB3D and POST with an extensive range of features including
 \begin{DoxyItemize}
 \item the possibility to do a parameter scan for a variety of input variables
@@ -257,7 +322,7 @@ An example is given in {\ttfamily POST.\+input}
 \DoxyCodeLine{00008\ \ \ \ \ plot\_B\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ .true.}
 \DoxyCodeLine{00009\ \ \ \ \ plot\_J\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ .true.}
 \DoxyCodeLine{00010\ \ \ \ \ plot\_kappa\ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ .true.}
-\DoxyCodeLine{00011\ \ \ \ \ min\_r\_plot\ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ 0.0}
+\DoxyCodeLine{00011\ \ \ \ \ min\_r\_plot\ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ 0.3}
 \DoxyCodeLine{00012\ \ \ \ \ max\_r\_plot\ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ 1.0}
 \DoxyCodeLine{00013\ \ \ \ \ n\_theta\_plot\ \ \ \ \ \ \ \ \ \ \ \ =\ 101}
 \DoxyCodeLine{00014\ \ \ \ \ min\_theta\_plot\ \ \ \ \ \ \ \ \ \ =\ 0.00}
@@ -304,11 +369,20 @@ Now, run the POST program, for example using 4 MPI processes:
 \DoxyCodeLine{mpirun\ -\/np\ 4\ ./POST\ POST.input\ PB3D\_out.h5\ }
 
 \end{DoxyCode}
-
+ For this example, POST takes about half a minute on one core.
 
 An interesting output is the energy reconstruction, which is activated with {\ttfamily plot\+\_\+\+E\+\_\+rec}. This calculation reinserts the eigenvector into the terms of the perturbed potential energy and of the kinetic energy, in order to check whether the Rayleigh quotient still holds, and to see which terms are dominant and which ones are less important. The integrated terms are also stored in a separate file, {\ttfamily POST\+\_\+out\+\_\+\+EN\+\_\+R\+[lvl].txt} for Richardson level {\ttfamily \+[lvl]} (see \doxysectlink{page_outputs_output_file_E_rec}{Energy reconstruction file}{2}).
 
-For a free-\/boundary PB3D run, POST also plots the vacuum potential outside the plasma ({\ttfamily plot\+\_\+vac\+\_\+pot}, which is set by default); for a fixed boundary, as in this example, POST switches this plot off.
+Figure 5 shows these terms for this example, divided by the kinetic energy, so that they add up to the eigenvalue: their sum, $-0.04984$, differs from the eigenvalue $-0.04987$ by $7\times10^{-4}$ of its value. The normal ballooning term, which holds the pressure gradient and the normal curvature of the field lines, drives the mode most, and the line bending terms stabilize it. The figure also shows the terms of the fixed-\/boundary run ({\ttfamily BC\+\_\+style = 1 1}). The vacuum term itself is small and positive, $+0.005$. The free boundary makes the mode more unstable because the eigenvector changes: with the free boundary, the normal ballooning term is more negative by 0.\+025 and the normal kink term, which holds the parallel current, by 0.\+012, while the line bending terms grow by 0.\+027.
+
+ 
+\begin{DoxyImage}%
+\includegraphics[width=0.9\textwidth]{tutorial_energy.png}%
+\doxyfigcaption{Figure 5: terms of the potential energy of the first eigenvector, divided by its kinetic energy, for the free boundary of this tutorial and for a fixed boundary (POST, plot\+\_\+\+E\+\_\+rec).}%
+\end{DoxyImage}
+
+
+Because this example has a free boundary, POST also plots the vacuum potential of the eigenmode outside the plasma ({\ttfamily plot\+\_\+vac\+\_\+pot}, which is set by default), in the files {\ttfamily Data/\+1\+\_\+vac\+\_\+pot\+\_\+\+RE.\+xmf} and {\ttfamily Data/\+1\+\_\+vac\+\_\+pot\+\_\+\+IM.\+xmf} for its real and imaginary parts; {\ttfamily Data/\+vac\+\_\+in\+\_\+plasma.\+xmf} marks the points of the plot that lie inside the plasma. After a fixed-\/boundary run, POST switches this plot off.
 
 If {\ttfamily --do\+\_\+execute\+\_\+command\+\_\+line} was not explicitly used, the actual external plot programs are not used yet, but their usage is given in a shell commands script file (see \doxysectlink{page_outputs_output_file_shell}{Shell commands file}{2}). Run this shell with 
 \begin{DoxyCode}{0}
@@ -321,13 +395,23 @@ If everything is okay, you should now see output in the {\ttfamily Plots/} folde
 
 Also, open some of the {\ttfamily .xmf} files in {\ttfamily Data/} in Vis\+It or Para\+View to explore these plots.
 
-To finish this tutorial, feel free to adjust some input parameters. For example, you can change the output grid to become 3-\/D by setting {\ttfamily n\+\_\+zeta\+\_\+plot} and {\ttfamily max\+\_\+zeta\+\_\+plot}, or you could deform it using {\ttfamily pert\+\_\+mult\+\_\+factor\+\_\+\+POST}.
+To finish this tutorial, feel free to adjust some input parameters. For example, you can change the output grid to become 3-\/D by setting {\ttfamily n\+\_\+zeta\+\_\+plot} and {\ttfamily max\+\_\+zeta\+\_\+plot}, or you could deform it using {\ttfamily pert\+\_\+mult\+\_\+factor\+\_\+\+POST}. Figures 3 and 4 were made this way, each from a separate POST run in which only {\ttfamily plot\+\_\+sol\+\_\+xi} is set, and {\ttfamily plot\+\_\+vac\+\_\+pot} for figure 3:
+\begin{DoxyItemize}
+\item figure 3 with {\ttfamily n\+\_\+theta\+\_\+plot = 401}, and the vacuum potential on a finer box with {\ttfamily min\+\_\+\+Rvac\+\_\+plot = 1.\+9}, {\ttfamily max\+\_\+\+Rvac\+\_\+plot = 5.\+9}, {\ttfamily min\+\_\+\+Zvac\+\_\+plot = -\/1.\+9}, {\ttfamily max\+\_\+\+Zvac\+\_\+plot = 1.\+9} and {\ttfamily n\+\_\+vac\+\_\+plot = 321 305} (2 minutes on one core);
+\item figure 4 with {\ttfamily min\+\_\+r\+\_\+plot = 0.\+99}, {\ttfamily n\+\_\+theta\+\_\+plot = 201}, {\ttfamily n\+\_\+zeta\+\_\+plot = 241}, {\ttfamily max\+\_\+zeta\+\_\+plot = 2.\+0} and without the vacuum potential, which gives the outermost flux surfaces over the whole torus (20 s).
+\end{DoxyItemize}
 
 \begin{DoxyNote}{Note}
 
 \begin{DoxyEnumerate}
 \item \label{page_tutorial_fnt1}%
 \Hypertarget{page_tutorial_fnt1}%
-The cylindrical angle $\varphi$ is often the inverse of the one used in nuclear fusion research, as it can lead to left-\/handed coordinate systems. In VMEC, it is opted to use it anyway, so it has a left-\/handed coordinate system. The poloidal angle is chosen to be anticlockwise if you look at a cross-\/section of the plasma that lies to the right of the $Z$-\/axis with the $Z$-\/axis pointing up, as in PB3D. In PB3D, however, the toroidal angle $\zeta = - \varphi$ is chosen as the inverse of the cylindrical angle, so it is right-\/handed. 
+The cylindrical angle $\varphi$ is often the inverse of the one used in nuclear fusion research, as it can lead to left-\/handed coordinate systems. In VMEC, it is opted to use it anyway, so it has a left-\/handed coordinate system. The poloidal angle is chosen to be anticlockwise if you look at a cross-\/section of the plasma that lies to the right of the $Z$-\/axis with the $Z$-\/axis pointing up, as in PB3D. In PB3D, however, the toroidal angle $\zeta = - \varphi$ is chosen as the inverse of the cylindrical angle, so it is right-\/handed.
+\item \label{page_tutorial_fnt2}%
+\Hypertarget{page_tutorial_fnt2}%
+In the VMEC file of this tutorial, the toroidal flux and the rotational transform are both negative, as in the HELENA equilibrium it was made from, so that $q$ is negative.
+\item \label{page_tutorial_fnt3}%
+\Hypertarget{page_tutorial_fnt3}%
+HELENA equilibria are axisymmetric, so PB3D needs only one field line for them. With {\ttfamily n\+\_\+alpha = 64} in the input file, PB3D warns about this, but it still uses 64 field lines, and it then stops because its memory limit {\ttfamily max\+\_\+tot\+\_\+mem} is too low. 
 \end{DoxyEnumerate}
 \end{DoxyNote}
