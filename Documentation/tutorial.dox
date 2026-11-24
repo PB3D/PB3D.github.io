@@ -174,12 +174,15 @@
 
     \section tutorial_PB3D Running PB3D
     This tutorial provides a VMEC equilibrium file to experiment with: the \c cbm18 equilibrium of the benchmark for edge-localized modes of Ferraro et al. \cite ferraro2010ELMbenchmark, a nearly circular tokamak with a steep pressure pedestal at the edge, which is unstable to peeling-ballooning modes.
-    The equilibrium of the benchmark fills a circle of radius 2 m around \f$R = 3\f$ m, but its pressure and current are zero beyond the foot of the pedestal, at 70 % of the poloidal flux.
-    Ideal codes with a vacuum region, such as ELITE, end the plasma at this foot, at 0.701 of the poloidal flux, and treat the region outside it as vacuum.
-    The file of this tutorial does the same: its boundary is the flux surface at the foot, so that a free-boundary calculation with PB3D puts the vacuum where these codes have it.
+    The plasma ends at the foot of the pedestal, where the pressure gradient and the current density fall to zero, and outside it is vacuum.
     The file was made from the HELENA equilibrium of this plasma, with PB3D's option <tt>--export_HEL</tt> and VMEC++ on 639 flux surfaces; its safety factor agrees with that of HELENA to five digits.
-    Lengths and fields are in SI units, in the size of the benchmark equilibrium.
+    Lengths and fields are in SI units.
+    Figure 1 shows the flux surfaces and the profiles of the pressure and the safety factor: the pressure falls from 25 kPa at \f$\psi = 0.75\f$ to 0.2 kPa at \f$\psi = 0.95\f$, where \f$\psi\f$ is the normalized poloidal flux.
     Some properties are given in table \ref tutorial_PB3D_tab "2".
+
+    \image html tutorial_equilibrium.png "Figure 1: the equilibrium of this tutorial. Left: the flux surfaces in a poloidal cross-section, every 0.1 in the normalized poloidal flux, with the magnetic axis marked by a cross. Right: the pressure and the absolute value of the safety factor against the normalized poloidal flux." width=90%
+    \image latex tutorial_equilibrium.png "Figure 1: the equilibrium of this tutorial. Left: the flux surfaces in a poloidal cross-section, every 0.1 in the normalized poloidal flux, with the magnetic axis marked by a cross. Right: the pressure and the absolute value of the safety factor against the normalized poloidal flux." width=\textwidth
+
     <table>
     <caption id="tutorial_PB3D_tab">Table 2. equilibrium parameters</caption>
     <tr>
@@ -248,6 +251,25 @@
     PB3D gives the eigenvalues \f$\lambda = \omega^2/\omega_A^2\f$, normalized to the square of the Alfvén frequency \f$\omega_A\f$ that the header of <tt>PB3D_out_EV_R_1.txt</tt> gives.
     For this input file, the first eigenvalue should be close to \f$\lambda = -0.0499\f$.
     A negative eigenvalue belongs to an unstable mode, with the growth rate \f$\gamma = \omega_A\sqrt{-\lambda}\f$, here \f$0.22\,\omega_A\f$.
+
+    Figure 2 shows the eigenvector: the amplitudes of the poloidal Fourier harmonics \f$X_m\f$ of the normal displacement \f$X = \vec{\xi}\cdot\nabla\psi\f$.
+    Each harmonic peaks close to the flux surface on which it is resonant, where \f$n|q| = m\f$; the upper axis of the figure gives \f$n|q|\f$.
+    The largest harmonics, \f$m = 18\f$ to \f$23\f$, lie where the pressure falls most steeply.
+    At the plasma boundary, where \f$n|q| = 30.4\f$, the harmonic \f$m = 31\f$, which would be resonant just outside the plasma, still has 0.27 of the largest amplitude, so that the mode moves the boundary.
+
+    \image html tutorial_harmonics.png "Figure 2: amplitudes of the poloidal Fourier harmonics of the normal displacement of the first eigenvector, for n = 10, divided by the largest value. The upper axis gives n|q|; each harmonic m peaks close to where n|q| = m." width=85%
+    \image latex tutorial_harmonics.png "Figure 2: amplitudes of the poloidal Fourier harmonics of the normal displacement of the first eigenvector, for n = 10, divided by the largest value. The upper axis gives n|q|; each harmonic m peaks close to where n|q| = m." width=\textwidth
+
+    Figure 3 shows the same eigenvector in the poloidal plane \f$\zeta = 0\f$, and the potential of the perturbed magnetic field in the vacuum outside the plasma.
+    The displacement is largest on the outboard side, where the curvature of the field lines makes the pressure gradient destabilizing: the mode balloons.
+    Outside the plasma, the vacuum potential falls off over a distance comparable to the distance between its maxima along the boundary.
+    Figure 4 shows the displacement on the whole plasma boundary: its maxima and minima follow the field lines, with 10 periods around the torus, and it is largest on the outboard side.
+    POST computes both figures (see \ref tutorial_POST); they were plotted with matplotlib from the HDF5 files that POST writes in <tt>Data/</tt>.
+
+    \image html tutorial_mode.png "Figure 3: real part of the first eigenvector in the poloidal plane at zeta = 0. Left: the normal displacement X inside the plasma; the solution range starts at a normalized poloidal flux of 0.3. Right: the vacuum potential outside the plasma. Both in arbitrary units." width=90%
+    \image latex tutorial_mode.png "Figure 3: real part of the first eigenvector in the poloidal plane at zeta = 0. Left: the normal displacement X inside the plasma; the solution range starts at a normalized poloidal flux of 0.3. Right: the vacuum potential outside the plasma. Both in arbitrary units." width=\textwidth
+    \image html tutorial_mode_3d.png "Figure 4: real part of the normal displacement X of the first eigenvector on the plasma boundary, over the whole torus (red positive, blue negative)." width=75%
+    \image latex tutorial_mode_3d.png "Figure 4: real part of the normal displacement X of the first eigenvector on the plasma boundary, over the whole torus (red positive, blue negative)." width=0.8\textwidth
 
     Table \ref tutorial_PB3D_res_tab "3" shows how this eigenvalue changes when the input file is changed.
     Every row changes one thing.
@@ -349,6 +371,15 @@
     This calculation reinserts the eigenvector into the terms of the perturbed potential energy and of the kinetic energy, in order to check whether the Rayleigh quotient still holds, and to see which terms are dominant and which ones are less important.
     The integrated terms are also stored in a separate file, <tt>POST_out_EN_R[lvl].txt</tt> for Richardson level <tt>[lvl]</tt> (see \ref output_file_E_rec).
 
+    Figure 5 shows these terms for this example, divided by the kinetic energy, so that they add up to the eigenvalue: their sum, \f$-0.04984\f$, differs from the eigenvalue \f$-0.04987\f$ by \f$7\times10^{-4}\f$ of its value.
+    The normal ballooning term, which holds the pressure gradient and the normal curvature of the field lines, drives the mode most, and the line bending terms stabilize it.
+    The figure also shows the terms of the fixed-boundary run (<tt>BC_style = 1 1</tt>).
+    The vacuum term itself is small and positive, \f$+0.005\f$.
+    The free boundary makes the mode more unstable because the eigenvector changes: with the free boundary, the normal ballooning term is more negative by 0.025 and the normal kink term, which holds the parallel current, by 0.012, while the line bending terms grow by 0.027.
+
+    \image html tutorial_energy.png "Figure 5: terms of the potential energy of the first eigenvector, divided by its kinetic energy, for the free boundary of this tutorial and for a fixed boundary (POST, plot_E_rec)." width=80%
+    \image latex tutorial_energy.png "Figure 5: terms of the potential energy of the first eigenvector, divided by its kinetic energy, for the free boundary of this tutorial and for a fixed boundary (POST, plot_E_rec)." width=0.9\textwidth
+
     Because this example has a free boundary, POST also plots the vacuum potential of the eigenmode outside the plasma (\c plot_vac_pot, which is set by default), in the files <tt>Data/1_vac_pot_RE.xmf</tt> and <tt>Data/1_vac_pot_IM.xmf</tt> for its real and imaginary parts; <tt>Data/vac_in_plasma.xmf</tt> marks the points of the plot that lie inside the plasma.
     After a fixed-boundary run, POST switches this plot off.
 
@@ -363,6 +394,9 @@
     
     To finish this tutorial, feel free to adjust some input parameters.
     For example, you can change the output grid to become 3-D by setting \c n_zeta_plot and \c max_zeta_plot, or you could deform it using \c pert_mult_factor_POST.
+    Figures 3 and 4 were made this way, each from a separate POST run in which only \c plot_sol_xi is set, and \c plot_vac_pot for figure 3:
+        - figure 3 with <tt>n_theta_plot = 401</tt>, and the vacuum potential on a finer box with <tt>min_Rvac_plot = 1.9</tt>, <tt>max_Rvac_plot = 5.9</tt>, <tt>min_Zvac_plot = -1.9</tt>, <tt>max_Zvac_plot = 1.9</tt> and <tt>n_vac_plot = 321 305</tt> (2 minutes on one core);
+        - figure 4 with <tt>min_r_plot = 0.99</tt>, <tt>n_theta_plot = 201</tt>, <tt>n_zeta_plot = 241</tt>, <tt>max_zeta_plot = 2.0</tt> and without the vacuum potential, which gives the outermost flux surfaces over the whole torus (20 s).
 
     \note
         -# \anchor fnt1 The cylindrical angle \f$\varphi\f$ is often the inverse of the one used in nuclear fusion research, as it can lead to left-handed coordinate systems. In VMEC, it is opted to use it anyway, so it has a left-handed coordinate system. The poloidal angle is chosen to be anticlockwise if you look at a cross-section of the plasma that lies to the right of the \f$Z\f$-axis with the \f$Z\f$-axis pointing up, as in PB3D. In PB3D, however, the toroidal angle \f$\zeta = - \varphi\f$ is chosen as the inverse of the cylindrical angle, so it is right-handed.
