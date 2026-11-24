@@ -20,7 +20,7 @@
             - for dense linear algebra, in particular the boundary-element system of the vacuum, which PB3D solves with the LU factorization of ScaLAPACK (\c pdgetrf and \c pdgetrs)
         - <a href="https://github.com/PrincetonUniversity/STELLOPT">LIBSTELL</a>, part of the STELLOPT suite, which contains VMEC
             - to read the output of VMEC (PB3D uses only the module \c read_wout_mod)
-        - <a href="https://github.com/ilonster/pspline">PSPLINE</a>
+        - <a href="https://github.com/PrincetonUniversity/pspline">PSPLINE</a>, release v2.5.0
             - Princeton Spline and Hermite Cubic Interpolation Routines
 
     Furthermore, PB3D comes bundled with some other, smaller libraries, which CMake compiles with the code:
@@ -147,17 +147,15 @@
 
     \subsection installation_pspline PSPLINE
 
-    The script <tt>Libraries/build_pspline.sh</tt> builds PSPLINE with gfortran, without NetCDF, from a clone of <a href="https://github.com/ilonster/pspline">github.com/ilonster/pspline</a>.
-    It first applies the patch <tt>Libraries/pspline-r8genxpkg-nx3.patch</tt>, which has to lie next to the script.
-    The patch stops the routine \c r8genxpkg from writing 8 bytes past the end of its array for three unevenly spaced points; PB3D calls it with such points, and without the patch about every other run crashes on macOS.
-    The script is copied into the clone and run there:
+    PB3D uses release v2.5.0 of <a href="https://github.com/PrincetonUniversity/pspline">github.com/PrincetonUniversity/pspline</a>.
+    The script <tt>Libraries/build_pspline.sh</tt> builds it with the Makefile of PSPLINE, with gfortran and without NetCDF, as the static library <tt>libpspline.a</tt>, and installs the library with its module files:
     \verbatim
-    git clone --depth 1 https://github.com/ilonster/pspline.git $DEPS/pspline
-    cp $PB3D_SRC/Libraries/build_pspline.sh $PB3D_SRC/Libraries/pspline-r8genxpkg-nx3.patch $DEPS/pspline/
-    $DEPS/pspline/build_pspline.sh
+    git clone --depth 1 --branch v2.5.0 https://github.com/PrincetonUniversity/pspline.git $DEPS/pspline
+    $PB3D_SRC/Libraries/build_pspline.sh $DEPS/pspline
     export PSPLINE_DIR=$DEPS/pspline/install
     \endverbatim
-    The library and the module files are then in <tt>$DEPS/pspline/install/lib</tt> and <tt>$DEPS/pspline/install/include</tt>.
+    The library and the module files are then in <tt>$DEPS/pspline/install/lib</tt> and <tt>$DEPS/pspline/install/include</tt>; a second argument of the script names another installation directory.
+    The script builds only the target <tt>libpspline.a</tt>: the default target of the Makefile also links a C++ test program, and on macOS \c clang++ does not find the library of gfortran for it.
 
     \subsection installation_libstell LIBSTELL
 
@@ -283,8 +281,6 @@
     - On macOS with OpenMPI 5 from Homebrew, \c mpirun itself can crash while it detects the hardware. PB3D then still runs on one process when the executable is called directly, without \c mpirun, and <tt>ctest -LE mpi</tt> skips the tests that use \c mpirun.
     - GNU Fortran 14.2 and 14.3 compile the bounds check of an array subscript that contains a function call with an array-constructor argument wrongly. CMake therefore removes \c -fcheck=bounds from the flags of the debug build for every GNU Fortran 14.
     - PB3D stores file names in strings of 120 characters, so the paths of the input and equilibrium files given on the command line must not be longer than that. A symbolic link with a short name helps.
-    - A PSPLINE built without the patch of \ref installation_pspline makes about every other run crash on macOS, with a SIGTRAP or a failure of \c H5Fcreate.
-
     \section installation_makefile Legacy Makefile
 
     The code also contains a hand-written Makefile, <tt>Makefile.legacy</tt>, which is kept for reference.
