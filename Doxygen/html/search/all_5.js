@@ -29,6 +29,7 @@ var searchData=
   ['eval_5fpot_5fext_26',['eval_pot_ext',['../namespacevac__ops.html#a33bf7285ead934fa8e4242c708542d92',1,'vac_ops']]],
   ['ex_5fmax_5fsize_27',['ex_max_size',['../namespacenum__vars.html#a032fd6a1d45689b56362d8aab1cdc57c',1,'num_vars']]],
   ['ex_5fplot_5fstyle_28',['ex_plot_style',['../namespacenum__vars.html#aac52d1fda60883bea62738fe0ecd7527',1,'num_vars']]],
-  ['export_5fhel_29',['export_hel',['../namespacenum__vars.html#aa1342b6b43268bd10bb254fa9bf754f0',1,'num_vars']]],
-  ['extend_5fgrid_5ff_30',['extend_grid_f',['../namespacegrid__utilities.html#a414a1a11924bc935afca3a89fc31f2f5',1,'grid_utilities']]]
+  ['expect_29',['What to expect',['../page_tutorial.html#tutorial_PB3D_results',1,'']]],
+  ['export_5fhel_30',['export_hel',['../namespacenum__vars.html#aa1342b6b43268bd10bb254fa9bf754f0',1,'num_vars']]],
+  ['extend_5fgrid_5ff_31',['extend_grid_f',['../namespacegrid__utilities.html#a414a1a11924bc935afca3a89fc31f2f5',1,'grid_utilities']]]
 ];
