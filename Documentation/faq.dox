@@ -73,9 +73,6 @@
         <td>A Debug build with gfortran 14 has no bounds checking</td> <td> gfortran 14.2 and 14.3 miscompile the bounds check of some array subscripts in PB3D. For gfortran 14, CMake therefore builds the Debug configuration with <tt>-fcheck=all,no-bounds</tt> instead of <tt>-fcheck=all</tt>, and prints a message about it. Use another gfortran version to build with bounds checking. </td>
     </tr>
     <tr>
-        <td>Random crashes on macOS, with SIGTRAP or a failed <tt>H5Fcreate</tt></td> <td> These come from a heap overrun in PSPLINE (<tt>r8genxpkg</tt> writes past its array for three unevenly spaced points), which the macOS memory allocator traps at a later allocation. Build PSPLINE with <tt>Libraries/build_pspline.sh</tt> of the PB3D repository, which applies the patch <tt>Libraries/pspline-r8genxpkg-nx3.patch</tt>. </td>
-    </tr>
-    <tr>
         <td><tt>mpirun</tt> crashes on macOS</td> <td> With the OpenMPI 5 of Homebrew, <tt>mpirun</tt> itself can crash while it detects the hardware topology. A single-process run works by starting the executable directly, without <tt>mpirun</tt>, for example <tt>./PB3D PB3D.input wout.nc</tt>. </td>
     </tr>
     <tr>

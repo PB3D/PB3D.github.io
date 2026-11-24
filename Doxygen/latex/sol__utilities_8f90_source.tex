@@ -19,7 +19,7 @@
 \DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00015}00015\ }
 \DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00016}00016\ \ \ \ \ \textcolor{keywordtype}{implicit\ none}}
 \DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00017}00017\ \ \ \ \ \textcolor{keywordtype}{private}}
-\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00018}00018\ \ \ \ \ \textcolor{keywordtype}{public}\ \doxymbox{\hyperlink{interfacesol__utilities_1_1calc__xuq}{calc\_xuq}},\ \doxymbox{\hyperlink{namespacesol__utilities_a8b902a82ae6a238e725da2cf09e7854f}{calc\_tot\_sol\_vec}},\ \doxymbox{\hyperlink{namespacesol__utilities_a677373f47ee68ad02e9cef5b409bdc26}{calc\_loc\_sol\_vec}},\ \doxymbox{\hyperlink{namespacesol__utilities_a6bc8c29a0b3fc64f7f9b80635e95ec58}{interp\_v\_spline}}}
+\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00018}00018\ \ \ \ \ \textcolor{keywordtype}{public}\ \doxymbox{\hyperlink{interfacesol__utilities_1_1calc__xuq}{calc\_xuq}},\ \doxymbox{\hyperlink{namespacesol__utilities_a8b902a82ae6a238e725da2cf09e7854f}{calc\_tot\_sol\_vec}},\ \doxymbox{\hyperlink{namespacesol__utilities_a677373f47ee68ad02e9cef5b409bdc26}{calc\_loc\_sol\_vec}},\ \doxymbox{\hyperlink{namespacesol__utilities_a50a44a844f0db0040bba4c69de27c36b}{interp\_v\_spline}}}
 \DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00019}00019\ \textcolor{preprocessor}{\#if\ ldebug}}
 \DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00020}00020\ \textcolor{preprocessor}{}\ \ \ \ \textcolor{keywordtype}{public}\ \doxymbox{\hyperlink{namespacesol__utilities_a4779ff845b4ddc046892bf4eb4490dd2}{debug\_calc\_xuq\_arr}},\ \doxymbox{\hyperlink{namespacesol__utilities_aa36c52e73c02a783074c7c0e5076c903}{debug\_interp\_v\_spline}}}
 \DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00021}00021\ \textcolor{preprocessor}{\#endif}}
@@ -384,20 +384,20 @@
 \DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00380}00380\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{allocate}(u1(xuq\_dims(1),xuq\_dims(2),\&}
 \DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00381}00381\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&kdl\_sol(1):kdl\_sol(2)))}
 \DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00382}00382\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (deriv\_loc)\ \textcolor{keywordflow}{then}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ parallel\ derivative}}
-\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00383}00383\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ierr\ =\ \doxymbox{\hyperlink{namespacesol__utilities_a6bc8c29a0b3fc64f7f9b80635e95ec58}{interp\_v\_spline}}(\&}
+\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00383}00383\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ierr\ =\ \doxymbox{\hyperlink{namespacesol__utilities_a50a44a844f0db0040bba4c69de27c36b}{interp\_v\_spline}}(\&}
 \DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00384}00384\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&x\%DU\_0(:,:,kdl\_x(1):kdl\_x(2),ind\_x),u0,\&}
 \DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00385}00385\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&r\_x\_loc,r\_sol\_loc,extrap)}
 \DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00386}00386\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ chckerr(\textcolor{stringliteral}{''})}
-\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00387}00387\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ierr\ =\ \doxymbox{\hyperlink{namespacesol__utilities_a6bc8c29a0b3fc64f7f9b80635e95ec58}{interp\_v\_spline}}(\&}
+\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00387}00387\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ierr\ =\ \doxymbox{\hyperlink{namespacesol__utilities_a50a44a844f0db0040bba4c69de27c36b}{interp\_v\_spline}}(\&}
 \DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00388}00388\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&x\%DU\_1(:,:,kdl\_x(1):kdl\_x(2),ind\_x),u1,\&}
 \DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00389}00389\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&r\_x\_loc,r\_sol\_loc,extrap)}
 \DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00390}00390\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ chckerr(\textcolor{stringliteral}{''})}
 \DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00391}00391\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
-\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00392}00392\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ierr\ =\ \doxymbox{\hyperlink{namespacesol__utilities_a6bc8c29a0b3fc64f7f9b80635e95ec58}{interp\_v\_spline}}(\&}
+\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00392}00392\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ierr\ =\ \doxymbox{\hyperlink{namespacesol__utilities_a50a44a844f0db0040bba4c69de27c36b}{interp\_v\_spline}}(\&}
 \DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00393}00393\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&x\%U\_0(:,:,kdl\_x(1):kdl\_x(2),ind\_x),u0,\&}
 \DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00394}00394\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&r\_x\_loc,r\_sol\_loc,extrap)}
 \DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00395}00395\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ chckerr(\textcolor{stringliteral}{''})}
-\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00396}00396\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ierr\ =\ \doxymbox{\hyperlink{namespacesol__utilities_a6bc8c29a0b3fc64f7f9b80635e95ec58}{interp\_v\_spline}}(\&}
+\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00396}00396\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ierr\ =\ \doxymbox{\hyperlink{namespacesol__utilities_a50a44a844f0db0040bba4c69de27c36b}{interp\_v\_spline}}(\&}
 \DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00397}00397\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&x\%U\_1(:,:,kdl\_x(1):kdl\_x(2),ind\_x),u1,\&}
 \DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00398}00398\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&r\_x\_loc,r\_sol\_loc,extrap)}
 \DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00399}00399\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ chckerr(\textcolor{stringliteral}{''})}
@@ -450,11 +450,11 @@
 \DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00446}00446\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ierr\ =\ 1}
 \DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00447}00447\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ chckerr(err\_msg)}
 \DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00448}00448\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
-\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00449}00449\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ierr\ =\ \doxymbox{\hyperlink{namespacesol__utilities_a6bc8c29a0b3fc64f7f9b80635e95ec58}{interp\_v\_spline}}(\&}
+\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00449}00449\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ierr\ =\ \doxymbox{\hyperlink{namespacesol__utilities_a50a44a844f0db0040bba4c69de27c36b}{interp\_v\_spline}}(\&}
 \DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00450}00450\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&x\%DU\_0(:,:,kdl\_x(1):kdl\_x(2),ind\_x),u0,\&}
 \DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00451}00451\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&r\_x\_loc,r\_sol\_loc,extrap)}
 \DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00452}00452\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ chckerr(\textcolor{stringliteral}{''})}
-\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00453}00453\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ierr\ =\ \doxymbox{\hyperlink{namespacesol__utilities_a6bc8c29a0b3fc64f7f9b80635e95ec58}{interp\_v\_spline}}(\&}
+\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00453}00453\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ierr\ =\ \doxymbox{\hyperlink{namespacesol__utilities_a50a44a844f0db0040bba4c69de27c36b}{interp\_v\_spline}}(\&}
 \DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00454}00454\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&x\%DU\_1(:,:,kdl\_x(1):kdl\_x(2),ind\_x),u1,\&}
 \DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00455}00455\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&r\_x\_loc,r\_sol\_loc,extrap)}
 \DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00456}00456\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ chckerr(\textcolor{stringliteral}{''})}
@@ -796,140 +796,94 @@
 \DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00792}00792\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ end\ select}}
 \DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00793}00793\ \ \ \ \ \textcolor{keyword}{end\ function\ }\doxymbox{\hyperlink{namespacesol__utilities_a677373f47ee68ad02e9cef5b409bdc26}{calc\_loc\_sol\_vec}}}
 \DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00794}00794\ \ \ \ \ \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00795}00795\ \textcolor{comment}{\ \ \ \ !>\ Interpolation\ for\ a\ quantity\ V\ using\ splines.}}
-\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00796}00796\ \textcolor{comment}{\ \ \ \ !!}}
-\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00797}00797\ \textcolor{comment}{\ \ \ \ !!\ The\ order\ is\ the\ lower\ of\ the\ setting\ interp\_V\_ord\ and\ the\ highest\ order}}
-\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00798}00798\ \textcolor{comment}{\ \ \ \ !!\ the\ points\ allow:\ 0\ for\ one\ point\ (a\ copy),\ 1\ for\ two\ or\ three\ (a\ straight}}
-\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00799}00799\ \textcolor{comment}{\ \ \ \ !!\ line;\ PSPLINE's\ splines\ of\ order\ 2\ and\ 3\ need\ at\ least\ four\ points)\ and\ 3}}
-\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00800}00800\ \textcolor{comment}{\ \ \ \ !!\ for\ four\ or\ more.}}
-\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00801}00801\ \textcolor{comment}{\ \ \ \ !!}}
-\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00802}00802\ \textcolor{comment}{\ \ \ \ !!\ Optionally,\ a\ variable\ 'ivs\_stat'\ is\ \ returned\ that\ indicates\ whether\ the}}
-\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00803}00803\ \textcolor{comment}{\ \ \ \ !!\ interpolation\ \ was\ a\ \ plain\ copy\ \ (1),\ a\ \ linear\ interpolation\ \ (2)\ or\ \ a}}
-\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00804}00804\ \textcolor{comment}{\ \ \ \ !!\ spline\ interpolation\ (3),\ Akima\ or\ cubic.}}
-\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00805}\doxymbox{\hyperlink{namespacesol__utilities_a6bc8c29a0b3fc64f7f9b80635e95ec58}{00805}}\ \ \ \ \ \textcolor{keyword}{integer\ }\textcolor{keyword}{function\ }\doxymbox{\hyperlink{namespacesol__utilities_a6bc8c29a0b3fc64f7f9b80635e95ec58}{interp\_v\_spline}}(V\_i,V\_o,r\_i,r\_o,extrap,ivs\_stat)\ \&}
-\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00806}00806\ \ \ \ \ \ \ \ \ \&result(ierr)}
-\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00807}00807\ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00808}00808\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{use\ }\doxymbox{\hyperlink{namespacespline__utilities}{spline\_utilities}},\ \textcolor{keywordtype}{only}:\ \doxymbox{\hyperlink{interfacespline__utilities_1_1spline}{spline}}}
-\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00809}00809\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{use\ }\doxymbox{\hyperlink{namespacenum__vars}{num\_vars}},\ \textcolor{keywordtype}{only}:\ \doxymbox{\hyperlink{namespacenum__vars_a92fa8cc54393aa4557503a7111949d54}{interp\_v\_ord}}}
+\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00795}00795\ \textcolor{comment}{\ \ \ \ !>\ Interpolation\ of\ a\ quantity\ V(i,j,r)\ in\ r,\ for\ every\ i\ and\ j,\ with\ the}}
+\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00796}00796\ \textcolor{comment}{\ \ \ \ !!\ spline\ of\ order\ interp\_V\_ord.}}
+\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00797}\doxymbox{\hyperlink{namespacesol__utilities_a50a44a844f0db0040bba4c69de27c36b}{00797}}\ \ \ \ \ \textcolor{keyword}{integer\ }\textcolor{keyword}{function\ }\doxymbox{\hyperlink{namespacesol__utilities_a50a44a844f0db0040bba4c69de27c36b}{interp\_v\_spline}}(V\_i,V\_o,r\_i,r\_o,extrap)\ \textcolor{keyword}{result}(ierr)}
+\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00798}00798\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00799}00799\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{use\ }\doxymbox{\hyperlink{namespacespline__utilities}{spline\_utilities}},\ \textcolor{keywordtype}{only}:\ \doxymbox{\hyperlink{interfacespline__utilities_1_1spline}{spline}}}
+\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00800}00800\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{use\ }\doxymbox{\hyperlink{namespacenum__vars}{num\_vars}},\ \textcolor{keywordtype}{only}:\ \doxymbox{\hyperlink{namespacenum__vars_a92fa8cc54393aa4557503a7111949d54}{interp\_v\_ord}}}
+\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00801}00801\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00802}00802\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{character(*)},\ \textcolor{keywordtype}{parameter}\ ::\ rout\_name\ =\ \textcolor{stringliteral}{'interp\_V\_spline'}}
+\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00803}00803\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00804}00804\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ input\ /\ output}}
+\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00805}00805\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{complex(dp)},\ \textcolor{keywordtype}{intent(in)}\ ::\ v\_i(:,:,:)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ input\ variable}}
+\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00806}00806\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{complex(dp)},\ \textcolor{keywordtype}{intent(out)}\ ::\ v\_o(:,:,:)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ output\ variable}}
+\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00807}00807\ \textcolor{keywordtype}{\ \ \ \ \ \ \ \ real}(\doxymbox{\hyperlink{namespacenum__vars_a03802aa2bd86439d7a9370836fabf3f2}{dp}}),\ \textcolor{keywordtype}{intent(in)}\ ::\ r\_i(:)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ input\ r}}
+\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00808}00808\ \textcolor{keywordtype}{\ \ \ \ \ \ \ \ real}(\doxymbox{\hyperlink{namespacenum__vars_a03802aa2bd86439d7a9370836fabf3f2}{dp}}),\ \textcolor{keywordtype}{intent(in)}\ ::\ r\_o(:)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ output\ r}}
+\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00809}00809\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{logical},\ \textcolor{keywordtype}{intent(in)}\ ::\ extrap\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ extrapolation\ possible}}
 \DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00810}00810\ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00811}00811\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{character(*)},\ \textcolor{keywordtype}{parameter}\ ::\ rout\_name\ =\ \textcolor{stringliteral}{'interp\_V\_spline'}}
-\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00812}00812\ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00813}00813\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ input\ /\ output}}
-\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00814}00814\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{complex(dp)},\ \textcolor{keywordtype}{intent(in)}\ ::\ v\_i(:,:,:)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ input\ variable}}
-\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00815}00815\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{complex(dp)},\ \textcolor{keywordtype}{intent(out)}\ ::\ v\_o(:,:,:)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ output\ variable}}
-\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00816}00816\ \textcolor{keywordtype}{\ \ \ \ \ \ \ \ real}(\doxymbox{\hyperlink{namespacenum__vars_a03802aa2bd86439d7a9370836fabf3f2}{dp}}),\ \textcolor{keywordtype}{intent(in)}\ ::\ r\_i(:)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ input\ r}}
-\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00817}00817\ \textcolor{keywordtype}{\ \ \ \ \ \ \ \ real}(\doxymbox{\hyperlink{namespacenum__vars_a03802aa2bd86439d7a9370836fabf3f2}{dp}}),\ \textcolor{keywordtype}{intent(in)}\ ::\ r\_o(:)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ output\ r}}
-\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00818}00818\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{logical},\ \textcolor{keywordtype}{intent(in)}\ ::\ extrap\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ extrapolation\ possible}}
-\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00819}00819\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer},\ \textcolor{keywordtype}{intent(out)},\ \textcolor{keywordtype}{optional}\ ::\ ivs\_stat\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ which\ method\ was\ used\ (1:\ copy,\ 2:\ linear,\ 3:\ spline)}}
-\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00820}00820\ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00821}00821\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ local\ variables}}
-\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00822}00822\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer}\ ::\ id,\ jd,\ kd\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ counters}}
-\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00823}00823\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer}\ ::\ ord\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ order\ of\ the\ interpolation}}
-\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00824}00824\ \textcolor{preprocessor}{\#if\ ldebug}}
-\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00825}00825\ \textcolor{preprocessor}{}\ \ \ \ \ \ \ \ \textcolor{keywordtype}{character(len=max\_str\_ln)}\ ::\ err\_msg\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ error\ message}}
-\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00826}00826\ \textcolor{preprocessor}{\#endif}}
-\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00827}00827\ \textcolor{preprocessor}{}}
-\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00828}00828\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ initialize\ ierr}}
-\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00829}00829\ \ \ \ \ \ \ \ \ ierr\ =\ 0}
-\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00830}00830\ }
-\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00831}00831\ \textcolor{preprocessor}{\#if\ ldebug}}
-\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00832}00832\ \textcolor{preprocessor}{}\ \ \ \ \ \ \ \ \textcolor{comment}{!\ test\ sizes}}
-\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00833}00833\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\textcolor{keyword}{size}(r\_i).ne.\textcolor{keyword}{size}(v\_i,3))\ \textcolor{keywordflow}{then}}
-\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00834}00834\ \ \ \ \ \ \ \ \ \ \ \ \ ierr\ =\ 1}
-\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00835}00835\ \ \ \ \ \ \ \ \ \ \ \ \ err\_msg\ =\ \textcolor{stringliteral}{'r\_i\ and\ V\_i\ are\ not\ compatible'}}
-\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00836}00836\ \ \ \ \ \ \ \ \ \ \ \ \ chckerr(err\_msg)}
-\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00837}00837\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ end\ if}}
-\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00838}00838\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\textcolor{keyword}{size}(r\_o).ne.\textcolor{keyword}{size}(v\_o,3))\ \textcolor{keywordflow}{then}}
-\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00839}00839\ \ \ \ \ \ \ \ \ \ \ \ \ ierr\ =\ 1}
-\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00840}00840\ \ \ \ \ \ \ \ \ \ \ \ \ err\_msg\ =\ \textcolor{stringliteral}{'r\_o\ and\ V\_o\ are\ not\ compatible'}}
-\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00841}00841\ \ \ \ \ \ \ \ \ \ \ \ \ chckerr(err\_msg)}
-\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00842}00842\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ end\ if}}
-\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00843}00843\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\textcolor{keyword}{size}(v\_i,1).ne.\textcolor{keyword}{size}(v\_o,1)\ .or.\ \textcolor{keyword}{size}(v\_i,2).ne.\textcolor{keyword}{size}(v\_o,2))\ \textcolor{keywordflow}{then}}
-\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00844}00844\ \ \ \ \ \ \ \ \ \ \ \ \ ierr\ =\ 1}
-\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00845}00845\ \ \ \ \ \ \ \ \ \ \ \ \ err\_msg\ =\ \textcolor{stringliteral}{'V\_i\ and\ V\_o\ are\ not\ compatible'}}
-\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00846}00846\ \ \ \ \ \ \ \ \ \ \ \ \ chckerr(err\_msg)}
-\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00847}00847\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ end\ if}}
-\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00848}00848\ \textcolor{preprocessor}{\#endif}}
-\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00849}00849\ \textcolor{preprocessor}{}\ \ \ \ \ \ \ \ }
-\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00850}00850\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ the\ order\ is\ the\ lower\ of\ the\ setting\ interp\_V\_ord\ and\ the\ highest}}
-\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00851}00851\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ order\ the\ points\ allow}}
-\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00852}00852\ \ \ \ \ \ \ \ \ ord\ =\ min(\doxymbox{\hyperlink{namespacenum__vars_a92fa8cc54393aa4557503a7111949d54}{interp\_v\_ord}},merge(3,min(\textcolor{keyword}{size}(r\_i)-\/1,1),\textcolor{keyword}{size}(r\_i).ge.4))}
-\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00853}00853\ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00854}00854\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{select\ case}\ (ord)}
-\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00855}00855\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ (0)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ copy\ directly}}
-\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00856}00856\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{do}\ kd\ =\ 1,\textcolor{keyword}{size}(v\_o,3)}
-\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00857}00857\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ v\_o(:,:,kd)\ =\ v\_i(:,:,1)}
-\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00858}00858\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ end\ do}}
-\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00859}00859\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ (1:)}
-\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00860}00860\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\textcolor{keyword}{size}(r\_i).eq.2)\ \textcolor{keywordflow}{then}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ straight\ line\ by\ hand:\ PSPLINE\ needs\ at\ least\ 3\ points}}
-\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00861}00861\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{do}\ kd\ =\ 1,\textcolor{keyword}{size}(v\_o,3)}
-\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00862}00862\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ v\_o(:,:,kd)\ =\ v\_i(:,:,1)\ +\ \&}
-\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00863}00863\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&(v\_i(:,:,2)\ -\/\ v\_i(:,:,1))\ /\ (r\_i(2)\ -\/\ r\_i(1))\ *\ \&}
-\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00864}00864\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&(r\_o(kd)\ -\/\ r\_i(1))}
-\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00865}00865\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ end\ do}}
-\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00866}00866\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ PSPLINE\ of\ order\ ord}}
-\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00867}00867\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{do}\ jd\ =\ 1,\textcolor{keyword}{size}(v\_i,2)}
-\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00868}00868\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{do}\ id\ =\ 1,\textcolor{keyword}{size}(v\_i,1)}
-\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00869}00869\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ierr\ =\ \doxymbox{\hyperlink{interfacespline__utilities_1_1spline}{spline}}(r\_i,v\_i(id,jd,:),r\_o,v\_o(id,jd,:),\&}
-\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00870}00870\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&ord=ord,extrap=extrap)}
-\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00871}00871\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ chckerr(\textcolor{stringliteral}{''})}
-\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00872}00872\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ end\ do}}
-\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00873}00873\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ end\ do}}
-\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00874}00874\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ end\ if}}
-\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00875}00875\ \textcolor{preprocessor}{\#if\ ldebug}}
-\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00876}00876\ \textcolor{preprocessor}{}\textcolor{keywordflow}{\ \ \ \ \ \ \ \ \ \ \ \ case\ default}}
-\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00877}00877\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ierr\ =\ 1}
-\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00878}00878\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ chckerr(\textcolor{stringliteral}{'Need\ more\ than\ 0\ points'})}
-\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00879}00879\ \textcolor{preprocessor}{\#endif}}
-\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00880}00880\ \textcolor{preprocessor}{}\textcolor{keywordflow}{\ \ \ \ \ \ \ \ end\ select}}
-\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00881}00881\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\textcolor{keyword}{present}(ivs\_stat)\ .and.\ ord.ge.0)\ ivs\_stat\ =\ min(ord,2)\ +\ 1\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ 1:\ copy,\ 2:\ linear,\ 3:\ spline}}
-\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00882}00882\ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00883}00883\ \textcolor{preprocessor}{\#if\ ldebug}}
-\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00884}00884\ \textcolor{preprocessor}{}\ \ \ \ \ \ \ \ \textcolor{comment}{!\ visualize}}
-\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00885}00885\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{do}\ jd\ =\ 1,\textcolor{keyword}{size}(v\_i,2)}
-\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00886}00886\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{do}\ id\ =\ 1,\textcolor{keyword}{size}(v\_i,1)}
-\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00887}00887\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\doxymbox{\hyperlink{namespacesol__utilities_aa36c52e73c02a783074c7c0e5076c903}{debug\_interp\_v\_spline}})\ \textcolor{keywordflow}{then}}
-\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00888}00888\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }plot\_comp(\textcolor{stringliteral}{'real\ part'},r\_i,rp(v\_i(id,jd,:)),\&}
-\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00889}00889\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&r\_o,rp(v\_o(id,jd,:)))}
-\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00890}00890\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }plot\_comp(\textcolor{stringliteral}{'imaginary\ part'},r\_i,ip(v\_i(id,jd,:)),\&}
-\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00891}00891\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&r\_o,ip(v\_o(id,jd,:)))}
-\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00892}00892\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ end\ if}}
-\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00893}00893\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ \ \ \ \ end\ do}}
-\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00894}00894\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ end\ do}}
-\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00895}00895\ \ \ \ \ \textcolor{keyword}{contains}\textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00896}00896\ \textcolor{comment}{\ \ \ \ \ \ \ \ !>\ \(\backslash\)private\ Plot\ to\ compare\ interpolation\ to\ original\ variables}}
-\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00897}00897\ \ \ \ \ \ \ \ \ \textcolor{keyword}{subroutine\ }plot\_comp(plot\_name,x\_i,y\_i,x\_o,y\_o)}
-\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00898}00898\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ input\ /\ output}}
-\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00899}00899\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{character(len=*)},\ \textcolor{keywordtype}{intent(in)}\ ::\ plot\_name\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ name\ of\ plot}}
-\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00900}00900\ \textcolor{keywordtype}{\ \ \ \ \ \ \ \ \ \ \ \ real}(\doxymbox{\hyperlink{namespacenum__vars_a03802aa2bd86439d7a9370836fabf3f2}{dp}}),\ \textcolor{keywordtype}{intent(in)}\ ::\ x\_i(:)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ x\ input}}
-\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00901}00901\ \textcolor{keywordtype}{\ \ \ \ \ \ \ \ \ \ \ \ real}(\doxymbox{\hyperlink{namespacenum__vars_a03802aa2bd86439d7a9370836fabf3f2}{dp}}),\ \textcolor{keywordtype}{intent(in)}\ ::\ y\_i(:)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ y\ input}}
-\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00902}00902\ \textcolor{keywordtype}{\ \ \ \ \ \ \ \ \ \ \ \ real}(\doxymbox{\hyperlink{namespacenum__vars_a03802aa2bd86439d7a9370836fabf3f2}{dp}}),\ \textcolor{keywordtype}{intent(in)}\ ::\ x\_o(:)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ x\ output}}
-\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00903}00903\ \textcolor{keywordtype}{\ \ \ \ \ \ \ \ \ \ \ \ real}(\doxymbox{\hyperlink{namespacenum__vars_a03802aa2bd86439d7a9370836fabf3f2}{dp}}),\ \textcolor{keywordtype}{intent(in)}\ ::\ y\_o(:)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ y\ output}}
-\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00904}00904\ \ \ \ \ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00905}00905\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ local\ variables}}
-\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00906}00906\ \textcolor{keywordtype}{\ \ \ \ \ \ \ \ \ \ \ \ real}(\doxymbox{\hyperlink{namespacenum__vars_a03802aa2bd86439d7a9370836fabf3f2}{dp}}),\ \textcolor{keywordtype}{allocatable}\ ::\ x\_plot(:,:)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ x\ for\ plot}}
-\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00907}00907\ \textcolor{keywordtype}{\ \ \ \ \ \ \ \ \ \ \ \ real}(\doxymbox{\hyperlink{namespacenum__vars_a03802aa2bd86439d7a9370836fabf3f2}{dp}}),\ \textcolor{keywordtype}{allocatable}\ ::\ y\_plot(:,:)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ y\ for\ plot}}
-\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00908}00908\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{character(len=max\_str\_ln)}\ ::\ var\_names(2)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ variable\ names}}
-\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00909}00909\ \ \ \ \ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00910}00910\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{allocate}(x\_plot(max(\textcolor{keyword}{size}(x\_i),\textcolor{keyword}{size}(x\_o)),2))}
-\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00911}00911\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{allocate}(y\_plot(max(\textcolor{keyword}{size}(x\_i),\textcolor{keyword}{size}(x\_o)),2))}
-\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00912}00912\ \ \ \ \ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00913}00913\ \ \ \ \ \ \ \ \ \ \ \ \ x\_plot(1:\textcolor{keyword}{size}(x\_i),1)\ =\ x\_i}
-\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00914}00914\ \ \ \ \ \ \ \ \ \ \ \ \ x\_plot(\textcolor{keyword}{size}(x\_i):\textcolor{keyword}{size}(x\_plot,1),1)\ =\ x\_i(\textcolor{keyword}{size}(x\_i))}
-\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00915}00915\ \ \ \ \ \ \ \ \ \ \ \ \ x\_plot(1:\textcolor{keyword}{size}(x\_o),2)\ =\ x\_o}
-\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00916}00916\ \ \ \ \ \ \ \ \ \ \ \ \ x\_plot(\textcolor{keyword}{size}(x\_o):\textcolor{keyword}{size}(x\_plot,1),2)\ =\ x\_o(\textcolor{keyword}{size}(x\_o))}
-\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00917}00917\ \ \ \ \ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00918}00918\ \ \ \ \ \ \ \ \ \ \ \ \ y\_plot(1:\textcolor{keyword}{size}(x\_i),1)\ =\ y\_i(:)}
-\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00919}00919\ \ \ \ \ \ \ \ \ \ \ \ \ y\_plot(\textcolor{keyword}{size}(x\_i):\textcolor{keyword}{size}(y\_plot,1),1)\ =\ y\_i(\textcolor{keyword}{size}(x\_i))}
-\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00920}00920\ \ \ \ \ \ \ \ \ \ \ \ \ y\_plot(1:\textcolor{keyword}{size}(x\_o),2)\ =\ y\_o(:)}
-\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00921}00921\ \ \ \ \ \ \ \ \ \ \ \ \ y\_plot(\textcolor{keyword}{size}(x\_o):\textcolor{keyword}{size}(y\_plot,1),2)\ =\ y\_o(\textcolor{keyword}{size}(x\_o))}
-\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00922}00922\ \ \ \ \ \ \ \ \ \ \ \ \ }
-\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00923}00923\ \ \ \ \ \ \ \ \ \ \ \ \ var\_names(1)\ =\ \textcolor{stringliteral}{'input\ '}//plot\_name}
-\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00924}00924\ \ \ \ \ \ \ \ \ \ \ \ \ var\_names(2)\ =\ \textcolor{stringliteral}{'output\ '}//plot\_name}
-\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00925}00925\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{interfaceoutput__ops_1_1print__ex__2d}{print\_ex\_2d}}(var\_names,\textcolor{stringliteral}{''},y\_plot,x=x\_plot)}
-\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00926}00926\ \ \ \ \ \ \ \ \ \textcolor{keyword}{end\ subroutine\ }plot\_comp}
-\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00927}00927\ \textcolor{preprocessor}{\#endif}}
-\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00928}00928\ \textcolor{preprocessor}{}\ \ \ \ \textcolor{keyword}{end\ function\ }\doxymbox{\hyperlink{namespacesol__utilities_a6bc8c29a0b3fc64f7f9b80635e95ec58}{interp\_v\_spline}}}
-\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00929}00929\ \textcolor{keyword}{end\ module\ }\doxymbox{\hyperlink{namespacesol__utilities}{sol\_utilities}}}
+\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00811}00811\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ local\ variables}}
+\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00812}00812\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer}\ ::\ id,\ jd\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ counters}}
+\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00813}00813\ \textcolor{preprocessor}{\#if\ ldebug}}
+\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00814}00814\ \textcolor{preprocessor}{}\ \ \ \ \ \ \ \ \textcolor{keywordtype}{character(len=max\_str\_ln)}\ ::\ err\_msg\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ error\ message}}
+\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00815}00815\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00816}00816\ \textcolor{preprocessor}{}}
+\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00817}00817\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ initialize\ ierr}}
+\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00818}00818\ \ \ \ \ \ \ \ \ ierr\ =\ 0}
+\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00819}00819\ }
+\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00820}00820\ \textcolor{preprocessor}{\#if\ ldebug}}
+\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00821}00821\ \textcolor{preprocessor}{}\ \ \ \ \ \ \ \ \textcolor{comment}{!\ test\ sizes}}
+\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00822}00822\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\textcolor{keyword}{size}(v\_i,1).ne.\textcolor{keyword}{size}(v\_o,1)\ .or.\ \textcolor{keyword}{size}(v\_i,2).ne.\textcolor{keyword}{size}(v\_o,2))\ \textcolor{keywordflow}{then}}
+\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00823}00823\ \ \ \ \ \ \ \ \ \ \ \ \ ierr\ =\ 1}
+\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00824}00824\ \ \ \ \ \ \ \ \ \ \ \ \ err\_msg\ =\ \textcolor{stringliteral}{'V\_i\ and\ V\_o\ are\ not\ compatible'}}
+\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00825}00825\ \ \ \ \ \ \ \ \ \ \ \ \ chckerr(err\_msg)}
+\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00826}00826\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ end\ if}}
+\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00827}00827\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00828}00828\ \textcolor{preprocessor}{}\ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00829}00829\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{do}\ jd\ =\ 1,\textcolor{keyword}{size}(v\_i,2)}
+\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00830}00830\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{do}\ id\ =\ 1,\textcolor{keyword}{size}(v\_i,1)}
+\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00831}00831\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ierr\ =\ \doxymbox{\hyperlink{interfacespline__utilities_1_1spline}{spline}}(r\_i,v\_i(id,jd,:),r\_o,v\_o(id,jd,:),\&}
+\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00832}00832\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&ord=\doxymbox{\hyperlink{namespacenum__vars_a92fa8cc54393aa4557503a7111949d54}{interp\_v\_ord}},extrap=extrap)}
+\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00833}00833\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ chckerr(\textcolor{stringliteral}{''})}
+\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00834}00834\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ \ \ \ \ end\ do}}
+\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00835}00835\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ end\ do}}
+\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00836}00836\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00837}00837\ \textcolor{preprocessor}{\#if\ ldebug}}
+\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00838}00838\ \textcolor{preprocessor}{}\ \ \ \ \ \ \ \ \textcolor{comment}{!\ visualize}}
+\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00839}00839\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{do}\ jd\ =\ 1,\textcolor{keyword}{size}(v\_i,2)}
+\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00840}00840\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{do}\ id\ =\ 1,\textcolor{keyword}{size}(v\_i,1)}
+\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00841}00841\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\doxymbox{\hyperlink{namespacesol__utilities_aa36c52e73c02a783074c7c0e5076c903}{debug\_interp\_v\_spline}})\ \textcolor{keywordflow}{then}}
+\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00842}00842\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }plot\_comp(\textcolor{stringliteral}{'real\ part'},r\_i,rp(v\_i(id,jd,:)),\&}
+\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00843}00843\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&r\_o,rp(v\_o(id,jd,:)))}
+\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00844}00844\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }plot\_comp(\textcolor{stringliteral}{'imaginary\ part'},r\_i,ip(v\_i(id,jd,:)),\&}
+\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00845}00845\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&r\_o,ip(v\_o(id,jd,:)))}
+\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00846}00846\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ end\ if}}
+\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00847}00847\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ \ \ \ \ end\ do}}
+\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00848}00848\ \textcolor{keywordflow}{\ \ \ \ \ \ \ \ end\ do}}
+\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00849}00849\ \ \ \ \ \textcolor{keyword}{contains}\textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00850}00850\ \textcolor{comment}{\ \ \ \ \ \ \ \ !>\ \(\backslash\)private\ Plot\ to\ compare\ interpolation\ to\ original\ variables}}
+\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00851}00851\ \ \ \ \ \ \ \ \ \textcolor{keyword}{subroutine\ }plot\_comp(plot\_name,x\_i,y\_i,x\_o,y\_o)}
+\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00852}00852\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ input\ /\ output}}
+\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00853}00853\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{character(len=*)},\ \textcolor{keywordtype}{intent(in)}\ ::\ plot\_name\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ name\ of\ plot}}
+\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00854}00854\ \textcolor{keywordtype}{\ \ \ \ \ \ \ \ \ \ \ \ real}(\doxymbox{\hyperlink{namespacenum__vars_a03802aa2bd86439d7a9370836fabf3f2}{dp}}),\ \textcolor{keywordtype}{intent(in)}\ ::\ x\_i(:)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ x\ input}}
+\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00855}00855\ \textcolor{keywordtype}{\ \ \ \ \ \ \ \ \ \ \ \ real}(\doxymbox{\hyperlink{namespacenum__vars_a03802aa2bd86439d7a9370836fabf3f2}{dp}}),\ \textcolor{keywordtype}{intent(in)}\ ::\ y\_i(:)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ y\ input}}
+\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00856}00856\ \textcolor{keywordtype}{\ \ \ \ \ \ \ \ \ \ \ \ real}(\doxymbox{\hyperlink{namespacenum__vars_a03802aa2bd86439d7a9370836fabf3f2}{dp}}),\ \textcolor{keywordtype}{intent(in)}\ ::\ x\_o(:)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ x\ output}}
+\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00857}00857\ \textcolor{keywordtype}{\ \ \ \ \ \ \ \ \ \ \ \ real}(\doxymbox{\hyperlink{namespacenum__vars_a03802aa2bd86439d7a9370836fabf3f2}{dp}}),\ \textcolor{keywordtype}{intent(in)}\ ::\ y\_o(:)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ y\ output}}
+\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00858}00858\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00859}00859\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ local\ variables}}
+\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00860}00860\ \textcolor{keywordtype}{\ \ \ \ \ \ \ \ \ \ \ \ real}(\doxymbox{\hyperlink{namespacenum__vars_a03802aa2bd86439d7a9370836fabf3f2}{dp}}),\ \textcolor{keywordtype}{allocatable}\ ::\ x\_plot(:,:)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ x\ for\ plot}}
+\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00861}00861\ \textcolor{keywordtype}{\ \ \ \ \ \ \ \ \ \ \ \ real}(\doxymbox{\hyperlink{namespacenum__vars_a03802aa2bd86439d7a9370836fabf3f2}{dp}}),\ \textcolor{keywordtype}{allocatable}\ ::\ y\_plot(:,:)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ y\ for\ plot}}
+\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00862}00862\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{character(len=max\_str\_ln)}\ ::\ var\_names(2)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ variable\ names}}
+\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00863}00863\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00864}00864\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{allocate}(x\_plot(max(\textcolor{keyword}{size}(x\_i),\textcolor{keyword}{size}(x\_o)),2))}
+\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00865}00865\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{allocate}(y\_plot(max(\textcolor{keyword}{size}(x\_i),\textcolor{keyword}{size}(x\_o)),2))}
+\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00866}00866\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00867}00867\ \ \ \ \ \ \ \ \ \ \ \ \ x\_plot(1:\textcolor{keyword}{size}(x\_i),1)\ =\ x\_i}
+\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00868}00868\ \ \ \ \ \ \ \ \ \ \ \ \ x\_plot(\textcolor{keyword}{size}(x\_i):\textcolor{keyword}{size}(x\_plot,1),1)\ =\ x\_i(\textcolor{keyword}{size}(x\_i))}
+\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00869}00869\ \ \ \ \ \ \ \ \ \ \ \ \ x\_plot(1:\textcolor{keyword}{size}(x\_o),2)\ =\ x\_o}
+\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00870}00870\ \ \ \ \ \ \ \ \ \ \ \ \ x\_plot(\textcolor{keyword}{size}(x\_o):\textcolor{keyword}{size}(x\_plot,1),2)\ =\ x\_o(\textcolor{keyword}{size}(x\_o))}
+\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00871}00871\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00872}00872\ \ \ \ \ \ \ \ \ \ \ \ \ y\_plot(1:\textcolor{keyword}{size}(x\_i),1)\ =\ y\_i(:)}
+\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00873}00873\ \ \ \ \ \ \ \ \ \ \ \ \ y\_plot(\textcolor{keyword}{size}(x\_i):\textcolor{keyword}{size}(y\_plot,1),1)\ =\ y\_i(\textcolor{keyword}{size}(x\_i))}
+\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00874}00874\ \ \ \ \ \ \ \ \ \ \ \ \ y\_plot(1:\textcolor{keyword}{size}(x\_o),2)\ =\ y\_o(:)}
+\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00875}00875\ \ \ \ \ \ \ \ \ \ \ \ \ y\_plot(\textcolor{keyword}{size}(x\_o):\textcolor{keyword}{size}(y\_plot,1),2)\ =\ y\_o(\textcolor{keyword}{size}(x\_o))}
+\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00876}00876\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00877}00877\ \ \ \ \ \ \ \ \ \ \ \ \ var\_names(1)\ =\ \textcolor{stringliteral}{'input\ '}//plot\_name}
+\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00878}00878\ \ \ \ \ \ \ \ \ \ \ \ \ var\_names(2)\ =\ \textcolor{stringliteral}{'output\ '}//plot\_name}
+\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00879}00879\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{call\ }\doxymbox{\hyperlink{interfaceoutput__ops_1_1print__ex__2d}{print\_ex\_2d}}(var\_names,\textcolor{stringliteral}{''},y\_plot,x=x\_plot)}
+\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00880}00880\ \ \ \ \ \ \ \ \ \textcolor{keyword}{end\ subroutine\ }plot\_comp}
+\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00881}00881\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00882}00882\ \textcolor{preprocessor}{}\ \ \ \ \textcolor{keyword}{end\ function\ }\doxymbox{\hyperlink{namespacesol__utilities_a50a44a844f0db0040bba4c69de27c36b}{interp\_v\_spline}}}
+\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00883}00883\ \textcolor{keyword}{end\ module\ }\doxymbox{\hyperlink{namespacesol__utilities}{sol\_utilities}}}
 
 \end{DoxyCode}

@@ -31,7 +31,7 @@ PB3D is written in Fortran and is built with \href{https://cmake.org/}{\texttt{C
 \begin{DoxyItemize}
 \item to read the output of VMEC (PB3D uses only the module {\ttfamily read\+\_\+wout\+\_\+mod})
 \end{DoxyItemize}
-\item \href{https://github.com/ilonster/pspline}{\texttt{PSPLINE}}
+\item \href{https://github.com/PrincetonUniversity/pspline}{\texttt{PSPLINE}}, release v2.\+5.\+0
 \begin{DoxyItemize}
 \item Princeton Spline and Hermite Cubic Interpolation Routines
 \end{DoxyItemize}
@@ -128,12 +128,11 @@ make install
 export PKG_CONFIG_PATH=$DEPS/petsc/lib/pkgconfig:$DEPS/slepc/lib/pkgconfig:$PKG_CONFIG_PATH
 \end{DoxyVerb}
  PETSc then uses MUMPS for the distributed LU factorization without any setting in PB3D. The build of PETSc with MUMPS takes about half an hour on 16 cores. The code contains the scripts that build PB3D in this way on one cluster, in the directory {\ttfamily scripts/\+snellius}; their paths and modules are those of that cluster.\hypertarget{page_installation_installation_pspline}{}\doxysubsection{\texorpdfstring{PSPLINE}{PSPLINE}}\label{page_installation_installation_pspline}
-The script {\ttfamily Libraries/\+build\+\_\+pspline.\+sh} builds PSPLINE with gfortran, without Net\+CDF, from a clone of \href{https://github.com/ilonster/pspline}{\texttt{github.\+com/\+ilonster/\+pspline}}. It first applies the patch {\ttfamily Libraries/\+pspline-\/r8genxpkg-\/nx3.\+patch}, which has to lie next to the script. The patch stops the routine {\ttfamily r8genxpkg} from writing 8 bytes past the end of its array for three unevenly spaced points; PB3D calls it with such points, and without the patch about every other run crashes on mac\+OS. The script is copied into the clone and run there: \begin{DoxyVerb}git clone --depth 1 https://github.com/ilonster/pspline.git $DEPS/pspline
-cp $PB3D_SRC/Libraries/build_pspline.sh $PB3D_SRC/Libraries/pspline-r8genxpkg-nx3.patch $DEPS/pspline/
-$DEPS/pspline/build_pspline.sh
+PB3D uses release v2.\+5.\+0 of \href{https://github.com/PrincetonUniversity/pspline}{\texttt{github.\+com/\+\+Princeton\+University/\+pspline}}. The script {\ttfamily Libraries/\+build\+\_\+pspline.\+sh} builds it with the Makefile of PSPLINE, with gfortran and without Net\+CDF, as the static library {\ttfamily libpspline.\+a}, and installs the library with its module files: \begin{DoxyVerb}git clone --depth 1 --branch v2.5.0 https://github.com/PrincetonUniversity/pspline.git $DEPS/pspline
+$PB3D_SRC/Libraries/build_pspline.sh $DEPS/pspline
 export PSPLINE_DIR=$DEPS/pspline/install
 \end{DoxyVerb}
- The library and the module files are then in {\ttfamily \$\+DEPS/\+pspline/\+install/\+lib} and {\ttfamily \$\+DEPS/\+pspline/\+install/\+include}.\hypertarget{page_installation_installation_libstell}{}\doxysubsection{\texorpdfstring{LIBSTELL}{LIBSTELL}}\label{page_installation_installation_libstell}
+ The library and the module files are then in {\ttfamily \$\+DEPS/\+pspline/\+install/\+lib} and {\ttfamily \$\+DEPS/\+pspline/\+install/\+include}; a second argument of the script names another installation directory. The script builds only the target {\ttfamily libpspline.\+a}: the default target of the Makefile also links a C++ test program, and on mac\+OS {\ttfamily clang++} does not find the library of gfortran for it.\hypertarget{page_installation_installation_libstell}{}\doxysubsection{\texorpdfstring{LIBSTELL}{LIBSTELL}}\label{page_installation_installation_libstell}
 PB3D uses only the module {\ttfamily read\+\_\+wout\+\_\+mod} of LIBSTELL. The script {\ttfamily Libraries/\+build\+\_\+libstell\+\_\+min.\+sh} compiles this module and the modules it depends on from a clone of STELLOPT into a small static library. It needs {\ttfamily mpif90} and Net\+CDF-\/\+Fortran; {\ttfamily NETCDF\+\_\+\+FORTRAN\+\_\+\+DIR} is the installation directory of Net\+CDF-\/\+Fortran, which contains {\ttfamily include/\+netcdf.\+inc}. \begin{DoxyVerb}git clone --depth 1 https://github.com/PrincetonUniversity/STELLOPT.git $DEPS/stellopt
 STELLOPT_SRC=$DEPS/stellopt NETCDF_FORTRAN_DIR=$NETCDF_FORTRAN_DIR \
     $PB3D_SRC/Libraries/build_libstell_min.sh $DEPS/libstell-min
@@ -200,7 +199,6 @@ ctest --test-dir $PB3D_SRC/build-tests --output-on-failure
 \item With PETSc 3.\+25, CMake 3.\+31 does not finish the dependency scan of the Fortran header files of PETSc. The scan runs for a quarter of an hour and uses 13 GB of memory before the compilation starts. CMake 4 does not have this problem.
 \item On mac\+OS with Open\+MPI 5 from Homebrew, {\ttfamily mpirun} itself can crash while it detects the hardware. PB3D then still runs on one process when the executable is called directly, without {\ttfamily mpirun}, and {\ttfamily ctest -\/LE mpi} skips the tests that use {\ttfamily mpirun}.
 \item GNU Fortran 14.\+2 and 14.\+3 compile the bounds check of an array subscript that contains a function call with an array-\/constructor argument wrongly. CMake therefore removes {\ttfamily -\/fcheck=bounds} from the flags of the debug build for every GNU Fortran 14.
-\item PB3D stores file names in strings of 120 characters, so the paths of the input and equilibrium files given on the command line must not be longer than that. A symbolic link with a short name helps.
-\item A PSPLINE built without the patch of \doxysectlink{page_installation_installation_pspline}{PSPLINE}{2} makes about every other run crash on mac\+OS, with a SIGTRAP or a failure of {\ttfamily H5\+Fcreate}.
+\item PB3D stores file names in strings of 120 characters, so the paths of the input and equilibrium files given on the command line must not be longer than that. A symbolic link with a short name helps. 
 \end{DoxyItemize}\hypertarget{page_installation_installation_makefile}{}\doxysection{\texorpdfstring{Legacy Makefile}{Legacy Makefile}}\label{page_installation_installation_makefile}
 The code also contains a hand-\/written Makefile, {\ttfamily Makefile.\+legacy}, which is kept for reference. Its paths have to be edited by hand, and neither the tests nor the continuous integration use it. CMake is the supported way to build PB3D. 
