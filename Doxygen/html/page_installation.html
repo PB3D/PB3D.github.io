@@ -178,7 +178,7 @@ Introduction</h1>
 <li>to read the output of VMEC (PB3D uses only the module <code>read_wout_mod</code>)</li>
 </ul>
 </li>
-<li><a href="https://github.com/ilonster/pspline">PSPLINE</a><ul>
+<li><a href="https://github.com/PrincetonUniversity/pspline">PSPLINE</a>, release v2.5.0<ul>
 <li>Princeton Spline and Hermite Cubic Interpolation Routines</li>
 </ul>
 </li>
@@ -272,11 +272,10 @@ export PKG_CONFIG_PATH=$DEPS/petsc/lib/pkgconfig:$DEPS/slepc/lib/pkgconfig:$PKG_
 </pre><p> PETSc then uses MUMPS for the distributed LU factorization without any setting in PB3D. The build of PETSc with MUMPS takes about half an hour on 16 cores. The code contains the scripts that build PB3D in this way on one cluster, in the directory <span class="tt">scripts/snellius</span>; their paths and modules are those of that cluster.</p>
 <h2 class="doxsection"><a class="anchor" id="installation_pspline"></a>
 PSPLINE</h2>
-<p>The script <span class="tt">Libraries/build_pspline.sh</span> builds PSPLINE with gfortran, without NetCDF, from a clone of <a href="https://github.com/ilonster/pspline">github.com/ilonster/pspline</a>. It first applies the patch <span class="tt">Libraries/pspline-r8genxpkg-nx3.patch</span>, which has to lie next to the script. The patch stops the routine <code>r8genxpkg</code> from writing 8 bytes past the end of its array for three unevenly spaced points; PB3D calls it with such points, and without the patch about every other run crashes on macOS. The script is copied into the clone and run there: </p><pre class="fragment">git clone --depth 1 https://github.com/ilonster/pspline.git $DEPS/pspline
-cp $PB3D_SRC/Libraries/build_pspline.sh $PB3D_SRC/Libraries/pspline-r8genxpkg-nx3.patch $DEPS/pspline/
-$DEPS/pspline/build_pspline.sh
+<p>PB3D uses release v2.5.0 of <a href="https://github.com/PrincetonUniversity/pspline">github.com/PrincetonUniversity/pspline</a>. The script <span class="tt">Libraries/build_pspline.sh</span> builds it with the Makefile of PSPLINE, with gfortran and without NetCDF, as the static library <span class="tt">libpspline.a</span>, and installs the library with its module files: </p><pre class="fragment">git clone --depth 1 --branch v2.5.0 https://github.com/PrincetonUniversity/pspline.git $DEPS/pspline
+$PB3D_SRC/Libraries/build_pspline.sh $DEPS/pspline
 export PSPLINE_DIR=$DEPS/pspline/install
-</pre><p> The library and the module files are then in <span class="tt">$DEPS/pspline/install/lib</span> and <span class="tt">$DEPS/pspline/install/include</span>.</p>
+</pre><p> The library and the module files are then in <span class="tt">$DEPS/pspline/install/lib</span> and <span class="tt">$DEPS/pspline/install/include</span>; a second argument of the script names another installation directory. The script builds only the target <span class="tt">libpspline.a</span>: the default target of the Makefile also links a C++ test program, and on macOS <code>clang++</code> does not find the library of gfortran for it.</p>
 <h2 class="doxsection"><a class="anchor" id="installation_libstell"></a>
 LIBSTELL</h2>
 <p>PB3D uses only the module <code>read_wout_mod</code> of LIBSTELL. The script <span class="tt">Libraries/build_libstell_min.sh</span> compiles this module and the modules it depends on from a clone of STELLOPT into a small static library. It needs <code>mpif90</code> and NetCDF-Fortran; <code>NETCDF_FORTRAN_DIR</code> is the installation directory of NetCDF-Fortran, which contains <span class="tt">include/netcdf.inc</span>. </p><pre class="fragment">git clone --depth 1 https://github.com/PrincetonUniversity/STELLOPT.git $DEPS/stellopt
@@ -354,8 +353,7 @@ Known problems</h1>
 <li>With PETSc 3.25, CMake 3.31 does not finish the dependency scan of the Fortran header files of PETSc. The scan runs for a quarter of an hour and uses 13 GB of memory before the compilation starts. CMake 4 does not have this problem.</li>
 <li>On macOS with OpenMPI 5 from Homebrew, <code>mpirun</code> itself can crash while it detects the hardware. PB3D then still runs on one process when the executable is called directly, without <code>mpirun</code>, and <span class="tt">ctest -LE mpi</span> skips the tests that use <code>mpirun</code>.</li>
 <li>GNU Fortran 14.2 and 14.3 compile the bounds check of an array subscript that contains a function call with an array-constructor argument wrongly. CMake therefore removes <code>-fcheck=bounds</code> from the flags of the debug build for every GNU Fortran 14.</li>
-<li>PB3D stores file names in strings of 120 characters, so the paths of the input and equilibrium files given on the command line must not be longer than that. A symbolic link with a short name helps.</li>
-<li>A PSPLINE built without the patch of <a class="el" href="#installation_pspline" title="PSPLINE">PSPLINE</a> makes about every other run crash on macOS, with a SIGTRAP or a failure of <code>H5Fcreate</code>.</li>
+<li>PB3D stores file names in strings of 120 characters, so the paths of the input and equilibrium files given on the command line must not be longer than that. A symbolic link with a short name helps. </li>
 </ul>
 <h1 class="doxsection"><a class="anchor" id="installation_makefile"></a>
 Legacy Makefile</h1>

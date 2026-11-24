@@ -1,0 +1,90 @@
+\doxysection{spline\+\_\+utilities::spline\+\_\+2d Interface Reference}
+\hypertarget{interfacespline__utilities_1_1spline__2d}{}\label{interfacespline__utilities_1_1spline__2d}\index{spline\_utilities::spline\_2d@{spline\_utilities::spline\_2d}}
+
+
+2-\/D cubic spline of y(x1,x2) on the grid x1 x x2, evaluated on another grid (ynew of rank 2) or at points (x1new(i),x2new(i)) (ynew of rank 1).  
+
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+integer function \doxymbox{\hyperlink{interfacespline__utilities_1_1spline__2d_a9cbf46aafa0535e36e09061d4390b15e}{spline\+\_\+2d\+\_\+grid}} (x1, x2, y, x1new, x2new, ynew, deriv, bcs1, bcs2, bcs\+\_\+val1, bcs\+\_\+val2)
+\begin{DoxyCompactList}\small\item\em 2-\/D cubic spline evaluated on the grid x1new x x2new \end{DoxyCompactList}\item 
+integer function \doxymbox{\hyperlink{interfacespline__utilities_1_1spline__2d_ae8fcdcecd4a6536373cc5ae0f21915f6}{spline\+\_\+2d\+\_\+points}} (x1, x2, y, x1new, x2new, ynew, deriv, bcs1, bcs2, bcs\+\_\+val1, bcs\+\_\+val2)
+\begin{DoxyCompactList}\small\item\em 2-\/D cubic spline evaluated at the points (x1new(i),x2new(i)) \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+2-\/D cubic spline of y(x1,x2) on the grid x1 x x2, evaluated on another grid (ynew of rank 2) or at points (x1new(i),x2new(i)) (ynew of rank 1). 
+
+Definition at line \doxymbox{\hyperlink{spline__utilities_8f90_source_l00028}{28}} of file \doxymbox{\hyperlink{spline__utilities_8f90_source}{spline\+\_\+utilities.\+f90}}.
+
+
+
+\label{interfacespline__utilities_1_1spline__2d_doc-func-members}
+\Hypertarget{interfacespline__utilities_1_1spline__2d_doc-func-members}
+\doxysubsection{Member Function/\+\+Subroutine Documentation}
+\Hypertarget{interfacespline__utilities_1_1spline__2d_a9cbf46aafa0535e36e09061d4390b15e}\index{spline\_utilities::spline\_2d@{spline\_utilities::spline\_2d}!spline\_2d\_grid@{spline\_2d\_grid}}
+\index{spline\_2d\_grid@{spline\_2d\_grid}!spline\_utilities::spline\_2d@{spline\_utilities::spline\_2d}}
+\doxysubsubsection{\texorpdfstring{spline\_2d\_grid()}{spline\_2d\_grid()}}
+{\footnotesize\ttfamily \label{interfacespline__utilities_1_1spline__2d_a9cbf46aafa0535e36e09061d4390b15e} 
+integer function spline\+\_\+utilities::\+spline\+\_\+2d::\+spline\+\_\+2d\+\_\+grid (\begin{DoxyParamCaption}\item[{real(dp), dimension(:\+), intent(in)}]{x1}{, }\item[{real(dp), dimension(:\+), intent(in)}]{x2}{, }\item[{real(dp), dimension(:\+,:\+), intent(in)}]{y}{, }\item[{real(dp), dimension(:\+), intent(in)}]{x1new}{, }\item[{real(dp), dimension(:\+), intent(in)}]{x2new}{, }\item[{real(dp), dimension(:\+,:\+), intent(out)}]{ynew}{, }\item[{integer, dimension(2), intent(in), optional}]{deriv}{, }\item[{integer, dimension(2), intent(in), optional}]{bcs1}{, }\item[{integer, dimension(2), intent(in), optional}]{bcs2}{, }\item[{real(dp), dimension(2), intent(in), optional}]{bcs\+\_\+val1}{, }\item[{real(dp), dimension(2), intent(in), optional}]{bcs\+\_\+val2}{}\end{DoxyParamCaption})}
+
+
+
+2-\/D cubic spline evaluated on the grid x1new x x2new 
+
+deriv(1) and deriv(2) are the orders of the derivative in x1 and x2 \+[def 0]; bcs1 and bcs2 the boundary conditions in x1 and x2 as for spline \+[def 0, not-\/a-\/knot], with the values bcs\+\_\+val1 and bcs\+\_\+val2 \+[def 0]. 
+\begin{DoxyParams}[1]{Parameters}
+\doxymbox{\texttt{in}}  & {\em x2} & coordinates \\
+\hline
+\doxymbox{\texttt{in}}  & {\em y} & function value \\
+\hline
+\doxymbox{\texttt{in}}  & {\em x2new} & new coordinates \\
+\hline
+\doxymbox{\texttt{out}}  & {\em ynew} & new function values \\
+\hline
+\doxymbox{\texttt{in}}  & {\em deriv} & derivative \+[def 0] \\
+\hline
+\doxymbox{\texttt{in}}  & {\em bcs2} & boundary conditions \+[def 0] \\
+\hline
+\doxymbox{\texttt{in}}  & {\em bcs\+\_\+val2} & boundary condition values \+[def 0] \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \doxymbox{\hyperlink{spline__utilities_8f90_source_l00435}{435}} of file \doxymbox{\hyperlink{spline__utilities_8f90_source}{spline\+\_\+utilities.\+f90}}.
+
+\Hypertarget{interfacespline__utilities_1_1spline__2d_ae8fcdcecd4a6536373cc5ae0f21915f6}\index{spline\_utilities::spline\_2d@{spline\_utilities::spline\_2d}!spline\_2d\_points@{spline\_2d\_points}}
+\index{spline\_2d\_points@{spline\_2d\_points}!spline\_utilities::spline\_2d@{spline\_utilities::spline\_2d}}
+\doxysubsubsection{\texorpdfstring{spline\_2d\_points()}{spline\_2d\_points()}}
+{\footnotesize\ttfamily \label{interfacespline__utilities_1_1spline__2d_ae8fcdcecd4a6536373cc5ae0f21915f6} 
+integer function spline\+\_\+utilities::\+spline\+\_\+2d::\+spline\+\_\+2d\+\_\+points (\begin{DoxyParamCaption}\item[{real(dp), dimension(:\+), intent(in)}]{x1}{, }\item[{real(dp), dimension(:\+), intent(in)}]{x2}{, }\item[{real(dp), dimension(:\+,:\+), intent(in)}]{y}{, }\item[{real(dp), dimension(:\+), intent(in)}]{x1new}{, }\item[{real(dp), dimension(:\+), intent(in)}]{x2new}{, }\item[{real(dp), dimension(:\+), intent(out)}]{ynew}{, }\item[{integer, dimension(2), intent(in), optional}]{deriv}{, }\item[{integer, dimension(2), intent(in), optional}]{bcs1}{, }\item[{integer, dimension(2), intent(in), optional}]{bcs2}{, }\item[{real(dp), dimension(2), intent(in), optional}]{bcs\+\_\+val1}{, }\item[{real(dp), dimension(2), intent(in), optional}]{bcs\+\_\+val2}{}\end{DoxyParamCaption})}
+
+
+
+2-\/D cubic spline evaluated at the points (x1new(i),x2new(i)) 
+
+The optional arguments are as for spline\+\_\+2\+D\+\_\+grid. 
+\begin{DoxyParams}[1]{Parameters}
+\doxymbox{\texttt{in}}  & {\em x2} & coordinates \\
+\hline
+\doxymbox{\texttt{in}}  & {\em y} & function value \\
+\hline
+\doxymbox{\texttt{in}}  & {\em x2new} & coordinates of the new points \\
+\hline
+\doxymbox{\texttt{out}}  & {\em ynew} & new function values \\
+\hline
+\doxymbox{\texttt{in}}  & {\em deriv} & derivative \+[def 0] \\
+\hline
+\doxymbox{\texttt{in}}  & {\em bcs2} & boundary conditions \+[def 0] \\
+\hline
+\doxymbox{\texttt{in}}  & {\em bcs\+\_\+val2} & boundary condition values \+[def 0] \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \doxymbox{\hyperlink{spline__utilities_8f90_source_l00483}{483}} of file \doxymbox{\hyperlink{spline__utilities_8f90_source}{spline\+\_\+utilities.\+f90}}.
+
+
+

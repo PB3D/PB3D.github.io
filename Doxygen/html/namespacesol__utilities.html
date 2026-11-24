@@ -125,8 +125,8 @@ Functions/Subroutines</h2></td></tr>
 <tr class="memdesc:a8b902a82ae6a238e725da2cf09e7854f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculate the total version of the solution vector from the local version.  <br /></td></tr>
 <tr class="memitem:a677373f47ee68ad02e9cef5b409bdc26" id="r_a677373f47ee68ad02e9cef5b409bdc26"><td class="memItemLeft">integer function, public&#160;</td><td class="memItemRight"><a class="el" href="#a677373f47ee68ad02e9cef5b409bdc26">calc_loc_sol_vec</a> (mds, i_min, sol_vec_tot, sol_vec_loc)</td></tr>
 <tr class="memdesc:a677373f47ee68ad02e9cef5b409bdc26"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculate the local version of the solution vector from the total version.  <br /></td></tr>
-<tr class="memitem:a6bc8c29a0b3fc64f7f9b80635e95ec58" id="r_a6bc8c29a0b3fc64f7f9b80635e95ec58"><td class="memItemLeft">integer function, public&#160;</td><td class="memItemRight"><a class="el" href="#a6bc8c29a0b3fc64f7f9b80635e95ec58">interp_v_spline</a> (v_i, v_o, r_i, r_o, extrap, ivs_stat)</td></tr>
-<tr class="memdesc:a6bc8c29a0b3fc64f7f9b80635e95ec58"><td class="mdescLeft">&#160;</td><td class="mdescRight">Interpolation for a quantity V using splines.  <br /></td></tr>
+<tr class="memitem:a50a44a844f0db0040bba4c69de27c36b" id="r_a50a44a844f0db0040bba4c69de27c36b"><td class="memItemLeft">integer function, public&#160;</td><td class="memItemRight"><a class="el" href="#a50a44a844f0db0040bba4c69de27c36b">interp_v_spline</a> (v_i, v_o, r_i, r_o, extrap)</td></tr>
+<tr class="memdesc:a50a44a844f0db0040bba4c69de27c36b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Interpolation of a quantity V(i,j,r) in r, for every i and j, with the spline of order interp_V_ord.  <br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-var-members" class="groupheader"><a id="var-members" name="var-members"></a>
 Variables</h2></td></tr>
@@ -270,8 +270,8 @@ Variables</h2></td></tr>
 
 </div>
 </div>
-<a id="a6bc8c29a0b3fc64f7f9b80635e95ec58" name="a6bc8c29a0b3fc64f7f9b80635e95ec58"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6bc8c29a0b3fc64f7f9b80635e95ec58">&#9670;&#160;</a></span>interp_v_spline()</h2>
+<a id="a50a44a844f0db0040bba4c69de27c36b" name="a50a44a844f0db0040bba4c69de27c36b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a50a44a844f0db0040bba4c69de27c36b">&#9670;&#160;</a></span>interp_v_spline()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -299,26 +299,19 @@ Variables</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">logical, intent(in)</td>          <td class="paramname"><span class="paramname"><em>extrap</em></span>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">integer, intent(out), optional</td>          <td class="paramname"><span class="paramname"><em>ivs_stat</em></span>&#160;)</td>
+          <td class="paramtype">logical, intent(in)</td>          <td class="paramname"><span class="paramname"><em>extrap</em></span>&#160;)</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Interpolation for a quantity V using splines. </p>
-<p>The order is the lower of the setting interp_V_ord and the highest order the points allow: 0 for one point (a copy), 1 for two or three (a straight line; PSPLINE's splines of order 2 and 3 need at least four points) and 3 for four or more.</p>
-<p>Optionally, a variable 'ivs_stat' is returned that indicates whether the interpolation was a plain copy (1), a linear interpolation (2) or a spline interpolation (3), Akima or cubic. </p>
+<p>Interpolation of a quantity V(i,j,r) in r, for every i and j, with the spline of order interp_V_ord. </p>
 
-<p class="definition">Definition at line <a class="el" href="sol__utilities_8f90_source.html#l00805">805</a> of file <a class="el" href="sol__utilities_8f90_source.html">sol_utilities.f90</a>.</p>
+<p class="definition">Definition at line <a class="el" href="sol__utilities_8f90_source.html#l00797">797</a> of file <a class="el" href="sol__utilities_8f90_source.html">sol_utilities.f90</a>.</p>
 <div id="dynsection-4" class="dynheader closed"><span class="dynarrow"><span class="arrowhead closed"></span></span>Here is the caller graph for this function:</div>
 <div id="dynsection-4-summary" class="dynsummary">
 </div>
 <div id="dynsection-4-content" class="dyncontent hidden">
-<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="namespacesol__utilities_a6bc8c29a0b3fc64f7f9b80635e95ec58_icgraph.svg" width="872" height="107"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="namespacesol__utilities_a50a44a844f0db0040bba4c69de27c36b_icgraph.svg" width="872" height="107"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>

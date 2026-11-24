@@ -18,8 +18,8 @@ integer function, public \doxymbox{\hyperlink{namespacesol__utilities_a8b902a82a
 \begin{DoxyCompactList}\small\item\em Calculate the total version of the solution vector from the local version. \end{DoxyCompactList}\item 
 integer function, public \doxymbox{\hyperlink{namespacesol__utilities_a677373f47ee68ad02e9cef5b409bdc26}{calc\+\_\+loc\+\_\+sol\+\_\+vec}} (mds, i\+\_\+min, sol\+\_\+vec\+\_\+tot, sol\+\_\+vec\+\_\+loc)
 \begin{DoxyCompactList}\small\item\em Calculate the local version of the solution vector from the total version. \end{DoxyCompactList}\item 
-integer function, public \doxymbox{\hyperlink{namespacesol__utilities_a6bc8c29a0b3fc64f7f9b80635e95ec58}{interp\+\_\+v\+\_\+spline}} (v\+\_\+i, v\+\_\+o, r\+\_\+i, r\+\_\+o, extrap, ivs\+\_\+stat)
-\begin{DoxyCompactList}\small\item\em Interpolation for a quantity V using splines. \end{DoxyCompactList}\end{DoxyCompactItemize}
+integer function, public \doxymbox{\hyperlink{namespacesol__utilities_a50a44a844f0db0040bba4c69de27c36b}{interp\+\_\+v\+\_\+spline}} (v\+\_\+i, v\+\_\+o, r\+\_\+i, r\+\_\+o, extrap)
+\begin{DoxyCompactList}\small\item\em Interpolation of a quantity V(i,j,r) in r, for every i and j, with the spline of order interp\+\_\+\+V\+\_\+ord. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsubsection*{Variables}
 \begin{DoxyCompactItemize}
 \item 
@@ -145,28 +145,26 @@ Here is the caller graph for this function:
 \includegraphics[width=350pt]{namespacesol__utilities_a8b902a82ae6a238e725da2cf09e7854f_icgraph}
 \end{center}
 \end{figure}
-\Hypertarget{namespacesol__utilities_a6bc8c29a0b3fc64f7f9b80635e95ec58}\index{sol\_utilities@{sol\_utilities}!interp\_v\_spline@{interp\_v\_spline}}
+\Hypertarget{namespacesol__utilities_a50a44a844f0db0040bba4c69de27c36b}\index{sol\_utilities@{sol\_utilities}!interp\_v\_spline@{interp\_v\_spline}}
 \index{interp\_v\_spline@{interp\_v\_spline}!sol\_utilities@{sol\_utilities}}
 \doxysubsubsection{\texorpdfstring{interp\_v\_spline()}{interp\_v\_spline()}}
-{\footnotesize\ttfamily \label{namespacesol__utilities_a6bc8c29a0b3fc64f7f9b80635e95ec58} 
-integer function, public sol\+\_\+utilities::\+interp\+\_\+v\+\_\+spline (\begin{DoxyParamCaption}\item[{complex(dp), dimension(:\+,:\+,:\+), intent(in)}]{v\+\_\+i}{, }\item[{complex(dp), dimension(:\+,:\+,:\+), intent(out)}]{v\+\_\+o}{, }\item[{real(dp), dimension(:\+), intent(in)}]{r\+\_\+i}{, }\item[{real(dp), dimension(:\+), intent(in)}]{r\+\_\+o}{, }\item[{logical, intent(in)}]{extrap}{, }\item[{integer, intent(out), optional}]{ivs\+\_\+stat}{}\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \label{namespacesol__utilities_a50a44a844f0db0040bba4c69de27c36b} 
+integer function, public sol\+\_\+utilities::\+interp\+\_\+v\+\_\+spline (\begin{DoxyParamCaption}\item[{complex(dp), dimension(:\+,:\+,:\+), intent(in)}]{v\+\_\+i}{, }\item[{complex(dp), dimension(:\+,:\+,:\+), intent(out)}]{v\+\_\+o}{, }\item[{real(dp), dimension(:\+), intent(in)}]{r\+\_\+i}{, }\item[{real(dp), dimension(:\+), intent(in)}]{r\+\_\+o}{, }\item[{logical, intent(in)}]{extrap}{}\end{DoxyParamCaption})}
 
 
 
-Interpolation for a quantity V using splines. 
+Interpolation of a quantity V(i,j,r) in r, for every i and j, with the spline of order interp\+\_\+\+V\+\_\+ord. 
 
-The order is the lower of the setting interp\+\_\+\+V\+\_\+ord and the highest order the points allow: 0 for one point (a copy), 1 for two or three (a straight line; PSPLINE\textquotesingle{}s splines of order 2 and 3 need at least four points) and 3 for four or more.
 
-Optionally, a variable \textquotesingle{}ivs\+\_\+stat\textquotesingle{} is returned that indicates whether the interpolation was a plain copy (1), a linear interpolation (2) or a spline interpolation (3), Akima or cubic. 
 
-Definition at line \doxymbox{\hyperlink{sol__utilities_8f90_source_l00805}{805}} of file \doxymbox{\hyperlink{sol__utilities_8f90_source}{sol\+\_\+utilities.\+f90}}.
+Definition at line \doxymbox{\hyperlink{sol__utilities_8f90_source_l00797}{797}} of file \doxymbox{\hyperlink{sol__utilities_8f90_source}{sol\+\_\+utilities.\+f90}}.
 
 Here is the caller graph for this function:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=350pt]{namespacesol__utilities_a6bc8c29a0b3fc64f7f9b80635e95ec58_icgraph}
+\includegraphics[width=350pt]{namespacesol__utilities_a50a44a844f0db0040bba4c69de27c36b_icgraph}
 \end{center}
 \end{figure}
 
