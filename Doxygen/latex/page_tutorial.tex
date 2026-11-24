@@ -183,7 +183,16 @@ There are also some extra options listed (but not loaded in PB3D as they come af
 \end{DoxyItemize}
 
 There are many, many more input parameters. A short description of these can be found in \doxysectlink{page_inputs}{Input variables}{0}.\hypertarget{page_tutorial_tutorial_PB3D}{}\doxysection{\texorpdfstring{Running PB3D}{Running PB3D}}\label{page_tutorial_tutorial_PB3D}
-This tutorial provides a VMEC equilibrium file to experiment with: the {\ttfamily cbm18} equilibrium of the benchmark for edge-\/localized modes of Ferraro et al. \DoxyCite{ferraro2010elmbenchmark}{number}{1}, a nearly circular tokamak with a steep pressure pedestal at the edge, which is unstable to peeling-\/ballooning modes. The equilibrium of the benchmark fills a circle of radius 2 m around $R = 3$ m, but its pressure and current are zero beyond the foot of the pedestal, at 70 \% of the poloidal flux. Ideal codes with a vacuum region, such as ELITE, end the plasma at this foot, at 0.\+701 of the poloidal flux, and treat the region outside it as vacuum. The file of this tutorial does the same: its boundary is the flux surface at the foot, so that a free-\/boundary calculation with PB3D puts the vacuum where these codes have it. The file was made from the HELENA equilibrium of this plasma, with PB3D\textquotesingle{}s option {\ttfamily --export\+\_\+\+HEL} and VMEC++ on 639 flux surfaces; its safety factor agrees with that of HELENA to five digits. Lengths and fields are in SI units, in the size of the benchmark equilibrium. Some properties are given in table \doxytablelink{page_tutorial_tutorial_PB3D_tab}{2}. \hypertarget{page_tutorial_tutorial_PB3D_tab}{}
+This tutorial provides a VMEC equilibrium file to experiment with: the {\ttfamily cbm18} equilibrium of the benchmark for edge-\/localized modes of Ferraro et al. \DoxyCite{ferraro2010elmbenchmark}{number}{1}, a nearly circular tokamak with a steep pressure pedestal at the edge, which is unstable to peeling-\/ballooning modes. The plasma ends at the foot of the pedestal, where the pressure gradient and the current density fall to zero, and outside it is vacuum. The file was made from the HELENA equilibrium of this plasma, with PB3D\textquotesingle{}s option {\ttfamily --export\+\_\+\+HEL} and VMEC++ on 639 flux surfaces; its safety factor agrees with that of HELENA to five digits. Lengths and fields are in SI units. Figure 1 shows the flux surfaces and the profiles of the pressure and the safety factor: the pressure falls from 25 k\+Pa at $\psi = 0.75$ to 0.\+2 k\+Pa at $\psi = 0.95$, where $\psi$ is the normalized poloidal flux. Some properties are given in table \doxytablelink{page_tutorial_tutorial_PB3D_tab}{2}.
+
+ 
+\begin{DoxyImage}%
+\includegraphics[width=\textwidth]{tutorial_equilibrium.png}%
+\doxyfigcaption{Figure 1: the equilibrium of this tutorial. Left: the flux surfaces in a poloidal cross-\/section, every 0.1 in the normalized poloidal flux, with the magnetic axis marked by a cross. Right: the pressure and the absolute value of the safety factor against the normalized poloidal flux.}%
+\end{DoxyImage}
+
+
+\hypertarget{page_tutorial_tutorial_PB3D_tab}{}
 
 \begin{DoxyTable}{2}{Table 2. equilibrium parameters}{page_tutorial_tutorial_PB3D_tab}{0}
 radius of the magnetic axis &$3.61\,\text{m}$ \\
@@ -230,6 +239,29 @@ For VMEC, the magnetic axis is a bit problematic. It is necessary, therefore, to
 On one core of a laptop (Apple M3 Pro), this run takes about 2 minutes, and its memory use peaks at 10.\+6 GB. Most of the time goes into the plasma quantities on the 64 field lines; the vacuum takes 15 s. If your computer has less memory, lower {\ttfamily max\+\_\+tot\+\_\+mem:} with 2000, the peak was 6.\+5 GB and the run took about 3 minutes; with 8000, the peak was 13.\+6 GB.
 
 PB3D gives the eigenvalues $\lambda = \omega^2/\omega_A^2$, normalized to the square of the Alfvén frequency $\omega_A$ that the header of {\ttfamily PB3\+D\+\_\+out\+\_\+\+EV\+\_\+\+R\+\_\+1.\+txt} gives. For this input file, the first eigenvalue should be close to $\lambda = -0.0499$. A negative eigenvalue belongs to an unstable mode, with the growth rate $\gamma = \omega_A\sqrt{-\lambda}$, here $0.22\,\omega_A$.
+
+Figure 2 shows the eigenvector: the amplitudes of the poloidal Fourier harmonics $X_m$ of the normal displacement $X = \vec{\xi}\cdot\nabla\psi$. Each harmonic peaks close to the flux surface on which it is resonant, where $n|q| = m$; the upper axis of the figure gives $n|q|$. The largest harmonics, $m = 18$ to $23$, lie where the pressure falls most steeply. At the plasma boundary, where $n|q| = 30.4$, the harmonic $m = 31$, which would be resonant just outside the plasma, still has 0.\+27 of the largest amplitude, so that the mode moves the boundary.
+
+ 
+\begin{DoxyImage}%
+\includegraphics[width=\textwidth]{tutorial_harmonics.png}%
+\doxyfigcaption{Figure 2: amplitudes of the poloidal Fourier harmonics of the normal displacement of the first eigenvector, for n = 10, divided by the largest value. The upper axis gives n\texorpdfstring{$\vert$}{|}q\texorpdfstring{$\vert$}{|}; each harmonic m peaks close to where n\texorpdfstring{$\vert$}{|}q\texorpdfstring{$\vert$}{|} = m.}%
+\end{DoxyImage}
+
+
+Figure 3 shows the same eigenvector in the poloidal plane $\zeta = 0$, and the potential of the perturbed magnetic field in the vacuum outside the plasma. The displacement is largest on the outboard side, where the curvature of the field lines makes the pressure gradient destabilizing: the mode balloons. Outside the plasma, the vacuum potential falls off over a distance comparable to the distance between its maxima along the boundary. Figure 4 shows the displacement on the whole plasma boundary: its maxima and minima follow the field lines, with 10 periods around the torus, and it is largest on the outboard side. POST computes both figures (see \doxysectlink{page_tutorial_tutorial_POST}{Post-\/processing With POST}{1}); they were plotted with matplotlib from the HDF5 files that POST writes in {\ttfamily Data/}.
+
+ 
+\begin{DoxyImage}%
+\includegraphics[width=\textwidth]{tutorial_mode.png}%
+\doxyfigcaption{Figure 3: real part of the first eigenvector in the poloidal plane at zeta = 0. Left: the normal displacement X inside the plasma; the solution range starts at a normalized poloidal flux of 0.3. Right: the vacuum potential outside the plasma. Both in arbitrary units.}%
+\end{DoxyImage}
+  
+\begin{DoxyImage}%
+\includegraphics[width=0.8\textwidth]{tutorial_mode_3d.png}%
+\doxyfigcaption{Figure 4: real part of the normal displacement X of the first eigenvector on the plasma boundary, over the whole torus (red positive, blue negative).}%
+\end{DoxyImage}
+
 
 Table \doxytablelink{page_tutorial_tutorial_PB3D_res_tab}{3} shows how this eigenvalue changes when the input file is changed. Every row changes one thing. The rows marked HELENA use the HELENA mapping of the same plasma, without the lines with {\ttfamily alpha\+\_\+style} and {\ttfamily n\+\_\+alpha} (\doxylink{page_tutorial_fnt3}{3}); for HELENA, PB3D computes the vacuum with an axisymmetric method (see \doxysectlink{page_vacuum}{Vacuum response}{0}). \hypertarget{page_tutorial_tutorial_PB3D_res_tab}{}
 
@@ -341,6 +373,15 @@ Now, run the POST program, for example using 4 MPI processes:
 
 An interesting output is the energy reconstruction, which is activated with {\ttfamily plot\+\_\+\+E\+\_\+rec}. This calculation reinserts the eigenvector into the terms of the perturbed potential energy and of the kinetic energy, in order to check whether the Rayleigh quotient still holds, and to see which terms are dominant and which ones are less important. The integrated terms are also stored in a separate file, {\ttfamily POST\+\_\+out\+\_\+\+EN\+\_\+R\+[lvl].txt} for Richardson level {\ttfamily \+[lvl]} (see \doxysectlink{page_outputs_output_file_E_rec}{Energy reconstruction file}{2}).
 
+Figure 5 shows these terms for this example, divided by the kinetic energy, so that they add up to the eigenvalue: their sum, $-0.04984$, differs from the eigenvalue $-0.04987$ by $7\times10^{-4}$ of its value. The normal ballooning term, which holds the pressure gradient and the normal curvature of the field lines, drives the mode most, and the line bending terms stabilize it. The figure also shows the terms of the fixed-\/boundary run ({\ttfamily BC\+\_\+style = 1 1}). The vacuum term itself is small and positive, $+0.005$. The free boundary makes the mode more unstable because the eigenvector changes: with the free boundary, the normal ballooning term is more negative by 0.\+025 and the normal kink term, which holds the parallel current, by 0.\+012, while the line bending terms grow by 0.\+027.
+
+ 
+\begin{DoxyImage}%
+\includegraphics[width=0.9\textwidth]{tutorial_energy.png}%
+\doxyfigcaption{Figure 5: terms of the potential energy of the first eigenvector, divided by its kinetic energy, for the free boundary of this tutorial and for a fixed boundary (POST, plot\+\_\+\+E\+\_\+rec).}%
+\end{DoxyImage}
+
+
 Because this example has a free boundary, POST also plots the vacuum potential of the eigenmode outside the plasma ({\ttfamily plot\+\_\+vac\+\_\+pot}, which is set by default), in the files {\ttfamily Data/\+1\+\_\+vac\+\_\+pot\+\_\+\+RE.\+xmf} and {\ttfamily Data/\+1\+\_\+vac\+\_\+pot\+\_\+\+IM.\+xmf} for its real and imaginary parts; {\ttfamily Data/\+vac\+\_\+in\+\_\+plasma.\+xmf} marks the points of the plot that lie inside the plasma. After a fixed-\/boundary run, POST switches this plot off.
 
 If {\ttfamily --do\+\_\+execute\+\_\+command\+\_\+line} was not explicitly used, the actual external plot programs are not used yet, but their usage is given in a shell commands script file (see \doxysectlink{page_outputs_output_file_shell}{Shell commands file}{2}). Run this shell with 
@@ -354,7 +395,11 @@ If everything is okay, you should now see output in the {\ttfamily Plots/} folde
 
 Also, open some of the {\ttfamily .xmf} files in {\ttfamily Data/} in Vis\+It or Para\+View to explore these plots.
 
-To finish this tutorial, feel free to adjust some input parameters. For example, you can change the output grid to become 3-\/D by setting {\ttfamily n\+\_\+zeta\+\_\+plot} and {\ttfamily max\+\_\+zeta\+\_\+plot}, or you could deform it using {\ttfamily pert\+\_\+mult\+\_\+factor\+\_\+\+POST}.
+To finish this tutorial, feel free to adjust some input parameters. For example, you can change the output grid to become 3-\/D by setting {\ttfamily n\+\_\+zeta\+\_\+plot} and {\ttfamily max\+\_\+zeta\+\_\+plot}, or you could deform it using {\ttfamily pert\+\_\+mult\+\_\+factor\+\_\+\+POST}. Figures 3 and 4 were made this way, each from a separate POST run in which only {\ttfamily plot\+\_\+sol\+\_\+xi} is set, and {\ttfamily plot\+\_\+vac\+\_\+pot} for figure 3:
+\begin{DoxyItemize}
+\item figure 3 with {\ttfamily n\+\_\+theta\+\_\+plot = 401}, and the vacuum potential on a finer box with {\ttfamily min\+\_\+\+Rvac\+\_\+plot = 1.\+9}, {\ttfamily max\+\_\+\+Rvac\+\_\+plot = 5.\+9}, {\ttfamily min\+\_\+\+Zvac\+\_\+plot = -\/1.\+9}, {\ttfamily max\+\_\+\+Zvac\+\_\+plot = 1.\+9} and {\ttfamily n\+\_\+vac\+\_\+plot = 321 305} (2 minutes on one core);
+\item figure 4 with {\ttfamily min\+\_\+r\+\_\+plot = 0.\+99}, {\ttfamily n\+\_\+theta\+\_\+plot = 201}, {\ttfamily n\+\_\+zeta\+\_\+plot = 241}, {\ttfamily max\+\_\+zeta\+\_\+plot = 2.\+0} and without the vacuum potential, which gives the outermost flux surfaces over the whole torus (20 s).
+\end{DoxyItemize}
 
 \begin{DoxyNote}{Note}
 
