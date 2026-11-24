@@ -139,24 +139,27 @@
     Have a look:
         - \c min_n_par_X is the number of points in the parallel grid of every field line at the first Richardson level.
         - These points range from \c min_par_X to \c max_par_X, in units of \f$\pi\f$.
-        - How the field lines are chosen depends on \c alpha_style, which is not set in this file.
-        For VMEC, the default is <tt>alpha_style = 2</tt> with <tt>n_alpha = 10</tt> field lines, each followed over one poloidal turn.
-        PB3D then sets \c min_par_X and \c max_par_X to 0 and 2 if their difference is not 2, and it does not use \c alpha (see \ref page_inputs).
-        In this file, \c min_par_X and \c max_par_X are already 0 and 2, so the line with \c alpha has no effect.
-        - With <tt>alpha_style = 1</tt>, the default for HELENA, \c alpha is the label of the single field line on which the perturbations are calculated, and the parallel range from \c min_par_X to \c max_par_X can span several poloidal turns.
+        - How the field lines are chosen depends on \c alpha_style.
+        This file sets <tt>alpha_style = 2</tt>, which is also the default for VMEC: PB3D uses \c n_alpha field lines, here 64, with equally spaced labels, and follows each of them over one poloidal turn.
+        PB3D sets \c min_par_X and \c max_par_X to 0 and 2 if their difference is not 2 (see \ref page_inputs); in this file, they are already 0 and 2.
+        - With <tt>alpha_style = 1</tt>, the default for HELENA, PB3D follows the single field line with label \c alpha, and the parallel range from \c min_par_X to \c max_par_X can span several poloidal turns.
         For 3-D equilibria, the number of field lines \c n_alpha (<tt>alpha_style = 2</tt>) or the parallel range (<tt>alpha_style = 1</tt>), together with \c min_n_par_X, has to be increased until convergence is reached \cite Weyens2017PB3D.
         - \c n_r_sol is the number of points in the solution grid, that ranges from \c min_r_sol to \c max_r_sol in the PB3D normal coordinate (see num_vars.use_pol_flux_f).
         - \c n_mod_X is the number of Fourier harmonics that are kept, with \c prim_X the primary mode number.
         With the poloidal flux as normal coordinate (the default), \c prim_X is the toroidal mode number \f$n\f$ and the harmonics are poloidal mode numbers \f$m\f$.
         - \c BC_style(1:2) indicates the style with which the boundary conditions are implemented deep in the plasma and on the plasma edge.
-        - \c max_tot_mem is the total virtual memory that PB3D may consume.
+        - \c max_tot_mem is a memory limit in MB: PB3D divides its work into jobs so that its own estimate of the memory it needs stays below this limit.
+        The memory that the run really uses can be higher; section \ref tutorial_PB3D_results gives the numbers for this example.
+        - \c max_it_rich is the number of Richardson levels (see the extra options below); with 1, PB3D does not extrapolate.
         - \c use_normalization indicates whether normalization is used (recommended), but it is useful to turn this off for debugging.
 
-    \note In this file, <tt>BC_style = 1 1</tt> sets the displacement to zero at the plasma edge, which makes it a fixed boundary.
+    \note In this file, <tt>BC_style = 1 2</tt> makes the plasma edge a free boundary: PB3D calculates the response of the vacuum outside the plasma and adds its energy to the perturbed potential energy (see \ref page_overview and \ref page_vacuum).
+    <tt>BC_style(2) = 2</tt> is also the default.
+    With <tt>BC_style = 1 1</tt>, the displacement is zero at the plasma edge, as if a conducting wall lay on the plasma surface, which makes it a fixed boundary.
     The inner end, deep in the plasma, only accepts <tt>BC_style(1) = 1</tt>.
-    With <tt>BC_style(2) = 2</tt>, which is the default, the plasma edge is a free boundary, and PB3D calculates the vacuum response and adds it to the perturbed potential energy (see \ref page_overview).
-    For VMEC, a free boundary needs <tt>alpha_style = 2</tt> with more than one field line, as PB3D then uses a 3-D boundary-element method on the field lines; PB3D stops with an error for <tt>alpha_style = 1</tt>.
-    The changelog in the code's <tt>README.md</tt> records, as a rule for this 3-D vacuum, at least 128 field lines and about 36 parallel points per poloidal wavelength.
+    For VMEC, a free boundary needs <tt>alpha_style = 2</tt> with more than one field line, as PB3D then uses a 3-D boundary-element method on the points of the field lines on the plasma boundary; PB3D stops with an error for <tt>alpha_style = 1</tt>.
+    The number of field lines decides how well this method resolves the toroidal variation of the vacuum potential, \f$e^{-in\zeta}\f$: there must be clearly more than \f$2n+1\f$ of them.
+    Section \ref tutorial_PB3D_results shows how accurate 64 field lines with 100 points each are for this example.
 
     There are also some extra options listed (but not loaded in PB3D as they come after the end of the \c inputdata_PB3D block of the Fortran namelist) below:
     \snippetlineno PB3D.input some extra options for PB3D
@@ -170,21 +173,41 @@
 
 
     \section tutorial_PB3D Running PB3D
-    This tutorial provides a basic VMEC equilibrium file to experiment with, called \c cbm18, which represents a simple circular test case designed to be ballooning unstable. \cite ferraro2010ELMbenchmark
+    This tutorial provides a VMEC equilibrium file to experiment with: the \c cbm18 equilibrium of the benchmark for edge-localized modes of Ferraro et al. \cite ferraro2010ELMbenchmark, a nearly circular tokamak with a steep pressure pedestal at the edge, which is unstable to peeling-ballooning modes.
+    The equilibrium of the benchmark fills a circle of radius 2 m around \f$R = 3\f$ m, but its pressure and current are zero beyond the foot of the pedestal, at 70 % of the poloidal flux.
+    Ideal codes with a vacuum region, such as ELITE, end the plasma at this foot, at 0.701 of the poloidal flux, and treat the region outside it as vacuum.
+    The file of this tutorial does the same: its boundary is the flux surface at the foot, so that a free-boundary calculation with PB3D puts the vacuum where these codes have it.
+    The file was made from the HELENA equilibrium of this plasma, with PB3D's option <tt>--export_HEL</tt> and VMEC++ on 639 flux surfaces; its safety factor agrees with that of HELENA to five digits.
+    Lengths and fields are in SI units, in the size of the benchmark equilibrium.
     Some properties are given in table \ref tutorial_PB3D_tab "2".
     <table>
     <caption id="tutorial_PB3D_tab">Table 2. equilibrium parameters</caption>
     <tr>
-        <td> toroidal current \f$I_\text{tot}\f$  </td> <td> \f$1.614MA\f$ </td>
+        <td> radius of the magnetic axis </td> <td> \f$3.61\,\text{m}\f$ </td>
     </tr>
     <tr>
-        <td> \f$\beta_\text{pol}\f$  </td> <td> \f$0.443 \f$ </td>
+        <td> plasma boundary in the midplane </td> <td> from \f$R = 2.29\,\text{m}\f$ to \f$R = 4.70\,\text{m}\f$ </td>
     </tr>
     <tr>
-        <td> aspect ratio \f$R_0/a\f$, with major radius \f$R_0 = 3\,\text{m}\f$ and minor radius \f$a = 2\,\text{m}\f$ </td> <td> \f$1.5 \f$ </td>
+        <td> major radius \f$R_0\f$ and minor radius \f$a\f$ (centre and half width of the boundary in the midplane), aspect ratio \f$R_0/a\f$ </td> <td> \f$3.49\,\text{m}\f$, \f$1.20\,\text{m}\f$, \f$2.9\f$ </td>
+    </tr>
+    <tr>
+        <td> elongation </td> <td> \f$1.10\f$ </td>
+    </tr>
+    <tr>
+        <td> toroidal magnetic field on the magnetic axis </td> <td> \f$1.72\,\text{T}\f$ </td>
+    </tr>
+    <tr>
+        <td> toroidal current \f$I_\text{tot}\f$ </td> <td> \f$1.61\,\text{MA}\f$ </td>
+    </tr>
+    <tr>
+        <td> pressure on the magnetic axis </td> <td> \f$28.8\,\text{kPa}\f$ </td>
+    </tr>
+    <tr>
+        <td> safety factor \f$|q|\f$, on the magnetic axis and at the boundary (\ref fnt2 "2") </td> <td> \f$1.05\f$, \f$3.04\f$ </td>
     </tr>
     </table>
-    
+
     Put this equilibrium file, as well as the input file in a separate run directory; let's call it \c cbm18.
 
     In order to produce outputs, PB3D needs three sub-directories in the run directory, called <tt>Data/</tt>, <tt>Scripts/</tt> and <tt>Plots/</tt>.
@@ -200,7 +223,8 @@
     4 processes are used.
     With more than one process, the eigenvalue solver needs PETSc with a parallel direct solver such as MUMPS (see \ref page_faq); a single process can also be used, by running <tt>./PB3D PB3D.input wout.nc</tt> without \c mpirun.
     You can find the VMEC file <a href="https://pb3d.github.io/Examples/wout.nc">here</a>.
-    
+    The HELENA input file of the same plasma is <a href="https://pb3d.github.io/Examples/fort.10">here</a>; with a HELENA patched as described in \ref tutorial_eq_helena, it gives the mapping file that PB3D reads instead of <tt>wout.nc</tt>.
+
     There are optional run-time options that can be triggered, such as <tt>--jump_to_sol</tt>, which can be used to easily change solution preferences, such as discretization order, etc.
     For an overview, see \ref inputs_PB3D_cmd; they are not treated here.
 
@@ -215,7 +239,56 @@
     The solution should not change a lot if you have enough harmonics and normal grid points.
 
     \note For VMEC, the magnetic axis is a bit problematic. It is necessary, therefore, to choose \c min_r_sol to be slightly larger than 0; 0.01 for example.
-    
+
+    \subsection tutorial_PB3D_results What to expect
+    On one core of a laptop (Apple M3 Pro), this run takes about 2 minutes, and its memory use peaks at 10.6 GB.
+    Most of the time goes into the plasma quantities on the 64 field lines; the vacuum takes 15 s.
+    If your computer has less memory, lower \c max_tot_mem: with 2000, the peak was 6.5 GB and the run took about 3 minutes; with 8000, the peak was 13.6 GB.
+
+    PB3D gives the eigenvalues \f$\lambda = \omega^2/\omega_A^2\f$, normalized to the square of the Alfvén frequency \f$\omega_A\f$ that the header of <tt>PB3D_out_EV_R_1.txt</tt> gives.
+    For this input file, the first eigenvalue should be close to \f$\lambda = -0.0499\f$.
+    A negative eigenvalue belongs to an unstable mode, with the growth rate \f$\gamma = \omega_A\sqrt{-\lambda}\f$, here \f$0.22\,\omega_A\f$.
+
+    Table \ref tutorial_PB3D_res_tab "3" shows how this eigenvalue changes when the input file is changed.
+    Every row changes one thing.
+    The rows marked HELENA use the HELENA mapping of the same plasma, without the lines with \c alpha_style and \c n_alpha (\ref fnt3 "3"); for HELENA, PB3D computes the vacuum with an axisymmetric method (see \ref page_vacuum).
+    <table>
+    <caption id="tutorial_PB3D_res_tab">Table 3. first eigenvalue for \f$n = 10\f$, with the time and the peak memory of the run on one core</caption>
+    <tr>
+        <th> change to the input file </th><th> eigenvalue </th><th> time </th><th> memory </th>
+    </tr>
+    <tr>
+        <td> none (64 field lines with 100 points each) </td><td> \f$-0.04987\f$ </td><td> 2 min </td><td> 10.6 GB </td>
+    </tr>
+    <tr>
+        <td> <tt>min_n_par_X = 200</tt> </td><td> \f$-0.05029\f$ </td><td> 5 min </td><td> 12.4 GB </td>
+    </tr>
+    <tr>
+        <td> <tt>n_alpha = 128</tt> </td><td> \f$-0.04990\f$ </td><td> 7 min </td><td> 13.8 GB </td>
+    </tr>
+    <tr>
+        <td> HELENA </td><td> \f$-0.05026\f$ </td><td> 3 s </td><td> 2.6 GB </td>
+    </tr>
+    <tr>
+        <td> HELENA, <tt>n_mod_X = 30</tt> </td><td> \f$-0.05034\f$ </td><td> 4 s </td><td> 3.5 GB </td>
+    </tr>
+    <tr>
+        <td> <tt>BC_style = 1 1</tt> (fixed boundary) </td><td> \f$-0.04027\f$ </td><td> 2 min </td><td> 7.4 GB </td>
+    </tr>
+    <tr>
+        <td> HELENA, <tt>BC_style = 1 1</tt> </td><td> \f$-0.04028\f$ </td><td> 2 s </td><td> 2.6 GB </td>
+    </tr>
+    </table>
+
+    The times varied by about 15 % between repeated runs of the same input file.
+    The table shows the following.
+        - With 100 points on each field line, the points along the lines limit the accuracy of the vacuum.
+        200 points per line move the eigenvalue by 0.8 %, to within 0.1 % of the HELENA value, while 128 field lines instead of 64 move it by only 0.05 %.
+        - With 30 Fourier harmonics instead of 20, the free-boundary eigenvalue on the HELENA mapping is 0.2 % more negative; the fixed-boundary eigenvalue on the HELENA mapping changes by less than \f$10^{-4}\f$ of its value.
+        - With the vacuum, the eigenvalue is 24 % more negative than with a conducting wall on the plasma surface, so the growth rate is 11 % larger.
+        - \c min_r_sol = 0.3 lies far enough inward. On the HELENA mapping, with the same spacing of the radial points, the free-boundary eigenvalue changes by \f$10^{-5}\f$ of its value when the solution range starts at 0.1 instead. When it starts at 0.5, the range cuts off the inner part of the eigenfunction, and the eigenvalue is 0.2 % less negative.
+        - The radial grid is fine enough: with 1120 points instead of 400, the HELENA eigenvalue with a free boundary changes by 0.04 %.
+
 
     \section tutorial_scripts Run Script Tools
 
@@ -223,9 +296,9 @@
     
     \note These tools are in a separate git repository, \c <a href="https://github.com/ToonWeyens/PB3D_tools">PB3D_tools</a>.
 
-    In table \ref tutorial_scripts_tab "3", an overview is given:
+    In table \ref tutorial_scripts_tab "4", an overview is given:
     <table>
-    <caption id="tutorial_scripts_tab">Table 3. extra tools</caption>
+    <caption id="tutorial_scripts_tab">Table 4. extra tools</caption>
     <tr>
         <td> <tt>run</tt> </td> <td> Run script that can be used for PB3D and POST with an extensive range of features including
             - the possibility to do a parameter scan for a variety of input variables
@@ -270,12 +343,14 @@
     
     Now, run the POST program, for example using 4 MPI processes:
     \code mpirun -np 4 ./POST POST.input PB3D_out.h5 \endcode
+    For this example, POST takes about half a minute on one core.
 
     An interesting output is the energy reconstruction, which is activated with \c plot_E_rec.
     This calculation reinserts the eigenvector into the terms of the perturbed potential energy and of the kinetic energy, in order to check whether the Rayleigh quotient still holds, and to see which terms are dominant and which ones are less important.
     The integrated terms are also stored in a separate file, <tt>POST_out_EN_R[lvl].txt</tt> for Richardson level <tt>[lvl]</tt> (see \ref output_file_E_rec).
 
-    For a free-boundary PB3D run, POST also plots the vacuum potential outside the plasma (\c plot_vac_pot, which is set by default); for a fixed boundary, as in this example, POST switches this plot off.
+    Because this example has a free boundary, POST also plots the vacuum potential of the eigenmode outside the plasma (\c plot_vac_pot, which is set by default), in the files <tt>Data/1_vac_pot_RE.xmf</tt> and <tt>Data/1_vac_pot_IM.xmf</tt> for its real and imaginary parts; <tt>Data/vac_in_plasma.xmf</tt> marks the points of the plot that lie inside the plasma.
+    After a fixed-boundary run, POST switches this plot off.
 
     If <tt>--do_execute_command_line</tt> was not explicitly used, the actual external plot programs are not used yet, but their usage is given in a shell commands script file (see \ref output_file_shell).
     Run this shell with
@@ -291,7 +366,9 @@
 
     \note
         -# \anchor fnt1 The cylindrical angle \f$\varphi\f$ is often the inverse of the one used in nuclear fusion research, as it can lead to left-handed coordinate systems. In VMEC, it is opted to use it anyway, so it has a left-handed coordinate system. The poloidal angle is chosen to be anticlockwise if you look at a cross-section of the plasma that lies to the right of the \f$Z\f$-axis with the \f$Z\f$-axis pointing up, as in PB3D. In PB3D, however, the toroidal angle \f$\zeta = - \varphi\f$ is chosen as the inverse of the cylindrical angle, so it is right-handed.
-    
+        -# \anchor fnt2 In the VMEC file of this tutorial, the toroidal flux and the rotational transform are both negative, as in the HELENA equilibrium it was made from, so that \f$q\f$ is negative.
+        -# \anchor fnt3 HELENA equilibria are axisymmetric, so PB3D needs only one field line for them. With <tt>n_alpha = 64</tt> in the input file, PB3D warns about this, but it still uses 64 field lines, and it then stops because its memory limit \c max_tot_mem is too low.
+
     \example PB3D.input Example PB3D input.
     \example POST.input Example POST input.
 */
