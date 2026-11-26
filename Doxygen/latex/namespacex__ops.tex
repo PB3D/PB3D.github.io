@@ -117,7 +117,7 @@ ierr
 \end{DoxyParams}
 
 
-Definition at line \doxymbox{\hyperlink{X__ops_8f90_source_l03099}{3099}} of file \doxymbox{\hyperlink{X__ops_8f90_source}{X\+\_\+ops.\+f90}}.
+Definition at line \doxymbox{\hyperlink{X__ops_8f90_source_l03130}{3130}} of file \doxymbox{\hyperlink{X__ops_8f90_source}{X\+\_\+ops.\+f90}}.
 
 Here is the call graph for this function:
 \nopagebreak
@@ -145,16 +145,12 @@ integer function, public x\+\_\+ops::\+calc\+\_\+res\+\_\+surf (\begin{DoxyParam
 
 Calculates resonating flux surfaces for the perturbation modes. 
 
-The output consists of mode number, resonating normal position and the fraction $\frac{m}{n}$ or $\frac{n}{m}$. for those modes for which a solution is found that is within the plasma range.
-
-It contains three pieces of information:
+The output has one row per resonating flux surface of every mode in {\ttfamily sec} of {\ttfamily mds}, which can be tabulated in an arbitrary grid, not necessarily the equilibrium one. A mode resonates on no, one or more than one flux surface in the range of the equilibrium grid: on two, for example, if the safety factor has a minimum. A row contains:
 \begin{DoxyItemize}
-\item {\ttfamily (:,1)}: the mode index
+\item {\ttfamily (:,1)}: the mode number
 \item {\ttfamily (:,2)}: the radial position in Flux coordinates
 \item {\ttfamily (:,3)}: the fraction $\frac{m}{n}$ or $\frac{n}{m}$
 \end{DoxyItemize}
-
-for every single mode in {\ttfamily sec} of {\ttfamily mds}, which can be tabulated in an arbitrary grid, not necessarily the equilibrium one.
 
 Optionally, the total safety factor or rotational transform can be returned to the master.
 
@@ -180,7 +176,7 @@ ierr
 \end{DoxyParams}
 
 
-Definition at line \doxymbox{\hyperlink{X__ops_8f90_source_l01654}{1654}} of file \doxymbox{\hyperlink{X__ops_8f90_source}{X\+\_\+ops.\+f90}}.
+Definition at line \doxymbox{\hyperlink{X__ops_8f90_source_l01681}{1681}} of file \doxymbox{\hyperlink{X__ops_8f90_source}{X\+\_\+ops.\+f90}}.
 
 Here is the call graph for this function:
 \nopagebreak
@@ -246,7 +242,7 @@ ierr
 \end{DoxyParams}
 
 
-Definition at line \doxymbox{\hyperlink{X__ops_8f90_source_l01366}{1366}} of file \doxymbox{\hyperlink{X__ops_8f90_source}{X\+\_\+ops.\+f90}}.
+Definition at line \doxymbox{\hyperlink{X__ops_8f90_source_l01396}{1396}} of file \doxymbox{\hyperlink{X__ops_8f90_source}{X\+\_\+ops.\+f90}}.
 
 Here is the call graph for this function:
 \nopagebreak
@@ -288,7 +284,7 @@ ierr
 \end{DoxyParams}
 
 
-Definition at line \doxymbox{\hyperlink{X__ops_8f90_source_l03384}{3384}} of file \doxymbox{\hyperlink{X__ops_8f90_source}{X\+\_\+ops.\+f90}}.
+Definition at line \doxymbox{\hyperlink{X__ops_8f90_source_l03420}{3420}} of file \doxymbox{\hyperlink{X__ops_8f90_source}{X\+\_\+ops.\+f90}}.
 
 Here is the call graph for this function:
 \nopagebreak
@@ -344,7 +340,7 @@ ierr
 \end{DoxyParams}
 
 
-Definition at line \doxymbox{\hyperlink{X__ops_8f90_source_l00918}{918}} of file \doxymbox{\hyperlink{X__ops_8f90_source}{X\+\_\+ops.\+f90}}.
+Definition at line \doxymbox{\hyperlink{X__ops_8f90_source_l00943}{943}} of file \doxymbox{\hyperlink{X__ops_8f90_source}{X\+\_\+ops.\+f90}}.
 
 Here is the call graph for this function:
 \nopagebreak
@@ -383,7 +379,7 @@ Prints debug information for X\+\_\+1 driver.
 \end{DoxyParams}
 
 
-Definition at line \doxymbox{\hyperlink{X__ops_8f90_source_l03510}{3510}} of file \doxymbox{\hyperlink{X__ops_8f90_source}{X\+\_\+ops.\+f90}}.
+Definition at line \doxymbox{\hyperlink{X__ops_8f90_source_l03546}{3546}} of file \doxymbox{\hyperlink{X__ops_8f90_source}{X\+\_\+ops.\+f90}}.
 
 Here is the call graph for this function:
 \nopagebreak
@@ -422,7 +418,7 @@ Prints debug information for X\+\_\+2 driver.
 \end{DoxyParams}
 
 
-Definition at line \doxymbox{\hyperlink{X__ops_8f90_source_l03653}{3653}} of file \doxymbox{\hyperlink{X__ops_8f90_source}{X\+\_\+ops.\+f90}}.
+Definition at line \doxymbox{\hyperlink{X__ops_8f90_source_l03690}{3690}} of file \doxymbox{\hyperlink{X__ops_8f90_source}{X\+\_\+ops.\+f90}}.
 
 Here is the call graph for this function:
 \nopagebreak
@@ -466,7 +462,7 @@ ierr
 \end{DoxyParams}
 
 
-Definition at line \doxymbox{\hyperlink{X__ops_8f90_source_l01830}{1830}} of file \doxymbox{\hyperlink{X__ops_8f90_source}{X\+\_\+ops.\+f90}}.
+Definition at line \doxymbox{\hyperlink{X__ops_8f90_source_l01861}{1861}} of file \doxymbox{\hyperlink{X__ops_8f90_source}{X\+\_\+ops.\+f90}}.
 
 Here is the call graph for this function:
 \nopagebreak
@@ -504,20 +500,21 @@ also the variables of the secondary modes
 \item sec,
 \end{DoxyItemize}
 
-are set up in the coordinates of the grid passed. The normal values of this grid are saved as well, in
-\begin{DoxyItemize}
-\item r\+\_\+F.
-\end{DoxyItemize}
+are set up in the coordinates of the grid passed.
 
-All variables are tabulated in the full normal grid. The mode indices, however, are chosen so that there is maximum overlap between different normal positions. This is trivial for {\ttfamily X\+\_\+style} 1 (prescribed), but for {\ttfamily X\+\_\+style} 2 (fast), this is best explained by an example:\hypertarget{namespacex__ops_autotoc_md8}{}\doxysubsubsection{\texorpdfstring{kd m1 m2 m3}{kd m1 m2 m3}}\label{namespacex__ops_autotoc_md8}
-1 10 11 12 \texorpdfstring{$<$}{<}-\/ start 2 10 11 12 \texorpdfstring{$<$}{<}-\/ no change in limits 2 13 11 12 \texorpdfstring{$<$}{<}-\/ limits shift up by one 3 13 11 12 \texorpdfstring{$<$}{<}-\/ no change in limits 4 13 14 12 \texorpdfstring{$<$}{<}-\/ limits shift up by one 5 16 14 15 \texorpdfstring{$<$}{<}-\/ limits shift up by two 6 13 14 15 \texorpdfstring{$<$}{<}-\/ limits shift down by one
+All variables are tabulated in the full normal grid. For {\ttfamily X\+\_\+style} 1 (prescribed) the modes are the same at every normal point. For {\ttfamily X\+\_\+style} 2 (fast) the lowest mode of the window at a normal point is the linear interpolation of the window on the equilibrium points ({\ttfamily min\+\_\+n\+\_\+X} or {\ttfamily min\+\_\+m\+\_\+X}), rounded. When the window moves by one, one mode leaves it and another one enters. The window can move up and down if the safety factor or rotational transform has an extremum, and then the same mode can enter more than once.
+
+Every grid stores a mode in the same slot of {\ttfamily n} and {\ttfamily m} at all the normal points where the mode is in the window:\hypertarget{namespacex__ops_autotoc_md8}{}\doxysubsubsection{\texorpdfstring{kd slot 1 slot 2 slot 3}{kd slot 1 slot 2 slot 3}}\label{namespacex__ops_autotoc_md8}
+1 10 11 12 \texorpdfstring{$<$}{<}-\/ start 2 10 11 12 \texorpdfstring{$<$}{<}-\/ no change in limits 3 13 11 12 \texorpdfstring{$<$}{<}-\/ limits shift up by one 4 13 14 12 \texorpdfstring{$<$}{<}-\/ limits shift up by one 5 16 14 15 \texorpdfstring{$<$}{<}-\/ limits shift up by two 6 13 14 15 \texorpdfstring{$<$}{<}-\/ limits shift down by one
+
+{\ttfamily sec} has one row per mode and per normal range in which the mode is in the window: mode number, first and last normal point, and slot. The rows follow the moves of the window on the equilibrium points, so that every grid has the same rows, in the same order. A row can then be empty on a grid (last point before first point), when the grid has no point where that part of the window applies: before the start or after the end of the grid, or a short excursion of the window near an extremum of the safety factor that falls between two grid points.
 
 This procedure makes use of the global variables
 \begin{DoxyItemize}
 \item {\ttfamily min\+\_\+m\+\_\+X}, max\+\_\+m\+\_\+X, min\+\_\+n\+\_\+X, max\+\_\+m\+\_\+X
 \end{DoxyItemize}
 
-that have to be set up using init\+\_\+nm\+\_\+x().
+that have to be set up using \doxylink{namespacex__ops_a73a80c582379669f8e07b09dd7456878}{init\+\_\+modes()}.
 
 Optionally, {\ttfamily n} and {\ttfamily m} can be plot.
 
@@ -537,7 +534,7 @@ ierr
 \end{DoxyParams}
 
 
-Definition at line \doxymbox{\hyperlink{X__ops_8f90_source_l01059}{1059}} of file \doxymbox{\hyperlink{X__ops_8f90_source}{X\+\_\+ops.\+f90}}.
+Definition at line \doxymbox{\hyperlink{X__ops_8f90_source_l01097}{1097}} of file \doxymbox{\hyperlink{X__ops_8f90_source}{X\+\_\+ops.\+f90}}.
 
 Here is the call graph for this function:
 \nopagebreak

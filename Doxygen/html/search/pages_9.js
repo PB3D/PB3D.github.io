@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['jobs_0',['Equilibrium &amp;amp; Perturbation Jobs',['../page_overview.html#overview_jobs',1,'']]],
-  ['jobs_1',['jobs',['../page_overview.html#overview_jobs_eq',1,'Equilibrium jobs'],['../page_overview.html#overview_jobs_X',1,'Perturbation jobs']]]
+  ['general_20code_20structure_0',['General code structure',['../page_overview.html',1,'']]],
+  ['getting_20the_20equilibrium_1',['Getting the Equilibrium',['../page_tutorial.html#tutorial_eq',1,'']]]
 ];

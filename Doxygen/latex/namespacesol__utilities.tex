@@ -19,12 +19,16 @@ integer function, public \doxymbox{\hyperlink{namespacesol__utilities_a8b902a82a
 integer function, public \doxymbox{\hyperlink{namespacesol__utilities_a677373f47ee68ad02e9cef5b409bdc26}{calc\+\_\+loc\+\_\+sol\+\_\+vec}} (mds, i\+\_\+min, sol\+\_\+vec\+\_\+tot, sol\+\_\+vec\+\_\+loc)
 \begin{DoxyCompactList}\small\item\em Calculate the local version of the solution vector from the total version. \end{DoxyCompactList}\item 
 integer function, public \doxymbox{\hyperlink{namespacesol__utilities_a50a44a844f0db0040bba4c69de27c36b}{interp\+\_\+v\+\_\+spline}} (v\+\_\+i, v\+\_\+o, r\+\_\+i, r\+\_\+o, extrap)
-\begin{DoxyCompactList}\small\item\em Interpolation of a quantity V(i,j,r) in r, for every i and j, with the spline of order interp\+\_\+\+V\+\_\+ord. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Interpolation of a quantity V(i,j,r) in r, for every i and j, with the spline of order interp\+\_\+\+V\+\_\+ord. \end{DoxyCompactList}\item 
+integer function, public \doxymbox{\hyperlink{namespacesol__utilities_a657f31b9f795ec9b32000a72eeadcfbf}{interp\+\_\+v}} (mds\+\_\+i, grid\+\_\+i, x\+\_\+i, mds\+\_\+o, grid\+\_\+o, x\+\_\+o)
+\begin{DoxyCompactList}\small\item\em Interpolate tensorial perturbation quantities in the third dimension. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsubsection*{Variables}
 \begin{DoxyCompactItemize}
 \item 
 logical, public \doxymbox{\hyperlink{namespacesol__utilities_a4779ff845b4ddc046892bf4eb4490dd2}{debug\+\_\+calc\+\_\+xuq\+\_\+arr}} = .false.
 \begin{DoxyCompactList}\small\item\em plot debug information for calc\+\_\+\+XUQ\+\_\+arr \end{DoxyCompactList}\item 
+logical, public \doxymbox{\hyperlink{namespacesol__utilities_a30a4f8524896611f3608741ae953b7f9}{debug\+\_\+interp\+\_\+v}} = .false.
+\begin{DoxyCompactList}\small\item\em debug information for interp\+\_\+v \end{DoxyCompactList}\item 
 logical, public \doxymbox{\hyperlink{namespacesol__utilities_aa36c52e73c02a783074c7c0e5076c903}{debug\+\_\+interp\+\_\+v\+\_\+spline}} = .false.
 \begin{DoxyCompactList}\small\item\em debug information for interp\+\_\+v\+\_\+spline \end{DoxyCompactList}\end{DoxyCompactItemize}
 
@@ -64,7 +68,7 @@ ierr
 \end{DoxyParams}
 
 
-Definition at line \doxymbox{\hyperlink{sol__utilities_8f90_source_l00721}{721}} of file \doxymbox{\hyperlink{sol__utilities_8f90_source}{sol\+\_\+utilities.\+f90}}.
+Definition at line \doxymbox{\hyperlink{sol__utilities_8f90_source_l00711}{711}} of file \doxymbox{\hyperlink{sol__utilities_8f90_source}{sol\+\_\+utilities.\+f90}}.
 
 Here is the call graph for this function:
 \nopagebreak
@@ -127,7 +131,7 @@ ierr
 \end{DoxyParams}
 
 
-Definition at line \doxymbox{\hyperlink{sol__utilities_8f90_source_l00580}{580}} of file \doxymbox{\hyperlink{sol__utilities_8f90_source}{sol\+\_\+utilities.\+f90}}.
+Definition at line \doxymbox{\hyperlink{sol__utilities_8f90_source_l00568}{568}} of file \doxymbox{\hyperlink{sol__utilities_8f90_source}{sol\+\_\+utilities.\+f90}}.
 
 Here is the call graph for this function:
 \nopagebreak
@@ -145,6 +149,62 @@ Here is the caller graph for this function:
 \includegraphics[width=350pt]{namespacesol__utilities_a8b902a82ae6a238e725da2cf09e7854f_icgraph}
 \end{center}
 \end{figure}
+\Hypertarget{namespacesol__utilities_a657f31b9f795ec9b32000a72eeadcfbf}\index{sol\_utilities@{sol\_utilities}!interp\_v@{interp\_v}}
+\index{interp\_v@{interp\_v}!sol\_utilities@{sol\_utilities}}
+\doxysubsubsection{\texorpdfstring{interp\_v()}{interp\_v()}}
+{\footnotesize\ttfamily \label{namespacesol__utilities_a657f31b9f795ec9b32000a72eeadcfbf} 
+integer function, public sol\+\_\+utilities::\+interp\+\_\+v (\begin{DoxyParamCaption}\item[{type(\doxymbox{\hyperlink{structx__vars_1_1modes__type}{modes\+\_\+type}}), intent(in), target}]{mds\+\_\+i}{, }\item[{type(\doxymbox{\hyperlink{structgrid__vars_1_1grid__type}{grid\+\_\+type}}), intent(in)}]{grid\+\_\+i}{, }\item[{type(\doxymbox{\hyperlink{structx__vars_1_1x__2__type}{x\+\_\+2\+\_\+type}}), intent(in), target}]{x\+\_\+i}{, }\item[{type(\doxymbox{\hyperlink{structx__vars_1_1modes__type}{modes\+\_\+type}}), intent(in), target}]{mds\+\_\+o}{, }\item[{type(\doxymbox{\hyperlink{structgrid__vars_1_1grid__type}{grid\+\_\+type}}), intent(in)}]{grid\+\_\+o}{, }\item[{type(\doxymbox{\hyperlink{structx__vars_1_1x__2__type}{x\+\_\+2\+\_\+type}}), intent(inout), target}]{x\+\_\+o}{}\end{DoxyParamCaption})}
+
+
+
+Interpolate tensorial perturbation quantities in the third dimension. 
+
+The input grid should not be divided, though the output grid can be.
+
+The procedure considers all possible mode number combinations. For {\ttfamily X\+\_\+style} 2 (fast), each secondary mode only lives in a certain normal range of the plasma. Therefore, each secondary mode pair also has a limited normal range, given by the overlap of the ranges of the members.
+
+The interpolated mode number combinations have a normal range that might slightly differ from the input ranges, in which case extrapolation can be done if the method allows for it.
+
+Row {\ttfamily k} of {\ttfamily sec} of the input grid and row {\ttfamily k} of the output grid belong to the same mode, because setup\+\_\+modes() builds the rows of every grid from the window on the equilibrium points.
+
+\begin{DoxyNote}{Note}
+A mode pair can have output points but no input points, when the window moves by two or more between two points of the input grid. It is then set to zero. setup\+\_\+modes() stops when the window moves by more than {\ttfamily n\+\_\+mod\+\_\+X} between two points of a grid. 
+\end{DoxyNote}
+
+\begin{DoxyParams}[1]{Parameters}
+\doxymbox{\texttt{in}}  & {\em mds\+\_\+i} & general modes variables for input \\
+\hline
+\doxymbox{\texttt{in}}  & {\em grid\+\_\+i} & grid at which {\ttfamily X\+\_\+i} is tabulated \\
+\hline
+\doxymbox{\texttt{in}}  & {\em x\+\_\+i} & tensorial perturbation variable on input grid \\
+\hline
+\doxymbox{\texttt{in}}  & {\em mds\+\_\+o} & general modes variables for output \\
+\hline
+\doxymbox{\texttt{in}}  & {\em grid\+\_\+o} & grid at which {\ttfamily X\+\_\+o} is interpolated \\
+\hline
+\doxymbox{\texttt{in,out}}  & {\em x\+\_\+o} & interpolated tensorial perturbation variable \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \doxymbox{\hyperlink{sol__utilities_8f90_source_l00895}{895}} of file \doxymbox{\hyperlink{sol__utilities_8f90_source}{sol\+\_\+utilities.\+f90}}.
+
+Here is the call graph for this function:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespacesol__utilities_a657f31b9f795ec9b32000a72eeadcfbf_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespacesol__utilities_a657f31b9f795ec9b32000a72eeadcfbf_icgraph}
+\end{center}
+\end{figure}
 \Hypertarget{namespacesol__utilities_a50a44a844f0db0040bba4c69de27c36b}\index{sol\_utilities@{sol\_utilities}!interp\_v\_spline@{interp\_v\_spline}}
 \index{interp\_v\_spline@{interp\_v\_spline}!sol\_utilities@{sol\_utilities}}
 \doxysubsubsection{\texorpdfstring{interp\_v\_spline()}{interp\_v\_spline()}}
@@ -157,7 +217,7 @@ Interpolation of a quantity V(i,j,r) in r, for every i and j, with the spline of
 
 
 
-Definition at line \doxymbox{\hyperlink{sol__utilities_8f90_source_l00797}{797}} of file \doxymbox{\hyperlink{sol__utilities_8f90_source}{sol\+\_\+utilities.\+f90}}.
+Definition at line \doxymbox{\hyperlink{sol__utilities_8f90_source_l00786}{786}} of file \doxymbox{\hyperlink{sol__utilities_8f90_source}{sol\+\_\+utilities.\+f90}}.
 
 Here is the caller graph for this function:
 \nopagebreak
@@ -187,7 +247,24 @@ Debug version only
 \end{DoxyNote}
 
 
-Definition at line \doxymbox{\hyperlink{sol__utilities_8f90_source_l00025}{25}} of file \doxymbox{\hyperlink{sol__utilities_8f90_source}{sol\+\_\+utilities.\+f90}}.
+Definition at line \doxymbox{\hyperlink{sol__utilities_8f90_source_l00026}{26}} of file \doxymbox{\hyperlink{sol__utilities_8f90_source}{sol\+\_\+utilities.\+f90}}.
+
+\Hypertarget{namespacesol__utilities_a30a4f8524896611f3608741ae953b7f9}\index{sol\_utilities@{sol\_utilities}!debug\_interp\_v@{debug\_interp\_v}}
+\index{debug\_interp\_v@{debug\_interp\_v}!sol\_utilities@{sol\_utilities}}
+\doxysubsubsection{\texorpdfstring{debug\_interp\_v}{debug\_interp\_v}}
+{\footnotesize\ttfamily \label{namespacesol__utilities_a30a4f8524896611f3608741ae953b7f9} 
+logical, public sol\+\_\+utilities::\+debug\+\_\+interp\+\_\+v = .false.}
+
+
+
+debug information for interp\+\_\+v 
+
+\begin{DoxyNote}{Note}
+Debug version only 
+\end{DoxyNote}
+
+
+Definition at line \doxymbox{\hyperlink{sol__utilities_8f90_source_l00027}{27}} of file \doxymbox{\hyperlink{sol__utilities_8f90_source}{sol\+\_\+utilities.\+f90}}.
 
 \Hypertarget{namespacesol__utilities_aa36c52e73c02a783074c7c0e5076c903}\index{sol\_utilities@{sol\_utilities}!debug\_interp\_v\_spline@{debug\_interp\_v\_spline}}
 \index{debug\_interp\_v\_spline@{debug\_interp\_v\_spline}!sol\_utilities@{sol\_utilities}}
@@ -204,5 +281,5 @@ Debug version only
 \end{DoxyNote}
 
 
-Definition at line \doxymbox{\hyperlink{sol__utilities_8f90_source_l00026}{26}} of file \doxymbox{\hyperlink{sol__utilities_8f90_source}{sol\+\_\+utilities.\+f90}}.
+Definition at line \doxymbox{\hyperlink{sol__utilities_8f90_source_l00028}{28}} of file \doxymbox{\hyperlink{sol__utilities_8f90_source}{sol\+\_\+utilities.\+f90}}.
 
