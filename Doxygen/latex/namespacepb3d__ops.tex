@@ -10,7 +10,7 @@ Operations on PB3D output.
 \item 
 integer function, public \doxymbox{\hyperlink{namespacepb3d__ops_ad1481747b9b9832f816d4bf1dd2d6737}{reconstruct\+\_\+pb3d\+\_\+in}} (data\+\_\+name)
 \begin{DoxyCompactList}\small\item\em Reconstructs the input variables from PB3D HDF5 output. \end{DoxyCompactList}\item 
-integer function, public \doxymbox{\hyperlink{namespacepb3d__ops_a4218b582c5029ff05893265fa329877b}{reconstruct\+\_\+pb3d\+\_\+grid}} (grid, data\+\_\+name, rich\+\_\+lvl, tot\+\_\+rich, lim\+\_\+pos, grid\+\_\+limits)
+integer function, public \doxymbox{\hyperlink{namespacepb3d__ops_afd05449d2f84affa433fa3659ff6a96b}{reconstruct\+\_\+pb3d\+\_\+grid}} (grid, data\+\_\+name, rich\+\_\+lvl, tot\+\_\+rich, lim\+\_\+pos, grid\+\_\+limits, divided)
 \begin{DoxyCompactList}\small\item\em Reconstructs grid variables from PB3D HDF5 output. \end{DoxyCompactList}\item 
 integer function, public \doxymbox{\hyperlink{namespacepb3d__ops_a3142ca9965fa01b2777db762ed1a6eba}{reconstruct\+\_\+pb3d\+\_\+eq\+\_\+1}} (grid\+\_\+eq, eq, data\+\_\+name, lim\+\_\+pos)
 \begin{DoxyCompactList}\small\item\em Reconstructs the equilibrium variables from PB3D HDF5 output. \end{DoxyCompactList}\item 
@@ -186,11 +186,11 @@ Here is the caller graph for this function:
 \includegraphics[width=350pt]{namespacepb3d__ops_aaf99ae865680f4cf0a0a9932786689bf_icgraph}
 \end{center}
 \end{figure}
-\Hypertarget{namespacepb3d__ops_a4218b582c5029ff05893265fa329877b}\index{pb3d\_ops@{pb3d\_ops}!reconstruct\_pb3d\_grid@{reconstruct\_pb3d\_grid}}
+\Hypertarget{namespacepb3d__ops_afd05449d2f84affa433fa3659ff6a96b}\index{pb3d\_ops@{pb3d\_ops}!reconstruct\_pb3d\_grid@{reconstruct\_pb3d\_grid}}
 \index{reconstruct\_pb3d\_grid@{reconstruct\_pb3d\_grid}!pb3d\_ops@{pb3d\_ops}}
 \doxysubsubsection{\texorpdfstring{reconstruct\_pb3d\_grid()}{reconstruct\_pb3d\_grid()}}
-{\footnotesize\ttfamily \label{namespacepb3d__ops_a4218b582c5029ff05893265fa329877b} 
-integer function, public pb3d\+\_\+ops::\+reconstruct\+\_\+pb3d\+\_\+grid (\begin{DoxyParamCaption}\item[{type(\doxymbox{\hyperlink{structgrid__vars_1_1grid__type}{grid\+\_\+type}}), intent(inout)}]{grid}{, }\item[{character(len=\texorpdfstring{$\ast$}{*}), intent(in)}]{data\+\_\+name}{, }\item[{integer, intent(in), optional}]{rich\+\_\+lvl}{, }\item[{logical, intent(in), optional}]{tot\+\_\+rich}{, }\item[{integer, dimension(3,2), intent(in), optional}]{lim\+\_\+pos}{, }\item[{integer, dimension(2), intent(in), optional}]{grid\+\_\+limits}{}\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \label{namespacepb3d__ops_afd05449d2f84affa433fa3659ff6a96b} 
+integer function, public pb3d\+\_\+ops::\+reconstruct\+\_\+pb3d\+\_\+grid (\begin{DoxyParamCaption}\item[{type(\doxymbox{\hyperlink{structgrid__vars_1_1grid__type}{grid\+\_\+type}}), intent(inout)}]{grid}{, }\item[{character(len=\texorpdfstring{$\ast$}{*}), intent(in)}]{data\+\_\+name}{, }\item[{integer, intent(in), optional}]{rich\+\_\+lvl}{, }\item[{logical, intent(in), optional}]{tot\+\_\+rich}{, }\item[{integer, dimension(3,2), intent(in), optional}]{lim\+\_\+pos}{, }\item[{integer, dimension(2), intent(in), optional}]{grid\+\_\+limits}{, }\item[{logical, intent(in)}]{divided}{}\end{DoxyParamCaption})}
 
 
 
@@ -201,6 +201,8 @@ Also, if {\ttfamily rich\+\_\+lvl} is provided, {\ttfamily {\itshape R}\+[rich\+
 With {\ttfamily tot\+\_\+rich} the information from previous Richardson levels can be combined.
 
 Furthermore, using {\ttfamily lim\+\_\+pos}, you can obtain a subset of the data by directly passing its limits to the underlying HDF5 routine. This refers to the position dimensions only. If provided, the normal limits of a divided grid refer to the subset, as in copy\+\_\+grid().
+
+With {\ttfamily grid\+\_\+limits} this process reads the angular variables only for its part of the grid. {\ttfamily divided} states whether several processes each read a part of the grid, as in init\+\_\+grid(). The file holds the whole grid and does not know how the reading run divides it, so the caller says so.
 
 \begin{DoxyNote}{Note}
 
@@ -224,17 +226,19 @@ ierr
 \hline
 \doxymbox{\texttt{in}}  & {\em grid\+\_\+limits} & i\+\_\+limit of grid \\
 \hline
+\doxymbox{\texttt{in}}  & {\em divided} & whether several processes each hold a part of the grid \\
+\hline
 \end{DoxyParams}
 
 
-Definition at line \doxymbox{\hyperlink{PB3D__ops_8f90_source_l00470}{470}} of file \doxymbox{\hyperlink{PB3D__ops_8f90_source}{PB3\+D\+\_\+ops.\+f90}}.
+Definition at line \doxymbox{\hyperlink{PB3D__ops_8f90_source_l00475}{475}} of file \doxymbox{\hyperlink{PB3D__ops_8f90_source}{PB3\+D\+\_\+ops.\+f90}}.
 
 Here is the call graph for this function:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=350pt]{namespacepb3d__ops_a4218b582c5029ff05893265fa329877b_cgraph}
+\includegraphics[width=350pt]{namespacepb3d__ops_afd05449d2f84affa433fa3659ff6a96b_cgraph}
 \end{center}
 \end{figure}
 Here is the caller graph for this function:
@@ -242,7 +246,7 @@ Here is the caller graph for this function:
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=350pt]{namespacepb3d__ops_a4218b582c5029ff05893265fa329877b_icgraph}
+\includegraphics[width=350pt]{namespacepb3d__ops_afd05449d2f84affa433fa3659ff6a96b_icgraph}
 \end{center}
 \end{figure}
 \Hypertarget{namespacepb3d__ops_ad1481747b9b9832f816d4bf1dd2d6737}\index{pb3d\_ops@{pb3d\_ops}!reconstruct\_pb3d\_in@{reconstruct\_pb3d\_in}}

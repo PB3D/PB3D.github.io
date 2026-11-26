@@ -17,7 +17,7 @@ var searchData=
   ['read_5fvmec_14',['read_vmec',['../namespacevmec__ops.html#a3df3b64d29e4242be9116a7a04275103',1,'vmec_ops']]],
   ['reconstruct_5fpb3d_5feq_5f1_15',['reconstruct_pb3d_eq_1',['../namespacepb3d__ops.html#a3142ca9965fa01b2777db762ed1a6eba',1,'pb3d_ops']]],
   ['reconstruct_5fpb3d_5feq_5f2_16',['reconstruct_pb3d_eq_2',['../namespacepb3d__ops.html#aaf99ae865680f4cf0a0a9932786689bf',1,'pb3d_ops']]],
-  ['reconstruct_5fpb3d_5fgrid_17',['reconstruct_pb3d_grid',['../namespacepb3d__ops.html#a4218b582c5029ff05893265fa329877b',1,'pb3d_ops']]],
+  ['reconstruct_5fpb3d_5fgrid_17',['reconstruct_pb3d_grid',['../namespacepb3d__ops.html#afd05449d2f84affa433fa3659ff6a96b',1,'pb3d_ops']]],
   ['reconstruct_5fpb3d_5fin_18',['reconstruct_pb3d_in',['../namespacepb3d__ops.html#ad1481747b9b9832f816d4bf1dd2d6737',1,'pb3d_ops']]],
   ['reconstruct_5fpb3d_5fsol_19',['reconstruct_pb3d_sol',['../namespacepb3d__ops.html#ae7afc544227f34f2877eb5a14d620823',1,'pb3d_ops']]],
   ['reconstruct_5fpb3d_5fvac_20',['reconstruct_pb3d_vac',['../namespacepb3d__ops.html#a281c496a42c4ea46606e929e10d51582',1,'pb3d_ops']]],

@@ -187,7 +187,7 @@ Variables</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="grid__vars_8f90_source.html#l00266">266</a> of file <a class="el" href="grid__vars_8f90_source.html">grid_vars.f90</a>.</p>
+<p class="definition">Definition at line <a class="el" href="grid__vars_8f90_source.html#l00272">272</a> of file <a class="el" href="grid__vars_8f90_source.html">grid_vars.f90</a>.</p>
 <div id="dynsection-0" class="dynheader closed"><span class="dynarrow"><span class="arrowhead closed"></span></span>Here is the call graph for this function:</div>
 <div id="dynsection-0-summary" class="dynsummary">
 </div>
@@ -220,7 +220,7 @@ Variables</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="grid__vars_8f90_source.html#l00202">202</a> of file <a class="el" href="grid__vars_8f90_source.html">grid_vars.f90</a>.</p>
+<p class="definition">Definition at line <a class="el" href="grid__vars_8f90_source.html#l00209">209</a> of file <a class="el" href="grid__vars_8f90_source.html">grid_vars.f90</a>.</p>
 <div id="dynsection-1" class="dynheader closed"><span class="dynarrow"><span class="arrowhead closed"></span></span>Here is the call graph for this function:</div>
 <div id="dynsection-1-summary" class="dynsummary">
 </div>
@@ -254,26 +254,32 @@ Variables</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">logical, intent(in), optional</td>          <td class="paramname"><span class="paramname"><em>divided</em></span>&#160;)</td>
+          <td class="paramtype">logical, intent(in)</td>          <td class="paramname"><span class="paramname"><em>divided</em></span>&#160;)</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 <p>Initializes a new grid. </p>
-<p>Optionally, the local limits can be provided for a divided grid.</p>
-<p>Optionally, it can be set whether the grid is divided or not. A situation where this is useful is when only a subset of MPI processes is used to calculate the solution in SLEPC. In this case, the extra ranks all only contain the last grid point, and the last used process has as upper limit this same grid point. This way, all the procedures are reusable, but in this case if only one process is used, this procedure becomes confused and sets this process to undivided. In most cases, this functionality probably does not need to be used.</p>
+<p>Optionally, the local limits can be provided, if this process holds only a part of the grid.</p>
+<p>The normal coordinates <code>r_E</code> and <code>r_F</code> of the whole grid are allocated on every process. <code>loc_r_E</code> and <code>loc_r_F</code> are pointers to their part between the local limits, so that setting the coordinates of the whole grid sets the local ones as well.</p>
+<p><code>divided</code> states whether several processes each hold a part of the grid, so that the processes have to communicate to treat the whole grid. It has to be the same on every process and can therefore not be derived from the local limits. The limits and <code>divided</code> are independent:</p><ul>
+<li>whole grid, not divided: an ordinary grid of one process, or a grid that every process holds completely for itself.</li>
+<li>part of the grid, divided: the usual case on several processes.</li>
+<li>whole grid, divided: a process whose part, with its ghost regions, is the whole grid. It takes part in the communication as the others do.</li>
+<li>part of the grid, not divided: a grid restricted to a part of which no other process holds the rest, as POST on one process with a reduced normal range. trim_grid() returns that part.</li>
+</ul>
 <dl class="section return"><dt>Returns</dt><dd>ierr </dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in,out]</td><td class="paramname">grid</td><td>grid to be initialized </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">n</td><td>tot. nr. of points (par,r,alpha) </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">i_lim</td><td>min. and max. local normal index </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">divided</td><td>divided grid or not </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">divided</td><td>whether several processes each hold a part of the grid </td></tr>
   </table>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="grid__vars_8f90_source.html#l00101">101</a> of file <a class="el" href="grid__vars_8f90_source.html">grid_vars.f90</a>.</p>
+<p class="definition">Definition at line <a class="el" href="grid__vars_8f90_source.html#l00111">111</a> of file <a class="el" href="grid__vars_8f90_source.html">grid_vars.f90</a>.</p>
 <div id="dynsection-2" class="dynheader closed"><span class="dynarrow"><span class="arrowhead closed"></span></span>Here is the call graph for this function:</div>
 <div id="dynsection-2-summary" class="dynsummary">
 </div>

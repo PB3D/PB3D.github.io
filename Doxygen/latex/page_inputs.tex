@@ -115,7 +115,6 @@ $2$ &Bokeh for 2-\/D and Mayavi for 3-\/D \\
 \SetCell[c=5]{c}{\bfseries{concerning runtime}} &&&&\\
 {\ttfamily use\+\_\+normalization} &use normalization for the internal calculations &{\ttfamily .true.} &{\ttfamily log} &(\doxylink{page_inputs_fni6}{6}) \\
 {\ttfamily max\+\_\+tot\+\_\+mem} &maximum total memory available to the simulation, for all processes together $\left[MB\right]$ &$6000$ &{\ttfamily real} &\\
-{\ttfamily sol\+\_\+n\+\_\+procs} &number of processes used for the SLEPC solution $(1\ldots N)$, where $N$ is the number of MPI processes &$N$ &{\ttfamily int} &(\doxylink{page_inputs_fni45}{45}) \\
 {\ttfamily norm\+\_\+disc\+\_\+prec\+\_\+eq} &order of the normal discretization of the equilibrium quantities (only $3$ is accepted) &$3$ &{\ttfamily int} &\\
 {\ttfamily norm\+\_\+disc\+\_\+prec\+\_\+X} &order of the normal discretization of the perturbation quantities $\left(1\ldots 3\right)$ &$3$ &{\ttfamily int} &\\
 {\ttfamily norm\+\_\+disc\+\_\+prec\+\_\+sol} &order of the normal discretization of the solution $\left(1\ldots 3\right)$: the normal derivative is a left finite difference over the point and the {\ttfamily norm\+\_\+disc\+\_\+prec\+\_\+sol} points to its left &$3$ &{\ttfamily int} &(\doxylink{page_inputs_fni44}{44}) \\
@@ -134,7 +133,7 @@ $3$ &enriched version of equilibrium grid (see {\ttfamily max\+\_\+njq\+\_\+chan
 {\ttfamily max\+\_\+it\+\_\+\+SLEPC} &maximum number of iterations in SLEPC calculation to find eigenvalue &$1000$ &{\ttfamily int} &\\
 {\ttfamily EV\+\_\+\+BC} &artificial eigenvalue in the rows of the points where the perturbation is set to zero ({\ttfamily BC\+\_\+style} $1$) &$1$ &{\ttfamily real} &(\doxylink{page_inputs_fni10}{10}) \\
 {\ttfamily EV\+\_\+guess} &target of the eigenvalue solver: SLEPC looks for the eigenvalues closest to it &$-0.3$ &{\ttfamily real} &\\
-{\ttfamily tol\+\_\+\+SLEPC} &tolerance used in SLEPC, one value for each Richardson level &$10^{-5}$ for every level &{\ttfamily real(max\+\_\+it\+\_\+rich)} &(\doxylink{page_inputs_fni46}{46}) \\
+{\ttfamily tol\+\_\+\+SLEPC} &tolerance used in SLEPC, one value for each Richardson level &$10^{-5}$ for every level &{\ttfamily real(max\+\_\+it\+\_\+rich)} &(\doxylink{page_inputs_fni45}{45}) \\
 {\ttfamily rho\+\_\+style} &style how the density $\rho$ is calculated \begin{DoxyTableNested}{2}{0}
 $1$ &constant {\ttfamily rho\+\_\+0} \\
 \end{DoxyTableNested}
@@ -417,9 +416,6 @@ For {\ttfamily alpha\+\_\+style = 1}, PB3D follows the single field line with la
 PB3D raises {\ttfamily n\+\_\+r\+\_\+sol} to at least {\ttfamily 6 norm\+\_\+disc\+\_\+prec\+\_\+sol + 2}, and to at least {\ttfamily (2 norm\+\_\+disc\+\_\+prec\+\_\+sol + 1)} times the number of MPI processes. For a free boundary with {\ttfamily norm\+\_\+disc\+\_\+prec\+\_\+sol} 2 or 3, the last points of the solution grid carry the weights of \doxylink{namespacenum__utilities_ad2f180cb684bc4bb965e3e07b26a92dc}{num\+\_\+utilities.\+calc\+\_\+end\+\_\+weights()} in the normal integral.
 \item \label{page_inputs_fni45}%
 \Hypertarget{page_inputs_fni45}%
-A value below 1 is replaced by the number of MPI processes, and a value above the number of MPI processes is lowered to it, with a warning.
-\item \label{page_inputs_fni46}%
-\Hypertarget{page_inputs_fni46}%
 Up to 100 values can be given. If fewer values than {\ttfamily max\+\_\+it\+\_\+rich} are given, the remaining levels get $10^{-5}$; values beyond {\ttfamily max\+\_\+it\+\_\+rich} are discarded. 
 \end{DoxyEnumerate}
 \end{DoxyNote}

@@ -137,15 +137,15 @@ Public Attributes</h2></td></tr>
 <tr class="memitem:aabfcadb3adae8b408a18569f6cddf663" id="r_aabfcadb3adae8b408a18569f6cddf663"><td class="memItemLeft">integer&#160;</td><td class="memItemRight"><a class="el" href="#aabfcadb3adae8b408a18569f6cddf663">i_max</a></td></tr>
 <tr class="memdesc:aabfcadb3adae8b408a18569f6cddf663"><td class="mdescLeft">&#160;</td><td class="mdescRight">max. normal index of this process in full arrays  <br /></td></tr>
 <tr class="memitem:ac4e6680c60d5a7ef4b776e5df5410f8a" id="r_ac4e6680c60d5a7ef4b776e5df5410f8a"><td class="memItemLeft">logical&#160;</td><td class="memItemRight"><a class="el" href="#ac4e6680c60d5a7ef4b776e5df5410f8a">divided</a></td></tr>
-<tr class="memdesc:ac4e6680c60d5a7ef4b776e5df5410f8a"><td class="mdescLeft">&#160;</td><td class="mdescRight">whether the grid is split up among the processes  <br /></td></tr>
+<tr class="memdesc:ac4e6680c60d5a7ef4b776e5df5410f8a"><td class="mdescLeft">&#160;</td><td class="mdescRight">whether several processes each hold a part of the grid  <br /></td></tr>
 <tr class="memitem:aeb2850b6e1157f7935270a02d77f688d" id="r_aeb2850b6e1157f7935270a02d77f688d"><td class="memItemLeft">real(dp), dimension(:), pointer&#160;</td><td class="memItemRight"><a class="el" href="#aeb2850b6e1157f7935270a02d77f688d">r_e</a> =&gt; null()</td></tr>
 <tr class="memdesc:aeb2850b6e1157f7935270a02d77f688d"><td class="mdescLeft">&#160;</td><td class="mdescRight">E(quilibrium) coord. values at n points.  <br /></td></tr>
 <tr class="memitem:a070b58cf0d5f41f3b99f2e3fabd2fdd4" id="r_a070b58cf0d5f41f3b99f2e3fabd2fdd4"><td class="memItemLeft">real(dp), dimension(:), pointer&#160;</td><td class="memItemRight"><a class="el" href="#a070b58cf0d5f41f3b99f2e3fabd2fdd4">r_f</a> =&gt; null()</td></tr>
 <tr class="memdesc:a070b58cf0d5f41f3b99f2e3fabd2fdd4"><td class="mdescLeft">&#160;</td><td class="mdescRight">F(lux) coord. values at n points.  <br /></td></tr>
 <tr class="memitem:a898df4540526374d3f749fdbf6e0068b" id="r_a898df4540526374d3f749fdbf6e0068b"><td class="memItemLeft">real(dp), dimension(:), pointer&#160;</td><td class="memItemRight"><a class="el" href="#a898df4540526374d3f749fdbf6e0068b">loc_r_e</a> =&gt; null()</td></tr>
-<tr class="memdesc:a898df4540526374d3f749fdbf6e0068b"><td class="mdescLeft">&#160;</td><td class="mdescRight">E(quilibrium) coord. values at n points.  <br /></td></tr>
+<tr class="memdesc:a898df4540526374d3f749fdbf6e0068b"><td class="mdescLeft">&#160;</td><td class="mdescRight">E(quilibrium) coord. values of this process: r_E(i_min:i_max).  <br /></td></tr>
 <tr class="memitem:afcc03f0dce24d88dfa0ae8e725238d4c" id="r_afcc03f0dce24d88dfa0ae8e725238d4c"><td class="memItemLeft">real(dp), dimension(:), pointer&#160;</td><td class="memItemRight"><a class="el" href="#afcc03f0dce24d88dfa0ae8e725238d4c">loc_r_f</a> =&gt; null()</td></tr>
-<tr class="memdesc:afcc03f0dce24d88dfa0ae8e725238d4c"><td class="mdescLeft">&#160;</td><td class="mdescRight">F(lux) coord. values at n points.  <br /></td></tr>
+<tr class="memdesc:afcc03f0dce24d88dfa0ae8e725238d4c"><td class="mdescLeft">&#160;</td><td class="mdescRight">F(lux) coord. values of this process: r_F(i_min:i_max).  <br /></td></tr>
 <tr class="memitem:ab0b41e4a204896b653c662b24ce1360e" id="r_ab0b41e4a204896b653c662b24ce1360e"><td class="memItemLeft">real(dp), dimension(:,:,:), pointer&#160;</td><td class="memItemRight"><a class="el" href="#ab0b41e4a204896b653c662b24ce1360e">theta_e</a> =&gt; null()</td></tr>
 <tr class="memdesc:ab0b41e4a204896b653c662b24ce1360e"><td class="mdescLeft">&#160;</td><td class="mdescRight">E(quilibrium) coord. values of first angle at n points in 3-D.  <br /></td></tr>
 <tr class="memitem:a1a9efc98321f582b71ddb6d62c3e791b" id="r_a1a9efc98321f582b71ddb6d62c3e791b"><td class="memItemLeft">real(dp), dimension(:,:,:), pointer&#160;</td><td class="memItemRight"><a class="el" href="#a1a9efc98321f582b71ddb6d62c3e791b">theta_f</a> =&gt; null()</td></tr>
@@ -255,21 +255,27 @@ Public Attributes</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">logical, intent(in), optional</td>          <td class="paramname"><span class="paramname"><em>divided</em></span>&#160;)</td>
+          <td class="paramtype">logical, intent(in)</td>          <td class="paramname"><span class="paramname"><em>divided</em></span>&#160;)</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 <p>initialize </p>
-<p>Optionally, the local limits can be provided for a divided grid.</p>
-<p>Optionally, it can be set whether the grid is divided or not. A situation where this is useful is when only a subset of MPI processes is used to calculate the solution in SLEPC. In this case, the extra ranks all only contain the last grid point, and the last used process has as upper limit this same grid point. This way, all the procedures are reusable, but in this case if only one process is used, this procedure becomes confused and sets this process to undivided. In most cases, this functionality probably does not need to be used.</p>
+<p>Optionally, the local limits can be provided, if this process holds only a part of the grid.</p>
+<p>The normal coordinates <code>r_E</code> and <code>r_F</code> of the whole grid are allocated on every process. <code>loc_r_E</code> and <code>loc_r_F</code> are pointers to their part between the local limits, so that setting the coordinates of the whole grid sets the local ones as well.</p>
+<p><code>divided</code> states whether several processes each hold a part of the grid, so that the processes have to communicate to treat the whole grid. It has to be the same on every process and can therefore not be derived from the local limits. The limits and <code>divided</code> are independent:</p><ul>
+<li>whole grid, not divided: an ordinary grid of one process, or a grid that every process holds completely for itself.</li>
+<li>part of the grid, divided: the usual case on several processes.</li>
+<li>whole grid, divided: a process whose part, with its ghost regions, is the whole grid. It takes part in the communication as the others do.</li>
+<li>part of the grid, not divided: a grid restricted to a part of which no other process holds the rest, as POST on one process with a reduced normal range. trim_grid() returns that part.</li>
+</ul>
 <dl class="section return"><dt>Returns</dt><dd>ierr </dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in,out]</td><td class="paramname">grid</td><td>grid to be initialized </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">n</td><td>tot. nr. of points (par,r,alpha) </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">i_lim</td><td>min. and max. local normal index </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">divided</td><td>divided grid or not </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">divided</td><td>whether several processes each hold a part of the grid </td></tr>
   </table>
   </dd>
 </dl>
@@ -291,7 +297,7 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>whether the grid is split up among the processes </p>
+<p>whether several processes each hold a part of the grid </p>
 
 <p class="definition">Definition at line <a class="el" href="grid__vars_8f90_source.html#l00064">64</a> of file <a class="el" href="grid__vars_8f90_source.html">grid_vars.f90</a>.</p>
 
@@ -382,7 +388,7 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>E(quilibrium) coord. values at n points. </p>
+<p>E(quilibrium) coord. values of this process: r_E(i_min:i_max). </p>
 
 <p class="definition">Definition at line <a class="el" href="grid__vars_8f90_source.html#l00067">67</a> of file <a class="el" href="grid__vars_8f90_source.html">grid_vars.f90</a>.</p>
 
@@ -400,7 +406,7 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>F(lux) coord. values at n points. </p>
+<p>F(lux) coord. values of this process: r_F(i_min:i_max). </p>
 
 <p class="definition">Definition at line <a class="el" href="grid__vars_8f90_source.html#l00068">68</a> of file <a class="el" href="grid__vars_8f90_source.html">grid_vars.f90</a>.</p>
 

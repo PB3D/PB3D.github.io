@@ -23,7 +23,7 @@ integer function, public \doxymbox{\hyperlink{namespacegrid__utilities_a904387b5
 \begin{DoxyCompactList}\small\item\em Calculates $X$, $Y$ and $Z$ on a grid {\ttfamily grid\+\_\+\+XYZ}, determined through its E(quilibrium) coordinates. \end{DoxyCompactList}\item 
 integer function, public \doxymbox{\hyperlink{namespacegrid__utilities_a414a1a11924bc935afca3a89fc31f2f5}{extend\+\_\+grid\+\_\+f}} (grid\+\_\+in, grid\+\_\+ext, grid\+\_\+eq, n\+\_\+theta\+\_\+plot, n\+\_\+zeta\+\_\+plot, lim\+\_\+theta\+\_\+plot, lim\+\_\+zeta\+\_\+plot)
 \begin{DoxyCompactList}\small\item\em Extend a grid angularly. \end{DoxyCompactList}\item 
-integer function, public \doxymbox{\hyperlink{namespacegrid__utilities_a95c875f5ded5852b27f73141c74a0ef6}{copy\+\_\+grid}} (grid\+\_\+a, grid\+\_\+b, lims\+\_\+b, i\+\_\+lim)
+integer function, public \doxymbox{\hyperlink{namespacegrid__utilities_adcc91ba7cca4f4b68d5b73f53444179b}{copy\+\_\+grid}} (grid\+\_\+a, grid\+\_\+b, lims\+\_\+b, i\+\_\+lim, divided)
 \begin{DoxyCompactList}\small\item\em Copy a grid A to a new grid B, that was not yet initialized. \end{DoxyCompactList}\item 
 integer function, public \doxymbox{\hyperlink{namespacegrid__utilities_af08c7fe5a537be1a8fa3eba462c77e7e}{calc\+\_\+int\+\_\+vol}} (ang\+\_\+1, ang\+\_\+2, norm, j, f, f\+\_\+int)
 \begin{DoxyCompactList}\small\item\em Calculates volume integral on a 3D grid. \end{DoxyCompactList}\item 
@@ -89,7 +89,7 @@ ierr
 \end{DoxyParams}
 
 
-Definition at line \doxymbox{\hyperlink{grid__utilities_8f90_source_l02972}{2972}} of file \doxymbox{\hyperlink{grid__utilities_8f90_source}{grid\+\_\+utilities.\+f90}}.
+Definition at line \doxymbox{\hyperlink{grid__utilities_8f90_source_l02968}{2968}} of file \doxymbox{\hyperlink{grid__utilities_8f90_source}{grid\+\_\+utilities.\+f90}}.
 
 Here is the call graph for this function:
 \nopagebreak
@@ -165,7 +165,7 @@ ierr
 \end{DoxyParams}
 
 
-Definition at line \doxymbox{\hyperlink{grid__utilities_8f90_source_l01320}{1320}} of file \doxymbox{\hyperlink{grid__utilities_8f90_source}{grid\+\_\+utilities.\+f90}}.
+Definition at line \doxymbox{\hyperlink{grid__utilities_8f90_source_l01322}{1322}} of file \doxymbox{\hyperlink{grid__utilities_8f90_source}{grid\+\_\+utilities.\+f90}}.
 
 Here is the call graph for this function:
 \nopagebreak
@@ -208,7 +208,7 @@ ierr
 \end{DoxyParams}
 
 
-Definition at line \doxymbox{\hyperlink{grid__utilities_8f90_source_l02794}{2794}} of file \doxymbox{\hyperlink{grid__utilities_8f90_source}{grid\+\_\+utilities.\+f90}}.
+Definition at line \doxymbox{\hyperlink{grid__utilities_8f90_source_l02790}{2790}} of file \doxymbox{\hyperlink{grid__utilities_8f90_source}{grid\+\_\+utilities.\+f90}}.
 
 Here is the caller graph for this function:
 \nopagebreak
@@ -287,7 +287,7 @@ ierr
 \end{DoxyParams}
 
 
-Definition at line \doxymbox{\hyperlink{grid__utilities_8f90_source_l01788}{1788}} of file \doxymbox{\hyperlink{grid__utilities_8f90_source}{grid\+\_\+utilities.\+f90}}.
+Definition at line \doxymbox{\hyperlink{grid__utilities_8f90_source_l01784}{1784}} of file \doxymbox{\hyperlink{grid__utilities_8f90_source}{grid\+\_\+utilities.\+f90}}.
 
 Here is the call graph for this function:
 \nopagebreak
@@ -362,23 +362,23 @@ Here is the caller graph for this function:
 \includegraphics[width=350pt]{namespacegrid__utilities_a904387b563db02ccf082e549730fd89b_icgraph}
 \end{center}
 \end{figure}
-\Hypertarget{namespacegrid__utilities_a95c875f5ded5852b27f73141c74a0ef6}\index{grid\_utilities@{grid\_utilities}!copy\_grid@{copy\_grid}}
+\Hypertarget{namespacegrid__utilities_adcc91ba7cca4f4b68d5b73f53444179b}\index{grid\_utilities@{grid\_utilities}!copy\_grid@{copy\_grid}}
 \index{copy\_grid@{copy\_grid}!grid\_utilities@{grid\_utilities}}
 \doxysubsubsection{\texorpdfstring{copy\_grid()}{copy\_grid()}}
-{\footnotesize\ttfamily \label{namespacegrid__utilities_a95c875f5ded5852b27f73141c74a0ef6} 
-integer function, public grid\+\_\+utilities::\+copy\+\_\+grid (\begin{DoxyParamCaption}\item[{class(\doxymbox{\hyperlink{structgrid__vars_1_1grid__type}{grid\+\_\+type}}), intent(in)}]{grid\+\_\+a}{, }\item[{class(\doxymbox{\hyperlink{structgrid__vars_1_1grid__type}{grid\+\_\+type}}), intent(inout)}]{grid\+\_\+b}{, }\item[{integer, dimension(3,2), intent(in), optional}]{lims\+\_\+b}{, }\item[{integer, dimension(2), intent(in), optional}]{i\+\_\+lim}{}\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \label{namespacegrid__utilities_adcc91ba7cca4f4b68d5b73f53444179b} 
+integer function, public grid\+\_\+utilities::\+copy\+\_\+grid (\begin{DoxyParamCaption}\item[{class(\doxymbox{\hyperlink{structgrid__vars_1_1grid__type}{grid\+\_\+type}}), intent(in)}]{grid\+\_\+a}{, }\item[{class(\doxymbox{\hyperlink{structgrid__vars_1_1grid__type}{grid\+\_\+type}}), intent(inout)}]{grid\+\_\+b}{, }\item[{integer, dimension(3,2), intent(in), optional}]{lims\+\_\+b}{, }\item[{integer, dimension(2), intent(in), optional}]{i\+\_\+lim}{, }\item[{logical, intent(in)}]{divided}{}\end{DoxyParamCaption})}
 
 
 
 Copy a grid A to a new grid B, that was not yet initialized. 
 
-This new grid can contain a subsection of the previous grid in all dimensions. It can also be a divided grid, by providing the limits
+This new grid can contain a subsection of the previous grid in all dimensions. By providing the limits, this process can hold a part of it. {\ttfamily divided} states whether several processes each hold a part of the new grid, as in init\+\_\+grid().
 
 \begin{DoxyNote}{Note}
 
 \begin{DoxyEnumerate}
-\item The normal limits for the divided grid should be given in terms of the normal dimension of {\ttfamily grid} B.
-\item if the grids are not purely normal, the procedure can currently only handle the copying of a {\ttfamily grid\+\_\+A} that is not divided.
+\item The normal limits of this process should be given in terms of the normal dimension of {\ttfamily grid} B.
+\item if the grids are not purely normal, the procedure can currently only handle the copying of a {\ttfamily grid\+\_\+A} of which this process holds the whole normal range.
 \end{DoxyEnumerate}
 \end{DoxyNote}
 \begin{DoxyReturn}{Returns}
@@ -394,17 +394,19 @@ ierr
 \hline
 \doxymbox{\texttt{in}}  & {\em i\+\_\+lim} & min. and max. local normal index \\
 \hline
+\doxymbox{\texttt{in}}  & {\em divided} & whether several processes each hold a part of grid B \\
+\hline
 \end{DoxyParams}
 
 
-Definition at line \doxymbox{\hyperlink{grid__utilities_8f90_source_l01189}{1189}} of file \doxymbox{\hyperlink{grid__utilities_8f90_source}{grid\+\_\+utilities.\+f90}}.
+Definition at line \doxymbox{\hyperlink{grid__utilities_8f90_source_l01191}{1191}} of file \doxymbox{\hyperlink{grid__utilities_8f90_source}{grid\+\_\+utilities.\+f90}}.
 
 Here is the caller graph for this function:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=350pt]{namespacegrid__utilities_a95c875f5ded5852b27f73141c74a0ef6_icgraph}
+\includegraphics[width=350pt]{namespacegrid__utilities_adcc91ba7cca4f4b68d5b73f53444179b_icgraph}
 \end{center}
 \end{figure}
 \Hypertarget{namespacegrid__utilities_a414a1a11924bc935afca3a89fc31f2f5}\index{grid\_utilities@{grid\_utilities}!extend\_grid\_f@{extend\_grid\_f}}
@@ -485,7 +487,7 @@ finds smallest range that comprises a minimum and maximum value.
 \end{DoxyParams}
 
 
-Definition at line \doxymbox{\hyperlink{grid__utilities_8f90_source_l02928}{2928}} of file \doxymbox{\hyperlink{grid__utilities_8f90_source}{grid\+\_\+utilities.\+f90}}.
+Definition at line \doxymbox{\hyperlink{grid__utilities_8f90_source_l02924}{2924}} of file \doxymbox{\hyperlink{grid__utilities_8f90_source}{grid\+\_\+utilities.\+f90}}.
 
 Here is the caller graph for this function:
 \nopagebreak
@@ -526,7 +528,7 @@ ierr
 \end{DoxyParams}
 
 
-Definition at line \doxymbox{\hyperlink{grid__utilities_8f90_source_l02833}{2833}} of file \doxymbox{\hyperlink{grid__utilities_8f90_source}{grid\+\_\+utilities.\+f90}}.
+Definition at line \doxymbox{\hyperlink{grid__utilities_8f90_source_l02829}{2829}} of file \doxymbox{\hyperlink{grid__utilities_8f90_source}{grid\+\_\+utilities.\+f90}}.
 
 Here is the call graph for this function:
 \nopagebreak
@@ -555,6 +557,10 @@ integer function, public grid\+\_\+utilities::\+trim\+\_\+grid (\begin{DoxyParam
 Trim a grid, removing any overlap between the different regions. 
 
 by default, the routine assumes a symmetric ghost region and cuts as many grid points from the end of the previous process as from the beginning of the next process, but if the number of overlapping grid points is odd, the next process looses one more point.
+
+Where the ghost regions of several processes reach an end of the grid, these cuts can cross. They are then moved so that the trimmed parts follow each other and every process keeps at least one point. If that is not possible, as with fewer points than processes, an error is returned.
+
+A grid that is not divided is not cut: the trimmed grid is the part that this process holds.
 
 optionally, the trimmed indices in the normal direction can be provided in {\ttfamily norm\+\_\+id}, i.\+e. the indices in the old, untrimmed grid that correspond to the start and end indices of the trimmed grid. E.\+g. if
 \begin{DoxyItemize}
@@ -590,8 +596,16 @@ ierr
 \end{DoxyParams}
 
 
-Definition at line \doxymbox{\hyperlink{grid__utilities_8f90_source_l01636}{1636}} of file \doxymbox{\hyperlink{grid__utilities_8f90_source}{grid\+\_\+utilities.\+f90}}.
+Definition at line \doxymbox{\hyperlink{grid__utilities_8f90_source_l01647}{1647}} of file \doxymbox{\hyperlink{grid__utilities_8f90_source}{grid\+\_\+utilities.\+f90}}.
 
+Here is the call graph for this function:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespacegrid__utilities_a67001ff9bbcad707aacf17f90a748d90_cgraph}
+\end{center}
+\end{figure}
 Here is the caller graph for this function:
 \nopagebreak
 \begin{figure}[H]

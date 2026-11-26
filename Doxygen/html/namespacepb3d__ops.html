@@ -115,8 +115,8 @@ document.addEventListener('DOMContentLoaded', codefold.init);
 Functions/Subroutines</h2></td></tr>
 <tr class="memitem:ad1481747b9b9832f816d4bf1dd2d6737" id="r_ad1481747b9b9832f816d4bf1dd2d6737"><td class="memItemLeft">integer function, public&#160;</td><td class="memItemRight"><a class="el" href="#ad1481747b9b9832f816d4bf1dd2d6737">reconstruct_pb3d_in</a> (data_name)</td></tr>
 <tr class="memdesc:ad1481747b9b9832f816d4bf1dd2d6737"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reconstructs the input variables from PB3D HDF5 output.  <br /></td></tr>
-<tr class="memitem:a4218b582c5029ff05893265fa329877b" id="r_a4218b582c5029ff05893265fa329877b"><td class="memItemLeft">integer function, public&#160;</td><td class="memItemRight"><a class="el" href="#a4218b582c5029ff05893265fa329877b">reconstruct_pb3d_grid</a> (grid, data_name, rich_lvl, tot_rich, lim_pos, grid_limits)</td></tr>
-<tr class="memdesc:a4218b582c5029ff05893265fa329877b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reconstructs grid variables from PB3D HDF5 output.  <br /></td></tr>
+<tr class="memitem:afd05449d2f84affa433fa3659ff6a96b" id="r_afd05449d2f84affa433fa3659ff6a96b"><td class="memItemLeft">integer function, public&#160;</td><td class="memItemRight"><a class="el" href="#afd05449d2f84affa433fa3659ff6a96b">reconstruct_pb3d_grid</a> (grid, data_name, rich_lvl, tot_rich, lim_pos, grid_limits, divided)</td></tr>
+<tr class="memdesc:afd05449d2f84affa433fa3659ff6a96b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reconstructs grid variables from PB3D HDF5 output.  <br /></td></tr>
 <tr class="memitem:a3142ca9965fa01b2777db762ed1a6eba" id="r_a3142ca9965fa01b2777db762ed1a6eba"><td class="memItemLeft">integer function, public&#160;</td><td class="memItemRight"><a class="el" href="#a3142ca9965fa01b2777db762ed1a6eba">reconstruct_pb3d_eq_1</a> (grid_eq, eq, data_name, lim_pos)</td></tr>
 <tr class="memdesc:a3142ca9965fa01b2777db762ed1a6eba"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reconstructs the equilibrium variables from PB3D HDF5 output.  <br /></td></tr>
 <tr class="memitem:aaf99ae865680f4cf0a0a9932786689bf" id="r_aaf99ae865680f4cf0a0a9932786689bf"><td class="memItemLeft">integer function, public&#160;</td><td class="memItemRight"><a class="el" href="#aaf99ae865680f4cf0a0a9932786689bf">reconstruct_pb3d_eq_2</a> (grid_eq, eq, data_name, rich_lvl, tot_rich, lim_pos)</td></tr>
@@ -324,8 +324,8 @@ Functions/Subroutines</h2></td></tr>
 
 </div>
 </div>
-<a id="a4218b582c5029ff05893265fa329877b" name="a4218b582c5029ff05893265fa329877b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4218b582c5029ff05893265fa329877b">&#9670;&#160;</a></span>reconstruct_pb3d_grid()</h2>
+<a id="afd05449d2f84affa433fa3659ff6a96b" name="afd05449d2f84affa433fa3659ff6a96b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afd05449d2f84affa433fa3659ff6a96b">&#9670;&#160;</a></span>reconstruct_pb3d_grid()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -358,7 +358,12 @@ Functions/Subroutines</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">integer, dimension(2), intent(in), optional</td>          <td class="paramname"><span class="paramname"><em>grid_limits</em></span>&#160;)</td>
+          <td class="paramtype">integer, dimension(2), intent(in), optional</td>          <td class="paramname"><span class="paramname"><em>grid_limits</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">logical, intent(in)</td>          <td class="paramname"><span class="paramname"><em>divided</em></span>&#160;)</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -367,6 +372,7 @@ Functions/Subroutines</h2></td></tr>
 <p>Also, if <code>rich_lvl</code> is provided, <span class="tt"><em>R</em>[rich_lvl]</span> is appended to the data name if it is &gt; 0.</p>
 <p>With <code>tot_rich</code> the information from previous Richardson levels can be combined.</p>
 <p>Furthermore, using <code>lim_pos</code>, you can obtain a subset of the data by directly passing its limits to the underlying HDF5 routine. This refers to the position dimensions only. If provided, the normal limits of a divided grid refer to the subset, as in copy_grid().</p>
+<p>With <code>grid_limits</code> this process reads the angular variables only for its part of the grid. <code>divided</code> states whether several processes each read a part of the grid, as in init_grid(). The file holds the whole grid and does not know how the reading run divides it, so the caller says so.</p>
 <dl class="section note"><dt>Note</dt><dd><ol type="1">
 <li><span class="tt">grid_</span> is added in front the data_name.</li>
 <li>By providing <code>lim_pos</code> equal to 0 in the angular dimensions, the angular part can be discarded when reconstructing the grid.</li>
@@ -380,22 +386,23 @@ Functions/Subroutines</h2></td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">tot_rich</td><td>whether to combine with previous Richardson levels </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">lim_pos</td><td>position limits of subset of data </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">grid_limits</td><td>i_limit of grid </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">divided</td><td>whether several processes each hold a part of the grid </td></tr>
   </table>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="PB3D__ops_8f90_source.html#l00470">470</a> of file <a class="el" href="PB3D__ops_8f90_source.html">PB3D_ops.f90</a>.</p>
+<p class="definition">Definition at line <a class="el" href="PB3D__ops_8f90_source.html#l00475">475</a> of file <a class="el" href="PB3D__ops_8f90_source.html">PB3D_ops.f90</a>.</p>
 <div id="dynsection-6" class="dynheader closed"><span class="dynarrow"><span class="arrowhead closed"></span></span>Here is the call graph for this function:</div>
 <div id="dynsection-6-summary" class="dynsummary">
 </div>
 <div id="dynsection-6-content" class="dyncontent hidden">
-<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="namespacepb3d__ops_a4218b582c5029ff05893265fa329877b_cgraph.svg" width="1632" height="370"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="namespacepb3d__ops_afd05449d2f84affa433fa3659ff6a96b_cgraph.svg" width="1632" height="370"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 <div id="dynsection-7" class="dynheader closed"><span class="dynarrow"><span class="arrowhead closed"></span></span>Here is the caller graph for this function:</div>
 <div id="dynsection-7-summary" class="dynsummary">
 </div>
 <div id="dynsection-7-content" class="dyncontent hidden">
-<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="namespacepb3d__ops_a4218b582c5029ff05893265fa329877b_icgraph.svg" width="936" height="399"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="namespacepb3d__ops_afd05449d2f84affa433fa3659ff6a96b_icgraph.svg" width="936" height="399"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
