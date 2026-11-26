@@ -149,7 +149,8 @@
         With the poloidal flux as normal coordinate (the default), \c prim_X is the toroidal mode number \f$n\f$ and the harmonics are poloidal mode numbers \f$m\f$.
         - \c BC_style(1:2) indicates the style with which the boundary conditions are implemented deep in the plasma and on the plasma edge.
         - \c max_tot_mem is a memory limit in MB: PB3D divides its work into jobs so that its own estimate of the memory it needs stays below this limit.
-        The memory that the run really uses can be higher; section \ref tutorial_PB3D_results gives the numbers for this example.
+        The estimate is larger than the memory the run really uses; section \ref tutorial_PB3D_results gives the numbers for this example.
+        When the limit is too low for the parts of the calculation that cannot be divided, PB3D stops at the start and gives the number of MB it needs.
         - \c max_it_rich is the number of Richardson levels (see the extra options below); with 1, PB3D does not extrapolate.
         - \c use_normalization indicates whether normalization is used (recommended), but it is useful to turn this off for debugging.
 
@@ -228,6 +229,11 @@
     You can find the VMEC file <a href="https://pb3d.github.io/Examples/wout.nc">here</a>.
     The HELENA input file of the same plasma is <a href="https://pb3d.github.io/Examples/fort.10">here</a>; with a HELENA patched as described in \ref tutorial_eq_helena, it gives the mapping file that PB3D reads instead of <tt>wout.nc</tt>.
 
+    \note On macOS, run PB3D and POST with <tt>MallocLargeCache=0</tt> in the environment, for example
+    \code MallocLargeCache=0 ./PB3D PB3D.input wout.nc \endcode
+    Without it, macOS keeps the memory that PB3D has freed, and PB3D can take about twice \c max_tot_mem; PB3D warns about this at the start.
+    PB3D cannot set this variable itself, as it has to be set when the program starts.
+
     There are optional run-time options that can be triggered, such as <tt>--jump_to_sol</tt>, which can be used to easily change solution preferences, such as discretization order, etc.
     For an overview, see \ref inputs_PB3D_cmd; they are not treated here.
 
@@ -244,9 +250,10 @@
     \note For VMEC, the magnetic axis is a bit problematic. It is necessary, therefore, to choose \c min_r_sol to be slightly larger than 0; 0.01 for example.
 
     \subsection tutorial_PB3D_results What to expect
-    On one core of a laptop (Apple M3 Pro), this run takes about 2 minutes, and its memory use peaks at 10.6 GB.
-    Most of the time goes into the plasma quantities on the 64 field lines; the vacuum takes 15 s.
-    If your computer has less memory, lower \c max_tot_mem: with 2000, the peak was 6.5 GB and the run took about 3 minutes; with 8000, the peak was 13.6 GB.
+    On one core of a laptop (Apple M3 Pro, with <tt>MallocLargeCache=0</tt>), this run takes about 5 minutes, and its memory use peaks at 3.0 GB, below the limit \c max_tot_mem of 5000 MB.
+    Most of the time goes into the plasma quantities on the 64 field lines, which PB3D divides into 50 equilibrium jobs; the vacuum takes 15 s.
+    This input file needs a \c max_tot_mem of at least 4772 MB: the solution driver holds the vacuum matrices and the integrated perturbation quantities at the same time, and this part cannot be divided into jobs.
+    With a lower limit, PB3D stops at the start and gives this number.
 
     PB3D gives the eigenvalues \f$\lambda = \omega^2/\omega_A^2\f$, normalized to the square of the Alfvén frequency \f$\omega_A\f$ that the header of <tt>PB3D_out_EV_R_1.txt</tt> gives.
     For this input file, the first eigenvalue should be close to \f$\lambda = -0.0499\f$.
@@ -272,37 +279,37 @@
     \image latex tutorial_mode_3d.png "Figure 4: real part of the normal displacement X of the first eigenvector on the plasma boundary, over the whole torus (red positive, blue negative)." width=0.8\textwidth
 
     Table \ref tutorial_PB3D_res_tab "3" shows how this eigenvalue changes when the input file is changed.
-    Every row changes one thing.
+    Every row changes one thing, and raises \c max_tot_mem where the solution driver needs more.
     The rows marked HELENA use the HELENA mapping of the same plasma, without the lines with \c alpha_style and \c n_alpha (\ref fnt3 "3"); for HELENA, PB3D computes the vacuum with an axisymmetric method (see \ref page_vacuum).
     <table>
-    <caption id="tutorial_PB3D_res_tab">Table 3. first eigenvalue for \f$n = 10\f$, with the time and the peak memory of the run on one core</caption>
+    <caption id="tutorial_PB3D_res_tab">Table 3. first eigenvalue for \f$n = 10\f$, with the time and the peak memory of the run on one core, with <tt>MallocLargeCache=0</tt></caption>
     <tr>
         <th> change to the input file </th><th> eigenvalue </th><th> time </th><th> memory </th>
     </tr>
     <tr>
-        <td> none (64 field lines with 100 points each) </td><td> \f$-0.04987\f$ </td><td> 2 min </td><td> 10.6 GB </td>
+        <td> none (64 field lines with 100 points each) </td><td> \f$-0.04987\f$ </td><td> 5 min </td><td> 3.0 GB </td>
     </tr>
     <tr>
-        <td> <tt>min_n_par_X = 200</tt> </td><td> \f$-0.05029\f$ </td><td> 5 min </td><td> 12.4 GB </td>
+        <td> <tt>min_n_par_X = 200</tt>, <tt>max_tot_mem = 8000</tt> </td><td> \f$-0.05029\f$ </td><td> 8 min </td><td> 6.5 GB </td>
     </tr>
     <tr>
-        <td> <tt>n_alpha = 128</tt> </td><td> \f$-0.04990\f$ </td><td> 7 min </td><td> 13.8 GB </td>
+        <td> <tt>n_alpha = 128</tt>, <tt>max_tot_mem = 12000</tt> </td><td> \f$-0.04990\f$ </td><td> 10 min </td><td> 8.3 GB </td>
     </tr>
     <tr>
-        <td> HELENA </td><td> \f$-0.05026\f$ </td><td> 3 s </td><td> 2.6 GB </td>
+        <td> HELENA </td><td> \f$-0.05026\f$ </td><td> 5 s </td><td> 1.0 GB </td>
     </tr>
     <tr>
-        <td> HELENA, <tt>n_mod_X = 30</tt> </td><td> \f$-0.05034\f$ </td><td> 4 s </td><td> 3.5 GB </td>
+        <td> HELENA, <tt>n_mod_X = 30</tt> </td><td> \f$-0.05034\f$ </td><td> 6 s </td><td> 1.7 GB </td>
     </tr>
     <tr>
-        <td> <tt>BC_style = 1 1</tt> (fixed boundary) </td><td> \f$-0.04027\f$ </td><td> 2 min </td><td> 7.4 GB </td>
+        <td> <tt>BC_style = 1 1</tt> (fixed boundary) </td><td> \f$-0.04027\f$ </td><td> 5 min </td><td> 2.4 GB </td>
     </tr>
     <tr>
-        <td> HELENA, <tt>BC_style = 1 1</tt> </td><td> \f$-0.04028\f$ </td><td> 2 s </td><td> 2.6 GB </td>
+        <td> HELENA, <tt>BC_style = 1 1</tt> </td><td> \f$-0.04028\f$ </td><td> 3 s </td><td> 1.0 GB </td>
     </tr>
     </table>
 
-    The times varied by about 15 % between repeated runs of the same input file.
+    The times varied by about 15 % between repeated runs of the same input file, and more while other programs ran on the laptop.
     The table shows the following.
         - With 100 points on each field line, the points along the lines limit the accuracy of the vacuum.
         200 points per line move the eigenvalue by 0.8 %, to within 0.1 % of the HELENA value, while 128 field lines instead of 64 move it by only 0.05 %.
