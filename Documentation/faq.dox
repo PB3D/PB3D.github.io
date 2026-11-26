@@ -28,6 +28,9 @@
         <td>"The memory limit is too low, need more than N MB" </td> <td> The equilibrium jobs (see \ref overview_jobs) cannot be made small enough to fit in the memory limit \c max_tot_mem. Increase \c max_tot_mem. For HELENA, there is always a single equilibrium job, so the whole calculation has to fit in this limit. </td>
     </tr>
     <tr>
+        <td>"The N normal points cannot be divided between P processes" </td> <td> A grid is divided between the MPI processes in the normal direction, and every process has to keep at least one point of its own. This message from trim_grid() means that a grid holds fewer normal points than there are processes. It usually concerns the equilibrium grid: the range between \c min_r_sol and \c max_r_sol then contains only N flux surfaces of the equilibrium file. Use at most N processes, or enlarge the normal range. </td>
+    </tr>
+    <tr>
         <td>"The output is from PB3D version [version]: need at least version [version]" </td> <td> POST, and PB3D when it continues from an earlier run (<tt>rich_restart_lvl</tt> larger than 1), only read HDF5 output written by a PB3D version at least as recent as \c min_PB3D_version in num_vars. Run PB3D again with the current version. </td>
     </tr>
     <tr>

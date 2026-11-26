@@ -79,7 +79,7 @@ ierr
 \end{DoxyParams}
 
 
-Definition at line \doxymbox{\hyperlink{grid__vars_8f90_source_l00266}{266}} of file \doxymbox{\hyperlink{grid__vars_8f90_source}{grid\+\_\+vars.\+f90}}.
+Definition at line \doxymbox{\hyperlink{grid__vars_8f90_source_l00272}{272}} of file \doxymbox{\hyperlink{grid__vars_8f90_source}{grid\+\_\+vars.\+f90}}.
 
 Here is the call graph for this function:
 \nopagebreak
@@ -106,7 +106,7 @@ Deallocates a grid.
 \end{DoxyParams}
 
 
-Definition at line \doxymbox{\hyperlink{grid__vars_8f90_source_l00202}{202}} of file \doxymbox{\hyperlink{grid__vars_8f90_source}{grid\+\_\+vars.\+f90}}.
+Definition at line \doxymbox{\hyperlink{grid__vars_8f90_source_l00209}{209}} of file \doxymbox{\hyperlink{grid__vars_8f90_source}{grid\+\_\+vars.\+f90}}.
 
 Here is the call graph for this function:
 \nopagebreak
@@ -120,15 +120,23 @@ Here is the call graph for this function:
 \index{init\_grid@{init\_grid}!grid\_vars@{grid\_vars}}
 \doxysubsubsection{\texorpdfstring{init\_grid()}{init\_grid()}}
 {\footnotesize\ttfamily \label{namespacegrid__vars_aa0d888796fd875e9024443e46eeb11f8} 
-integer function grid\+\_\+vars::\+init\+\_\+grid (\begin{DoxyParamCaption}\item[{class(\doxymbox{\hyperlink{structgrid__vars_1_1grid__type}{grid\+\_\+type}}), intent(inout)}]{grid}{, }\item[{integer, dimension(3), intent(in)}]{n}{, }\item[{integer, dimension(2), intent(in), optional}]{i\+\_\+lim}{, }\item[{logical, intent(in), optional}]{divided}{}\end{DoxyParamCaption})}
+integer function grid\+\_\+vars::\+init\+\_\+grid (\begin{DoxyParamCaption}\item[{class(\doxymbox{\hyperlink{structgrid__vars_1_1grid__type}{grid\+\_\+type}}), intent(inout)}]{grid}{, }\item[{integer, dimension(3), intent(in)}]{n}{, }\item[{integer, dimension(2), intent(in), optional}]{i\+\_\+lim}{, }\item[{logical, intent(in)}]{divided}{}\end{DoxyParamCaption})}
 
 
 
 Initializes a new grid. 
 
-Optionally, the local limits can be provided for a divided grid.
+Optionally, the local limits can be provided, if this process holds only a part of the grid.
 
-Optionally, it can be set whether the grid is divided or not. A situation where this is useful is when only a subset of MPI processes is used to calculate the solution in SLEPC. In this case, the extra ranks all only contain the last grid point, and the last used process has as upper limit this same grid point. This way, all the procedures are reusable, but in this case if only one process is used, this procedure becomes confused and sets this process to undivided. In most cases, this functionality probably does not need to be used.
+The normal coordinates {\ttfamily r\+\_\+E} and {\ttfamily r\+\_\+F} of the whole grid are allocated on every process. {\ttfamily loc\+\_\+r\+\_\+E} and {\ttfamily loc\+\_\+r\+\_\+F} are pointers to their part between the local limits, so that setting the coordinates of the whole grid sets the local ones as well.
+
+{\ttfamily divided} states whether several processes each hold a part of the grid, so that the processes have to communicate to treat the whole grid. It has to be the same on every process and can therefore not be derived from the local limits. The limits and {\ttfamily divided} are independent:
+\begin{DoxyItemize}
+\item whole grid, not divided: an ordinary grid of one process, or a grid that every process holds completely for itself.
+\item part of the grid, divided: the usual case on several processes.
+\item whole grid, divided: a process whose part, with its ghost regions, is the whole grid. It takes part in the communication as the others do.
+\item part of the grid, not divided: a grid restricted to a part of which no other process holds the rest, as POST on one process with a reduced normal range. trim\+\_\+grid() returns that part.
+\end{DoxyItemize}
 
 \begin{DoxyReturn}{Returns}
 ierr 
@@ -141,12 +149,12 @@ ierr
 \hline
 \doxymbox{\texttt{in}}  & {\em i\+\_\+lim} & min. and max. local normal index \\
 \hline
-\doxymbox{\texttt{in}}  & {\em divided} & divided grid or not \\
+\doxymbox{\texttt{in}}  & {\em divided} & whether several processes each hold a part of the grid \\
 \hline
 \end{DoxyParams}
 
 
-Definition at line \doxymbox{\hyperlink{grid__vars_8f90_source_l00101}{101}} of file \doxymbox{\hyperlink{grid__vars_8f90_source}{grid\+\_\+vars.\+f90}}.
+Definition at line \doxymbox{\hyperlink{grid__vars_8f90_source_l00111}{111}} of file \doxymbox{\hyperlink{grid__vars_8f90_source}{grid\+\_\+vars.\+f90}}.
 
 Here is the call graph for this function:
 \nopagebreak

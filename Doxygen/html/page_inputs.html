@@ -306,8 +306,6 @@ Input file</h2>
 <tr>
 <td><code>max_tot_mem</code> </td><td>maximum total memory available to the simulation, for all processes together \(\left[MB\right]\) </td><td>\(6000\) </td><td><code>real</code> </td><td></td></tr>
 <tr>
-<td><code>sol_n_procs</code> </td><td>number of processes used for the SLEPC solution \((1\ldots N)\), where \(N\) is the number of MPI processes </td><td>\(N\) </td><td><code>int</code> </td><td>(<a class="el" href="#fni45" title="fni45">45</a>) </td></tr>
-<tr>
 <td><code>norm_disc_prec_eq</code> </td><td>order of the normal discretization of the equilibrium quantities (only \(3\) is accepted) </td><td>\(3\) </td><td><code>int</code> </td><td></td></tr>
 <tr>
 <td><code>norm_disc_prec_X</code> </td><td>order of the normal discretization of the perturbation quantities \(\left(1\ldots 3\right)\) </td><td>\(3\) </td><td><code>int</code> </td><td></td></tr>
@@ -340,7 +338,7 @@ Input file</h2>
 <tr>
 <td><code>EV_guess</code> </td><td>target of the eigenvalue solver: SLEPC looks for the eigenvalues closest to it </td><td>\(-0.3\) </td><td><code>real</code> </td><td></td></tr>
 <tr>
-<td><code>tol_SLEPC</code> </td><td>tolerance used in SLEPC, one value for each Richardson level </td><td>\(10^{-5}\) for every level </td><td><code>real(max_it_rich)</code> </td><td>(<a class="el" href="#fni46" title="fni46">46</a>) </td></tr>
+<td><code>tol_SLEPC</code> </td><td>tolerance used in SLEPC, one value for each Richardson level </td><td>\(10^{-5}\) for every level </td><td><code>real(max_it_rich)</code> </td><td>(<a class="el" href="#fni45" title="fni45">45</a>) </td></tr>
 <tr>
 <td><code>rho_style</code> </td><td>style how the density \(\rho\) is calculated <table class="doxtable">
 <tr>
@@ -614,8 +612,7 @@ Command-line inputs</h2>
 <li><a class="anchor" id="fni42"></a>PB3D recognizes these PETSc and SLEPC options so that it does not warn about them. PETSc and SLEPC read them from the command line themselves; SLEPC reads the solver options in EPSSetFromOptions(), which get_solution() calls after the solver has been set up, so that they override the settings of <code>solver_SLEPC_style</code>, <code>tol_SLEPC</code> and <code>max_it_SLEPC</code>. These options start with a single dash.</li>
 <li><a class="anchor" id="fni43"></a>For <span class="tt">alpha_style = 1</span>, PB3D follows the single field line with label <code>alpha</code> from <code>min_par_X</code> to <code>max_par_X</code>, and it sets <code>n_alpha</code> to 1. For <span class="tt">alpha_style = 2</span>, PB3D uses <code>n_alpha</code> field lines with the labels \(\alpha_j = 2\pi (j-1)/n_\alpha\), \(j = 1 \ldots n_\alpha\), ignores <code>alpha</code>, and resets <code>min_par_X</code> and <code>max_par_X</code> to 0 and 2 if they do not span one poloidal turn. A free boundary with a VMEC equilibrium needs <span class="tt">alpha_style = 2</span>. PB3D warns when <code>n_alpha</code> and the number of field periods \(N_\text{fp}\) of the VMEC equilibrium have a common factor, because the sum over the field lines then adds the toroidal harmonic of order \(\mathrm{LCM}(n_\alpha, N_\text{fp})\) of the equilibrium to the average; <code>n_alpha</code> should be chosen coprime to \(N_\text{fp}\). For the field-line 3-D vacuum, the convergence studies in README.md of the code recommend at least 128 field lines and about 36 parallel points per poloidal wavelength of the perturbation. For HELENA equilibria, which are axisymmetric, PB3D warns if <code>n_alpha</code> is larger than 1 or if <code>min_par_X</code> and <code>max_par_X</code> do not span exactly one poloidal turn.</li>
 <li><a class="anchor" id="fni44"></a>PB3D raises <code>n_r_sol</code> to at least <span class="tt">6 norm_disc_prec_sol + 2</span>, and to at least <span class="tt">(2 norm_disc_prec_sol + 1)</span> times the number of MPI processes. For a free boundary with <span class="tt">norm_disc_prec_sol</span> 2 or 3, the last points of the solution grid carry the weights of <a class="el" href="namespacenum__utilities.html#ad2f180cb684bc4bb965e3e07b26a92dc" title="Calculate the weights of the last points of a sum over an equidistant grid that belong to left finite...">num_utilities.calc_end_weights()</a> in the normal integral.</li>
-<li><a class="anchor" id="fni45"></a>A value below 1 is replaced by the number of MPI processes, and a value above the number of MPI processes is lowered to it, with a warning.</li>
-<li><a class="anchor" id="fni46"></a>Up to 100 values can be given. If fewer values than <code>max_it_rich</code> are given, the remaining levels get \(10^{-5}\); values beyond <code>max_it_rich</code> are discarded. </li>
+<li><a class="anchor" id="fni45"></a>Up to 100 values can be given. If fewer values than <code>max_it_rich</code> are given, the remaining levels get \(10^{-5}\); values beyond <code>max_it_rich</code> are discarded. </li>
 </ol>
 </dd></dl>
 </div></div><!-- contents -->

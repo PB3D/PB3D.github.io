@@ -26,15 +26,15 @@ integer \doxymbox{\hyperlink{structgrid__vars_1_1grid__type_adb8e8ac883ac155acce
 integer \doxymbox{\hyperlink{structgrid__vars_1_1grid__type_aabfcadb3adae8b408a18569f6cddf663}{i\+\_\+max}}
 \begin{DoxyCompactList}\small\item\em max. normal index of this process in full arrays \end{DoxyCompactList}\item 
 logical \doxymbox{\hyperlink{structgrid__vars_1_1grid__type_ac4e6680c60d5a7ef4b776e5df5410f8a}{divided}}
-\begin{DoxyCompactList}\small\item\em whether the grid is split up among the processes \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em whether several processes each hold a part of the grid \end{DoxyCompactList}\item 
 real(dp), dimension(:\+), pointer \doxymbox{\hyperlink{structgrid__vars_1_1grid__type_aeb2850b6e1157f7935270a02d77f688d}{r\+\_\+e}} =$>$ null()
 \begin{DoxyCompactList}\small\item\em E(quilibrium) coord. values at n points. \end{DoxyCompactList}\item 
 real(dp), dimension(:\+), pointer \doxymbox{\hyperlink{structgrid__vars_1_1grid__type_a070b58cf0d5f41f3b99f2e3fabd2fdd4}{r\+\_\+f}} =$>$ null()
 \begin{DoxyCompactList}\small\item\em F(lux) coord. values at n points. \end{DoxyCompactList}\item 
 real(dp), dimension(:\+), pointer \doxymbox{\hyperlink{structgrid__vars_1_1grid__type_a898df4540526374d3f749fdbf6e0068b}{loc\+\_\+r\+\_\+e}} =$>$ null()
-\begin{DoxyCompactList}\small\item\em E(quilibrium) coord. values at n points. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em E(quilibrium) coord. values of this process: r\+\_\+\+E(i\+\_\+min:\+i\+\_\+max). \end{DoxyCompactList}\item 
 real(dp), dimension(:\+), pointer \doxymbox{\hyperlink{structgrid__vars_1_1grid__type_afcc03f0dce24d88dfa0ae8e725238d4c}{loc\+\_\+r\+\_\+f}} =$>$ null()
-\begin{DoxyCompactList}\small\item\em F(lux) coord. values at n points. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em F(lux) coord. values of this process: r\+\_\+\+F(i\+\_\+min:\+i\+\_\+max). \end{DoxyCompactList}\item 
 real(dp), dimension(:\+,:\+,:\+), pointer \doxymbox{\hyperlink{structgrid__vars_1_1grid__type_ab0b41e4a204896b653c662b24ce1360e}{theta\+\_\+e}} =$>$ null()
 \begin{DoxyCompactList}\small\item\em E(quilibrium) coord. values of first angle at n points in 3-\/D. \end{DoxyCompactList}\item 
 real(dp), dimension(:\+,:\+,:\+), pointer \doxymbox{\hyperlink{structgrid__vars_1_1grid__type_a1a9efc98321f582b71ddb6d62c3e791b}{theta\+\_\+f}} =$>$ null()
@@ -121,15 +121,23 @@ Definition at line \doxymbox{\hyperlink{grid__vars_8f90_source_l00083}{83}} of f
 \index{init@{init}!grid\_vars::grid\_type@{grid\_vars::grid\_type}}
 \doxysubsubsection{\texorpdfstring{init()}{init()}}
 {\footnotesize\ttfamily \label{structgrid__vars_1_1grid__type_af354f19ccb41d04bd5dedc816a19ae33} 
-procedure grid\+\_\+vars::\+grid\+\_\+type::\+init (\begin{DoxyParamCaption}\item[{class(\doxymbox{\hyperlink{structgrid__vars_1_1grid__type}{grid\+\_\+type}}), intent(inout)}]{grid}{, }\item[{integer, dimension(3), intent(in)}]{n}{, }\item[{integer, dimension(2), intent(in), optional}]{i\+\_\+lim}{, }\item[{logical, intent(in), optional}]{divided}{}\end{DoxyParamCaption})}
+procedure grid\+\_\+vars::\+grid\+\_\+type::\+init (\begin{DoxyParamCaption}\item[{class(\doxymbox{\hyperlink{structgrid__vars_1_1grid__type}{grid\+\_\+type}}), intent(inout)}]{grid}{, }\item[{integer, dimension(3), intent(in)}]{n}{, }\item[{integer, dimension(2), intent(in), optional}]{i\+\_\+lim}{, }\item[{logical, intent(in)}]{divided}{}\end{DoxyParamCaption})}
 
 
 
 initialize 
 
-Optionally, the local limits can be provided for a divided grid.
+Optionally, the local limits can be provided, if this process holds only a part of the grid.
 
-Optionally, it can be set whether the grid is divided or not. A situation where this is useful is when only a subset of MPI processes is used to calculate the solution in SLEPC. In this case, the extra ranks all only contain the last grid point, and the last used process has as upper limit this same grid point. This way, all the procedures are reusable, but in this case if only one process is used, this procedure becomes confused and sets this process to undivided. In most cases, this functionality probably does not need to be used.
+The normal coordinates {\ttfamily r\+\_\+E} and {\ttfamily r\+\_\+F} of the whole grid are allocated on every process. {\ttfamily loc\+\_\+r\+\_\+E} and {\ttfamily loc\+\_\+r\+\_\+F} are pointers to their part between the local limits, so that setting the coordinates of the whole grid sets the local ones as well.
+
+{\ttfamily divided} states whether several processes each hold a part of the grid, so that the processes have to communicate to treat the whole grid. It has to be the same on every process and can therefore not be derived from the local limits. The limits and {\ttfamily divided} are independent:
+\begin{DoxyItemize}
+\item whole grid, not divided: an ordinary grid of one process, or a grid that every process holds completely for itself.
+\item part of the grid, divided: the usual case on several processes.
+\item whole grid, divided: a process whose part, with its ghost regions, is the whole grid. It takes part in the communication as the others do.
+\item part of the grid, not divided: a grid restricted to a part of which no other process holds the rest, as POST on one process with a reduced normal range. trim\+\_\+grid() returns that part.
+\end{DoxyItemize}
 
 \begin{DoxyReturn}{Returns}
 ierr 
@@ -142,7 +150,7 @@ ierr
 \hline
 \doxymbox{\texttt{in}}  & {\em i\+\_\+lim} & min. and max. local normal index \\
 \hline
-\doxymbox{\texttt{in}}  & {\em divided} & divided grid or not \\
+\doxymbox{\texttt{in}}  & {\em divided} & whether several processes each hold a part of the grid \\
 \hline
 \end{DoxyParams}
 
@@ -162,7 +170,7 @@ logical grid\+\_\+vars::\+grid\+\_\+type::\+divided}
 
 
 
-whether the grid is split up among the processes 
+whether several processes each hold a part of the grid 
 
 
 
@@ -235,7 +243,7 @@ real(dp), dimension(:\+), pointer grid\+\_\+vars::\+grid\+\_\+type::\+loc\+\_\+r
 
 
 
-E(quilibrium) coord. values at n points. 
+E(quilibrium) coord. values of this process: r\+\_\+\+E(i\+\_\+min:\+i\+\_\+max). 
 
 
 
@@ -249,7 +257,7 @@ real(dp), dimension(:\+), pointer grid\+\_\+vars::\+grid\+\_\+type::\+loc\+\_\+r
 
 
 
-F(lux) coord. values at n points. 
+F(lux) coord. values of this process: r\+\_\+\+F(i\+\_\+min:\+i\+\_\+max). 
 
 
 

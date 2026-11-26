@@ -101,7 +101,7 @@ document.addEventListener('DOMContentLoaded', codefold.init);
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><a href="dir_998fe05f78197b5ca654b52d9c54a2ac.html">Modules</a></li>  </ul>
+<li class="navelem"><a href="dir_26e2a62065840599cc8300aba28cf35d.html">Modules</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div id="doc-content">
@@ -131,8 +131,8 @@ Functions/Subroutines</h2></td></tr>
 <tr class="memdesc:a868669b6df6c0fa6a8cedd993042f6ea"><td class="mdescLeft">&#160;</td><td class="mdescRight">PB3D equilibrium version.  <br /></td></tr>
 <tr class="memitem:af80fd529f789cbf0338024afe3fe76ec" id="r_af80fd529f789cbf0338024afe3fe76ec"><td class="memItemLeft">integer function&#160;</td><td class="memItemRight"><a class="el" href="#af80fd529f789cbf0338024afe3fe76ec">calc_norm_range_pb3d_x</a> (eq_limits, x_limits, r_f_eq, r_f_x, jq)</td></tr>
 <tr class="memdesc:af80fd529f789cbf0338024afe3fe76ec"><td class="mdescLeft">&#160;</td><td class="mdescRight">PB3D perturbation version.  <br /></td></tr>
-<tr class="memitem:a6b55de41e75e249c934c4ab96cf10ee9" id="r_a6b55de41e75e249c934c4ab96cf10ee9"><td class="memItemLeft">integer function&#160;</td><td class="memItemRight"><a class="el" href="#a6b55de41e75e249c934c4ab96cf10ee9">calc_norm_range_pb3d_sol</a> (sol_limits, r_f_sol, n_procs)</td></tr>
-<tr class="memdesc:a6b55de41e75e249c934c4ab96cf10ee9"><td class="mdescLeft">&#160;</td><td class="mdescRight">PB3D solution version.  <br /></td></tr>
+<tr class="memitem:a1b8af08811f76bf057e7f5cce2f10e87" id="r_a1b8af08811f76bf057e7f5cce2f10e87"><td class="memItemLeft">integer function&#160;</td><td class="memItemRight"><a class="el" href="#a1b8af08811f76bf057e7f5cce2f10e87">calc_norm_range_pb3d_sol</a> (sol_limits, r_f_sol)</td></tr>
+<tr class="memdesc:a1b8af08811f76bf057e7f5cce2f10e87"><td class="mdescLeft">&#160;</td><td class="mdescRight">PB3D solution version.  <br /></td></tr>
 <tr class="memitem:a504fe64a9f5061c867bef7bee7538450" id="r_a504fe64a9f5061c867bef7bee7538450"><td class="memItemLeft">subroutine&#160;</td><td class="memItemRight"><a class="el" href="#a504fe64a9f5061c867bef7bee7538450">calc_norm_range_post</a> (eq_limits, x_limits, sol_limits, r_f_eq, r_f_x, r_f_sol)</td></tr>
 <tr class="memdesc:a504fe64a9f5061c867bef7bee7538450"><td class="mdescLeft">&#160;</td><td class="mdescRight">POST version.  <br /></td></tr>
 <tr class="memitem:af63366847d1caa64a7d329672292fd34" id="r_af63366847d1caa64a7d329672292fd34"><td class="memItemLeft">integer function, public&#160;</td><td class="memItemRight"><a class="el" href="namespacegrid__ops.html#af63366847d1caa64a7d329672292fd34">grid_ops::setup_grid_eq</a> (grid_eq, eq_limits)</td></tr>
@@ -228,8 +228,8 @@ Variables</h2></td></tr>
 
 </div>
 </div>
-<a id="a6b55de41e75e249c934c4ab96cf10ee9" name="a6b55de41e75e249c934c4ab96cf10ee9"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6b55de41e75e249c934c4ab96cf10ee9">&#9670;&#160;</a></span>calc_norm_range_pb3d_sol()</h2>
+<a id="a1b8af08811f76bf057e7f5cce2f10e87" name="a1b8af08811f76bf057e7f5cce2f10e87"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1b8af08811f76bf057e7f5cce2f10e87">&#9670;&#160;</a></span>calc_norm_range_pb3d_sol()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -242,33 +242,26 @@ Variables</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">real(dp), dimension(:), intent(inout)</td>          <td class="paramname"><span class="paramname"><em>r_f_sol</em></span>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">integer, intent(in), optional</td>          <td class="paramname"><span class="paramname"><em>n_procs</em></span>&#160;)</td>
+          <td class="paramtype">real(dp), dimension(:), intent(inout)</td>          <td class="paramname"><span class="paramname"><em>r_f_sol</em></span>&#160;)</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 <p>PB3D solution version. </p>
-<p>The normal range is determined by simply dividing the solution range, a ghost range is required.</p>
-<p>By default, this routine uses <code>sol_n_procs</code> processes, but this can be overruled. </p><dl class="params"><dt>Parameters</dt><dd>
+<p>The normal range is determined by simply dividing the solution range, a ghost range is required. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in,out]</td><td class="paramname">sol_limits</td><td>min. and max. index of sol grid for this process </td></tr>
     <tr><td class="paramdir">[in,out]</td><td class="paramname">r_f_sol</td><td>solution r_F </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">n_procs</td><td>how many processes used </td></tr>
   </table>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="grid__ops_8f90_source.html#l00387">387</a> of file <a class="el" href="grid__ops_8f90_source.html">grid_ops.f90</a>.</p>
+<p class="definition">Definition at line <a class="el" href="grid__ops_8f90_source.html#l00384">384</a> of file <a class="el" href="grid__ops_8f90_source.html">grid_ops.f90</a>.</p>
 <div id="dynsection-2" class="dynheader closed"><span class="dynarrow"><span class="arrowhead closed"></span></span>Here is the caller graph for this function:</div>
 <div id="dynsection-2-summary" class="dynsummary">
 </div>
 <div id="dynsection-2-content" class="dyncontent hidden">
-<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="grid__ops_8f90_a6b55de41e75e249c934c4ab96cf10ee9_icgraph.svg" width="1379" height="311"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="grid__ops_8f90_a1b8af08811f76bf057e7f5cce2f10e87_icgraph.svg" width="1379" height="311"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
@@ -392,7 +385,7 @@ Variables</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="grid__ops_8f90_source.html#l00452">452</a> of file <a class="el" href="grid__ops_8f90_source.html">grid_ops.f90</a>.</p>
+<p class="definition">Definition at line <a class="el" href="grid__ops_8f90_source.html#l00438">438</a> of file <a class="el" href="grid__ops_8f90_source.html">grid_ops.f90</a>.</p>
 <div id="dynsection-5" class="dynheader closed"><span class="dynarrow"><span class="arrowhead closed"></span></span>Here is the call graph for this function:</div>
 <div id="dynsection-5-summary" class="dynsummary">
 </div>

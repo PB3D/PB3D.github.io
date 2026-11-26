@@ -251,9 +251,6 @@
         <td> \c max_tot_mem </td><td> maximum total memory available to the simulation, for all processes together \f$\left[MB\right]\f$ </td><td> \f$6000\f$ </td><td> \c real </td><td></td>
     </tr>
     <tr>
-        <td> \c sol_n_procs </td><td> number of processes used for the SLEPC solution \f$(1\ldots N)\f$, where \f$N\f$ is the number of MPI processes </td><td> \f$N\f$ </td><td> \c int </td><td> (\ref fni45 "45") </td>
-    </tr>
-    <tr>
         <td> \c norm_disc_prec_eq </td><td> order of the normal discretization of the equilibrium quantities (only \f$3\f$ is accepted) </td><td> \f$3\f$ </td><td> \c int </td><td></td>
     </tr>
     <tr>
@@ -292,7 +289,7 @@
         <td> \c EV_guess </td><td> target of the eigenvalue solver: SLEPC looks for the eigenvalues closest to it </td><td> \f$-0.3\f$ </td><td> \c real </td><td></td>
     </tr>
     <tr>
-        <td> \c tol_SLEPC </td><td> tolerance used in SLEPC, one value for each Richardson level </td><td> \f$10^{-5}\f$ for every level </td><td> \c real(max_it_rich) </td><td> (\ref fni46 "46") </td>
+        <td> \c tol_SLEPC </td><td> tolerance used in SLEPC, one value for each Richardson level </td><td> \f$10^{-5}\f$ for every level </td><td> \c real(max_it_rich) </td><td> (\ref fni45 "45") </td>
     </tr>
     <tr>
         <td> \c rho_style </td><td> style how the density \f$\rho\f$ is calculated
@@ -627,6 +624,5 @@
         -# \anchor fni42 PB3D recognizes these PETSc and SLEPC options so that it does not warn about them. PETSc and SLEPC read them from the command line themselves; SLEPC reads the solver options in EPSSetFromOptions(), which get_solution() calls after the solver has been set up, so that they override the settings of \c solver_SLEPC_style, \c tol_SLEPC and \c max_it_SLEPC. These options start with a single dash.
         -# \anchor fni43 For <tt>alpha_style = 1</tt>, PB3D follows the single field line with label \c alpha from \c min_par_X to \c max_par_X, and it sets \c n_alpha to 1. For <tt>alpha_style = 2</tt>, PB3D uses \c n_alpha field lines with the labels \f$\alpha_j = 2\pi (j-1)/n_\alpha\f$, \f$j = 1 \ldots n_\alpha\f$, ignores \c alpha, and resets \c min_par_X and \c max_par_X to 0 and 2 if they do not span one poloidal turn. A free boundary with a VMEC equilibrium needs <tt>alpha_style = 2</tt>. PB3D warns when \c n_alpha and the number of field periods \f$N_\text{fp}\f$ of the VMEC equilibrium have a common factor, because the sum over the field lines then adds the toroidal harmonic of order \f$\mathrm{LCM}(n_\alpha, N_\text{fp})\f$ of the equilibrium to the average; \c n_alpha should be chosen coprime to \f$N_\text{fp}\f$. For the field-line 3-D vacuum, the convergence studies in README.md of the code recommend at least 128 field lines and about 36 parallel points per poloidal wavelength of the perturbation. For HELENA equilibria, which are axisymmetric, PB3D warns if \c n_alpha is larger than 1 or if \c min_par_X and \c max_par_X do not span exactly one poloidal turn.
         -# \anchor fni44 PB3D raises \c n_r_sol to at least <tt>6 norm_disc_prec_sol + 2</tt>, and to at least <tt>(2 norm_disc_prec_sol + 1)</tt> times the number of MPI processes. For a free boundary with <tt>norm_disc_prec_sol</tt> 2 or 3, the last points of the solution grid carry the weights of num_utilities.calc_end_weights() in the normal integral.
-        -# \anchor fni45 A value below 1 is replaced by the number of MPI processes, and a value above the number of MPI processes is lowered to it, with a warning.
-        -# \anchor fni46 Up to 100 values can be given. If fewer values than \c max_it_rich are given, the remaining levels get \f$10^{-5}\f$; values beyond \c max_it_rich are discarded.
+        -# \anchor fni45 Up to 100 values can be given. If fewer values than \c max_it_rich are given, the remaining levels get \f$10^{-5}\f$; values beyond \c max_it_rich are discarded.
 */
