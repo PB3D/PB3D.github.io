@@ -197,7 +197,9 @@ subroutine calc\+\_\+norm\+\_\+range::\+calc\+\_\+norm\+\_\+range\+\_\+post (\be
 
 POST version. 
 
-The normal range is determined by simply dividing a possible subset of the solution range, indicated by {\ttfamily min\+\_\+r\+\_\+plot} and {\ttfamily max\+\_\+r\+\_\+sol}, including a ghost range and getting a bounding equilibrium and perturbation range. 
+The normal range is determined by simply dividing a possible subset of the solution range, indicated by {\ttfamily min\+\_\+r\+\_\+plot} and {\ttfamily max\+\_\+r\+\_\+plot}, including a ghost range and getting a bounding equilibrium and perturbation range.
+
+POST interpolates the equilibrium and perturbation quantities to the solution grid, and takes the radial derivative of the solution vector, with radial splines over the range of each process. As in redistribute\+\_\+output\+\_\+grid(), the solution range of a process therefore has a ghost region of {\ttfamily size\+\_\+ghost\+\_\+interp\+\_\+V} points on each side, and the bounding equilibrium and perturbation ranges are widened by as many points, so that the end effect of these splines is below the rounding error at the solution points that the process keeps after trim\+\_\+grid(). None of these ranges reaches beyond the subset of the solution range and the smallest equilibrium and perturbation ranges that comprise it, so that the processes together cover what one process covers, and their splines end where its splines end. 
 \begin{DoxyParams}[1]{Parameters}
 \doxymbox{\texttt{in,out}}  & {\em eq\+\_\+limits} & min. and max. index of eq grid for this process \\
 \hline
@@ -214,7 +216,7 @@ The normal range is determined by simply dividing a possible subset of the solut
 \end{DoxyParams}
 
 
-Definition at line \doxymbox{\hyperlink{grid__ops_8f90_source_l00438}{438}} of file \doxymbox{\hyperlink{grid__ops_8f90_source}{grid\+\_\+ops.\+f90}}.
+Definition at line \doxymbox{\hyperlink{grid__ops_8f90_source_l00452}{452}} of file \doxymbox{\hyperlink{grid__ops_8f90_source}{grid\+\_\+ops.\+f90}}.
 
 Here is the call graph for this function:
 \nopagebreak
