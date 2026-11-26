@@ -101,7 +101,7 @@ document.addEventListener('DOMContentLoaded', codefold.init);
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><a href="dir_785e04ac550a57b78eb9a7a5a3805a1f.html">Modules</a></li>  </ul>
+<li class="navelem"><a href="dir_6bf562ce1d57816f6ae665ffbfc96a81.html">Modules</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div id="doc-content">
@@ -373,7 +373,8 @@ Variables</h2></td></tr>
 </div><div class="memdoc">
 
 <p>POST version. </p>
-<p>The normal range is determined by simply dividing a possible subset of the solution range, indicated by <code>min_r_plot</code> and <code>max_r_sol</code>, including a ghost range and getting a bounding equilibrium and perturbation range. </p><dl class="params"><dt>Parameters</dt><dd>
+<p>The normal range is determined by simply dividing a possible subset of the solution range, indicated by <code>min_r_plot</code> and <code>max_r_plot</code>, including a ghost range and getting a bounding equilibrium and perturbation range.</p>
+<p>POST interpolates the equilibrium and perturbation quantities to the solution grid, and takes the radial derivative of the solution vector, with radial splines over the range of each process. As in redistribute_output_grid(), the solution range of a process therefore has a ghost region of <code>size_ghost_interp_V</code> points on each side, and the bounding equilibrium and perturbation ranges are widened by as many points, so that the end effect of these splines is below the rounding error at the solution points that the process keeps after trim_grid(). None of these ranges reaches beyond the subset of the solution range and the smallest equilibrium and perturbation ranges that comprise it, so that the processes together cover what one process covers, and their splines end where its splines end. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in,out]</td><td class="paramname">eq_limits</td><td>min. and max. index of eq grid for this process </td></tr>
     <tr><td class="paramdir">[in,out]</td><td class="paramname">x_limits</td><td>min. and max. index of X grid for this process </td></tr>
@@ -385,7 +386,7 @@ Variables</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="grid__ops_8f90_source.html#l00438">438</a> of file <a class="el" href="grid__ops_8f90_source.html">grid_ops.f90</a>.</p>
+<p class="definition">Definition at line <a class="el" href="grid__ops_8f90_source.html#l00452">452</a> of file <a class="el" href="grid__ops_8f90_source.html">grid_ops.f90</a>.</p>
 <div id="dynsection-5" class="dynheader closed"><span class="dynarrow"><span class="arrowhead closed"></span></span>Here is the call graph for this function:</div>
 <div id="dynsection-5-summary" class="dynsummary">
 </div>
