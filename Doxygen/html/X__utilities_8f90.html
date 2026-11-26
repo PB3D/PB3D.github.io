@@ -31,7 +31,7 @@ MathJax.Hub.Config({
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">PB3D<span id="projectnumber">&#160;[2.55]</span>
+   <div id="projectname">PB3D<span id="projectnumber">&#160;[2.56]</span>
    </div>
    <div id="projectbrief">Ideal linear high-n MHD stability in 3-D</div>
   </td>
@@ -101,7 +101,7 @@ document.addEventListener('DOMContentLoaded', codefold.init);
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><a href="dir_26e2a62065840599cc8300aba28cf35d.html">Modules</a></li>  </ul>
+<li class="navelem"><a href="dir_785e04ac550a57b78eb9a7a5a3805a1f.html">Modules</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div id="doc-content">
@@ -132,12 +132,18 @@ Functions/Subroutines</h2></td></tr>
 <tr class="memdesc:a5d3e0cc44d78b9c18e93ee5457a49bb5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets one of the the local ranges of contiguous tensorial perturbation variables to be printed or read during one call of the corresponding HDF5 variables.  <br /></td></tr>
 <tr class="memitem:adef8eab82f0fd670a7795c754cf9a8f9" id="r_adef8eab82f0fd670a7795c754cf9a8f9"><td class="memItemLeft">logical function, public&#160;</td><td class="memItemRight"><a class="el" href="namespacex__utilities.html#adef8eab82f0fd670a7795c754cf9a8f9">x_utilities::do_x</a> ()</td></tr>
 <tr class="memdesc:adef8eab82f0fd670a7795c754cf9a8f9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tests whether this perturbatino job should be done.  <br /></td></tr>
+<tr class="memitem:a2baa70ed66dd033fae69f265d3bc387c" id="r_a2baa70ed66dd033fae69f265d3bc387c"><td class="memItemLeft">integer function, public&#160;</td><td class="memItemRight"><a class="el" href="namespacex__utilities.html#a2baa70ed66dd033fae69f265d3bc387c">x_utilities::get_n_mod_tot</a> (mds)</td></tr>
+<tr class="memdesc:a2baa70ed66dd033fae69f265d3bc387c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Number of modes in the tables of a grid: the modes from the lowest to the highest mode number of <code>sec</code>.  <br /></td></tr>
 <tr class="memitem:a6bb9570c66954d37a27f04f12fa65cc9" id="r_a6bb9570c66954d37a27f04f12fa65cc9"><td class="memItemLeft">logical function, public&#160;</td><td class="memItemRight"><a class="el" href="namespacex__utilities.html#a6bb9570c66954d37a27f04f12fa65cc9">x_utilities::is_necessary_x</a> (sym, sec_x_id, lim_sec_x)</td></tr>
 <tr class="memdesc:a6bb9570c66954d37a27f04f12fa65cc9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Determines whether a variable needs to be considered:  <br /></td></tr>
+<tr class="memitem:af2e1040d8ded1768c7790a76d001eb76" id="r_af2e1040d8ded1768c7790a76d001eb76"><td class="memItemLeft">elemental logical function, public&#160;</td><td class="memItemRight"><a class="el" href="namespacex__utilities.html#af2e1040d8ded1768c7790a76d001eb76">x_utilities::is_conj_x</a> (n_row, m_row, n_col, m_col)</td></tr>
+<tr class="memdesc:af2e1040d8ded1768c7790a76d001eb76"><td class="mdescLeft">&#160;</td><td class="mdescRight">Whether the entry of a symmetric tensorial quantity (<code>PV_0</code>, <code>PV_2</code>, <code>KV_0</code> or <code>KV_2</code>) is the complex conjugate of the element with a given row and column.  <br /></td></tr>
+<tr class="memitem:ac97887ef6a74d849c84bbe84dfbd4e24" id="r_ac97887ef6a74d849c84bbe84dfbd4e24"><td class="memItemLeft">subroutine, public&#160;</td><td class="memItemRight"><a class="el" href="namespacex__utilities.html#ac97887ef6a74d849c84bbe84dfbd4e24">x_utilities::conj_sym_x</a> (v, n_row, m_row, n_col, m_col)</td></tr>
+<tr class="memdesc:ac97887ef6a74d849c84bbe84dfbd4e24"><td class="mdescLeft">&#160;</td><td class="mdescRight">Turns a quantity calculated for a row and a column into the entry of a symmetric tensorial quantity: the complex conjugate at the normal points where the row has the lower mode number (see <a class="el" href="namespacex__utilities.html#af2e1040d8ded1768c7790a76d001eb76" title="Whether the entry of a symmetric tensorial quantity (PV_0, PV_2, KV_0 or KV_2) is the complex conjuga...">is_conj_x()</a>).  <br /></td></tr>
 <tr class="memitem:a4d18921da77463d069346f1c7322b451" id="r_a4d18921da77463d069346f1c7322b451"><td class="memItemLeft">integer function, public&#160;</td><td class="memItemRight"><a class="el" href="namespacex__utilities.html#a4d18921da77463d069346f1c7322b451">x_utilities::calc_memory_x</a> (ord, arr_size, n_mod, mem_size)</td></tr>
 <tr class="memdesc:a4d18921da77463d069346f1c7322b451"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculate memory in MB necessary for X variables.  <br /></td></tr>
-<tr class="memitem:afde797341c5056abecc7a9221dbd345e" id="r_afde797341c5056abecc7a9221dbd345e"><td class="memItemLeft">integer function, public&#160;</td><td class="memItemRight"><a class="el" href="namespacex__utilities.html#afde797341c5056abecc7a9221dbd345e">x_utilities::trim_modes</a> (mds_i, mds_o, id_lim_i, id_lim_o)</td></tr>
-<tr class="memdesc:afde797341c5056abecc7a9221dbd345e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Limit input mode range to output mode range.  <br /></td></tr>
+<tr class="memitem:aee9e435c53d3892383d2347d21076650" id="r_aee9e435c53d3892383d2347d21076650"><td class="memItemLeft">integer function, public&#160;</td><td class="memItemRight"><a class="el" href="namespacex__utilities.html#aee9e435c53d3892383d2347d21076650">x_utilities::check_same_modes</a> (mds_i, mds_o)</td></tr>
+<tr class="memdesc:aee9e435c53d3892383d2347d21076650"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check that two grids have the same rows of <code>sec</code>.  <br /></td></tr>
 </table>
 </div><!-- contents -->
 <!-- HTML footer for doxygen 1.8.13-->

@@ -31,7 +31,7 @@ MathJax.Hub.Config({
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">PB3D<span id="projectnumber">&#160;[2.55]</span>
+   <div id="projectname">PB3D<span id="projectnumber">&#160;[2.56]</span>
    </div>
    <div id="projectbrief">Ideal linear high-n MHD stability in 3-D</div>
   </td>
@@ -123,12 +123,18 @@ Functions/Subroutines</h2></td></tr>
 <tr class="memdesc:a5d3e0cc44d78b9c18e93ee5457a49bb5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets one of the the local ranges of contiguous tensorial perturbation variables to be printed or read during one call of the corresponding HDF5 variables.  <br /></td></tr>
 <tr class="memitem:adef8eab82f0fd670a7795c754cf9a8f9" id="r_adef8eab82f0fd670a7795c754cf9a8f9"><td class="memItemLeft">logical function, public&#160;</td><td class="memItemRight"><a class="el" href="#adef8eab82f0fd670a7795c754cf9a8f9">do_x</a> ()</td></tr>
 <tr class="memdesc:adef8eab82f0fd670a7795c754cf9a8f9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tests whether this perturbatino job should be done.  <br /></td></tr>
+<tr class="memitem:a2baa70ed66dd033fae69f265d3bc387c" id="r_a2baa70ed66dd033fae69f265d3bc387c"><td class="memItemLeft">integer function, public&#160;</td><td class="memItemRight"><a class="el" href="#a2baa70ed66dd033fae69f265d3bc387c">get_n_mod_tot</a> (mds)</td></tr>
+<tr class="memdesc:a2baa70ed66dd033fae69f265d3bc387c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Number of modes in the tables of a grid: the modes from the lowest to the highest mode number of <code>sec</code>.  <br /></td></tr>
 <tr class="memitem:a6bb9570c66954d37a27f04f12fa65cc9" id="r_a6bb9570c66954d37a27f04f12fa65cc9"><td class="memItemLeft">logical function, public&#160;</td><td class="memItemRight"><a class="el" href="#a6bb9570c66954d37a27f04f12fa65cc9">is_necessary_x</a> (sym, sec_x_id, lim_sec_x)</td></tr>
 <tr class="memdesc:a6bb9570c66954d37a27f04f12fa65cc9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Determines whether a variable needs to be considered:  <br /></td></tr>
+<tr class="memitem:af2e1040d8ded1768c7790a76d001eb76" id="r_af2e1040d8ded1768c7790a76d001eb76"><td class="memItemLeft">elemental logical function, public&#160;</td><td class="memItemRight"><a class="el" href="#af2e1040d8ded1768c7790a76d001eb76">is_conj_x</a> (n_row, m_row, n_col, m_col)</td></tr>
+<tr class="memdesc:af2e1040d8ded1768c7790a76d001eb76"><td class="mdescLeft">&#160;</td><td class="mdescRight">Whether the entry of a symmetric tensorial quantity (<code>PV_0</code>, <code>PV_2</code>, <code>KV_0</code> or <code>KV_2</code>) is the complex conjugate of the element with a given row and column.  <br /></td></tr>
+<tr class="memitem:ac97887ef6a74d849c84bbe84dfbd4e24" id="r_ac97887ef6a74d849c84bbe84dfbd4e24"><td class="memItemLeft">subroutine, public&#160;</td><td class="memItemRight"><a class="el" href="#ac97887ef6a74d849c84bbe84dfbd4e24">conj_sym_x</a> (v, n_row, m_row, n_col, m_col)</td></tr>
+<tr class="memdesc:ac97887ef6a74d849c84bbe84dfbd4e24"><td class="mdescLeft">&#160;</td><td class="mdescRight">Turns a quantity calculated for a row and a column into the entry of a symmetric tensorial quantity: the complex conjugate at the normal points where the row has the lower mode number (see <a class="el" href="#af2e1040d8ded1768c7790a76d001eb76" title="Whether the entry of a symmetric tensorial quantity (PV_0, PV_2, KV_0 or KV_2) is the complex conjuga...">is_conj_x()</a>).  <br /></td></tr>
 <tr class="memitem:a4d18921da77463d069346f1c7322b451" id="r_a4d18921da77463d069346f1c7322b451"><td class="memItemLeft">integer function, public&#160;</td><td class="memItemRight"><a class="el" href="#a4d18921da77463d069346f1c7322b451">calc_memory_x</a> (ord, arr_size, n_mod, mem_size)</td></tr>
 <tr class="memdesc:a4d18921da77463d069346f1c7322b451"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculate memory in MB necessary for X variables.  <br /></td></tr>
-<tr class="memitem:afde797341c5056abecc7a9221dbd345e" id="r_afde797341c5056abecc7a9221dbd345e"><td class="memItemLeft">integer function, public&#160;</td><td class="memItemRight"><a class="el" href="#afde797341c5056abecc7a9221dbd345e">trim_modes</a> (mds_i, mds_o, id_lim_i, id_lim_o)</td></tr>
-<tr class="memdesc:afde797341c5056abecc7a9221dbd345e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Limit input mode range to output mode range.  <br /></td></tr>
+<tr class="memitem:aee9e435c53d3892383d2347d21076650" id="r_aee9e435c53d3892383d2347d21076650"><td class="memItemLeft">integer function, public&#160;</td><td class="memItemRight"><a class="el" href="#aee9e435c53d3892383d2347d21076650">check_same_modes</a> (mds_i, mds_o)</td></tr>
+<tr class="memdesc:aee9e435c53d3892383d2347d21076650"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check that two grids have the same rows of <code>sec</code>.  <br /></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Numerical utilities related to perturbation operations. </p>
@@ -187,7 +193,7 @@ Functions/Subroutines</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="X__utilities_8f90_source.html#l00235">235</a> of file <a class="el" href="X__utilities_8f90_source.html">X_utilities.f90</a>.</p>
+<p class="definition">Definition at line <a class="el" href="X__utilities_8f90_source.html#l00295">295</a> of file <a class="el" href="X__utilities_8f90_source.html">X_utilities.f90</a>.</p>
 <div id="dynsection-0" class="dynheader closed"><span class="dynarrow"><span class="arrowhead closed"></span></span>Here is the call graph for this function:</div>
 <div id="dynsection-0-summary" class="dynsummary">
 </div>
@@ -199,6 +205,108 @@ Functions/Subroutines</h2></td></tr>
 </div>
 <div id="dynsection-1-content" class="dyncontent hidden">
 <div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="namespacex__utilities_a4d18921da77463d069346f1c7322b451_icgraph.svg" width="912" height="143"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+
+</div>
+</div>
+<a id="aee9e435c53d3892383d2347d21076650" name="aee9e435c53d3892383d2347d21076650"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aee9e435c53d3892383d2347d21076650">&#9670;&#160;</a></span>check_same_modes()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">integer function, public x_utilities::check_same_modes </td>
+          <td>(</td>
+          <td class="paramtype">type(<a class="el" href="structx__vars_1_1modes__type.html">modes_type</a>), intent(in)</td>          <td class="paramname"><span class="paramname"><em>mds_i</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">type(<a class="el" href="structx__vars_1_1modes__type.html">modes_type</a>), intent(in)</td>          <td class="paramname"><span class="paramname"><em>mds_o</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Check that two grids have the same rows of <code>sec</code>. </p>
+<p>setup_modes() builds the rows of every grid from the window on the equilibrium points, so that row <code>k</code> of one table and row <code>k</code> of the other belong to the same mode and to the same part of the window.</p>
+<dl class="section return"><dt>Returns</dt><dd>ierr </dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">mds_i</td><td>general modes variables for input </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">mds_o</td><td>general modes variables for output </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="X__utilities_8f90_source.html#l00358">358</a> of file <a class="el" href="X__utilities_8f90_source.html">X_utilities.f90</a>.</p>
+<div id="dynsection-2" class="dynheader closed"><span class="dynarrow"><span class="arrowhead closed"></span></span>Here is the caller graph for this function:</div>
+<div id="dynsection-2-summary" class="dynsummary">
+</div>
+<div id="dynsection-2-content" class="dyncontent hidden">
+<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="namespacex__utilities_aee9e435c53d3892383d2347d21076650_icgraph.svg" width="872" height="107"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+
+</div>
+</div>
+<a id="ac97887ef6a74d849c84bbe84dfbd4e24" name="ac97887ef6a74d849c84bbe84dfbd4e24"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac97887ef6a74d849c84bbe84dfbd4e24">&#9670;&#160;</a></span>conj_sym_x()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">subroutine, public x_utilities::conj_sym_x </td>
+          <td>(</td>
+          <td class="paramtype">complex(dp), dimension(:,:,:), intent(inout)</td>          <td class="paramname"><span class="paramname"><em>v</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">integer, dimension(:), intent(in)</td>          <td class="paramname"><span class="paramname"><em>n_row</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">integer, dimension(:), intent(in)</td>          <td class="paramname"><span class="paramname"><em>m_row</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">integer, dimension(:), intent(in)</td>          <td class="paramname"><span class="paramname"><em>n_col</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">integer, dimension(:), intent(in)</td>          <td class="paramname"><span class="paramname"><em>m_col</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Turns a quantity calculated for a row and a column into the entry of a symmetric tensorial quantity: the complex conjugate at the normal points where the row has the lower mode number (see <a class="el" href="#af2e1040d8ded1768c7790a76d001eb76" title="Whether the entry of a symmetric tensorial quantity (PV_0, PV_2, KV_0 or KV_2) is the complex conjuga...">is_conj_x()</a>). </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">v</td><td>quantity as function of the two angles and the normal coordinate </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">n_row</td><td><code>n</code> of the row at the normal points </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">m_row</td><td><code>m</code> of the row at the normal points </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">n_col</td><td><code>n</code> of the column at the normal points </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">m_col</td><td><code>m</code> of the column at the normal points </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="X__utilities_8f90_source.html#l00264">264</a> of file <a class="el" href="X__utilities_8f90_source.html">X_utilities.f90</a>.</p>
+<div id="dynsection-3" class="dynheader closed"><span class="dynarrow"><span class="arrowhead closed"></span></span>Here is the call graph for this function:</div>
+<div id="dynsection-3-summary" class="dynsummary">
+</div>
+<div id="dynsection-3-content" class="dyncontent hidden">
+<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="namespacex__utilities_ac97887ef6a74d849c84bbe84dfbd4e24_cgraph.svg" width="462" height="39"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+<div id="dynsection-4" class="dynheader closed"><span class="dynarrow"><span class="arrowhead closed"></span></span>Here is the caller graph for this function:</div>
+<div id="dynsection-4-summary" class="dynsummary">
+</div>
+<div id="dynsection-4-content" class="dyncontent hidden">
+<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="namespacex__utilities_ac97887ef6a74d849c84bbe84dfbd4e24_icgraph.svg" width="470" height="39"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
@@ -219,17 +327,51 @@ Functions/Subroutines</h2></td></tr>
 <p>Also increments <code>X_job_nr</code> </p>
 
 <p class="definition">Definition at line <a class="el" href="X__utilities_8f90_source.html#l00178">178</a> of file <a class="el" href="X__utilities_8f90_source.html">X_utilities.f90</a>.</p>
-<div id="dynsection-2" class="dynheader closed"><span class="dynarrow"><span class="arrowhead closed"></span></span>Here is the call graph for this function:</div>
-<div id="dynsection-2-summary" class="dynsummary">
+<div id="dynsection-5" class="dynheader closed"><span class="dynarrow"><span class="arrowhead closed"></span></span>Here is the call graph for this function:</div>
+<div id="dynsection-5-summary" class="dynsummary">
 </div>
-<div id="dynsection-2-content" class="dyncontent hidden">
+<div id="dynsection-5-content" class="dyncontent hidden">
 <div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="namespacex__utilities_adef8eab82f0fd670a7795c754cf9a8f9_cgraph.svg" width="168" height="63"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
-<div id="dynsection-3" class="dynheader closed"><span class="dynarrow"><span class="arrowhead closed"></span></span>Here is the caller graph for this function:</div>
-<div id="dynsection-3-summary" class="dynsummary">
+<div id="dynsection-6" class="dynheader closed"><span class="dynarrow"><span class="arrowhead closed"></span></span>Here is the caller graph for this function:</div>
+<div id="dynsection-6-summary" class="dynsummary">
 </div>
-<div id="dynsection-3-content" class="dyncontent hidden">
+<div id="dynsection-6-content" class="dyncontent hidden">
 <div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="namespacex__utilities_adef8eab82f0fd670a7795c754cf9a8f9_icgraph.svg" width="579" height="63"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+
+</div>
+</div>
+<a id="a2baa70ed66dd033fae69f265d3bc387c" name="a2baa70ed66dd033fae69f265d3bc387c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2baa70ed66dd033fae69f265d3bc387c">&#9670;&#160;</a></span>get_n_mod_tot()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">integer function, public x_utilities::get_n_mod_tot </td>
+          <td>(</td>
+          <td class="paramtype">type(<a class="el" href="structx__vars_1_1modes__type.html">modes_type</a>), intent(in)</td>          <td class="paramname"><span class="paramname"><em>mds</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Number of modes in the tables of a grid: the modes from the lowest to the highest mode number of <code>sec</code>. </p>
+<dl class="section note"><dt>Note</dt><dd>This is not the number of rows of <code>sec:</code> with <code>X_style</code> 2 a mode that leaves the window and enters it again has two rows. </dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">mds</td><td>general modes variables </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="X__utilities_8f90_source.html#l00196">196</a> of file <a class="el" href="X__utilities_8f90_source.html">X_utilities.f90</a>.</p>
+<div id="dynsection-7" class="dynheader closed"><span class="dynarrow"><span class="arrowhead closed"></span></span>Here is the caller graph for this function:</div>
+<div id="dynsection-7-summary" class="dynsummary">
+</div>
+<div id="dynsection-7-content" class="dyncontent hidden">
+<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="namespacex__utilities_a2baa70ed66dd033fae69f265d3bc387c_icgraph.svg" width="1110" height="255"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
@@ -315,17 +457,70 @@ Functions/Subroutines</h2></td></tr>
 </dl>
 
 <p class="definition">Definition at line <a class="el" href="X__utilities_8f90_source.html#l00127">127</a> of file <a class="el" href="X__utilities_8f90_source.html">X_utilities.f90</a>.</p>
-<div id="dynsection-4" class="dynheader closed"><span class="dynarrow"><span class="arrowhead closed"></span></span>Here is the call graph for this function:</div>
-<div id="dynsection-4-summary" class="dynsummary">
+<div id="dynsection-8" class="dynheader closed"><span class="dynarrow"><span class="arrowhead closed"></span></span>Here is the call graph for this function:</div>
+<div id="dynsection-8-summary" class="dynsummary">
 </div>
-<div id="dynsection-4-content" class="dyncontent hidden">
+<div id="dynsection-8-content" class="dyncontent hidden">
 <div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="namespacex__utilities_a5d3e0cc44d78b9c18e93ee5457a49bb5_cgraph.svg" width="478" height="115"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
-<div id="dynsection-5" class="dynheader closed"><span class="dynarrow"><span class="arrowhead closed"></span></span>Here is the caller graph for this function:</div>
-<div id="dynsection-5-summary" class="dynsummary">
+<div id="dynsection-9" class="dynheader closed"><span class="dynarrow"><span class="arrowhead closed"></span></span>Here is the caller graph for this function:</div>
+<div id="dynsection-9-summary" class="dynsummary">
 </div>
-<div id="dynsection-5-content" class="dyncontent hidden">
+<div id="dynsection-9-content" class="dyncontent hidden">
 <div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="namespacex__utilities_a5d3e0cc44d78b9c18e93ee5457a49bb5_icgraph.svg" width="1118" height="211"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+
+</div>
+</div>
+<a id="af2e1040d8ded1768c7790a76d001eb76" name="af2e1040d8ded1768c7790a76d001eb76"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af2e1040d8ded1768c7790a76d001eb76">&#9670;&#160;</a></span>is_conj_x()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">elemental logical function, public x_utilities::is_conj_x </td>
+          <td>(</td>
+          <td class="paramtype">integer, intent(in)</td>          <td class="paramname"><span class="paramname"><em>n_row</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">integer, intent(in)</td>          <td class="paramname"><span class="paramname"><em>m_row</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">integer, intent(in)</td>          <td class="paramname"><span class="paramname"><em>n_col</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">integer, intent(in)</td>          <td class="paramname"><span class="paramname"><em>m_col</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Whether the entry of a symmetric tensorial quantity (<code>PV_0</code>, <code>PV_2</code>, <code>KV_0</code> or <code>KV_2</code>) is the complex conjugate of the element with a given row and column. </p>
+<p>A symmetric quantity has one entry for the two elements of a pair of modes, which are each other's complex conjugate. The entry holds the element whose row has the higher mode number, on every grid and at every normal point.</p>
+<p>The row and the column have the same <code>n</code> (poloidal flux as normal coordinate) or the same <code>m</code> (toroidal flux), so at most one of the two comparisons holds.</p>
+<dl class="section note"><dt>Note</dt><dd>c() returns the entry of a pair from the indices that the two modes have in the tables of their grid. These indices depend on the grid and on the normal point, and they play no role here. </dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">n_row</td><td><code>n</code> of the row </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">m_row</td><td><code>m</code> of the row </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">n_col</td><td><code>n</code> of the column </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">m_col</td><td><code>m</code> of the column </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="X__utilities_8f90_source.html#l00251">251</a> of file <a class="el" href="X__utilities_8f90_source.html">X_utilities.f90</a>.</p>
+<div id="dynsection-10" class="dynheader closed"><span class="dynarrow"><span class="arrowhead closed"></span></span>Here is the caller graph for this function:</div>
+<div id="dynsection-10-summary" class="dynsummary">
+</div>
+<div id="dynsection-10-content" class="dyncontent hidden">
+<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="namespacex__utilities_af2e1040d8ded1768c7790a76d001eb76_icgraph.svg" width="1158" height="210"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
@@ -368,62 +563,12 @@ Functions/Subroutines</h2></td></tr>
 </li>
 </ul>
 
-<p class="definition">Definition at line <a class="el" href="X__utilities_8f90_source.html#l00196">196</a> of file <a class="el" href="X__utilities_8f90_source.html">X_utilities.f90</a>.</p>
-<div id="dynsection-6" class="dynheader closed"><span class="dynarrow"><span class="arrowhead closed"></span></span>Here is the caller graph for this function:</div>
-<div id="dynsection-6-summary" class="dynsummary">
+<p class="definition">Definition at line <a class="el" href="X__utilities_8f90_source.html#l00210">210</a> of file <a class="el" href="X__utilities_8f90_source.html">X_utilities.f90</a>.</p>
+<div id="dynsection-11" class="dynheader closed"><span class="dynarrow"><span class="arrowhead closed"></span></span>Here is the caller graph for this function:</div>
+<div id="dynsection-11-summary" class="dynsummary">
 </div>
-<div id="dynsection-6-content" class="dyncontent hidden">
-<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="namespacex__utilities_a6bb9570c66954d37a27f04f12fa65cc9_icgraph.svg" width="1411" height="336"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
-</div>
-
-</div>
-</div>
-<a id="afde797341c5056abecc7a9221dbd345e" name="afde797341c5056abecc7a9221dbd345e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#afde797341c5056abecc7a9221dbd345e">&#9670;&#160;</a></span>trim_modes()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">integer function, public x_utilities::trim_modes </td>
-          <td>(</td>
-          <td class="paramtype">type(<a class="el" href="structx__vars_1_1modes__type.html">modes_type</a>), intent(in)</td>          <td class="paramname"><span class="paramname"><em>mds_i</em></span>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">type(<a class="el" href="structx__vars_1_1modes__type.html">modes_type</a>), intent(in)</td>          <td class="paramname"><span class="paramname"><em>mds_o</em></span>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">integer, dimension(2), intent(inout)</td>          <td class="paramname"><span class="paramname"><em>id_lim_i</em></span>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">integer, dimension(2), intent(inout)</td>          <td class="paramname"><span class="paramname"><em>id_lim_o</em></span>&#160;)</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Limit input mode range to output mode range. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">mds_i</td><td>general modes variables for input </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">mds_o</td><td>general modes variables for output </td></tr>
-    <tr><td class="paramdir">[in,out]</td><td class="paramname">id_lim_i</td><td>limits on input modes </td></tr>
-    <tr><td class="paramdir">[in,out]</td><td class="paramname">id_lim_o</td><td>limits on output modes </td></tr>
-  </table>
-  </dd>
-</dl>
-
-<p class="definition">Definition at line <a class="el" href="X__utilities_8f90_source.html#l00292">292</a> of file <a class="el" href="X__utilities_8f90_source.html">X_utilities.f90</a>.</p>
-<div id="dynsection-7" class="dynheader closed"><span class="dynarrow"><span class="arrowhead closed"></span></span>Here is the caller graph for this function:</div>
-<div id="dynsection-7-summary" class="dynsummary">
-</div>
-<div id="dynsection-7-content" class="dyncontent hidden">
-<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="namespacex__utilities_afde797341c5056abecc7a9221dbd345e_icgraph.svg" width="888" height="107"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div id="dynsection-11-content" class="dyncontent hidden">
+<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="namespacex__utilities_a6bb9570c66954d37a27f04f12fa65cc9_icgraph.svg" width="1427" height="378"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>

@@ -31,7 +31,7 @@ MathJax.Hub.Config({
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">PB3D<span id="projectnumber">&#160;[2.55]</span>
+   <div id="projectname">PB3D<span id="projectnumber">&#160;[2.56]</span>
    </div>
    <div id="projectbrief">Ideal linear high-n MHD stability in 3-D</div>
   </td>
@@ -115,84 +115,10 @@ document.addEventListener('DOMContentLoaded', codefold.init);
 Functions/Subroutines</h2></td></tr>
 <tr class="memitem:a8dad197124fcba9c120e568f8f1b85c6" id="r_a8dad197124fcba9c120e568f8f1b85c6"><td class="memItemLeft">integer function, public&#160;</td><td class="memItemRight"><a class="el" href="#a8dad197124fcba9c120e568f8f1b85c6">run_driver_sol</a> (grid_eq, grid_x, grid_sol, x, vac, sol)</td></tr>
 <tr class="memdesc:a8dad197124fcba9c120e568f8f1b85c6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Main driver of PB3D solution part.  <br /></td></tr>
-<tr class="memitem:a7e8f77792cb6ec5bc854ae07b4b44d9a" id="r_a7e8f77792cb6ec5bc854ae07b4b44d9a"><td class="memItemLeft">integer function&#160;</td><td class="memItemRight"><a class="el" href="#a7e8f77792cb6ec5bc854ae07b4b44d9a">interp_v</a> (mds_i, grid_i, x_i, mds_o, grid_o, x_o)</td></tr>
-<tr class="memdesc:a7e8f77792cb6ec5bc854ae07b4b44d9a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Interpolate tensorial perturbation quantities in the third dimension.  <br /></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Driver of the solution part of PB3D. </p>
 </div><a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Function/Subroutine Documentation</h2>
-<a id="a7e8f77792cb6ec5bc854ae07b4b44d9a" name="a7e8f77792cb6ec5bc854ae07b4b44d9a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7e8f77792cb6ec5bc854ae07b4b44d9a">&#9670;&#160;</a></span>interp_v()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">integer function driver_sol::interp_v </td>
-          <td>(</td>
-          <td class="paramtype">type(<a class="el" href="structx__vars_1_1modes__type.html">modes_type</a>), intent(in), target</td>          <td class="paramname"><span class="paramname"><em>mds_i</em></span>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">type(<a class="el" href="structgrid__vars_1_1grid__type.html">grid_type</a>), intent(in)</td>          <td class="paramname"><span class="paramname"><em>grid_i</em></span>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">type(<a class="el" href="structx__vars_1_1x__2__type.html">x_2_type</a>), intent(in), target</td>          <td class="paramname"><span class="paramname"><em>x_i</em></span>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">type(<a class="el" href="structx__vars_1_1modes__type.html">modes_type</a>), intent(in), target</td>          <td class="paramname"><span class="paramname"><em>mds_o</em></span>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">type(<a class="el" href="structgrid__vars_1_1grid__type.html">grid_type</a>), intent(in)</td>          <td class="paramname"><span class="paramname"><em>grid_o</em></span>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">type(<a class="el" href="structx__vars_1_1x__2__type.html">x_2_type</a>), intent(inout), target</td>          <td class="paramname"><span class="paramname"><em>x_o</em></span>&#160;)</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Interpolate tensorial perturbation quantities in the third dimension. </p>
-<p>The input grid should not be divided, though the output grid can be.</p>
-<p>The procedure considers all possible mode number combinations. For <code>X_style</code> 2 (fast), each secondary mode only lives in a certain normal range of the plasma. Therefore, each secondary mode pair also has a limited normal range, given by the overlap of the ranges of the members.</p>
-<p>The interpolated mode number combinations have a normal range that might slightly differ from the input ranges, in which case extrapolation can be done if the method allows for it.</p>
-<dl class="section note"><dt>Note</dt><dd>If the input grid is too coarse, but the interpolated grid is not, it is in theory possible that there are mode numbers and therefore mode number pairs that exist in the input grid, though they do so in the interpolated grid. In this case, they can not be calculated and are currently set to zero. However, the current implementation of setup_modes() produces an error if less than the full range of mode numbers is accurately present. </dd></dl>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">mds_i</td><td>general modes variables for input </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">grid_i</td><td>grid at which <code>X_i</code> is tabulated </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">x_i</td><td>tensorial perturbation variable on input grid </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">mds_o</td><td>general modes variables for output </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">grid_o</td><td>grid at which <code>X_o</code> is interpolated </td></tr>
-    <tr><td class="paramdir">[in,out]</td><td class="paramname">x_o</td><td>interpolated tensorial perturbation variable </td></tr>
-  </table>
-  </dd>
-</dl>
-
-<p class="definition">Definition at line <a class="el" href="driver__sol_8f90_source.html#l00281">281</a> of file <a class="el" href="driver__sol_8f90_source.html">driver_sol.f90</a>.</p>
-<div id="dynsection-0" class="dynheader closed"><span class="dynarrow"><span class="arrowhead closed"></span></span>Here is the call graph for this function:</div>
-<div id="dynsection-0-summary" class="dynsummary">
-</div>
-<div id="dynsection-0-content" class="dyncontent hidden">
-<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="namespacedriver__sol_a7e8f77792cb6ec5bc854ae07b4b44d9a_cgraph.svg" width="1190" height="607"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
-</div>
-<div id="dynsection-1" class="dynheader closed"><span class="dynarrow"><span class="arrowhead closed"></span></span>Here is the caller graph for this function:</div>
-<div id="dynsection-1-summary" class="dynsummary">
-</div>
-<div id="dynsection-1-content" class="dyncontent hidden">
-<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="namespacedriver__sol_a7e8f77792cb6ec5bc854ae07b4b44d9a_icgraph.svg" width="635" height="39"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
-</div>
-
-</div>
-</div>
 <a id="a8dad197124fcba9c120e568f8f1b85c6" name="a8dad197124fcba9c120e568f8f1b85c6"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a8dad197124fcba9c120e568f8f1b85c6">&#9670;&#160;</a></span>run_driver_sol()</h2>
 
@@ -262,17 +188,17 @@ Functions/Subroutines</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="driver__sol_8f90_source.html#l00040">40</a> of file <a class="el" href="driver__sol_8f90_source.html">driver_sol.f90</a>.</p>
-<div id="dynsection-2" class="dynheader closed"><span class="dynarrow"><span class="arrowhead closed"></span></span>Here is the call graph for this function:</div>
-<div id="dynsection-2-summary" class="dynsummary">
+<p class="definition">Definition at line <a class="el" href="driver__sol_8f90_source.html#l00039">39</a> of file <a class="el" href="driver__sol_8f90_source.html">driver_sol.f90</a>.</p>
+<div id="dynsection-0" class="dynheader closed"><span class="dynarrow"><span class="arrowhead closed"></span></span>Here is the call graph for this function:</div>
+<div id="dynsection-0-summary" class="dynsummary">
 </div>
-<div id="dynsection-2-content" class="dyncontent hidden">
-<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="namespacedriver__sol_a8dad197124fcba9c120e568f8f1b85c6_cgraph.svg" width="2022" height="3144"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div id="dynsection-0-content" class="dyncontent hidden">
+<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="namespacedriver__sol_a8dad197124fcba9c120e568f8f1b85c6_cgraph.svg" width="2022" height="2999"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
-<div id="dynsection-3" class="dynheader closed"><span class="dynarrow"><span class="arrowhead closed"></span></span>Here is the caller graph for this function:</div>
-<div id="dynsection-3-summary" class="dynsummary">
+<div id="dynsection-1" class="dynheader closed"><span class="dynarrow"><span class="arrowhead closed"></span></span>Here is the caller graph for this function:</div>
+<div id="dynsection-1-summary" class="dynsummary">
 </div>
-<div id="dynsection-3-content" class="dyncontent hidden">
+<div id="dynsection-1-content" class="dyncontent hidden">
 <div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="namespacedriver__sol_a8dad197124fcba9c120e568f8f1b85c6_icgraph.svg" width="406" height="39"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 

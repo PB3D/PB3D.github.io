@@ -17,12 +17,18 @@ subroutine, public \doxymbox{\hyperlink{namespacex__utilities_a5d3e0cc44d78b9c18
 \begin{DoxyCompactList}\small\item\em Gets one of the the local ranges of contiguous tensorial perturbation variables to be printed or read during one call of the corresponding HDF5 variables. \end{DoxyCompactList}\item 
 logical function, public \doxymbox{\hyperlink{namespacex__utilities_adef8eab82f0fd670a7795c754cf9a8f9}{do\+\_\+x}} ()
 \begin{DoxyCompactList}\small\item\em Tests whether this perturbatino job should be done. \end{DoxyCompactList}\item 
+integer function, public \doxymbox{\hyperlink{namespacex__utilities_a2baa70ed66dd033fae69f265d3bc387c}{get\+\_\+n\+\_\+mod\+\_\+tot}} (mds)
+\begin{DoxyCompactList}\small\item\em Number of modes in the tables of a grid: the modes from the lowest to the highest mode number of {\ttfamily sec}. \end{DoxyCompactList}\item 
 logical function, public \doxymbox{\hyperlink{namespacex__utilities_a6bb9570c66954d37a27f04f12fa65cc9}{is\+\_\+necessary\+\_\+x}} (sym, sec\+\_\+x\+\_\+id, lim\+\_\+sec\+\_\+x)
 \begin{DoxyCompactList}\small\item\em Determines whether a variable needs to be considered: \end{DoxyCompactList}\item 
+elemental logical function, public \doxymbox{\hyperlink{namespacex__utilities_af2e1040d8ded1768c7790a76d001eb76}{is\+\_\+conj\+\_\+x}} (n\+\_\+row, m\+\_\+row, n\+\_\+col, m\+\_\+col)
+\begin{DoxyCompactList}\small\item\em Whether the entry of a symmetric tensorial quantity ({\ttfamily PV\+\_\+0}, {\ttfamily PV\+\_\+2}, {\ttfamily KV\+\_\+0} or {\ttfamily KV\+\_\+2}) is the complex conjugate of the element with a given row and column. \end{DoxyCompactList}\item 
+subroutine, public \doxymbox{\hyperlink{namespacex__utilities_ac97887ef6a74d849c84bbe84dfbd4e24}{conj\+\_\+sym\+\_\+x}} (v, n\+\_\+row, m\+\_\+row, n\+\_\+col, m\+\_\+col)
+\begin{DoxyCompactList}\small\item\em Turns a quantity calculated for a row and a column into the entry of a symmetric tensorial quantity: the complex conjugate at the normal points where the row has the lower mode number (see \doxylink{namespacex__utilities_af2e1040d8ded1768c7790a76d001eb76}{is\+\_\+conj\+\_\+x()}). \end{DoxyCompactList}\item 
 integer function, public \doxymbox{\hyperlink{namespacex__utilities_a4d18921da77463d069346f1c7322b451}{calc\+\_\+memory\+\_\+x}} (ord, arr\+\_\+size, n\+\_\+mod, mem\+\_\+size)
 \begin{DoxyCompactList}\small\item\em Calculate memory in MB necessary for X variables. \end{DoxyCompactList}\item 
-integer function, public \doxymbox{\hyperlink{namespacex__utilities_afde797341c5056abecc7a9221dbd345e}{trim\+\_\+modes}} (mds\+\_\+i, mds\+\_\+o, id\+\_\+lim\+\_\+i, id\+\_\+lim\+\_\+o)
-\begin{DoxyCompactList}\small\item\em Limit input mode range to output mode range. \end{DoxyCompactList}\end{DoxyCompactItemize}
+integer function, public \doxymbox{\hyperlink{namespacex__utilities_aee9e435c53d3892383d2347d21076650}{check\+\_\+same\+\_\+modes}} (mds\+\_\+i, mds\+\_\+o)
+\begin{DoxyCompactList}\small\item\em Check that two grids have the same rows of {\ttfamily sec}. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
@@ -73,7 +79,7 @@ ierr
 \end{DoxyParams}
 
 
-Definition at line \doxymbox{\hyperlink{X__utilities_8f90_source_l00235}{235}} of file \doxymbox{\hyperlink{X__utilities_8f90_source}{X\+\_\+utilities.\+f90}}.
+Definition at line \doxymbox{\hyperlink{X__utilities_8f90_source_l00295}{295}} of file \doxymbox{\hyperlink{X__utilities_8f90_source}{X\+\_\+utilities.\+f90}}.
 
 Here is the call graph for this function:
 \nopagebreak
@@ -89,6 +95,83 @@ Here is the caller graph for this function:
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{namespacex__utilities_a4d18921da77463d069346f1c7322b451_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{namespacex__utilities_aee9e435c53d3892383d2347d21076650}\index{x\_utilities@{x\_utilities}!check\_same\_modes@{check\_same\_modes}}
+\index{check\_same\_modes@{check\_same\_modes}!x\_utilities@{x\_utilities}}
+\doxysubsubsection{\texorpdfstring{check\_same\_modes()}{check\_same\_modes()}}
+{\footnotesize\ttfamily \label{namespacex__utilities_aee9e435c53d3892383d2347d21076650} 
+integer function, public x\+\_\+utilities::\+check\+\_\+same\+\_\+modes (\begin{DoxyParamCaption}\item[{type(\doxymbox{\hyperlink{structx__vars_1_1modes__type}{modes\+\_\+type}}), intent(in)}]{mds\+\_\+i}{, }\item[{type(\doxymbox{\hyperlink{structx__vars_1_1modes__type}{modes\+\_\+type}}), intent(in)}]{mds\+\_\+o}{}\end{DoxyParamCaption})}
+
+
+
+Check that two grids have the same rows of {\ttfamily sec}. 
+
+setup\+\_\+modes() builds the rows of every grid from the window on the equilibrium points, so that row {\ttfamily k} of one table and row {\ttfamily k} of the other belong to the same mode and to the same part of the window.
+
+\begin{DoxyReturn}{Returns}
+ierr 
+\end{DoxyReturn}
+
+\begin{DoxyParams}[1]{Parameters}
+\doxymbox{\texttt{in}}  & {\em mds\+\_\+i} & general modes variables for input \\
+\hline
+\doxymbox{\texttt{in}}  & {\em mds\+\_\+o} & general modes variables for output \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \doxymbox{\hyperlink{X__utilities_8f90_source_l00358}{358}} of file \doxymbox{\hyperlink{X__utilities_8f90_source}{X\+\_\+utilities.\+f90}}.
+
+Here is the caller graph for this function:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespacex__utilities_aee9e435c53d3892383d2347d21076650_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{namespacex__utilities_ac97887ef6a74d849c84bbe84dfbd4e24}\index{x\_utilities@{x\_utilities}!conj\_sym\_x@{conj\_sym\_x}}
+\index{conj\_sym\_x@{conj\_sym\_x}!x\_utilities@{x\_utilities}}
+\doxysubsubsection{\texorpdfstring{conj\_sym\_x()}{conj\_sym\_x()}}
+{\footnotesize\ttfamily \label{namespacex__utilities_ac97887ef6a74d849c84bbe84dfbd4e24} 
+subroutine, public x\+\_\+utilities::\+conj\+\_\+sym\+\_\+x (\begin{DoxyParamCaption}\item[{complex(dp), dimension(:\+,:\+,:\+), intent(inout)}]{v}{, }\item[{integer, dimension(:\+), intent(in)}]{n\+\_\+row}{, }\item[{integer, dimension(:\+), intent(in)}]{m\+\_\+row}{, }\item[{integer, dimension(:\+), intent(in)}]{n\+\_\+col}{, }\item[{integer, dimension(:\+), intent(in)}]{m\+\_\+col}{}\end{DoxyParamCaption})}
+
+
+
+Turns a quantity calculated for a row and a column into the entry of a symmetric tensorial quantity: the complex conjugate at the normal points where the row has the lower mode number (see \doxylink{namespacex__utilities_af2e1040d8ded1768c7790a76d001eb76}{is\+\_\+conj\+\_\+x()}). 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\doxymbox{\texttt{in,out}}  & {\em v} & quantity as function of the two angles and the normal coordinate \\
+\hline
+\doxymbox{\texttt{in}}  & {\em n\+\_\+row} & {\ttfamily n} of the row at the normal points \\
+\hline
+\doxymbox{\texttt{in}}  & {\em m\+\_\+row} & {\ttfamily m} of the row at the normal points \\
+\hline
+\doxymbox{\texttt{in}}  & {\em n\+\_\+col} & {\ttfamily n} of the column at the normal points \\
+\hline
+\doxymbox{\texttt{in}}  & {\em m\+\_\+col} & {\ttfamily m} of the column at the normal points \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \doxymbox{\hyperlink{X__utilities_8f90_source_l00264}{264}} of file \doxymbox{\hyperlink{X__utilities_8f90_source}{X\+\_\+utilities.\+f90}}.
+
+Here is the call graph for this function:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespacex__utilities_ac97887ef6a74d849c84bbe84dfbd4e24_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespacex__utilities_ac97887ef6a74d849c84bbe84dfbd4e24_icgraph}
 \end{center}
 \end{figure}
 \Hypertarget{namespacex__utilities_adef8eab82f0fd670a7795c754cf9a8f9}\index{x\_utilities@{x\_utilities}!do\_x@{do\_x}}
@@ -119,6 +202,36 @@ Here is the caller graph for this function:
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{namespacex__utilities_adef8eab82f0fd670a7795c754cf9a8f9_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{namespacex__utilities_a2baa70ed66dd033fae69f265d3bc387c}\index{x\_utilities@{x\_utilities}!get\_n\_mod\_tot@{get\_n\_mod\_tot}}
+\index{get\_n\_mod\_tot@{get\_n\_mod\_tot}!x\_utilities@{x\_utilities}}
+\doxysubsubsection{\texorpdfstring{get\_n\_mod\_tot()}{get\_n\_mod\_tot()}}
+{\footnotesize\ttfamily \label{namespacex__utilities_a2baa70ed66dd033fae69f265d3bc387c} 
+integer function, public x\+\_\+utilities::\+get\+\_\+n\+\_\+mod\+\_\+tot (\begin{DoxyParamCaption}\item[{type(\doxymbox{\hyperlink{structx__vars_1_1modes__type}{modes\+\_\+type}}), intent(in)}]{mds}{}\end{DoxyParamCaption})}
+
+
+
+Number of modes in the tables of a grid: the modes from the lowest to the highest mode number of {\ttfamily sec}. 
+
+\begin{DoxyNote}{Note}
+This is not the number of rows of {\ttfamily sec:} with {\ttfamily X\+\_\+style} 2 a mode that leaves the window and enters it again has two rows. 
+\end{DoxyNote}
+
+\begin{DoxyParams}[1]{Parameters}
+\doxymbox{\texttt{in}}  & {\em mds} & general modes variables \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \doxymbox{\hyperlink{X__utilities_8f90_source_l00196}{196}} of file \doxymbox{\hyperlink{X__utilities_8f90_source}{X\+\_\+utilities.\+f90}}.
+
+Here is the caller graph for this function:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespacex__utilities_a2baa70ed66dd033fae69f265d3bc387c_icgraph}
 \end{center}
 \end{figure}
 \Hypertarget{namespacex__utilities_a5d3e0cc44d78b9c18e93ee5457a49bb5}\index{x\_utilities@{x\_utilities}!get\_sec\_x\_range@{get\_sec\_x\_range}}
@@ -202,6 +315,46 @@ Here is the caller graph for this function:
 \includegraphics[width=350pt]{namespacex__utilities_a5d3e0cc44d78b9c18e93ee5457a49bb5_icgraph}
 \end{center}
 \end{figure}
+\Hypertarget{namespacex__utilities_af2e1040d8ded1768c7790a76d001eb76}\index{x\_utilities@{x\_utilities}!is\_conj\_x@{is\_conj\_x}}
+\index{is\_conj\_x@{is\_conj\_x}!x\_utilities@{x\_utilities}}
+\doxysubsubsection{\texorpdfstring{is\_conj\_x()}{is\_conj\_x()}}
+{\footnotesize\ttfamily \label{namespacex__utilities_af2e1040d8ded1768c7790a76d001eb76} 
+elemental logical function, public x\+\_\+utilities::\+is\+\_\+conj\+\_\+x (\begin{DoxyParamCaption}\item[{integer, intent(in)}]{n\+\_\+row}{, }\item[{integer, intent(in)}]{m\+\_\+row}{, }\item[{integer, intent(in)}]{n\+\_\+col}{, }\item[{integer, intent(in)}]{m\+\_\+col}{}\end{DoxyParamCaption})}
+
+
+
+Whether the entry of a symmetric tensorial quantity ({\ttfamily PV\+\_\+0}, {\ttfamily PV\+\_\+2}, {\ttfamily KV\+\_\+0} or {\ttfamily KV\+\_\+2}) is the complex conjugate of the element with a given row and column. 
+
+A symmetric quantity has one entry for the two elements of a pair of modes, which are each other\textquotesingle{}s complex conjugate. The entry holds the element whose row has the higher mode number, on every grid and at every normal point.
+
+The row and the column have the same {\ttfamily n} (poloidal flux as normal coordinate) or the same {\ttfamily m} (toroidal flux), so at most one of the two comparisons holds.
+
+\begin{DoxyNote}{Note}
+c() returns the entry of a pair from the indices that the two modes have in the tables of their grid. These indices depend on the grid and on the normal point, and they play no role here. 
+\end{DoxyNote}
+
+\begin{DoxyParams}[1]{Parameters}
+\doxymbox{\texttt{in}}  & {\em n\+\_\+row} & {\ttfamily n} of the row \\
+\hline
+\doxymbox{\texttt{in}}  & {\em m\+\_\+row} & {\ttfamily m} of the row \\
+\hline
+\doxymbox{\texttt{in}}  & {\em n\+\_\+col} & {\ttfamily n} of the column \\
+\hline
+\doxymbox{\texttt{in}}  & {\em m\+\_\+col} & {\ttfamily m} of the column \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \doxymbox{\hyperlink{X__utilities_8f90_source_l00251}{251}} of file \doxymbox{\hyperlink{X__utilities_8f90_source}{X\+\_\+utilities.\+f90}}.
+
+Here is the caller graph for this function:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespacex__utilities_af2e1040d8ded1768c7790a76d001eb76_icgraph}
+\end{center}
+\end{figure}
 \Hypertarget{namespacex__utilities_a6bb9570c66954d37a27f04f12fa65cc9}\index{x\_utilities@{x\_utilities}!is\_necessary\_x@{is\_necessary\_x}}
 \index{is\_necessary\_x@{is\_necessary\_x}!x\_utilities@{x\_utilities}}
 \doxysubsubsection{\texorpdfstring{is\_necessary\_x()}{is\_necessary\_x()}}
@@ -227,7 +380,7 @@ This depends on whether the quantity is symmetric or not:
 
 \end{DoxyItemize}
 
-Definition at line \doxymbox{\hyperlink{X__utilities_8f90_source_l00196}{196}} of file \doxymbox{\hyperlink{X__utilities_8f90_source}{X\+\_\+utilities.\+f90}}.
+Definition at line \doxymbox{\hyperlink{X__utilities_8f90_source_l00210}{210}} of file \doxymbox{\hyperlink{X__utilities_8f90_source}{X\+\_\+utilities.\+f90}}.
 
 Here is the caller graph for this function:
 \nopagebreak
@@ -235,38 +388,5 @@ Here is the caller graph for this function:
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{namespacex__utilities_a6bb9570c66954d37a27f04f12fa65cc9_icgraph}
-\end{center}
-\end{figure}
-\Hypertarget{namespacex__utilities_afde797341c5056abecc7a9221dbd345e}\index{x\_utilities@{x\_utilities}!trim\_modes@{trim\_modes}}
-\index{trim\_modes@{trim\_modes}!x\_utilities@{x\_utilities}}
-\doxysubsubsection{\texorpdfstring{trim\_modes()}{trim\_modes()}}
-{\footnotesize\ttfamily \label{namespacex__utilities_afde797341c5056abecc7a9221dbd345e} 
-integer function, public x\+\_\+utilities::\+trim\+\_\+modes (\begin{DoxyParamCaption}\item[{type(\doxymbox{\hyperlink{structx__vars_1_1modes__type}{modes\+\_\+type}}), intent(in)}]{mds\+\_\+i}{, }\item[{type(\doxymbox{\hyperlink{structx__vars_1_1modes__type}{modes\+\_\+type}}), intent(in)}]{mds\+\_\+o}{, }\item[{integer, dimension(2), intent(inout)}]{id\+\_\+lim\+\_\+i}{, }\item[{integer, dimension(2), intent(inout)}]{id\+\_\+lim\+\_\+o}{}\end{DoxyParamCaption})}
-
-
-
-Limit input mode range to output mode range. 
-
-
-\begin{DoxyParams}[1]{Parameters}
-\doxymbox{\texttt{in}}  & {\em mds\+\_\+i} & general modes variables for input \\
-\hline
-\doxymbox{\texttt{in}}  & {\em mds\+\_\+o} & general modes variables for output \\
-\hline
-\doxymbox{\texttt{in,out}}  & {\em id\+\_\+lim\+\_\+i} & limits on input modes \\
-\hline
-\doxymbox{\texttt{in,out}}  & {\em id\+\_\+lim\+\_\+o} & limits on output modes \\
-\hline
-\end{DoxyParams}
-
-
-Definition at line \doxymbox{\hyperlink{X__utilities_8f90_source_l00292}{292}} of file \doxymbox{\hyperlink{X__utilities_8f90_source}{X\+\_\+utilities.\+f90}}.
-
-Here is the caller graph for this function:
-\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=350pt]{namespacex__utilities_afde797341c5056abecc7a9221dbd345e_icgraph}
 \end{center}
 \end{figure}

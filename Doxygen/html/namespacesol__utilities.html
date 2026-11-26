@@ -31,7 +31,7 @@ MathJax.Hub.Config({
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">PB3D<span id="projectnumber">&#160;[2.55]</span>
+   <div id="projectname">PB3D<span id="projectnumber">&#160;[2.56]</span>
    </div>
    <div id="projectbrief">Ideal linear high-n MHD stability in 3-D</div>
   </td>
@@ -127,11 +127,15 @@ Functions/Subroutines</h2></td></tr>
 <tr class="memdesc:a677373f47ee68ad02e9cef5b409bdc26"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculate the local version of the solution vector from the total version.  <br /></td></tr>
 <tr class="memitem:a50a44a844f0db0040bba4c69de27c36b" id="r_a50a44a844f0db0040bba4c69de27c36b"><td class="memItemLeft">integer function, public&#160;</td><td class="memItemRight"><a class="el" href="#a50a44a844f0db0040bba4c69de27c36b">interp_v_spline</a> (v_i, v_o, r_i, r_o, extrap)</td></tr>
 <tr class="memdesc:a50a44a844f0db0040bba4c69de27c36b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Interpolation of a quantity V(i,j,r) in r, for every i and j, with the spline of order interp_V_ord.  <br /></td></tr>
+<tr class="memitem:a657f31b9f795ec9b32000a72eeadcfbf" id="r_a657f31b9f795ec9b32000a72eeadcfbf"><td class="memItemLeft">integer function, public&#160;</td><td class="memItemRight"><a class="el" href="#a657f31b9f795ec9b32000a72eeadcfbf">interp_v</a> (mds_i, grid_i, x_i, mds_o, grid_o, x_o)</td></tr>
+<tr class="memdesc:a657f31b9f795ec9b32000a72eeadcfbf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Interpolate tensorial perturbation quantities in the third dimension.  <br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-var-members" class="groupheader"><a id="var-members" name="var-members"></a>
 Variables</h2></td></tr>
 <tr class="memitem:a4779ff845b4ddc046892bf4eb4490dd2" id="r_a4779ff845b4ddc046892bf4eb4490dd2"><td class="memItemLeft">logical, public&#160;</td><td class="memItemRight"><a class="el" href="#a4779ff845b4ddc046892bf4eb4490dd2">debug_calc_xuq_arr</a> = .false.</td></tr>
 <tr class="memdesc:a4779ff845b4ddc046892bf4eb4490dd2"><td class="mdescLeft">&#160;</td><td class="mdescRight">plot debug information for calc_XUQ_arr  <br /></td></tr>
+<tr class="memitem:a30a4f8524896611f3608741ae953b7f9" id="r_a30a4f8524896611f3608741ae953b7f9"><td class="memItemLeft">logical, public&#160;</td><td class="memItemRight"><a class="el" href="#a30a4f8524896611f3608741ae953b7f9">debug_interp_v</a> = .false.</td></tr>
+<tr class="memdesc:a30a4f8524896611f3608741ae953b7f9"><td class="mdescLeft">&#160;</td><td class="mdescRight">debug information for interp_v  <br /></td></tr>
 <tr class="memitem:aa36c52e73c02a783074c7c0e5076c903" id="r_aa36c52e73c02a783074c7c0e5076c903"><td class="memItemLeft">logical, public&#160;</td><td class="memItemRight"><a class="el" href="#aa36c52e73c02a783074c7c0e5076c903">debug_interp_v_spline</a> = .false.</td></tr>
 <tr class="memdesc:aa36c52e73c02a783074c7c0e5076c903"><td class="mdescLeft">&#160;</td><td class="mdescRight">debug information for interp_v_spline  <br /></td></tr>
 </table>
@@ -180,7 +184,7 @@ Variables</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="sol__utilities_8f90_source.html#l00721">721</a> of file <a class="el" href="sol__utilities_8f90_source.html">sol_utilities.f90</a>.</p>
+<p class="definition">Definition at line <a class="el" href="sol__utilities_8f90_source.html#l00711">711</a> of file <a class="el" href="sol__utilities_8f90_source.html">sol_utilities.f90</a>.</p>
 <div id="dynsection-0" class="dynheader closed"><span class="dynarrow"><span class="arrowhead closed"></span></span>Here is the call graph for this function:</div>
 <div id="dynsection-0-summary" class="dynsummary">
 </div>
@@ -254,18 +258,91 @@ Variables</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="sol__utilities_8f90_source.html#l00580">580</a> of file <a class="el" href="sol__utilities_8f90_source.html">sol_utilities.f90</a>.</p>
+<p class="definition">Definition at line <a class="el" href="sol__utilities_8f90_source.html#l00568">568</a> of file <a class="el" href="sol__utilities_8f90_source.html">sol_utilities.f90</a>.</p>
 <div id="dynsection-2" class="dynheader closed"><span class="dynarrow"><span class="arrowhead closed"></span></span>Here is the call graph for this function:</div>
 <div id="dynsection-2-summary" class="dynsummary">
 </div>
 <div id="dynsection-2-content" class="dyncontent hidden">
-<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="namespacesol__utilities_a8b902a82ae6a238e725da2cf09e7854f_cgraph.svg" width="414" height="71"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="namespacesol__utilities_a8b902a82ae6a238e725da2cf09e7854f_cgraph.svg" width="414" height="131"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 <div id="dynsection-3" class="dynheader closed"><span class="dynarrow"><span class="arrowhead closed"></span></span>Here is the caller graph for this function:</div>
 <div id="dynsection-3-summary" class="dynsummary">
 </div>
 <div id="dynsection-3-content" class="dyncontent hidden">
 <div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="namespacesol__utilities_a8b902a82ae6a238e725da2cf09e7854f_icgraph.svg" width="848" height="107"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+
+</div>
+</div>
+<a id="a657f31b9f795ec9b32000a72eeadcfbf" name="a657f31b9f795ec9b32000a72eeadcfbf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a657f31b9f795ec9b32000a72eeadcfbf">&#9670;&#160;</a></span>interp_v()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">integer function, public sol_utilities::interp_v </td>
+          <td>(</td>
+          <td class="paramtype">type(<a class="el" href="structx__vars_1_1modes__type.html">modes_type</a>), intent(in), target</td>          <td class="paramname"><span class="paramname"><em>mds_i</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">type(<a class="el" href="structgrid__vars_1_1grid__type.html">grid_type</a>), intent(in)</td>          <td class="paramname"><span class="paramname"><em>grid_i</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">type(<a class="el" href="structx__vars_1_1x__2__type.html">x_2_type</a>), intent(in), target</td>          <td class="paramname"><span class="paramname"><em>x_i</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">type(<a class="el" href="structx__vars_1_1modes__type.html">modes_type</a>), intent(in), target</td>          <td class="paramname"><span class="paramname"><em>mds_o</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">type(<a class="el" href="structgrid__vars_1_1grid__type.html">grid_type</a>), intent(in)</td>          <td class="paramname"><span class="paramname"><em>grid_o</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">type(<a class="el" href="structx__vars_1_1x__2__type.html">x_2_type</a>), intent(inout), target</td>          <td class="paramname"><span class="paramname"><em>x_o</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Interpolate tensorial perturbation quantities in the third dimension. </p>
+<p>The input grid should not be divided, though the output grid can be.</p>
+<p>The procedure considers all possible mode number combinations. For <code>X_style</code> 2 (fast), each secondary mode only lives in a certain normal range of the plasma. Therefore, each secondary mode pair also has a limited normal range, given by the overlap of the ranges of the members.</p>
+<p>The interpolated mode number combinations have a normal range that might slightly differ from the input ranges, in which case extrapolation can be done if the method allows for it.</p>
+<p>Row <code>k</code> of <code>sec</code> of the input grid and row <code>k</code> of the output grid belong to the same mode, because setup_modes() builds the rows of every grid from the window on the equilibrium points.</p>
+<dl class="section note"><dt>Note</dt><dd>A mode pair can have output points but no input points, when the window moves by two or more between two points of the input grid. It is then set to zero. setup_modes() stops when the window moves by more than <code>n_mod_X</code> between two points of a grid. </dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">mds_i</td><td>general modes variables for input </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">grid_i</td><td>grid at which <code>X_i</code> is tabulated </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">x_i</td><td>tensorial perturbation variable on input grid </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">mds_o</td><td>general modes variables for output </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">grid_o</td><td>grid at which <code>X_o</code> is interpolated </td></tr>
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">x_o</td><td>interpolated tensorial perturbation variable </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="sol__utilities_8f90_source.html#l00895">895</a> of file <a class="el" href="sol__utilities_8f90_source.html">sol_utilities.f90</a>.</p>
+<div id="dynsection-4" class="dynheader closed"><span class="dynarrow"><span class="arrowhead closed"></span></span>Here is the call graph for this function:</div>
+<div id="dynsection-4-summary" class="dynsummary">
+</div>
+<div id="dynsection-4-content" class="dyncontent hidden">
+<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="namespacesol__utilities_a657f31b9f795ec9b32000a72eeadcfbf_cgraph.svg" width="1214" height="656"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+<div id="dynsection-5" class="dynheader closed"><span class="dynarrow"><span class="arrowhead closed"></span></span>Here is the caller graph for this function:</div>
+<div id="dynsection-5-summary" class="dynsummary">
+</div>
+<div id="dynsection-5-content" class="dyncontent hidden">
+<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="namespacesol__utilities_a657f31b9f795ec9b32000a72eeadcfbf_icgraph.svg" width="659" height="39"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
@@ -306,12 +383,12 @@ Variables</h2></td></tr>
 
 <p>Interpolation of a quantity V(i,j,r) in r, for every i and j, with the spline of order interp_V_ord. </p>
 
-<p class="definition">Definition at line <a class="el" href="sol__utilities_8f90_source.html#l00797">797</a> of file <a class="el" href="sol__utilities_8f90_source.html">sol_utilities.f90</a>.</p>
-<div id="dynsection-4" class="dynheader closed"><span class="dynarrow"><span class="arrowhead closed"></span></span>Here is the caller graph for this function:</div>
-<div id="dynsection-4-summary" class="dynsummary">
+<p class="definition">Definition at line <a class="el" href="sol__utilities_8f90_source.html#l00786">786</a> of file <a class="el" href="sol__utilities_8f90_source.html">sol_utilities.f90</a>.</p>
+<div id="dynsection-6" class="dynheader closed"><span class="dynarrow"><span class="arrowhead closed"></span></span>Here is the caller graph for this function:</div>
+<div id="dynsection-6-summary" class="dynsummary">
 </div>
-<div id="dynsection-4-content" class="dyncontent hidden">
-<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="namespacesol__utilities_a50a44a844f0db0040bba4c69de27c36b_icgraph.svg" width="872" height="107"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div id="dynsection-6-content" class="dyncontent hidden">
+<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="namespacesol__utilities_a50a44a844f0db0040bba4c69de27c36b_icgraph.svg" width="896" height="107"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
@@ -332,7 +409,26 @@ Variables</h2></td></tr>
 <p>plot debug information for calc_XUQ_arr </p>
 <dl class="section note"><dt>Note</dt><dd>Debug version only </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="sol__utilities_8f90_source.html#l00025">25</a> of file <a class="el" href="sol__utilities_8f90_source.html">sol_utilities.f90</a>.</p>
+<p class="definition">Definition at line <a class="el" href="sol__utilities_8f90_source.html#l00026">26</a> of file <a class="el" href="sol__utilities_8f90_source.html">sol_utilities.f90</a>.</p>
+
+</div>
+</div>
+<a id="a30a4f8524896611f3608741ae953b7f9" name="a30a4f8524896611f3608741ae953b7f9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a30a4f8524896611f3608741ae953b7f9">&#9670;&#160;</a></span>debug_interp_v</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">logical, public sol_utilities::debug_interp_v = .false.</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>debug information for interp_v </p>
+<dl class="section note"><dt>Note</dt><dd>Debug version only </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="sol__utilities_8f90_source.html#l00027">27</a> of file <a class="el" href="sol__utilities_8f90_source.html">sol_utilities.f90</a>.</p>
 
 </div>
 </div>
@@ -351,7 +447,7 @@ Variables</h2></td></tr>
 <p>debug information for interp_v_spline </p>
 <dl class="section note"><dt>Note</dt><dd>Debug version only </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="sol__utilities_8f90_source.html#l00026">26</a> of file <a class="el" href="sol__utilities_8f90_source.html">sol_utilities.f90</a>.</p>
+<p class="definition">Definition at line <a class="el" href="sol__utilities_8f90_source.html#l00028">28</a> of file <a class="el" href="sol__utilities_8f90_source.html">sol_utilities.f90</a>.</p>
 
 </div>
 </div>

@@ -17,9 +17,15 @@ subroutine, public \doxymbox{\hyperlink{namespacex__utilities_a5d3e0cc44d78b9c18
 \begin{DoxyCompactList}\small\item\em Gets one of the the local ranges of contiguous tensorial perturbation variables to be printed or read during one call of the corresponding HDF5 variables. \end{DoxyCompactList}\item 
 logical function, public \doxymbox{\hyperlink{namespacex__utilities_adef8eab82f0fd670a7795c754cf9a8f9}{x\+\_\+utilities::\+do\+\_\+x}} ()
 \begin{DoxyCompactList}\small\item\em Tests whether this perturbatino job should be done. \end{DoxyCompactList}\item 
+integer function, public \doxymbox{\hyperlink{namespacex__utilities_a2baa70ed66dd033fae69f265d3bc387c}{x\+\_\+utilities::\+get\+\_\+n\+\_\+mod\+\_\+tot}} (mds)
+\begin{DoxyCompactList}\small\item\em Number of modes in the tables of a grid: the modes from the lowest to the highest mode number of {\ttfamily sec}. \end{DoxyCompactList}\item 
 logical function, public \doxymbox{\hyperlink{namespacex__utilities_a6bb9570c66954d37a27f04f12fa65cc9}{x\+\_\+utilities::\+is\+\_\+necessary\+\_\+x}} (sym, sec\+\_\+x\+\_\+id, lim\+\_\+sec\+\_\+x)
 \begin{DoxyCompactList}\small\item\em Determines whether a variable needs to be considered: \end{DoxyCompactList}\item 
+elemental logical function, public \doxymbox{\hyperlink{namespacex__utilities_af2e1040d8ded1768c7790a76d001eb76}{x\+\_\+utilities::\+is\+\_\+conj\+\_\+x}} (n\+\_\+row, m\+\_\+row, n\+\_\+col, m\+\_\+col)
+\begin{DoxyCompactList}\small\item\em Whether the entry of a symmetric tensorial quantity ({\ttfamily PV\+\_\+0}, {\ttfamily PV\+\_\+2}, {\ttfamily KV\+\_\+0} or {\ttfamily KV\+\_\+2}) is the complex conjugate of the element with a given row and column. \end{DoxyCompactList}\item 
+subroutine, public \doxymbox{\hyperlink{namespacex__utilities_ac97887ef6a74d849c84bbe84dfbd4e24}{x\+\_\+utilities::\+conj\+\_\+sym\+\_\+x}} (v, n\+\_\+row, m\+\_\+row, n\+\_\+col, m\+\_\+col)
+\begin{DoxyCompactList}\small\item\em Turns a quantity calculated for a row and a column into the entry of a symmetric tensorial quantity: the complex conjugate at the normal points where the row has the lower mode number (see \doxylink{namespacex__utilities_af2e1040d8ded1768c7790a76d001eb76}{is\+\_\+conj\+\_\+x()}). \end{DoxyCompactList}\item 
 integer function, public \doxymbox{\hyperlink{namespacex__utilities_a4d18921da77463d069346f1c7322b451}{x\+\_\+utilities::\+calc\+\_\+memory\+\_\+x}} (ord, arr\+\_\+size, n\+\_\+mod, mem\+\_\+size)
 \begin{DoxyCompactList}\small\item\em Calculate memory in MB necessary for X variables. \end{DoxyCompactList}\item 
-integer function, public \doxymbox{\hyperlink{namespacex__utilities_afde797341c5056abecc7a9221dbd345e}{x\+\_\+utilities::\+trim\+\_\+modes}} (mds\+\_\+i, mds\+\_\+o, id\+\_\+lim\+\_\+i, id\+\_\+lim\+\_\+o)
-\begin{DoxyCompactList}\small\item\em Limit input mode range to output mode range. \end{DoxyCompactList}\end{DoxyCompactItemize}
+integer function, public \doxymbox{\hyperlink{namespacex__utilities_aee9e435c53d3892383d2347d21076650}{x\+\_\+utilities::\+check\+\_\+same\+\_\+modes}} (mds\+\_\+i, mds\+\_\+o)
+\begin{DoxyCompactList}\small\item\em Check that two grids have the same rows of {\ttfamily sec}. \end{DoxyCompactList}\end{DoxyCompactItemize}

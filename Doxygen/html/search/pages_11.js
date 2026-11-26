@@ -1,13 +1,11 @@
 var searchData=
 [
-  ['reconstruction_20file_0',['Energy reconstruction file',['../page_outputs.html#output_file_E_rec',1,'']]],
-  ['requirements_1',['Requirements',['../page_installation.html#installation_requirements',1,'']]],
-  ['response_2',['Vacuum response',['../page_vacuum.html',1,'']]],
-  ['restarts_3',['Richardson levels and restarts',['../page_vacuum.html#vacuum_rich',1,'']]],
-  ['richardson_20levels_20and_20restarts_4',['Richardson levels and restarts',['../page_vacuum.html#vacuum_rich',1,'']]],
-  ['rule_5',['Integration rule',['../page_vacuum.html#vacuum_field_line_rule',1,'']]],
-  ['rules_20and_20known_20limits_6',['Input rules and known limits',['../page_vacuum.html#vacuum_limits',1,'']]],
-  ['run_20script_20tools_7',['Run Script Tools',['../page_tutorial.html#tutorial_scripts',1,'']]],
-  ['running_20pb3d_8',['Running PB3D',['../page_tutorial.html#tutorial_PB3D',1,'']]],
-  ['runtime_20errors_9',['runtime errors',['../page_faq.html#faq_errors',1,'']]]
+  ['off_20the_20boundary_0',['Points off the boundary',['../page_vacuum.html#vacuum_external',1,'']]],
+  ['optional_1',['Checking the equilibrium (optional)',['../page_tutorial.html#tutorial_test_eq',1,'']]],
+  ['output_2',['Vacuum check output',['../page_outputs.html#output_file_check_vac',1,'']]],
+  ['output_20file_3',['HDF5 output file',['../page_outputs.html#output_file_HDF5',1,'']]],
+  ['output_20files_4',['Output Files',['../page_outputs.html#output_files',1,'']]],
+  ['output_20plots_5',['Output Plots',['../page_outputs.html#output_plots',1,'']]],
+  ['outputs_6',['Code outputs',['../page_outputs.html',1,'']]],
+  ['overview_7',['POST Overview',['../page_overview.html#overview_POST',1,'']]]
 ];
