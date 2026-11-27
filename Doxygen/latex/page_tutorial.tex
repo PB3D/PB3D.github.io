@@ -138,7 +138,7 @@ Now that we have the equilibrium files, it is time to have a look at the input f
 \DoxyCodeLine{00011\ \ \ \ \ n\_mod\_X\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ 20}
 \DoxyCodeLine{00012\ \ \ \ \ BC\_style\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ 1\ 2}
 \DoxyCodeLine{00013\ \ \ \ \ U\_style\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ 3}
-\DoxyCodeLine{00014\ \ \ \ \ max\_tot\_mem\ \ \ \ \ \ \ \ \ \ \ \ \ =\ 6000}
+\DoxyCodeLine{00014\ \ \ \ \ max\_tot\_mem\ \ \ \ \ \ \ \ \ \ \ \ \ =\ 8000}
 \DoxyCodeLine{00015\ \ \ \ \ max\_it\_rich\ \ \ \ \ \ \ \ \ \ \ \ \ =\ 1}
 \DoxyCodeLine{00016\ \ \ \ \ use\_normalization\ \ \ \ \ \ \ =\ .true.}
 \DoxyCodeLine{00017\ /}
@@ -244,7 +244,7 @@ Take a look at these output files and shuffle a bit with the input parameters if
 For VMEC, the magnetic axis is a bit problematic. It is necessary, therefore, to choose {\ttfamily min\+\_\+r\+\_\+sol} to be slightly larger than 0; 0.\+01 for example.
 \end{DoxyNote}
 \hypertarget{page_tutorial_tutorial_PB3D_results}{}\doxysubsection{\texorpdfstring{What to expect}{What to expect}}\label{page_tutorial_tutorial_PB3D_results}
-On one core of a laptop (Apple M3 Pro, with {\ttfamily Malloc\+Large\+Cache=0}), this run takes about 2.\+5 minutes, and its memory use peaks at 3.\+5 GB, below the limit {\ttfamily max\+\_\+tot\+\_\+mem} of 6000 MB. Most of the time goes into the plasma quantities on the 64 field lines, which PB3D divides into 34 equilibrium jobs; the vacuum takes 15 s. This input file needs a {\ttfamily max\+\_\+tot\+\_\+mem} of at least 4.\+9 GB on this laptop and about 5.\+2 GB on Linux: the solution driver holds the vacuum matrices and the integrated perturbation quantities at the same time, which cannot be divided into jobs, and the process holds memory of its own. With a lower limit, PB3D stops at the start and gives the number it needs.
+On one core of a laptop (Apple M3 Pro, with {\ttfamily Malloc\+Large\+Cache=0}), this run takes about 2.\+5 minutes, and its memory use peaks at 4.\+0 GB, below the limit {\ttfamily max\+\_\+tot\+\_\+mem} of 8000 MB. Most of the time goes into the plasma quantities on the 64 field lines, which PB3D divides into 25 equilibrium jobs; the vacuum takes 10 s. This input file needs a {\ttfamily max\+\_\+tot\+\_\+mem} of at least 5.\+7 GB on this laptop with one process, and about 7.\+4 GB on Linux with 4 processes: the vacuum matrices exist in every equilibrium job and in the solution driver, and the integrated perturbation quantities in the solution driver, which cannot be divided into jobs, and every process holds memory of its own. With a lower limit, PB3D stops at the start and gives the number it needs.
 
 PB3D gives the eigenvalues $\lambda = \omega^2/\omega_A^2$, normalized to the square of the Alfvén frequency $\omega_A$ that the header of {\ttfamily PB3\+D\+\_\+out\+\_\+\+EV\+\_\+\+R\+\_\+1.\+txt} gives. For this input file, the first eigenvalue should be close to $\lambda = -0.0499$. A negative eigenvalue belongs to an unstable mode, with the growth rate $\gamma = \omega_A\sqrt{-\lambda}$, here $0.22\,\omega_A$.
 
@@ -271,16 +271,16 @@ Figure 3 shows the same eigenvector in the poloidal plane $\zeta = 0$, and the p
 \end{DoxyImage}
 
 
-Table \doxytablelink{page_tutorial_tutorial_PB3D_res_tab}{3} shows how this eigenvalue changes when the input file is changed. Every row changes one thing, and raises {\ttfamily max\+\_\+tot\+\_\+mem} where the solution driver needs more. The rows marked HELENA use the HELENA mapping of the same plasma, without the lines with {\ttfamily alpha\+\_\+style} and {\ttfamily n\+\_\+alpha} (\doxylink{page_tutorial_fnt3}{3}); for HELENA, PB3D computes the vacuum with an axisymmetric method (see \doxysectlink{page_vacuum}{Vacuum response}{0}). \hypertarget{page_tutorial_tutorial_PB3D_res_tab}{}
+Table \doxytablelink{page_tutorial_tutorial_PB3D_res_tab}{3} shows how this eigenvalue changes when the input file is changed. Every row changes one thing, and raises {\ttfamily max\+\_\+tot\+\_\+mem} where the run needs more. The rows marked HELENA use the HELENA mapping of the same plasma, without the lines with {\ttfamily alpha\+\_\+style} and {\ttfamily n\+\_\+alpha} (\doxylink{page_tutorial_fnt3}{3}); for HELENA, PB3D computes the vacuum with an axisymmetric method (see \doxysectlink{page_vacuum}{Vacuum response}{0}). \hypertarget{page_tutorial_tutorial_PB3D_res_tab}{}
 
 \begin{DoxyTable}{4}{Table 3. first eigenvalue for $n = 10$, with the time and the peak memory of the run on one core, with {\ttfamily Malloc\+Large\+Cache=0}}{page_tutorial_tutorial_PB3D_res_tab}{1}
 \SetCell{bg=\tableheadbgcolor,font=\bfseries}change to the input file &\SetCell{bg=\tableheadbgcolor,font=\bfseries}eigenvalue &\SetCell{bg=\tableheadbgcolor,font=\bfseries}time &\SetCell{bg=\tableheadbgcolor,font=\bfseries}memory \\
-none (64 field lines with 100 points each) &$-0.04987$ &2.\+5 min &3.\+5 GB \\
-{\ttfamily min\+\_\+n\+\_\+par\+\_\+X = 200}, {\ttfamily max\+\_\+tot\+\_\+mem = 9000} &$-0.05029$ &4.\+5 min &6.\+9 GB \\
-{\ttfamily n\+\_\+alpha = 128}, {\ttfamily max\+\_\+tot\+\_\+mem = 13000} &$-0.04990$ &5 min &9.\+3 GB \\
+none (64 field lines with 100 points each) &$-0.04987$ &2.\+5 min &4.\+0 GB \\
+{\ttfamily min\+\_\+n\+\_\+par\+\_\+X = 200}, {\ttfamily max\+\_\+tot\+\_\+mem = 11000} &$-0.05029$ &5.\+5 min &6.\+0 GB \\
+{\ttfamily n\+\_\+alpha = 128}, {\ttfamily max\+\_\+tot\+\_\+mem = 16000} &$-0.04990$ &6.\+5 min &8.\+3 GB \\
 HELENA &$-0.05026$ &5 s &1.\+0 GB \\
 HELENA, {\ttfamily n\+\_\+mod\+\_\+X = 30} &$-0.05034$ &6 s &1.\+7 GB \\
-{\ttfamily BC\+\_\+style = 1 1} (fixed boundary) &$-0.04027$ &2.\+5 min &2.\+9 GB \\
+{\ttfamily BC\+\_\+style = 1 1} (fixed boundary) &$-0.04027$ &2 min &3.\+9 GB \\
 HELENA, {\ttfamily BC\+\_\+style = 1 1} &$-0.04028$ &3 s &1.\+0 GB \\
 \end{DoxyTable}
 
