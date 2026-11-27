@@ -28,6 +28,12 @@
         <td>"The memory limit is too low, need more than N MB" </td> <td> The equilibrium jobs (see \ref overview_jobs) cannot be made small enough to fit in the memory limit \c max_tot_mem. Increase \c max_tot_mem. For HELENA, there is always a single equilibrium job, so the whole calculation has to fit in this limit. </td>
     </tr>
     <tr>
+        <td>"The memory limit is too low, the solution driver needs more than N MB" </td> <td> The solution driver holds the integrated perturbation quantities twice, and for a free boundary the vacuum matrices, whose size grows with the square of the number of points on the plasma boundary (\c n_alpha times \c min_n_par_X for VMEC). This part cannot be divided into jobs. The number N includes the memory that every process holds of its own, about 0.3 GB per process on Linux, so it grows with the number of processes. Increase \c max_tot_mem to at least N. </td>
+    </tr>
+    <tr>
+        <td>"On macOS, run PB3D with MallocLargeCache=0 in the environment" </td> <td> From macOS 26 on, the memory allocator keeps freed blocks of memory in the program, and the system takes them back only once it is already paging memory out. PB3D then takes about twice \c max_tot_mem. Run PB3D and POST as <tt>MallocLargeCache=0 ./PB3D ...</tt>; the variable has to be set when the program starts. </td>
+    </tr>
+    <tr>
         <td>"The N normal points cannot be divided between P processes" </td> <td> A grid is divided between the MPI processes in the normal direction, and every process has to keep at least one point of its own. This message from trim_grid() means that a grid holds fewer normal points than there are processes. It usually concerns the equilibrium grid: the range between \c min_r_sol and \c max_r_sol then contains only N flux surfaces of the equilibrium file. Use at most N processes, or enlarge the normal range. </td>
     </tr>
     <tr>
