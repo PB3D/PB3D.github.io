@@ -122,7 +122,7 @@ ierr
 \end{DoxyParams}
 
 
-Definition at line \doxymbox{\hyperlink{eq__ops_8f90_source_l05598}{5598}} of file \doxymbox{\hyperlink{eq__ops_8f90_source}{eq\+\_\+ops.\+f90}}.
+Definition at line \doxymbox{\hyperlink{eq__ops_8f90_source_l05586}{5586}} of file \doxymbox{\hyperlink{eq__ops_8f90_source}{eq\+\_\+ops.\+f90}}.
 
 Here is the call graph for this function:
 \nopagebreak
@@ -297,7 +297,7 @@ $\kappa_g = q R
 \begin{DoxyNote}{Note}
 
 \begin{DoxyEnumerate}
-\item If the toroidal flux is used instead, the actual curvature obviously is unchanged, which implies that the normal component has to be multiplied by the safety factor and the geodesic component has to be divided by it.
+\item The normal and the geodesic curvature are the components of the curvature along $\nabla \psi/\left|\nabla\psi\right|^2$ and $\nabla \psi \times \vec{B}/B^2$, with $\psi$ the normal Flux coordinate in use, so their values depend on whether that is the poloidal or the toroidal flux.
 \item The formulas for the normal and geodesic basis vectors for VMEC are
 \begin{DoxyItemize}
 \item $\frac{\nabla \psi}{\left|\nabla\psi\right|^2} = 
@@ -305,10 +305,9 @@ $\kappa_g = q R
                  {Z_\theta^2 + R_\theta^2 + \left(R_\zeta Z_\theta - R_\theta Z_\zeta \right)/R^2} \frac{1}{R}
                  \left( -Z_\theta , R_\zeta Z_\theta - R_\theta Z_\zeta, R_\theta\right)_\text{C}$
 \item $\frac{\nabla \psi \times  \vec{B}}{B^2} = 
-                 \frac{1}{g_{\theta\theta}}
-                 \left(P R_\theta - Q R_\zeta, -Q R^2, P Z_\theta - Q Z_\zeta\right)_\text{C}$
-\item $Q = g_{\theta\theta} - q g_{\theta\alpha}$ (using right-\/handed flux $q_\text{F}$, which is the inverse of the left-\/handed VMEC $q_\text{V}$)
-\item $P = \frac{Q \lambda_\zeta - g_{\alpha\theta}}{1+\lambda_\theta}$ (where the derivatives of $R$, $Z$ and $\lambda$ are in VMEC coordinates).
+                 \vec{e}_\alpha - \frac{g_{\alpha\theta}}{g_{\theta\theta}}
+                 \vec{e}_\theta$, with $\vec{e}_\alpha$ and $\vec{e}_\theta$ written in the basis vectors of the VMEC coordinates through the transformation matrix {\ttfamily T\+\_\+\+FE} 
+\item In both, $\theta$ stands for the parallel coordinate ( $\zeta$ for the toroidal flux), the derivatives of $R$, $Z$ and $\lambda$ are in VMEC coordinates, and $\mathcal{J}$, the metric and {\ttfamily T\+\_\+\+FE} are those of the Flux coordinates in use: both formulas hold for the poloidal and for the toroidal flux.
 \end{DoxyItemize}
 \item The formulas for the normal and geodesic basis vectors for HELENA are
 \begin{DoxyItemize}
@@ -332,7 +331,7 @@ $\kappa_g = q R
 \end{DoxyParams}
 
 
-Definition at line \doxymbox{\hyperlink{eq__ops_8f90_source_l04175}{4175}} of file \doxymbox{\hyperlink{eq__ops_8f90_source}{eq\+\_\+ops.\+f90}}.
+Definition at line \doxymbox{\hyperlink{eq__ops_8f90_source_l04178}{4178}} of file \doxymbox{\hyperlink{eq__ops_8f90_source}{eq\+\_\+ops.\+f90}}.
 
 Here is the call graph for this function:
 \nopagebreak
@@ -383,7 +382,7 @@ ierr
 \end{DoxyParams}
 
 
-Definition at line \doxymbox{\hyperlink{eq__ops_8f90_source_l06600}{6600}} of file \doxymbox{\hyperlink{eq__ops_8f90_source}{eq\+\_\+ops.\+f90}}.
+Definition at line \doxymbox{\hyperlink{eq__ops_8f90_source_l06609}{6609}} of file \doxymbox{\hyperlink{eq__ops_8f90_source}{eq\+\_\+ops.\+f90}}.
 
 Here is the call graph for this function:
 \nopagebreak
@@ -448,7 +447,7 @@ ierr
 \end{DoxyReturn}
 
 
-Definition at line \doxymbox{\hyperlink{eq__ops_8f90_source_l05304}{5304}} of file \doxymbox{\hyperlink{eq__ops_8f90_source}{eq\+\_\+ops.\+f90}}.
+Definition at line \doxymbox{\hyperlink{eq__ops_8f90_source_l05292}{5292}} of file \doxymbox{\hyperlink{eq__ops_8f90_source}{eq\+\_\+ops.\+f90}}.
 
 Here is the call graph for this function:
 \nopagebreak
@@ -501,7 +500,7 @@ ierr
 \end{DoxyParams}
 
 
-Definition at line \doxymbox{\hyperlink{eq__ops_8f90_source_l06071}{6071}} of file \doxymbox{\hyperlink{eq__ops_8f90_source}{eq\+\_\+ops.\+f90}}.
+Definition at line \doxymbox{\hyperlink{eq__ops_8f90_source_l06059}{6059}} of file \doxymbox{\hyperlink{eq__ops_8f90_source}{eq\+\_\+ops.\+f90}}.
 
 Here is the call graph for this function:
 \nopagebreak
@@ -555,8 +554,10 @@ In POST, finally, the situation is slightly different for HELENA, as all the req
 
 To this end, optionally, a base number can be provided for {\ttfamily n\+\_\+par\+\_\+X}, that is always added to the number of points in the divided {\ttfamily n\+\_\+par\+\_\+X}.
 
+A job is counted with the parallel point it shares with the previous job and with the points that \doxylink{namespaceeq__ops_a6f509d7becf29b4f201a871bf4441d49}{calc\+\_\+eq\+\_\+jobs\+\_\+lims()} can add to end it on a fundamental integration interval.
+
 \begin{DoxyNote}{Note}
-For PB3D, only the variables {\ttfamily g\+\_\+\+FD}, {\ttfamily h\+\_\+\+FD} and {\ttfamily jac\+\_\+\+FD} are counted, as the equilibrium variables and the transformation matrices are deleted after use. Also, {\ttfamily S}, {\ttfamily sigma}, {\ttfamily kappa\+\_\+n} and {\ttfamily kappa\+\_\+g} can be neglected as they do not contain derivatives and are therefore much smaller. in both routines calc\+\_\+memory\+\_\+eq() and calc\+\_\+memory\+\_\+x(), however, a 50\% safety factor is used to account for this somewhat.
+For PB3D, only the variables {\ttfamily g\+\_\+\+FD}, {\ttfamily h\+\_\+\+FD} and {\ttfamily jac\+\_\+\+FD} are counted, as the equilibrium variables and the transformation matrices are deleted after use. Also, {\ttfamily S}, {\ttfamily sigma}, {\ttfamily kappa\+\_\+n} and {\ttfamily kappa\+\_\+g} can be neglected as they do not contain derivatives and are therefore much smaller. in both routines calc\+\_\+memory\+\_\+eq() and calc\+\_\+memory\+\_\+x(), however, a 50\% safety factor is used to account for this somewhat. The integrated tensorial perturbation variables {\ttfamily X\+\_\+2\+\_\+int} are counted as well, as they exist during all equilibrium jobs.
 \end{DoxyNote}
 \begin{DoxyReturn}{Returns}
 ierr 
@@ -578,7 +579,7 @@ ierr
 \end{DoxyParams}
 
 
-Definition at line \doxymbox{\hyperlink{eq__ops_8f90_source_l06464}{6464}} of file \doxymbox{\hyperlink{eq__ops_8f90_source}{eq\+\_\+ops.\+f90}}.
+Definition at line \doxymbox{\hyperlink{eq__ops_8f90_source_l06458}{6458}} of file \doxymbox{\hyperlink{eq__ops_8f90_source}{eq\+\_\+ops.\+f90}}.
 
 Here is the call graph for this function:
 \nopagebreak
@@ -689,7 +690,7 @@ ierr
 \end{DoxyParams}
 
 
-Definition at line \doxymbox{\hyperlink{eq__ops_8f90_source_l05701}{5701}} of file \doxymbox{\hyperlink{eq__ops_8f90_source}{eq\+\_\+ops.\+f90}}.
+Definition at line \doxymbox{\hyperlink{eq__ops_8f90_source_l05689}{5689}} of file \doxymbox{\hyperlink{eq__ops_8f90_source}{eq\+\_\+ops.\+f90}}.
 
 Here is the call graph for this function:
 \nopagebreak
@@ -752,7 +753,7 @@ ierr
 \end{DoxyParams}
 
 
-Definition at line \doxymbox{\hyperlink{eq__ops_8f90_source_l05869}{5869}} of file \doxymbox{\hyperlink{eq__ops_8f90_source}{eq\+\_\+ops.\+f90}}.
+Definition at line \doxymbox{\hyperlink{eq__ops_8f90_source_l05857}{5857}} of file \doxymbox{\hyperlink{eq__ops_8f90_source}{eq\+\_\+ops.\+f90}}.
 
 Here is the call graph for this function:
 \nopagebreak
@@ -785,7 +786,7 @@ Normalize input quantities.
 \end{DoxySeeAlso}
 
 
-Definition at line \doxymbox{\hyperlink{eq__ops_8f90_source_l05542}{5542}} of file \doxymbox{\hyperlink{eq__ops_8f90_source}{eq\+\_\+ops.\+f90}}.
+Definition at line \doxymbox{\hyperlink{eq__ops_8f90_source_l05530}{5530}} of file \doxymbox{\hyperlink{eq__ops_8f90_source}{eq\+\_\+ops.\+f90}}.
 
 Here is the call graph for this function:
 \nopagebreak

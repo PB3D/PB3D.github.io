@@ -20,7 +20,7 @@
 \DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00016}00016\ \ \ \ \ \textcolor{keywordtype}{implicit\ none}}
 \DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00017}00017\ \ \ \ \ \textcolor{keywordtype}{private}}
 \DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00018}00018\ \ \ \ \ \textcolor{keywordtype}{public}\ \doxymbox{\hyperlink{interfacesol__utilities_1_1calc__xuq}{calc\_xuq}},\ \doxymbox{\hyperlink{namespacesol__utilities_a8b902a82ae6a238e725da2cf09e7854f}{calc\_tot\_sol\_vec}},\ \doxymbox{\hyperlink{namespacesol__utilities_a677373f47ee68ad02e9cef5b409bdc26}{calc\_loc\_sol\_vec}},\ \doxymbox{\hyperlink{namespacesol__utilities_a657f31b9f795ec9b32000a72eeadcfbf}{interp\_v}},\ \&}
-\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00019}00019\ \ \ \ \ \ \ \ \ \&\doxymbox{\hyperlink{namespacesol__utilities_a50a44a844f0db0040bba4c69de27c36b}{interp\_v\_spline}}}
+\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00019}00019\ \ \ \ \ \ \ \ \ \&\doxymbox{\hyperlink{namespacesol__utilities_a50a44a844f0db0040bba4c69de27c36b}{interp\_v\_spline}},\ \doxymbox{\hyperlink{namespacesol__utilities_a7f66070270d77d65cb26f5825402e728}{calc\_memory\_sol}}}
 \DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00020}00020\ \textcolor{preprocessor}{\#if\ ldebug}}
 \DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00021}00021\ \textcolor{preprocessor}{}\ \ \ \ \textcolor{keywordtype}{public}\ \doxymbox{\hyperlink{namespacesol__utilities_a4779ff845b4ddc046892bf4eb4490dd2}{debug\_calc\_xuq\_arr}},\ \doxymbox{\hyperlink{namespacesol__utilities_a30a4f8524896611f3608741ae953b7f9}{debug\_interp\_v}},\ \doxymbox{\hyperlink{namespacesol__utilities_aa36c52e73c02a783074c7c0e5076c903}{debug\_interp\_v\_spline}}}
 \DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l00022}00022\ \textcolor{preprocessor}{\#endif}}
@@ -1134,6 +1134,57 @@
 \DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l01130}01130\ \ \ \ \ \ \ \ \ \textcolor{keyword}{nullify}(sec\_i\_loc,sec\_o\_loc)}
 \DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l01131}01131\ \ \ \ \ \ \ \ \ \textcolor{keyword}{nullify}(v\_i,v\_o)}
 \DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l01132}01132\ \ \ \ \ \textcolor{keyword}{end\ function\ }\doxymbox{\hyperlink{namespacesol__utilities_a657f31b9f795ec9b32000a72eeadcfbf}{interp\_v}}}
-\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l01133}01133\ \textcolor{keyword}{end\ module\ }\doxymbox{\hyperlink{namespacesol__utilities}{sol\_utilities}}}
+\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l01133}01133\ \ \ \ \ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l01134}01134\ \textcolor{comment}{\ \ \ \ !>\ Calculate\ the\ memory\ that\ the\ solution\ driver\ needs.}}
+\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l01135}01135\ \textcolor{comment}{\ \ \ \ !!}}
+\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l01136}01136\ \textcolor{comment}{\ \ \ \ !!\ This\ memory\ does\ not\ depend\ on\ the\ division\ in\ equilibrium\ jobs.\ With}}
+\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l01137}01137\ \textcolor{comment}{\ \ \ \ !!\ \(\backslash\)f\$X\(\backslash\)f\$\ the\ integrated\ tensorial\ perturbation\ variables\ \(\backslash\)c\ X\_2\_int\ on}}
+\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l01138}01138\ \textcolor{comment}{\ \ \ \ !!\ the\ perturbation\ grid,\ \(\backslash\)f\$X\_\(\backslash\)text\{sol\}\(\backslash\)f\$\ these\ variables\ interpolated}}
+\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l01139}01139\ \textcolor{comment}{\ \ \ \ !!\ on\ the\ solution\ grid\ and\ \(\backslash\)f\$V\(\backslash\)f\$\ one\ vacuum\ matrix\ of\ \(\backslash\)c\ n\_bnd\ x\ \(\backslash\)c\ n\_bnd}}
+\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l01140}01140\ \textcolor{comment}{\ \ \ \ !!\ real\ numbers,\ the\ steps\ of\ the\ solution\ driver\ hold:}}
+\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l01141}01141\ \textcolor{comment}{\ \ \ \ !!\ \ -\/\ the\ vacuum:\ \(\backslash\)f\$X\(\backslash\)f\$,\ \(\backslash\)c\ G,\ \(\backslash\)c\ H\ and\ the\ copy\ of\ \(\backslash\)c\ H\ that\ the\ LU}}
+\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l01142}01142\ \textcolor{comment}{\ \ \ \ !!\ \ factorization\ overwrites,\ so\ \(\backslash\)f\$X\ +\ 3V\(\backslash\)f\$,}}
+\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l01143}01143\ \textcolor{comment}{\ \ \ \ !!\ \ -\/\ the\ redistribution:\ \(\backslash\)f\$X\(\backslash\)f\$,\ its\ copy,\ \(\backslash\)c\ G\ and\ \(\backslash\)c\ H,\ so}}
+\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l01144}01144\ \textcolor{comment}{\ \ \ \ !!\ \ \(\backslash\)f\$2X\ +\ 2V\(\backslash\)f\$,}}
+\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l01145}01145\ \textcolor{comment}{\ \ \ \ !!\ \ -\/\ the\ interpolation:\ the\ copy\ of\ \(\backslash\)f\$X\(\backslash\)f\$,\ \(\backslash\)f\$X\_\(\backslash\)text\{sol\}\(\backslash\)f\$,\ \(\backslash\)c\ G}}
+\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l01146}01146\ \textcolor{comment}{\ \ \ \ !!\ \ and\ \(\backslash\)c\ H,\ so\ \(\backslash\)f\$X\ +\ X\_\(\backslash\)text\{sol\}\ +\ 2V\(\backslash\)f\$.}}
+\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l01147}01147\ \textcolor{comment}{\ \ \ \ !!}}
+\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l01148}01148\ \textcolor{comment}{\ \ \ \ !!\ The\ result\ is\ the\ largest\ of\ these,\ \(\backslash\)f\$X\ +\ 2V\ +\ \(\backslash\)max(V,\ X,}}
+\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l01149}01149\ \textcolor{comment}{\ \ \ \ !!\ X\_\(\backslash\)text\{sol\})\(\backslash\)f\$,\ with\ the\ same\ 50\%\ safety\ factor\ as\ calc\_memory\_eq()}}
+\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l01150}01150\ \textcolor{comment}{\ \ \ \ !!\ and\ calc\_memory\_X().\ The\ vacuum\ matrices\ stay\ allocated\ during\ the}}
+\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l01151}01151\ \textcolor{comment}{\ \ \ \ !!\ solution\ of\ the\ eigenvalue\ problem,\ as\ the\ next\ Richardson\ level\ reuses}}
+\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l01152}01152\ \textcolor{comment}{\ \ \ \ !!\ them.}}
+\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l01153}01153\ \textcolor{comment}{\ \ \ \ !!}}
+\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l01154}01154\ \textcolor{comment}{\ \ \ \ !!\ \(\backslash\)return\ ierr}}
+\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l01155}\doxymbox{\hyperlink{namespacesol__utilities_a7f66070270d77d65cb26f5825402e728}{01155}}\ \ \ \ \ \textcolor{keyword}{integer\ }\textcolor{keyword}{function\ }\doxymbox{\hyperlink{namespacesol__utilities_a7f66070270d77d65cb26f5825402e728}{calc\_memory\_sol}}(arr\_size\_X,arr\_size\_sol,n\_bnd,mem\_size)\ \&}
+\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l01156}01156\ \ \ \ \ \ \ \ \ \&result(ierr)}
+\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l01157}01157\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{use\ }\doxymbox{\hyperlink{namespacex__utilities}{x\_utilities}},\ \textcolor{keywordtype}{only}:\ \doxymbox{\hyperlink{namespacex__utilities_a4d18921da77463d069346f1c7322b451}{calc\_memory\_x}}}
+\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l01158}01158\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{use\ }\doxymbox{\hyperlink{namespacex__vars}{x\_vars}},\ \textcolor{keywordtype}{only}:\ \doxymbox{\hyperlink{namespacex__vars_a2e8fe6c5fe1cf61704bf176925d2b02e}{n\_mod\_x}}}
+\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l01159}01159\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l01160}01160\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{character(*)},\ \textcolor{keywordtype}{parameter}\ ::\ rout\_name\ =\ \textcolor{stringliteral}{'calc\_memory\_sol'}}
+\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l01161}01161\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l01162}01162\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ input\ /\ output}}
+\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l01163}01163\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer},\ \textcolor{keywordtype}{intent(in)}\ ::\ arr\_size\_x\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !<\ number\ of\ normal\ points\ times\ field\ lines\ of\ the\ perturbation\ grid}}
+\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l01164}01164\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer},\ \textcolor{keywordtype}{intent(in)}\ ::\ arr\_size\_sol\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !<\ number\ of\ normal\ points\ times\ field\ lines\ of\ the\ solution\ grid}}
+\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l01165}01165\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{integer},\ \textcolor{keywordtype}{intent(in)}\ ::\ n\_bnd\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !<\ number\ of\ points\ on\ the\ plasma\ boundary\ (0\ without\ vacuum)}}
+\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l01166}01166\ \textcolor{keywordtype}{\ \ \ \ \ \ \ \ real}(dp),\ \textcolor{keywordtype}{intent(inout)}\ ::\ mem\_size\textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ !<\ total\ size\ [MB]}}
+\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l01167}01167\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l01168}01168\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ local\ variables}}
+\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l01169}01169\ \textcolor{keywordtype}{\ \ \ \ \ \ \ \ real}(dp)\ ::\ mem\_x\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ integrated\ tensorial\ perturbation\ variables\ [MB]}}
+\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l01170}01170\ \textcolor{keywordtype}{\ \ \ \ \ \ \ \ real}(dp)\ ::\ mem\_x\_sol\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ idem,\ on\ the\ solution\ grid\ [MB]}}
+\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l01171}01171\ \textcolor{keywordtype}{\ \ \ \ \ \ \ \ real}(dp)\ ::\ mem\_vac\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ one\ vacuum\ matrix\ [MB]}}
+\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l01172}01172\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l01173}01173\ \ \ \ \ \ \ \ \ \textcolor{comment}{!\ initialize\ ierr}}
+\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l01174}01174\ \ \ \ \ \ \ \ \ ierr\ =\ 0}
+\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l01175}01175\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l01176}01176\ \ \ \ \ \ \ \ \ ierr\ =\ \doxymbox{\hyperlink{namespacex__utilities_a4d18921da77463d069346f1c7322b451}{calc\_memory\_x}}(2,arr\_size\_x,\doxymbox{\hyperlink{namespacex__vars_a2e8fe6c5fe1cf61704bf176925d2b02e}{n\_mod\_x}},mem\_x)}
+\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l01177}01177\ \ \ \ \ \ \ \ \ chckerr(\textcolor{stringliteral}{''})}
+\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l01178}01178\ \ \ \ \ \ \ \ \ ierr\ =\ \doxymbox{\hyperlink{namespacex__utilities_a4d18921da77463d069346f1c7322b451}{calc\_memory\_x}}(2,arr\_size\_sol,\doxymbox{\hyperlink{namespacex__vars_a2e8fe6c5fe1cf61704bf176925d2b02e}{n\_mod\_x}},mem\_x\_sol)}
+\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l01179}01179\ \ \ \ \ \ \ \ \ chckerr(\textcolor{stringliteral}{''})}
+\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l01180}01180\ \ \ \ \ \ \ \ \ mem\_vac\ =\ (n\_bnd*1.\_dp)**2*storage\_size(1.\_dp)/8*1.e-\/6\_dp*1.5\_dp}
+\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l01181}01181\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l01182}01182\ \ \ \ \ \ \ \ \ mem\_size\ =\ mem\_x\ +\ 2*mem\_vac\ +\ max(mem\_vac,mem\_x,mem\_x\_sol)}
+\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l01183}01183\ \ \ \ \ \textcolor{keyword}{end\ function\ }\doxymbox{\hyperlink{namespacesol__utilities_a7f66070270d77d65cb26f5825402e728}{calc\_memory\_sol}}}
+\DoxyCodeLine{\Hypertarget{sol__utilities_8f90_source_l01184}01184\ \textcolor{keyword}{end\ module\ }\doxymbox{\hyperlink{namespacesol__utilities}{sol\_utilities}}}
 
 \end{DoxyCode}

@@ -31,7 +31,7 @@ MathJax.Hub.Config({
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">PB3D<span id="projectnumber">&#160;[2.56]</span>
+   <div id="projectname">PB3D<span id="projectnumber">&#160;[2.57]</span>
    </div>
    <div id="projectbrief">Ideal linear high-n MHD stability in 3-D</div>
   </td>
@@ -125,6 +125,8 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:ab4f12fd5bc41a5b3ae23e36f8f46f63f"><td class="mdescLeft">&#160;</td><td class="mdescRight">copy  <br /></td></tr>
 <tr class="memitem:a4e366626e82273d3c255eb4cd2558681" id="r_a4e366626e82273d3c255eb4cd2558681"><td class="memItemLeft">procedure&#160;</td><td class="memItemRight"><a class="el" href="#a4e366626e82273d3c255eb4cd2558681">dealloc</a> (eq)</td></tr>
 <tr class="memdesc:a4e366626e82273d3c255eb4cd2558681"><td class="mdescLeft">&#160;</td><td class="mdescRight">deallocate  <br /></td></tr>
+<tr class="memitem:aedad91753949ecd8739eef7106742db0" id="r_aedad91753949ecd8739eef7106742db0"><td class="memItemLeft">procedure&#160;</td><td class="memItemRight"><a class="el" href="#aedad91753949ecd8739eef7106742db0">dealloc_e</a> (eq)</td></tr>
+<tr class="memdesc:aedad91753949ecd8739eef7106742db0"><td class="mdescLeft">&#160;</td><td class="mdescRight">deallocate the quantities in E coordinates  <br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-attribs" class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
@@ -263,6 +265,33 @@ Public Attributes</h2></td></tr>
 </dl>
 
 <p class="definition">Definition at line <a class="el" href="eq__vars_8f90_source.html#l00152">152</a> of file <a class="el" href="eq__vars_8f90_source.html">eq_vars.f90</a>.</p>
+
+</div>
+</div>
+<a id="aedad91753949ecd8739eef7106742db0" name="aedad91753949ecd8739eef7106742db0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aedad91753949ecd8739eef7106742db0">&#9670;&#160;</a></span>dealloc_e()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">procedure eq_vars::eq_2_type::dealloc_e </td>
+          <td>(</td>
+          <td class="paramtype">class(<a class="el" href="structeq__vars_1_1eq__2__type.html">eq_2_type</a>), intent(inout)</td>          <td class="paramname"><span class="paramname"><em>eq</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>deallocate the quantities in E coordinates </p>
+<p>These are all metric quantities except <code>g_FD</code>, <code>h_FD</code>, <code>jac_FD</code>, <code>S</code>, <code>kappa_n</code>, <code>kappa_g</code> and <code>sigma</code>, which are the only ones the perturbation and solution drivers use. <a class="el" href="namespaceeq__vars.html#a50561f7dcd43970bd16a31cd87714c12" title="Deep copy of metric equilibrium variables.">copy_eq_2()</a> copies the E quantities only if <code>jac_E</code> is allocated. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">eq</td><td>equilibrium to be partly deallocated </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="eq__vars_8f90_source.html#l00154">154</a> of file <a class="el" href="eq__vars_8f90_source.html">eq_vars.f90</a>.</p>
 
 </div>
 </div>

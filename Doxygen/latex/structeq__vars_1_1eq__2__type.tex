@@ -13,7 +13,9 @@ procedure \doxymbox{\hyperlink{structeq__vars_1_1eq__2__type_ac237e18f0224379c2d
 procedure \doxymbox{\hyperlink{structeq__vars_1_1eq__2__type_ab4f12fd5bc41a5b3ae23e36f8f46f63f}{copy}} (eq\+\_\+i, grid\+\_\+i, eq\+\_\+o)
 \begin{DoxyCompactList}\small\item\em copy \end{DoxyCompactList}\item 
 procedure \doxymbox{\hyperlink{structeq__vars_1_1eq__2__type_a4e366626e82273d3c255eb4cd2558681}{dealloc}} (eq)
-\begin{DoxyCompactList}\small\item\em deallocate \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em deallocate \end{DoxyCompactList}\item 
+procedure \doxymbox{\hyperlink{structeq__vars_1_1eq__2__type_aedad91753949ecd8739eef7106742db0}{dealloc\+\_\+e}} (eq)
+\begin{DoxyCompactList}\small\item\em deallocate the quantities in E coordinates \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsubsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
@@ -146,6 +148,25 @@ deallocate
 
 
 Definition at line \doxymbox{\hyperlink{eq__vars_8f90_source_l00152}{152}} of file \doxymbox{\hyperlink{eq__vars_8f90_source}{eq\+\_\+vars.\+f90}}.
+
+\Hypertarget{structeq__vars_1_1eq__2__type_aedad91753949ecd8739eef7106742db0}\index{eq\_vars::eq\_2\_type@{eq\_vars::eq\_2\_type}!dealloc\_e@{dealloc\_e}}
+\index{dealloc\_e@{dealloc\_e}!eq\_vars::eq\_2\_type@{eq\_vars::eq\_2\_type}}
+\doxysubsubsection{\texorpdfstring{dealloc\_e()}{dealloc\_e()}}
+{\footnotesize\ttfamily \label{structeq__vars_1_1eq__2__type_aedad91753949ecd8739eef7106742db0} 
+procedure eq\+\_\+vars::\+eq\+\_\+2\+\_\+type::\+dealloc\+\_\+e (\begin{DoxyParamCaption}\item[{class(\doxymbox{\hyperlink{structeq__vars_1_1eq__2__type}{eq\+\_\+2\+\_\+type}}), intent(inout)}]{eq}{}\end{DoxyParamCaption})}
+
+
+
+deallocate the quantities in E coordinates 
+
+These are all metric quantities except {\ttfamily g\+\_\+\+FD}, {\ttfamily h\+\_\+\+FD}, {\ttfamily jac\+\_\+\+FD}, {\ttfamily S}, {\ttfamily kappa\+\_\+n}, {\ttfamily kappa\+\_\+g} and {\ttfamily sigma}, which are the only ones the perturbation and solution drivers use. \doxylink{namespaceeq__vars_a50561f7dcd43970bd16a31cd87714c12}{copy\+\_\+eq\+\_\+2()} copies the E quantities only if {\ttfamily jac\+\_\+E} is allocated. 
+\begin{DoxyParams}[1]{Parameters}
+\doxymbox{\texttt{in,out}}  & {\em eq} & equilibrium to be partly deallocated \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \doxymbox{\hyperlink{eq__vars_8f90_source_l00154}{154}} of file \doxymbox{\hyperlink{eq__vars_8f90_source}{eq\+\_\+vars.\+f90}}.
 
 \Hypertarget{structeq__vars_1_1eq__2__type_ac237e18f0224379c2d2cc188ae0d4dcd}\index{eq\_vars::eq\_2\_type@{eq\_vars::eq\_2\_type}!init@{init}}
 \index{init@{init}!eq\_vars::eq\_2\_type@{eq\_vars::eq\_2\_type}}

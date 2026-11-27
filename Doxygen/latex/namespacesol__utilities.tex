@@ -21,7 +21,9 @@ integer function, public \doxymbox{\hyperlink{namespacesol__utilities_a677373f47
 integer function, public \doxymbox{\hyperlink{namespacesol__utilities_a50a44a844f0db0040bba4c69de27c36b}{interp\+\_\+v\+\_\+spline}} (v\+\_\+i, v\+\_\+o, r\+\_\+i, r\+\_\+o, extrap)
 \begin{DoxyCompactList}\small\item\em Interpolation of a quantity V(i,j,r) in r, for every i and j, with the spline of order interp\+\_\+\+V\+\_\+ord. \end{DoxyCompactList}\item 
 integer function, public \doxymbox{\hyperlink{namespacesol__utilities_a657f31b9f795ec9b32000a72eeadcfbf}{interp\+\_\+v}} (mds\+\_\+i, grid\+\_\+i, x\+\_\+i, mds\+\_\+o, grid\+\_\+o, x\+\_\+o)
-\begin{DoxyCompactList}\small\item\em Interpolate tensorial perturbation quantities in the third dimension. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Interpolate tensorial perturbation quantities in the third dimension. \end{DoxyCompactList}\item 
+integer function, public \doxymbox{\hyperlink{namespacesol__utilities_a7f66070270d77d65cb26f5825402e728}{calc\+\_\+memory\+\_\+sol}} (arr\+\_\+size\+\_\+x, arr\+\_\+size\+\_\+sol, n\+\_\+bnd, mem\+\_\+size)
+\begin{DoxyCompactList}\small\item\em Calculate the memory that the solution driver needs. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsubsection*{Variables}
 \begin{DoxyCompactItemize}
 \item 
@@ -84,6 +86,60 @@ Here is the caller graph for this function:
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{namespacesol__utilities_a677373f47ee68ad02e9cef5b409bdc26_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{namespacesol__utilities_a7f66070270d77d65cb26f5825402e728}\index{sol\_utilities@{sol\_utilities}!calc\_memory\_sol@{calc\_memory\_sol}}
+\index{calc\_memory\_sol@{calc\_memory\_sol}!sol\_utilities@{sol\_utilities}}
+\doxysubsubsection{\texorpdfstring{calc\_memory\_sol()}{calc\_memory\_sol()}}
+{\footnotesize\ttfamily \label{namespacesol__utilities_a7f66070270d77d65cb26f5825402e728} 
+integer function, public sol\+\_\+utilities::\+calc\+\_\+memory\+\_\+sol (\begin{DoxyParamCaption}\item[{integer, intent(in)}]{arr\+\_\+size\+\_\+x}{, }\item[{integer, intent(in)}]{arr\+\_\+size\+\_\+sol}{, }\item[{integer, intent(in)}]{n\+\_\+bnd}{, }\item[{real(dp), intent(inout)}]{mem\+\_\+size}{}\end{DoxyParamCaption})}
+
+
+
+Calculate the memory that the solution driver needs. 
+
+This memory does not depend on the division in equilibrium jobs. With $X$ the integrated tensorial perturbation variables {\ttfamily X\+\_\+2\+\_\+int} on the perturbation grid, $X_\text{sol}$ these variables interpolated on the solution grid and $V$ one vacuum matrix of {\ttfamily n\+\_\+bnd} x {\ttfamily n\+\_\+bnd} real numbers, the steps of the solution driver hold:
+\begin{DoxyItemize}
+\item the vacuum: $X$, {\ttfamily G}, {\ttfamily H} and the copy of {\ttfamily H} that the LU factorization overwrites, so $X + 3V$,
+\item the redistribution: $X$, its copy, {\ttfamily G} and {\ttfamily H}, so $2X + 2V$,
+\item the interpolation: the copy of $X$, $X_\text{sol}$, {\ttfamily G} and {\ttfamily H}, so $X + X_\text{sol} + 2V$.
+\end{DoxyItemize}
+
+The result is the largest of these,  $X + 2V + \max(V, X,
+        X_\text{sol})$, with the same 50\% safety factor as calc\+\_\+memory\+\_\+eq() and calc\+\_\+memory\+\_\+\+X(). The vacuum matrices stay allocated during the solution of the eigenvalue problem, as the next Richardson level reuses them.
+
+\begin{DoxyReturn}{Returns}
+ierr 
+\end{DoxyReturn}
+
+\begin{DoxyParams}[1]{Parameters}
+\doxymbox{\texttt{in}}  & {\em arr\+\_\+size\+\_\+x} & number of normal points times field lines of the perturbation grid \\
+\hline
+\doxymbox{\texttt{in}}  & {\em arr\+\_\+size\+\_\+sol} & number of normal points times field lines of the solution grid \\
+\hline
+\doxymbox{\texttt{in}}  & {\em n\+\_\+bnd} & number of points on the plasma boundary (0 without vacuum) \\
+\hline
+\doxymbox{\texttt{in,out}}  & {\em mem\+\_\+size} & total size \+[MB] \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \doxymbox{\hyperlink{sol__utilities_8f90_source_l01155}{1155}} of file \doxymbox{\hyperlink{sol__utilities_8f90_source}{sol\+\_\+utilities.\+f90}}.
+
+Here is the call graph for this function:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespacesol__utilities_a7f66070270d77d65cb26f5825402e728_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespacesol__utilities_a7f66070270d77d65cb26f5825402e728_icgraph}
 \end{center}
 \end{figure}
 \Hypertarget{namespacesol__utilities_a8b902a82ae6a238e725da2cf09e7854f}\index{sol\_utilities@{sol\_utilities}!calc\_tot\_sol\_vec@{calc\_tot\_sol\_vec}}

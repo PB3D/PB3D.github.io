@@ -31,7 +31,7 @@ MathJax.Hub.Config({
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">PB3D<span id="projectnumber">&#160;[2.56]</span>
+   <div id="projectname">PB3D<span id="projectnumber">&#160;[2.57]</span>
    </div>
    <div id="projectbrief">Ideal linear high-n MHD stability in 3-D</div>
   </td>
@@ -122,6 +122,8 @@ Interfaces and Types</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-func-members" class="groupheader"><a id="func-members" name="func-members"></a>
 Functions/Subroutines</h2></td></tr>
+<tr class="memitem:ad1ecd33327d11c2dc7c5e96eb11f970c" id="r_ad1ecd33327d11c2dc7c5e96eb11f970c"><td class="memItemLeft">integer function, public&#160;</td><td class="memItemRight"><a class="el" href="#ad1ecd33327d11c2dc7c5e96eb11f970c">calc_mem_procs</a> (mem_procs, mem_meas)</td></tr>
+<tr class="memdesc:ad1ecd33327d11c2dc7c5e96eb11f970c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Memory that all processes together hold before the work starts [MB].  <br /></td></tr>
 <tr class="memitem:a128702990bd5fddc582e8fabcffc82b2" id="r_a128702990bd5fddc582e8fabcffc82b2"><td class="memItemLeft">integer function, public&#160;</td><td class="memItemRight"><a class="el" href="#a128702990bd5fddc582e8fabcffc82b2">redistribute_var</a> (var, dis_var, lims, lims_dis)</td></tr>
 <tr class="memdesc:a128702990bd5fddc582e8fabcffc82b2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Redistribute variables according to new limits.  <br /></td></tr>
 <tr class="memitem:a790ea24d32dd0e249541c1e57cd85536" id="r_a790ea24d32dd0e249541c1e57cd85536"><td class="memItemLeft">integer function, public&#160;</td><td class="memItemRight"><a class="el" href="#a790ea24d32dd0e249541c1e57cd85536">wait_mpi</a> ()</td></tr>
@@ -149,6 +151,48 @@ Variables</h2></td></tr>
 <p>The reason for this was the fact that using a simple lock file can lead to crashes.</p>
 <dl class="section note"><dt>Note</dt><dd>A downside of this method is that in some rare cases a deadlock may occur as the master process, which contains the shared variable with a window that other processes may use, is idle and waiting, whereas the others are still performing lock options. As the master is idle and waiting, its MPI asynchronous communication is not performed. To remedy this, just call wait_MPI() after procedures where lock operations are performed. </dd></dl>
 </div><a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Function/Subroutine Documentation</h2>
+<a id="ad1ecd33327d11c2dc7c5e96eb11f970c" name="ad1ecd33327d11c2dc7c5e96eb11f970c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad1ecd33327d11c2dc7c5e96eb11f970c">&#9670;&#160;</a></span>calc_mem_procs()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">integer function, public mpi_utilities::calc_mem_procs </td>
+          <td>(</td>
+          <td class="paramtype">real(dp), intent(inout)</td>          <td class="paramname"><span class="paramname"><em>mem_procs</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">real(dp), intent(inout)</td>          <td class="paramname"><span class="paramname"><em>mem_meas</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Memory that all processes together hold before the work starts [MB]. </p>
+<p>Every process takes the largest resident size it has had so far from getrusage(), and the processes add their values. Called after the equilibrium has been read and before the equilibrium jobs start, this is the memory of the program itself, MPI, the libraries and the input, which calc_memory_eq(), calc_memory_x() and calc_memory_sol() do not contain. It is private to every process: a PB3D process holds about 200 MB without input and 275 to 330 MB after reading an equilibrium (Snellius, foss/2025a), of which shared library pages are about 5 %.</p>
+<p>The result is this sum times the same 50% safety factor as in calc_memory_eq(), calc_memory_x() and calc_memory_sol(). The factor also covers the memory that PETSc, SLEPc and MPI take later in the run: on Snellius a process grows from about 300 MB at the start to about 380 MB in a W7-X run on four processes. <code>mem_meas</code> returns the sum itself.</p>
+<dl class="section note"><dt>Note</dt><dd><code>ru_maxrss</code> is given in kB on Linux and in bytes on macOS.</dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>ierr </dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">mem_procs</td><td>memory of all processes together, times 1.5 [MB] </td></tr>
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">mem_meas</td><td>memory of all processes together, as measured [MB] </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="MPI__utilities_8f90_source.html#l00105">105</a> of file <a class="el" href="MPI__utilities_8f90_source.html">MPI_utilities.f90</a>.</p>
+<div id="dynsection-0" class="dynheader closed"><span class="dynarrow"><span class="arrowhead closed"></span></span>Here is the caller graph for this function:</div>
+<div id="dynsection-0-summary" class="dynsummary">
+</div>
+<div id="dynsection-0-content" class="dyncontent hidden">
+<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="namespacempi__utilities_ad1ecd33327d11c2dc7c5e96eb11f970c_icgraph.svg" width="611" height="91"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+
+</div>
+</div>
 <a id="abe5bf3ae3b6a06eda18c2f4d62ac09c5" name="abe5bf3ae3b6a06eda18c2f4d62ac09c5"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#abe5bf3ae3b6a06eda18c2f4d62ac09c5">&#9670;&#160;</a></span>lock_header()</h2>
 
@@ -173,17 +217,17 @@ Variables</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="MPI__utilities_8f90_source.html#l01058">1058</a> of file <a class="el" href="MPI__utilities_8f90_source.html">MPI_utilities.f90</a>.</p>
-<div id="dynsection-0" class="dynheader closed"><span class="dynarrow"><span class="arrowhead closed"></span></span>Here is the call graph for this function:</div>
-<div id="dynsection-0-summary" class="dynsummary">
-</div>
-<div id="dynsection-0-content" class="dyncontent hidden">
-<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="namespacempi__utilities_abe5bf3ae3b6a06eda18c2f4d62ac09c5_cgraph.svg" width="422" height="139"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
-</div>
-<div id="dynsection-1" class="dynheader closed"><span class="dynarrow"><span class="arrowhead closed"></span></span>Here is the caller graph for this function:</div>
+<p class="definition">Definition at line <a class="el" href="MPI__utilities_8f90_source.html#l01124">1124</a> of file <a class="el" href="MPI__utilities_8f90_source.html">MPI_utilities.f90</a>.</p>
+<div id="dynsection-1" class="dynheader closed"><span class="dynarrow"><span class="arrowhead closed"></span></span>Here is the call graph for this function:</div>
 <div id="dynsection-1-summary" class="dynsummary">
 </div>
 <div id="dynsection-1-content" class="dyncontent hidden">
+<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="namespacempi__utilities_abe5bf3ae3b6a06eda18c2f4d62ac09c5_cgraph.svg" width="422" height="139"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+<div id="dynsection-2" class="dynheader closed"><span class="dynarrow"><span class="arrowhead closed"></span></span>Here is the caller graph for this function:</div>
+<div id="dynsection-2-summary" class="dynsummary">
+</div>
+<div id="dynsection-2-content" class="dyncontent hidden">
 <div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="namespacempi__utilities_abe5bf3ae3b6a06eda18c2f4d62ac09c5_icgraph.svg" width="2171" height="1455"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
@@ -212,17 +256,17 @@ Variables</h2></td></tr>
 <dl class="section note"><dt>Note</dt><dd>Based on <a class="el" href="citelist.html#CITEREF_rossatomicio">[11]</a>.</dd></dl>
 <dl class="section return"><dt>Returns</dt><dd>ierr </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="MPI__utilities_8f90_source.html#l00604">604</a> of file <a class="el" href="MPI__utilities_8f90_source.html">MPI_utilities.f90</a>.</p>
-<div id="dynsection-2" class="dynheader closed"><span class="dynarrow"><span class="arrowhead closed"></span></span>Here is the call graph for this function:</div>
-<div id="dynsection-2-summary" class="dynsummary">
-</div>
-<div id="dynsection-2-content" class="dyncontent hidden">
-<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="namespacempi__utilities_a5a789d05be41d6109c01f46cc98620c8_cgraph.svg" width="880" height="184"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
-</div>
-<div id="dynsection-3" class="dynheader closed"><span class="dynarrow"><span class="arrowhead closed"></span></span>Here is the caller graph for this function:</div>
+<p class="definition">Definition at line <a class="el" href="MPI__utilities_8f90_source.html#l00670">670</a> of file <a class="el" href="MPI__utilities_8f90_source.html">MPI_utilities.f90</a>.</p>
+<div id="dynsection-3" class="dynheader closed"><span class="dynarrow"><span class="arrowhead closed"></span></span>Here is the call graph for this function:</div>
 <div id="dynsection-3-summary" class="dynsummary">
 </div>
 <div id="dynsection-3-content" class="dyncontent hidden">
+<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="namespacempi__utilities_a5a789d05be41d6109c01f46cc98620c8_cgraph.svg" width="880" height="184"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+<div id="dynsection-4" class="dynheader closed"><span class="dynarrow"><span class="arrowhead closed"></span></span>Here is the caller graph for this function:</div>
+<div id="dynsection-4-summary" class="dynsummary">
+</div>
+<div id="dynsection-4-content" class="dyncontent hidden">
 <div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="namespacempi__utilities_a5a789d05be41d6109c01f46cc98620c8_icgraph.svg" width="1728" height="1259"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
@@ -248,17 +292,17 @@ Variables</h2></td></tr>
 <dl class="section note"><dt>Note</dt><dd>Based on <a class="el" href="citelist.html#CITEREF_rossatomicio">[11]</a>.</dd></dl>
 <dl class="section return"><dt>Returns</dt><dd>ierr </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="MPI__utilities_8f90_source.html#l00711">711</a> of file <a class="el" href="MPI__utilities_8f90_source.html">MPI_utilities.f90</a>.</p>
-<div id="dynsection-4" class="dynheader closed"><span class="dynarrow"><span class="arrowhead closed"></span></span>Here is the call graph for this function:</div>
-<div id="dynsection-4-summary" class="dynsummary">
-</div>
-<div id="dynsection-4-content" class="dyncontent hidden">
-<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="namespacempi__utilities_a86f9982a0f92b51a916f832d9a3d8ba9_cgraph.svg" width="880" height="184"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
-</div>
-<div id="dynsection-5" class="dynheader closed"><span class="dynarrow"><span class="arrowhead closed"></span></span>Here is the caller graph for this function:</div>
+<p class="definition">Definition at line <a class="el" href="MPI__utilities_8f90_source.html#l00777">777</a> of file <a class="el" href="MPI__utilities_8f90_source.html">MPI_utilities.f90</a>.</p>
+<div id="dynsection-5" class="dynheader closed"><span class="dynarrow"><span class="arrowhead closed"></span></span>Here is the call graph for this function:</div>
 <div id="dynsection-5-summary" class="dynsummary">
 </div>
 <div id="dynsection-5-content" class="dyncontent hidden">
+<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="namespacempi__utilities_a86f9982a0f92b51a916f832d9a3d8ba9_cgraph.svg" width="880" height="184"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+<div id="dynsection-6" class="dynheader closed"><span class="dynarrow"><span class="arrowhead closed"></span></span>Here is the caller graph for this function:</div>
+<div id="dynsection-6-summary" class="dynsummary">
+</div>
+<div id="dynsection-6-content" class="dyncontent hidden">
 <div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="namespacempi__utilities_a86f9982a0f92b51a916f832d9a3d8ba9_icgraph.svg" width="1728" height="1259"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
@@ -321,17 +365,17 @@ Debug version only</dd></dl>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="MPI__utilities_8f90_source.html#l00951">951</a> of file <a class="el" href="MPI__utilities_8f90_source.html">MPI_utilities.f90</a>.</p>
-<div id="dynsection-6" class="dynheader closed"><span class="dynarrow"><span class="arrowhead closed"></span></span>Here is the call graph for this function:</div>
-<div id="dynsection-6-summary" class="dynsummary">
-</div>
-<div id="dynsection-6-content" class="dyncontent hidden">
-<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="namespacempi__utilities_a3b0349e5ec825e14083e3126c3e7ba65_cgraph.svg" width="659" height="184"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
-</div>
-<div id="dynsection-7" class="dynheader closed"><span class="dynarrow"><span class="arrowhead closed"></span></span>Here is the caller graph for this function:</div>
+<p class="definition">Definition at line <a class="el" href="MPI__utilities_8f90_source.html#l01017">1017</a> of file <a class="el" href="MPI__utilities_8f90_source.html">MPI_utilities.f90</a>.</p>
+<div id="dynsection-7" class="dynheader closed"><span class="dynarrow"><span class="arrowhead closed"></span></span>Here is the call graph for this function:</div>
 <div id="dynsection-7-summary" class="dynsummary">
 </div>
 <div id="dynsection-7-content" class="dyncontent hidden">
+<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="namespacempi__utilities_a3b0349e5ec825e14083e3126c3e7ba65_cgraph.svg" width="659" height="184"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+<div id="dynsection-8" class="dynheader closed"><span class="dynarrow"><span class="arrowhead closed"></span></span>Here is the caller graph for this function:</div>
+<div id="dynsection-8-summary" class="dynsummary">
+</div>
+<div id="dynsection-8-content" class="dyncontent hidden">
 <div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="namespacempi__utilities_a3b0349e5ec825e14083e3126c3e7ba65_icgraph.svg" width="1950" height="1396"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
@@ -377,11 +421,11 @@ Debug version only</dd></dl>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="MPI__utilities_8f90_source.html#l00309">309</a> of file <a class="el" href="MPI__utilities_8f90_source.html">MPI_utilities.f90</a>.</p>
-<div id="dynsection-8" class="dynheader closed"><span class="dynarrow"><span class="arrowhead closed"></span></span>Here is the caller graph for this function:</div>
-<div id="dynsection-8-summary" class="dynsummary">
+<p class="definition">Definition at line <a class="el" href="MPI__utilities_8f90_source.html#l00375">375</a> of file <a class="el" href="MPI__utilities_8f90_source.html">MPI_utilities.f90</a>.</p>
+<div id="dynsection-9" class="dynheader closed"><span class="dynarrow"><span class="arrowhead closed"></span></span>Here is the caller graph for this function:</div>
+<div id="dynsection-9-summary" class="dynsummary">
 </div>
-<div id="dynsection-8-content" class="dyncontent hidden">
+<div id="dynsection-9-content" class="dyncontent hidden">
 <div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="namespacempi__utilities_a128702990bd5fddc582e8fabcffc82b2_icgraph.svg" width="984" height="398"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
@@ -402,11 +446,11 @@ Debug version only</dd></dl>
 <p>Wait for all processes, wrapper to MPI barrier. </p>
 <dl class="section return"><dt>Returns</dt><dd>ierr </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="MPI__utilities_8f90_source.html#l00583">583</a> of file <a class="el" href="MPI__utilities_8f90_source.html">MPI_utilities.f90</a>.</p>
-<div id="dynsection-9" class="dynheader closed"><span class="dynarrow"><span class="arrowhead closed"></span></span>Here is the caller graph for this function:</div>
-<div id="dynsection-9-summary" class="dynsummary">
+<p class="definition">Definition at line <a class="el" href="MPI__utilities_8f90_source.html#l00649">649</a> of file <a class="el" href="MPI__utilities_8f90_source.html">MPI_utilities.f90</a>.</p>
+<div id="dynsection-10" class="dynheader closed"><span class="dynarrow"><span class="arrowhead closed"></span></span>Here is the caller graph for this function:</div>
+<div id="dynsection-10-summary" class="dynsummary">
 </div>
-<div id="dynsection-9-content" class="dyncontent hidden">
+<div id="dynsection-10-content" class="dyncontent hidden">
 <div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="namespacempi__utilities_a790ea24d32dd0e249541c1e57cd85536_icgraph.svg" width="1688" height="523"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 

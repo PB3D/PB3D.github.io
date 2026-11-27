@@ -68,7 +68,7 @@ For X\+\_\+style 2 (solution) or 3 (optimized), at the end of the equilibrium ph
 \end{DoxyParams}
 
 
-Definition at line \doxymbox{\hyperlink{grid__ops_8f90_source_l00246}{246}} of file \doxymbox{\hyperlink{grid__ops_8f90_source}{grid\+\_\+ops.\+f90}}.
+Definition at line \doxymbox{\hyperlink{grid__ops_8f90_source_l00226}{226}} of file \doxymbox{\hyperlink{grid__ops_8f90_source}{grid\+\_\+ops.\+f90}}.
 
 Here is the caller graph for this function:
 \nopagebreak
@@ -90,6 +90,8 @@ PB3D input version.
 
 The normal range is calculated by finding the tightest range of the input variables encompassing the entire solution range. Additionally, the global max\+\_\+flux variables are set as well..
 
+The range runs from the last equilibrium point at or below the first point of the solution grid to the first equilibrium point at or above its last point. The equilibrium points are compared as the normal coordinate flux\+\_\+\+F/\+2pi that calc\+\_\+eq\+\_\+1() gives the equilibrium grid, and the solution grid as calc\+\_\+r\+\_\+\+F\+\_\+sol() sets it up, so that no point of the solution grid lies outside the equilibrium grid, not even by rounding.
+
 \begin{DoxyNote}{Note}
 This is the global, undivided range. The division information is calculated in \textquotesingle{}eq\+\_\+limits\textquotesingle{}. Furthermore, the input variables have to be tabulated on the full grid provided by the equilibrium code to be able to be used in PB3D and POST. 
 \end{DoxyNote}
@@ -100,7 +102,7 @@ This is the global, undivided range. The division information is calculated in \
 \end{DoxyParams}
 
 
-Definition at line \doxymbox{\hyperlink{grid__ops_8f90_source_l00135}{135}} of file \doxymbox{\hyperlink{grid__ops_8f90_source}{grid\+\_\+ops.\+f90}}.
+Definition at line \doxymbox{\hyperlink{grid__ops_8f90_source_l00143}{143}} of file \doxymbox{\hyperlink{grid__ops_8f90_source}{grid\+\_\+ops.\+f90}}.
 
 Here is the caller graph for this function:
 \nopagebreak
@@ -129,7 +131,7 @@ The normal range is determined by simply dividing the solution range, a ghost ra
 \end{DoxyParams}
 
 
-Definition at line \doxymbox{\hyperlink{grid__ops_8f90_source_l00384}{384}} of file \doxymbox{\hyperlink{grid__ops_8f90_source}{grid\+\_\+ops.\+f90}}.
+Definition at line \doxymbox{\hyperlink{grid__ops_8f90_source_l00364}{364}} of file \doxymbox{\hyperlink{grid__ops_8f90_source}{grid\+\_\+ops.\+f90}}.
 
 Here is the caller graph for this function:
 \nopagebreak
@@ -169,7 +171,7 @@ The normal range is determined according to X\+\_\+grid style:
 
 \end{DoxyEnumerate}
 
-Definition at line \doxymbox{\hyperlink{grid__ops_8f90_source_l00284}{284}} of file \doxymbox{\hyperlink{grid__ops_8f90_source}{grid\+\_\+ops.\+f90}}.
+Definition at line \doxymbox{\hyperlink{grid__ops_8f90_source_l00264}{264}} of file \doxymbox{\hyperlink{grid__ops_8f90_source}{grid\+\_\+ops.\+f90}}.
 
 Here is the call graph for this function:
 \nopagebreak
@@ -216,7 +218,7 @@ POST interpolates the equilibrium and perturbation quantities to the solution gr
 \end{DoxyParams}
 
 
-Definition at line \doxymbox{\hyperlink{grid__ops_8f90_source_l00452}{452}} of file \doxymbox{\hyperlink{grid__ops_8f90_source}{grid\+\_\+ops.\+f90}}.
+Definition at line \doxymbox{\hyperlink{grid__ops_8f90_source_l00455}{455}} of file \doxymbox{\hyperlink{grid__ops_8f90_source}{grid\+\_\+ops.\+f90}}.
 
 Here is the call graph for this function:
 \nopagebreak
