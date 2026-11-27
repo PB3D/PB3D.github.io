@@ -31,7 +31,7 @@ MathJax.Hub.Config({
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">PB3D<span id="projectnumber">&#160;[2.56]</span>
+   <div id="projectname">PB3D<span id="projectnumber">&#160;[2.57]</span>
    </div>
    <div id="projectbrief">Ideal linear high-n MHD stability in 3-D</div>
   </td>
@@ -132,6 +132,8 @@ Functions/Subroutines</h2></td></tr>
 <tr class="memdesc:a50561f7dcd43970bd16a31cd87714c12"><td class="mdescLeft">&#160;</td><td class="mdescRight">Deep copy of metric equilibrium variables.  <br /></td></tr>
 <tr class="memitem:ab106dc007ddc896092d0464233b3ce12" id="r_ab106dc007ddc896092d0464233b3ce12"><td class="memItemLeft">subroutine&#160;</td><td class="memItemRight"><a class="el" href="#ab106dc007ddc896092d0464233b3ce12">dealloc_eq_1</a> (eq)</td></tr>
 <tr class="memdesc:ab106dc007ddc896092d0464233b3ce12"><td class="mdescLeft">&#160;</td><td class="mdescRight">Deallocates flux equilibrium quantities.  <br /></td></tr>
+<tr class="memitem:a0487932b3d55ec43f98e866519f4e331" id="r_a0487932b3d55ec43f98e866519f4e331"><td class="memItemLeft">subroutine&#160;</td><td class="memItemRight"><a class="el" href="#a0487932b3d55ec43f98e866519f4e331">dealloc_eq_2_e</a> (eq)</td></tr>
+<tr class="memdesc:a0487932b3d55ec43f98e866519f4e331"><td class="mdescLeft">&#160;</td><td class="mdescRight">Deallocates the metric equilibrium quantities in E coordinates.  <br /></td></tr>
 <tr class="memitem:a206698a627df7d8285921ee4a9f75c11" id="r_a206698a627df7d8285921ee4a9f75c11"><td class="memItemLeft">subroutine&#160;</td><td class="memItemRight"><a class="el" href="#a206698a627df7d8285921ee4a9f75c11">dealloc_eq_2</a> (eq)</td></tr>
 <tr class="memdesc:a206698a627df7d8285921ee4a9f75c11"><td class="mdescLeft">&#160;</td><td class="mdescRight">Deallocates metric equilibrium quantities.  <br /></td></tr>
 </table><table class="memberdecls">
@@ -216,7 +218,7 @@ In many places in the code a range in the normal coordinate is selected for each
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="eq__vars_8f90_source.html#l00438">438</a> of file <a class="el" href="eq__vars_8f90_source.html">eq_vars.f90</a>.</p>
+<p class="definition">Definition at line <a class="el" href="eq__vars_8f90_source.html#l00440">440</a> of file <a class="el" href="eq__vars_8f90_source.html">eq_vars.f90</a>.</p>
 
 </div>
 </div>
@@ -255,7 +257,7 @@ In many places in the code a range in the normal coordinate is selected for each
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="eq__vars_8f90_source.html#l00476">476</a> of file <a class="el" href="eq__vars_8f90_source.html">eq_vars.f90</a>.</p>
+<p class="definition">Definition at line <a class="el" href="eq__vars_8f90_source.html#l00478">478</a> of file <a class="el" href="eq__vars_8f90_source.html">eq_vars.f90</a>.</p>
 
 </div>
 </div>
@@ -282,7 +284,7 @@ In many places in the code a range in the normal coordinate is selected for each
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="eq__vars_8f90_source.html#l00530">530</a> of file <a class="el" href="eq__vars_8f90_source.html">eq_vars.f90</a>.</p>
+<p class="definition">Definition at line <a class="el" href="eq__vars_8f90_source.html#l00532">532</a> of file <a class="el" href="eq__vars_8f90_source.html">eq_vars.f90</a>.</p>
 <div id="dynsection-0" class="dynheader closed"><span class="dynarrow"><span class="arrowhead closed"></span></span>Here is the call graph for this function:</div>
 <div id="dynsection-0-summary" class="dynsummary">
 </div>
@@ -315,13 +317,40 @@ In many places in the code a range in the normal coordinate is selected for each
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="eq__vars_8f90_source.html#l00577">577</a> of file <a class="el" href="eq__vars_8f90_source.html">eq_vars.f90</a>.</p>
+<p class="definition">Definition at line <a class="el" href="eq__vars_8f90_source.html#l00609">609</a> of file <a class="el" href="eq__vars_8f90_source.html">eq_vars.f90</a>.</p>
 <div id="dynsection-1" class="dynheader closed"><span class="dynarrow"><span class="arrowhead closed"></span></span>Here is the call graph for this function:</div>
 <div id="dynsection-1-summary" class="dynsummary">
 </div>
 <div id="dynsection-1-content" class="dyncontent hidden">
 <div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="namespaceeq__vars_a206698a627df7d8285921ee4a9f75c11_cgraph.svg" width="643" height="122"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
+
+</div>
+</div>
+<a id="a0487932b3d55ec43f98e866519f4e331" name="a0487932b3d55ec43f98e866519f4e331"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0487932b3d55ec43f98e866519f4e331">&#9670;&#160;</a></span>dealloc_eq_2_e()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">subroutine eq_vars::dealloc_eq_2_e </td>
+          <td>(</td>
+          <td class="paramtype">class(<a class="el" href="structeq__vars_1_1eq__2__type.html">eq_2_type</a>), intent(inout)</td>          <td class="paramname"><span class="paramname"><em>eq</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Deallocates the metric equilibrium quantities in E coordinates. </p>
+<p>These are all metric quantities except <code>g_FD</code>, <code>h_FD</code>, <code>jac_FD</code>, <code>S</code>, <code>kappa_n</code>, <code>kappa_g</code> and <code>sigma</code>, which are the only ones the perturbation and solution drivers use. <a class="el" href="#a50561f7dcd43970bd16a31cd87714c12" title="Deep copy of metric equilibrium variables.">copy_eq_2()</a> copies the E quantities only if <code>jac_E</code> is allocated. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">eq</td><td>equilibrium to be partly deallocated </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="eq__vars_8f90_source.html#l00584">584</a> of file <a class="el" href="eq__vars_8f90_source.html">eq_vars.f90</a>.</p>
 
 </div>
 </div>
@@ -372,7 +401,7 @@ In many places in the code a range in the normal coordinate is selected for each
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="eq__vars_8f90_source.html#l00173">173</a> of file <a class="el" href="eq__vars_8f90_source.html">eq_vars.f90</a>.</p>
+<p class="definition">Definition at line <a class="el" href="eq__vars_8f90_source.html#l00175">175</a> of file <a class="el" href="eq__vars_8f90_source.html">eq_vars.f90</a>.</p>
 <div id="dynsection-2" class="dynheader closed"><span class="dynarrow"><span class="arrowhead closed"></span></span>Here is the call graph for this function:</div>
 <div id="dynsection-2-summary" class="dynsummary">
 </div>
@@ -424,7 +453,7 @@ In many places in the code a range in the normal coordinate is selected for each
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="eq__vars_8f90_source.html#l00272">272</a> of file <a class="el" href="eq__vars_8f90_source.html">eq_vars.f90</a>.</p>
+<p class="definition">Definition at line <a class="el" href="eq__vars_8f90_source.html#l00274">274</a> of file <a class="el" href="eq__vars_8f90_source.html">eq_vars.f90</a>.</p>
 <div id="dynsection-3" class="dynheader closed"><span class="dynarrow"><span class="arrowhead closed"></span></span>Here is the call graph for this function:</div>
 <div id="dynsection-3-summary" class="dynsummary">
 </div>

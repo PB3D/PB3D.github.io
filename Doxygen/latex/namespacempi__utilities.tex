@@ -15,6 +15,8 @@ interface \doxymbox{\hyperlink{interfacempi__utilities_1_1broadcast__var}{broadc
 \doxysubsubsection*{Functions/\+\+Subroutines}
 \begin{DoxyCompactItemize}
 \item 
+integer function, public \doxymbox{\hyperlink{namespacempi__utilities_ad1ecd33327d11c2dc7c5e96eb11f970c}{calc\+\_\+mem\+\_\+procs}} (mem\+\_\+procs, mem\+\_\+meas)
+\begin{DoxyCompactList}\small\item\em Memory that all processes together hold before the work starts \+[MB]. \end{DoxyCompactList}\item 
 integer function, public \doxymbox{\hyperlink{namespacempi__utilities_a128702990bd5fddc582e8fabcffc82b2}{redistribute\+\_\+var}} (var, dis\+\_\+var, lims, lims\+\_\+dis)
 \begin{DoxyCompactList}\small\item\em Redistribute variables according to new limits. \end{DoxyCompactList}\item 
 integer function, public \doxymbox{\hyperlink{namespacempi__utilities_a790ea24d32dd0e249541c1e57cd85536}{wait\+\_\+mpi}} ()
@@ -54,6 +56,45 @@ A downside of this method is that in some rare cases a deadlock may occur as the
 \label{namespacempi__utilities_doc-func-members}
 \Hypertarget{namespacempi__utilities_doc-func-members}
 \doxysubsection{Function/\+\+Subroutine Documentation}
+\Hypertarget{namespacempi__utilities_ad1ecd33327d11c2dc7c5e96eb11f970c}\index{mpi\_utilities@{mpi\_utilities}!calc\_mem\_procs@{calc\_mem\_procs}}
+\index{calc\_mem\_procs@{calc\_mem\_procs}!mpi\_utilities@{mpi\_utilities}}
+\doxysubsubsection{\texorpdfstring{calc\_mem\_procs()}{calc\_mem\_procs()}}
+{\footnotesize\ttfamily \label{namespacempi__utilities_ad1ecd33327d11c2dc7c5e96eb11f970c} 
+integer function, public mpi\+\_\+utilities::\+calc\+\_\+mem\+\_\+procs (\begin{DoxyParamCaption}\item[{real(dp), intent(inout)}]{mem\+\_\+procs}{, }\item[{real(dp), intent(inout)}]{mem\+\_\+meas}{}\end{DoxyParamCaption})}
+
+
+
+Memory that all processes together hold before the work starts \+[MB]. 
+
+Every process takes the largest resident size it has had so far from getrusage(), and the processes add their values. Called after the equilibrium has been read and before the equilibrium jobs start, this is the memory of the program itself, MPI, the libraries and the input, which calc\+\_\+memory\+\_\+eq(), calc\+\_\+memory\+\_\+x() and calc\+\_\+memory\+\_\+sol() do not contain. It is private to every process: a PB3D process holds about 200 MB without input and 275 to 330 MB after reading an equilibrium (Snellius, foss/\+2025a), of which shared library pages are about 5 \%.
+
+The result is this sum times the same 50\% safety factor as in calc\+\_\+memory\+\_\+eq(), calc\+\_\+memory\+\_\+x() and calc\+\_\+memory\+\_\+sol(). The factor also covers the memory that PETSc, SLEPc and MPI take later in the run: on Snellius a process grows from about 300 MB at the start to about 380 MB in a W7-\/X run on four processes. {\ttfamily mem\+\_\+meas} returns the sum itself.
+
+\begin{DoxyNote}{Note}
+{\ttfamily ru\+\_\+maxrss} is given in kB on Linux and in bytes on mac\+OS.
+\end{DoxyNote}
+\begin{DoxyReturn}{Returns}
+ierr 
+\end{DoxyReturn}
+
+\begin{DoxyParams}[1]{Parameters}
+\doxymbox{\texttt{in,out}}  & {\em mem\+\_\+procs} & memory of all processes together, times 1.\+5 \+[MB] \\
+\hline
+\doxymbox{\texttt{in,out}}  & {\em mem\+\_\+meas} & memory of all processes together, as measured \+[MB] \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \doxymbox{\hyperlink{MPI__utilities_8f90_source_l00105}{105}} of file \doxymbox{\hyperlink{MPI__utilities_8f90_source}{MPI\+\_\+utilities.\+f90}}.
+
+Here is the caller graph for this function:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespacempi__utilities_ad1ecd33327d11c2dc7c5e96eb11f970c_icgraph}
+\end{center}
+\end{figure}
 \Hypertarget{namespacempi__utilities_abe5bf3ae3b6a06eda18c2f4d62ac09c5}\index{mpi\_utilities@{mpi\_utilities}!lock\_header@{lock\_header}}
 \index{lock\_header@{lock\_header}!mpi\_utilities@{mpi\_utilities}}
 \doxysubsubsection{\texorpdfstring{lock\_header()}{lock\_header()}}
@@ -74,7 +115,7 @@ Debug version only
 \end{DoxyParams}
 
 
-Definition at line \doxymbox{\hyperlink{MPI__utilities_8f90_source_l01058}{1058}} of file \doxymbox{\hyperlink{MPI__utilities_8f90_source}{MPI\+\_\+utilities.\+f90}}.
+Definition at line \doxymbox{\hyperlink{MPI__utilities_8f90_source_l01124}{1124}} of file \doxymbox{\hyperlink{MPI__utilities_8f90_source}{MPI\+\_\+utilities.\+f90}}.
 
 Here is the call graph for this function:
 \nopagebreak
@@ -110,7 +151,7 @@ ierr
 \end{DoxyReturn}
 
 
-Definition at line \doxymbox{\hyperlink{MPI__utilities_8f90_source_l00604}{604}} of file \doxymbox{\hyperlink{MPI__utilities_8f90_source}{MPI\+\_\+utilities.\+f90}}.
+Definition at line \doxymbox{\hyperlink{MPI__utilities_8f90_source_l00670}{670}} of file \doxymbox{\hyperlink{MPI__utilities_8f90_source}{MPI\+\_\+utilities.\+f90}}.
 
 Here is the call graph for this function:
 \nopagebreak
@@ -148,7 +189,7 @@ ierr
 \end{DoxyReturn}
 
 
-Definition at line \doxymbox{\hyperlink{MPI__utilities_8f90_source_l00711}{711}} of file \doxymbox{\hyperlink{MPI__utilities_8f90_source}{MPI\+\_\+utilities.\+f90}}.
+Definition at line \doxymbox{\hyperlink{MPI__utilities_8f90_source_l00777}{777}} of file \doxymbox{\hyperlink{MPI__utilities_8f90_source}{MPI\+\_\+utilities.\+f90}}.
 
 Here is the call graph for this function:
 \nopagebreak
@@ -210,7 +251,7 @@ ierr
 \end{DoxyParams}
 
 
-Definition at line \doxymbox{\hyperlink{MPI__utilities_8f90_source_l00951}{951}} of file \doxymbox{\hyperlink{MPI__utilities_8f90_source}{MPI\+\_\+utilities.\+f90}}.
+Definition at line \doxymbox{\hyperlink{MPI__utilities_8f90_source_l01017}{1017}} of file \doxymbox{\hyperlink{MPI__utilities_8f90_source}{MPI\+\_\+utilities.\+f90}}.
 
 Here is the call graph for this function:
 \nopagebreak
@@ -251,7 +292,7 @@ Redistribute variables according to new limits.
 \end{DoxyParams}
 
 
-Definition at line \doxymbox{\hyperlink{MPI__utilities_8f90_source_l00309}{309}} of file \doxymbox{\hyperlink{MPI__utilities_8f90_source}{MPI\+\_\+utilities.\+f90}}.
+Definition at line \doxymbox{\hyperlink{MPI__utilities_8f90_source_l00375}{375}} of file \doxymbox{\hyperlink{MPI__utilities_8f90_source}{MPI\+\_\+utilities.\+f90}}.
 
 Here is the caller graph for this function:
 \nopagebreak
@@ -276,7 +317,7 @@ ierr
 \end{DoxyReturn}
 
 
-Definition at line \doxymbox{\hyperlink{MPI__utilities_8f90_source_l00583}{583}} of file \doxymbox{\hyperlink{MPI__utilities_8f90_source}{MPI\+\_\+utilities.\+f90}}.
+Definition at line \doxymbox{\hyperlink{MPI__utilities_8f90_source_l00649}{649}} of file \doxymbox{\hyperlink{MPI__utilities_8f90_source}{MPI\+\_\+utilities.\+f90}}.
 
 Here is the caller graph for this function:
 \nopagebreak

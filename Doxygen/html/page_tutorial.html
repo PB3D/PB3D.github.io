@@ -31,7 +31,7 @@ MathJax.Hub.Config({
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">PB3D<span id="projectnumber">&#160;[2.56]</span>
+   <div id="projectname">PB3D<span id="projectnumber">&#160;[2.57]</span>
    </div>
    <div id="projectbrief">Ideal linear high-n MHD stability in 3-D</div>
   </td>
@@ -229,7 +229,7 @@ Setting Up the Input File</h1>
 <div class="line"><span class="lineno">   11</span>    n_mod_X                 = 20</div>
 <div class="line"><span class="lineno">   12</span>    BC_style                = 1 2</div>
 <div class="line"><span class="lineno">   13</span>    U_style                 = 3</div>
-<div class="line"><span class="lineno">   14</span>    max_tot_mem             = 4000</div>
+<div class="line"><span class="lineno">   14</span>    max_tot_mem             = 6000</div>
 <div class="line"><span class="lineno">   15</span>    max_it_rich             = 1</div>
 <div class="line"><span class="lineno">   16</span>    use_normalization       = .true.</div>
 <div class="line"><span class="lineno">   17</span>/</div>
@@ -246,7 +246,7 @@ Setting Up the Input File</h1>
 <li><code>n_r_sol</code> is the number of points in the solution grid, that ranges from <code>min_r_sol</code> to <code>max_r_sol</code> in the PB3D normal coordinate (see <a class="el" href="namespacenum__vars.html#ae21ec57b791e369c3558c0eb3da1555b" title="whether poloidal flux is used in F coords.">num_vars.use_pol_flux_f</a>).</li>
 <li><code>n_mod_X</code> is the number of Fourier harmonics that are kept, with <code>prim_X</code> the primary mode number. With the poloidal flux as normal coordinate (the default), <code>prim_X</code> is the toroidal mode number \(n\) and the harmonics are poloidal mode numbers \(m\).</li>
 <li><code>BC_style(1:2)</code> indicates the style with which the boundary conditions are implemented deep in the plasma and on the plasma edge.</li>
-<li><code>max_tot_mem</code> is a memory limit in MB: PB3D divides its work into jobs so that its own estimate of the memory it needs stays below this limit. The memory that the run really uses can be higher; section <a class="el" href="#tutorial_PB3D_results" title="What to expect">What to expect</a> gives the numbers for this example.</li>
+<li><code>max_tot_mem</code> is a memory limit in MB: PB3D divides its work into jobs so that its own estimate of the memory it needs stays below this limit. The estimate is larger than the memory the run really uses; section <a class="el" href="#tutorial_PB3D_results" title="What to expect">What to expect</a> gives the numbers for this example. The estimate includes the memory that every process holds before the work starts (MPI, the libraries and the input), about 0.1 GB on macOS and 0.3 GB on Linux per process. When the limit is too low for the parts of the calculation that cannot be divided, PB3D stops at the start and gives the number of MB it needs.</li>
 <li><code>max_it_rich</code> is the number of Richardson levels (see the extra options below); with 1, PB3D does not extrapolate.</li>
 <li><code>use_normalization</code> indicates whether normalization is used (recommended), but it is useful to turn this off for debugging.</li>
 </ul>
@@ -296,6 +296,8 @@ Figure 1: the equilibrium of this tutorial. Left: the flux surfaces in a poloida
 <p>If these directories are not present, you will receive an error message, so go ahead and create them.</p>
 <p>We can now run the code using <code>mpirun</code>. For example, with </p><div class="fragment"><div class="line">mpirun -np 4 ./PB3D PB3D.input wout.nc </div>
 </div><!-- fragment --><p> 4 processes are used. With more than one process, the eigenvalue solver needs PETSc with a parallel direct solver such as MUMPS (see <a class="el" href="page_faq.html" title="Frequently Asked Questions">Frequently Asked Questions</a>); a single process can also be used, by running <span class="tt">./PB3D PB3D.input wout.nc</span> without <code>mpirun</code>. You can find the VMEC file <a href="https://pb3d.github.io/Examples/wout.nc">here</a>. The HELENA input file of the same plasma is <a href="https://pb3d.github.io/Examples/fort.10">here</a>; with a HELENA patched as described in <a class="el" href="#tutorial_eq_helena" title="Patching HELENA">Patching HELENA</a>, it gives the mapping file that PB3D reads instead of <span class="tt">wout.nc</span>.</p>
+<dl class="section note"><dt>Note</dt><dd>On macOS, run PB3D and POST with <span class="tt">MallocLargeCache=0</span> in the environment, for example <div class="fragment"><div class="line">MallocLargeCache=0 ./PB3D PB3D.input wout.nc </div>
+</div><!-- fragment --> Without it, macOS keeps the memory that PB3D has freed, and PB3D can take about twice <code>max_tot_mem</code>; PB3D warns about this at the start. PB3D cannot set this variable itself, as it has to be set when the program starts.</dd></dl>
 <p>There are optional run-time options that can be triggered, such as <span class="tt">&ndash;jump_to_sol</span>, which can be used to easily change solution preferences, such as discretization order, etc. For an overview, see <a class="el" href="page_inputs.html#inputs_PB3D_cmd" title="Command-line inputs">Command-line inputs</a>; they are not treated here.</p>
 <p>You will see formatted output on the screen, with indentation according to the depth of a routine in the program. The same output is also written to the output file <span class="tt">PB3D_out.txt</span>, unformatted but still indented (see <a class="el" href="page_outputs.html#output_file_log" title="Log file">Log file</a>).</p>
 <p>The resulting eigenvalues can also be read in a separate output file, <span class="tt">PB3D_out_EV_R_1.txt</span> for the first Richardson level (see <a class="el" href="page_outputs.html#output_file_EV" title="Eigenvalue summary file">Eigenvalue summary file</a>). The other results are written to the HDF5 file <span class="tt">PB3D_out.h5</span>, which POST reads.</p>
@@ -303,7 +305,7 @@ Figure 1: the equilibrium of this tutorial. Left: the flux surfaces in a poloida
 <dl class="section note"><dt>Note</dt><dd>For VMEC, the magnetic axis is a bit problematic. It is necessary, therefore, to choose <code>min_r_sol</code> to be slightly larger than 0; 0.01 for example.</dd></dl>
 <h2 class="doxsection"><a class="anchor" id="tutorial_PB3D_results"></a>
 What to expect</h2>
-<p>On one core of a laptop (Apple M3 Pro), this run takes about 2 minutes, and its memory use peaks at 10.6 GB. Most of the time goes into the plasma quantities on the 64 field lines; the vacuum takes 15 s. If your computer has less memory, lower <code>max_tot_mem:</code> with 2000, the peak was 6.5 GB and the run took about 3 minutes; with 8000, the peak was 13.6 GB.</p>
+<p>On one core of a laptop (Apple M3 Pro, with <span class="tt">MallocLargeCache=0</span>), this run takes about 2.5 minutes, and its memory use peaks at 3.5 GB, below the limit <code>max_tot_mem</code> of 6000 MB. Most of the time goes into the plasma quantities on the 64 field lines, which PB3D divides into 34 equilibrium jobs; the vacuum takes 15 s. This input file needs a <code>max_tot_mem</code> of at least 4.9 GB on this laptop and about 5.2 GB on Linux: the solution driver holds the vacuum matrices and the integrated perturbation quantities at the same time, which cannot be divided into jobs, and the process holds memory of its own. With a lower limit, PB3D stops at the start and gives the number it needs.</p>
 <p>PB3D gives the eigenvalues \(\lambda = \omega^2/\omega_A^2\), normalized to the square of the Alfvén frequency \(\omega_A\) that the header of <span class="tt">PB3D_out_EV_R_1.txt</span> gives. For this input file, the first eigenvalue should be close to \(\lambda = -0.0499\). A negative eigenvalue belongs to an unstable mode, with the growth rate \(\gamma = \omega_A\sqrt{-\lambda}\), here \(0.22\,\omega_A\).</p>
 <p>Figure 2 shows the eigenvector: the amplitudes of the poloidal Fourier harmonics \(X_m\) of the normal displacement \(X = \vec{\xi}\cdot\nabla\psi\). Each harmonic peaks close to the flux surface on which it is resonant, where \(n|q| = m\); the upper axis of the figure gives \(n|q|\). The largest harmonics, \(m = 18\) to \(23\), lie where the pressure falls most steeply. At the plasma boundary, where \(n|q| = 30.4\), the harmonic \(m = 31\), which would be resonant just outside the plasma, still has 0.27 of the largest amplitude, so that the mode moves the boundary.</p>
 <div class="image">
@@ -319,27 +321,27 @@ Figure 3: real part of the first eigenvector in the poloidal plane at zeta = 0. 
 <img src="tutorial_mode_3d.png" alt="" width="75%"/>
 <div class="caption">
 Figure 4: real part of the normal displacement X of the first eigenvector on the plasma boundary, over the whole torus (red positive, blue negative).</div></div>
- <p>Table <a class="el" href="#tutorial_PB3D_res_tab" title="tutorial_PB3D_res_tab">3</a> shows how this eigenvalue changes when the input file is changed. Every row changes one thing. The rows marked HELENA use the HELENA mapping of the same plasma, without the lines with <code>alpha_style</code> and <code>n_alpha</code> (<a class="el" href="#fnt3" title="fnt3">3</a>); for HELENA, PB3D computes the vacuum with an axisymmetric method (see <a class="el" href="page_vacuum.html" title="Vacuum response">Vacuum response</a>). </p><a class="anchor" id="tutorial_PB3D_res_tab"></a>
+ <p>Table <a class="el" href="#tutorial_PB3D_res_tab" title="tutorial_PB3D_res_tab">3</a> shows how this eigenvalue changes when the input file is changed. Every row changes one thing, and raises <code>max_tot_mem</code> where the solution driver needs more. The rows marked HELENA use the HELENA mapping of the same plasma, without the lines with <code>alpha_style</code> and <code>n_alpha</code> (<a class="el" href="#fnt3" title="fnt3">3</a>); for HELENA, PB3D computes the vacuum with an axisymmetric method (see <a class="el" href="page_vacuum.html" title="Vacuum response">Vacuum response</a>). </p><a class="anchor" id="tutorial_PB3D_res_tab"></a>
 <table class="doxtable">
-<caption>Table 3. first eigenvalue for \(n = 10\), with the time and the peak memory of the run on one core</caption>
+<caption>Table 3. first eigenvalue for \(n = 10\), with the time and the peak memory of the run on one core, with <span class="tt">MallocLargeCache=0</span></caption>
 <tr>
 <th>change to the input file </th><th>eigenvalue </th><th>time </th><th>memory </th></tr>
 <tr>
-<td>none (64 field lines with 100 points each) </td><td>\(-0.04987\) </td><td>2 min </td><td>10.6 GB </td></tr>
+<td>none (64 field lines with 100 points each) </td><td>\(-0.04987\) </td><td>2.5 min </td><td>3.5 GB </td></tr>
 <tr>
-<td><span class="tt">min_n_par_X = 200</span> </td><td>\(-0.05029\) </td><td>5 min </td><td>12.4 GB </td></tr>
+<td><span class="tt">min_n_par_X = 200</span>, <span class="tt">max_tot_mem = 9000</span> </td><td>\(-0.05029\) </td><td>4.5 min </td><td>6.9 GB </td></tr>
 <tr>
-<td><span class="tt">n_alpha = 128</span> </td><td>\(-0.04990\) </td><td>7 min </td><td>13.8 GB </td></tr>
+<td><span class="tt">n_alpha = 128</span>, <span class="tt">max_tot_mem = 13000</span> </td><td>\(-0.04990\) </td><td>5 min </td><td>9.3 GB </td></tr>
 <tr>
-<td>HELENA </td><td>\(-0.05026\) </td><td>3 s </td><td>2.6 GB </td></tr>
+<td>HELENA </td><td>\(-0.05026\) </td><td>5 s </td><td>1.0 GB </td></tr>
 <tr>
-<td>HELENA, <span class="tt">n_mod_X = 30</span> </td><td>\(-0.05034\) </td><td>4 s </td><td>3.5 GB </td></tr>
+<td>HELENA, <span class="tt">n_mod_X = 30</span> </td><td>\(-0.05034\) </td><td>6 s </td><td>1.7 GB </td></tr>
 <tr>
-<td><span class="tt">BC_style = 1 1</span> (fixed boundary) </td><td>\(-0.04027\) </td><td>2 min </td><td>7.4 GB </td></tr>
+<td><span class="tt">BC_style = 1 1</span> (fixed boundary) </td><td>\(-0.04027\) </td><td>2.5 min </td><td>2.9 GB </td></tr>
 <tr>
-<td>HELENA, <span class="tt">BC_style = 1 1</span> </td><td>\(-0.04028\) </td><td>2 s </td><td>2.6 GB </td></tr>
+<td>HELENA, <span class="tt">BC_style = 1 1</span> </td><td>\(-0.04028\) </td><td>3 s </td><td>1.0 GB </td></tr>
 </table>
-<p>The times varied by about 15 % between repeated runs of the same input file. The table shows the following.</p><ul>
+<p>The times varied by about 15 % between repeated runs of the same input file, and more while other programs ran on the laptop. The table shows the following.</p><ul>
 <li>With 100 points on each field line, the points along the lines limit the accuracy of the vacuum. 200 points per line move the eigenvalue by 0.8 %, to within 0.1 % of the HELENA value, while 128 field lines instead of 64 move it by only 0.05 %.</li>
 <li>With 30 Fourier harmonics instead of 20, the free-boundary eigenvalue on the HELENA mapping is 0.2 % more negative; the fixed-boundary eigenvalue on the HELENA mapping changes by less than \(10^{-4}\) of its value.</li>
 <li>With the vacuum, the eigenvalue is 24 % more negative than with a conducting wall on the plasma surface, so the growth rate is 11 % larger.</li>

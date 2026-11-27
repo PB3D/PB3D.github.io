@@ -25,6 +25,8 @@ subroutine \doxymbox{\hyperlink{namespaceeq__vars_a50561f7dcd43970bd16a31cd87714
 \begin{DoxyCompactList}\small\item\em Deep copy of metric equilibrium variables. \end{DoxyCompactList}\item 
 subroutine \doxymbox{\hyperlink{namespaceeq__vars_ab106dc007ddc896092d0464233b3ce12}{dealloc\+\_\+eq\+\_\+1}} (eq)
 \begin{DoxyCompactList}\small\item\em Deallocates flux equilibrium quantities. \end{DoxyCompactList}\item 
+subroutine \doxymbox{\hyperlink{namespaceeq__vars_a0487932b3d55ec43f98e866519f4e331}{dealloc\+\_\+eq\+\_\+2\+\_\+e}} (eq)
+\begin{DoxyCompactList}\small\item\em Deallocates the metric equilibrium quantities in E coordinates. \end{DoxyCompactList}\item 
 subroutine \doxymbox{\hyperlink{namespaceeq__vars_a206698a627df7d8285921ee4a9f75c11}{dealloc\+\_\+eq\+\_\+2}} (eq)
 \begin{DoxyCompactList}\small\item\em Deallocates metric equilibrium quantities. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsubsection*{Variables}
@@ -108,7 +110,7 @@ Deep copy of flux equilibrium variables.
 \end{DoxyParams}
 
 
-Definition at line \doxymbox{\hyperlink{eq__vars_8f90_source_l00438}{438}} of file \doxymbox{\hyperlink{eq__vars_8f90_source}{eq\+\_\+vars.\+f90}}.
+Definition at line \doxymbox{\hyperlink{eq__vars_8f90_source_l00440}{440}} of file \doxymbox{\hyperlink{eq__vars_8f90_source}{eq\+\_\+vars.\+f90}}.
 
 \Hypertarget{namespaceeq__vars_a50561f7dcd43970bd16a31cd87714c12}\index{eq\_vars@{eq\_vars}!copy\_eq\_2@{copy\_eq\_2}}
 \index{copy\_eq\_2@{copy\_eq\_2}!eq\_vars@{eq\_vars}}
@@ -134,7 +136,7 @@ ierr
 \end{DoxyParams}
 
 
-Definition at line \doxymbox{\hyperlink{eq__vars_8f90_source_l00476}{476}} of file \doxymbox{\hyperlink{eq__vars_8f90_source}{eq\+\_\+vars.\+f90}}.
+Definition at line \doxymbox{\hyperlink{eq__vars_8f90_source_l00478}{478}} of file \doxymbox{\hyperlink{eq__vars_8f90_source}{eq\+\_\+vars.\+f90}}.
 
 \Hypertarget{namespaceeq__vars_ab106dc007ddc896092d0464233b3ce12}\index{eq\_vars@{eq\_vars}!dealloc\_eq\_1@{dealloc\_eq\_1}}
 \index{dealloc\_eq\_1@{dealloc\_eq\_1}!eq\_vars@{eq\_vars}}
@@ -153,7 +155,7 @@ Deallocates flux equilibrium quantities.
 \end{DoxyParams}
 
 
-Definition at line \doxymbox{\hyperlink{eq__vars_8f90_source_l00530}{530}} of file \doxymbox{\hyperlink{eq__vars_8f90_source}{eq\+\_\+vars.\+f90}}.
+Definition at line \doxymbox{\hyperlink{eq__vars_8f90_source_l00532}{532}} of file \doxymbox{\hyperlink{eq__vars_8f90_source}{eq\+\_\+vars.\+f90}}.
 
 Here is the call graph for this function:
 \nopagebreak
@@ -180,7 +182,7 @@ Deallocates metric equilibrium quantities.
 \end{DoxyParams}
 
 
-Definition at line \doxymbox{\hyperlink{eq__vars_8f90_source_l00577}{577}} of file \doxymbox{\hyperlink{eq__vars_8f90_source}{eq\+\_\+vars.\+f90}}.
+Definition at line \doxymbox{\hyperlink{eq__vars_8f90_source_l00609}{609}} of file \doxymbox{\hyperlink{eq__vars_8f90_source}{eq\+\_\+vars.\+f90}}.
 
 Here is the call graph for this function:
 \nopagebreak
@@ -190,6 +192,25 @@ Here is the call graph for this function:
 \includegraphics[width=350pt]{namespaceeq__vars_a206698a627df7d8285921ee4a9f75c11_cgraph}
 \end{center}
 \end{figure}
+\Hypertarget{namespaceeq__vars_a0487932b3d55ec43f98e866519f4e331}\index{eq\_vars@{eq\_vars}!dealloc\_eq\_2\_e@{dealloc\_eq\_2\_e}}
+\index{dealloc\_eq\_2\_e@{dealloc\_eq\_2\_e}!eq\_vars@{eq\_vars}}
+\doxysubsubsection{\texorpdfstring{dealloc\_eq\_2\_e()}{dealloc\_eq\_2\_e()}}
+{\footnotesize\ttfamily \label{namespaceeq__vars_a0487932b3d55ec43f98e866519f4e331} 
+subroutine eq\+\_\+vars::\+dealloc\+\_\+eq\+\_\+2\+\_\+e (\begin{DoxyParamCaption}\item[{class(\doxymbox{\hyperlink{structeq__vars_1_1eq__2__type}{eq\+\_\+2\+\_\+type}}), intent(inout)}]{eq}{}\end{DoxyParamCaption})}
+
+
+
+Deallocates the metric equilibrium quantities in E coordinates. 
+
+These are all metric quantities except {\ttfamily g\+\_\+\+FD}, {\ttfamily h\+\_\+\+FD}, {\ttfamily jac\+\_\+\+FD}, {\ttfamily S}, {\ttfamily kappa\+\_\+n}, {\ttfamily kappa\+\_\+g} and {\ttfamily sigma}, which are the only ones the perturbation and solution drivers use. \doxylink{namespaceeq__vars_a50561f7dcd43970bd16a31cd87714c12}{copy\+\_\+eq\+\_\+2()} copies the E quantities only if {\ttfamily jac\+\_\+E} is allocated. 
+\begin{DoxyParams}[1]{Parameters}
+\doxymbox{\texttt{in,out}}  & {\em eq} & equilibrium to be partly deallocated \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \doxymbox{\hyperlink{eq__vars_8f90_source_l00584}{584}} of file \doxymbox{\hyperlink{eq__vars_8f90_source}{eq\+\_\+vars.\+f90}}.
+
 \Hypertarget{namespaceeq__vars_a0cfa7e8469f492469e61806587d7a208}\index{eq\_vars@{eq\_vars}!init\_eq\_1@{init\_eq\_1}}
 \index{init\_eq\_1@{init\_eq\_1}!eq\_vars@{eq\_vars}}
 \doxysubsubsection{\texorpdfstring{init\_eq\_1()}{init\_eq\_1()}}
@@ -223,7 +244,7 @@ Optionally, it can be chosen individually whether the E or F(\+D) quantities are
 \end{DoxyParams}
 
 
-Definition at line \doxymbox{\hyperlink{eq__vars_8f90_source_l00173}{173}} of file \doxymbox{\hyperlink{eq__vars_8f90_source}{eq\+\_\+vars.\+f90}}.
+Definition at line \doxymbox{\hyperlink{eq__vars_8f90_source_l00175}{175}} of file \doxymbox{\hyperlink{eq__vars_8f90_source}{eq\+\_\+vars.\+f90}}.
 
 Here is the call graph for this function:
 \nopagebreak
@@ -262,7 +283,7 @@ The maximum derivative degree for R, Z and lambda is one higher than {\ttfamily 
 \end{DoxyParams}
 
 
-Definition at line \doxymbox{\hyperlink{eq__vars_8f90_source_l00272}{272}} of file \doxymbox{\hyperlink{eq__vars_8f90_source}{eq\+\_\+vars.\+f90}}.
+Definition at line \doxymbox{\hyperlink{eq__vars_8f90_source_l00274}{274}} of file \doxymbox{\hyperlink{eq__vars_8f90_source}{eq\+\_\+vars.\+f90}}.
 
 Here is the call graph for this function:
 \nopagebreak
