@@ -31,7 +31,7 @@ MathJax.Hub.Config({
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">PB3D<span id="projectnumber">&#160;[2.57]</span>
+   <div id="projectname">PB3D<span id="projectnumber">&#160;[2.58]</span>
    </div>
    <div id="projectbrief">Ideal linear high-n MHD stability in 3-D</div>
   </td>
@@ -162,8 +162,8 @@ Functions/Subroutines</h2></td></tr>
 <tr class="memdesc:a55917387e2d5511f49396a2b7f9f2b5a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Plots the curvature.  <br /></td></tr>
 <tr class="memitem:a45303921478f07c074b598f65a26b2ec" id="r_a45303921478f07c074b598f65a26b2ec"><td class="memItemLeft">integer function, public&#160;</td><td class="memItemRight"><a class="el" href="#a45303921478f07c074b598f65a26b2ec">delta_r_plot</a> (grid_eq, eq_1, eq_2, xyz, rich_lvl)</td></tr>
 <tr class="memdesc:a45303921478f07c074b598f65a26b2ec"><td class="mdescLeft">&#160;</td><td class="mdescRight">Plots <b>HALF</b> of the change in the position vectors for 2 different toroidal positions, which can correspond to a ripple.  <br /></td></tr>
-<tr class="memitem:a6811942aeb421cf1495a65e639199975" id="r_a6811942aeb421cf1495a65e639199975"><td class="memItemLeft">integer function, public&#160;</td><td class="memItemRight"><a class="el" href="#a6811942aeb421cf1495a65e639199975">divide_eq_jobs</a> (n_par_x, arr_size, n_div, n_div_max, n_par_x_base, range_name)</td></tr>
-<tr class="memdesc:a6811942aeb421cf1495a65e639199975"><td class="mdescLeft">&#160;</td><td class="mdescRight">Divides the equilibrium jobs.  <br /></td></tr>
+<tr class="memitem:ab9ed4f24eca941462b1c0b56fb5c80f6" id="r_ab9ed4f24eca941462b1c0b56fb5c80f6"><td class="memItemLeft">integer function, public&#160;</td><td class="memItemRight"><a class="el" href="#ab9ed4f24eca941462b1c0b56fb5c80f6">divide_eq_jobs</a> (n_par_x, arr_size, n_div, n_div_max, n_par_x_base, range_name, mem_vac)</td></tr>
+<tr class="memdesc:ab9ed4f24eca941462b1c0b56fb5c80f6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Divides the equilibrium jobs.  <br /></td></tr>
 <tr class="memitem:a6f509d7becf29b4f201a871bf4441d49" id="r_a6f509d7becf29b4f201a871bf4441d49"><td class="memItemLeft">integer function, public&#160;</td><td class="memItemRight"><a class="el" href="#a6f509d7becf29b4f201a871bf4441d49">calc_eq_jobs_lims</a> (n_par_x, n_div)</td></tr>
 <tr class="memdesc:a6f509d7becf29b4f201a871bf4441d49"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculate <code>eq_jobs_lims</code>.  <br /></td></tr>
 </table><table class="memberdecls">
@@ -479,7 +479,7 @@ The curvature</h2>
 </div><div class="memdoc">
 
 <p>Calculate <code>eq_jobs_lims</code>. </p>
-<p>Take into account that every job has to start and end at the start and end of a fundamental integration interval, as discussed in <a class="el" href="#a6811942aeb421cf1495a65e639199975" title="Divides the equilibrium jobs.">divide_eq_jobs()</a>:</p><ul>
+<p>Take into account that every job has to start and end at the start and end of a fundamental integration interval, as discussed in <a class="el" href="#ab9ed4f24eca941462b1c0b56fb5c80f6" title="Divides the equilibrium jobs.">divide_eq_jobs()</a>:</p><ul>
 <li>for <code>magn_int_style=1</code> (trapezoidal), this is 1 point,</li>
 <li>for <code>magn_int_style=2</code> (Simpson 3/8), this is 3 points.</li>
 </ul>
@@ -494,7 +494,7 @@ The curvature</h2>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="eq__ops_8f90_source.html#l06609">6609</a> of file <a class="el" href="eq__ops_8f90_source.html">eq_ops.f90</a>.</p>
+<p class="definition">Definition at line <a class="el" href="eq__ops_8f90_source.html#l06631">6631</a> of file <a class="el" href="eq__ops_8f90_source.html">eq_ops.f90</a>.</p>
 <div id="dynsection-4" class="dynheader closed"><span class="dynarrow"><span class="arrowhead closed"></span></span>Here is the call graph for this function:</div>
 <div id="dynsection-4-summary" class="dynsummary">
 </div>
@@ -633,8 +633,8 @@ The curvature</h2>
 
 </div>
 </div>
-<a id="a6811942aeb421cf1495a65e639199975" name="a6811942aeb421cf1495a65e639199975"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6811942aeb421cf1495a65e639199975">&#9670;&#160;</a></span>divide_eq_jobs()</h2>
+<a id="ab9ed4f24eca941462b1c0b56fb5c80f6" name="ab9ed4f24eca941462b1c0b56fb5c80f6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab9ed4f24eca941462b1c0b56fb5c80f6">&#9670;&#160;</a></span>divide_eq_jobs()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -667,7 +667,12 @@ The curvature</h2>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">character(len=*), intent(in), optional</td>          <td class="paramname"><span class="paramname"><em>range_name</em></span>&#160;)</td>
+          <td class="paramtype">character(len=*), intent(in), optional</td>          <td class="paramname"><span class="paramname"><em>range_name</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">real(dp), dimension(2), intent(in), optional</td>          <td class="paramname"><span class="paramname"><em>mem_vac</em></span>&#160;)</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -689,7 +694,9 @@ The curvature</h2>
 <p>In POST, finally, the situation is slightly different for HELENA, as all the requested variables have to fit, including the interpolated variables, as they are stored whereas in PB3D they are not. The parallel range to be taken is then the one of the output grid, including a base range for the variables tabulated on the HELENA grid. Also, for extended output grids, the size of the grid in the secondary angle has to be included in <code>n_par_X</code> (i.e. toroidal when poloidal flux is used and vice versa). Furthermore, multiple equilibrium jobs are allowed.</p>
 <p>To this end, optionally, a base number can be provided for <code>n_par_X</code>, that is always added to the number of points in the divided <code>n_par_X</code>.</p>
 <p>A job is counted with the parallel point it shares with the previous job and with the points that <a class="el" href="#a6f509d7becf29b4f201a871bf4441d49" title="Calculate eq_jobs_lims.">calc_eq_jobs_lims()</a> can add to end it on a fundamental integration interval.</p>
-<dl class="section note"><dt>Note</dt><dd>For PB3D, only the variables <code>g_FD</code>, <code>h_FD</code> and <code>jac_FD</code> are counted, as the equilibrium variables and the transformation matrices are deleted after use. Also, <code>S</code>, <code>sigma</code>, <code>kappa_n</code> and <code>kappa_g</code> can be neglected as they do not contain derivatives and are therefore much smaller. in both routines calc_memory_eq() and calc_memory_x(), however, a 50% safety factor is used to account for this somewhat. The integrated tensorial perturbation variables <code>X_2_int</code> are counted as well, as they exist during all equilibrium jobs.</dd></dl>
+<dl class="section note"><dt>Note</dt><dd>For PB3D, only the variables <code>g_FD</code>, <code>h_FD</code> and <code>jac_FD</code> are counted, as the equilibrium variables and the transformation matrices are deleted after use. Also, <code>S</code>, <code>sigma</code>, <code>kappa_n</code> and <code>kappa_g</code> can be neglected as they do not contain derivatives and are therefore much smaller. in both routines calc_memory_eq() and calc_memory_x(), however, a 50% safety factor is used to account for this somewhat. The integrated tensorial perturbation variables <code>X_2_int</code> are counted as well, as they exist during all equilibrium jobs.</dd>
+<dd>
+With a free edge, the vacuum matrices <code>G</code> and <code>H</code> exist during all equilibrium jobs, and <code>mem_vac(1)</code> counts them. In the first job of a Richardson level after the first, store_vac() copies those of the previous level before the perturbation variables of the level exist, so that <code>mem_vac(2)</code>, the memory for that copy, takes the place of <code>X_1</code> and <code>X_2_int</code>.</dd></dl>
 <dl class="section return"><dt>Returns</dt><dd>ierr </dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -699,22 +706,23 @@ The curvature</h2>
     <tr><td class="paramdir">[in]</td><td class="paramname">n_div_max</td><td>maximum n_div </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">n_par_x_base</td><td>base n_par_X, undivisible </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">range_name</td><td>name of range </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">mem_vac</td><td>vacuum matrices during all jobs, and their copy in the first job [MB] </td></tr>
   </table>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="eq__ops_8f90_source.html#l06458">6458</a> of file <a class="el" href="eq__ops_8f90_source.html">eq_ops.f90</a>.</p>
+<p class="definition">Definition at line <a class="el" href="eq__ops_8f90_source.html#l06465">6465</a> of file <a class="el" href="eq__ops_8f90_source.html">eq_ops.f90</a>.</p>
 <div id="dynsection-10" class="dynheader closed"><span class="dynarrow"><span class="arrowhead closed"></span></span>Here is the call graph for this function:</div>
 <div id="dynsection-10-summary" class="dynsummary">
 </div>
 <div id="dynsection-10-content" class="dyncontent hidden">
-<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="namespaceeq__ops_a6811942aeb421cf1495a65e639199975_cgraph.svg" width="1126" height="334"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="namespaceeq__ops_ab9ed4f24eca941462b1c0b56fb5c80f6_cgraph.svg" width="1126" height="334"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 <div id="dynsection-11" class="dynheader closed"><span class="dynarrow"><span class="arrowhead closed"></span></span>Here is the caller graph for this function:</div>
 <div id="dynsection-11-summary" class="dynsummary">
 </div>
 <div id="dynsection-11-content" class="dyncontent hidden">
-<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="namespaceeq__ops_a6811942aeb421cf1495a65e639199975_icgraph.svg" width="635" height="91"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" loading="lazy" frameborder="0" src="namespaceeq__ops_ab9ed4f24eca941462b1c0b56fb5c80f6_icgraph.svg" width="635" height="91"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>

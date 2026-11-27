@@ -251,9 +251,9 @@
     \note For VMEC, the magnetic axis is a bit problematic. It is necessary, therefore, to choose \c min_r_sol to be slightly larger than 0; 0.01 for example.
 
     \subsection tutorial_PB3D_results What to expect
-    On one core of a laptop (Apple M3 Pro, with <tt>MallocLargeCache=0</tt>), this run takes about 2.5 minutes, and its memory use peaks at 3.5 GB, below the limit \c max_tot_mem of 6000 MB.
-    Most of the time goes into the plasma quantities on the 64 field lines, which PB3D divides into 34 equilibrium jobs; the vacuum takes 15 s.
-    This input file needs a \c max_tot_mem of at least 4.9 GB on this laptop and about 5.2 GB on Linux: the solution driver holds the vacuum matrices and the integrated perturbation quantities at the same time, which cannot be divided into jobs, and the process holds memory of its own.
+    On one core of a laptop (Apple M3 Pro, with <tt>MallocLargeCache=0</tt>), this run takes about 2.5 minutes, and its memory use peaks at 4.0 GB, below the limit \c max_tot_mem of 8000 MB.
+    Most of the time goes into the plasma quantities on the 64 field lines, which PB3D divides into 25 equilibrium jobs; the vacuum takes 10 s.
+    This input file needs a \c max_tot_mem of at least 5.7 GB on this laptop with one process, and about 7.4 GB on Linux with 4 processes: the vacuum matrices exist in every equilibrium job and in the solution driver, and the integrated perturbation quantities in the solution driver, which cannot be divided into jobs, and every process holds memory of its own.
     With a lower limit, PB3D stops at the start and gives the number it needs.
 
     PB3D gives the eigenvalues \f$\lambda = \omega^2/\omega_A^2\f$, normalized to the square of the Alfvén frequency \f$\omega_A\f$ that the header of <tt>PB3D_out_EV_R_1.txt</tt> gives.
@@ -280,7 +280,7 @@
     \image latex tutorial_mode_3d.png "Figure 4: real part of the normal displacement X of the first eigenvector on the plasma boundary, over the whole torus (red positive, blue negative)." width=0.8\textwidth
 
     Table \ref tutorial_PB3D_res_tab "3" shows how this eigenvalue changes when the input file is changed.
-    Every row changes one thing, and raises \c max_tot_mem where the solution driver needs more.
+    Every row changes one thing, and raises \c max_tot_mem where the run needs more.
     The rows marked HELENA use the HELENA mapping of the same plasma, without the lines with \c alpha_style and \c n_alpha (\ref fnt3 "3"); for HELENA, PB3D computes the vacuum with an axisymmetric method (see \ref page_vacuum).
     <table>
     <caption id="tutorial_PB3D_res_tab">Table 3. first eigenvalue for \f$n = 10\f$, with the time and the peak memory of the run on one core, with <tt>MallocLargeCache=0</tt></caption>
@@ -288,13 +288,13 @@
         <th> change to the input file </th><th> eigenvalue </th><th> time </th><th> memory </th>
     </tr>
     <tr>
-        <td> none (64 field lines with 100 points each) </td><td> \f$-0.04987\f$ </td><td> 2.5 min </td><td> 3.5 GB </td>
+        <td> none (64 field lines with 100 points each) </td><td> \f$-0.04987\f$ </td><td> 2.5 min </td><td> 4.0 GB </td>
     </tr>
     <tr>
-        <td> <tt>min_n_par_X = 200</tt>, <tt>max_tot_mem = 9000</tt> </td><td> \f$-0.05029\f$ </td><td> 4.5 min </td><td> 6.9 GB </td>
+        <td> <tt>min_n_par_X = 200</tt>, <tt>max_tot_mem = 11000</tt> </td><td> \f$-0.05029\f$ </td><td> 5.5 min </td><td> 6.0 GB </td>
     </tr>
     <tr>
-        <td> <tt>n_alpha = 128</tt>, <tt>max_tot_mem = 13000</tt> </td><td> \f$-0.04990\f$ </td><td> 5 min </td><td> 9.3 GB </td>
+        <td> <tt>n_alpha = 128</tt>, <tt>max_tot_mem = 16000</tt> </td><td> \f$-0.04990\f$ </td><td> 6.5 min </td><td> 8.3 GB </td>
     </tr>
     <tr>
         <td> HELENA </td><td> \f$-0.05026\f$ </td><td> 5 s </td><td> 1.0 GB </td>
@@ -303,7 +303,7 @@
         <td> HELENA, <tt>n_mod_X = 30</tt> </td><td> \f$-0.05034\f$ </td><td> 6 s </td><td> 1.7 GB </td>
     </tr>
     <tr>
-        <td> <tt>BC_style = 1 1</tt> (fixed boundary) </td><td> \f$-0.04027\f$ </td><td> 2.5 min </td><td> 2.9 GB </td>
+        <td> <tt>BC_style = 1 1</tt> (fixed boundary) </td><td> \f$-0.04027\f$ </td><td> 2 min </td><td> 3.9 GB </td>
     </tr>
     <tr>
         <td> HELENA, <tt>BC_style = 1 1</tt> </td><td> \f$-0.04028\f$ </td><td> 3 s </td><td> 1.0 GB </td>

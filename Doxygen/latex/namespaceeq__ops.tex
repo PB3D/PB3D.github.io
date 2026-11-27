@@ -55,7 +55,7 @@ integer function, public \doxymbox{\hyperlink{namespaceeq__ops_a55917387e2d5511f
 \begin{DoxyCompactList}\small\item\em Plots the curvature. \end{DoxyCompactList}\item 
 integer function, public \doxymbox{\hyperlink{namespaceeq__ops_a45303921478f07c074b598f65a26b2ec}{delta\+\_\+r\+\_\+plot}} (grid\+\_\+eq, eq\+\_\+1, eq\+\_\+2, xyz, rich\+\_\+lvl)
 \begin{DoxyCompactList}\small\item\em Plots {\bfseries{HALF}} of the change in the position vectors for 2 different toroidal positions, which can correspond to a ripple. \end{DoxyCompactList}\item 
-integer function, public \doxymbox{\hyperlink{namespaceeq__ops_a6811942aeb421cf1495a65e639199975}{divide\+\_\+eq\+\_\+jobs}} (n\+\_\+par\+\_\+x, arr\+\_\+size, n\+\_\+div, n\+\_\+div\+\_\+max, n\+\_\+par\+\_\+x\+\_\+base, range\+\_\+name)
+integer function, public \doxymbox{\hyperlink{namespaceeq__ops_ab9ed4f24eca941462b1c0b56fb5c80f6}{divide\+\_\+eq\+\_\+jobs}} (n\+\_\+par\+\_\+x, arr\+\_\+size, n\+\_\+div, n\+\_\+div\+\_\+max, n\+\_\+par\+\_\+x\+\_\+base, range\+\_\+name, mem\+\_\+vac)
 \begin{DoxyCompactList}\small\item\em Divides the equilibrium jobs. \end{DoxyCompactList}\item 
 integer function, public \doxymbox{\hyperlink{namespaceeq__ops_a6f509d7becf29b4f201a871bf4441d49}{calc\+\_\+eq\+\_\+jobs\+\_\+lims}} (n\+\_\+par\+\_\+x, n\+\_\+div)
 \begin{DoxyCompactList}\small\item\em Calculate {\ttfamily eq\+\_\+jobs\+\_\+lims}. \end{DoxyCompactList}\end{DoxyCompactItemize}
@@ -359,7 +359,7 @@ integer function, public eq\+\_\+ops::\+calc\+\_\+eq\+\_\+jobs\+\_\+lims (\begin
 
 Calculate {\ttfamily eq\+\_\+jobs\+\_\+lims}. 
 
-Take into account that every job has to start and end at the start and end of a fundamental integration interval, as discussed in \doxylink{namespaceeq__ops_a6811942aeb421cf1495a65e639199975}{divide\+\_\+eq\+\_\+jobs()}:
+Take into account that every job has to start and end at the start and end of a fundamental integration interval, as discussed in \doxylink{namespaceeq__ops_ab9ed4f24eca941462b1c0b56fb5c80f6}{divide\+\_\+eq\+\_\+jobs()}:
 \begin{DoxyItemize}
 \item for {\ttfamily magn\+\_\+int\+\_\+style=1} (trapezoidal), this is 1 point,
 \item for {\ttfamily magn\+\_\+int\+\_\+style=2} (Simpson 3/\+8), this is 3 points.
@@ -382,7 +382,7 @@ ierr
 \end{DoxyParams}
 
 
-Definition at line \doxymbox{\hyperlink{eq__ops_8f90_source_l06609}{6609}} of file \doxymbox{\hyperlink{eq__ops_8f90_source}{eq\+\_\+ops.\+f90}}.
+Definition at line \doxymbox{\hyperlink{eq__ops_8f90_source_l06631}{6631}} of file \doxymbox{\hyperlink{eq__ops_8f90_source}{eq\+\_\+ops.\+f90}}.
 
 Here is the call graph for this function:
 \nopagebreak
@@ -518,11 +518,11 @@ Here is the caller graph for this function:
 \includegraphics[width=350pt]{namespaceeq__ops_a45303921478f07c074b598f65a26b2ec_icgraph}
 \end{center}
 \end{figure}
-\Hypertarget{namespaceeq__ops_a6811942aeb421cf1495a65e639199975}\index{eq\_ops@{eq\_ops}!divide\_eq\_jobs@{divide\_eq\_jobs}}
+\Hypertarget{namespaceeq__ops_ab9ed4f24eca941462b1c0b56fb5c80f6}\index{eq\_ops@{eq\_ops}!divide\_eq\_jobs@{divide\_eq\_jobs}}
 \index{divide\_eq\_jobs@{divide\_eq\_jobs}!eq\_ops@{eq\_ops}}
 \doxysubsubsection{\texorpdfstring{divide\_eq\_jobs()}{divide\_eq\_jobs()}}
-{\footnotesize\ttfamily \label{namespaceeq__ops_a6811942aeb421cf1495a65e639199975} 
-integer function, public eq\+\_\+ops::\+divide\+\_\+eq\+\_\+jobs (\begin{DoxyParamCaption}\item[{integer, intent(in)}]{n\+\_\+par\+\_\+x}{, }\item[{integer, dimension(2), intent(in)}]{arr\+\_\+size}{, }\item[{integer, intent(inout)}]{n\+\_\+div}{, }\item[{integer, intent(in), optional}]{n\+\_\+div\+\_\+max}{, }\item[{integer, intent(in), optional}]{n\+\_\+par\+\_\+x\+\_\+base}{, }\item[{character(len=\texorpdfstring{$\ast$}{*}), intent(in), optional}]{range\+\_\+name}{}\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \label{namespaceeq__ops_ab9ed4f24eca941462b1c0b56fb5c80f6} 
+integer function, public eq\+\_\+ops::\+divide\+\_\+eq\+\_\+jobs (\begin{DoxyParamCaption}\item[{integer, intent(in)}]{n\+\_\+par\+\_\+x}{, }\item[{integer, dimension(2), intent(in)}]{arr\+\_\+size}{, }\item[{integer, intent(inout)}]{n\+\_\+div}{, }\item[{integer, intent(in), optional}]{n\+\_\+div\+\_\+max}{, }\item[{integer, intent(in), optional}]{n\+\_\+par\+\_\+x\+\_\+base}{, }\item[{character(len=\texorpdfstring{$\ast$}{*}), intent(in), optional}]{range\+\_\+name}{, }\item[{real(dp), dimension(2), intent(in), optional}]{mem\+\_\+vac}{}\end{DoxyParamCaption})}
 
 
 
@@ -558,6 +558,8 @@ A job is counted with the parallel point it shares with the previous job and wit
 
 \begin{DoxyNote}{Note}
 For PB3D, only the variables {\ttfamily g\+\_\+\+FD}, {\ttfamily h\+\_\+\+FD} and {\ttfamily jac\+\_\+\+FD} are counted, as the equilibrium variables and the transformation matrices are deleted after use. Also, {\ttfamily S}, {\ttfamily sigma}, {\ttfamily kappa\+\_\+n} and {\ttfamily kappa\+\_\+g} can be neglected as they do not contain derivatives and are therefore much smaller. in both routines calc\+\_\+memory\+\_\+eq() and calc\+\_\+memory\+\_\+x(), however, a 50\% safety factor is used to account for this somewhat. The integrated tensorial perturbation variables {\ttfamily X\+\_\+2\+\_\+int} are counted as well, as they exist during all equilibrium jobs.
+
+With a free edge, the vacuum matrices {\ttfamily G} and {\ttfamily H} exist during all equilibrium jobs, and {\ttfamily mem\+\_\+vac(1)} counts them. In the first job of a Richardson level after the first, store\+\_\+vac() copies those of the previous level before the perturbation variables of the level exist, so that {\ttfamily mem\+\_\+vac(2)}, the memory for that copy, takes the place of {\ttfamily X\+\_\+1} and {\ttfamily X\+\_\+2\+\_\+int}.
 \end{DoxyNote}
 \begin{DoxyReturn}{Returns}
 ierr 
@@ -576,17 +578,19 @@ ierr
 \hline
 \doxymbox{\texttt{in}}  & {\em range\+\_\+name} & name of range \\
 \hline
+\doxymbox{\texttt{in}}  & {\em mem\+\_\+vac} & vacuum matrices during all jobs, and their copy in the first job \+[MB] \\
+\hline
 \end{DoxyParams}
 
 
-Definition at line \doxymbox{\hyperlink{eq__ops_8f90_source_l06458}{6458}} of file \doxymbox{\hyperlink{eq__ops_8f90_source}{eq\+\_\+ops.\+f90}}.
+Definition at line \doxymbox{\hyperlink{eq__ops_8f90_source_l06465}{6465}} of file \doxymbox{\hyperlink{eq__ops_8f90_source}{eq\+\_\+ops.\+f90}}.
 
 Here is the call graph for this function:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=350pt]{namespaceeq__ops_a6811942aeb421cf1495a65e639199975_cgraph}
+\includegraphics[width=350pt]{namespaceeq__ops_ab9ed4f24eca941462b1c0b56fb5c80f6_cgraph}
 \end{center}
 \end{figure}
 Here is the caller graph for this function:
@@ -594,7 +598,7 @@ Here is the caller graph for this function:
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=350pt]{namespaceeq__ops_a6811942aeb421cf1495a65e639199975_icgraph}
+\includegraphics[width=350pt]{namespaceeq__ops_ab9ed4f24eca941462b1c0b56fb5c80f6_icgraph}
 \end{center}
 \end{figure}
 \Hypertarget{namespaceeq__ops_af0effe20188d46a44680c2648e4572e9}\index{eq\_ops@{eq\_ops}!flux\_q\_plot@{flux\_q\_plot}}

@@ -31,7 +31,7 @@ MathJax.Hub.Config({
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">PB3D<span id="projectnumber">&#160;[2.57]</span>
+   <div id="projectname">PB3D<span id="projectnumber">&#160;[2.58]</span>
    </div>
    <div id="projectbrief">Ideal linear high-n MHD stability in 3-D</div>
   </td>
@@ -229,7 +229,7 @@ Setting Up the Input File</h1>
 <div class="line"><span class="lineno">   11</span>    n_mod_X                 = 20</div>
 <div class="line"><span class="lineno">   12</span>    BC_style                = 1 2</div>
 <div class="line"><span class="lineno">   13</span>    U_style                 = 3</div>
-<div class="line"><span class="lineno">   14</span>    max_tot_mem             = 6000</div>
+<div class="line"><span class="lineno">   14</span>    max_tot_mem             = 8000</div>
 <div class="line"><span class="lineno">   15</span>    max_it_rich             = 1</div>
 <div class="line"><span class="lineno">   16</span>    use_normalization       = .true.</div>
 <div class="line"><span class="lineno">   17</span>/</div>
@@ -305,7 +305,7 @@ Figure 1: the equilibrium of this tutorial. Left: the flux surfaces in a poloida
 <dl class="section note"><dt>Note</dt><dd>For VMEC, the magnetic axis is a bit problematic. It is necessary, therefore, to choose <code>min_r_sol</code> to be slightly larger than 0; 0.01 for example.</dd></dl>
 <h2 class="doxsection"><a class="anchor" id="tutorial_PB3D_results"></a>
 What to expect</h2>
-<p>On one core of a laptop (Apple M3 Pro, with <span class="tt">MallocLargeCache=0</span>), this run takes about 2.5 minutes, and its memory use peaks at 3.5 GB, below the limit <code>max_tot_mem</code> of 6000 MB. Most of the time goes into the plasma quantities on the 64 field lines, which PB3D divides into 34 equilibrium jobs; the vacuum takes 15 s. This input file needs a <code>max_tot_mem</code> of at least 4.9 GB on this laptop and about 5.2 GB on Linux: the solution driver holds the vacuum matrices and the integrated perturbation quantities at the same time, which cannot be divided into jobs, and the process holds memory of its own. With a lower limit, PB3D stops at the start and gives the number it needs.</p>
+<p>On one core of a laptop (Apple M3 Pro, with <span class="tt">MallocLargeCache=0</span>), this run takes about 2.5 minutes, and its memory use peaks at 4.0 GB, below the limit <code>max_tot_mem</code> of 8000 MB. Most of the time goes into the plasma quantities on the 64 field lines, which PB3D divides into 25 equilibrium jobs; the vacuum takes 10 s. This input file needs a <code>max_tot_mem</code> of at least 5.7 GB on this laptop with one process, and about 7.4 GB on Linux with 4 processes: the vacuum matrices exist in every equilibrium job and in the solution driver, and the integrated perturbation quantities in the solution driver, which cannot be divided into jobs, and every process holds memory of its own. With a lower limit, PB3D stops at the start and gives the number it needs.</p>
 <p>PB3D gives the eigenvalues \(\lambda = \omega^2/\omega_A^2\), normalized to the square of the Alfvén frequency \(\omega_A\) that the header of <span class="tt">PB3D_out_EV_R_1.txt</span> gives. For this input file, the first eigenvalue should be close to \(\lambda = -0.0499\). A negative eigenvalue belongs to an unstable mode, with the growth rate \(\gamma = \omega_A\sqrt{-\lambda}\), here \(0.22\,\omega_A\).</p>
 <p>Figure 2 shows the eigenvector: the amplitudes of the poloidal Fourier harmonics \(X_m\) of the normal displacement \(X = \vec{\xi}\cdot\nabla\psi\). Each harmonic peaks close to the flux surface on which it is resonant, where \(n|q| = m\); the upper axis of the figure gives \(n|q|\). The largest harmonics, \(m = 18\) to \(23\), lie where the pressure falls most steeply. At the plasma boundary, where \(n|q| = 30.4\), the harmonic \(m = 31\), which would be resonant just outside the plasma, still has 0.27 of the largest amplitude, so that the mode moves the boundary.</p>
 <div class="image">
@@ -321,23 +321,23 @@ Figure 3: real part of the first eigenvector in the poloidal plane at zeta = 0. 
 <img src="tutorial_mode_3d.png" alt="" width="75%"/>
 <div class="caption">
 Figure 4: real part of the normal displacement X of the first eigenvector on the plasma boundary, over the whole torus (red positive, blue negative).</div></div>
- <p>Table <a class="el" href="#tutorial_PB3D_res_tab" title="tutorial_PB3D_res_tab">3</a> shows how this eigenvalue changes when the input file is changed. Every row changes one thing, and raises <code>max_tot_mem</code> where the solution driver needs more. The rows marked HELENA use the HELENA mapping of the same plasma, without the lines with <code>alpha_style</code> and <code>n_alpha</code> (<a class="el" href="#fnt3" title="fnt3">3</a>); for HELENA, PB3D computes the vacuum with an axisymmetric method (see <a class="el" href="page_vacuum.html" title="Vacuum response">Vacuum response</a>). </p><a class="anchor" id="tutorial_PB3D_res_tab"></a>
+ <p>Table <a class="el" href="#tutorial_PB3D_res_tab" title="tutorial_PB3D_res_tab">3</a> shows how this eigenvalue changes when the input file is changed. Every row changes one thing, and raises <code>max_tot_mem</code> where the run needs more. The rows marked HELENA use the HELENA mapping of the same plasma, without the lines with <code>alpha_style</code> and <code>n_alpha</code> (<a class="el" href="#fnt3" title="fnt3">3</a>); for HELENA, PB3D computes the vacuum with an axisymmetric method (see <a class="el" href="page_vacuum.html" title="Vacuum response">Vacuum response</a>). </p><a class="anchor" id="tutorial_PB3D_res_tab"></a>
 <table class="doxtable">
 <caption>Table 3. first eigenvalue for \(n = 10\), with the time and the peak memory of the run on one core, with <span class="tt">MallocLargeCache=0</span></caption>
 <tr>
 <th>change to the input file </th><th>eigenvalue </th><th>time </th><th>memory </th></tr>
 <tr>
-<td>none (64 field lines with 100 points each) </td><td>\(-0.04987\) </td><td>2.5 min </td><td>3.5 GB </td></tr>
+<td>none (64 field lines with 100 points each) </td><td>\(-0.04987\) </td><td>2.5 min </td><td>4.0 GB </td></tr>
 <tr>
-<td><span class="tt">min_n_par_X = 200</span>, <span class="tt">max_tot_mem = 9000</span> </td><td>\(-0.05029\) </td><td>4.5 min </td><td>6.9 GB </td></tr>
+<td><span class="tt">min_n_par_X = 200</span>, <span class="tt">max_tot_mem = 11000</span> </td><td>\(-0.05029\) </td><td>5.5 min </td><td>6.0 GB </td></tr>
 <tr>
-<td><span class="tt">n_alpha = 128</span>, <span class="tt">max_tot_mem = 13000</span> </td><td>\(-0.04990\) </td><td>5 min </td><td>9.3 GB </td></tr>
+<td><span class="tt">n_alpha = 128</span>, <span class="tt">max_tot_mem = 16000</span> </td><td>\(-0.04990\) </td><td>6.5 min </td><td>8.3 GB </td></tr>
 <tr>
 <td>HELENA </td><td>\(-0.05026\) </td><td>5 s </td><td>1.0 GB </td></tr>
 <tr>
 <td>HELENA, <span class="tt">n_mod_X = 30</span> </td><td>\(-0.05034\) </td><td>6 s </td><td>1.7 GB </td></tr>
 <tr>
-<td><span class="tt">BC_style = 1 1</span> (fixed boundary) </td><td>\(-0.04027\) </td><td>2.5 min </td><td>2.9 GB </td></tr>
+<td><span class="tt">BC_style = 1 1</span> (fixed boundary) </td><td>\(-0.04027\) </td><td>2 min </td><td>3.9 GB </td></tr>
 <tr>
 <td>HELENA, <span class="tt">BC_style = 1 1</span> </td><td>\(-0.04028\) </td><td>3 s </td><td>1.0 GB </td></tr>
 </table>

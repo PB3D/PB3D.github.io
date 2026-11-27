@@ -24,7 +24,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">PB3D<span id="projectnumber">&#160;[2.57]</span>
+   <div id="projectname">PB3D<span id="projectnumber">&#160;[2.58]</span>
    </div>
    <div id="projectbrief">Ideal linear high-n MHD stability in 3-D</div>
   </td>
@@ -94,7 +94,7 @@ document.addEventListener('DOMContentLoaded', codefold.init);
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><a href="dir_7ea11dc1d6f4dd49cc1e030ad9ebf0e4.html">Modules</a></li>  </ul>
+<li class="navelem"><a href="dir_79bfbb93372d077d167795456ebbf4e5.html">Modules</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div id="doc-content">
@@ -120,7 +120,7 @@ document.addEventListener('DOMContentLoaded', codefold.init);
 <div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>    <span class="keywordtype">implicit none</span></div>
 <div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>    <span class="keywordtype">private</span></div>
 <div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>    <span class="keywordtype">public</span> <a class="code hl_interface" href="interfacesol__utilities_1_1calc__xuq.html">calc_xuq</a>, <a class="code hl_function" href="namespacesol__utilities.html#a8b902a82ae6a238e725da2cf09e7854f">calc_tot_sol_vec</a>, <a class="code hl_function" href="namespacesol__utilities.html#a677373f47ee68ad02e9cef5b409bdc26">calc_loc_sol_vec</a>, <a class="code hl_function" href="namespacesol__utilities.html#a657f31b9f795ec9b32000a72eeadcfbf">interp_v</a>, &amp;</div>
-<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>        &amp;<a class="code hl_function" href="namespacesol__utilities.html#a50a44a844f0db0040bba4c69de27c36b">interp_v_spline</a>, <a class="code hl_function" href="namespacesol__utilities.html#a7f66070270d77d65cb26f5825402e728">calc_memory_sol</a></div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>        &amp;<a class="code hl_function" href="namespacesol__utilities.html#a50a44a844f0db0040bba4c69de27c36b">interp_v_spline</a>, <a class="code hl_function" href="namespacesol__utilities.html#a7f66070270d77d65cb26f5825402e728">calc_memory_sol</a>, <a class="code hl_function" href="namespacesol__utilities.html#ae971b431281bb0c75ad099c4e4ce1c54">calc_memory_vac</a></div>
 <div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="preprocessor">#if ldebug</span></div>
 <div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span><span class="preprocessor"></span>    <span class="keywordtype">public</span> <a class="code hl_variable" href="namespacesol__utilities.html#a4779ff845b4ddc046892bf4eb4490dd2">debug_calc_xuq_arr</a>, <a class="code hl_variable" href="namespacesol__utilities.html#a30a4f8524896611f3608741ae953b7f9">debug_interp_v</a>, <a class="code hl_variable" href="namespacesol__utilities.html#aa36c52e73c02a783074c7c0e5076c903">debug_interp_v_spline</a></div>
 <div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="preprocessor">#endif</span></div>
@@ -1296,12 +1296,24 @@ document.addEventListener('DOMContentLoaded', codefold.init);
 <div class="line"><a id="l01177" name="l01177"></a><span class="lineno"> 1177</span>        chckerr(<span class="stringliteral">&#39;&#39;</span>)</div>
 <div class="line"><a id="l01178" name="l01178"></a><span class="lineno"> 1178</span>        ierr = <a class="code hl_function" href="namespacex__utilities.html#a4d18921da77463d069346f1c7322b451">calc_memory_x</a>(2,arr_size_sol,<a class="code hl_variable" href="namespacex__vars.html#a2e8fe6c5fe1cf61704bf176925d2b02e">n_mod_x</a>,mem_x_sol)</div>
 <div class="line"><a id="l01179" name="l01179"></a><span class="lineno"> 1179</span>        chckerr(<span class="stringliteral">&#39;&#39;</span>)</div>
-<div class="line"><a id="l01180" name="l01180"></a><span class="lineno"> 1180</span>        mem_vac = (n_bnd*1._dp)**2*storage_size(1._dp)/8*1.e-6_dp*1.5_dp</div>
+<div class="line"><a id="l01180" name="l01180"></a><span class="lineno"> 1180</span>        mem_vac = <a class="code hl_function" href="namespacesol__utilities.html#ae971b431281bb0c75ad099c4e4ce1c54">calc_memory_vac</a>(n_bnd,n_bnd)</div>
 <div class="line"><a id="l01181" name="l01181"></a><span class="lineno"> 1181</span>        </div>
 <div class="line"><a id="l01182" name="l01182"></a><span class="lineno"> 1182</span>        mem_size = mem_x + 2*mem_vac + max(mem_vac,mem_x,mem_x_sol)</div>
 </div>
 <div class="line"><a id="l01183" name="l01183"></a><span class="lineno"> 1183</span>    <span class="keyword">end function </span><a class="code hl_function" href="namespacesol__utilities.html#a7f66070270d77d65cb26f5825402e728">calc_memory_sol</a></div>
-<div class="line"><a id="l01184" name="l01184"></a><span class="lineno"> 1184</span><span class="keyword">end module </span><a class="code hl_namespace" href="namespacesol__utilities.html">sol_utilities</a></div>
+<div class="line"><a id="l01184" name="l01184"></a><span class="lineno"> 1184</span>    <span class="comment"></span></div>
+<div class="line"><a id="l01185" name="l01185"></a><span class="lineno"> 1185</span><span class="comment">    !&gt; Calculate memory in MB of a vacuum matrix of real numbers.</span></div>
+<div class="line"><a id="l01186" name="l01186"></a><span class="lineno"> 1186</span><span class="comment">    !!</span></div>
+<div class="line"><a id="l01187" name="l01187"></a><span class="lineno"> 1187</span><span class="comment">    !! With the same 50% safety factor as calc_memory_X().</span></div>
+<div class="foldopen" id="foldopen01188" data-start="" data-end="">
+<div class="line"><a id="l01188" name="l01188"></a><span class="lineno"><a class="line" href="namespacesol__utilities.html#ae971b431281bb0c75ad099c4e4ce1c54"> 1188</a></span><span class="keywordtype">    real</span>(dp) function <a class="code hl_function" href="namespacesol__utilities.html#ae971b431281bb0c75ad099c4e4ce1c54">calc_memory_vac</a>(n_row,n_col) result(mem_size)</div>
+<div class="line"><a id="l01189" name="l01189"></a><span class="lineno"> 1189</span>        <span class="keywordtype">integer</span>, <span class="keywordtype">intent(in)</span> :: n_row<span class="comment">                                            !&lt; number of rows</span></div>
+<div class="line"><a id="l01190" name="l01190"></a><span class="lineno"> 1190</span>        <span class="keywordtype">integer</span>, <span class="keywordtype">intent(in)</span> :: n_col<span class="comment">                                            !&lt; number of columns</span></div>
+<div class="line"><a id="l01191" name="l01191"></a><span class="lineno"> 1191</span>        </div>
+<div class="line"><a id="l01192" name="l01192"></a><span class="lineno"> 1192</span>        mem_size = (n_row*1._dp)*n_col*storage_size(1._dp)/8*1.e-6_dp*1.5_dp</div>
+</div>
+<div class="line"><a id="l01193" name="l01193"></a><span class="lineno"> 1193</span>    <span class="keyword">end function </span><a class="code hl_function" href="namespacesol__utilities.html#ae971b431281bb0c75ad099c4e4ce1c54">calc_memory_vac</a></div>
+<div class="line"><a id="l01194" name="l01194"></a><span class="lineno"> 1194</span><span class="keyword">end module </span><a class="code hl_namespace" href="namespacesol__utilities.html">sol_utilities</a></div>
 <div class="ttc" id="ainterfacenum__utilities_1_1calc__int_html"><div class="ttname"><a href="interfacenum__utilities_1_1calc__int.html">num_utilities::calc_int</a></div><div class="ttdoc">Integrates a function using the trapezoidal rule.</div><div class="ttdef"><b>Definition</b> <a href="num__utilities_8f90_source.html#l00160">num_utilities.f90:160</a></div></div>
 <div class="ttc" id="ainterfacenum__utilities_1_1con2dis_html"><div class="ttname"><a href="interfacenum__utilities_1_1con2dis.html">num_utilities::con2dis</a></div><div class="ttdoc">Convert between points from a continuous grid to a discrete grid.</div><div class="ttdef"><b>Definition</b> <a href="num__utilities_8f90_source.html#l00188">num_utilities.f90:188</a></div></div>
 <div class="ttc" id="ainterfaceoutput__ops_1_1plot__hdf5_html"><div class="ttname"><a href="interfaceoutput__ops_1_1plot__hdf5.html">output_ops::plot_hdf5</a></div><div class="ttdoc">Prints variables vars with names var_names in an HDF5 file with name c file_name and accompanying XDM...</div><div class="ttdef"><b>Definition</b> <a href="output__ops_8f90_source.html#l00137">output_ops.f90:137</a></div></div>
@@ -1341,6 +1353,7 @@ document.addEventListener('DOMContentLoaded', codefold.init);
 <div class="ttc" id="anamespacesol__utilities_html_a7f66070270d77d65cb26f5825402e728"><div class="ttname"><a href="namespacesol__utilities.html#a7f66070270d77d65cb26f5825402e728">sol_utilities::calc_memory_sol</a></div><div class="ttdeci">integer function, public calc_memory_sol(arr_size_x, arr_size_sol, n_bnd, mem_size)</div><div class="ttdoc">Calculate the memory that the solution driver needs.</div><div class="ttdef"><b>Definition</b> <a href="#l01155">sol_utilities.f90:1157</a></div></div>
 <div class="ttc" id="anamespacesol__utilities_html_a8b902a82ae6a238e725da2cf09e7854f"><div class="ttname"><a href="namespacesol__utilities.html#a8b902a82ae6a238e725da2cf09e7854f">sol_utilities::calc_tot_sol_vec</a></div><div class="ttdeci">integer function, public calc_tot_sol_vec(mds, grid_sol, sol_vec_loc, sol_vec_tot, deriv)</div><div class="ttdoc">Calculate the total version of the solution vector from the local version.</div><div class="ttdef"><b>Definition</b> <a href="#l00568">sol_utilities.f90:570</a></div></div>
 <div class="ttc" id="anamespacesol__utilities_html_aa36c52e73c02a783074c7c0e5076c903"><div class="ttname"><a href="namespacesol__utilities.html#aa36c52e73c02a783074c7c0e5076c903">sol_utilities::debug_interp_v_spline</a></div><div class="ttdeci">logical, public debug_interp_v_spline</div><div class="ttdoc">debug information for interp_v_spline</div><div class="ttdef"><b>Definition</b> <a href="#l00028">sol_utilities.f90:28</a></div></div>
+<div class="ttc" id="anamespacesol__utilities_html_ae971b431281bb0c75ad099c4e4ce1c54"><div class="ttname"><a href="namespacesol__utilities.html#ae971b431281bb0c75ad099c4e4ce1c54">sol_utilities::calc_memory_vac</a></div><div class="ttdeci">real(dp) function, public calc_memory_vac(n_row, n_col)</div><div class="ttdoc">Calculate memory in MB of a vacuum matrix of real numbers.</div><div class="ttdef"><b>Definition</b> <a href="#l01188">sol_utilities.f90:1189</a></div></div>
 <div class="ttc" id="anamespacesol__vars_html"><div class="ttname"><a href="namespacesol__vars.html">sol_vars</a></div><div class="ttdoc">Variables pertaining to the solution quantities.</div><div class="ttdef"><b>Definition</b> <a href="sol__vars_8f90_source.html#l00004">sol_vars.f90:4</a></div></div>
 <div class="ttc" id="anamespacespline__utilities_html"><div class="ttname"><a href="namespacespline__utilities.html">spline_utilities</a></div><div class="ttdoc">Spline interpolation, wrapping the PSPLINE / EZspline library.</div><div class="ttdef"><b>Definition</b> <a href="spline__utilities_8f90_source.html#l00008">spline_utilities.f90:8</a></div></div>
 <div class="ttc" id="anamespacestr__utilities_html"><div class="ttname"><a href="namespacestr__utilities.html">str_utilities</a></div><div class="ttdoc">Operations on strings.</div><div class="ttdef"><b>Definition</b> <a href="str__utilities_8f90_source.html#l00004">str_utilities.f90:4</a></div></div>

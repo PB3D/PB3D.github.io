@@ -23,7 +23,9 @@ integer function, public \doxymbox{\hyperlink{namespacesol__utilities_a50a44a844
 integer function, public \doxymbox{\hyperlink{namespacesol__utilities_a657f31b9f795ec9b32000a72eeadcfbf}{interp\+\_\+v}} (mds\+\_\+i, grid\+\_\+i, x\+\_\+i, mds\+\_\+o, grid\+\_\+o, x\+\_\+o)
 \begin{DoxyCompactList}\small\item\em Interpolate tensorial perturbation quantities in the third dimension. \end{DoxyCompactList}\item 
 integer function, public \doxymbox{\hyperlink{namespacesol__utilities_a7f66070270d77d65cb26f5825402e728}{calc\+\_\+memory\+\_\+sol}} (arr\+\_\+size\+\_\+x, arr\+\_\+size\+\_\+sol, n\+\_\+bnd, mem\+\_\+size)
-\begin{DoxyCompactList}\small\item\em Calculate the memory that the solution driver needs. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Calculate the memory that the solution driver needs. \end{DoxyCompactList}\item 
+real(dp) function, public \doxymbox{\hyperlink{namespacesol__utilities_ae971b431281bb0c75ad099c4e4ce1c54}{calc\+\_\+memory\+\_\+vac}} (n\+\_\+row, n\+\_\+col)
+\begin{DoxyCompactList}\small\item\em Calculate memory in MB of a vacuum matrix of real numbers. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsubsection*{Variables}
 \begin{DoxyCompactItemize}
 \item 
@@ -140,6 +142,35 @@ Here is the caller graph for this function:
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{namespacesol__utilities_a7f66070270d77d65cb26f5825402e728_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{namespacesol__utilities_ae971b431281bb0c75ad099c4e4ce1c54}\index{sol\_utilities@{sol\_utilities}!calc\_memory\_vac@{calc\_memory\_vac}}
+\index{calc\_memory\_vac@{calc\_memory\_vac}!sol\_utilities@{sol\_utilities}}
+\doxysubsubsection{\texorpdfstring{calc\_memory\_vac()}{calc\_memory\_vac()}}
+{\footnotesize\ttfamily \label{namespacesol__utilities_ae971b431281bb0c75ad099c4e4ce1c54} 
+real(dp) function, public sol\+\_\+utilities::\+calc\+\_\+memory\+\_\+vac (\begin{DoxyParamCaption}\item[{integer, intent(in)}]{n\+\_\+row}{, }\item[{integer, intent(in)}]{n\+\_\+col}{}\end{DoxyParamCaption})}
+
+
+
+Calculate memory in MB of a vacuum matrix of real numbers. 
+
+With the same 50\% safety factor as calc\+\_\+memory\+\_\+\+X(). 
+\begin{DoxyParams}[1]{Parameters}
+\doxymbox{\texttt{in}}  & {\em n\+\_\+row} & number of rows \\
+\hline
+\doxymbox{\texttt{in}}  & {\em n\+\_\+col} & number of columns \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \doxymbox{\hyperlink{sol__utilities_8f90_source_l01188}{1188}} of file \doxymbox{\hyperlink{sol__utilities_8f90_source}{sol\+\_\+utilities.\+f90}}.
+
+Here is the caller graph for this function:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespacesol__utilities_ae971b431281bb0c75ad099c4e4ce1c54_icgraph}
 \end{center}
 \end{figure}
 \Hypertarget{namespacesol__utilities_a8b902a82ae6a238e725da2cf09e7854f}\index{sol\_utilities@{sol\_utilities}!calc\_tot\_sol\_vec@{calc\_tot\_sol\_vec}}
